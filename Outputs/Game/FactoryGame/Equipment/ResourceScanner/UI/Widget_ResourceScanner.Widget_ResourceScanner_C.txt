@@ -1,0 +1,68 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/ResourceScanner/UI/Widget_ResourceScanner.Widget_ResourceScanner_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ResourceScanner(1334);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_ResourceScanner(1492);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ResourceScanner ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L647);
+L20:           TArray<TSubclassOf<FGResourceDescriptor>> mTArray<TSubclassOf<FGResourceDescriptor>> = this->mResourceScanner->GetScannableResources();
+L70:           KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResourceDescriptor>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGResourceDescriptor>);
+L129:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGResourceDescriptor>);
+L188:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L247:          FName mFName = KismetStringLibrary->Conv_StringToName(mFString);
+L306:          int32 mint32 = KismetArrayLibrary->Array_Add([ref] this->Widget_RadialMenu->Buttons, [ref] mFName);
+L396:          mTArray<TSubclassOf<FGResourceDescriptor>> = this->mResourceScanner->GetScannableResources();
+L446:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResourceDescriptor>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGResourceDescriptor>);
+L505:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mTSubclassOf<FGResourceDescriptor>);
+L556:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->Widget_RadialMenu->mIconTextures, [ref] mTexture2D);
+L646:          goto ExecutionFlow.Pop();
+L647:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L689:          int32 Temp_int_Loop_Counter_Variable = mint322;
+L716:          mTArray<TSubclassOf<FGResourceDescriptor>> = this->mResourceScanner->GetScannableResources();
+L766:          int32 mint323 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGResourceDescriptor>>);
+L825:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint323);
+L863:          if (!mbool) goto L909;
+L877:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L904:          goto L15;
+L909:          this->Widget_RadialMenu->Create Radial Menu();
+L945:          goto ExecutionFlow.Pop();
+L946:          this->mResourceScanner->SetPressingScan(false);
+L979:          TArray<TSubclassOf<FGResourceDescriptor>> mTArray<TSubclassOf<FGResourceDescriptor>>1 = this->mResourceScanner->GetScannableResources();
+L1029:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResourceDescriptor>>1, this->Widget_RadialMenu->SelectedInt, [ref] mTSubclassOf<FGResourceDescriptor>1);
+L1110:         this->SelectedResource = mTSubclassOf<FGResourceDescriptor>1;
+L1129:         bool mbool1 = KismetSystemLibrary->IsValidClass(this->SelectedResource);
+L1180:         if (!mbool1) goto L1236;
+L1194:         this->mResourceScanner->SetResourceDescriptorToScanFor(this->SelectedResource);
+L1235:         goto ExecutionFlow.Pop();
+L1236:         this->mResourceScanner->SetResourceDescriptorToScanFor(Desc_OreIron);
+L1277:         goto ExecutionFlow.Pop();
+L1278:         Temp_int_Array_Index_Variable = 0;
+L1301:         goto L716;
+L1306:         Temp_int_Loop_Counter_Variable = 0;
+L1329:         goto L1278;
+L1334:         this->Widget_RadialMenu->mDescText = "[object Object]";
+L1426:         TSubclassOf<FGResourceDescriptor> mTSubclassOf<FGResourceDescriptor>2 = this->mResourceScanner->GetResourceDescriptorToScanFor();
+L1468:         this->SelectedResource = mTSubclassOf<FGResourceDescriptor>2;
+L1487:         goto L1306;
+L1492:         goto L946;
+============ END FUNCTION ExecuteUbergraph_Widget_ResourceScanner ==============

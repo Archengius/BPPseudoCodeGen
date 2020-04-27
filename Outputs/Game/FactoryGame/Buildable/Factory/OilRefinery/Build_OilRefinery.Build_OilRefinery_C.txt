@@ -1,0 +1,124 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION StartIdlingLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C:ExecuteUbergraph_Build_OilRefinery.K2Node_Event_didGainPower) = didGainPower;
+L18:           this->ExecuteUbergraph_Build_OilRefinery(1548);
+============ END FUNCTION StartIdlingLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopIdlingLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C:ExecuteUbergraph_Build_OilRefinery.K2Node_Event_didLosePower) = didLosePower;
+L18:           this->ExecuteUbergraph_Build_OilRefinery(1524);
+============ END FUNCTION StopIdlingLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C:ExecuteUbergraph_Build_OilRefinery.K2Node_Event_didStartProducing) = didStartProducing;
+L18:           this->ExecuteUbergraph_Build_OilRefinery(1392);
+============ END FUNCTION StartProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C:ExecuteUbergraph_Build_OilRefinery.K2Node_Event_didStopProducing) = didStopProducing;
+L18:           this->ExecuteUbergraph_Build_OilRefinery(26);
+============ END FUNCTION StopProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Build_OilRefinery(926);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Build_OilRefinery(1039);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_OilRefinery ==============
+L10:           this->TryStopIdlingLoopEffects(false);
+L21:           <End of Inlined Event Graph Function>;
+L26:           this->StopProductionLoopEffects(mbool);
+L45:           if (!this->mProductionEffectsRunning) goto L1572;
+L59:           this->mProductionEffectsRunning = false;
+L70:           this->mExhaustParticle->SetFloatParameter("SmokeShortSpawnRate", 0.4000000059604645);
+L120:          this->mExhaustParticle->SetFloatParameter("SmokeLongSpawnRate", 0);
+L170:          if (!mbool) goto L396;
+L184:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(Stop_F_OilRefinery_Furnace, this->MainMesh, "AudioSocketFurnace", true);
+L258:          int32 mint32 = this->FGSoundSpline->PostAkEvent(Stop_F_OilRefinery_Tank_MixDown);
+L317:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(Stop_B_Generator_Coal_MixDown_Exhaust, this->MainMesh, "exhaustVfxSocket", true);
+L391:          <End of Inlined Event Graph Function>;
+L396:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAttached(Stop_F_OilRefinery_Furnace_Quick, this->MainMesh, "AudioSocketFurnace", true);
+L470:          AkGameplayStatics->StopAndDestroyComponent(this->FGSoundSpline);
+L511:          goto L317;
+L516:          this->mExhaustParticle->SetFloatParameter("SmokeLongSpawnRate", 1);
+L566:          if (!mbool1) goto L792;
+L580:          AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEventAttached(Play_F_OilRefinery_Furnace, this->MainMesh, "AudioSocketFurnace", true);
+L654:          int32 mint321 = this->FGSoundSpline->PostAkEvent(Play_F_OilRefinery_Tank_MixDown);
+L713:          AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEventAttached(Play_B_Generator_Coal_MixDown_Exhaust, this->MainMesh, "exhaustVfxSocket", true);
+L787:          <End of Inlined Event Graph Function>;
+L792:          AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEventAttached(Play_F_OilRefinery_Furnace_Quick, this->MainMesh, "AudioSocketFurnace", true);
+L866:          goto L654;
+L871:          this->mExhaustParticle->SetFloatParameter("SmokeShortSpawnRate", 1);
+L921:          goto L516;
+L926:          this->GainedSignificance();
+L936:          bool mbool2 = this->HasPower();
+L960:          if (!mbool2) goto L1572;
+L974:          this->TryStartIdlingLoopEffects(false);
+L985:          bool mbool3 = this->IsProducing();
+L1009:         if (!mbool3) goto L1572;
+L1023:         this->TryStartProductionLoopEffects(false);
+L1034:         <End of Inlined Event Graph Function>;
+L1039:         this->LostSignificance();
+L1049:         bool mbool4 = this->IsProducing();
+L1073:         if (!mbool4) goto L1103;
+L1087:         this->TryStopProductionLoopEffects(false);
+L1098:         goto L10;
+L1103:         bool mbool5 = this->HasPower();
+L1127:         if (!mbool5) goto L1572;
+L1141:         <End of Inlined Event Graph Function>;
+L1146:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(P_OilRefineryExhaust, this->MainMesh, "exhaustVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1263:         this->mExhaustParticle = mParticleSystemComponent;
+L1282:         <End of Inlined Event Graph Function>;
+L1287:         bool mbool6 = KismetSystemLibrary->IsValid(this->mExhaustParticle);
+L1338:         if (!mbool6) goto L1146;
+L1352:         <End of Inlined Event Graph Function>;
+L1357:         this->mProductionEffectsRunning = true;
+L1368:         goto L871;
+L1373:         if (!this->mProductionEffectsRunning) goto L1357;
+L1387:         <End of Inlined Event Graph Function>;
+L1392:         this->StartProductionLoopEffects(mbool1);
+L1411:         goto L1373;
+L1416:         this->mExhaustParticle->K2_DestroyComponent(this);
+L1449:         <End of Inlined Event Graph Function>;
+L1454:         bool mbool7 = KismetSystemLibrary->IsValid(this->mExhaustParticle);
+L1505:         if (!mbool7) goto L1572;
+L1519:         goto L1416;
+L1524:         this->StopIdlingLoopEffects(mbool8);
+L1543:         goto L1454;
+L1548:         this->StartIdlingLoopEffects(mbool9);
+L1567:         goto L1287;
+============ END FUNCTION ExecuteUbergraph_Build_OilRefinery ==============

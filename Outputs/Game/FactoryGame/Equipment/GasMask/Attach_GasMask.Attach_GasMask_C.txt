@@ -1,0 +1,42 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/GasMask/Attach_GasMask.Attach_GasMask_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/GasMask/Attach_GasMask.Attach_GasMask_C:ExecuteUbergraph_Attach_GasMask.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_Attach_GasMask(436);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayAttachEffects3P ==============
+L0:            this->ExecuteUbergraph_Attach_GasMask(441);
+============ END FUNCTION PlayAttachEffects3P ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Attach_GasMask ==============
+L10:           this->PlayAttachEffects3P();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = this->GetAttachedTo();
+L40:           SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
+L86:           AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L128:          bool mbool = mAnimInstance->Montage_IsPlaying(GasMaskEquip_01_Montage);
+L179:          if (!mbool) goto L198;
+L193:          <End of Inlined Event Graph Function>;
+L198:          mFGCharacterPlayer = this->GetAttachedTo();
+L218:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
+L264:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L306:          float mfloat = mAnimInstance->Montage_Play(GasMaskEquip_01_Montage, 1, 0, 0, true);
+L378:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_P_GasMask_Equip_3P, this, true);
+L431:          <End of Inlined Event Graph Function>;
+L436:          <End of Inlined Event Graph Function>;
+L441:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Attach_GasMask ==============

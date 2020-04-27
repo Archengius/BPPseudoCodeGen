@@ -1,0 +1,418 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_SaveListRow.Widget_SaveListRow_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetColorForImage ==============
+L0:            ImageBG->SetColorAndOpacity(Color);
+============ END FUNCTION SetColorForImage ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNewSaveGameVisibility ==============
+L0:            if (!this->mIsNewSave) goto L39;
+L14:           uint8 ReturnValue = 1;
+L34:           goto L59;
+L39:           ReturnValue = 0;
+============ END FUNCTION GetNewSaveGameVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLoadDeleteVisibility ==============
+L0:            PanelWidget* mPanelWidget = this->GetParent();
+L20:           int32 mint32 = mPanelWidget->GetChildIndex(this);
+L71:           bool mbool = this->mSaveRowButton->IsHovered();
+L117:          bool mbool1 = EqualEqual_IntInt(mint32, 0);
+L151:          bool mbool2 = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
+L203:          bool mbool3 = BooleanOR(mbool2, mbool);
+L241:          bool mbool4 = BooleanOR(mbool3, mbool1);
+L279:          if (!mbool4) goto L318;
+L293:          uint8 ReturnValue = 0;
+L313:          goto L338;
+L318:          ReturnValue = 2;
+============ END FUNCTION GetLoadDeleteVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFocusReceived ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           this->mSaveRowButton->SetUserFocus(mPlayerController);
+L65:           EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L115:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnFocusReceived ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSaveNameTextColor ==============
+L0:            bool mbool = this->mSaveRowButton->IsHovered();
+L46:           bool mbool1 = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
+L98:           bool Temp_bool_Variable1 = mbool;
+L117:          bool Temp_bool_Variable = mbool1;
+L136:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L191:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor1, [ref] mSlateColor1);
+L246:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor2, [ref] mLinearColor2);
+L301:          SlateColor ReturnValue = switch (Temp_bool_Variable1) {
+case false -> switch (Temp_bool_Variable) {
+case false -> mSlateColor1;
+case true -> mSlateColor;
+default -> mSlateColor4;
+};
+case true -> mSlateColor2;
+default -> mSlateColor3;
+};
+============ END FUNCTION GetSaveNameTextColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTextColor ==============
+L0:            bool mbool = this->mSaveRowButton->IsHovered();
+L46:           bool mbool1 = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
+L98:           bool Temp_bool_Variable1 = mbool;
+L117:          bool Temp_bool_Variable = mbool1;
+L136:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L191:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L246:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor2, [ref] mLinearColor2);
+L301:          SlateColor ReturnValue = switch (Temp_bool_Variable1) {
+case false -> switch (Temp_bool_Variable) {
+case false -> mSlateColor2;
+case true -> mSlateColor;
+default -> mSlateColor4;
+};
+case true -> mSlateColor1;
+default -> mSlateColor3;
+};
+============ END FUNCTION GetTextColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIconBGColor ==============
+L0:            HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           bool mbool = this->mSaveRowButton->IsHovered();
+L101:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L156:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor2, [ref] mSlateColor2);
+L211:          bool mbool1 = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
+L263:          LinearColor mLinearColor3 = SelectColor(mLinearColor, mLinearColor2, mbool1);
+L318:          LinearColor mLinearColor4 = SelectColor(mLinearColor1, mLinearColor3, mbool);
+L373:          LinearColor ReturnValue = mLinearColor4;
+============ END FUNCTION GetIconBGColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIconColor ==============
+L0:            HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L110:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor2, [ref] mSlateColor2);
+L165:          bool mbool = this->mSaveRowButton->IsHovered();
+L211:          bool mbool1 = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
+L263:          LinearColor mLinearColor3 = SelectColor(mLinearColor2, mLinearColor, mbool1);
+L318:          LinearColor mLinearColor4 = SelectColor(mLinearColor1, mLinearColor3, mbool);
+L373:          LinearColor ReturnValue = mLinearColor4;
+============ END FUNCTION GetIconColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonColor ==============
+L0:            mLinearColor.R = 0;
+L32:           mLinearColor.G = 0;
+L64:           mLinearColor.B = 0;
+L96:           mLinearColor.A = 0;
+L128:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor1);
+L183:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor2, [ref] mSlateColor1);
+L238:          bool mbool = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
+L290:          bool mbool1 = this->mSaveRowButton->IsHovered();
+L336:          LinearColor mLinearColor3 = SelectColor(mLinearColor1, mLinearColor, mbool);
+L391:          LinearColor mLinearColor4 = SelectColor(mLinearColor2, mLinearColor3, mbool1);
+L446:          LinearColor ReturnValue = mLinearColor4;
+============ END FUNCTION GetButtonColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNewSaveVisibility ==============
+============ END FUNCTION GetNewSaveVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSessionName ==============
+L0:            if (!this->mIsNewSave) goto L39;
+L14:           FText ReturnValue = ;
+L34:           goto L184;
+L39:           FString mFString = FGSaveSession->GetSessionName([ref] this->mSaveHeader);
+L98:           FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L157:          ReturnValue = mFText;
+============ END FUNCTION GetSessionName ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSaveDuration ==============
+L0:            FText localText = "[object Object]";
+L63:           if (!this->mIsNewSave) goto L109;
+L77:           FText ReturnValue = localText;
+L104:          goto L1146;
+L109:          int32 mint32 = FGSaveSession->GetPlayDurationSeconds([ref] this->mSaveHeader);
+L168:          Timespan mTimespan = MakeTimespan(0, 0, 0, mint32, 0);
+L225:          BreakTimespan(mTimespan, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324, [ref] mint325);
+L289:          int32 mint326 = Multiply_IntInt(mint321, 24);
+L331:          mFormatArgumentData.ArgumentName = "sec";
+L363:          mFormatArgumentData.ArgumentValueType = 0;
+L392:          mFormatArgumentData.ArgumentValue = ;
+L421:          mFormatArgumentData.ArgumentValueInt = mint324;
+L457:          mFormatArgumentData.ArgumentValueFloat = 0;
+L489:          mFormatArgumentData.ArgumentValueGender = 0;
+L518:          int32 mint327 = Add_IntInt(mint326, mint322);
+L564:          mFormatArgumentData1.ArgumentName = "min";
+L596:          mFormatArgumentData1.ArgumentValueType = 0;
+L625:          mFormatArgumentData1.ArgumentValue = ;
+L654:          mFormatArgumentData1.ArgumentValueInt = mint323;
+L690:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L722:          mFormatArgumentData1.ArgumentValueGender = 0;
+L751:          mFormatArgumentData2.ArgumentName = "hours";
+L785:          mFormatArgumentData2.ArgumentValueType = 0;
+L814:          mFormatArgumentData2.ArgumentValue = ;
+L843:          mFormatArgumentData2.ArgumentValueInt = mint327;
+L879:          mFormatArgumentData2.ArgumentValueFloat = 0;
+L911:          mFormatArgumentData2.ArgumentValueGender = 0;
+L940:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData2, mFormatArgumentData1, mFormatArgumentData];
+L978:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1114:         localText = mFText;
+L1141:         goto L77;
+============ END FUNCTION GetSaveDuration ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetDesiredFileName ==============
+L0:            FString mFString = FGSaveSession->GetName([ref] this->mSaveHeader);
+L59:           bool Temp_bool_Variable = this->mIsNewSave;
+L78:           FString desiredFileName = switch (Temp_bool_Variable) {
+case false -> mFString;
+case true -> this->mNewSaveFileName;
+default -> mFString1;
+};
+============ END FUNCTION GetDesiredFileName ==============
+
+
+
+
+
+============ BEGIN FUNCTION Clicked ==============
+L0:            this->mIsSelected = true;
+L11:           this->OnClicked->ProcessMulticastDelegate(this);
+============ END FUNCTION Clicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSaveMap ==============
+L0:            FText local_Text = "[object Object]";
+L86:           if (!this->mIsNewSave) goto L132;
+L100:          FText ReturnValue = local_Text;
+L127:          goto L282;
+L132:          FString mFString = FGSaveSession->GetMapName([ref] this->mSaveHeader);
+L191:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L250:          local_Text = mFText;
+L277:          goto L100;
+============ END FUNCTION GetSaveMap ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSaveVersion ==============
+L0:            if (!this->mIsNewSave) goto L46;
+L14:           FText ReturnValue = local_Text;
+L41:           goto L208;
+L46:           int32 mint32 = FGSaveSession->GetVersion([ref] this->mSaveHeader);
+L105:          FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
+L176:          FText local_Text = mFText;
+L203:          goto L14;
+============ END FUNCTION GetSaveVersion ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SaveListRow(10);
+============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SaveListRow(100);
+============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SaveListRow(210);
+============ END FUNCTION BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SaveListRow(229);
+============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnWorldSave ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveListRow.Widget_SaveListRow_C:ExecuteUbergraph_Widget_SaveListRow.K2Node_CustomEvent_WasSuccessful) = WasSuccessful;
+L18:           PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveListRow.Widget_SaveListRow_C:ExecuteUbergraph_Widget_SaveListRow.K2Node_CustomEvent_errorMessage) = errorMessage;
+L36:           this->ExecuteUbergraph_Widget_SaveListRow(597);
+============ END FUNCTION OnWorldSave ==============
+
+
+
+
+
+============ BEGIN FUNCTION ConfirmDeleteSessionPopUp ==============
+L0:            this->ExecuteUbergraph_Widget_SaveListRow(1082);
+============ END FUNCTION ConfirmDeleteSessionPopUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION DeleteSave ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveListRow.Widget_SaveListRow_C:ExecuteUbergraph_Widget_SaveListRow.K2Node_CustomEvent_confirmed) = confirmed;
+L18:           this->ExecuteUbergraph_Widget_SaveListRow(1241);
+============ END FUNCTION DeleteSave ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SaveListRow(1623);
+============ END FUNCTION BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SaveListRow(1628);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDeleteSaveDone ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveListRow.Widget_SaveListRow_C:ExecuteUbergraph_Widget_SaveListRow.K2Node_CustomEvent_success) = success;
+L18:           this->ExecuteUbergraph_Widget_SaveListRow(1961);
+============ END FUNCTION OnDeleteSaveDone ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SaveListRow ==============
+L10:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L34:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_MouseOver, mPlayerController, true);
+L95:           <End of Inlined Event Graph Function>;
+L100:          this->OnClicked->ProcessMulticastDelegate(this);
+L120:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L144:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Click, mPlayerController1, true);
+L205:          <End of Inlined Event Graph Function>;
+L210:          this->ConfirmDeleteSessionPopUp();
+L224:          <End of Inlined Event Graph Function>;
+L229:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L253:          FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController2);
+L289:          bool mbool = mFGPlayerControllerBase;
+L318:          if (!mbool) goto L2011;
+L332:          FGAdminInterface* mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L374:          bool mbool1 = KismetSystemLibrary->IsValid(mFGAdminInterface);
+L425:          if (!mbool1) goto L2011;
+L439:          mFScriptDelegate->BindUFunction(this, OnWorldSave);
+L462:          this->GetDesiredFileName([ref] mFString);
+L499:          mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L541:          mFGAdminInterface->SaveGame(false, mFString, mFScriptDelegate);
+L592:          <End of Inlined Event Graph Function>;
+L597:          this->mSaveList->RefreshSaveList();
+L633:          FText Temp_text_Variable = "[object Object]";
+L711:          FText Temp_text_Variable1 = "[object Object]";
+L781:          FText Temp_text_Variable2 = "[object Object]";
+L855:          bool Temp_bool_Variable = mbool2;
+L874:          bool Temp_bool_Variable1 = mbool2;
+L893:          PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L917:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController3, switch (Temp_bool_Variable) {
+case false -> Temp_text_Variable1;
+case true -> Temp_text_Variable2;
+default -> mFText;
+}, switch (Temp_bool_Variable1) {
+case false -> mconst FText;
+case true -> Temp_text_Variable;
+default -> mFText1;
+}, [ref] Temp_delegate_Variable, 0, nullptr, nullptr);
+L1077:         <End of Inlined Event Graph Function>;
+L1082:         mFScriptDelegate1->BindUFunction(this, DeleteSave);
+L1105:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
+L1129:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController4, "[object Object]", , [ref] mFScriptDelegate1, 1, nullptr, nullptr);
+L1236:         <End of Inlined Event Graph Function>;
+L1241:         if (!mbool3) goto L2011;
+L1255:         PlayerController* mPlayerController5 = this->GetOwningPlayer();
+L1279:         FGPlayerControllerBase* mFGPlayerControllerBase1 = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController5);
+L1315:         bool mbool4 = mFGPlayerControllerBase1;
+L1344:         if (!mbool4) goto L2011;
+L1358:         FGAdminInterface* mFGAdminInterface1 = mFGPlayerControllerBase1->GetAdminInterface();
+L1400:         bool mbool5 = KismetSystemLibrary->IsValid(mFGAdminInterface1);
+L1451:         if (!mbool5) goto L2011;
+L1465:         mFScriptDelegate2->BindUFunction(this, OnDeleteSaveDone);
+L1488:         this->GetDesiredFileName([ref] mFString1);
+L1525:         mFGAdminInterface1 = mFGPlayerControllerBase1->GetAdminInterface();
+L1567:         mFGAdminInterface1->DeleteSaveFile(false, mFString1, mFScriptDelegate2);
+L1618:         <End of Inlined Event Graph Function>;
+L1623:         <End of Inlined Event Graph Function>;
+L1628:         FString mFString2 = FGSaveSession->GetName([ref] this->mSaveHeader);
+L1687:         FText mFText2 = KismetTextLibrary->Conv_StringToText(mFString2);
+L1746:         this->mTitle->SetText(mFText2);
+L1791:         DateTime mDateTime = FGSaveSession->GetSaveDateTime([ref] this->mSaveHeader);
+L1850:         FText mFText3 = KismetTextLibrary->AsTimeZoneDateTime_DateTime([ref] mDateTime, "");
+L1911:         this->Date->SetText(mFText3);
+L1956:         <End of Inlined Event Graph Function>;
+L1961:         if (!mbool6) goto L2011;
+L1975:         this->mSaveList->RefreshSaveList();
+============ END FUNCTION ExecuteUbergraph_Widget_SaveListRow ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============

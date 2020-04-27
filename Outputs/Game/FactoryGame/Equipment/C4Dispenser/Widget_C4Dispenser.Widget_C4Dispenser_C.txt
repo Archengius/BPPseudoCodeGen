@@ -1,0 +1,51 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/C4Dispenser/Widget_C4Dispenser.Widget_C4Dispenser_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION Get_mC4Throwbar_Visibility_0 ==============
+L0:            uint8 Temp_byte_Variable = 0;
+L20:           uint8 Temp_byte_Variable1 = 2;
+L40:           float mfloat = this->GetThrowPercent();
+L72:           bool mbool = Greater_FloatFloat(mfloat, 0);
+L106:          bool Temp_bool_Variable = mbool;
+L125:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION Get_mC4Throwbar_Visibility_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION Get_mC4Throwbar_FillColorAndOpacity_0 ==============
+L0:            float mfloat = this->GetThrowPercent();
+L32:           LinearColor mLinearColor = LinearColorLerp(ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 1, B = 0, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), mfloat);
+L137:          LinearColor ReturnValue = mLinearColor;
+============ END FUNCTION Get_mC4Throwbar_FillColorAndOpacity_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetThrowPercent ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           Char_Player* mChar_Player = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C>(mPawn);
+L56:           bool mbool = mChar_Player;
+L85:           if (!mbool) goto L304;
+L99:           FGEquipment* mFGEquipment = mChar_Player->GetEquipmentInSlot(1);
+L143:          Equip_C4Dispenser* mEquip_C4Dispenser = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/C4Dispenser/Equip_C4Dispenser.Equip_C4Dispenser_C>(mFGEquipment);
+L179:          bool mbool1 = mEquip_C4Dispenser;
+L208:          if (!mbool1) goto L332;
+L222:          float mfloat = mEquip_C4Dispenser->GetChargePct();
+L272:          float ReturnValue = mfloat;
+L299:          goto L355;
+L304:          ReturnValue = 0;
+L327:          goto L355;
+L332:          ReturnValue = 0;
+============ END FUNCTION GetThrowPercent ==============

@@ -1,0 +1,59 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_AggroText.Widget_AggroText_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION Get_Text_Text_0 ==============
+L0:            FString mFString = KismetStringLibrary->Concat_StrStr(this->ActorName, " aggro ");
+L68:           FString mFString1 = KismetStringLibrary->Conv_FloatToString(this->mDisplayedAggro);
+L127:          FString mFString2 = KismetStringLibrary->Concat_StrStr(mFString, mFString1);
+L195:          FString mFString3 = KismetStringLibrary->Concat_StrStr(mFString2, "status =");
+L264:          FString mFString4 = KismetStringLibrary->Concat_StrStr(mFString3, this->IngoreStatus);
+L332:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString4);
+L391:          FText ReturnValue = mFText;
+============ END FUNCTION Get_Text_Text_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetAggroData ==============
+L0:            this->IngoreStatus = Status;
+L27:           this->ActorName = ActorName;
+L54:           this->mActualAggro = Aggro;
+L81:           bool mbool = Greater_FloatFloat(this->mActualAggro, 0);
+L115:          if (!mbool) goto L156;
+L129:          this->mDisplayedAggro = this->mActualAggro;
+============ END FUNCTION SetAggroData ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_AggroText.Widget_AggroText_C:ExecuteUbergraph_Widget_AggroText.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Widget_AggroText.Widget_AggroText_C:ExecuteUbergraph_Widget_AggroText.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_AggroText(53);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_AggroText ==============
+L10:           this->text->SetText();
+L48:           <End of Inlined Event Graph Function>;
+L53:           bool mbool = KismetStringLibrary->EqualEqual_StrStr(this->ActorName, "");
+L106:          if (!mbool) goto L125;
+L120:          goto L10;
+L125:          FString mFString = KismetStringLibrary->Conv_FloatToString(this->mDisplayedAggro);
+L184:          FString mFString1 = KismetStringLibrary->Concat_StrStr(this->ActorName, " aggro ");
+L252:          FString mFString2 = KismetStringLibrary->Concat_StrStr(mFString1, mFString);
+L320:          FString mFString3 = KismetStringLibrary->Concat_StrStr(mFString2, "status =");
+L389:          FString mFString4 = KismetStringLibrary->Concat_StrStr(mFString3, this->IngoreStatus);
+L457:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString4);
+L516:          this->text->SetText(mFText);
+============ END FUNCTION ExecuteUbergraph_Widget_AggroText ==============

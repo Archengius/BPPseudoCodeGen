@@ -1,0 +1,58 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Context_KnownThreatLocations.Context_KnownThreatLocations_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ProvideLocationsSet ==============
+L0:            ExecutionFlow.Push(L1500);
+L5:            AIController* mAIController = AIBlueprintHelperLibrary->GetAIController(QuerierActor);
+L56:           AIPerceptionComponent* mAIPerceptionComponent = mAIController->GetAIPerceptionComponent();
+L98:           TArray<Actor*> mTArray<Actor> = [];
+L109:          mAIPerceptionComponent->GetPerceivedActors(AISense_Sight, [ref] mTArray<Actor>);
+L159:          KismetArrayLibrary->Array_Append([ref] hostileActors, [ref] mTArray<Actor>);
+L209:          mAIController = AIBlueprintHelperLibrary->GetAIController(QuerierActor);
+L260:          mAIPerceptionComponent = mAIController->GetAIPerceptionComponent();
+L302:          TArray<Actor*> mTArray<Actor>1 = [];
+L313:          mAIPerceptionComponent->GetPerceivedActors(AISense_Hearing, [ref] mTArray<Actor>1);
+L363:          KismetArrayLibrary->Array_Append([ref] hostileActors, [ref] mTArray<Actor>1);
+L413:          int32 Temp_int_Loop_Counter_Variable = 0;
+L436:          int32 Temp_int_Array_Index_Variable = 0;
+L459:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] hostileActors);
+L518:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L556:          if (!mbool) goto L780;
+L570:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L597:          ExecutionFlow.Push(L1320);
+L602:          KismetArrayLibrary->Array_Get([ref] hostileActors, Temp_int_Array_Index_Variable, [ref] mActor);
+L661:          Vector mVector = mActor->K2_GetActorLocation();
+L711:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] locationSet, [ref] mVector);
+L779:          goto ExecutionFlow.Pop();
+L780:          BP_EQSTestingPawn* mBP_EQSTestingPawn = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/AI/BP_EQSTestingPawn.BP_EQSTestingPawn_C>(QuerierActor);
+L816:          bool mbool1 = mBP_EQSTestingPawn;
+L845:          if (!mbool1) goto L1288;
+L859:          TArray<BP_ThreatActor*> mTArray<BP_ThreatActor> = [];
+L870:          GameplayStatics->GetAllActorsOfClass(this, BP_ThreatActor, [ref] mTArray<BP_ThreatActor>);
+L921:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L944:          int32 Temp_int_Array_Index_Variable1 = 0;
+L967:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArray<BP_ThreatActor>);
+L1026:         bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint322);
+L1064:         if (!mbool2) goto L1394;
+L1078:         Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable1;
+L1105:         ExecutionFlow.Push(L1426);
+L1110:         KismetArrayLibrary->Array_Get([ref] mTArray<BP_ThreatActor>, Temp_int_Array_Index_Variable1, [ref] mBP_ThreatActor);
+L1169:         Vector mVector1 = mBP_ThreatActor->K2_GetActorLocation();
+L1219:         int32 mint323 = KismetArrayLibrary->Array_Add([ref] locationSet, [ref] mVector1);
+L1287:         goto ExecutionFlow.Pop();
+L1288:         TArray<Vector> ResultingLocationSet = locationSet;
+L1315:         <End of Inlined Event Graph Function>;
+L1320:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1362:         Temp_int_Loop_Counter_Variable = mint324;
+L1389:         goto L459;
+L1394:         ResultingLocationSet = locationSet;
+L1421:         <End of Inlined Event Graph Function>;
+L1426:         int32 mint325 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1468:         Temp_int_Loop_Counter_Variable1 = mint325;
+L1495:         goto L967;
+============ END FUNCTION ProvideLocationsSet ==============

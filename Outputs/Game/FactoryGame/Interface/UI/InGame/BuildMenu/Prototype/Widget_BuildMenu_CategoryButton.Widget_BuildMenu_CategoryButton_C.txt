@@ -1,0 +1,128 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu_CategoryButton.Widget_BuildMenu_CategoryButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateButtonStyle ==============
+L0:            this->CheckIsSelected([ref] mbool);
+L23:           LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 0);
+L75:           HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor, [ref] mSlateColor);
+L130:          bool mbool1 = this->IsHovered();
+L154:          bool mbool2 = BooleanOR(mbool, mbool1);
+L192:          bool Temp_bool_Variable = mbool2;
+L211:          this->mButtonColor->SetColorAndOpacity(switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable;
+case true -> mLinearColor;
+default -> mLinearColor1;
+});
+L296:          this->mTabArrow->SetColorAndOpacity(switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable;
+case true -> mLinearColor;
+default -> mLinearColor1;
+});
+L381:          uint8 Temp_byte_Variable = 3;
+L401:          uint8 Temp_byte_Variable1 = 1;
+L421:          bool Temp_bool_Variable1 = mbool;
+L440:          this->mTabArrow->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+============ END FUNCTION UpdateButtonStyle ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckIsSelected ==============
+L0:            bool mbool = EqualEqual_ClassClass(this->mBuildCategory, this->BuildMenu_Prototype->mSelectedBuildCategory);
+L60:           bool mIsSelected = mbool;
+============ END FUNCTION CheckIsSelected ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetBuildCategoryIcon ==============
+L0:            SlateBrush mSlateBrush = FGBuildCategory->GetCategoryIcon(this->mBuildCategory);
+L59:           this->mCatIcon->SetBrush([ref] mSlateBrush);
+============ END FUNCTION GetBuildCategoryIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetBuildCategoryName ==============
+L0:            FText mFText = FGBuildCategory->GetCategoryName(this->mBuildCategory);
+L59:           this->mCategoryName->SetText(mFText);
+============ END FUNCTION GetBuildCategoryName ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_26_K2Node_ComponentBoundEvent_100_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu_CategoryButton(70);
+============ END FUNCTION BndEvt__Button_26_K2Node_ComponentBoundEvent_100_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu_CategoryButton(75);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu_CategoryButton(126);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu_CategoryButton(177);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu_CategoryButton(297);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_BuildMenu_CategoryButton ==============
+L10:           this->OnCategoryButtonClicked->ProcessMulticastDelegate();
+L29:           this->Widget_ButtonShine->PlayShineAnim();
+L65:           <End of Inlined Event Graph Function>;
+L70:           goto L10;
+L75:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->OnHover, 0, 1, 0, 1);
+L121:          <End of Inlined Event Graph Function>;
+L126:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->OnHover, 0, 1, 1, 1);
+L172:          <End of Inlined Event Graph Function>;
+L177:          mFScriptDelegate->BindUFunction(this, UpdateButtonStyle);
+L200:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
+L265:          this->mUpdateButtonTimer = mTimerHandle;
+L292:          <End of Inlined Event Graph Function>;
+L297:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateButtonTimer);
+============ END FUNCTION ExecuteUbergraph_Widget_BuildMenu_CategoryButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCategoryButtonClicked__DelegateSignature ==============
+============ END FUNCTION OnCategoryButtonClicked__DelegateSignature ==============

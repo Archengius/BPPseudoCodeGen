@@ -1,0 +1,159 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Char_NonFlyingBird.Char_NonFlyingBird_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnRep_mIsLuring ==============
+L0:            SkeletalMeshComponent* mSkeletalMeshComponent = this->GetMesh3P();
+L24:           AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L66:           Anim_NonFlyingBird* mAnim_NonFlyingBird = Cast<AnimBlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Anim_NonFlyingBird.Anim_NonFlyingBird_C>(mAnimInstance);
+L102:          bool mbool = mAnim_NonFlyingBird;
+L131:          if (!mbool) goto L186;
+L145:          mAnim_NonFlyingBird->mIsLuring = this->mIsLuring;
+============ END FUNCTION OnRep_mIsLuring ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetLuring ==============
+L0:            this->FlushNetDormancy();
+L10:           this->mIsLuring = isLuring;
+L29:           this->OnRep_mIsLuring();
+============ END FUNCTION SetLuring ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Char_NonFlyingBird(10);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Char_NonFlyingBird.Char_NonFlyingBird_C:ExecuteUbergraph_Char_NonFlyingBird.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_Char_NonFlyingBird(54);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION TryToJump ==============
+L0:            this->ExecuteUbergraph_Char_NonFlyingBird(276);
+============ END FUNCTION TryToJump ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnLanded ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Char_NonFlyingBird.Char_NonFlyingBird_C:ExecuteUbergraph_Char_NonFlyingBird.K2Node_Event_Hit) = Hit;
+L18:           this->ExecuteUbergraph_Char_NonFlyingBird(652);
+============ END FUNCTION OnLanded ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveDied ==============
+L0:            this->ExecuteUbergraph_Char_NonFlyingBird(696);
+============ END FUNCTION ReceiveDied ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyOnTakeDamage ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Char_NonFlyingBird.Char_NonFlyingBird_C:ExecuteUbergraph_Char_NonFlyingBird.K2Node_Event_damagedActor) = DamagedActor;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Char_NonFlyingBird.Char_NonFlyingBird_C:ExecuteUbergraph_Char_NonFlyingBird.K2Node_Event_damageAmount) = damageAmount;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Char_NonFlyingBird.Char_NonFlyingBird_C:ExecuteUbergraph_Char_NonFlyingBird.K2Node_Event_damageType) = DamageType;
+L54:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Char_NonFlyingBird.Char_NonFlyingBird_C:ExecuteUbergraph_Char_NonFlyingBird.K2Node_Event_instigatedBy) = InstigatedBy;
+L72:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Char_NonFlyingBird.Char_NonFlyingBird_C:ExecuteUbergraph_Char_NonFlyingBird.K2Node_Event_damageCauser) = DamageCauser;
+L90:           this->ExecuteUbergraph_Char_NonFlyingBird(817);
+============ END FUNCTION NotifyOnTakeDamage ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveEndPlay ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Char_NonFlyingBird.Char_NonFlyingBird_C:ExecuteUbergraph_Char_NonFlyingBird.K2Node_Event_EndPlayReason) = EndPlayReason;
+L18:           this->ExecuteUbergraph_Char_NonFlyingBird(1012);
+============ END FUNCTION ReceiveEndPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Char_NonFlyingBird(1051);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Char_NonFlyingBird(1130);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Char_NonFlyingBird ==============
+L10:           FGBlueprintFunctionLibrary->AddGainSignificanceObjectToSignificanceManager(this, this, 10000);
+L49:           <End of Inlined Event Graph Function>;
+L54:           this->ReceiveTick(mfloat);
+L73:           BreakVector(this->CharacterMovement->Velocity, [ref] mfloat1, [ref] mfloat2, [ref] mfloat3);
+L141:          bool mbool = Less_FloatFloat(mfloat3, 0);
+L175:          float mfloat4 = SelectFloat(0.05000000074505806, 0.30000001192092896, mbool);
+L222:          this->CharacterMovement->GravityScale = mfloat4;
+L271:          <End of Inlined Event Graph Function>;
+L276:          bool mbool1 = this->CharacterMovement->IsMovingOnGround();
+L322:          if (!mbool1) goto L1204;
+L336:          Vector mVector = MakeVector(0, 0, this->CharacterMovement->JumpZVelocity);
+L405:          Rotator mRotator = this->K2_GetActorRotation();
+L433:          Vector mVector1 = GetForwardVector(mRotator);
+L470:          Vector mVector2 = Multiply_VectorFloat(mVector1, 400);
+L512:          Vector mVector3 = Add_VectorVector(mVector2, mVector);
+L558:          this->CharacterMovement->Velocity = mVector3;
+L607:          this->CharacterMovement->SetMovementMode(3, 0);
+L647:          <End of Inlined Event Graph Function>;
+L652:          this->OnLanded([ref] mconst HitResult);
+L671:          this->OnLandedDelegate->ProcessMulticastDelegate(this);
+L691:          <End of Inlined Event Graph Function>;
+L696:          this->ReceiveDied();
+L706:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Stop_E_NonFlyingBird_Walk_Rustling, this, true);
+L759:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_E_NonFlyingBird_Fly, this, true);
+L812:          <End of Inlined Event Graph Function>;
+L817:          this->NotifyOnTakeDamage(mActor, mfloat5, mconst DamageType, mController, mActor1);
+L872:          Controller* mController1 = this->GetController();
+L892:          Controller_NonFlyingBird* mController_NonFlyingBird = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Controller_NonFlyingBird.Controller_NonFlyingBird_C>(mController1);
+L928:          bool mbool2 = mController_NonFlyingBird;
+L957:          if (!mbool2) goto L1204;
+L971:          mController_NonFlyingBird->StartPanic();
+L1007:         <End of Inlined Event Graph Function>;
+L1012:         FGBlueprintFunctionLibrary->RemoveGainSignificanceObjectFromSignificanceManager(this, this);
+L1046:         <End of Inlined Event Graph Function>;
+L1051:         this->Mesh->SetComponentTickInterval(0);
+L1088:         this->CharacterMovement->SetComponentTickInterval(0);
+L1125:         <End of Inlined Event Graph Function>;
+L1130:         this->Mesh->SetComponentTickInterval(0);
+L1167:         this->CharacterMovement->SetComponentTickInterval(0.20000000298023224);
+============ END FUNCTION ExecuteUbergraph_Char_NonFlyingBird ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnLandedDelegate__DelegateSignature ==============
+============ END FUNCTION OnLandedDelegate__DelegateSignature ==============

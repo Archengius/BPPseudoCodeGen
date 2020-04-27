@@ -1,0 +1,123 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/ResourceSink/UI/BPW_ResourceSinkDigit.BPW_ResourceSinkDigit_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SwitchText ==============
+L0:            this->mOldText = this->mNewText;
+L27:           mFormatArgumentData.ArgumentName = "new";
+L59:           mFormatArgumentData.ArgumentValueType = 4;
+L88:           mFormatArgumentData.ArgumentValue = this->mNewText;
+L124:          mFormatArgumentData.ArgumentValueInt = 0;
+L156:          mFormatArgumentData.ArgumentValueFloat = 0;
+L188:          mFormatArgumentData.ArgumentValueGender = 0;
+L217:          mFormatArgumentData1.ArgumentName = "old";
+L249:          mFormatArgumentData1.ArgumentValueType = 4;
+L278:          mFormatArgumentData1.ArgumentValue = this->mOldText;
+L314:          mFormatArgumentData1.ArgumentValueInt = 0;
+L346:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L378:          mFormatArgumentData1.ArgumentValueGender = 0;
+L407:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
+L436:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L547:          this->mTextObject->SetText(mFText);
+L592:          float mfloat = Multiply_FloatFloat(this->mSize, -1);
+L634:          Vector2D mVector2D = MakeVector2D(0, mfloat);
+L676:          this->mTextObject->SetRenderTranslation(mVector2D);
+============ END FUNCTION SwitchText ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetText ==============
+L0:            bool mbool = KismetTextLibrary->NotEqual_TextText([ref] mText, [ref] this->mOldText);
+L60:           if (!mbool) goto L808;
+L74:           this->mNewText = mText;
+L101:          mFormatArgumentData.ArgumentName = "new";
+L133:          mFormatArgumentData.ArgumentValueType = 4;
+L162:          mFormatArgumentData.ArgumentValue = this->mNewText;
+L198:          mFormatArgumentData.ArgumentValueInt = 0;
+L230:          mFormatArgumentData.ArgumentValueFloat = 0;
+L262:          mFormatArgumentData.ArgumentValueGender = 0;
+L291:          mFormatArgumentData1.ArgumentName = "old";
+L323:          mFormatArgumentData1.ArgumentValueType = 4;
+L352:          mFormatArgumentData1.ArgumentValue = this->mOldText;
+L388:          mFormatArgumentData1.ArgumentValueInt = 0;
+L420:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L452:          mFormatArgumentData1.ArgumentValueGender = 0;
+L481:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
+L510:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L621:          this->mTextObject->SetText(mFText);
+L666:          this->mT = 0;
+L689:          mFScriptDelegate->BindUFunction(this, LerpDigit);
+L712:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mUpdateTime, true);
+L781:          this->mLerpTimerHandle = mTimerHandle;
+============ END FUNCTION SetText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkDigit(500);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION LerpDigit ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkDigit(585);
+============ END FUNCTION LerpDigit ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkDigit(1001);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/UI/BPW_ResourceSinkDigit.BPW_ResourceSinkDigit_C:ExecuteUbergraph_BPW_ResourceSinkDigit.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_BPW_ResourceSinkDigit(10);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_ResourceSinkDigit ==============
+L10:           float mfloat = Divide_FloatFloat(this->mSize, 100);
+L52:           float mfloat1 = Multiply_IntFloat(this->mTextObject->Font.Size, mfloat);
+L129:          int32 mint32 = FTrunc(mfloat1);
+L166:          mSlateFontInfo.FontObject = this->mTextObject->Font.FontObject;
+L225:          mSlateFontInfo.FontMaterial = this->mTextObject->Font.FontMaterial;
+L284:          mSlateFontInfo.OutlineSettings = this->mTextObject->Font.OutlineSettings;
+L351:          mSlateFontInfo.TypefaceFontName = this->mTextObject->Font.TypefaceFontName;
+L418:          mSlateFontInfo.Size = mint32;
+L454:          this->mTextObject->SetFont(mSlateFontInfo);
+L495:          <End of Inlined Event Graph Function>;
+L500:          this->mTextObject->SetText("[object Object]");
+L580:          <End of Inlined Event Graph Function>;
+L585:          float mfloat2 = Divide_FloatFloat(this->mUpdateTime, this->mDuration);
+L631:          float mfloat3 = Add_FloatFloat(mfloat2, this->mT);
+L677:          this->mT = mfloat3;
+L704:          float mfloat4 = Multiply_FloatFloat(this->mSize, -1);
+L746:          float mfloat5 = Ease(mfloat4, 0, this->mT, 7, 3, 2);
+L809:          Vector2D mVector2D = MakeVector2D(0, mfloat5);
+L851:          this->mTextObject->SetRenderTranslation(mVector2D);
+L892:          bool mbool = GreaterEqual_FloatFloat(this->mT, 1);
+L926:          if (!mbool) goto L1043;
+L940:          this->SwitchText();
+L954:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpTimerHandle);
+L996:          <End of Inlined Event Graph Function>;
+L1001:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpTimerHandle);
+============ END FUNCTION ExecuteUbergraph_BPW_ResourceSinkDigit ==============

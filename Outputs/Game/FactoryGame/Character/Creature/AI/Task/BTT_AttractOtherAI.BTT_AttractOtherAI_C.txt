@@ -1,0 +1,85 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Task/BTT_AttractOtherAI.BTT_AttractOtherAI_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveExecuteAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_AttractOtherAI.BTT_AttractOtherAI_C:ExecuteUbergraph_BTT_AttractOtherAI.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_AttractOtherAI.BTT_AttractOtherAI_C:ExecuteUbergraph_BTT_AttractOtherAI.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTT_AttractOtherAI(15);
+============ END FUNCTION ReceiveExecuteAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTT_AttractOtherAI ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           TArray<Char_Hog*> mTArray<Char_Hog> = [];
+L26:           GameplayStatics->GetAllActorsOfClass(this, Char_Hog, [ref] mTArray<Char_Hog>);
+L77:           int32 Temp_int_Loop_Counter_Variable = 0;
+L100:          int32 Temp_int_Array_Index_Variable = 0;
+L123:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<Char_Hog>);
+L182:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L220:          if (!mbool) goto L822;
+L234:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L261:          ExecutionFlow.Push(L2035);
+L266:          KismetArrayLibrary->Array_Get([ref] mTArray<Char_Hog>, Temp_int_Array_Index_Variable, [ref] mChar_Hog);
+L325:          float mfloat = mChar_Hog->GetDistanceTo(mPawn);
+L384:          bool mbool1 = Less_FloatFloat(mfloat, this->MaximumRange);
+L422:          bool mbool2 = Greater_FloatFloat(mfloat, this->MinimumRange);
+L460:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L498:          if (!mbool3) goto ExecutionFlow.Pop();
+L508:          KismetArrayLibrary->Array_Get([ref] mTArray<Char_Hog>, Temp_int_Array_Index_Variable, [ref] mChar_Hog);
+L567:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->NearbyHogs, [ref] mChar_Hog);
+L635:          KismetArrayLibrary->Array_Get([ref] mTArray<Char_Hog>, Temp_int_Array_Index_Variable, [ref] mChar_Hog);
+L694:          mfloat = mChar_Hog->GetDistanceTo(mPawn);
+L753:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->DistanceArray, [ref] mfloat);
+L821:          goto ExecutionFlow.Pop();
+L822:          int32 mint323 = KismetArrayLibrary->Array_Length([ref] this->DistanceArray);
+L881:          bool mbool4 = Greater_IntInt(mint323, 0);
+L915:          if (!mbool4) goto L1273;
+L929:          ExecutionFlow.Push(L822);
+L934:          MinOfFloatArray([ref] this->DistanceArray, [ref] mint324, [ref] mfloat1);
+L971:          KismetArrayLibrary->Array_Get([ref] this->NearbyHogs, mint324, [ref] mChar_Hog1);
+L1030:         int32 mint325 = KismetArrayLibrary->Array_Add([ref] this->SortedHogs, [ref] mChar_Hog1);
+L1098:         MinOfFloatArray([ref] this->DistanceArray, [ref] mint324, [ref] mfloat1);
+L1135:         KismetArrayLibrary->Array_Remove([ref] this->DistanceArray, mint324);
+L1185:         MinOfFloatArray([ref] this->DistanceArray, [ref] mint324, [ref] mfloat1);
+L1222:         KismetArrayLibrary->Array_Remove([ref] this->NearbyHogs, mint324);
+L1272:         goto ExecutionFlow.Pop();
+L1273:         int32 Temp_int_Variable = 0;
+L1296:         int32 mint326 = KismetArrayLibrary->Array_Length([ref] this->SortedHogs);
+L1355:         int32 mint327 = Min(mint326, this->MaxSummonedHogs);
+L1401:         int32 mint328 = Subtract_IntInt(mint327, 1);
+L1443:         bool mbool5 = LessEqual_IntInt(Temp_int_Variable, mint328);
+L1481:         if (!mbool5) goto L1982;
+L1495:         ExecutionFlow.Push(L2109);
+L1500:         Actor* mActor = BTFunctionLibrary->GetBlackboardValueAsActor(this, [ref] this->mOtherLocationOption);
+L1552:         bool mbool6 = KismetSystemLibrary->IsValid(mActor);
+L1603:         if (!mbool6) goto L2183;
+L1617:         KismetArrayLibrary->Array_Get([ref] this->SortedHogs, Temp_int_Variable, [ref] mChar_Hog2);
+L1676:         BlackboardComponent* mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(mChar_Hog2);
+L1727:         mActor = BTFunctionLibrary->GetBlackboardValueAsActor(this, [ref] this->mOtherLocationOption);
+L1779:         mBlackboardComponent->SetValueAsObject([ref] this->SummonLocationKey, mActor);
+L1829:         KismetArrayLibrary->Array_Get([ref] this->SortedHogs, Temp_int_Variable, [ref] mChar_Hog2);
+L1888:         mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(mChar_Hog2);
+L1939:         mBlackboardComponent->SetValueAsBool([ref] this->RequiredBoolKey, true);
+L1981:         goto ExecutionFlow.Pop();
+L1982:         KismetArrayLibrary->Array_Clear([ref] this->SortedHogs);
+L2023:         this->FinishExecute(true);
+L2034:         goto ExecutionFlow.Pop();
+L2035:         int32 mint329 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2077:         Temp_int_Loop_Counter_Variable = mint329;
+L2104:         goto L123;
+L2109:         int32 mint3210 = Add_IntInt(Temp_int_Variable, 1);
+L2151:         Temp_int_Variable = mint3210;
+L2178:         goto L1296;
+L2183:         KismetArrayLibrary->Array_Get([ref] this->SortedHogs, Temp_int_Variable, [ref] mChar_Hog2);
+L2242:         mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(mChar_Hog2);
+L2293:         mBlackboardComponent->SetValueAsObject([ref] this->SummonLocationKey, mPawn);
+L2343:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_BTT_AttractOtherAI ==============

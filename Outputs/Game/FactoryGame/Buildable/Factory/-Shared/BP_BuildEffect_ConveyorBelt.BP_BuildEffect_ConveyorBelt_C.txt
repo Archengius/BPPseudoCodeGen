@@ -1,0 +1,283 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/-Shared/BP_BuildEffect_ConveyorBelt.BP_BuildEffect_ConveyorBelt_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetSplineData ==============
+L0:            ExecutionFlow.Push(L2134);
+L5:            Actor* mActor = this->GetOwner();
+L25:           FGBuildableConveyorBelt* mFGBuildableConveyorBelt = Cast<Class /Script/FactoryGame.FGBuildableConveyorBelt>(mActor);
+L61:           bool mbool = mFGBuildableConveyorBelt;
+L90:           StaticMesh* mStaticMesh = mFGBuildableConveyorBelt->GetSplineMesh();
+L132:          this->mMesh = mStaticMesh;
+L151:          int32 Temp_int_Variable = 0;
+L174:          mActor = this->GetOwner();
+L194:          mFGBuildableConveyorBelt = Cast<Class /Script/FactoryGame.FGBuildableConveyorBelt>(mActor);
+L230:          mbool = mFGBuildableConveyorBelt;
+L259:          SplineComponent* mSplineComponent = mFGBuildableConveyorBelt->GetSplineComponent();
+L301:          float mfloat = mSplineComponent->GetSplineLength();
+L351:          float mfloat1 = Divide_FloatFloat(mfloat, this->mSplineMeshLength);
+L397:          int32 mint32 = FCeil(mfloat1);
+L434:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint32);
+L472:          if (!mbool1) goto L1435;
+L486:          ExecutionFlow.Push(L1447);
+L491:          int32 localLoopIndex = Temp_int_Variable;
+L518:          mActor = this->GetOwner();
+L538:          mFGBuildableConveyorBelt = Cast<Class /Script/FactoryGame.FGBuildableConveyorBelt>(mActor);
+L574:          mbool = mFGBuildableConveyorBelt;
+L603:          mSplineComponent = mFGBuildableConveyorBelt->GetSplineComponent();
+L645:          mfloat = mSplineComponent->GetSplineLength();
+L695:          mfloat1 = Divide_FloatFloat(mfloat, this->mSplineMeshLength);
+L741:          mint32 = FCeil(mfloat1);
+L778:          bool mbool2 = NotEqual_IntInt(localLoopIndex, mint32);
+L816:          if (!mbool2) goto L1521;
+L830:          mActor = this->GetOwner();
+L850:          mFGBuildableConveyorBelt = Cast<Class /Script/FactoryGame.FGBuildableConveyorBelt>(mActor);
+L886:          mbool = mFGBuildableConveyorBelt;
+L915:          mSplineComponent = mFGBuildableConveyorBelt->GetSplineComponent();
+L957:          float mfloat2 = Multiply_IntFloat(localLoopIndex, this->mSplineMeshLength);
+L1003:         Vector mVector = mSplineComponent->GetLocationAtDistanceAlongSpline(mfloat2, 0);
+L1064:         int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mSplinePointLocationArray, [ref] mVector);
+L1132:         mActor = this->GetOwner();
+L1152:         mFGBuildableConveyorBelt = Cast<Class /Script/FactoryGame.FGBuildableConveyorBelt>(mActor);
+L1188:         mbool = mFGBuildableConveyorBelt;
+L1217:         mSplineComponent = mFGBuildableConveyorBelt->GetSplineComponent();
+L1259:         mfloat2 = Multiply_IntFloat(localLoopIndex, this->mSplineMeshLength);
+L1305:         Vector mVector1 = mSplineComponent->GetTangentAtDistanceAlongSpline(mfloat2, 1);
+L1366:         int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->mSplinePointTangentArray, [ref] mVector1);
+L1434:         goto ExecutionFlow.Pop();
+L1435:         this->mSplineInitialized = true;
+L1446:         goto ExecutionFlow.Pop();
+L1447:         int32 mint323 = Add_IntInt(Temp_int_Variable, 1);
+L1489:         Temp_int_Variable = mint323;
+L1516:         goto L174;
+L1521:         mActor = this->GetOwner();
+L1541:         mFGBuildableConveyorBelt = Cast<Class /Script/FactoryGame.FGBuildableConveyorBelt>(mActor);
+L1577:         mbool = mFGBuildableConveyorBelt;
+L1606:         mSplineComponent = mFGBuildableConveyorBelt->GetSplineComponent();
+L1648:         mfloat = mSplineComponent->GetSplineLength();
+L1698:         Vector mVector2 = mSplineComponent->GetLocationAtDistanceAlongSpline(mfloat, 0);
+L1759:         int32 mint324 = KismetArrayLibrary->Array_Add([ref] this->mSplinePointLocationArray, [ref] mVector2);
+L1827:         mActor = this->GetOwner();
+L1847:         mFGBuildableConveyorBelt = Cast<Class /Script/FactoryGame.FGBuildableConveyorBelt>(mActor);
+L1883:         mbool = mFGBuildableConveyorBelt;
+L1912:         mSplineComponent = mFGBuildableConveyorBelt->GetSplineComponent();
+L1954:         mfloat = mSplineComponent->GetSplineLength();
+L2004:         Vector mVector3 = mSplineComponent->GetTangentAtDistanceAlongSpline(mfloat, 1);
+L2065:         int32 mint325 = KismetArrayLibrary->Array_Add([ref] this->mSplinePointTangentArray, [ref] mVector3);
+L2133:         goto ExecutionFlow.Pop();
+============ END FUNCTION GetSplineData ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnSplineSegment ==============
+L0:            Vector mVector = this->DefaultSceneRoot->K2_GetComponentLocation();
+L50:           Rotator mRotator = this->Spline->GetRotationAtSplinePoint(LoopIndex, 1);
+L111:          KismetArrayLibrary->Array_Get([ref] this->mSplinePointLocationArray, LoopIndex, [ref] mVector1);
+L170:          Vector mVector2 = Add_VectorVector(mVector, mVector1);
+L216:          Transform mTransform = MakeTransform(mVector2, mRotator, Vector(1, 1, 1));
+L275:          Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_BuildEffect_ConveyorBeltSegment, [ref] mTransform, 1, nullptr);
+L339:          mVector = this->DefaultSceneRoot->K2_GetComponentLocation();
+L389:          mRotator = this->Spline->GetRotationAtSplinePoint(LoopIndex, 1);
+L450:          KismetArrayLibrary->Array_Get([ref] this->mSplinePointLocationArray, LoopIndex, [ref] mVector1);
+L509:          mVector2 = Add_VectorVector(mVector, mVector1);
+L555:          mTransform = MakeTransform(mVector2, mRotator, Vector(1, 1, 1));
+L614:          BP_BuildEffect_ConveyorBeltSegment* mBP_BuildEffect_ConveyorBeltSegment = GameplayStatics->FinishSpawningActor(mActor, [ref] mTransform);
+L674:          int32 mint32 = Add_IntInt(LoopIndex, 1);
+L716:          mVector = this->DefaultSceneRoot->K2_GetComponentLocation();
+L766:          int32 mint321 = Percent_IntInt(mint32, SplineLength);
+L812:          KismetArrayLibrary->Array_Get([ref] this->mSplinePointLocationArray, mint321, [ref] mVector3);
+L871:          Vector mVector4 = Add_VectorVector(mVector, mVector3);
+L917:          mBP_BuildEffect_ConveyorBeltSegment->Spline->SetLocationAtSplinePoint(1, [ref] mVector4, 1, true);
+L988:          mBP_BuildEffect_ConveyorBeltSegment->mMesh = this->mMesh;
+L1029:         mBP_BuildEffect_ConveyorBeltSegment->mMaterialSides = this->mMaterialSides;
+L1070:         mBP_BuildEffect_ConveyorBeltSegment->mMaterialBelt = this->mMaterialBelt;
+L1111:         KismetArrayLibrary->Array_Get([ref] this->mSplinePointTangentArray, LoopIndex, [ref] mVector5);
+L1170:         float mfloat = VSize(mVector5);
+L1207:         bool mbool = Greater_FloatFloat(mfloat, this->mSplineMeshLength);
+L1245:         float mfloat1 = Divide_FloatFloat(this->mSplineMeshLength, mfloat);
+L1291:         Vector mVector6 = Multiply_VectorFloat(mVector5, mfloat1);
+L1337:         bool Temp_bool_Variable1 = mbool;
+L1356:         mBP_BuildEffect_ConveyorBeltSegment->mStartTangent = switch (Temp_bool_Variable1) {
+case false -> mVector5;
+case true -> mVector6;
+default -> mVector7;
+};
+L1449:         mint32 = Add_IntInt(LoopIndex, 1);
+L1491:         mint321 = Percent_IntInt(mint32, SplineLength);
+L1537:         KismetArrayLibrary->Array_Get([ref] this->mSplinePointTangentArray, mint321, [ref] mVector8);
+L1596:         float mfloat2 = VSize(mVector8);
+L1633:         bool mbool1 = Greater_FloatFloat(mfloat2, this->mSplineMeshLength);
+L1671:         float mfloat3 = Divide_FloatFloat(this->mSplineMeshLength, mfloat2);
+L1717:         bool Temp_bool_Variable = mbool1;
+L1736:         Vector mVector9 = Multiply_VectorFloat(mVector8, mfloat3);
+L1782:         mBP_BuildEffect_ConveyorBeltSegment->mEndTangent = switch (Temp_bool_Variable) {
+case false -> mVector8;
+case true -> mVector9;
+default -> mVector10;
+};
+L1875:         mBP_BuildEffect_ConveyorBeltSegment->AddMesh();
+L1911:         int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->mSegmentList, [ref] mBP_BuildEffect_ConveyorBeltSegment);
+============ END FUNCTION SpawnSplineSegment ==============
+
+
+
+
+
+============ BEGIN FUNCTION InitiateSpline ==============
+L0:            ExecutionFlow.Push(L504);
+L5:            float local_TangentCap = 200;
+L28:           int32 Temp_int_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mSplinePointLocationArray);
+L110:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L152:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L190:          if (!mbool) goto ExecutionFlow.Pop();
+L200:          ExecutionFlow.Push(L430);
+L205:          KismetArrayLibrary->Array_Get([ref] this->mSplinePointLocationArray, Temp_int_Variable, [ref] mVector);
+L264:          this->Spline->AddSplinePointAtIndex([ref] mVector, Temp_int_Variable, 0, true);
+L317:          KismetArrayLibrary->Array_Get([ref] this->mSplinePointTangentArray, Temp_int_Variable, [ref] mVector1);
+L376:          this->Spline->SetTangentAtSplinePoint(Temp_int_Variable, [ref] mVector1, 1, true);
+L429:          goto ExecutionFlow.Pop();
+L430:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L472:          Temp_int_Variable = mint322;
+L499:          goto L51;
+============ END FUNCTION InitiateSpline ==============
+
+
+
+
+
+============ BEGIN FUNCTION MoveParticleEffect__FinishedFunc ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_ConveyorBelt(2043);
+============ END FUNCTION MoveParticleEffect__FinishedFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION MoveParticleEffect__UpdateFunc ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_ConveyorBelt(2038);
+============ END FUNCTION MoveParticleEffect__UpdateFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_ConveyorBelt(1046);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION BeginEffect ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_ConveyorBelt(1128);
+============ END FUNCTION BeginEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/-Shared/BP_BuildEffect_ConveyorBelt.BP_BuildEffect_ConveyorBelt_C:ExecuteUbergraph_BP_BuildEffect_ConveyorBelt.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_BP_BuildEffect_ConveyorBelt(1633);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_BuildEffect_ConveyorBelt ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           Actor* mActor = this->GetOwner();
+L35:           mActor->SetActorHiddenInGame(false);
+L72:           int32 Temp_int_Loop_Counter_Variable = 0;
+L95:           int32 Temp_int_Array_Index_Variable1 = 0;
+L118:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mSegmentList);
+L177:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L215:          if (!mbool) goto L357;
+L229:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
+L256:          ExecutionFlow.Push(L372);
+L261:          KismetArrayLibrary->Array_Get([ref] this->mSegmentList, Temp_int_Array_Index_Variable1, [ref] mBP_BuildEffect_ConveyorBeltSegment);
+L320:          mBP_BuildEffect_ConveyorBeltSegment->K2_DestroyActor();
+L356:          goto ExecutionFlow.Pop();
+L357:          this->K2_DestroyActor();
+L371:          goto ExecutionFlow.Pop();
+L372:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L414:          Temp_int_Loop_Counter_Variable = mint321;
+L441:          goto L118;
+L446:          int32 mint322 = this->Ak_StopLoop->PostAssociatedAkEvent();
+L496:          KismetSystemLibrary->Delay(this, 1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 179108560, ExecutionFunction = "ExecuteUbergraph_BP_BuildEffect_ConveyorBelt", CallbackTarget = this));
+L572:          goto ExecutionFlow.Pop();
+L573:          ExecutionFlow.Push(L674);
+L578:          KismetArrayLibrary->Array_Get([ref] this->mSegmentList, Temp_int_Array_Index_Variable, [ref] mBP_BuildEffect_ConveyorBeltSegment1);
+L637:          mBP_BuildEffect_ConveyorBeltSegment1->PlayFinishEffect();
+L673:          goto ExecutionFlow.Pop();
+L674:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L716:          int32 Temp_int_Loop_Counter_Variable1 = mint323;
+L743:          int32 mint324 = KismetArrayLibrary->Array_Length([ref] this->mSegmentList);
+L802:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint324);
+L840:          if (!mbool1) goto L886;
+L854:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
+L881:          goto L573;
+L886:          this->MaterializeParticle->Deactivate();
+L922:          goto L446;
+L927:          Temp_int_Array_Index_Variable = 0;
+L950:          goto L743;
+L955:          if (!Temp_bool_IsClosed_Variable) goto L970;
+L969:          goto ExecutionFlow.Pop();
+L970:          bool Temp_bool_IsClosed_Variable = true;
+L981:          this->BeginEffect();
+L995:          goto ExecutionFlow.Pop();
+L996:          bool Temp_bool_Has_Been_Initd_Variable = true;
+L1007:         if (!false) goto ExecutionFlow.Pop();
+L1009:         Temp_bool_IsClosed_Variable = true;
+L1020:         goto ExecutionFlow.Pop();
+L1021:         if (!Temp_bool_Has_Been_Initd_Variable) goto L996;
+L1035:         goto ExecutionFlow.Pop();
+L1036:         ExecutionFlow.Push(L955);
+L1041:         goto L1021;
+L1046:         this->ReceiveBeginPlay();
+L1056:         Actor* mActor1 = this->GetOwner();
+L1076:         mActor1->SetActorHiddenInGame(true);
+L1113:         this->GetSplineData();
+L1127:         goto ExecutionFlow.Pop();
+L1128:         ExecutionFlow.Push(L1198);
+L1133:         this->InitiateSpline();
+L1147:         int32 mint325 = this->Ak_StartLoop->PostAssociatedAkEvent();
+L1197:         goto ExecutionFlow.Pop();
+L1198:         int32 mint326 = this->Spline->GetNumberOfSplinePoints();
+L1248:         int32 mint327 = Subtract_IntInt(mint326, 4);
+L1290:         bool mbool2 = LessEqual_IntInt(this->mLoopIndex, mint327);
+L1328:         if (!mbool2) goto L1499;
+L1342:         mint326 = this->Spline->GetNumberOfSplinePoints();
+L1392:         int32 mint328 = Subtract_IntInt(mint326, 1);
+L1434:         this->SpawnSplineSegment(this->mLoopIndex, mint328);
+L1466:         this->MoveParticleEffect->PlayFromStart();
+L1498:         goto ExecutionFlow.Pop();
+L1499:         Temp_int_Loop_Counter_Variable1 = 0;
+L1522:         goto L927;
+L1527:         this->mLoopIndex = Temp_int_Variable;
+L1554:         goto L1198;
+L1559:         int32 mint329 = Add_IntInt(this->mLoopIndex, 1);
+L1601:         int32 Temp_int_Variable = mint329;
+L1628:         goto L1527;
+L1633:         this->ReceiveTick(mfloat);
+L1652:         bool mbool3 = BooleanAND(this->mSplineInitialized, this->mWantToStartEffect);
+L1690:         if (!mbool3) goto ExecutionFlow.Pop();
+L1700:         goto L1036;
+L1705:         KismetArrayLibrary->Array_Get([ref] this->mSegmentList, this->mLoopIndex, [ref] mBP_BuildEffect_ConveyorBeltSegment2);
+L1764:         float mfloat1 = Multiply_FloatFloat(this->MoveParticleEffect_Time_4811E78B4C611AB8FA5FFAA13FD3D646, this->mSplineMeshLength);
+L1810:         Rotator mRotator = mBP_BuildEffect_ConveyorBeltSegment2->Spline->GetRotationAtDistanceAlongSpline(mfloat1, 1);
+L1893:         Vector mVector = mBP_BuildEffect_ConveyorBeltSegment2->Spline->GetLocationAtDistanceAlongSpline(mfloat1, 1);
+L1976:         this->MaterializeParticle->K2_SetWorldLocationAndRotation(mVector, mRotator, false, [ref] mHitResult, false);
+L2037:         goto ExecutionFlow.Pop();
+L2038:         goto L1705;
+L2043:         goto L1559;
+============ END FUNCTION ExecuteUbergraph_BP_BuildEffect_ConveyorBelt ==============

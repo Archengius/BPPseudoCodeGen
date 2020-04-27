@@ -1,0 +1,97 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/Controller_SpaceGiraffe.Controller_SpaceGiraffe_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceivePossess ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/Controller_SpaceGiraffe.Controller_SpaceGiraffe_C:ExecuteUbergraph_Controller_SpaceGiraffe.K2Node_Event_PossessedPawn) = PossessedPawn;
+L18:           this->ExecuteUbergraph_Controller_SpaceGiraffe(323);
+============ END FUNCTION ReceivePossess ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Controller_SpaceGiraffe(419);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartPanic ==============
+L0:            this->ExecuteUbergraph_Controller_SpaceGiraffe(430);
+============ END FUNCTION StartPanic ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopPanic ==============
+L0:            this->ExecuteUbergraph_Controller_SpaceGiraffe(831);
+============ END FUNCTION StopPanic ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_2_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/Controller_SpaceGiraffe.Controller_SpaceGiraffe_C:ExecuteUbergraph_Controller_SpaceGiraffe.K2Node_ComponentBoundEvent_Actor) = Actor;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/Controller_SpaceGiraffe.Controller_SpaceGiraffe_C:ExecuteUbergraph_Controller_SpaceGiraffe.K2Node_ComponentBoundEvent_Stimulus) = Stimulus;
+L36:           this->ExecuteUbergraph_Controller_SpaceGiraffe(1053);
+============ END FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_2_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Controller_SpaceGiraffe ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool mbool = this->UseBlackboard(BB_SpaceGiraffe, [ref] mBlackboardComponent);
+L53:           mBlackboardComponent->SetValueAsFloat([ref] this->mMaxRotationAngleBBKeyName, this->mMaxRotationAngle);
+L103:          BlackboardComponent* mBlackboardComponent1 = AIBlueprintHelperLibrary->GetBlackboard(this);
+L146:          mBlackboardComponent1->SetValueAsBool([ref] this->mDoDebugRotationBBkeyName, this->mDebugDoSpecifiedRotation);
+L196:          BlackboardComponent* mBlackboardComponent2 = AIBlueprintHelperLibrary->GetBlackboard(this);
+L239:          mBlackboardComponent2->SetValueAsFloat([ref] this->mDebugRotationBBkeyName, this->mDebugRotation);
+L289:          bool mbool1 = this->RunBehaviorTree(BT_SpaceGiraffe);
+L322:          goto ExecutionFlow.Pop();
+L323:          this->ReceivePossess(mPawn);
+L342:          KismetSystemLibrary->Delay(this, 2, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -219522627, ExecutionFunction = "ExecuteUbergraph_Controller_SpaceGiraffe", CallbackTarget = this));
+L418:          goto ExecutionFlow.Pop();
+L419:          this->ReceiveBeginPlay();
+L429:          goto ExecutionFlow.Pop();
+L430:          this->StartPanic();
+L440:          BlackboardComponent* mBlackboardComponent3 = AIBlueprintHelperLibrary->GetBlackboard(this);
+L483:          bool mbool2 = mBlackboardComponent3->GetValueAsBool([ref] this->mPanicBBKeyName);
+L534:          if (!mbool2) goto L549;
+L548:          goto ExecutionFlow.Pop();
+L549:          BlackboardComponent* mBlackboardComponent4 = AIBlueprintHelperLibrary->GetBlackboard(this);
+L592:          mBlackboardComponent4->SetValueAsBool([ref] this->mPanicBBKeyName, true);
+L634:          Pawn* mPawn1 = this->K2_GetPawn();
+L654:          Char_SpaceGiraffe* mChar_SpaceGiraffe = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/Char_SpaceGiraffe.Char_SpaceGiraffe_C>(mPawn1);
+L690:          bool mbool3 = mChar_SpaceGiraffe;
+L719:          if (!mbool3) goto ExecutionFlow.Pop();
+L729:          mChar_SpaceGiraffe->FlushNetDormancy();
+L761:          mChar_SpaceGiraffe->mDoPanic = true;
+L794:          mChar_SpaceGiraffe->OnRep_mDoPanic();
+L830:          goto ExecutionFlow.Pop();
+L831:          this->StopPanic();
+L841:          Pawn* mPawn2 = this->K2_GetPawn();
+L861:          Char_SpaceGiraffe* mChar_SpaceGiraffe1 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/Char_SpaceGiraffe.Char_SpaceGiraffe_C>(mPawn2);
+L897:          bool mbool4 = mChar_SpaceGiraffe1;
+L926:          if (!mbool4) goto ExecutionFlow.Pop();
+L936:          mChar_SpaceGiraffe1->FlushNetDormancy();
+L968:          mChar_SpaceGiraffe1->mDoPanic = false;
+L1001:         mChar_SpaceGiraffe1->OnRep_mDoPanic();
+L1037:         goto ExecutionFlow.Pop();
+L1038:         this->StartPanic();
+L1052:         goto ExecutionFlow.Pop();
+L1053:         bool mbool5 = EqualEqual_NameName(mAIStimulus.Tag, "WeaponFire");
+L1104:         bool mbool6 = BooleanAND(mAIStimulus.bSuccessfullySensed, mbool5);
+L1151:         if (!mbool6) goto ExecutionFlow.Pop();
+L1161:         goto L1038;
+============ END FUNCTION ExecuteUbergraph_Controller_SpaceGiraffe ==============

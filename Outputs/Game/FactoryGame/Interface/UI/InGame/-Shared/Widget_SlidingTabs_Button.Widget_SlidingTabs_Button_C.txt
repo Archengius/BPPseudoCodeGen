@@ -1,0 +1,273 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SlidingTabs_Button.Widget_SlidingTabs_Button_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetBackgroundVisibility ==============
+L0:            this->IsBackgroundVisible = visible;
+L19:           LinearColor Temp_struct_Variable2 = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L71:           LinearColor Temp_struct_Variable3 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L123:          bool Temp_bool_Variable3 = this->IsBackgroundVisible;
+L142:          this->mButton->SetBackgroundColor(switch (Temp_bool_Variable3) {
+case false -> Temp_struct_Variable3;
+case true -> Temp_struct_Variable2;
+default -> mLinearColor;
+});
+L227:          uint8 Temp_byte_Variable = 3;
+L247:          uint8 Temp_byte_Variable1 = 1;
+L267:          bool Temp_bool_Variable2 = this->IsBackgroundVisible;
+L286:          this->mShadows->SetVisibility(switch (Temp_bool_Variable2) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L375:          Vector2D Temp_struct_Variable = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0);
+L417:          Vector2D Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = -3);
+L459:          bool Temp_bool_Variable1 = this->IsBackgroundVisible;
+L478:          this->SetRenderTranslation(switch (Temp_bool_Variable1) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mVector2D;
+});
+L541:          mMargin.Left = 7;
+L573:          mMargin.Top = 0;
+L605:          mMargin.Right = 7;
+L637:          mMargin.Bottom = 0;
+L669:          mMargin1.Left = 12;
+L701:          mMargin1.Top = 0;
+L733:          mMargin1.Right = 12;
+L765:          mMargin1.Bottom = 0;
+L797:          bool Temp_bool_Variable = this->IsBackgroundVisible;
+L816:          OverlaySlot* mOverlaySlot = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mContent);
+L867:          mOverlaySlot->SetPadding(switch (Temp_bool_Variable) {
+case false -> mMargin;
+case true -> mMargin1;
+default -> mMargin2;
+});
+============ END FUNCTION SetBackgroundVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetIcon ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(Texture);
+L51:           if (!mbool) goto L602;
+L65:           this->mIcon = Texture;
+L84:           mSlateBrush.ImageSize = this->mIconObject->Brush.ImageSize;
+L151:          mSlateBrush.Margin = this->mIconObject->Brush.Margin;
+L218:          mSlateBrush.TintColor = this->mIconObject->Brush.TintColor;
+L285:          mSlateBrush.ResourceObject = this->mIcon;
+L313:          mSlateBrush.DrawAs = this->mIconObject->Brush.DrawAs;
+L380:          mSlateBrush.Tiling = this->mIconObject->Brush.Tiling;
+L447:          mSlateBrush.Mirroring = this->mIconObject->Brush.Mirroring;
+L514:          this->mIconObject->SetBrush([ref] mSlateBrush);
+L559:          this->mIconContainer->SetVisibility(3);
+L597:          <End of Inlined Event Graph Function>;
+L602:          this->mIconContainer->SetVisibility(1);
+============ END FUNCTION SetIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetTitle ==============
+L0:            this->mTitle = mTitle;
+L27:           this->mTitleObject->SetText(this->mTitle);
+============ END FUNCTION SetTitle ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActive ==============
+L0:            this->IsActive = IsActive;
+L19:           LinearColor Temp_struct_Variable2 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 1);
+L71:           LinearColor Temp_struct_Variable3 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.1875, G = 0.1875, B = 0.1875, A = 1);
+L123:          bool Temp_bool_Variable2 = this->IsActive;
+L142:          mSlateColor.SpecifiedColor = switch (Temp_bool_Variable2) {
+case false -> Temp_struct_Variable3;
+case true -> Temp_struct_Variable2;
+default -> mLinearColor;
+};
+L222:          mSlateColor.ColorUseRule = 0;
+L251:          mSlateBrush.ImageSize = this->mButton->WidgetStyle.Normal.ImageSize;
+L327:          mSlateBrush.Margin = this->mButton->WidgetStyle.Normal.Margin;
+L403:          mSlateBrush.TintColor = mSlateColor;
+L439:          mSlateBrush.ResourceObject = this->mButton->WidgetStyle.Normal.ResourceObject;
+L507:          mSlateBrush.DrawAs = this->mButton->WidgetStyle.Normal.DrawAs;
+L583:          mSlateBrush.Tiling = this->mButton->WidgetStyle.Normal.Tiling;
+L659:          mSlateBrush.Mirroring = this->mButton->WidgetStyle.Normal.Mirroring;
+L735:          mButtonStyle.Normal = mSlateBrush;
+L771:          mButtonStyle.Hovered = this->mButton->WidgetStyle.Hovered;
+L838:          mButtonStyle.Pressed = this->mButton->WidgetStyle.Pressed;
+L905:          mButtonStyle.Disabled = this->mButton->WidgetStyle.Disabled;
+L972:          mButtonStyle.NormalPadding = this->mButton->WidgetStyle.NormalPadding;
+L1039:         mButtonStyle.PressedPadding = this->mButton->WidgetStyle.PressedPadding;
+L1106:         mButtonStyle.PressedSlateSound = this->mButton->WidgetStyle.PressedSlateSound;
+L1173:         mButtonStyle.HoveredSlateSound = this->mButton->WidgetStyle.HoveredSlateSound;
+L1240:         this->mButton->SetStyle([ref] mButtonStyle);
+L1281:         LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L1333:         LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L1385:         bool Temp_bool_Variable1 = this->IsActive;
+L1404:         mSlateColor1.SpecifiedColor = switch (Temp_bool_Variable1) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mLinearColor1;
+};
+L1484:         mSlateColor1.ColorUseRule = 0;
+L1513:         this->TextNormalColor = mSlateColor1;
+L1540:         mSlateColor2.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L1601:         mSlateColor2.ColorUseRule = 0;
+L1630:         bool mbool = this->IsHovered();
+L1654:         bool Temp_bool_Variable = mbool;
+L1673:         this->mTitleObject->SetColorAndOpacity(switch (Temp_bool_Variable) {
+case false -> this->TextNormalColor;
+case true -> mSlateColor2;
+default -> mSlateColor3;
+});
+L1758:         PanelWidget* mPanelWidget = this->GetParent();
+L1778:         CanvasPanel* mCanvasPanel = Cast<Class /Script/UMG.CanvasPanel>(mPanelWidget);
+L1814:         bool mbool1 = mCanvasPanel;
+L1843:         if (!mbool1) goto L2120;
+L1857:         int32 Temp_int_Variable = 10;
+L1880:         bool Temp_bool_Variable3 = this->IsActive;
+L1899:         CanvasPanelSlot* mCanvasPanelSlot = WidgetLayoutLibrary->SlotAsCanvasSlot(this);
+L1942:         int32 mint32 = mCanvasPanel->GetChildIndex(this);
+L1993:         int32 mint321 = Multiply_IntInt(mint32, -1);
+L2035:         mCanvasPanelSlot->SetZOrder(switch (Temp_bool_Variable3) {
+case false -> mint321;
+case true -> Temp_int_Variable;
+default -> mint322;
+});
+L2120:         if (!this->IsActive) goto L2153;
+L2134:         this->StartAutoScroll();
+L2148:         <End of Inlined Event Graph Function>;
+L2153:         this->Widget_AutoScrollingContainer->StopAutoScroll();
+============ END FUNCTION SetActive ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SlidingTabs_Button(901);
+============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SlidingTabs_Button(906);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SlidingTabs_Button.Widget_SlidingTabs_Button_C:ExecuteUbergraph_Widget_SlidingTabs_Button.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_SlidingTabs_Button(911);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SlidingTabs_Button(958);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SlidingTabs_Button(1110);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartAutoScroll ==============
+L0:            this->ExecuteUbergraph_Widget_SlidingTabs_Button(1172);
+============ END FUNCTION StartAutoScroll ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SlidingTabs_Button ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool mbool = KismetSystemLibrary->IsValid(this->mSlidingTabsWidget);
+L66:           if (!mbool) goto L187;
+L80:           bool mbool1 = EqualEqual_IntInt(this->mTargetIndex, this->mSlidingTabsWidget->mActiveIndex);
+L140:          if (!mbool1) goto ExecutionFlow.Pop();
+L150:          this->Widget_AutoScrollingContainer->StartAutoScroll();
+L186:          goto ExecutionFlow.Pop();
+L187:          this->Widget_AutoScrollingContainer->StartAutoScroll();
+L223:          goto ExecutionFlow.Pop();
+L224:          bool mbool2 = Not_PreBool(this->IsActive);
+L253:          if (!mbool2) goto ExecutionFlow.Pop();
+L263:          bool mbool3 = Not_PreBool(this->mOverrideButtonFunction);
+L292:          if (!mbool3) goto L685;
+L306:          bool mbool4 = KismetSystemLibrary->IsValid(this->mSlidingTabsWidget);
+L357:          if (!mbool4) goto ExecutionFlow.Pop();
+L367:          bool mbool5 = KismetSystemLibrary->IsValid(this->mSlidingTabsWidget->mHorizontalBox);
+L440:          if (!mbool5) goto ExecutionFlow.Pop();
+L450:          bool mbool6 = this->mSlidingTabsWidget->mHorizontalBox->HasChild(this->mTargetWidget);
+L523:          if (!mbool6) goto L706;
+L537:          int32 mint32 = this->mSlidingTabsWidget->mHorizontalBox->GetChildIndex(this->mTargetWidget);
+L618:          this->mSlidingTabsWidget->SetActiveIndex(mint32, true);
+L664:          this->OnClicked->ProcessMulticastDelegate(this);
+L684:          goto ExecutionFlow.Pop();
+L685:          this->OnClicked->ProcessMulticastDelegate(this);
+L705:          goto ExecutionFlow.Pop();
+L706:          this->mSlidingTabsWidget->SetActiveIndex(this->mTargetIndex, true);
+L752:          goto L664;
+L757:          bool mbool7 = KismetSystemLibrary->IsValid(this->mSlidingTabsWidget);
+L808:          if (!mbool7) goto ExecutionFlow.Pop();
+L818:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mSlidingTabsWidget->mButtons, [ref] this);
+L900:          goto ExecutionFlow.Pop();
+L901:          goto L224;
+L906:          goto L757;
+L911:          this->SetTitle(this->mTitle);
+L934:          this->SetIcon(this->mIcon);
+L957:          goto ExecutionFlow.Pop();
+L958:          mSlateColor.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L1019:         mSlateColor.ColorUseRule = 0;
+L1048:         this->mTitleObject->SetColorAndOpacity(mSlateColor);
+L1089:         this->OnHovered->ProcessMulticastDelegate(this);
+L1109:         goto ExecutionFlow.Pop();
+L1110:         this->mTitleObject->SetColorAndOpacity(this->TextNormalColor);
+L1151:         this->OnUnhovered->ProcessMulticastDelegate(this);
+L1171:         goto ExecutionFlow.Pop();
+L1172:         KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 1598510957, ExecutionFunction = "ExecuteUbergraph_Widget_SlidingTabs_Button", CallbackTarget = this));
+L1248:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_SlidingTabs_Button ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUnhovered__DelegateSignature ==============
+============ END FUNCTION OnUnhovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHovered__DelegateSignature ==============
+============ END FUNCTION OnHovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============

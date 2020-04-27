@@ -1,0 +1,71 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Stinger/BigStinger/Char_EliteCaveStinger.Char_EliteCaveStinger_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnRep_bSpawnGass ==============
+L0:            if (!this->bSpawnGas) goto L28;
+L14:           this->GasEffect();
+============ END FUNCTION OnRep_bSpawnGass ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnGas ==============
+L0:            this->ExecuteUbergraph_Char_EliteCaveStinger(896);
+============ END FUNCTION SpawnGas ==============
+
+
+
+
+
+============ BEGIN FUNCTION GasEffect ==============
+L0:            this->ExecuteUbergraph_Char_EliteCaveStinger(901);
+============ END FUNCTION GasEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Char_EliteCaveStinger ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->bSpawnGas = false;
+L26:           this->OnRep_bSpawnGass();
+L40:           Transform mTransform = this->Scene->K2_GetComponentToWorld();
+L90:           Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_StingerGas, [ref] mTransform, 0, this);
+L154:          KismetSystemLibrary->SetObjectPropertyByName(mActor, "Instigator", this);
+L209:          mTransform = this->Scene->K2_GetComponentToWorld();
+L259:          BP_StingerGas* mBP_StingerGas = GameplayStatics->FinishSpawningActor(mActor, [ref] mTransform);
+L319:          KismetSystemLibrary->Delay(this, 2, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 396, UUID = -1119086682, ExecutionFunction = "ExecuteUbergraph_Char_EliteCaveStinger", CallbackTarget = this));
+L395:          goto ExecutionFlow.Pop();
+L396:          this->ParticleSystem->Deactivate();
+L432:          this->ParticleSystem1->Deactivate();
+L468:          this->ParticleSystem2->Deactivate();
+L504:          this->ParticleSystem3->Deactivate();
+L540:          goto ExecutionFlow.Pop();
+L541:          bool mbool = this->HasAuthority();
+L561:          if (!mbool) goto L40;
+L575:          this->FlushNetDormancy();
+L585:          goto L15;
+L590:          this->OnRep_bSpawnGass();
+L604:          goto ExecutionFlow.Pop();
+L605:          this->FlushNetDormancy();
+L615:          this->bSpawnGas = true;
+L626:          goto L590;
+L631:          bool mbool1 = this->HasAuthority();
+L651:          if (!mbool1) goto ExecutionFlow.Pop();
+L661:          goto L605;
+L666:          KismetSystemLibrary->Delay(this, 1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 541, UUID = -584082458, ExecutionFunction = "ExecuteUbergraph_Char_EliteCaveStinger", CallbackTarget = this));
+L742:          goto ExecutionFlow.Pop();
+L743:          this->ParticleSystem1->Activate(true);
+L780:          this->ParticleSystem2->Activate(true);
+L817:          this->ParticleSystem3->Activate(true);
+L854:          this->ParticleSystem->Activate(true);
+L891:          goto L666;
+L896:          goto L631;
+L901:          goto L743;
+============ END FUNCTION ExecuteUbergraph_Char_EliteCaveStinger ==============

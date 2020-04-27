@@ -1,0 +1,140 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_MessageButton.Widget_Codex_MessageButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CheckIsSelected ==============
+L0:            bool mbool = EqualEqual_ClassClass(this->mMessage, this->mOwningCodex->mSelectedMessage);
+L60:           bool mIsSelected = mbool;
+============ END FUNCTION CheckIsSelected ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasMessageReadColorFeedback ==============
+L0:            bool mbool = EqualEqual_ClassClass(this->mMessage, this->mOwningCodex->mSelectedMessage);
+L60:           bool mbool1 = this->IsHovered();
+L84:           bool mbool2 = BooleanOR(mbool1, mbool);
+L122:          if (!mbool2) goto L223;
+L136:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L191:          LinearColor ReturnValue = mLinearColor;
+L218:          goto L376;
+L223:          if (!this->mMessageHasBeenRead) goto L294;
+L237:          ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 1);
+L289:          goto L376;
+L294:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L349:          ReturnValue = mLinearColor1;
+============ END FUNCTION WasMessageReadColorFeedback ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasMessageReadFeedbackVisibility ==============
+L0:            uint8 Temp_byte_Variable = 2;
+L20:           uint8 Temp_byte_Variable1 = 0;
+L40:           bool Temp_bool_Variable = this->mMessageHasBeenRead;
+L59:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION WasMessageReadFeedbackVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSelectedMessageFeedbackVisibility ==============
+L0:            uint8 Temp_byte_Variable = 0;
+L20:           uint8 Temp_byte_Variable1 = 1;
+L40:           bool mbool = EqualEqual_ClassClass(this->mMessage, this->mOwningCodex->mSelectedMessage);
+L100:          bool Temp_bool_Variable = mbool;
+L119:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetSelectedMessageFeedbackVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION MessageWasClicked ==============
+L0:            this->mOwningCodex->mSelectedMessage = this->mMessage;
+L41:           this->mOwningCodex->mMessage->AddContent(this->mMessage);
+L108:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L132:          FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(mPlayerController->PlayerState);
+L190:          bool mbool = mFGPlayerState;
+L219:          if (!mbool) goto L322;
+L233:          mFGPlayerState->ReadMessage(this->mMessage);
+L274:          this->mMessageHasBeenRead = true;
+L285:          this->mOwningCodex->UpdateNotifications(nullptr);
+============ END FUNCTION MessageWasClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetMessageName ==============
+L0:            this->mMessageName->SetText(this->mMessage->ClassDefaultObject->mTitle);
+============ END FUNCTION GetMessageName ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_MessageButton.Widget_Codex_MessageButton_C:ExecuteUbergraph_Widget_Codex_MessageButton.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_Codex_MessageButton(29);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mMessageButton_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Codex_MessageButton(34);
+============ END FUNCTION BndEvt__mMessageButton_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mMessageButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Codex_MessageButton(231);
+============ END FUNCTION BndEvt__mMessageButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Codex_MessageButton ==============
+L10:           this->GetMessageName();
+L24:           <End of Inlined Event Graph Function>;
+L29:           goto L10;
+L34:           this->MessageWasClicked();
+L48:           Pawn* mPawn = this->GetOwningPlayerPawn();
+L68:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_Select, mPawn, true);
+L129:          bool mbool = Not_PreBool(Temp_bool_Variable);
+L158:          bool Temp_bool_Variable = mbool;
+L177:          if (!Temp_bool_Variable) goto L215;
+L191:          this->mMessageHasBeenRead = Temp_bool_Variable;
+L210:          <End of Inlined Event Graph Function>;
+L215:          this->mMessageHasBeenRead = true;
+L226:          <End of Inlined Event Graph Function>;
+L231:          Pawn* mPawn1 = this->GetOwningPlayerPawn();
+L251:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_MouseOver, mPawn1, true);
+============ END FUNCTION ExecuteUbergraph_Widget_Codex_MessageButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============

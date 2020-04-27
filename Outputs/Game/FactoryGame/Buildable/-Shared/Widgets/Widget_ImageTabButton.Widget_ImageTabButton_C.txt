@@ -1,0 +1,179 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ImageTabButton.Widget_ImageTabButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateButtonStyle ==============
+L0:            this->CheckIsSelected([ref] mbool);
+L23:           LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 0);
+L75:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L130:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor1, [ref] mSlateColor1);
+L185:          bool mbool1 = this->IsHovered();
+L209:          bool Temp_bool_Variable = mbool1;
+L228:          bool Temp_bool_Variable1 = mbool;
+L247:          this->mButtonBackground->SetColorAndOpacity(switch (Temp_bool_Variable1) {
+case false -> switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable;
+case true -> mLinearColor1;
+default -> mLinearColor3;
+};
+case true -> mLinearColor;
+default -> mLinearColor2;
+});
+L376:          bool mbool2 = this->IsHovered();
+L400:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor2, [ref] mLinearColor4);
+L455:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor3, [ref] mLinearColor5);
+L510:          bool mbool3 = BooleanOR(mbool, mbool2);
+L548:          bool Temp_bool_Variable2 = mbool3;
+L567:          this->ButtonText->SetColorAndOpacity(switch (Temp_bool_Variable2) {
+case false -> mSlateColor2;
+case true -> mSlateColor3;
+default -> mSlateColor4;
+});
+L652:          mbool2 = this->IsHovered();
+L676:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor2, [ref] mLinearColor4);
+L731:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor3, [ref] mLinearColor5);
+L786:          mbool3 = BooleanOR(mbool, mbool2);
+L824:          bool Temp_bool_Variable3 = mbool3;
+L843:          this->mIcon->SetColorAndOpacity(switch (Temp_bool_Variable3) {
+case false -> mLinearColor4;
+case true -> mLinearColor5;
+default -> mLinearColor6;
+});
+============ END FUNCTION UpdateButtonStyle ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckIsSelected ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mCachedTabSwitcher);
+L51:           if (!mbool) goto L210;
+L65:           int32 mint32 = this->mCachedTabSwitcher->GetActiveWidgetIndex();
+L115:          bool mbool1 = EqualEqual_IntInt(mint32, this->mIndexAsChild);
+L153:          bool mbool2 = BooleanOR(mbool1, this->mForceActiveButton);
+L191:          bool isSelected = mbool2;
+============ END FUNCTION CheckIsSelected ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetIcon ==============
+L0:            mSlateBrush.ImageSize = this->mIcon->Brush.ImageSize;
+L67:           mSlateBrush.Margin = this->mIcon->Brush.Margin;
+L134:          mSlateBrush.TintColor = this->mIcon->Brush.TintColor;
+L201:          mSlateBrush.ResourceObject = this->mImageTexture;
+L229:          mSlateBrush.DrawAs = this->mIcon->Brush.DrawAs;
+L296:          mSlateBrush.Tiling = this->mIcon->Brush.Tiling;
+L363:          mSlateBrush.Mirroring = this->mIcon->Brush.Mirroring;
+L430:          this->mIcon->SetBrush([ref] mSlateBrush);
+============ END FUNCTION SetIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonEnabled ==============
+L0:            bool mbool = this->GetIsEnabled();
+L20:           bool ReturnValue = mbool;
+============ END FUNCTION GetButtonEnabled ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ImageTabButton(700);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_32_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_ImageTabButton(705);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_32_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_ImageTabButton(851);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ImageTabButton.Widget_ImageTabButton_C:ExecuteUbergraph_Widget_ImageTabButton.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_ImageTabButton(952);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_ImageTabButton(957);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ImageTabButton ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L110);
+L20:           KismetArrayLibrary->Array_Get([ref] mTArray<WidgetSwitcher>, Temp_int_Array_Index_Variable, [ref] mWidgetSwitcher);
+L79:           this->mCachedTabSwitcher = mWidgetSwitcher;
+L98:           bool Temp_bool_True_if_break_was_hit_Variable = true;
+L109:          goto ExecutionFlow.Pop();
+L110:          int32 mint32 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L152:          int32 Temp_int_Loop_Counter_Variable = mint32;
+L179:          bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L208:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<WidgetSwitcher>);
+L267:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L305:          bool mbool2 = BooleanAND(mbool, mbool1);
+L343:          if (!mbool2) goto L389;
+L357:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L384:          goto L15;
+L389:          PanelWidget* mPanelWidget = this->GetParent();
+L409:          int32 mint322 = mPanelWidget->GetChildIndex(this);
+L460:          this->mIndexAsChild = mint322;
+L487:          goto ExecutionFlow.Pop();
+L488:          mFScriptDelegate->BindUFunction(this, UpdateButtonStyle);
+L511:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.20000000298023224, true);
+L576:          TArray<WidgetSwitcher*> mTArray<WidgetSwitcher> = [];
+L587:          FGBlueprintFunctionLibrary->GetAllWidgetsOfClassInHierarchy(this, WidgetSwitcher, [ref] mTArray<WidgetSwitcher>);
+L638:          Temp_bool_True_if_break_was_hit_Variable = false;
+L649:          Temp_int_Loop_Counter_Variable = 0;
+L672:          Temp_int_Array_Index_Variable = 0;
+L695:          goto L179;
+L700:          goto L488;
+L705:          this->mCachedTabSwitcher->SetActiveWidgetIndex(this->mIndexAsChild);
+L750:          this->TabButtonClicked->ProcessMulticastDelegate();
+L769:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L789:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_Select, mPawn, true);
+L850:          goto ExecutionFlow.Pop();
+L851:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L875:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_Inventory_MouseOver, mPlayerController, true);
+L936:          goto ExecutionFlow.Pop();
+L937:          this->SetIcon();
+L951:          goto ExecutionFlow.Pop();
+L952:          goto L937;
+L957:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateButtonTimer);
+L999:          goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_ImageTabButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION TabButtonClicked__DelegateSignature ==============
+============ END FUNCTION TabButtonClicked__DelegateSignature ==============

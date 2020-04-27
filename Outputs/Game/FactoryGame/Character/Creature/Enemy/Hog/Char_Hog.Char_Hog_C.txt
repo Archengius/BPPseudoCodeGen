@@ -1,0 +1,391 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnRep_mIsThreatened ==============
+L0:            SkeletalMeshComponent* mSkeletalMeshComponent = this->GetMesh3P();
+L24:           AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L66:           Anim_Hog* mAnim_Hog = Cast<AnimBlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Enemy/Hog/Anim_Hog.Anim_Hog_C>(mAnimInstance);
+L102:          bool mbool = mAnim_Hog;
+L131:          if (!mbool) goto L239;
+L145:          mAnim_Hog->mIsThreatened = this->mIsThreatened;
+L186:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_Hog_VO_Threatened, this, true);
+============ END FUNCTION OnRep_mIsThreatened ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartChargeMovement ==============
+L0:            mFScriptDelegate->BindUFunction(this, UpdateChargeDirection);
+L23:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
+L88:           this->mChargeTimerHandle = mTimerHandle;
+L115:          this->mIsCharging = true;
+L126:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_Hog_VO_Charge, this, true);
+============ END FUNCTION StartChargeMovement ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateChargeMovement ==============
+L0:            this->AddMovementInput(this->mChargeDirection, 1, false);
+============ END FUNCTION UpdateChargeMovement ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopChargeMovement ==============
+L0:            this->mChargeDirection = Vector(0, 0, 0);
+L31:           this->CharacterMovement->RotationRate = Rotator::FromPitchYawRoll(0, 300, 0);
+L84:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mChargeTimerHandle);
+L126:          this->mIsCharging = false;
+L137:          this->OnChargeMovementStopped->ProcessMulticastDelegate();
+============ END FUNCTION StopChargeMovement ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateChargeDirection ==============
+L0:            Actor* mActor = this->GetCurrentAggroTarget();
+L20:           bool mbool = KismetSystemLibrary->IsValid(mActor);
+L71:           if (!mbool) goto L835;
+L85:           Actor* mActor1 = this->GetCurrentAggroTarget();
+L105:          Vector mVector = mActor1->K2_GetActorLocation();
+L155:          float mfloat = Multiply_FloatFloat(this->mChargeDistance, 1.2000000476837158);
+L197:          Vector mVector1 = this->K2_GetActorLocation();
+L225:          Vector mVector2 = Subtract_VectorVector(mVector, mVector1);
+L271:          float mfloat1 = VSize(mVector2);
+L308:          bool mbool1 = Less_FloatFloat(mfloat1, mfloat);
+L346:          if (!mbool1) goto L835;
+L360:          mActor1 = this->GetCurrentAggroTarget();
+L380:          mVector = mActor1->K2_GetActorLocation();
+L430:          mVector1 = this->K2_GetActorLocation();
+L458:          mVector2 = Subtract_VectorVector(mVector, mVector1);
+L504:          mfloat1 = VSize(mVector2);
+L541:          float mfloat2 = this->mRotationRateCurveHog->GetFloatValue(mfloat1);
+L600:          Rotator mRotator = MakeRotator(0, 0, mfloat2);
+L647:          this->CharacterMovement->RotationRate = mRotator;
+L696:          Rotator mRotator1 = this->K2_GetActorRotation();
+L724:          Vector mVector3 = GetForwardVector(mRotator1);
+L761:          Vector mVector4 = Normal(mVector3, 0.00009999999747378752);
+L803:          this->mChargeDirection = mVector4;
+L830:          <End of Inlined Event Graph Function>;
+L835:          this->StopChargeMovement();
+============ END FUNCTION UpdateChargeDirection ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveHit ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_MyComp) = MyComp;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_Other) = Other;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_OtherComp) = OtherComp;
+L54:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_bSelfMoved) = bSelfMoved;
+L72:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_HitLocation1) = HitLocation;
+L90:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_HitNormal) = HitNormal;
+L108:          PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_NormalImpulse) = NormalImpulse;
+L126:          PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_Hit) = Hit;
+L144:          this->ExecuteUbergraph_Char_Hog(3688);
+============ END FUNCTION ReceiveHit ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyOnTakeDamage ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_damagedActor1) = DamagedActor;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_damageAmount) = damageAmount;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_damageType1) = DamageType;
+L54:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_instigatedBy1) = InstigatedBy;
+L72:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_damageCauser1) = DamageCauser;
+L90:           this->ExecuteUbergraph_Char_Hog(924);
+============ END FUNCTION NotifyOnTakeDamage ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckTargetHeight ==============
+L0:            this->ExecuteUbergraph_Char_Hog(504);
+============ END FUNCTION CheckTargetHeight ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_Char_Hog(886);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION circle ==============
+L0:            this->ExecuteUbergraph_Char_Hog(1928);
+============ END FUNCTION circle ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartCircling ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_CustomEvent_BTTCircleMove) = BTTCircleMove;
+L18:           this->ExecuteUbergraph_Char_Hog(2971);
+============ END FUNCTION StartCircling ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopCircling ==============
+L0:            this->ExecuteUbergraph_Char_Hog(3576);
+============ END FUNCTION StopCircling ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveDied ==============
+L0:            this->ExecuteUbergraph_Char_Hog(3603);
+============ END FUNCTION ReceiveDied ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Char_Hog(3693);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Char_Hog(3733);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Char_Hog(3843);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveEndPlay ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_EndPlayReason) = EndPlayReason;
+L18:           this->ExecuteUbergraph_Char_Hog(3918);
+============ END FUNCTION ReceiveEndPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyOnWeakspotHit ==============
+L0:            this->ExecuteUbergraph_Char_Hog(3923);
+============ END FUNCTION NotifyOnWeakspotHit ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyOnTakePointDamage ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_damagedActor) = DamagedActor;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_damage) = Damage;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_instigatedBy) = InstigatedBy;
+L54:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_HitLocation) = HitLocation;
+L72:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_hitComponent) = HitComponent;
+L90:           PERSISTENT_FRAME(NameProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_boneName) = BoneName;
+L108:          PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_shotFromDirection) = ShotFromDirection;
+L126:          PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_damageType) = DamageType;
+L144:          PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Char_Hog.Char_Hog_C:ExecuteUbergraph_Char_Hog.K2Node_Event_damageCauser) = DamageCauser;
+L162:          this->ExecuteUbergraph_Char_Hog(3924);
+============ END FUNCTION NotifyOnTakePointDamage ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Char_Hog ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->CheckTargetHeight();
+L29:           goto ExecutionFlow.Pop();
+L30:           bool mbool = this->IsAliveAndWell();
+L50:           if (!mbool) goto ExecutionFlow.Pop();
+L60:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor);
+L96:           bool mbool1 = mFGCharacterPlayer;
+L125:          if (!mbool1) goto L379;
+L139:          Controller* mController = this->GetController();
+L159:          bool mbool2 = KismetSystemLibrary->IsValid(mController);
+L210:          if (!mbool2) goto ExecutionFlow.Pop();
+L220:          float mfloat = Conv_IntToFloat(this->mChargeDamage);
+L257:          Controller* mController1 = this->GetController();
+L277:          float mfloat1 = GameplayStatics->ApplyDamage(mFGCharacterPlayer, mfloat, mController1, this, DamageType_HogHit);
+L364:          if (!this->mCircling) goto L477;
+L378:          goto ExecutionFlow.Pop();
+L379:          bool mbool3 = KismetSystemLibrary->IsValid(this->mBTTCircleMove);
+L430:          if (!mbool3) goto ExecutionFlow.Pop();
+L440:          this->mBTTCircleMove->FinishCircleMove();
+L476:          goto ExecutionFlow.Pop();
+L477:          this->StopChargeMovement();
+L491:          goto ExecutionFlow.Pop();
+L492:          this->mStaggered = false;
+L503:          goto ExecutionFlow.Pop();
+L504:          goto ExecutionFlow.Pop();
+L505:          this->ChargeParticle->Deactivate();
+L541:          bool Temp_bool_IsClosed_Variable1 = false;
+L552:          bool Temp_bool_Has_Been_Initd_Variable1 = true;
+L563:          goto ExecutionFlow.Pop();
+L564:          this->ChargeParticle->Activate(false);
+L601:          bool Temp_bool_IsClosed_Variable = false;
+L612:          bool Temp_bool_Has_Been_Initd_Variable = true;
+L623:          goto ExecutionFlow.Pop();
+L624:          if (!this->mIsCharging) goto L754;
+L638:          this->UpdateChargeMovement();
+L652:          ExecutionFlow.Push(L677);
+L657:          ExecutionFlow.Push(L830);
+L662:          if (!Temp_bool_Has_Been_Initd_Variable1) goto L861;
+L676:          goto ExecutionFlow.Pop();
+L677:          KismetSystemLibrary->Delay(this, 1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 816188954, ExecutionFunction = "ExecuteUbergraph_Char_Hog", CallbackTarget = this));
+L753:          goto ExecutionFlow.Pop();
+L754:          ExecutionFlow.Push(L799);
+L759:          if (!Temp_bool_Has_Been_Initd_Variable) goto L774;
+L773:          goto ExecutionFlow.Pop();
+L774:          Temp_bool_Has_Been_Initd_Variable = true;
+L785:          if (!false) goto ExecutionFlow.Pop();
+L787:          Temp_bool_IsClosed_Variable = true;
+L798:          goto ExecutionFlow.Pop();
+L799:          if (!Temp_bool_IsClosed_Variable) goto L814;
+L813:          goto ExecutionFlow.Pop();
+L814:          Temp_bool_IsClosed_Variable = true;
+L825:          goto L505;
+L830:          if (!Temp_bool_IsClosed_Variable1) goto L845;
+L844:          goto ExecutionFlow.Pop();
+L845:          Temp_bool_IsClosed_Variable1 = true;
+L856:          goto L564;
+L861:          Temp_bool_Has_Been_Initd_Variable1 = true;
+L872:          if (!false) goto ExecutionFlow.Pop();
+L874:          Temp_bool_IsClosed_Variable1 = true;
+L885:          goto ExecutionFlow.Pop();
+L886:          this->ReceiveTick(mfloat2);
+L905:          this->circle();
+L919:          goto L624;
+L924:          this->NotifyOnTakeDamage(mActor1, mfloat3, mconst DamageType, mController2, mActor2);
+L979:          AIController* mAIController = AIBlueprintHelperLibrary->GetAIController(this);
+L1022:         bool mbool4 = KismetSystemLibrary->IsValid(mAIController);
+L1073:         if (!mbool4) goto ExecutionFlow.Pop();
+L1083:         mAIController = AIBlueprintHelperLibrary->GetAIController(this);
+L1126:         BlackboardComponent* mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(mAIController);
+L1177:         Object* mObject = mBlackboardComponent->GetValueAsObject([ref] this->mDamageCauserBBKey);
+L1228:         bool mbool5 = KismetSystemLibrary->IsValid(mObject);
+L1279:         if (!mbool5) goto L1737;
+L1293:         mAIController = AIBlueprintHelperLibrary->GetAIController(this);
+L1336:         mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(mAIController);
+L1387:         bool mbool6 = BooleanOR(this->mStaggered, this->mIsAlpha);
+L1425:         bool mbool7 = BooleanAND(this->mIsCharging, mbool6);
+L1463:         bool mbool8 = Not_PreBool(mbool7);
+L1492:         mBlackboardComponent->SetValueAsBool([ref] this->mDoPanicName, mbool8);
+L1542:         ExecutionFlow.Push(L1645);
+L1547:         bool mbool9 = KismetSystemLibrary->IsValid(this->mBTTCircleMove);
+L1598:         if (!mbool9) goto ExecutionFlow.Pop();
+L1608:         this->mBTTCircleMove->FinishCircleMove();
+L1644:         goto ExecutionFlow.Pop();
+L1645:         this->mStaggered = true;
+L1656:         KismetSystemLibrary->Delay(this, this->mStaggerCooldown, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 492, UUID = 1727627041, ExecutionFunction = "ExecuteUbergraph_Char_Hog", CallbackTarget = this));
+L1736:         goto ExecutionFlow.Pop();
+L1737:         Pawn* mPawn = mController2->K2_GetPawn();
+L1779:         mAIController = AIBlueprintHelperLibrary->GetAIController(this);
+L1822:         mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(mAIController);
+L1873:         mBlackboardComponent->SetValueAsObject([ref] this->mDamageCauserBBKey, mPawn);
+L1923:         goto L1293;
+L1928:         if (!this->mCircling) goto ExecutionFlow.Pop();
+L1938:         Actor* mActor3 = this->GetCurrentAggroTarget();
+L1958:         bool mbool10 = KismetSystemLibrary->IsValid(mActor3);
+L2009:         if (!mbool10) goto L2934;
+L2023:         mActor3 = this->GetCurrentAggroTarget();
+L2043:         Vector mVector = this->K2_GetActorLocation();
+L2071:         Vector mVector1 = mActor3->K2_GetActorLocation();
+L2121:         Rotator mRotator = FindLookAtRotation([ref] mVector, [ref] mVector1);
+L2167:         BreakRotator(mRotator, [ref] mfloat4, [ref] mfloat5, [ref] mfloat6);
+L2213:         float mfloat7 = Add_FloatFloat(mfloat6, this->mCircleAngle);
+L2259:         Rotator mRotator1 = MakeRotator(mfloat4, mfloat5, mfloat7);
+L2314:         Vector mVector2 = Conv_RotatorToVector(mRotator1);
+L2351:         this->AddMovementInput(mVector2, 1, false);
+L2380:         mActor3 = this->GetCurrentAggroTarget();
+L2400:         mVector = this->K2_GetActorLocation();
+L2428:         mVector1 = mActor3->K2_GetActorLocation();
+L2478:         mRotator = FindLookAtRotation([ref] mVector, [ref] mVector1);
+L2524:         BreakRotator(mRotator, [ref] mfloat4, [ref] mfloat5, [ref] mfloat6);
+L2570:         float mfloat8 = GameplayStatics->GetWorldDeltaSeconds(this);
+L2621:         Rotator mRotator2 = this->K2_GetActorRotation();
+L2649:         mfloat7 = Add_FloatFloat(mfloat6, this->mCircleAngle);
+L2695:         mRotator1 = MakeRotator(mfloat4, mfloat5, mfloat7);
+L2750:         Rotator mRotator3 = RInterpTo(mRotator2, mRotator1, mfloat8, 10);
+L2810:         BreakRotator(mRotator3, [ref] mfloat9, [ref] mfloat10, [ref] mfloat11);
+L2856:         Rotator mRotator4 = MakeRotator(0, 0, mfloat11);
+L2903:         bool mbool11 = this->K2_SetActorRotation(mRotator4, false);
+L2933:         goto ExecutionFlow.Pop();
+L2934:         this->mBTTCircleMove->FinishCircleMove();
+L2970:         goto ExecutionFlow.Pop();
+L2971:         this->mBTTCircleMove = mBTT_CircleMove;
+L2990:         float mfloat12 = RandomFloatInRange(80, 85);
+L3028:         float mfloat13 = RandomFloatInRange(-80, -85);
+L3066:         Rotator mRotator5 = this->K2_GetActorRotation();
+L3094:         BreakRotator(mRotator5, [ref] mfloat14, [ref] mfloat15, [ref] mfloat16);
+L3140:         Vector mVector3 = this->K2_GetActorLocation();
+L3168:         Actor* mActor4 = this->GetCurrentAggroTarget();
+L3188:         Vector mVector4 = mActor4->K2_GetActorLocation();
+L3238:         Rotator mRotator6 = FindLookAtRotation([ref] mVector3, [ref] mVector4);
+L3284:         BreakRotator(mRotator6, [ref] mfloat17, [ref] mfloat18, [ref] mfloat19);
+L3330:         float mfloat20 = Subtract_FloatFloat(mfloat16, mfloat19);
+L3376:         bool mbool12 = Less_FloatFloat(mfloat20, 180);
+L3410:         bool mbool13 = Greater_FloatFloat(mfloat20, 0);
+L3444:         bool mbool14 = BooleanAND(mbool13, mbool12);
+L3482:         float mfloat21 = SelectFloat(mfloat12, mfloat13, mbool14);
+L3537:         this->mCircleAngle = mfloat21;
+L3564:         this->mCircling = true;
+L3575:         goto ExecutionFlow.Pop();
+L3576:         this->mCircling = false;
+L3587:         goto ExecutionFlow.Pop();
+L3588:         if (!this->mIsCharging) goto ExecutionFlow.Pop();
+L3598:         goto L30;
+L3603:         this->ReceiveDied();
+L3613:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(Play_E_Hog_VO_Die, this->Mesh, "jaw", true);
+L3687:         goto ExecutionFlow.Pop();
+L3688:         goto L3588;
+L3693:         FGBlueprintFunctionLibrary->AddGainSignificanceObjectToSignificanceManager(this, this, 10000);
+L3732:         goto ExecutionFlow.Pop();
+L3733:         this->CharacterMovement->SetComponentTickInterval(0);
+L3770:         this->Mesh->SetComponentTickInterval(0);
+L3807:         goto ExecutionFlow.Pop();
+L3808:         FGBlueprintFunctionLibrary->RemoveGainSignificanceObjectFromSignificanceManager(this, this);
+L3842:         goto ExecutionFlow.Pop();
+L3843:         this->CharacterMovement->SetComponentTickInterval(0.10000000149011612);
+L3880:         this->Mesh->SetComponentTickInterval(0);
+L3917:         goto ExecutionFlow.Pop();
+L3918:         goto L3808;
+L3923:         goto ExecutionFlow.Pop();
+L3924:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Char_Hog ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnChargeMovementStopped__DelegateSignature ==============
+============ END FUNCTION OnChargeMovementStopped__DelegateSignature ==============

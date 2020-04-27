@@ -1,0 +1,179 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/HUDHelpers/Widget_HUDCameraShake.Widget_HUDCameraShake_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION Get Cam and View Position Difference ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L56:           bool mbool = mFGCharacterPlayer;
+L85:           if (!mbool) goto L997;
+L99:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L123:          mPawn = this->GetOwningPlayerPawn();
+L143:          Vector mVector = mPlayerController->PlayerCameraManager->GetCameraLocation();
+L215:          SpringArmComponent* mSpringArmComponent = mFGCharacterPlayer->GetSpringArmComponent();
+L257:          BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L303:          Transform mTransform = mSpringArmComponent->GetRelativeTransform();
+L353:          mPawn->GetActorEyesViewPoint([ref] mVector1, [ref] mRotator);
+L407:          BreakTransform([ref] mTransform, [ref] mVector2, [ref] mRotator1, [ref] mVector3);
+L453:          BreakVector(mVector1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L499:          BreakVector(mVector2, [ref] mfloat6, [ref] mfloat7, [ref] mfloat8);
+L545:          float mfloat9 = Subtract_FloatFloat(mfloat4, mfloat1);
+L591:          float mfloat10 = Subtract_FloatFloat(mfloat3, mfloat);
+L637:          float mfloat11 = Square(mfloat9);
+L674:          float mfloat12 = Square(mfloat10);
+L711:          float mfloat13 = Add_FloatFloat(mfloat12, mfloat11);
+L757:          float mfloat14 = Sqrt(mfloat13);
+L794:          float mfloat15 = Subtract_FloatFloat(mfloat6, mfloat14);
+L840:          float mfloat16 = Multiply_FloatFloat(mfloat15, -0.00019999999494757503);
+L882:          float mfloat17 = Multiply_FloatFloat(mfloat16, this->Shake Strengh);
+L928:          float mfloat18 = Add_FloatFloat(mfloat17, 1);
+L970:          float Scale = mfloat18;
+============ END FUNCTION Get Cam and View Position Difference ==============
+
+
+
+
+
+============ BEGIN FUNCTION Get Cam and View Rotation Difference ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           Rotator mRotator = mPlayerController->PlayerCameraManager->GetCameraRotation();
+L96:           Pawn* mPawn = this->GetOwningPlayerPawn();
+L116:          BreakRotator(mRotator, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L162:          mPawn->GetActorEyesViewPoint([ref] mVector, [ref] mRotator1);
+L216:          BreakRotator(mRotator1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L262:          float mfloat6 = Subtract_FloatFloat(mfloat4, mfloat1);
+L308:          bool mbool = Less_FloatFloat(mfloat6, 355);
+L342:          if (!mbool) goto L1672;
+L356:          mPlayerController = this->GetOwningPlayer();
+L380:          mRotator = mPlayerController->PlayerCameraManager->GetCameraRotation();
+L452:          mPawn = this->GetOwningPlayerPawn();
+L472:          BreakRotator(mRotator, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L518:          mPawn->GetActorEyesViewPoint([ref] mVector, [ref] mRotator1);
+L572:          BreakRotator(mRotator1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L618:          mfloat6 = Subtract_FloatFloat(mfloat4, mfloat1);
+L664:          this->Caluclated X Difference = mfloat6;
+L691:          mPlayerController = this->GetOwningPlayer();
+L715:          mRotator = mPlayerController->PlayerCameraManager->GetCameraRotation();
+L787:          mPawn = this->GetOwningPlayerPawn();
+L807:          BreakRotator(mRotator, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L853:          mPawn->GetActorEyesViewPoint([ref] mVector, [ref] mRotator1);
+L907:          BreakRotator(mRotator1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L953:          float mfloat7 = Subtract_FloatFloat(mfloat5, mfloat2);
+L999:          bool mbool1 = Less_FloatFloat(mfloat7, 355);
+L1033:         if (!mbool1) goto L2054;
+L1047:         mPlayerController = this->GetOwningPlayer();
+L1071:         mRotator = mPlayerController->PlayerCameraManager->GetCameraRotation();
+L1143:         mPawn = this->GetOwningPlayerPawn();
+L1163:         BreakRotator(mRotator, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L1209:         mPawn->GetActorEyesViewPoint([ref] mVector, [ref] mRotator1);
+L1263:         BreakRotator(mRotator1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L1309:         mfloat7 = Subtract_FloatFloat(mfloat5, mfloat2);
+L1355:         this->Caluclated Y Difference = mfloat7;
+L1382:         Vector mVector1 = MakeVector(this->Caluclated X Difference, this->Caluclated Y Difference, 0);
+L1433:         BreakVector(mVector1, [ref] mfloat8, [ref] mfloat9, [ref] mfloat10);
+L1479:         float mfloat11 = Multiply_FloatFloat(mfloat9, this->Shake Strengh);
+L1525:         float mfloat12 = Multiply_FloatFloat(mfloat11, -1);
+L1567:         float mfloat13 = Multiply_FloatFloat(mfloat8, this->Shake Strengh);
+L1613:         float X = mfloat12;
+L1640:         float Y = mfloat13;
+L1667:         <End of Inlined Event Graph Function>;
+L1672:         mPlayerController = this->GetOwningPlayer();
+L1696:         mRotator = mPlayerController->PlayerCameraManager->GetCameraRotation();
+L1768:         mPawn = this->GetOwningPlayerPawn();
+L1788:         BreakRotator(mRotator, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L1834:         mPawn->GetActorEyesViewPoint([ref] mVector, [ref] mRotator1);
+L1888:         BreakRotator(mRotator1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L1934:         mfloat6 = Subtract_FloatFloat(mfloat4, mfloat1);
+L1980:         float mfloat14 = Subtract_FloatFloat(mfloat6, 360);
+L2022:         this->Caluclated X Difference = mfloat14;
+L2049:         goto L691;
+L2054:         mPlayerController = this->GetOwningPlayer();
+L2078:         mRotator = mPlayerController->PlayerCameraManager->GetCameraRotation();
+L2150:         mPawn = this->GetOwningPlayerPawn();
+L2170:         BreakRotator(mRotator, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L2216:         mPawn->GetActorEyesViewPoint([ref] mVector, [ref] mRotator1);
+L2270:         BreakRotator(mRotator1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L2316:         mfloat7 = Subtract_FloatFloat(mfloat5, mfloat2);
+L2362:         float mfloat15 = Subtract_FloatFloat(mfloat7, 360);
+L2404:         this->Caluclated Y Difference = mfloat15;
+L2431:         goto L1382;
+============ END FUNCTION Get Cam and View Rotation Difference ==============
+
+
+
+
+
+============ BEGIN FUNCTION HUD Lerp ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L56:           bool mbool = mFGCharacterPlayer;
+L85:           if (!mbool) goto L1452;
+L99:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L123:          Vector mVector = mPlayerController->PlayerCameraManager->GetCameraLocation();
+L195:          BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L241:          mPawn = this->GetOwningPlayerPawn();
+L261:          SpringArmComponent* mSpringArmComponent = mFGCharacterPlayer->GetSpringArmComponent();
+L303:          Transform mTransform = mSpringArmComponent->GetRelativeTransform();
+L353:          mPawn->GetActorEyesViewPoint([ref] mVector1, [ref] mRotator);
+L407:          BreakTransform([ref] mTransform, [ref] mVector2, [ref] mRotator1, [ref] mVector3);
+L453:          BreakVector(mVector1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L499:          BreakVector(mVector2, [ref] mfloat6, [ref] mfloat7, [ref] mfloat8);
+L545:          float mfloat9 = Subtract_FloatFloat(mfloat4, mfloat1);
+L591:          float mfloat10 = Subtract_FloatFloat(mfloat3, mfloat);
+L637:          float mfloat11 = Square(mfloat9);
+L674:          float mfloat12 = Square(mfloat10);
+L711:          float mfloat13 = Add_FloatFloat(mfloat12, mfloat11);
+L757:          float mfloat14 = Sqrt(mfloat13);
+L794:          bool mbool1 = NearlyEqual_FloatFloat(mfloat6, mfloat14, 0.009999999776482582);
+L837:          if (!mbool1) goto L1218;
+L851:          Vector2D mVector2D = MakeVector2D(1, 1);
+L889:          this->ShakeBorder->SetRenderScale(mVector2D);
+L930:          Pawn* mPawn1 = this->GetOwningPlayerPawn();
+L950:          mPawn1->GetActorEyesViewPoint([ref] mVector4, [ref] mRotator2);
+L1004:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1028:         Rotator mRotator3 = mPlayerController1->PlayerCameraManager->GetCameraRotation();
+L1100:         bool mbool2 = EqualEqual_RotatorRotator(mRotator2, mRotator3, 0.009999999776482582);
+L1143:         if (!mbool2) goto L1333;
+L1157:         this->ShakeBorder->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0));
+L1213:         <End of Inlined Event Graph Function>;
+L1218:         this->Get Cam and View Position Difference([ref] mfloat15);
+L1241:         Vector2D mVector2D1 = MakeVector2D(mfloat15, mfloat15);
+L1287:         this->ShakeBorder->SetRenderScale(mVector2D1);
+L1328:         goto L930;
+L1333:         this->Get Cam and View Rotation Difference([ref] mfloat16, [ref] mfloat17);
+L1365:         Vector2D mVector2D2 = MakeVector2D(mfloat16, mfloat17);
+L1411:         this->ShakeBorder->SetRenderTranslation(mVector2D2);
+============ END FUNCTION HUD Lerp ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/HUDHelpers/Widget_HUDCameraShake.Widget_HUDCameraShake_C:ExecuteUbergraph_Widget_HUDCameraShake.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/HUDHelpers/Widget_HUDCameraShake.Widget_HUDCameraShake_C:ExecuteUbergraph_Widget_HUDCameraShake.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_HUDCameraShake(254);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_HUDCameraShake ==============
+L10:           if (!this->mShakeActive) goto L259;
+L24:           Pawn* mPawn = this->GetOwningPlayerPawn();
+L44:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L80:           bool mbool = mFGCharacterPlayer;
+L109:          if (!mbool) goto L259;
+L123:          FGDriveablePawn* mFGDriveablePawn = mFGCharacterPlayer->GetDrivenVehicle();
+L165:          bool mbool1 = KismetSystemLibrary->IsValid(mFGDriveablePawn);
+L216:          if (!mbool1) goto L235;
+L230:          <End of Inlined Event Graph Function>;
+L235:          this->HUD Lerp();
+L249:          <End of Inlined Event Graph Function>;
+L254:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_HUDCameraShake ==============

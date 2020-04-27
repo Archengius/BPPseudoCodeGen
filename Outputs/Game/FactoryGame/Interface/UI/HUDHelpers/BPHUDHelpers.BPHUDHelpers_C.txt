@@ -1,0 +1,144 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/HUDHelpers/BPHUDHelpers.BPHUDHelpers_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION DoesTextContainSearchWords ==============
+L0:            ExecutionFlow.Push(L725);
+L5:            TArray<FString> mTArray<FString> = KismetStringLibrary->ParseIntoArray(SearchFor, " ", true);
+L68:           TArray<FString> LocalSearchWords = mTArray<FString>;
+L95:           int32 Temp_int_Loop_Counter_Variable = 0;
+L118:          int32 Temp_int_Array_Index_Variable = 0;
+L141:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] LocalSearchWords);
+L200:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L238:          if (!mbool) goto L624;
+L252:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L279:          ExecutionFlow.Push(L640);
+L284:          KismetArrayLibrary->Array_Get([ref] LocalSearchWords, Temp_int_Array_Index_Variable, [ref] mFString);
+L343:          FString mFString1 = KismetStringLibrary->Replace(Input, ".", "", 1);
+L409:          bool mbool1 = KismetStringLibrary->Contains(mFString1, mFString, false, false);
+L471:          bool mbool2 = BooleanAND(Ignore Punctuation, mbool1);
+L509:          bool mbool3 = KismetStringLibrary->Contains(Input, mFString, false, false);
+L571:          bool mbool4 = BooleanOR(mbool3, mbool2);
+L609:          if (!mbool4) goto L714;
+L623:          goto ExecutionFlow.Pop();
+L624:          bool ReturnValue = true;
+L635:          goto L725;
+L640:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L682:          Temp_int_Loop_Counter_Variable = mint321;
+L709:          goto L141;
+L714:          ReturnValue = false;
+============ END FUNCTION DoesTextContainSearchWords ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetDefaultRCO ==============
+L0:            FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(Controller);
+L36:           bool mbool = mFGPlayerController;
+L65:           if (!mbool) goto L154;
+L79:           BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L130:          BP_RemoteCallObject* RCO = mBP_RemoteCallObject;
+L149:          <End of Inlined Event Graph Function>;
+L154:          KismetSystemLibrary->PrintString(nullptr, "Error: Failed to get default remote call object", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), 2);
+L277:          RCO = nullptr;
+============ END FUNCTION GetDefaultRCO ==============
+
+
+
+
+
+============ BEGIN FUNCTION FindWidgetOfClass ==============
+L0:            ExecutionFlow.Push(L675);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           TArray<FGInteractWidget*> mTArray<FGInteractWidget> = Target->GetInteractWidgetStack();
+L101:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGInteractWidget>);
+L160:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L198:          if (!mbool) goto L585;
+L212:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L239:          ExecutionFlow.Push(L601);
+L244:          mTArray<FGInteractWidget> = Target->GetInteractWidgetStack();
+L294:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>, Temp_int_Array_Index_Variable, [ref] mFGInteractWidget);
+L353:          TSubclassOf<FGInteractWidget> mTSubclassOf<FGInteractWidget> = GameplayStatics->GetObjectClass(mFGInteractWidget);
+L404:          bool mbool1 = ClassIsChildOf(mTSubclassOf<FGInteractWidget>, Windget);
+L442:          if (!mbool1) goto ExecutionFlow.Pop();
+L452:          mTArray<FGInteractWidget> = Target->GetInteractWidgetStack();
+L502:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>, Temp_int_Array_Index_Variable, [ref] mFGInteractWidget);
+L561:          FGInteractWidget* Widget = mFGInteractWidget;
+L580:          <End of Inlined Event Graph Function>;
+L585:          Widget = nullptr;
+L596:          <End of Inlined Event Graph Function>;
+L601:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L643:          Temp_int_Loop_Counter_Variable = mint321;
+L670:          goto L51;
+============ END FUNCTION FindWidgetOfClass ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetFGHud ==============
+L0:            PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(Controller);
+L36:           bool mbool = mPlayerController;
+L65:           if (!mbool) goto L235;
+L79:           HUD* mHUD = mPlayerController->GetHUD();
+L121:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L157:          bool mbool1 = mFGHUD;
+L186:          if (!mbool1) goto L224;
+L200:          FGHUD* AsFGHUD = mFGHUD;
+L219:          <End of Inlined Event Graph Function>;
+L224:          AsFGHUD = nullptr;
+============ END FUNCTION GetFGHud ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowHideHUD ==============
+L0:            PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(Controller);
+L36:           bool mbool = mPlayerController;
+L65:           if (!mbool) goto L270;
+L79:           HUD* mHUD = mPlayerController->GetHUD();
+L121:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L157:          bool mbool1 = mFGHUD;
+L186:          if (!mbool1) goto L270;
+L200:          bool mbool2 = Not_PreBool(isMenuOpen);
+L229:          mFGHUD->SetHUDVisibility(mbool2);
+============ END FUNCTION ShowHideHUD ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopStackWidget ==============
+L0:            PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(instigatingController);
+L36:           bool mbool = mPlayerController;
+L65:           if (!mbool) goto L297;
+L79:           HUD* mHUD = mPlayerController->GetHUD();
+L121:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L157:          bool mbool1 = mFGHUD;
+L186:          if (!mbool1) goto L297;
+L200:          FGGameUI* mFGGameUI = mFGHUD->GetGameUI();
+L242:          bool mbool2 = mFGGameUI->PopWidget(Stack Widget);
+============ END FUNCTION PopStackWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION PushStackWidget ==============
+L0:            PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(instigatingController);
+L36:           bool mbool = mPlayerController;
+L65:           if (!mbool) goto L287;
+L79:           HUD* mHUD = mPlayerController->GetHUD();
+L121:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L157:          bool mbool1 = mFGHUD;
+L186:          if (!mbool1) goto L287;
+L200:          FGGameUI* mFGGameUI = mFGHUD->GetGameUI();
+L242:          mFGGameUI->PushWidget(stackWidget);
+============ END FUNCTION PushStackWidget ==============

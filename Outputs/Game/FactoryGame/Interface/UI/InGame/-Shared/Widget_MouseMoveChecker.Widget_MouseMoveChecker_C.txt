@@ -1,0 +1,64 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_MouseMoveChecker.Widget_MouseMoveChecker_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CheckIfMouseMove ==============
+L0:            this->ExecuteUbergraph_Widget_MouseMoveChecker(453);
+============ END FUNCTION CheckIfMouseMove ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopCheckMouse ==============
+L0:            this->ExecuteUbergraph_Widget_MouseMoveChecker(664);
+============ END FUNCTION StopCheckMouse ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartCheckMouse ==============
+L0:            this->ExecuteUbergraph_Widget_MouseMoveChecker(711);
+============ END FUNCTION StartCheckMouse ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_MouseMoveChecker ==============
+L10:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L34:           bool mbool = mPlayerController->GetMousePosition([ref] mfloat, [ref] mfloat1);
+L94:           Vector2D mVector2D = MakeVector2D(mfloat, mfloat1);
+L140:          this->mLastMousePos = mVector2D;
+L167:          mFScriptDelegate->BindUFunction(this, CheckIfMouseMove);
+L190:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mUpdateTime, true);
+L259:          this->TimerHandle = mTimerHandle;
+L286:          <End of Inlined Event Graph Function>;
+L291:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L315:          bool mbool1 = mPlayerController1->GetMousePosition([ref] mfloat2, [ref] mfloat3);
+L375:          Vector2D mVector2D1 = MakeVector2D(mfloat2, mfloat3);
+L421:          this->mLastMousePos = mVector2D1;
+L448:          <End of Inlined Event Graph Function>;
+L453:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L477:          bool mbool2 = mPlayerController2->GetMousePosition([ref] mfloat4, [ref] mfloat5);
+L537:          Vector2D mVector2D2 = MakeVector2D(mfloat4, mfloat5);
+L583:          bool mbool3 = NotEqual_Vector2DVector2D(this->mLastMousePos, mVector2D2, 0.00009999999747378752);
+L626:          if (!mbool3) goto L716;
+L640:          this->OnMouseMoved->ProcessMulticastDelegate();
+L659:          goto L291;
+L664:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->TimerHandle);
+L706:          <End of Inlined Event Graph Function>;
+L711:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_MouseMoveChecker ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseMoved__DelegateSignature ==============
+============ END FUNCTION OnMouseMoved__DelegateSignature ==============

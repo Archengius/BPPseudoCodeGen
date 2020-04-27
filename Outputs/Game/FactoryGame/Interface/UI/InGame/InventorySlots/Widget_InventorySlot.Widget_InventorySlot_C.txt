@@ -1,0 +1,1162 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetItemOrFilterClass ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mItemClass);
+L51:           if (!mbool) goto L89;
+L65:           TSubclassOf<FGItemDescriptor> ReturnValue = this->mItemClass;
+L84:           goto L132;
+L89:           TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->GetFilterClass();
+L113:          ReturnValue = mTSubclassOf<FGItemDescriptor>;
+============ END FUNCTION GetItemOrFilterClass ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetFilterClass ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mCachedInventoryComponent);
+L51:           if (!mbool) goto L256;
+L65:           TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->mCachedInventoryComponent->GetAllowedItemOnIndex(this->mSlotIdx);
+L116:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGItemDescriptor>);
+L167:          if (!mbool1) goto L256;
+L181:          mTSubclassOf<FGItemDescriptor> = this->mCachedInventoryComponent->GetAllowedItemOnIndex(this->mSlotIdx);
+L232:          TSubclassOf<FGItemDescriptor> ReturnValue = mTSubclassOf<FGItemDescriptor>;
+L251:          goto L356;
+L256:          bool mbool2 = KismetSystemLibrary->IsValidClass(this->mFilterItemDescriptor);
+L307:          if (!mbool2) goto L345;
+L321:          ReturnValue = this->mFilterItemDescriptor;
+L340:          goto L356;
+L345:          ReturnValue = nullptr;
+============ END FUNCTION GetFilterClass ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnItemClassUpdated ==============
+L0:            this->mPreviousItemClass = this->mItemClass;
+L19:           this->GetContentState([ref] muint8);
+L42:           this->SetContentState(muint8);
+L65:           this->GetItemForm([ref] muint81);
+L88:           this->SetResourceForm(muint81);
+L111:          SlateBrush mSlateBrush = this->GetItemImageBrush();
+L143:          this->mItemImage->SetBrush([ref] mSlateBrush);
+L188:          TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->GetItemOrFilterClass();
+L212:          TSubclassOf<FGItemDescriptor> LocalItemOrFilter = mTSubclassOf<FGItemDescriptor>;
+L231:          bool mbool = KismetSystemLibrary->IsValidClass(LocalItemOrFilter);
+L282:          if (!mbool) goto L730;
+L296:          FText mFText = FGItemDescriptor->GetAbbreviatedDisplayName(LocalItemOrFilter);
+L355:          bool mbool1 = KismetTextLibrary->TextIsEmpty([ref] mFText);
+L406:          bool mbool2 = Not_PreBool(mbool1);
+L435:          uint8 Temp_byte_Variable = 3;
+L455:          uint8 Temp_byte_Variable1 = 2;
+L475:          bool mbool3 = BooleanAND(mbool2, this->mAbbreviateName);
+L513:          bool Temp_bool_Variable = mbool3;
+L532:          this->mAbbreviationOverlay->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint82;
+});
+L621:          FText mFText1 = FGItemDescriptor->GetAbbreviatedDisplayName(LocalItemOrFilter);
+L680:          this->mAbbreviation->SetText(mFText1);
+L725:          <End of Inlined Event Graph Function>;
+L730:          this->mAbbreviationOverlay->SetVisibility(2);
+============ END FUNCTION OnItemClassUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIsItemStackable ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mItemClass);
+L51:           if (!mbool) goto L182;
+L65:           int32 mint32 = FGItemDescriptor->GetStackSize(this->mItemClass);
+L124:          bool mbool1 = Greater_IntInt(mint32, 1);
+L158:          bool IsStackable = mbool1;
+L177:          <End of Inlined Event Graph Function>;
+L182:          IsStackable = false;
+============ END FUNCTION GetIsItemStackable ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetResourceForm ==============
+L0:            bool mbool = NotEqual_ByteByte(NewResourceForm, this->mResourceForm);
+L38:           if (!mbool) goto L2267;
+L52:           this->mResourceForm = NewResourceForm;
+L79:           LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+L131:          LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+L183:          LinearColor Temp_struct_Variable2 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.10588199645280838, G = 0.3803919851779938, B = 0.556863009929657, A = 1);
+L235:          LinearColor Temp_struct_Variable3 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+L287:          LinearColor Temp_struct_Variable4 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+L339:          uint8 Temp_byte_Variable5 = this->mResourceForm;
+L366:          LinearColor LocalFormColor = switch (Temp_byte_Variable5) {
+case 0 -> Temp_struct_Variable4;
+case 1 -> Temp_struct_Variable3;
+case 2 -> Temp_struct_Variable2;
+case 3 -> Temp_struct_Variable1;
+case 4 -> Temp_struct_Variable;
+default -> mLinearColor;
+};
+L484:          this->mCross->SetColorAndOpacity(LocalFormColor);
+L525:          this->mTextBackground->SetColorAndOpacity(LocalFormColor);
+L566:          mFontOutlineSettings.OutlineSize = this->mStackSizeLbl->Font.OutlineSettings.OutlineSize;
+L642:          mFontOutlineSettings.bSeparateFillAlpha = this->mStackSizeLbl->Font.OutlineSettings.bSeparateFillAlpha;
+L710:          mFontOutlineSettings.bApplyOutlineToDropShadows = this->mStackSizeLbl->Font.OutlineSettings.bApplyOutlineToDropShadows;
+L778:          mFontOutlineSettings.OutlineMaterial = this->mStackSizeLbl->Font.OutlineSettings.OutlineMaterial;
+L846:          mFontOutlineSettings.OutlineColor = LocalFormColor;
+L882:          mSlateFontInfo.FontObject = this->mStackSizeLbl->Font.FontObject;
+L941:          mSlateFontInfo.FontMaterial = this->mStackSizeLbl->Font.FontMaterial;
+L1000:         mSlateFontInfo.OutlineSettings = mFontOutlineSettings;
+L1036:         mSlateFontInfo.TypefaceFontName = this->mStackSizeLbl->Font.TypefaceFontName;
+L1103:         mSlateFontInfo.Size = this->mStackSizeLbl->Font.Size;
+L1170:         this->mStackSizeLbl->SetFont(mSlateFontInfo);
+L1211:         uint8 Temp_byte_Variable = 1;
+L1231:         uint8 Temp_byte_Variable1 = 3;
+L1251:         uint8 Temp_byte_Variable2 = 1;
+L1271:         uint8 Temp_byte_Variable3 = 1;
+L1291:         uint8 Temp_byte_Variable6 = 1;
+L1311:         uint8 Temp_byte_Variable7 = this->mResourceForm;
+L1338:         mSlateBrush.ImageSize = this->mSlotBg->Brush.ImageSize;
+L1405:         mSlateBrush.Margin = this->mSlotBg->Brush.Margin;
+L1472:         mSlateBrush.TintColor = this->mSlotBg->Brush.TintColor;
+L1539:         mSlateBrush.ResourceObject = this->mSlotBg->Brush.ResourceObject;
+L1598:         mSlateBrush.DrawAs = switch (Temp_byte_Variable7) {
+case 0 -> Temp_byte_Variable3;
+case 1 -> Temp_byte_Variable2;
+case 2 -> Temp_byte_Variable1;
+case 3 -> Temp_byte_Variable;
+case 4 -> Temp_byte_Variable6;
+default -> muint8;
+};
+L1725:         mSlateBrush.Tiling = this->mSlotBg->Brush.Tiling;
+L1792:         mSlateBrush.Mirroring = this->mSlotBg->Brush.Mirroring;
+L1859:         this->mSlotBg->SetBrush([ref] mSlateBrush);
+L1904:         MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mSlotBg->GetDynamicMaterial();
+L1946:         mMaterialInstanceDynamic->SetVectorParameterValue("AccentColor", LocalFormColor);
+L2000:         Texture* Temp_object_Variable = Rectangle_Background_Square;
+L2019:         Texture* Temp_object_Variable1 = Rectangle_Background_Square;
+L2038:         Texture* Temp_object_Variable2 = Circle_Background;
+L2057:         Texture* Temp_object_Variable3 = Rectangle_Background_Square;
+L2076:         Texture* Temp_object_Variable4 = Rectangle_Background_Square;
+L2095:         uint8 Temp_byte_Variable4 = this->mResourceForm;
+L2122:         mMaterialInstanceDynamic->SetTextureParameterValue("SlotTexture", switch (Temp_byte_Variable4) {
+case 0 -> Temp_object_Variable4;
+case 1 -> Temp_object_Variable3;
+case 2 -> Temp_object_Variable2;
+case 3 -> Temp_object_Variable1;
+case 4 -> Temp_object_Variable;
+default -> mTexture;
+});
+============ END FUNCTION SetResourceForm ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetContentState ==============
+L0:            this->CheckSlotHasItems([ref] mbool);
+L23:           if (!mbool) goto L141;
+L37:           TSubclassOf<FGEquipmentDescriptor> mTSubclassOf<FGEquipmentDescriptor> = ClassCast<Class /Script/FactoryGame.FGEquipmentDescriptor>(this->mItemClass);
+L73:           bool mbool1 = mTSubclassOf<FGEquipmentDescriptor>;
+L102:          if (!mbool1) goto L280;
+L116:          uint8 ContentState = 4;
+L136:          <End of Inlined Event Graph Function>;
+L141:          TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->GetFilterClass();
+L165:          bool mbool2 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGItemDescriptor>);
+L216:          if (!mbool2) goto L255;
+L230:          ContentState = 2;
+L250:          <End of Inlined Event Graph Function>;
+L255:          ContentState = 1;
+L275:          <End of Inlined Event Graph Function>;
+L280:          TSubclassOf<Desc_ResourceSinkCoupon> mTSubclassOf<Desc_ResourceSinkCoupon> = ClassCast<BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/ResourceSinkCoupon/Desc_ResourceSinkCoupon.Desc_ResourceSinkCoupon_C>(this->mItemClass);
+L316:          bool mbool3 = mTSubclassOf<Desc_ResourceSinkCoupon>;
+L345:          if (!mbool3) goto L384;
+L359:          ContentState = 5;
+L379:          <End of Inlined Event Graph Function>;
+L384:          ContentState = 3;
+============ END FUNCTION GetContentState ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetInteractState ==============
+L0:            bool mbool = NotEqual_ByteByte(NewInteractState, this->mInteractState);
+L38:           if (!mbool) goto L294;
+L52:           this->mInteractState = NewInteractState;
+L79:           bool mbool1 = NotEqual_ByteByte(this->mInteractState, 1);
+L110:          if (!mbool1) goto L174;
+L124:          mbool1 = NotEqual_ByteByte(this->mInteractState, 2);
+L155:          if (!mbool1) goto L248;
+L169:          <End of Inlined Event Graph Function>;
+L174:          this->StopAnimation(this->OnHover);
+L193:          this->mSlotBgMaterial->SetScalarParameterValue("Alpha1", 0);
+L243:          <End of Inlined Event Graph Function>;
+L248:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->OnHover, 0, 1, 0, 1);
+============ END FUNCTION SetInteractState ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetDragAndDropState ==============
+L0:            bool mbool = NotEqual_ByteByte(NewDragAndDropState, this->mDragAndDropState);
+L38:           if (!mbool) goto L556;
+L52:           this->mDragAndDropState = NewDragAndDropState;
+L79:           bool Temp_bool_Variable = false;
+L90:           bool Temp_bool_Variable1 = true;
+L101:          bool Temp_bool_Variable2 = false;
+L112:          float Temp_float_Variable = 1;
+L135:          float Temp_float_Variable1 = 0;
+L158:          uint8 Temp_byte_Variable4 = this->mDragAndDropState;
+L185:          bool Temp_bool_Variable3 = switch (Temp_byte_Variable4) {
+case 0 -> Temp_bool_Variable2;
+case 1 -> Temp_bool_Variable1;
+case 2 -> Temp_bool_Variable;
+default -> mbool1;
+};
+L265:          this->mSlotBgMaterial->SetScalarParameterValue("Alpha2", switch (Temp_bool_Variable3) {
+case false -> Temp_float_Variable1;
+case true -> Temp_float_Variable;
+default -> mfloat;
+});
+L363:          uint8 Temp_byte_Variable1 = 3;
+L383:          uint8 Temp_byte_Variable2 = 2;
+L403:          uint8 Temp_byte_Variable3 = 2;
+L423:          uint8 Temp_byte_Variable = this->mDragAndDropState;
+L450:          this->mCross->SetVisibility(switch (Temp_byte_Variable) {
+case 0 -> Temp_byte_Variable3;
+case 1 -> Temp_byte_Variable2;
+case 2 -> Temp_byte_Variable1;
+default -> muint8;
+});
+============ END FUNCTION SetDragAndDropState ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetContentState ==============
+L0:            bool mbool = NotEqual_ByteByte(NewContentState, this->mContentState);
+L38:           if (!mbool) goto L2384;
+L52:           this->mContentState = NewContentState;
+L79:           MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mSlotBg->GetDynamicMaterial();
+L121:          LinearColor Temp_struct_Variable6 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.04970699921250343, G = 0.04970699921250343, B = 0.04970699921250343, A = 1);
+L173:          LinearColor Temp_struct_Variable7 = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L225:          LinearColor Temp_struct_Variable8 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.6038280129432678, G = 0.5972020030021667, B = 0.5972020030021667, A = 1);
+L277:          LinearColor Temp_struct_Variable9 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.13286800682544708, G = 0.13286800682544708, B = 0.13563300669193268, A = 0.2980389893054962);
+L329:          LinearColor Temp_struct_Variable10 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.13286800682544708, G = 0.13286800682544708, B = 0.13563300669193268, A = 0.2980389893054962);
+L381:          LinearColor Temp_struct_Variable11 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L433:          uint8 Temp_byte_Variable24 = this->mContentState;
+L460:          mMaterialInstanceDynamic->SetVectorParameterValue("SlotColor", switch (Temp_byte_Variable24) {
+case 0 -> Temp_struct_Variable11;
+case 1 -> Temp_struct_Variable10;
+case 2 -> Temp_struct_Variable9;
+case 3 -> Temp_struct_Variable8;
+case 4 -> Temp_struct_Variable7;
+case 5 -> Temp_struct_Variable6;
+default -> mLinearColor;
+});
+L620:          LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L672:          LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+L724:          LinearColor Temp_struct_Variable2 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L776:          LinearColor Temp_struct_Variable3 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L828:          LinearColor Temp_struct_Variable4 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L880:          LinearColor Temp_struct_Variable5 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L932:          uint8 Temp_byte_Variable23 = this->mContentState;
+L959:          this->mSlotBorder->SetColorAndOpacity(switch (Temp_byte_Variable23) {
+case 0 -> Temp_struct_Variable5;
+case 1 -> Temp_struct_Variable4;
+case 2 -> Temp_struct_Variable3;
+case 3 -> Temp_struct_Variable2;
+case 4 -> Temp_struct_Variable1;
+case 5 -> Temp_struct_Variable;
+default -> mLinearColor1;
+});
+L1106:         uint8 Temp_byte_Variable17 = 2;
+L1126:         uint8 Temp_byte_Variable18 = 3;
+L1146:         uint8 Temp_byte_Variable19 = 2;
+L1166:         uint8 Temp_byte_Variable20 = 2;
+L1186:         uint8 Temp_byte_Variable21 = 2;
+L1206:         uint8 Temp_byte_Variable22 = 2;
+L1226:         uint8 Temp_byte_Variable16 = this->mContentState;
+L1253:         this->mSlotBorder->SetVisibility(switch (Temp_byte_Variable16) {
+case 0 -> Temp_byte_Variable22;
+case 1 -> Temp_byte_Variable21;
+case 2 -> Temp_byte_Variable20;
+case 3 -> Temp_byte_Variable19;
+case 4 -> Temp_byte_Variable18;
+case 5 -> Temp_byte_Variable17;
+default -> muint8;
+});
+L1404:         uint8 Temp_byte_Variable = 3;
+L1424:         uint8 Temp_byte_Variable10 = 3;
+L1444:         uint8 Temp_byte_Variable11 = 3;
+L1464:         uint8 Temp_byte_Variable12 = 3;
+L1484:         uint8 Temp_byte_Variable13 = 3;
+L1504:         uint8 Temp_byte_Variable14 = 2;
+L1524:         uint8 Temp_byte_Variable15 = 2;
+L1544:         bool Temp_bool_Variable = this->mIsCostSlot;
+L1563:         uint8 Temp_byte_Variable9 = this->mContentState;
+L1590:         this->mItemImage->SetVisibility(switch (Temp_bool_Variable) {
+case false -> switch (Temp_byte_Variable9) {
+case 0 -> Temp_byte_Variable15;
+case 1 -> Temp_byte_Variable14;
+case 2 -> Temp_byte_Variable13;
+case 3 -> Temp_byte_Variable12;
+case 4 -> Temp_byte_Variable11;
+case 5 -> Temp_byte_Variable10;
+default -> muint82;
+};
+case true -> Temp_byte_Variable;
+default -> muint81;
+});
+L1785:         uint8 Temp_byte_Variable1 = 2;
+L1805:         uint8 Temp_byte_Variable3 = 3;
+L1825:         uint8 Temp_byte_Variable4 = 3;
+L1845:         uint8 Temp_byte_Variable5 = 3;
+L1865:         uint8 Temp_byte_Variable6 = 2;
+L1885:         uint8 Temp_byte_Variable7 = 2;
+L1905:         uint8 Temp_byte_Variable8 = 2;
+L1925:         this->GetIsItemStackable([ref] mbool1);
+L1948:         bool Temp_bool_Variable1 = mbool1;
+L1967:         uint8 Temp_byte_Variable2 = this->mContentState;
+L1994:         this->mStackSizeOverlay->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable1;
+case true -> switch (Temp_byte_Variable2) {
+case 0 -> Temp_byte_Variable8;
+case 1 -> Temp_byte_Variable7;
+case 2 -> Temp_byte_Variable6;
+case 3 -> Temp_byte_Variable5;
+case 4 -> Temp_byte_Variable4;
+case 5 -> Temp_byte_Variable3;
+default -> muint84;
+};
+default -> muint83;
+});
+L2189:         this->mStackSizeLbl->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable1;
+case true -> switch (Temp_byte_Variable2) {
+case 0 -> Temp_byte_Variable8;
+case 1 -> Temp_byte_Variable7;
+case 2 -> Temp_byte_Variable6;
+case 3 -> Temp_byte_Variable5;
+case 4 -> Temp_byte_Variable4;
+case 5 -> Temp_byte_Variable3;
+default -> muint84;
+};
+default -> muint83;
+});
+============ END FUNCTION SetContentState ==============
+
+
+
+
+
+============ BEGIN FUNCTION MoveAllWithSameItemClass ==============
+L0:            ExecutionFlow.Push(L746);
+L5:            this->mShouldGrabAllOfType = true;
+L16:           bool mbool = KismetSystemLibrary->IsValid(this->mInventorySlotToRepresent);
+L67:           if (!mbool) goto L118;
+L81:           this->mInventorySlotToRepresent->MoveAllWithSameItemClass();
+L117:          goto ExecutionFlow.Pop();
+L118:          PanelWidget* mPanelWidget = this->GetParent();
+L138:          TArray<Widget*> mTArray<Widget> = mPanelWidget->GetAllChildren();
+L188:          TArray<Widget*> localChildWidgets = mTArray<Widget>;
+L215:          int32 Temp_int_Loop_Counter_Variable = 0;
+L238:          int32 Temp_int_Array_Index_Variable = 0;
+L261:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] localChildWidgets);
+L320:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L358:          if (!mbool1) goto L660;
+L372:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L399:          ExecutionFlow.Push(L672);
+L404:          KismetArrayLibrary->Array_Get([ref] localChildWidgets, Temp_int_Array_Index_Variable, [ref] mWidget);
+L463:          Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mWidget);
+L499:          bool mbool2 = mWidget_InventorySlot;
+L528:          if (!mbool2) goto ExecutionFlow.Pop();
+L538:          mWidget_InventorySlot->GetItemClass([ref] mTSubclassOf<FGItemDescriptor>);
+L583:          bool mbool3 = EqualEqual_ClassClass(mTSubclassOf<FGItemDescriptor>, this->mItemClass);
+L621:          if (!mbool3) goto ExecutionFlow.Pop();
+L631:          this->OnMoveStack->ProcessMulticastDelegate(mWidget_InventorySlot);
+L659:          goto ExecutionFlow.Pop();
+L660:          this->mShouldGrabAllOfType = false;
+L671:          goto ExecutionFlow.Pop();
+L672:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L714:          Temp_int_Loop_Counter_Variable = mint321;
+L741:          goto L261;
+============ END FUNCTION MoveAllWithSameItemClass ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowSplitStackWidget ==============
+L0:            this->mSplitMenuAnchor->Open(true);
+============ END FUNCTION ShowSplitStackWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonDoubleClick ==============
+L0:            InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromPointerEvent([ref] InMouseEvent);
+L59:           Key mKey = KismetInputLibrary->PointerEvent_GetEffectingButton([ref] InMouseEvent);
+L118:          bool mbool = KismetInputLibrary->InputEvent_IsControlDown([ref] mInputEvent);
+L169:          bool mbool1 = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "LeftMouseButton"));
+L247:          bool mbool2 = Not_PreBool(mbool);
+L276:          bool mbool3 = KismetInputLibrary->InputEvent_IsShiftDown([ref] mInputEvent);
+L327:          bool mbool4 = Not_PreBool(mbool3);
+L356:          bool mbool5 = BooleanAND(mbool1, mbool4);
+L394:          bool mbool6 = BooleanAND(mbool5, mbool2);
+L432:          if (!mbool6) goto L559;
+L446:          this->QuickMoveInventory(false);
+L461:          this->SetInteractState(1);
+L477:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L527:          EventReply ReturnValue = mEventReply;
+L554:          goto L636;
+L559:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L609:          ReturnValue = mEventReply1;
+============ END FUNCTION OnMouseButtonDoubleClick ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemForm ==============
+L0:            TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->GetItemOrFilterClass();
+L24:           TSubclassOf<FGItemDescriptor> LocalItemClass = mTSubclassOf<FGItemDescriptor>;
+L43:           bool mbool = KismetSystemLibrary->IsValidClass(LocalItemClass);
+L94:           if (!mbool) goto L199;
+L108:          uint8 muint8 = FGItemDescriptor->GetForm(LocalItemClass);
+L167:          uint8 form = muint8;
+L194:          <End of Inlined Event Graph Function>;
+L199:          form = 0;
+============ END FUNCTION GetItemForm ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckForNuclearWaste ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           bool mbool = EqualEqual_ClassClass(Object, Desc_NuclearWaste);
+L58:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L94:           bool mbool1 = mFGCharacterPlayer;
+L123:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetTrashSlot();
+L165:          bool mbool2 = EqualEqual_ObjectObject(mFGInventoryComponent, this->mCachedInventoryComponent);
+L203:          bool mbool3 = BooleanAND(mbool2, mbool);
+L241:          this->Event CreateNuclearWastePopup(mbool3);
+============ END FUNCTION CheckForNuclearWaste ==============
+
+
+
+
+
+============ BEGIN FUNCTION QuickMoveInventory ==============
+L0:            TSubclassOf<FGEquipmentDescriptor> mTSubclassOf<FGEquipmentDescriptor> = ClassCast<Class /Script/FactoryGame.FGEquipmentDescriptor>(this->mItemClass);
+L36:           bool mbool = mTSubclassOf<FGEquipmentDescriptor>;
+L65:           if (!mbool) goto L1207;
+L79:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L103:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L139:          bool mbool1 = mFGPlayerController;
+L168:          if (!mbool1) goto L1641;
+L182:          HUD* mHUD = mFGPlayerController->GetHUD();
+L224:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L260:          bool mbool2 = mFGHUD;
+L289:          if (!mbool2) goto L1641;
+L303:          FGGameUI* mFGGameUI = mFGHUD->GetGameUI();
+L345:          BPHUDHelpers->FindWidgetOfClass(Widget_PlayerInventory, mFGGameUI, this, [ref] mFGInteractWidget);
+L409:          bool mbool3 = KismetSystemLibrary->IsValid(mFGInteractWidget);
+L460:          if (!mbool3) goto L1207;
+L474:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L494:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L530:          bool mbool4 = mFGCharacterPlayer;
+L559:          if (!mbool4) goto L1641;
+L573:          TSubclassOf<FGEquipment> mTSubclassOf<FGEquipment> = FGEquipmentDescriptor->GetEquipmentClass(mTSubclassOf<FGEquipmentDescriptor>);
+L624:          uint8 muint8 = FGEquipment->GetEquipmentSlot(mTSubclassOf<FGEquipment>);
+L683:          FGInventoryComponentEquipment* mFGInventoryComponentEquipment = mFGCharacterPlayer->GetEquipmentSlot(muint8);
+L734:          bool mbool5 = EqualEqual_ObjectObject(this->mCachedInventoryComponent, mFGInventoryComponentEquipment);
+L772:          if (!mbool5) goto L1265;
+L786:          Pawn* mPawn1 = this->GetOwningPlayerPawn();
+L806:          FGCharacterPlayer* mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn1);
+L842:          bool mbool6 = mFGCharacterPlayer1;
+L871:          if (!mbool6) goto L1641;
+L885:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer1->GetInventory();
+L927:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L978:          mTSubclassOf<FGEquipment> = FGEquipmentDescriptor->GetEquipmentClass(mTSubclassOf<FGEquipmentDescriptor>);
+L1029:         muint8 = FGEquipment->GetEquipmentSlot(mTSubclassOf<FGEquipment>);
+L1088:         mFGInventoryComponentEquipment = mFGCharacterPlayer->GetEquipmentSlot(muint8);
+L1139:         mBP_RemoteCallObject->Server_MoveItemIfSpace(mFGInventoryComponentEquipment, this->mSlotIdx, mFGInventoryComponent);
+L1202:         <End of Inlined Event Graph Function>;
+L1207:         if (!MoveAllItemsOfSameType) goto L1240;
+L1221:         this->MoveAllWithSameItemClass();
+L1235:         <End of Inlined Event Graph Function>;
+L1240:         this->OnMoveStack->ProcessMulticastDelegate(this);
+L1260:         <End of Inlined Event Graph Function>;
+L1265:         mTSubclassOf<FGEquipment> = FGEquipmentDescriptor->GetEquipmentClass(mTSubclassOf<FGEquipmentDescriptor>);
+L1316:         BP_RemoteCallObject* mBP_RemoteCallObject1 = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L1367:         muint8 = FGEquipment->GetEquipmentSlot(mTSubclassOf<FGEquipment>);
+L1426:         mFGInventoryComponentEquipment = mFGCharacterPlayer->GetEquipmentSlot(muint8);
+L1477:         int32 mint32 = mFGInventoryComponentEquipment->GetActiveIndex();
+L1527:         int32 mint321 = Max(mint32, 0);
+L1569:         mBP_RemoteCallObject1->Server_MoveItem(this->mCachedInventoryComponent, mFGInventoryComponentEquipment, this->mSlotIdx, mint321);
+============ END FUNCTION QuickMoveInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSlotSize ==============
+L0:            if (!SmallSlot) goto L93;
+L14:           this->mSlotSizeBox->SetHeightOverride(42);
+L51:           this->mSlotSizeBox->SetWidthOverride(42);
+L88:           <End of Inlined Event Graph Function>;
+L93:           if (!BigSlot) goto L186;
+L107:          this->mSlotSizeBox->SetHeightOverride(128);
+L144:          this->mSlotSizeBox->SetWidthOverride(128);
+L181:          <End of Inlined Event Graph Function>;
+L186:          this->mSlotSizeBox->SetHeightOverride(64);
+L223:          this->mSlotSizeBox->SetWidthOverride(64);
+============ END FUNCTION SetSlotSize ==============
+
+
+
+
+
+============ BEGIN FUNCTION DropOntoInventorySlot ==============
+L0:            ExecutionFlow.Push(L1109);
+L5:            this->CloseSplitStack();
+L33:           OtherInventorySlot->CloseSplitStack();
+L69:           this->CheckForNuclearWaste(OtherInventorySlot->mItemClass);
+L114:          bool mbool = this->mCachedInventoryComponent->IsItemAllowed(OtherInventorySlot->mItemClass, this->mSlotIdx);
+L196:          bool mbool1 = Not_PreBool(this->mIsLocked);
+L225:          bool mbool2 = BooleanAND(mbool, mbool1);
+L263:          if (!mbool2) goto L913;
+L277:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L301:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L337:          bool mbool3 = mFGPlayerController;
+L366:          if (!mbool3) goto L913;
+L380:          ExecutionFlow.Push(L913);
+L385:          bool mbool4 = OtherInventorySlot->mCachedInventoryComponent->IsValidIndex(OtherInventorySlot->mSlotIdx);
+L480:          bool mbool5 = this->mCachedInventoryComponent->IsValidIndex(this->mSlotIdx);
+L531:          bool mbool6 = BooleanAND(mbool4, mbool5);
+L569:          if (!mbool6) goto ExecutionFlow.Pop();
+L579:          bool mbool7 = OtherInventorySlot->mCachedInventoryComponent->IsSomethingOnIndex(OtherInventorySlot->mSlotIdx);
+L674:          if (!mbool7) goto ExecutionFlow.Pop();
+L684:          if (!OtherInventorySlot->mShouldGrabAllOfType) goto L937;
+L720:          OtherInventorySlot->GetItemClass([ref] mTSubclassOf<FGItemDescriptor>);
+L765:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L816:          mBP_RemoteCallObject->Server_GrabAllItemsFromInventory(OtherInventorySlot->mCachedInventoryComponent, this->mCachedInventoryComponent, mTSubclassOf<FGItemDescriptor>);
+L901:          bool LocalResult = true;
+L912:          goto ExecutionFlow.Pop();
+L913:          bool Result = LocalResult;
+L932:          <End of Inlined Event Graph Function>;
+L937:          mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L988:          mBP_RemoteCallObject->Server_MoveItem(OtherInventorySlot->mCachedInventoryComponent, this->mCachedInventoryComponent, OtherInventorySlot->mSlotIdx, this->mSlotIdx);
+L1104:         goto L901;
+============ END FUNCTION DropOntoInventorySlot ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonUp ==============
+L0:            ExecutionFlow.Push(L1054);
+L5:            ExecutionFlow.Push(L299);
+L10:           bool mbool = KismetSystemLibrary->K2_IsTimerActiveHandle(this, this->mSplitStackTimerHandle);
+L62:           if (!mbool) goto ExecutionFlow.Pop();
+L72:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mSplitStackTimerHandle);
+L114:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L138:          BPHUDHelpers->GetDefaultRCO(mPlayerController, this, [ref] mBP_RemoteCallObject);
+L193:          int32 mint32 = Divide_IntInt(this->mNumItems, 2);
+L235:          mBP_RemoteCallObject->Server_SplitResource(this->mCachedInventoryComponent, this->mSlotIdx, mint32);
+L298:          goto ExecutionFlow.Pop();
+L299:          InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromPointerEvent([ref] MouseEvent);
+L358:          bool mbool1 = KismetInputLibrary->InputEvent_IsControlDown([ref] mInputEvent);
+L409:          InputEvent mInputEvent1 = WidgetBlueprintLibrary->GetInputEventFromPointerEvent([ref] MouseEvent);
+L468:          bool mbool2 = KismetInputLibrary->InputEvent_IsShiftDown([ref] mInputEvent1);
+L519:          Key mKey = KismetInputLibrary->PointerEvent_GetEffectingButton([ref] MouseEvent);
+L578:          bool mbool3 = BooleanOR(mbool2, mbool1);
+L616:          bool mbool4 = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "LeftMouseButton"));
+L694:          bool mbool5 = BooleanAND(mbool4, mbool3);
+L732:          if (!mbool5) goto L977;
+L746:          mInputEvent = WidgetBlueprintLibrary->GetInputEventFromPointerEvent([ref] MouseEvent);
+L805:          mbool1 = KismetInputLibrary->InputEvent_IsControlDown([ref] mInputEvent);
+L856:          this->QuickMoveInventory(mbool1);
+L879:          this->SetInteractState(1);
+L895:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L945:          EventReply ReturnValue = mEventReply;
+L972:          goto L1054;
+L977:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L1027:         ReturnValue = mEventReply1;
+============ END FUNCTION OnMouseButtonUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyUp ==============
+L0:            InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromKeyEvent([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->InputEvent_IsLeftControlDown([ref] mInputEvent);
+L110:          this->mShouldGrabAllOfType = mbool;
+L129:          EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L179:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnKeyUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyDown ==============
+L0:            InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromKeyEvent([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->InputEvent_IsLeftControlDown([ref] mInputEvent);
+L110:          this->mShouldGrabAllOfType = mbool;
+L129:          EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L179:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckSlotHasItems ==============
+L0:            bool mbool = Greater_IntInt(this->mNumItems, 0);
+L34:           bool slotHasItems = mbool;
+============ END FUNCTION CheckSlotHasItems ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNumItems ==============
+L0:            int32 Num = this->mNumItems;
+============ END FUNCTION GetNumItems ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemClass ==============
+L0:            TSubclassOf<FGItemDescriptor> ItemClass = this->mItemClass;
+============ END FUNCTION GetItemClass ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetStack ==============
+L0:            bool mbool = this->mCachedInventoryComponent->GetStackFromIndex(this->mSlotIdx, [ref] mInventoryStack);
+L60:           InventoryStack stack = mInventoryStack;
+============ END FUNCTION GetStack ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTooltipWidget ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mItemClass);
+L51:           if (!mbool) goto L297;
+L65:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L89:           Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController);
+L150:          mItemAmount.ItemClass = this->mItemClass;
+L178:          mItemAmount.amount = 0;
+L210:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_Tooltip, "mItemDescriptor", [ref] mItemAmount);
+L273:          Widget* ReturnValue = mWidget_Tooltip;
+L292:          goto L605;
+L297:          bool mbool1 = KismetSystemLibrary->IsValidClass(this->mFilterItemDescriptor);
+L348:          if (!mbool1) goto L594;
+L362:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L386:          Widget_Tooltip* mWidget_Tooltip1 = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController1);
+L447:          mItemAmount1.ItemClass = this->mFilterItemDescriptor;
+L475:          mItemAmount1.amount = 0;
+L507:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_Tooltip1, "mItemDescriptor", [ref] mItemAmount1);
+L570:          ReturnValue = mWidget_Tooltip1;
+L589:          goto L605;
+L594:          ReturnValue = nullptr;
+============ END FUNCTION GetTooltipWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreateSplitSlider ==============
+L0:            ExecutionFlow.Push(L591);
+L5:            TArray<Widget_StackSplitSlider*> mTArray<Widget_StackSplitSlider> = [];
+L16:           WidgetBlueprintLibrary->GetAllWidgetsOfClass(this, [ref] mTArray<Widget_StackSplitSlider>, Widget_StackSplitSlider, false);
+L68:           int32 Temp_int_Loop_Counter_Variable = 0;
+L91:           int32 Temp_int_Array_Index_Variable = 0;
+L114:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<Widget_StackSplitSlider>);
+L173:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L211:          if (!mbool) goto L353;
+L225:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L252:          ExecutionFlow.Push(L517);
+L257:          KismetArrayLibrary->Array_Get([ref] mTArray<Widget_StackSplitSlider>, Temp_int_Array_Index_Variable, [ref] mWidget_StackSplitSlider);
+L316:          mWidget_StackSplitSlider->CloseStackSplitSlider();
+L352:          goto ExecutionFlow.Pop();
+L353:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L377:          Widget_StackSplitSlider* mWidget_StackSplitSlider1 = WidgetBlueprintLibrary->Create(this, Widget_StackSplitSlider, mPlayerController);
+L438:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_StackSplitSlider1, "mSourceSlot", this);
+L493:          Widget* ReturnValue = mWidget_StackSplitSlider1;
+L512:          goto L591;
+L517:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L559:          Temp_int_Loop_Counter_Variable = mint321;
+L586:          goto L114;
+============ END FUNCTION CreateSplitSlider ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFocusReceived ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           if (!mbool) goto L739;
+L103:          bool mbool1 = mFGPlayerController->GetIsUsingGamepad();
+L145:          if (!mbool1) goto L739;
+L159:          Vector2D mVector2D = SlateBlueprintLibrary->GetLocalSize([ref] MyGeometry);
+L218:          Vector2D mVector2D1 = Divide_Vector2DFloat(mVector2D, 2);
+L260:          SlateBlueprintLibrary->LocalToViewport(this, [ref] MyGeometry, mVector2D1, [ref] mVector2D2, [ref] mVector2D3);
+L329:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L353:          float mfloat = WidgetLayoutLibrary->GetViewportScale(this);
+L404:          Vector2D mVector2D4 = MakeVector2D(mfloat, mfloat);
+L450:          Vector2D mVector2D5 = Multiply_Vector2DVector2D(mVector2D3, mVector2D4);
+L496:          BreakVector2D(mVector2D5, [ref] mfloat1, [ref] mfloat2);
+L533:          int32 mint32 = FTrunc(mfloat1);
+L570:          int32 mint321 = FTrunc(mfloat2);
+L607:          mPlayerController1->SetMouseLocation(mint32, mint321);
+L657:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L707:          EventReply ReturnValue = mEventReply;
+L734:          goto L816;
+L739:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L789:          ReturnValue = mEventReply1;
+============ END FUNCTION OnFocusReceived ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetGamepadButtonIsEnabled ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           if (!mbool) goto L169;
+L103:          bool mbool1 = mFGPlayerController->GetIsUsingGamepad();
+L145:          bool ReturnValue = mbool1;
+L164:          goto L180;
+L169:          ReturnValue = false;
+============ END FUNCTION GetGamepadButtonIsEnabled ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetFilterImage ==============
+L0:            TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->GetFilterClass();
+L24:           TSubclassOf<FGItemDescriptor> LocalFilter = mTSubclassOf<FGItemDescriptor>;
+L43:           bool mbool = KismetSystemLibrary->IsValidClass(LocalFilter);
+L94:           if (!mbool) goto L713;
+L108:          if (!this->mBigSlot) goto L946;
+L122:          Texture2D* mTexture2D = FGItemDescriptor->GetBigIcon(LocalFilter);
+L173:          Texture2D* Icon = mTexture2D;
+L192:          mSlateColor.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 0.5);
+L253:          mSlateColor.ColorUseRule = 0;
+L282:          mSlateBrush.ImageSize = this->mItemImage->Brush.ImageSize;
+L349:          mSlateBrush.Margin = this->mItemImage->Brush.Margin;
+L416:          mSlateBrush.TintColor = mSlateColor;
+L452:          mSlateBrush.ResourceObject = Icon;
+L480:          mSlateBrush.DrawAs = this->mItemImage->Brush.DrawAs;
+L547:          mSlateBrush.Tiling = this->mItemImage->Brush.Tiling;
+L614:          mSlateBrush.Mirroring = this->mItemImage->Brush.Mirroring;
+L681:          SlateBrush ReturnValue = mSlateBrush;
+L708:          goto L1021;
+L713:          ReturnValue = ScriptStruct /Script/SlateCore.SlateBrush(ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 32, Y = 32), Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0), TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0), ResourceObject = nullptr, ResourceName = "None", UVRegion = ScriptStruct /Script/CoreUObject.Box2D(Min = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), Max = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), bIsValid = 0), DrawAs = 3, Tiling = 0, Mirroring = 0, ImageType = 0, bIsDynamicallyLoaded = false, bHasUObject = false);
+L941:          goto L1021;
+L946:          Texture2D* mTexture2D1 = FGItemDescriptor->GetSmallIcon(LocalFilter);
+L997:          Icon = mTexture2D1;
+L1016:         goto L192;
+============ END FUNCTION GetFilterImage ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlaySomeSound ==============
+L0:            Actor* mActor = FGBlueprintFunctionLibrary->GetOuterActor(this->mCachedInventoryComponent);
+L51:           Character* mCharacter = Cast<Class /Script/Engine.Character>(mActor);
+L87:           bool mbool = mCharacter;
+L116:          if (!mbool) goto L135;
+L130:          <End of Inlined Event Graph Function>;
+============ END FUNCTION PlaySomeSound ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemImageBrush ==============
+L0:            if (!this->mIsCostSlot) goto L600;
+L14:           bool mbool = KismetSystemLibrary->IsValid(this->mCostSlotBrush);
+L65:           if (!mbool) goto L600;
+L79:           mSlateColor.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L140:          mSlateColor.ColorUseRule = 0;
+L169:          mSlateBrush.ImageSize = this->mItemImage->Brush.ImageSize;
+L236:          mSlateBrush.Margin = this->mItemImage->Brush.Margin;
+L303:          mSlateBrush.TintColor = mSlateColor;
+L339:          mSlateBrush.ResourceObject = this->mCostSlotBrush;
+L367:          mSlateBrush.DrawAs = this->mItemImage->Brush.DrawAs;
+L434:          mSlateBrush.Tiling = this->mItemImage->Brush.Tiling;
+L501:          mSlateBrush.Mirroring = this->mItemImage->Brush.Mirroring;
+L568:          SlateBrush ReturnValue = mSlateBrush;
+L595:          goto L1470;
+L600:          this->CheckSlotHasItems([ref] mbool1);
+L623:          bool mbool2 = KismetSystemLibrary->IsValidClass(this->mItemClass);
+L674:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L712:          if (!mbool3) goto L1331;
+L726:          if (!this->mBigSlot) goto L1395;
+L740:          Texture2D* mTexture2D = FGItemDescriptor->GetBigIcon(this->mItemClass);
+L791:          Texture2D* Icon = mTexture2D;
+L810:          mSlateColor1.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L871:          mSlateColor1.ColorUseRule = 0;
+L900:          mSlateBrush1.ImageSize = this->mItemImage->Brush.ImageSize;
+L967:          mSlateBrush1.Margin = this->mItemImage->Brush.Margin;
+L1034:         mSlateBrush1.TintColor = mSlateColor1;
+L1070:         mSlateBrush1.ResourceObject = Icon;
+L1098:         mSlateBrush1.DrawAs = this->mItemImage->Brush.DrawAs;
+L1165:         mSlateBrush1.Tiling = this->mItemImage->Brush.Tiling;
+L1232:         mSlateBrush1.Mirroring = this->mItemImage->Brush.Mirroring;
+L1299:         ReturnValue = mSlateBrush1;
+L1326:         goto L1470;
+L1331:         SlateBrush mSlateBrush2 = this->GetFilterImage();
+L1363:         ReturnValue = mSlateBrush2;
+L1390:         goto L1470;
+L1395:         Texture2D* mTexture2D1 = FGItemDescriptor->GetSmallIcon(this->mItemClass);
+L1446:         Icon = mTexture2D1;
+L1465:         goto L810;
+============ END FUNCTION GetItemImageBrush ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDrop ==============
+L0:            if (!this->mIsLocked) goto L46;
+L14:           this->SetDragAndDropState(0);
+L30:           bool ReturnValue = false;
+L41:           goto L312;
+L46:           BP_DragNDropInventory* mBP_DragNDropInventory = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/BP_DragNDropInventory.BP_DragNDropInventory_C>(Operation);
+L82:           bool mbool = mBP_DragNDropInventory;
+L111:          if (!mbool) goto L277;
+L125:          Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mBP_DragNDropInventory->payload);
+L183:          bool mbool1 = mWidget_InventorySlot;
+L212:          if (!mbool1) goto L277;
+L226:          this->DropOntoInventorySlot(mWidget_InventorySlot, [ref] mbool2);
+L258:          bool LocalResult = mbool2;
+L277:          this->SetDragAndDropState(0);
+L293:          ReturnValue = LocalResult;
+============ END FUNCTION OnDrop ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonDown ==============
+L0:            PointerEvent localMouseEvent = MouseEvent;
+L27:           bool mbool = KismetInputLibrary->PointerEvent_IsMouseButtonDown([ref] localMouseEvent, ScriptStruct /Script/InputCore.Key(KeyName = "RightMouseButton"));
+L105:          if (!mbool) goto L385;
+L119:          bool mbool1 = this->mCachedInventoryComponent->CanSplitStackAtIdx(this->mSlotIdx);
+L170:          if (!mbool1) goto L651;
+L184:          mFScriptDelegate->BindUFunction(this, ShowSplitStackWidget);
+L207:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mSplitStackHoldTime, false);
+L276:          this->mSplitStackTimerHandle = mTimerHandle;
+L303:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L353:          EventReply ReturnValue = mEventReply;
+L380:          goto L728;
+L385:          bool mbool2 = this->mCachedInventoryComponent->IsSomethingOnIndex(this->mSlotIdx);
+L436:          if (!mbool2) goto L569;
+L450:          EventReply mEventReply1 = WidgetBlueprintLibrary->DetectDragIfPressed([ref] localMouseEvent, this, ScriptStruct /Script/InputCore.Key(KeyName = "LeftMouseButton"));
+L537:          ReturnValue = mEventReply1;
+L564:          goto L728;
+L569:          EventReply mEventReply2 = WidgetBlueprintLibrary->Unhandled();
+L619:          ReturnValue = mEventReply2;
+L646:          goto L728;
+L651:          EventReply mEventReply3 = WidgetBlueprintLibrary->Unhandled();
+L701:          ReturnValue = mEventReply3;
+============ END FUNCTION OnMouseButtonDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDragDetected ==============
+L0:            if (!this->mIsLocked) goto L30;
+L14:           DragDropOperation* Operation = nullptr;
+L25:           <End of Inlined Event Graph Function>;
+L30:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L54:           Widget_InventoryDragNDropRep* mWidget_InventoryDragNDropRep = WidgetBlueprintLibrary->Create(this, Widget_InventoryDragNDropRep, mPlayerController);
+L115:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_InventoryDragNDropRep, "mInventorySlotWidget", this);
+L170:          BP_DragNDropInventory* mBP_DragNDropInventory = WidgetBlueprintLibrary->CreateDragDropOperation(BP_DragNDropInventory);
+L221:          KismetSystemLibrary->SetObjectPropertyByName(mBP_DragNDropInventory, "payload", this);
+L276:          KismetSystemLibrary->SetObjectPropertyByName(mBP_DragNDropInventory, "DefaultDragVisual", mWidget_InventoryDragNDropRep);
+L339:          uint8 muint8 = KismetSystemLibrary->MakeLiteralByte(1);
+L391:          KismetSystemLibrary->SetBytePropertyByName(mBP_DragNDropInventory, "Pivot", muint8);
+L454:          const Vector2D Temp_struct_Variable = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0.10000000149011612);
+L496:          KismetSystemLibrary->SetStructurePropertyByName(mBP_DragNDropInventory, "Offset", [ref] Temp_struct_Variable);
+L559:          Operation = mBP_DragNDropInventory;
+============ END FUNCTION OnDragDetected ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetStackSizeText ==============
+L0:            float mfloat = FGInventoryLibrary->GetAmountConvertedByForm(this->mNumItems, this->mResourceForm);
+L68:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 0, 1);
+L151:          FText ReturnValue = mFText;
+============ END FUNCTION GetStackSizeText ==============
+
+
+
+
+
+============ BEGIN FUNCTION CacheSlotData ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mCachedInventoryComponent);
+L51:           if (!mbool) goto L494;
+L65:           bool mbool1 = this->mCachedInventoryComponent->GetStackFromIndex(this->mSlotIdx, [ref] mInventoryStack);
+L125:          if (!mbool1) goto L460;
+L139:          FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint32, [ref] mInventoryItem);
+L198:          this->mNumItems = mint32;
+L225:          FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint32, [ref] mInventoryItem);
+L284:          FGInventoryLibrary->BreakInventoryItem([ref] mInventoryItem, [ref] mTSubclassOf<FGItemDescriptor>, [ref] mActor);
+L343:          bool mbool2 = EqualEqual_ClassClass(mTSubclassOf<FGItemDescriptor>, nullptr);
+L373:          bool Temp_bool_Variable = mbool2;
+L392:          this->mItemClass = switch (Temp_bool_Variable) {
+case false -> mTSubclassOf<FGItemDescriptor>;
+case true -> this->mFilterItemDescriptor;
+default -> mTSubclassOf<FGItemDescriptor>1;
+};
+L455:          <End of Inlined Event Graph Function>;
+L460:          this->mNumItems = 0;
+L483:          this->mItemClass = nullptr;
+============ END FUNCTION CacheSlotData ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseEnter ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_MyGeometry2) = MyGeometry;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_MouseEvent1) = MouseEvent;
+L36:           this->ExecuteUbergraph_Widget_InventorySlot(29);
+============ END FUNCTION OnMouseEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseLeave ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_MouseEvent) = MouseEvent;
+L18:           this->ExecuteUbergraph_Widget_InventorySlot(215);
+============ END FUNCTION OnMouseLeave ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFocusLost ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_InFocusEvent) = InFocusEvent;
+L18:           this->ExecuteUbergraph_Widget_InventorySlot(236);
+============ END FUNCTION OnFocusLost ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_InventorySlot(305);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateStyle ==============
+L0:            this->ExecuteUbergraph_Widget_InventorySlot(342);
+============ END FUNCTION UpdateStyle ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_InventorySlot(755);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_InventorySlot(802);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Event CreateNuclearWastePopup ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_CustomEvent_isNuclearWaste) = isNuclearWaste;
+L18:           this->ExecuteUbergraph_Widget_InventorySlot(868);
+============ END FUNCTION Event CreateNuclearWastePopup ==============
+
+
+
+
+
+============ BEGIN FUNCTION CloseNuclearWastePopup ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_CustomEvent_ConfirmClicked) = ConfirmClicked;
+L18:           this->ExecuteUbergraph_Widget_InventorySlot(1160);
+============ END FUNCTION CloseNuclearWastePopup ==============
+
+
+
+
+
+============ BEGIN FUNCTION CloseSplitStack ==============
+L0:            this->ExecuteUbergraph_Widget_InventorySlot(1244);
+============ END FUNCTION CloseSplitStack ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDragLeave ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_PointerEvent1) = PointerEvent;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_Operation1) = Operation;
+L36:           this->ExecuteUbergraph_Widget_InventorySlot(1281);
+============ END FUNCTION OnDragLeave ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDragEnter ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_MyGeometry1) = MyGeometry;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_PointerEvent) = PointerEvent;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_Operation) = Operation;
+L54:           this->ExecuteUbergraph_Widget_InventorySlot(1381);
+============ END FUNCTION OnDragEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C:ExecuteUbergraph_Widget_InventorySlot.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_InventorySlot(1860);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_InventorySlot ==============
+L10:           this->OnItemClassUpdated();
+L24:           <End of Inlined Event Graph Function>;
+L29:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L53:           this->SetUserFocus(mPlayerController);
+L72:           this->CheckSlotHasItems([ref] mbool);
+L95:           if (!mbool) goto L1865;
+L109:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L133:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_Inventory_MouseOver, mPlayerController1, true);
+L194:          this->SetInteractState(2);
+L210:          <End of Inlined Event Graph Function>;
+L215:          this->SetInteractState(1);
+L231:          <End of Inlined Event Graph Function>;
+L236:          this->mShouldGrabAllOfType = false;
+L247:          this->CheckSlotHasItems([ref] mbool1);
+L270:          if (!mbool1) goto L1865;
+L284:          this->SetInteractState(1);
+L300:          <End of Inlined Event Graph Function>;
+L305:          this->SetSlotSize(this->mSmallSlot, this->mBigSlot);
+L337:          <End of Inlined Event Graph Function>;
+L342:          this->OnItemClassUpdated();
+L356:          FText mFText = this->GetStackSizeText();
+L388:          this->mBackgroundText->SetText(mFText);
+L433:          this->mStackSizeLbl->SetText(mFText);
+L478:          <End of Inlined Event Graph Function>;
+L483:          this->UpdateStyle();
+L497:          mFScriptDelegate->BindUFunction(this, UpdateStyle);
+L520:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
+L585:          this->mUpdateTimer = mTimerHandle;
+L612:          this->CacheSlotData();
+L626:          FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L668:          bool mbool2 = mFGGameUserSettings->GetBoolOptionValue("FG.ItemAbbreviation");
+L731:          this->mAbbreviateName = mbool2;
+L750:          goto L10;
+L755:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateTimer);
+L797:          <End of Inlined Event Graph Function>;
+L802:          MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mSlotBg->GetDynamicMaterial();
+L844:          this->mSlotBgMaterial = mMaterialInstanceDynamic;
+L863:          goto L483;
+L868:          if (!mbool3) goto L1865;
+L882:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L906:          mFScriptDelegate1->BindUFunction(this, CloseNuclearWastePopup);
+L929:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", "[object Object]", [ref] mFScriptDelegate1, 0, nullptr, nullptr);
+L1155:         <End of Inlined Event Graph Function>;
+L1160:         if (!mbool4) goto L1865;
+L1174:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L1198:         FGBlueprintFunctionLibrary->ClosePopup(mPlayerController3);
+L1239:         <End of Inlined Event Graph Function>;
+L1244:         this->mSplitMenuAnchor->Close();
+L1276:         <End of Inlined Event Graph Function>;
+L1281:         BP_DragNDropInventory* mBP_DragNDropInventory = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/BP_DragNDropInventory.BP_DragNDropInventory_C>(mDragDropOperation);
+L1317:         bool mbool5 = mBP_DragNDropInventory;
+L1346:         if (!mbool5) goto L1865;
+L1360:         this->SetDragAndDropState(0);
+L1376:         <End of Inlined Event Graph Function>;
+L1381:         BP_DragNDropInventory* mBP_DragNDropInventory1 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/BP_DragNDropInventory.BP_DragNDropInventory_C>(mDragDropOperation1);
+L1417:         bool mbool6 = mBP_DragNDropInventory1;
+L1446:         if (!mbool6) goto L1865;
+L1460:         Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mBP_DragNDropInventory1->payload);
+L1518:         bool mbool7 = mWidget_InventorySlot;
+L1547:         if (!mbool7) goto L1865;
+L1561:         uint8 Temp_byte_Variable = 1;
+L1581:         uint8 Temp_byte_Variable1 = 2;
+L1601:         bool mbool8 = Not_PreBool(this->mIsLocked);
+L1630:         bool mbool9 = this->mCachedInventoryComponent->IsItemAllowed(mWidget_InventorySlot->mItemClass, this->mSlotIdx);
+L1712:         bool mbool10 = BooleanAND(mbool9, mbool8);
+L1750:         bool Temp_bool_Variable = mbool10;
+L1769:         this->SetDragAndDropState(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L1836:         <End of Inlined Event Graph Function>;
+L1841:         this->CacheSlotData();
+L1855:         <End of Inlined Event Graph Function>;
+L1860:         goto L1841;
+============ END FUNCTION ExecuteUbergraph_Widget_InventorySlot ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMoveStack__DelegateSignature ==============
+============ END FUNCTION OnMoveStack__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSlotHovered__DelegateSignature ==============
+============ END FUNCTION OnSlotHovered__DelegateSignature ==============

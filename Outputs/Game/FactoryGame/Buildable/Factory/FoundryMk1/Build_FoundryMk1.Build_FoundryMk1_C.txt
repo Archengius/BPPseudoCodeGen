@@ -1,0 +1,160 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION RemoveProductionEffects ==============
+L0:            if (!this->mProductionEffectsRunning) goto L471;
+L14:           this->mProductionEffectsRunning = false;
+L25:           this->mBurnerParticle->SetFloatParameter("SmokeShortRateScale", 0.30000001192092896);
+L75:           this->mBurnerParticle->SetFloatParameter("SmokeLongRateScale", 0);
+L125:          this->MainMesh_skl->SetScalarParameterValueOnMaterials("MoltenEmissive", 0.20000000298023224);
+L175:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(Play_Smelter_Shared_Offline_Ticks, this->MainMesh_skl, "tubes_01", true);
+L249:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(Stop_Smelter_Shared_ExhaustLoop, this->MainMesh_skl, "SmeltingTop", true);
+L323:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAttached(Stop_Smelter_Shared_EngineLoop, this->MainMesh_skl, "SoundSocket_Foundry_Engine", true);
+L397:          AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEventAttached(Stop_Smelter_Shared_Press_Steam, this->MainMesh_skl, "SoundSocket_Press", true);
+============ END FUNCTION RemoveProductionEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupProductionEffects ==============
+L0:            if (!this->mProductionEffectsRunning) goto L19;
+L14:           <End of Inlined Event Graph Function>;
+L19:           this->mProductionEffectsRunning = true;
+L30:           this->mBurnerParticle->SetFloatParameter("SmokeShortRateScale", 1);
+L80:           this->mBurnerParticle->SetFloatParameter("SmokeLongRateScale", 1);
+L130:          this->MainMesh_skl->SetScalarParameterValueOnMaterials("MoltenEmissive", 2);
+L180:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(Stop_Smelter_Shared_Offline_Ticks, this->MainMesh_skl, "tubes_01", true);
+L254:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(Play_Smelter_Shared_ExhaustLoop, this->MainMesh_skl, "SmeltingTop", true);
+L328:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAttached(Play_Smelter_Shared_EngineLoop, this->MainMesh_skl, "SoundSocket_Foundry_Engine", true);
+============ END FUNCTION SetupProductionEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveIdleEffects ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mBurnerParticle);
+L51:           if (!mbool) goto L362;
+L65:           this->mBurnerParticle->K2_DestroyComponent(this);
+L98:           this->mHeatParticle01->K2_DestroyComponent(this);
+L131:          this->mHeatParticle02->K2_DestroyComponent(this);
+L164:          this->MainMesh_skl->SetScalarParameterValueOnMaterials("MoltenEmissive", 0);
+L214:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(Stop_Smelter_Shared_Offline_Ticks, this->MainMesh_skl, "tubes_01", true);
+L288:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(Play_Smelter_Shared_ShutDown, this->MainMesh_skl, "Smeltingbase", true);
+============ END FUNCTION RemoveIdleEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupIdleEffects ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mBurnerParticle);
+L51:           if (!mbool) goto L70;
+L65:           <End of Inlined Event Graph Function>;
+L70:           ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(P_SmelterSmoke_01, this->MainMesh_skl, "burnerVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L187:          this->mBurnerParticle = mParticleSystemComponent;
+L206:          ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAttached(Heatglow, this->MainMesh_skl, "barrelVfxSocket_01", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L323:          this->mHeatParticle01 = mParticleSystemComponent1;
+L342:          ParticleSystemComponent* mParticleSystemComponent2 = GameplayStatics->SpawnEmitterAttached(Heatglow, this->MainMesh_skl, "barrelVfxSocket_02", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L459:          this->mHeatParticle02 = mParticleSystemComponent2;
+L478:          this->MainMesh_skl->SetScalarParameterValueOnMaterials("MoltenEmissive", 0.20000000298023224);
+============ END FUNCTION SetupIdleEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C:ExecuteUbergraph_Build_FoundryMk1.K2Node_Event_didStartProducing) = didStartProducing;
+L18:           this->ExecuteUbergraph_Build_FoundryMk1(75);
+============ END FUNCTION StartProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C:ExecuteUbergraph_Build_FoundryMk1.K2Node_Event_didStopProducing) = didStopProducing;
+L18:           this->ExecuteUbergraph_Build_FoundryMk1(113);
+============ END FUNCTION StopProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartIdlingLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C:ExecuteUbergraph_Build_FoundryMk1.K2Node_Event_didGainPower) = didGainPower;
+L18:           this->ExecuteUbergraph_Build_FoundryMk1(151);
+============ END FUNCTION StartIdlingLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopIdlingLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C:ExecuteUbergraph_Build_FoundryMk1.K2Node_Event_didLosePower) = didLosePower;
+L18:           this->ExecuteUbergraph_Build_FoundryMk1(189);
+============ END FUNCTION StopIdlingLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Build_FoundryMk1(460);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Build_FoundryMk1(465);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_FoundryMk1 ==============
+L10:           this->TryStartIdlingLoopEffects(false);
+L21:           bool mbool = this->IsProducing();
+L45:           if (!mbool) goto L470;
+L59:           this->TryStartProductionLoopEffects(false);
+L70:           <End of Inlined Event Graph Function>;
+L75:           this->StartProductionLoopEffects(mbool1);
+L94:           this->SetupProductionEffects();
+L108:          <End of Inlined Event Graph Function>;
+L113:          this->StopProductionLoopEffects(mbool2);
+L132:          this->RemoveProductionEffects();
+L146:          <End of Inlined Event Graph Function>;
+L151:          this->StartIdlingLoopEffects(mbool3);
+L170:          this->SetupIdleEffects();
+L184:          <End of Inlined Event Graph Function>;
+L189:          this->StopIdlingLoopEffects(mbool4);
+L208:          this->RemoveIdleEffects();
+L222:          <End of Inlined Event Graph Function>;
+L227:          this->GainedSignificance();
+L237:          bool mbool5 = this->HasPower();
+L261:          if (!mbool5) goto L470;
+L275:          goto L10;
+L280:          this->LostSignificance();
+L290:          bool mbool6 = this->HasPower();
+L314:          bool mbool7 = this->IsProducing();
+L338:          bool mbool8 = BooleanAND(mbool6, mbool7);
+L376:          if (!mbool8) goto L417;
+L390:          this->TryStopProductionLoopEffects(false);
+L401:          this->TryStopIdlingLoopEffects(false);
+L412:          <End of Inlined Event Graph Function>;
+L417:          bool mbool9 = this->HasPower();
+L441:          if (!mbool9) goto L470;
+L455:          goto L401;
+L460:          goto L280;
+L465:          goto L227;
+============ END FUNCTION ExecuteUbergraph_Build_FoundryMk1 ==============

@@ -1,0 +1,126 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_PhotoMode.Widget_PhotoMode_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateHiResToggle ==============
+L0:            FText Temp_text_Variable = "[object Object]";
+L60:           FText Temp_text_Variable1 = "[object Object]";
+L121:          bool mbool = this->OwningPlayerController->GetHiResPhotoModeEnabled();
+L163:          bool Temp_bool_Variable = mbool;
+L182:          this->VisibilityOnOffText->SetText(switch (Temp_bool_Variable) {
+case false -> Temp_text_Variable1;
+case true -> Temp_text_Variable;
+default -> mFText;
+});
+============ END FUNCTION UpdateHiResToggle ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateFOVSlider ==============
+L0:            int32 mint32 = this->OwningPlayerController->GetPhotoModeFOV();
+L50:           float mfloat = Conv_IntToFloat(mint32);
+L87:           this->FoVSlider->SetNormalizedValue(mfloat);
+============ END FUNCTION UpdateFOVSlider ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetInputKeyTexts ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FText mFText = FGInputLibrary->FormatStringWithKeyNames(mPlayerController, "[object Object]", false);
+L137:          this->TakePhotoInputKeyText->SetText(mFText);
+L182:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L206:          FText mFText1 = FGInputLibrary->FormatStringWithKeyNames(mPlayerController1, "[object Object]", true);
+L379:          this->FoVInputKeyText->SetText(mFText1);
+L424:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L448:          FText mFText2 = FGInputLibrary->FormatStringWithKeyNames(mPlayerController2, "[object Object]", false);
+L566:          this->ExitPhotoModeInputKeyText->SetText(mFText2);
+L611:          PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L635:          FText mFText3 = FGInputLibrary->FormatStringWithKeyNames(mPlayerController3, "[object Object]", false);
+L750:          this->ToggleHiResInputKeyText->SetText(mFText3);
+L795:          this->ToggleVisInputKeyText->SetText("[object Object]");
+============ END FUNCTION SetInputKeyTexts ==============
+
+
+
+
+
+============ BEGIN FUNCTION ToggleVisibility ==============
+L0:            uint8 Temp_byte_Variable = 0;
+L20:           uint8 Temp_byte_Variable1 = 2;
+L40:           uint8 muint8 = this->GetVisibility();
+L68:           bool mbool = this->OwningPlayerController->GetIsPhotoMode();
+L110:          bool mbool1 = EqualEqual_ByteByte(muint8, 2);
+L141:          bool mbool2 = BooleanAND(mbool, mbool1);
+L179:          bool Temp_bool_Variable = mbool2;
+L198:          this->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint81;
+});
+============ END FUNCTION ToggleVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION FadePhotoTakenText ==============
+L0:            float mfloat = Multiply_FloatFloat(this->VirtualTakenPhotoOpacity, 2);
+L42:           float mfloat1 = Multiply_FloatFloat(DeltaTime, mfloat);
+L88:           float mfloat2 = Subtract_FloatFloat(this->VirtualTakenPhotoOpacity, mfloat1);
+L134:          this->VirtualTakenPhotoOpacity = mfloat2;
+L161:          float mfloat3 = FMin(this->VirtualTakenPhotoOpacity, 1);
+L203:          this->photosavedtext->SetRenderOpacity(mfloat3);
+============ END FUNCTION FadePhotoTakenText ==============
+
+
+
+
+
+============ BEGIN FUNCTION PhotoTaken ==============
+L0:            this->VirtualTakenPhotoOpacity = this->TakePhotoTextDuration;
+============ END FUNCTION PhotoTaken ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_PhotoMode(29);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_PhotoMode.Widget_PhotoMode_C:ExecuteUbergraph_Widget_PhotoMode.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Widget_PhotoMode.Widget_PhotoMode_C:ExecuteUbergraph_Widget_PhotoMode.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_PhotoMode(170);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PhotoMode ==============
+L10:           this->UpdateHiResToggle();
+L24:           <End of Inlined Event Graph Function>;
+L29:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L53:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L89:           bool mbool = mFGPlayerController;
+L118:          if (!mbool) goto L212;
+L132:          this->OwningPlayerController = mFGPlayerController;
+L151:          this->SetInputKeyTexts();
+L165:          <End of Inlined Event Graph Function>;
+L170:          this->FadePhotoTakenText(mfloat);
+L193:          this->UpdateFOVSlider();
+L207:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_PhotoMode ==============

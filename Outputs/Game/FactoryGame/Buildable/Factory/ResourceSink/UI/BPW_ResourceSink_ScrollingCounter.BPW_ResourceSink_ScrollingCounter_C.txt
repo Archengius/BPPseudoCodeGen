@@ -1,0 +1,107 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/ResourceSink/UI/BPW_ResourceSink_ScrollingCounter.BPW_ResourceSink_ScrollingCounter_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateCounter ==============
+L0:            ExecutionFlow.Push(L1358);
+L5:            bool mbool = NotEqual_IntInt(NewNumber, this->mLatestNumber);
+L43:           if (!mbool) goto ExecutionFlow.Pop();
+L53:           this->mLatestNumber = NewNumber;
+L80:           FString mFString = KismetStringLibrary->Conv_IntToString(this->mLatestNumber);
+L139:          FString LocalTextToANimate = mFString;
+L166:          int32 mint32 = KismetStringLibrary->Len(LocalTextToANimate);
+L225:          int32 NumOfDigits = mint32;
+L252:          int32 mint321 = this->mContainer->GetChildrenCount();
+L302:          int32 mint322 = Subtract_IntInt(NumOfDigits, 1);
+L344:          int32 mint323 = Subtract_IntInt(mint322, mint321);
+L390:          int32 DidgitsToAdd = mint323;
+L417:          int32 mint324 = this->mContainer->GetChildrenCount();
+L467:          int32 mint325 = Subtract_IntInt(mint324, 1);
+L509:          int32 mint326 = Subtract_IntInt(mint325, NumOfDigits);
+L555:          int32 DidgitsToRemove = mint326;
+L582:          int32 Temp_int_Variable = 0;
+L605:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, DidgitsToRemove);
+L643:          if (!mbool1) goto L750;
+L657:          ExecutionFlow.Push(L1210);
+L662:          Widget* mWidget = this->mContainer->GetChildAt(Temp_int_Variable);
+L713:          mWidget->RemoveFromParent();
+L749:          goto ExecutionFlow.Pop();
+L750:          int32 Temp_int_Variable1 = 0;
+L773:          bool mbool2 = LessEqual_IntInt(Temp_int_Variable1, DidgitsToAdd);
+L811:          if (!mbool2) goto L1186;
+L825:          ExecutionFlow.Push(L1284);
+L830:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L854:          BPW_ResourceSinkDigit* mBPW_ResourceSinkDigit = WidgetBlueprintLibrary->Create(this, BPW_ResourceSinkDigit, mPlayerController);
+L915:          const FText Temp_text_Variable = "[object Object]";
+L974:          KismetSystemLibrary->SetTextPropertyByName(mBPW_ResourceSinkDigit, "mNewText", [ref] Temp_text_Variable);
+L1037:         KismetSystemLibrary->SetFloatPropertyByName(mBPW_ResourceSinkDigit, "mSize", this->mSize);
+L1100:         HorizontalBoxSlot* mHorizontalBoxSlot = this->mContainer->AddChildToHorizontalBox(mBPW_ResourceSinkDigit);
+L1151:         mHorizontalBoxSlot->SetVerticalAlignment(2);
+L1185:         goto ExecutionFlow.Pop();
+L1186:         this->AnimateDigits(LocalTextToANimate);
+L1209:         goto ExecutionFlow.Pop();
+L1210:         int32 mint327 = Add_IntInt(Temp_int_Variable, 1);
+L1252:         Temp_int_Variable = mint327;
+L1279:         goto L605;
+L1284:         int32 mint328 = Add_IntInt(Temp_int_Variable1, 1);
+L1326:         Temp_int_Variable1 = mint328;
+L1353:         goto L773;
+============ END FUNCTION UpdateCounter ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/UI/BPW_ResourceSink_ScrollingCounter.BPW_ResourceSink_ScrollingCounter_C:ExecuteUbergraph_BPW_ResourceSink_ScrollingCounter.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_BPW_ResourceSink_ScrollingCounter(958);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimateDigits ==============
+L0:            PERSISTENT_FRAME(StrProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/UI/BPW_ResourceSink_ScrollingCounter.BPW_ResourceSink_ScrollingCounter_C:ExecuteUbergraph_BPW_ResourceSink_ScrollingCounter.K2Node_CustomEvent_TextToAnimate) = TextToAnimate;
+L18:           this->ExecuteUbergraph_BPW_ResourceSink_ScrollingCounter(1000);
+============ END FUNCTION AnimateDigits ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_ResourceSink_ScrollingCounter ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L663);
+L20:           int32 mint32 = KismetStringLibrary->Len(mFString);
+L79:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L121:          int32 mint322 = Subtract_IntInt(mint321, Temp_int_Variable);
+L167:          Widget* mWidget = this->mContainer->GetChildAt(mint322);
+L218:          BPW_ResourceSinkDigit* mBPW_ResourceSinkDigit = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/ResourceSink/UI/BPW_ResourceSinkDigit.BPW_ResourceSinkDigit_C>(mWidget);
+L254:          bool mbool = mBPW_ResourceSinkDigit;
+L283:          if (!mbool) goto ExecutionFlow.Pop();
+L293:          TArray<FString> mTArray<FString> = KismetStringLibrary->GetCharacterArrayFromString(mFString);
+L352:          mint32 = KismetStringLibrary->Len(mFString);
+L411:          mint321 = Subtract_IntInt(mint32, 1);
+L453:          mint322 = Subtract_IntInt(mint321, Temp_int_Variable);
+L499:          KismetArrayLibrary->Array_Get([ref] mTArray<FString>, mint322, [ref] mFString1);
+L558:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString1);
+L617:          mBPW_ResourceSinkDigit->SetText(mFText);
+L662:          goto ExecutionFlow.Pop();
+L663:          int32 mint323 = Add_IntInt(Temp_int_Variable, 1);
+L705:          int32 Temp_int_Variable = mint323;
+L732:          mint32 = KismetStringLibrary->Len(mFString);
+L791:          mint321 = Subtract_IntInt(mint32, 1);
+L833:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint321);
+L871:          if (!mbool1) goto ExecutionFlow.Pop();
+L881:          KismetSystemLibrary->Delay(this, 0.05000000074505806, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -2027353807, ExecutionFunction = "ExecuteUbergraph_BPW_ResourceSink_ScrollingCounter", CallbackTarget = this));
+L957:          goto ExecutionFlow.Pop();
+L958:          this->mSizeBox->SetHeightOverride(this->mSize);
+L999:          goto ExecutionFlow.Pop();
+L1000:         Temp_int_Variable = 0;
+L1023:         goto L732;
+============ END FUNCTION ExecuteUbergraph_BPW_ResourceSink_ScrollingCounter ==============

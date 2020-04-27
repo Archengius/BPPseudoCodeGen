@@ -1,0 +1,235 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_ManufacturingButton.Widget_ManufacturingButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetByProductIcon ==============
+L0:            TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(this->mRecipeClass, false);
+L60:           bool mbool = KismetArrayLibrary->Array_IsValidIndex([ref] mTArray<ItemAmount>, 1);
+L116:          if (!mbool) goto L736;
+L130:          mTArray<ItemAmount> = FGRecipe->GetProducts(this->mRecipeClass, false);
+L190:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mTArray<ItemAmount>[1].ItemClass);
+L256:          mSlateBrush.ImageSize = this->mByProductIcon->Brush.ImageSize;
+L323:          mSlateBrush.Margin = this->mByProductIcon->Brush.Margin;
+L390:          mSlateBrush.TintColor = this->mByProductIcon->Brush.TintColor;
+L457:          mSlateBrush.ResourceObject = mTexture2D;
+L485:          mSlateBrush.DrawAs = this->mByProductIcon->Brush.DrawAs;
+L552:          mSlateBrush.Tiling = this->mByProductIcon->Brush.Tiling;
+L619:          mSlateBrush.Mirroring = this->mByProductIcon->Brush.Mirroring;
+L686:          this->mByProductIcon->SetBrush([ref] mSlateBrush);
+L731:          <End of Inlined Event Graph Function>;
+L736:          this->mByProduct_Overlay->SetVisibility(1);
+============ END FUNCTION GetByProductIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateButtonStyle ==============
+L0:            this->CheckIsSelected([ref] mbool);
+L23:           LinearColor Temp_struct_Variable3 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.13286800682544708, G = 0.13286800682544708, B = 0.13563300669193268, A = 1);
+L75:           LinearColor Temp_struct_Variable4 = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 0);
+L127:          LinearColor Temp_struct_Variable5 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+L179:          bool mbool1 = this->IsHovered();
+L203:          bool Temp_bool_Variable2 = mbool1;
+L222:          bool Temp_bool_Variable3 = mbool;
+L241:          this->mButtonColor->SetColorAndOpacity(switch (Temp_bool_Variable3) {
+case false -> switch (Temp_bool_Variable2) {
+case false -> Temp_struct_Variable4;
+case true -> Temp_struct_Variable3;
+default -> mLinearColor1;
+};
+case true -> Temp_struct_Variable5;
+default -> mLinearColor;
+});
+L370:          LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.13286800682544708, G = 0.13286800682544708, B = 0.13563300669193268, A = 1);
+L422:          LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.6038280129432678, G = 0.5972020030021667, B = 0.5972020030021667, A = 1);
+L474:          LinearColor Temp_struct_Variable2 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.13286800682544708, G = 0.13286800682544708, B = 0.13563300669193268, A = 1);
+L526:          bool mbool2 = this->IsHovered();
+L550:          bool Temp_bool_Variable = mbool2;
+L569:          bool Temp_bool_Variable1 = mbool;
+L588:          this->mByProductBG->SetColorAndOpacity(switch (Temp_bool_Variable1) {
+case false -> switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mLinearColor3;
+};
+case true -> Temp_struct_Variable2;
+default -> mLinearColor2;
+});
+============ END FUNCTION UpdateButtonStyle ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckIsSelected ==============
+L0:            bool mbool = EqualEqual_ClassClass(this->mManufacturingWidget->mActivatedRecipe, this->mRecipeClass);
+L60:           bool mIsSelected = mbool;
+============ END FUNCTION CheckIsSelected ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRecipeName ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mRecipeClass);
+L51:           if (!mbool) goto L169;
+L65:           FText mFText = FGRecipe->GetRecipeName(this->mRecipeClass);
+L124:          this->mProductName->SetText(mFText);
+============ END FUNCTION GetRecipeName ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRecipeIcon ==============
+L0:            TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(this->mRecipeClass, false);
+L60:           KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L115:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mItemAmount.ItemClass);
+L175:          mSlateBrush.ImageSize = this->mIcon->Brush.ImageSize;
+L242:          mSlateBrush.Margin = this->mIcon->Brush.Margin;
+L309:          mSlateBrush.TintColor = this->mIcon->Brush.TintColor;
+L376:          mSlateBrush.ResourceObject = mTexture2D;
+L404:          mSlateBrush.DrawAs = this->mIcon->Brush.DrawAs;
+L471:          mSlateBrush.Tiling = this->mIcon->Brush.Tiling;
+L538:          mSlateBrush.Mirroring = this->mIcon->Brush.Mirroring;
+L605:          this->mIcon->SetBrush([ref] mSlateBrush);
+============ END FUNCTION GetRecipeIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonDown ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           bool mbool = mPlayerController->IsInputKeyDown(ScriptStruct /Script/InputCore.Key(KeyName = "RightShift"));
+L93:           bool mbool1 = mPlayerController->IsInputKeyDown(ScriptStruct /Script/InputCore.Key(KeyName = "LeftShift"));
+L162:          bool mbool2 = BooleanOR(mbool1, mbool);
+L200:          if (!mbool2) goto L563;
+L214:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L238:          BP_PlayerState* mBP_PlayerState = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C>(mPlayerController1->PlayerState);
+L296:          bool mbool3 = mBP_PlayerState;
+L325:          if (!mbool3) goto L645;
+L339:          bool mbool4 = KismetInputLibrary->PointerEvent_IsMouseButtonDown([ref] MouseEvent, ScriptStruct /Script/InputCore.Key(KeyName = "RightMouseButton"));
+L417:          if (!mbool4) goto L727;
+L431:          mBP_PlayerState->RemoveRecipeFromShoppingList(this->mRecipeClass, 0);
+L481:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L531:          EventReply ReturnValue = mEventReply;
+L558:          goto L804;
+L563:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L613:          ReturnValue = mEventReply1;
+L640:          goto L804;
+L645:          EventReply mEventReply2 = WidgetBlueprintLibrary->Unhandled();
+L695:          ReturnValue = mEventReply2;
+L722:          goto L804;
+L727:          EventReply mEventReply3 = WidgetBlueprintLibrary->Unhandled();
+L777:          ReturnValue = mEventReply3;
+============ END FUNCTION OnMouseButtonDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_ManufacturingButton(267);
+============ END FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_ManufacturingButton(305);
+============ END FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_ManufacturingButton(310);
+============ END FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ManufacturingButton(315);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Widget_ManufacturingButton.Widget_ManufacturingButton_C:ExecuteUbergraph_Widget_ManufacturingButton.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_ManufacturingButton(464);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_ManufacturingButton(497);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ManufacturingButton ==============
+L10:           this->GetByProductIcon();
+L24:           <End of Inlined Event Graph Function>;
+L29:           Pawn* mPawn = this->GetOwningPlayerPawn();
+L49:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_Select, mPawn, true);
+L110:          <End of Inlined Event Graph Function>;
+L115:          Pawn* mPawn1 = this->GetOwningPlayerPawn();
+L135:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_MouseOver, mPawn1, true);
+L196:          <End of Inlined Event Graph Function>;
+L201:          this->OnManufacturingRecipeClicked->ProcessMulticastDelegate(this->mRecipeClass);
+L229:          goto L29;
+L234:          this->OnManufacturingRecipeHovered->ProcessMulticastDelegate(this->mRecipeClass);
+L262:          goto L115;
+L267:          goto L201;
+L272:          this->OnStopHoveringManufacturingRecipe->ProcessMulticastDelegate(this->mRecipeClass);
+L300:          <End of Inlined Event Graph Function>;
+L305:          goto L234;
+L310:          goto L272;
+L315:          this->Construct();
+L325:          this->SetButton(this->mRecipeButton);
+L344:          mFScriptDelegate->BindUFunction(this, UpdateButtonStyle);
+L367:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.004999999888241291, true);
+L432:          this->mUpdateButtonTimer = mTimerHandle;
+L459:          <End of Inlined Event Graph Function>;
+L464:          this->GetRecipeName();
+L478:          this->GetRecipeIcon();
+L492:          goto L10;
+L497:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateButtonTimer);
+============ END FUNCTION ExecuteUbergraph_Widget_ManufacturingButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnStopHoveringManufacturingRecipe__DelegateSignature ==============
+============ END FUNCTION OnStopHoveringManufacturingRecipe__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnManufacturingRecipeHovered__DelegateSignature ==============
+============ END FUNCTION OnManufacturingRecipeHovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnManufacturingRecipeClicked__DelegateSignature ==============
+============ END FUNCTION OnManufacturingRecipeClicked__DelegateSignature ==============

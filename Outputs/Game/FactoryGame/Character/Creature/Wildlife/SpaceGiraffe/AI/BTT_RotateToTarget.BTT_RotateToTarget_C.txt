@@ -1,0 +1,103 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/AI/BTT_RotateToTarget.BTT_RotateToTarget_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveExecuteAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/AI/BTT_RotateToTarget.BTT_RotateToTarget_C:ExecuteUbergraph_BTT_RotateToTarget.K2Node_Event_OwnerController1) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/AI/BTT_RotateToTarget.BTT_RotateToTarget_C:ExecuteUbergraph_BTT_RotateToTarget.K2Node_Event_ControlledPawn1) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTT_RotateToTarget(26);
+============ END FUNCTION ReceiveExecuteAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION RotationComplete ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/AI/BTT_RotateToTarget.BTT_RotateToTarget_C:ExecuteUbergraph_BTT_RotateToTarget.K2Node_CustomEvent_PawnRotated) = PawnRotated;
+L18:           this->ExecuteUbergraph_BTT_RotateToTarget(1425);
+============ END FUNCTION RotationComplete ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveAbortAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/AI/BTT_RotateToTarget.BTT_RotateToTarget_C:ExecuteUbergraph_BTT_RotateToTarget.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceGiraffe/AI/BTT_RotateToTarget.BTT_RotateToTarget_C:ExecuteUbergraph_BTT_RotateToTarget.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTT_RotateToTarget(2097);
+============ END FUNCTION ReceiveAbortAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTT_RotateToTarget ==============
+L10:           this->FinishExecute(true);
+L21:           <End of Inlined Event Graph Function>;
+L26:           Actor* mActor = BTFunctionLibrary->GetBlackboardValueAsActor(this, [ref] this->mTargetLocationBBKey);
+L78:           bool mbool = KismetSystemLibrary->IsValid(mActor);
+L129:          if (!mbool) goto L834;
+L143:          Actor* mActor1 = BTFunctionLibrary->GetBlackboardValueAsActor(this, [ref] this->mTargetLocationBBKey);
+L195:          mAIController->K2_SetFocus(mActor1);
+L236:          mActor1 = BTFunctionLibrary->GetBlackboardValueAsActor(this, [ref] this->mTargetLocationBBKey);
+L288:          Vector mVector = mActor1->K2_GetActorLocation();
+L338:          this->mTargetLocation = mVector;
+L365:          FGCreature* mFGCreature = Cast<Class /Script/FactoryGame.FGCreature>(mPawn);
+L401:          bool mbool1 = mFGCreature;
+L430:          if (!mbool1) goto L1027;
+L444:          Pawn* mPawn1 = mAIController->K2_GetPawn();
+L486:          Rotator mRotator = mPawn1->K2_GetActorRotation();
+L536:          Vector mVector1 = mPawn1->K2_GetActorLocation();
+L586:          BreakRotator(mRotator, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L632:          Vector mVector2 = Subtract_VectorVector(this->mTargetLocation, mVector1);
+L678:          Rotator mRotator1 = Conv_VectorToRotator(mVector2);
+L715:          BreakRotator(mRotator1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L761:          bool mbool2 = NearlyEqual_FloatFloat(mfloat2, mfloat5, 10);
+L804:          if (!mbool2) goto L1043;
+L818:          this->FinishExecute(true);
+L829:          <End of Inlined Event Graph Function>;
+L834:          Vector mVector3 = BTFunctionLibrary->GetBlackboardValueAsVector(this, [ref] this->mTargetLocationBBKey);
+L894:          mAIController->K2_SetFocalPoint(mVector3);
+L935:          mVector3 = BTFunctionLibrary->GetBlackboardValueAsVector(this, [ref] this->mTargetLocationBBKey);
+L995:          this->mTargetLocation = mVector3;
+L1022:         goto L365;
+L1027:         this->FinishExecute(false);
+L1038:         <End of Inlined Event Graph Function>;
+L1043:         mPawn1 = mAIController->K2_GetPawn();
+L1085:         mVector1 = mPawn1->K2_GetActorLocation();
+L1135:         mVector2 = Subtract_VectorVector(this->mTargetLocation, mVector1);
+L1181:         mRotator1 = Conv_VectorToRotator(mVector2);
+L1218:         BreakRotator(mRotator1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L1264:         Rotator mRotator2 = MakeRotator(0, 0, mfloat5);
+L1311:         mFGCreature->StartRotationMovement(mRotator2);
+L1356:         mFScriptDelegate->BindUFunction(this, RotationComplete);
+L1379:         mFGCreature->mRotationDoneDelegate.AddUnique(mFScriptDelegate);
+L1420:         <End of Inlined Event Graph Function>;
+L1425:         FGCreature* mFGCreature1 = Cast<Class /Script/FactoryGame.FGCreature>(mPawn2);
+L1461:         bool mbool3 = mFGCreature1;
+L1490:         if (!mbool3) goto L2223;
+L1504:         mFGCreature1->mRotationDoneDelegate->Clear();
+L1536:         Actor* mActor2 = BTFunctionLibrary->GetBlackboardValueAsActor(this, [ref] this->mTargetLocationBBKey);
+L1588:         bool mbool4 = KismetSystemLibrary->IsValid(mActor2);
+L1639:         if (!mbool4) goto L10;
+L1653:         Actor* mActor3 = BTFunctionLibrary->GetBlackboardValueAsActor(this, [ref] this->mTargetLocationBBKey);
+L1705:         Vector mVector4 = mActor3->K2_GetActorLocation();
+L1755:         Rotator mRotator3 = mFGCreature1->K2_GetActorRotation();
+L1805:         BreakRotator(mRotator3, [ref] mfloat6, [ref] mfloat7, [ref] mfloat8);
+L1851:         Vector mVector5 = mFGCreature1->K2_GetActorLocation();
+L1901:         Vector mVector6 = Subtract_VectorVector(mVector4, mVector5);
+L1947:         Rotator mRotator4 = Conv_VectorToRotator(mVector6);
+L1984:         BreakRotator(mRotator4, [ref] mfloat9, [ref] mfloat10, [ref] mfloat11);
+L2030:         bool mbool5 = NearlyEqual_FloatFloat(mfloat8, mfloat11, 10);
+L2073:         this->FinishExecute(mbool5);
+L2092:         <End of Inlined Event Graph Function>;
+L2097:         FGCreature* mFGCreature2 = Cast<Class /Script/FactoryGame.FGCreature>(mPawn3);
+L2133:         bool mbool6 = mFGCreature2;
+L2162:         if (!mbool6) goto L2223;
+L2176:         mFGCreature2->CancelRotationMovement();
+L2212:         this->FinishExecute(true);
+============ END FUNCTION ExecuteUbergraph_BTT_RotateToTarget ==============

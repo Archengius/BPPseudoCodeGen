@@ -1,0 +1,62 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Service/BTS_FindTarget.BTS_FindTarget_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTickAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_FindTarget.BTS_FindTarget_C:ExecuteUbergraph_BTS_FindTarget.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_FindTarget.BTS_FindTarget_C:ExecuteUbergraph_BTS_FindTarget.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_FindTarget.BTS_FindTarget_C:ExecuteUbergraph_BTS_FindTarget.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L54:           this->ExecuteUbergraph_BTS_FindTarget(123);
+============ END FUNCTION ReceiveTickAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTS_FindTarget ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           if (!this->mCurrentlyHasPath) goto L30;
+L29:           goto ExecutionFlow.Pop();
+L30:           this->mSecondaryCheck = true;
+L41:           goto ExecutionFlow.Pop();
+L42:           KismetSystemLibrary->Delay(this, this->mDoubleCheckDelay, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -468791157, ExecutionFunction = "ExecuteUbergraph_BTS_FindTarget", CallbackTarget = this));
+L122:          goto ExecutionFlow.Pop();
+L123:          BP_EnemyController* mBP_EnemyController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Enemy/BP_EnemyController.BP_EnemyController_C>(mAIController);
+L159:          bool mbool = mBP_EnemyController;
+L188:          if (!mbool) goto ExecutionFlow.Pop();
+L198:          Object* mObject = KismetSystemLibrary->Conv_InterfaceToObject([ref] mBP_EnemyController->mCurrentAggroTarget);
+L271:          bool mbool1 = KismetSystemLibrary->IsValid(mObject);
+L322:          if (!mbool1) goto L1093;
+L336:          Actor* mActor = GetInterfaceUObject(mBP_EnemyController->mCurrentAggroTarget)->GetActor();
+L405:          BTFunctionLibrary->SetBlackboardValueAsObject(this, [ref] this->mFinalGoalBBKey, mActor);
+L456:          Vector mVector = mPawn->K2_GetActorLocation();
+L506:          Vector mVector1 = mActor->K2_GetActorLocation();
+L556:          NavigationPath* mNavigationPath = NavigationSystemV1->FindPathToLocationSynchronously(mActor, [ref] mVector, [ref] mVector1, mBP_EnemyController, this->mNavFilter);
+L643:          float mfloat = mNavigationPath->GetPathLength();
+L693:          bool mbool2 = mNavigationPath->IsPartial();
+L735:          bool mbool3 = LessEqual_FloatFloat(mfloat, 0);
+L769:          bool mbool4 = BooleanAND(mbool2, this->mNeedFullPath);
+L807:          bool mbool5 = BooleanOR(mbool4, mbool3);
+L845:          if (!mbool5) goto L1180;
+L859:          this->mCurrentlyHasPath = false;
+L870:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor);
+L906:          bool mbool6 = mFGCharacterPlayer;
+L935:          bool mbool7 = Not_PreBool(mFGCharacterPlayer->bWasJumping);
+L986:          bool mbool8 = BooleanAND(this->mSecondaryCheck, mbool7);
+L1024:         if (!mbool8) goto L42;
+L1038:         this->mSecondaryCheck = false;
+L1049:         BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->mHasPathBBKey, false);
+L1092:         goto ExecutionFlow.Pop();
+L1093:         BTFunctionLibrary->SetBlackboardValueAsObject(this, [ref] this->mFinalGoalBBKey, nullptr);
+L1136:         BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->mHasPathBBKey, false);
+L1179:         goto ExecutionFlow.Pop();
+L1180:         this->mCurrentlyHasPath = true;
+L1191:         BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->mHasPathBBKey, true);
+L1234:         Vector mVector2 = mActor->K2_GetActorLocation();
+L1284:         BTFunctionLibrary->SetBlackboardValueAsVector(this, [ref] this->mTargetLocationBBKey, mVector2);
+L1335:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_BTS_FindTarget ==============

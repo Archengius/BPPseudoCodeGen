@@ -1,0 +1,71 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/JumpPad/Build_JumpPad.Build_JumpPad_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CanProduce ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION CanProduce ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Box_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Factory/JumpPad/Build_JumpPad.Build_JumpPad_C:ExecuteUbergraph_Build_JumpPad.K2Node_ComponentBoundEvent_OverlappedComponent) = OverlappedComponent;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Factory/JumpPad/Build_JumpPad.Build_JumpPad_C:ExecuteUbergraph_Build_JumpPad.K2Node_ComponentBoundEvent_OtherActor) = OtherActor;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Factory/JumpPad/Build_JumpPad.Build_JumpPad_C:ExecuteUbergraph_Build_JumpPad.K2Node_ComponentBoundEvent_OtherComp) = OtherComp;
+L54:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/Factory/JumpPad/Build_JumpPad.Build_JumpPad_C:ExecuteUbergraph_Build_JumpPad.K2Node_ComponentBoundEvent_OtherBodyIndex) = OtherBodyIndex;
+L72:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/JumpPad/Build_JumpPad.Build_JumpPad_C:ExecuteUbergraph_Build_JumpPad.K2Node_ComponentBoundEvent_bFromSweep) = bFromSweep;
+L90:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/JumpPad/Build_JumpPad.Build_JumpPad_C:ExecuteUbergraph_Build_JumpPad.K2Node_ComponentBoundEvent_SweepResult) = SweepResult;
+L108:          this->ExecuteUbergraph_Build_JumpPad(10);
+============ END FUNCTION BndEvt__Box_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHasPowerChanged ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/JumpPad/Build_JumpPad.Build_JumpPad_C:ExecuteUbergraph_Build_JumpPad.K2Node_Event_newHasPower) = newHasPower;
+L18:           this->ExecuteUbergraph_Build_JumpPad(1061);
+============ END FUNCTION OnHasPowerChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_JumpPad ==============
+L10:           bool mbool = this->IsProducing();
+L34:           if (!mbool) goto L1103;
+L48:           FGCharacterBase* mFGCharacterBase = Cast<Class /Script/FactoryGame.FGCharacterBase>(mActor);
+L84:           bool mbool1 = mFGCharacterBase;
+L113:          if (!mbool1) goto L649;
+L127:          PawnMovementComponent* mPawnMovementComponent = mFGCharacterBase->GetMovementComponent();
+L173:          CharacterMovementComponent* mCharacterMovementComponent = Cast<Class /Script/Engine.CharacterMovementComponent>(mPawnMovementComponent);
+L209:          bool mbool2 = mCharacterMovementComponent;
+L238:          if (!mbool2) goto L1103;
+L252:          mCharacterMovementComponent->SetMovementMode(3, 0);
+L292:          mPawnMovementComponent = mFGCharacterBase->GetMovementComponent();
+L338:          Rotator mRotator = this->Box->K2_GetComponentRotation();
+L388:          Vector mVector = GetUpVector(mRotator);
+L425:          Vector mVector1 = Multiply_VectorFloat(mVector, this->JumpForceCharacter);
+L471:          mPawnMovementComponent->Velocity = mVector1;
+L520:          this->ParticleSystem->SetVisibility(true, false);
+L554:          this->ParticleSystem->Activate(false);
+L591:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(this->mAkEvent, this, true);
+L644:          <End of Inlined Event Graph Function>;
+L649:          bool mbool3 = mPrimitiveComponent->IsSimulatingPhysics("None");
+L708:          if (!mbool3) goto L1103;
+L722:          float mfloat = mPrimitiveComponent->GetMass();
+L776:          float mfloat1 = Multiply_FloatFloat(mfloat, 0.699999988079071);
+L818:          float mfloat2 = Multiply_FloatFloat(mfloat1, this->JumpForceCharacter);
+L864:          mRotator = this->Box->K2_GetComponentRotation();
+L914:          mVector = GetUpVector(mRotator);
+L951:          Vector mVector2 = Multiply_VectorFloat(mVector, mfloat2);
+L997:          mPrimitiveComponent->AddImpulse(mVector2, "None", false);
+L1056:         goto L520;
+L1061:         this->ParticleSystem->SetVisibility(mbool4, false);
+============ END FUNCTION ExecuteUbergraph_Build_JumpPad ==============

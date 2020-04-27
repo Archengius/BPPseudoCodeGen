@@ -1,0 +1,59 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_BuildGunDelay.Widget_BuildGunDelay_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetWidgetVisibility ==============
+L0:            uint8 Temp_byte_Variable = 2;
+L20:           uint8 Temp_byte_Variable1 = 3;
+L40:           float mfloat = this->mBuildGun->GetCurrentBuildGunDelayPercentage();
+L90:           bool mbool = EqualEqual_FloatFloat(mfloat, 0);
+L124:          bool Temp_bool_Variable = mbool;
+L143:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetWidgetVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_BuildGunDelay.Widget_BuildGunDelay_C:ExecuteUbergraph_Widget_BuildGunDelay.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Widget_BuildGunDelay.Widget_BuildGunDelay_C:ExecuteUbergraph_Widget_BuildGunDelay.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_BuildGunDelay(10);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_BuildGunDelay(406);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_BuildGunDelay ==============
+L10:           uint8 Temp_byte_Variable = 2;
+L30:           uint8 Temp_byte_Variable1 = 3;
+L50:           float mfloat = this->mBuildGun->GetCurrentBuildGunDelayPercentage();
+L100:          bool mbool = EqualEqual_FloatFloat(mfloat, 0);
+L134:          bool Temp_bool_Variable = mbool;
+L153:          this->mDismantleContainer->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L242:          float mfloat1 = this->mBuildGun->GetCurrentBuildGunDelayPercentage();
+L292:          float mfloat2 = Subtract_FloatFloat(this->mInvertDelay, mfloat1);
+L338:          this->Widget_ProgressBar->mProgressBar->SetPercent(mfloat2);
+L401:          <End of Inlined Event Graph Function>;
+============ END FUNCTION ExecuteUbergraph_Widget_BuildGunDelay ==============

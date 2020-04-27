@@ -1,0 +1,174 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/MAMTree/BPW_MAMTree_ListButtonInfo.BPW_MAMTree_ListButtonInfo_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION StartProgressBarLerp ==============
+L0:            bool mbool = NotEqual_FloatFloat(EndValue, 0);
+L34:           if (!mbool) goto L259;
+L48:           this->mLerpEndValue = EndValue;
+L75:           this->mLerpT = 0;
+L98:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpTimer);
+L140:          mFScriptDelegate->BindUFunction(this, LerpProgressBar);
+L163:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mLerpUpdate, true);
+L232:          this->mLerpTimer = mTimerHandle;
+============ END FUNCTION StartProgressBarLerp ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetContent ==============
+L0:            ExecutionFlow.Push(L3313);
+L5:            int32 localMaxResearchedNodes = 0;
+L28:           bool localIsTreeUnlocked = false;
+L39:           this->mResearchTree = researchTree;
+L58:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L82:           FGResearchManager* mFGResearchManager = FGResearchManager->Get(mPlayerController);
+L133:          bool mbool = mFGResearchManager->IsResesearchTreeUnlocked(this->mResearchTree);
+L184:          localIsTreeUnlocked = mbool;
+L203:          bool mbool1 = EqualEqual_ClassClass(this->mResearchTree, BPD_ResearchTree_HardDrive);
+L241:          bool Temp_bool_Variable5 = mbool1;
+L260:          uint8 Temp_byte_Variable4 = 0;
+L280:          uint8 Temp_byte_Variable5 = 2;
+L300:          this->mProgressBarContainer->SetVisibility(switch (Temp_bool_Variable5) {
+case false -> Temp_byte_Variable4;
+case true -> Temp_byte_Variable5;
+default -> muint8;
+});
+L389:          TArray<FGAvailabilityDependency*> mTArray<FGAvailabilityDependency> = FGResearchTree->GetUnlockDependencies(this->mResearchTree);
+L448:          KismetArrayLibrary->Array_Get([ref] mTArray<FGAvailabilityDependency>, 0, [ref] mFGAvailabilityDependency);
+L503:          TScriptInterface<BPI_AvailabilityDependencyInterface> mTScriptInterface<BPI_AvailabilityDependencyInterface> = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/AvailabilityDependencies/BPI_AvailabilityDependencyInterface.BPI_AvailabilityDependencyInterface_C>(mFGAvailabilityDependency);
+L539:          bool mbool2 = mTScriptInterface<BPI_AvailabilityDependencyInterface>;
+L568:          if (!mbool2) goto L2856;
+L582:          GetInterfaceUObject(mTScriptInterface<BPI_AvailabilityDependencyInterface>)->GetDependecyData([ref] mTArray<FAvailabilityDependencyData>);
+L628:          SlateBrush mSlateBrush = FGResearchTree->GetResearchTreeIcon(this->mResearchTree);
+L687:          bool mbool3 = NotEqual_ObjectObject(mSlateBrush.ResourceObject, nullptr);
+L726:          bool Temp_bool_Variable4 = mbool3;
+L745:          KismetArrayLibrary->Array_Get([ref] mTArray<FAvailabilityDependencyData>, 0, [ref] mFAvailabilityDependencyData);
+L800:          mSlateBrush1.ImageSize = this->mIcon->Brush.ImageSize;
+L867:          mSlateBrush1.Margin = this->mIcon->Brush.Margin;
+L934:          mSlateBrush1.TintColor = this->mIcon->Brush.TintColor;
+L1001:         mSlateBrush1.ResourceObject = switch (Temp_bool_Variable4) {
+case false -> mFAvailabilityDependencyData.DependencyIcon_28_3E3B124C41C68907A6EB9FAD36C04BC4;
+case true -> mSlateBrush.ResourceObject;
+default -> mObject;
+};
+L1091:         mSlateBrush1.DrawAs = this->mIcon->Brush.DrawAs;
+L1158:         mSlateBrush1.Tiling = this->mIcon->Brush.Tiling;
+L1225:         mSlateBrush1.Mirroring = this->mIcon->Brush.Mirroring;
+L1292:         this->mIcon->SetBrush([ref] mSlateBrush1);
+L1337:         uint8 Temp_byte_Variable2 = 0;
+L1357:         uint8 Temp_byte_Variable3 = 2;
+L1377:         bool Temp_bool_Variable1 = localIsTreeUnlocked;
+L1396:         this->mIcon->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint81;
+});
+L1485:         uint8 Temp_byte_Variable = 0;
+L1505:         uint8 Temp_byte_Variable1 = 2;
+L1525:         bool mbool4 = Not_PreBool(localIsTreeUnlocked);
+L1554:         bool Temp_bool_Variable = mbool4;
+L1573:         this->mUnavailableIcon->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint82;
+});
+L1662:         bool Temp_bool_Variable3 = localIsTreeUnlocked;
+L1681:         FText mFText = FGResearchTree->GetDisplayName(this->mResearchTree);
+L1740:         FText mFText1 = FGResearchTree->GetPreUnlockDisplayName(this->mResearchTree);
+L1799:         this->mTreeName->SetText(switch (Temp_bool_Variable3) {
+case false -> mFText1;
+case true -> mFText;
+default -> mFText2;
+});
+L1888:         bool Temp_bool_Variable2 = localIsTreeUnlocked;
+L1907:         FText mFText3 = FGResearchTree->GetPostUnlockDescription(this->mResearchTree);
+L1966:         FText mFText4 = FGResearchTree->GetPreUnlockDescription(this->mResearchTree);
+L2025:         this->mDescription->SetText(switch (Temp_bool_Variable2) {
+case false -> mFText4;
+case true -> mFText3;
+default -> mFText5;
+});
+L2114:         if (!localIsTreeUnlocked) goto ExecutionFlow.Pop();
+L2124:         TArray<FGResearchTreeNode*> mTArray<FGResearchTreeNode> = FGResearchTree->GetNodes(this->mResearchTree);
+L2183:         int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGResearchTreeNode>);
+L2242:         localMaxResearchedNodes = mint32;
+L2269:         int32 Temp_int_Loop_Counter_Variable = 0;
+L2292:         int32 Temp_int_Array_Index_Variable = 0;
+L2315:         int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<FGResearchTreeNode>);
+L2374:         bool mbool5 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L2412:         if (!mbool5) goto L2902;
+L2426:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L2453:         ExecutionFlow.Push(L3239);
+L2458:         KismetArrayLibrary->Array_Get([ref] mTArray<FGResearchTreeNode>, Temp_int_Array_Index_Variable, [ref] mFGResearchTreeNode);
+L2517:         BPD_ResearchTreeNode* mBPD_ResearchTreeNode = Cast<BlueprintGeneratedClass /Game/FactoryGame/Schematics/Research/BPD_ResearchTreeNode.BPD_ResearchTreeNode_C>(mFGResearchTreeNode);
+L2553:         bool mbool6 = mBPD_ResearchTreeNode;
+L2582:         if (!mbool6) goto ExecutionFlow.Pop();
+L2592:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L2616:         FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController1);
+L2667:         bool mbool7 = mFGSchematicManager->IsSchematicPurchased(mBPD_ResearchTreeNode->mNodeDataStruct.Schematic_27_3663A42446FDB4387D0C81AFC23E225B);
+L2749:         if (!mbool7) goto ExecutionFlow.Pop();
+L2759:         int32 mint322 = Add_IntInt(localResearchedNodes, 1);
+L2801:         int32 Temp_int_Variable = mint322;
+L2828:         int32 localResearchedNodes = Temp_int_Variable;
+L2855:         goto ExecutionFlow.Pop();
+L2856:         KismetArrayLibrary->Array_Clear([ref] mTArray<FAvailabilityDependencyData>);
+L2897:         goto L628;
+L2902:         float mfloat = Conv_IntToFloat(localMaxResearchedNodes);
+L2939:         float mfloat1 = Conv_IntToFloat(localResearchedNodes);
+L2976:         float mfloat2 = Divide_FloatFloat(mfloat1, mfloat);
+L3022:         float mfloat3 = Multiply_FloatFloat(this->mFullDuration, mfloat2);
+L3068:         this->mLerpDuration = mfloat3;
+L3095:         mfloat = Conv_IntToFloat(localMaxResearchedNodes);
+L3132:         mfloat1 = Conv_IntToFloat(localResearchedNodes);
+L3169:         mfloat2 = Divide_FloatFloat(mfloat1, mfloat);
+L3215:         this->StartProgressBarLerp(mfloat2);
+L3238:         goto ExecutionFlow.Pop();
+L3239:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L3281:         Temp_int_Loop_Counter_Variable = mint323;
+L3308:         goto L2315;
+============ END FUNCTION SetContent ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BPW_MAMTree_ListButtonInfo(10);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION LerpProgressBar ==============
+L0:            this->ExecuteUbergraph_BPW_MAMTree_ListButtonInfo(130);
+============ END FUNCTION LerpProgressBar ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_MAMTree_ListButtonInfo ==============
+L10:           this->SetContent(this->mResearchTree);
+L33:           MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mProgressBar->GetDynamicMaterial();
+L75:           mMaterialInstanceDynamic->SetScalarParameterValue("Value", 0);
+L125:          <End of Inlined Event Graph Function>;
+L130:          float mfloat = Divide_FloatFloat(this->mLerpUpdate, this->mLerpDuration);
+L176:          float mfloat1 = Add_FloatFloat(mfloat, this->mLerpT);
+L222:          this->mLerpT = mfloat1;
+L249:          MaterialInstanceDynamic* mMaterialInstanceDynamic1 = this->mProgressBar->GetDynamicMaterial();
+L291:          float mfloat2 = Ease(0, this->mLerpEndValue, this->mLerpT, 3, 2, 2);
+L354:          mMaterialInstanceDynamic1->SetScalarParameterValue("Value", mfloat2);
+L408:          mfloat2 = Ease(0, this->mLerpEndValue, this->mLerpT, 3, 2, 2);
+L471:          FText mFText = KismetTextLibrary->AsPercent_Float(mfloat2, 0, false, true, 1, 324, 0, 0);
+L554:          this->mProgress->SetText(mFText);
+L599:          bool mbool = GreaterEqual_FloatFloat(this->mLerpT, 1);
+L633:          if (!mbool) goto L689;
+L647:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpTimer);
+============ END FUNCTION ExecuteUbergraph_BPW_MAMTree_ListButtonInfo ==============

@@ -1,0 +1,263 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/StunSpear/Equip_StunSpear.Equip_StunSpear_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/StunSpear/Equip_StunSpear.Equip_StunSpear_C:ExecuteUbergraph_Equip_StunSpear.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_Equip_StunSpear(5799);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION SwordAttack ==============
+L0:            this->ExecuteUbergraph_Equip_StunSpear(5798);
+============ END FUNCTION SwordAttack ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayStunEffects ==============
+L0:            this->ExecuteUbergraph_Equip_StunSpear(5667);
+============ END FUNCTION PlayStunEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Capsule_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/StunSpear/Equip_StunSpear.Equip_StunSpear_C:ExecuteUbergraph_Equip_StunSpear.K2Node_ComponentBoundEvent_OverlappedComponent) = OverlappedComponent;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/StunSpear/Equip_StunSpear.Equip_StunSpear_C:ExecuteUbergraph_Equip_StunSpear.K2Node_ComponentBoundEvent_OtherActor) = OtherActor;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/StunSpear/Equip_StunSpear.Equip_StunSpear_C:ExecuteUbergraph_Equip_StunSpear.K2Node_ComponentBoundEvent_OtherComp) = OtherComp;
+L54:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Equipment/StunSpear/Equip_StunSpear.Equip_StunSpear_C:ExecuteUbergraph_Equip_StunSpear.K2Node_ComponentBoundEvent_OtherBodyIndex) = OtherBodyIndex;
+L72:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Equipment/StunSpear/Equip_StunSpear.Equip_StunSpear_C:ExecuteUbergraph_Equip_StunSpear.K2Node_ComponentBoundEvent_bFromSweep) = bFromSweep;
+L90:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/StunSpear/Equip_StunSpear.Equip_StunSpear_C:ExecuteUbergraph_Equip_StunSpear.K2Node_ComponentBoundEvent_SweepResult) = SweepResult;
+L108:          this->ExecuteUbergraph_Equip_StunSpear(3237);
+============ END FUNCTION BndEvt__Capsule_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasUnEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_StunSpear(5697);
+============ END FUNCTION WasUnEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_StunSpear(5793);
+============ END FUNCTION WasEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHitTarget ==============
+L0:            this->ExecuteUbergraph_Equip_StunSpear(5800);
+============ END FUNCTION OnHitTarget ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Equip_StunSpear ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->StunSpearTrail_01->Deactivate();
+L51:           goto ExecutionFlow.Pop();
+L52:           this->StunSpearTrail_01->Deactivate();
+L88:           goto ExecutionFlow.Pop();
+L89:           FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
+L109:          bool mbool = mFGCharacterPlayer->IsLocallyControlled();
+L155:          if (!mbool) goto ExecutionFlow.Pop();
+L165:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L185:          SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer1->GetMesh1P();
+L227:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L269:          AnimMontage* mAnimMontage = mAnimInstance->GetCurrentActiveMontage();
+L311:          mAnimInstance->Montage_Stop(0, mAnimMontage);
+L357:          AnimInstance* mAnimInstance1 = this->StunSpear_skl->GetAnimInstance();
+L399:          AnimMontage* mAnimMontage1 = mAnimInstance1->GetCurrentActiveMontage();
+L441:          mAnimInstance1->Montage_Stop(0, mAnimMontage1);
+L487:          Pawn* mPawn = this->GetInstigator();
+L507:          Controller* mController = mPawn->GetController();
+L549:          PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L585:          bool mbool1 = mPlayerController;
+L614:          if (!mbool1) goto ExecutionFlow.Pop();
+L624:          mPlayerController->PlayerCameraManager->StopAllCameraAnims(true);
+L683:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Stop_E_ShockBaton_All, this, true);
+L736:          goto ExecutionFlow.Pop();
+L737:          Pawn* mPawn1 = this->GetInstigator();
+L757:          Controller* mController1 = mPawn1->GetController();
+L799:          PlayerController* mPlayerController1 = Cast<Class /Script/Engine.PlayerController>(mController1);
+L835:          bool mbool2 = mPlayerController1;
+L864:          if (!mbool2) goto ExecutionFlow.Pop();
+L874:          mPlayerController1->ClientPlayCameraAnim(StunSpearAttackLeft_CamerAnim, 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L956:          this->StunSpearTrail_01->Activate(false);
+L993:          KismetSystemLibrary->Delay(this, mfloat, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 733650783, ExecutionFunction = "ExecuteUbergraph_Equip_StunSpear", CallbackTarget = this));
+L1073:         goto ExecutionFlow.Pop();
+L1074:         AnimInstance* mAnimInstance2 = this->StunSpear_skl->GetAnimInstance();
+L1116:         float mfloat1 = mAnimInstance2->Montage_Play(StunSpearEquip_02_Montage, 1, 0, 0, true);
+L1188:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_E_ShockBaton_Equip_02, this, true);
+L1241:         goto ExecutionFlow.Pop();
+L1242:         mAnimInstance2 = this->StunSpear_skl->GetAnimInstance();
+L1284:         bool mbool3 = mAnimInstance2->Montage_IsPlaying(StunSpearEquip_02_Montage);
+L1335:         if (!mbool3) goto L1074;
+L1349:         goto ExecutionFlow.Pop();
+L1350:         this->StunSpearTrail_01->Activate(false);
+L1387:         KismetSystemLibrary->Delay(this, mfloat2, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 52, UUID = -95534505, ExecutionFunction = "ExecuteUbergraph_Equip_StunSpear", CallbackTarget = this));
+L1467:         goto ExecutionFlow.Pop();
+L1468:         bool mbool4 = this->GetShouldPlaySecondSwing();
+L1488:         if (!mbool4) goto L2198;
+L1502:         FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L1522:         SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L1564:         AnimInstance* mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L1606:         float mfloat = mAnimInstance3->Montage_Play(StunSpearAttack_Montage, 1, 0, 0, true);
+L1678:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L1698:         mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L1740:         mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L1782:         mAnimInstance3->Montage_JumpToSection("LeftStart", StunSpearAttack_Montage);
+L1836:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L1856:         mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L1898:         mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L1940:         FName mFName = mAnimInstance3->Montage_GetCurrentSection(StunSpearAttack_Montage);
+L1999:         this->mCurrentMontageSection = mFName;
+L2026:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_T_ShockBaton_Attack, this, true);
+L2079:         AnimInstance* mAnimInstance4 = this->StunSpear_skl->GetAnimInstance();
+L2121:         float mfloat3 = mAnimInstance4->Montage_Play(StunSpearAttack_Left_Montage, 1, 0, 0, true);
+L2193:         goto L737;
+L2198:         bool mbool5 = GreaterEqual_IntInt(this->mRandomAttackAnim, 9);
+L2232:         if (!mbool5) goto L2813;
+L2246:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L2266:         mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L2308:         mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L2350:         float mfloat4 = mAnimInstance3->Montage_Play(StunSpearAttack_Right_02_Montage, 1, 0, 0, true);
+L2422:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_T_ShockBaton_Attack, this, true);
+L2475:         AnimInstance* mAnimInstance5 = this->StunSpear_skl->GetAnimInstance();
+L2517:         float mfloat5 = mAnimInstance5->Montage_Play(StunSpearAttack_Right_Montage, 1, 0, 0, true);
+L2589:         Pawn* mPawn2 = this->GetInstigator();
+L2609:         Controller* mController2 = mPawn2->GetController();
+L2651:         PlayerController* mPlayerController2 = Cast<Class /Script/Engine.PlayerController>(mController2);
+L2687:         bool mbool6 = mPlayerController2;
+L2716:         if (!mbool6) goto ExecutionFlow.Pop();
+L2726:         mPlayerController2->ClientPlayCameraAnim(StunSpearAttackRight_CamerAnim, 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L2808:         goto L1350;
+L2813:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L2833:         mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L2875:         mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L2917:         float mfloat2 = mAnimInstance3->Montage_Play(StunSpearAttack_Montage, 1, 0, 0, true);
+L2989:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L3009:         mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L3051:         mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L3093:         mFName = mAnimInstance3->Montage_GetCurrentSection(StunSpearAttack_Montage);
+L3152:         this->mCurrentMontageSection = mFName;
+L3179:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Play_T_ShockBaton_Attack, this, true);
+L3232:         goto L2475;
+L3237:         goto ExecutionFlow.Pop();
+L3238:         ExecutionFlow.Push(L1242);
+L3243:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L3263:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer3->GetMesh1P();
+L3305:         AnimInstance* mAnimInstance6 = mSkeletalMeshComponent2->GetAnimInstance();
+L3347:         bool mbool7 = mAnimInstance6->Montage_IsPlaying(StunSpearEquip_02_Montage);
+L3398:         if (!mbool7) goto L3413;
+L3412:         goto ExecutionFlow.Pop();
+L3413:         mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L3433:         mSkeletalMeshComponent2 = mFGCharacterPlayer3->GetMesh1P();
+L3475:         mAnimInstance6 = mSkeletalMeshComponent2->GetAnimInstance();
+L3517:         float mfloat6 = mAnimInstance6->Montage_Play(StunSpearEquip_02_Montage, 1, 0, 0, true);
+L3589:         goto ExecutionFlow.Pop();
+L3590:         bool mbool8 = this->ShouldShowStinger();
+L3610:         if (!mbool8) goto L3799;
+L3624:         ExecutionFlow.Push(L4672);
+L3629:         FGCharacterPlayer* mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L3649:         SkeletalMeshComponent* mSkeletalMeshComponent3 = mFGCharacterPlayer4->GetMesh1P();
+L3691:         AnimInstance* mAnimInstance7 = mSkeletalMeshComponent3->GetAnimInstance();
+L3733:         bool mbool9 = mAnimInstance7->Montage_IsPlaying(StunSpearStinger_01_Montage);
+L3784:         if (!mbool9) goto L4948;
+L3798:         goto ExecutionFlow.Pop();
+L3799:         int32 mint32 = RandomIntegerInRange(0, 5);
+L3837:         this->mRandomEquipAnim = mint32;
+L3864:         FGCharacterPlayer* mFGCharacterPlayer5 = this->GetInstigatorCharacter();
+L3884:         SkeletalMeshComponent* mSkeletalMeshComponent4 = mFGCharacterPlayer5->GetMesh1P();
+L3926:         AnimInstance* mAnimInstance8 = mSkeletalMeshComponent4->GetAnimInstance();
+L3968:         FGAnimPlayer* mFGAnimPlayer = Cast<Class /Script/FactoryGame.FGAnimPlayer>(mAnimInstance8);
+L4004:         bool mbool10 = mFGAnimPlayer;
+L4033:         if (!mbool10) goto ExecutionFlow.Pop();
+L4043:         bool mbool11 = EqualEqual_ByteByte(mFGAnimPlayer->mArmSlotType, 3);
+L4096:         if (!mbool11) goto L4168;
+L4110:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEvent(Play_E_ShockBaton_Equip_03, this, true);
+L4163:         goto L3243;
+L4168:         bool mbool12 = GreaterEqual_IntInt(this->mRandomEquipAnim, 2);
+L4202:         if (!mbool12) goto L4221;
+L4216:         goto L3238;
+L4221:         ExecutionFlow.Push(L4396);
+L4226:         FGCharacterPlayer* mFGCharacterPlayer6 = this->GetInstigatorCharacter();
+L4246:         SkeletalMeshComponent* mSkeletalMeshComponent5 = mFGCharacterPlayer6->GetMesh1P();
+L4288:         AnimInstance* mAnimInstance9 = mSkeletalMeshComponent5->GetAnimInstance();
+L4330:         bool mbool13 = mAnimInstance9->Montage_IsPlaying(StunSpearEquip_01_Montage);
+L4381:         if (!mbool13) goto L5420;
+L4395:         goto ExecutionFlow.Pop();
+L4396:         AnimInstance* mAnimInstance10 = this->StunSpear_skl->GetAnimInstance();
+L4438:         bool mbool14 = mAnimInstance10->Montage_IsPlaying(StunSpearEquip_01_Montage);
+L4489:         if (!mbool14) goto L4504;
+L4503:         goto ExecutionFlow.Pop();
+L4504:         mAnimInstance10 = this->StunSpear_skl->GetAnimInstance();
+L4546:         float mfloat7 = mAnimInstance10->Montage_Play(StunSpearEquip_01_Montage, 1, 0, 0, true);
+L4618:         AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEvent(Play_E_ShockBaton_Equip_01, this, true);
+L4671:         goto ExecutionFlow.Pop();
+L4672:         AnimInstance* mAnimInstance11 = this->StunSpear_skl->GetAnimInstance();
+L4714:         bool mbool15 = mAnimInstance11->Montage_IsPlaying(StunSpearStinger_01_Montage);
+L4765:         if (!mbool15) goto L4780;
+L4779:         goto ExecutionFlow.Pop();
+L4780:         mAnimInstance11 = this->StunSpear_skl->GetAnimInstance();
+L4822:         float mfloat8 = mAnimInstance11->Montage_Play(StunSpearStinger_01_Montage, 1, 0, 0, true);
+L4894:         AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEvent(Play_E_ShockBaton_Stinger, this, true);
+L4947:         goto ExecutionFlow.Pop();
+L4948:         mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L4968:         mSkeletalMeshComponent3 = mFGCharacterPlayer4->GetMesh1P();
+L5010:         mAnimInstance7 = mSkeletalMeshComponent3->GetAnimInstance();
+L5052:         float mfloat9 = mAnimInstance7->Montage_Play(StunSpearStinger_01_Montage, 1, 1, 0, true);
+L5124:         Pawn* mPawn3 = this->GetInstigator();
+L5144:         Controller* mController3 = mPawn3->GetController();
+L5186:         PlayerController* mPlayerController3 = Cast<Class /Script/Engine.PlayerController>(mController3);
+L5222:         bool mbool16 = mPlayerController3;
+L5251:         if (!mbool16) goto ExecutionFlow.Pop();
+L5261:         mPlayerController3->ClientPlayCameraAnim(StunSpearStinger_01_CamerAnim, 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L5343:         KismetSystemLibrary->Delay(this, 6, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = -1, UUID = 1033899890, ExecutionFunction = "ExecuteUbergraph_Equip_StunSpear", CallbackTarget = this));
+L5419:         goto ExecutionFlow.Pop();
+L5420:         mFGCharacterPlayer6 = this->GetInstigatorCharacter();
+L5440:         mSkeletalMeshComponent5 = mFGCharacterPlayer6->GetMesh1P();
+L5482:         mAnimInstance9 = mSkeletalMeshComponent5->GetAnimInstance();
+L5524:         float mfloat10 = mAnimInstance9->Montage_Play(StunSpearEquip_01_Montage, 1, 0, 0, true);
+L5596:         goto ExecutionFlow.Pop();
+L5597:         int32 mint321 = RandomIntegerInRange(0, 10);
+L5635:         this->mRandomAttackAnim = mint321;
+L5662:         goto L1468;
+L5667:         this->PlayStunEffects();
+L5677:         goto L5597;
+L5682:         this->WasUnEquipped();
+L5692:         goto L89;
+L5697:         goto L5682;
+L5702:         this->WasEquipped();
+L5712:         FGCharacterPlayer* mFGCharacterPlayer7 = this->GetInstigatorCharacter();
+L5732:         bool mbool17 = mFGCharacterPlayer7->IsLocallyControlled();
+L5778:         if (!mbool17) goto ExecutionFlow.Pop();
+L5788:         goto L3590;
+L5793:         goto L5702;
+L5798:         goto ExecutionFlow.Pop();
+L5799:         goto ExecutionFlow.Pop();
+L5800:         Pawn* mPawn4 = this->GetInstigator();
+L5820:         Controller* mController4 = mPawn4->GetController();
+L5862:         PlayerController* mPlayerController4 = Cast<Class /Script/Engine.PlayerController>(mController4);
+L5898:         bool mbool18 = mPlayerController4;
+L5927:         if (!mbool18) goto ExecutionFlow.Pop();
+L5937:         mPlayerController4->ClientPlayCameraAnim(ShockShankHit_01_CameraAnim, 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L6019:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Equip_StunSpear ==============

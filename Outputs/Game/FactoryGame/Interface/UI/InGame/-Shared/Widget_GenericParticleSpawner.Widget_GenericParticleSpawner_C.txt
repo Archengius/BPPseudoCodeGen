@@ -1,0 +1,44 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_GenericParticleSpawner.Widget_GenericParticleSpawner_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CreateParticles ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_GenericParticleSpawner.Widget_GenericParticleSpawner_C:ExecuteUbergraph_Widget_GenericParticleSpawner.K2Node_CustomEvent_NumberOfParticles) = NumberOfParticles;
+L18:           this->ExecuteUbergraph_Widget_GenericParticleSpawner(945);
+============ END FUNCTION CreateParticles ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_GenericParticleSpawner ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L753);
+L20:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L44:           Widget_GenericParticle* mWidget_GenericParticle = WidgetBlueprintLibrary->Create(this, Widget_GenericParticle, mPlayerController);
+L105:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mParticleTexture);
+L164:          int32 mint321 = RandomInteger(mint32);
+L201:          KismetArrayLibrary->Array_Get([ref] this->mParticleTexture, mint321, [ref] mTexture);
+L260:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_GenericParticle, "mParticleTexture", mTexture);
+L323:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_GenericParticle, "mParticleSize", [ref] this->mParticleSize);
+L386:          KismetSystemLibrary->SetFloatPropertyByName(mWidget_GenericParticle, "mSpeed", this->Speed);
+L449:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_GenericParticle, "mMaxDistance", [ref] this->mMaxDistance);
+L512:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_GenericParticle, "mStartTint", [ref] this->mStartTint);
+L575:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_GenericParticle, "mEndTint", [ref] this->mEndTint);
+L638:          KismetSystemLibrary->SetFloatPropertyByName(mWidget_GenericParticle, "mRotation", this->mRotation);
+L701:          OverlaySlot* mOverlaySlot = this->mContainer->AddChildToOverlay(mWidget_GenericParticle);
+L752:          goto ExecutionFlow.Pop();
+L753:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L795:          int32 Temp_int_Variable = mint322;
+L822:          int32 mint323 = Subtract_IntInt(mint324, 1);
+L864:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint323);
+L902:          if (!mbool) goto ExecutionFlow.Pop();
+L912:          goto L15;
+L917:          Temp_int_Variable = 0;
+L940:          goto L822;
+L945:          goto L917;
+============ END FUNCTION ExecuteUbergraph_Widget_GenericParticleSpawner ==============

@@ -1,0 +1,110 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_UI_ParticleManager.Widget_UI_ParticleManager_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonUp ==============
+L0:            this->CreateParticle();
+L14:           EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L64:           EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnMouseButtonUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreateParticle ==============
+L0:            ExecutionFlow.Push(L3047);
+L5:            this->ForceLayoutPrepass();
+L15:           Vector2D mVector2D = WidgetLayoutLibrary->GetMousePositionOnViewport(this);
+L66:           Vector2D MousePosition = mVector2D;
+L93:           bool Temp_bool_True_if_break_was_hit_Variable = false;
+L104:          int32 Temp_int_Loop_Counter_Variable = 0;
+L127:          int32 Temp_int_Array_Index_Variable = 0;
+L150:          bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L179:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mParticleWidgets);
+L238:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L276:          bool mbool2 = BooleanAND(mbool, mbool1);
+L314:          if (!mbool2) goto ExecutionFlow.Pop();
+L324:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L351:          ExecutionFlow.Push(L2926);
+L356:          KismetArrayLibrary->Array_Get([ref] this->mParticleWidgets, Temp_int_Array_Index_Variable, [ref] mCursorParticleStruct);
+L415:          CursorParticleStruct LocalTestWidget = mCursorParticleStruct;
+L442:          Widget* LocalLastClickedParticleWidget = LocalTestWidget.Widget_4_DCFEA59542A26364F5554A970029AEE9;
+L470:          const Geometry mconst Geometry = LocalTestWidget.Widget_4_DCFEA59542A26364F5554A970029AEE9->GetCachedGeometry();
+L529:          SlateBlueprintLibrary->LocalToViewport(this, [ref] mconst Geometry, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D1, [ref] mVector2D2);
+L613:          Vector2D mVector2D3 = SlateBlueprintLibrary->GetLocalSize([ref] mconst Geometry);
+L672:          SlateBlueprintLibrary->LocalToViewport(this, [ref] mconst Geometry, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D4, [ref] mVector2D5);
+L756:          Vector2D mVector2D6 = Add_Vector2DVector2D(mVector2D3, mVector2D2);
+L802:          BreakVector2D(mVector2D5, [ref] mfloat, [ref] mfloat1);
+L839:          BreakVector2D(mVector2D6, [ref] mfloat2, [ref] mfloat3);
+L876:          BreakVector2D(MousePosition, [ref] mfloat4, [ref] mfloat5);
+L913:          bool mbool3 = LessEqual_FloatFloat(mfloat5, mfloat3);
+L951:          bool mbool4 = GreaterEqual_FloatFloat(mfloat5, mfloat1);
+L989:          bool mbool5 = LessEqual_FloatFloat(mfloat4, mfloat2);
+L1027:         bool mbool6 = GreaterEqual_FloatFloat(mfloat4, mfloat);
+L1065:         bool mbool7 = BooleanAND(mbool6, mbool4);
+L1103:         bool mbool8 = BooleanAND(mbool7, mbool5);
+L1141:         bool mbool9 = BooleanAND(mbool8, mbool3);
+L1179:         if (!mbool9) goto ExecutionFlow.Pop();
+L1189:         bool mbool10 = EqualEqual_ObjectObject(LocalLastClickedParticleWidget, this->mLastClickedParticleWidget);
+L1227:         if (!mbool10) goto L3000;
+L1241:         int32 mint321 = Add_IntInt(this->mParticleWidgetClickCount, 1);
+L1283:         int32 Temp_int_Variable = mint321;
+L1310:         this->mParticleWidgetClickCount = Temp_int_Variable;
+L1337:         bool mbool11 = KismetSystemLibrary->IsValidClass(LocalTestWidget.Particle_8_297A42C2474861AFE1EAF283EF29DB4A);
+L1397:         if (!mbool11) goto L2914;
+L1411:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1435:         BP_CursorParticle* mBP_CursorParticle = WidgetBlueprintLibrary->Create(this, LocalTestWidget.Particle_8_297A42C2474861AFE1EAF283EF29DB4A, mPlayerController);
+L1505:         mconst Geometry = LocalTestWidget.Widget_4_DCFEA59542A26364F5554A970029AEE9->GetCachedGeometry();
+L1564:         SlateBlueprintLibrary->LocalToViewport(this, [ref] mconst Geometry, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D4, [ref] mVector2D5);
+L1648:         const Geometry mconst Geometry1 = this->mParticleContainer->GetCachedGeometry();
+L1698:         SlateBlueprintLibrary->LocalToViewport(this, [ref] mconst Geometry1, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D7, [ref] mVector2D8);
+L1782:         Vector2D mVector2D9 = Subtract_Vector2DVector2D(mVector2D5, mVector2D8);
+L1828:         KismetSystemLibrary->SetStructurePropertyByName(mBP_CursorParticle, "mWidgetPosition", [ref] mVector2D9);
+L1891:         mconst Geometry = LocalTestWidget.Widget_4_DCFEA59542A26364F5554A970029AEE9->GetCachedGeometry();
+L1950:         mVector2D3 = SlateBlueprintLibrary->GetLocalSize([ref] mconst Geometry);
+L2009:         KismetSystemLibrary->SetStructurePropertyByName(mBP_CursorParticle, "mWidgetSize", [ref] mVector2D3);
+L2072:         KismetSystemLibrary->SetIntPropertyByName(mBP_CursorParticle, "mClickCount", this->mParticleWidgetClickCount);
+L2135:         BP_CursorParticle* LocalParticleWidget = mBP_CursorParticle;
+L2154:         CanvasPanelSlot* mCanvasPanelSlot = this->mParticleContainer->AddChildToCanvas(LocalParticleWidget);
+L2205:         CanvasPanelSlot* mCanvasPanelSlot1 = WidgetLayoutLibrary->SlotAsCanvasSlot(LocalParticleWidget);
+L2256:         bool Temp_bool_Variable = LocalParticleWidget->mForceAlignment;
+L2297:         Vector2D mVector2D10 = mCanvasPanelSlot1->GetAlignment();
+L2347:         Vector2D Temp_struct_Variable = ScriptStruct /Script/CoreUObject.Vector2D(X = 0.5, Y = 0.5);
+L2389:         mCanvasPanelSlot->SetAlignment(switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable;
+case true -> mVector2D10;
+default -> mVector2D11;
+});
+L2474:         mCanvasPanelSlot->SetAutoSize(true);
+L2507:         CanvasPanelSlot* mCanvasPanelSlot2 = WidgetLayoutLibrary->SlotAsCanvasSlot(LocalParticleWidget);
+L2558:         Vector2D mVector2D12 = mCanvasPanelSlot2->GetPosition();
+L2608:         bool Temp_bool_Variable1 = LocalParticleWidget->mForcePosition;
+L2649:         const Geometry mconst Geometry2 = this->mParticleContainer->GetCachedGeometry();
+L2699:         SlateBlueprintLibrary->LocalToViewport(this, [ref] mconst Geometry2, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D13, [ref] mVector2D14);
+L2783:         Vector2D mVector2D15 = Subtract_Vector2DVector2D(MousePosition, mVector2D14);
+L2829:         mCanvasPanelSlot->SetPosition(switch (Temp_bool_Variable1) {
+case false -> mVector2D15;
+case true -> mVector2D12;
+default -> mVector2D16;
+});
+L2914:         Temp_bool_True_if_break_was_hit_Variable = true;
+L2925:         goto ExecutionFlow.Pop();
+L2926:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2968:         Temp_int_Loop_Counter_Variable = mint322;
+L2995:         goto L150;
+L3000:         this->mParticleWidgetClickCount = 0;
+L3023:         this->mLastClickedParticleWidget = LocalLastClickedParticleWidget;
+L3042:         goto L1337;
+============ END FUNCTION CreateParticle ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonDown ==============
+============ END FUNCTION OnMouseButtonDown ==============

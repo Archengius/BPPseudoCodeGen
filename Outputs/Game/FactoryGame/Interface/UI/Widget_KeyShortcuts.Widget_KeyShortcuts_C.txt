@@ -1,0 +1,92 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Widget_KeyShortcuts.Widget_KeyShortcuts_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateShortcutText ==============
+L0:            this->GetKeyForAction("ToggleBuildGun", [ref] mFText);
+L36:           this->mBuildgunText->SetText(mFText);
+L81:           this->GetKeyForAction("ToggleDismantle", [ref] mFText1);
+L117:          this->mDismantleText->SetText(mFText1);
+L162:          this->GetKeyForAction("Flashlight", [ref] mFText2);
+L198:          this->mFlashlightText->SetText(mFText2);
+L243:          this->GetKeyForAction("ResourceScanner_ToggleVehicleRecording", [ref] mFText3);
+L279:          this->mScannerText->SetText(mFText3);
+L324:          this->GetKeyForAction("inventory", [ref] mFText4);
+L360:          this->mInventoryText->SetText(mFText4);
+L405:          this->GetKeyForAction("OpenCodex", [ref] mFText5);
+L441:          this->mCodexText->SetText(mFText5);
+L486:          this->GetKeyForAction("ToggleMap_BuildGunNoSnapMode", [ref] mFText6);
+L522:          this->mMinimapText->SetText(mFText6);
+============ END FUNCTION UpdateShortcutText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetKeyForAction ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           HUDHelpers->GetKeyNameForActionSimple(mPlayerController, ActionName, this, [ref] mFText);
+L88:           FText keyText = mFText;
+============ END FUNCTION GetKeyForAction ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_KeyShortcuts(950);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateShortcutAvilability ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Interface/UI/Widget_KeyShortcuts.Widget_KeyShortcuts_C:ExecuteUbergraph_Widget_KeyShortcuts.K2Node_CustomEvent_Unused) = Unused;
+L18:           this->ExecuteUbergraph_Widget_KeyShortcuts(723);
+============ END FUNCTION UpdateShortcutAvilability ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_KeyShortcuts ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L39:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L90:           bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L141:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L165:          FGUnlockSubsystem* mFGUnlockSubsystem = FGUnlockSubsystem->Get(mPlayerController1);
+L216:          bool mbool1 = KismetSystemLibrary->IsValid(mFGUnlockSubsystem);
+L267:          bool mbool2 = BooleanAND(mbool, mbool1);
+L305:          if (!mbool2) goto L474;
+L319:          mPlayerController = this->GetOwningPlayer();
+L343:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L394:          mFScriptDelegate->BindUFunction(this, UpdateShortcutAvilability);
+L417:          mFGSchematicManager->PurchasedSchematicDelegate.AddUnique(mFScriptDelegate);
+L458:          this->UpdateShortcutAvilability(nullptr);
+L473:          goto ExecutionFlow.Pop();
+L474:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -817032248, ExecutionFunction = "ExecuteUbergraph_Widget_KeyShortcuts", CallbackTarget = this));
+L550:          goto ExecutionFlow.Pop();
+L551:          this->UpdateShortcutText();
+L565:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L589:          mFScriptDelegate1->BindUFunction(this, UpdateShortcutText);
+L612:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController2);
+L648:          bool mbool3 = mFGPlayerController;
+L677:          mFGPlayerController->OnInputChanged.AddUnique(mFScriptDelegate1);
+L718:          goto L15;
+L723:          PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L747:          FGUnlockSubsystem* mFGUnlockSubsystem1 = FGUnlockSubsystem->Get(mPlayerController3);
+L798:          bool mbool4 = mFGUnlockSubsystem1->GetIsMapUnlocked();
+L840:          if (!mbool4) goto ExecutionFlow.Pop();
+L850:          this->mMinimap->SetBrushFromTexture(map_active, false);
+L896:          this->mMinimapText->SetVisibility(0);
+L934:          goto ExecutionFlow.Pop();
+L935:          this->Construct();
+L945:          goto L551;
+L950:          goto L935;
+============ END FUNCTION ExecuteUbergraph_Widget_KeyShortcuts ==============

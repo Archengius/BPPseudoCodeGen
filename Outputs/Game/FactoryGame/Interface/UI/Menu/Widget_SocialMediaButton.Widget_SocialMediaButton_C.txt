@@ -1,0 +1,94 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_SocialMediaButton.Widget_SocialMediaButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetHoverState ==============
+L0:            bool mbool = this->IsHovered();
+L24:           if (!mbool) goto L95;
+L38:           LinearColor ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L90:           goto L147;
+L95:           ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 0.6000000238418579);
+============ END FUNCTION GetHoverState ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIcon ==============
+L0:            Object* Temp_object_Variable = Twitter_Icon;
+L19:           Object* Temp_object_Variable1 = Discord_Icon;
+L38:           Object* Temp_object_Variable2 = Instagram_Icon;
+L57:           Object* Temp_object_Variable3 = Facebook_Icon;
+L76:           Object* Temp_object_Variable4 = Reddit_Icon;
+L95:           uint8 Temp_byte_Variable = this->mSocialMediaType;
+L122:          mSlateBrush.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 48, Y = 48);
+L173:          mSlateBrush.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
+L234:          mSlateBrush.TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0);
+L311:          mSlateBrush.ResourceObject = switch (Temp_byte_Variable) {
+case 0 -> Temp_object_Variable4;
+case 1 -> Temp_object_Variable3;
+case 2 -> Temp_object_Variable2;
+case 3 -> Temp_object_Variable1;
+case 4 -> Temp_object_Variable;
+default -> mObject;
+};
+L430:          mSlateBrush.DrawAs = 3;
+L459:          mSlateBrush.Tiling = 0;
+L488:          mSlateBrush.Mirroring = 0;
+L517:          SlateBrush ReturnValue = mSlateBrush;
+============ END FUNCTION GetIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_55_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SocialMediaButton(15);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_55_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SocialMediaButton(529);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SocialMediaButton(10);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SocialMediaButton ==============
+L10:           <End of Inlined Event Graph Function>;
+L15:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L39:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Click, mPlayerController, true);
+L100:          FString Temp_string_Variable = "www.twitter.com/SatisfactoryAF";
+L150:          FString Temp_string_Variable1 = "https://discord.gg/satisfactory";
+L201:          FString Temp_string_Variable2 = "www.instagram.com/coffee_stain_studios";
+L259:          FString Temp_string_Variable3 = "www.facebook.com/SatisfactoryGame";
+L312:          FString Temp_string_Variable4 = "www.reddit.com/r/SatisfactoryGame";
+L365:          uint8 Temp_byte_Variable = this->mSocialMediaType;
+L392:          KismetSystemLibrary->LaunchURL(switch (Temp_byte_Variable) {
+case 0 -> Temp_string_Variable4;
+case 1 -> Temp_string_Variable3;
+case 2 -> Temp_string_Variable2;
+case 3 -> Temp_string_Variable1;
+case 4 -> Temp_string_Variable;
+default -> mFString;
+});
+L524:          <End of Inlined Event Graph Function>;
+L529:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L553:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_MouseOver, mPlayerController1, true);
+============ END FUNCTION ExecuteUbergraph_Widget_SocialMediaButton ==============

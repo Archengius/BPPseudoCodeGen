@@ -1,0 +1,287 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_AreaSelection_Button.Widget_AreaSelection_Button_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetExperimentalLabelVisibility ==============
+L0:            uint8 Temp_byte_Variable = 3;
+L20:           uint8 Temp_byte_Variable1 = 1;
+L40:           uint8 muint8 = FGVersionFunctionLibrary->GetGameVersion();
+L90:           bool mbool = EqualEqual_ByteByte(muint8, 1);
+L121:          bool mbool1 = KismetStringLibrary->EqualEqual_StriStri(this->mStartingLocs.StartLocString_11_9994B8C8428E92F9965D6BA3CB30CE96, "?startloc=DuneDesert");
+L203:          bool mbool2 = BooleanAND(mbool, mbool1);
+L241:          bool Temp_bool_Variable = mbool2;
+L260:          this->mExperimentalBuildLabel->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint81;
+});
+============ END FUNCTION SetExperimentalLabelVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION SkipSizeLerp ==============
+L0:            bool mbool = KismetSystemLibrary->K2_IsTimerActiveHandle(this, this->mLerpTimerHandle);
+L52:           if (!mbool) goto L71;
+L66:           <End of Inlined Event Graph Function>;
+L71:           this->StartSizeLerp(isGrowing);
+L94:           this->mLerpT = 1;
+============ END FUNCTION SkipSizeLerp ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartSizeLerp ==============
+L0:            bool mbool = NotEqual_BoolBool(Growing, this->mIsGrowing);
+L38:           if (!mbool) goto L156;
+L52:           float mfloat = Subtract_FloatFloat(1, this->mLerpT);
+L94:           this->mLerpT = mfloat;
+L121:          this->mIsGrowing = Growing;
+L140:          this->mIsLerping = true;
+L151:          <End of Inlined Event Graph Function>;
+L156:          this->mLerpT = 0;
+L179:          goto L140;
+============ END FUNCTION StartSizeLerp ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetBorderTint ==============
+L0:            this->mNameBG->SetColorAndOpacity(Color.SpecifiedColor);
+L50:           this->mBorder->SetColorAndOpacity(Color.SpecifiedColor);
+============ END FUNCTION SetBorderTint ==============
+
+
+
+
+
+============ BEGIN FUNCTION DeselectAnim ==============
+L0:            bool mbool = this->IsAnimationPlaying(this->IsHoveredAnim);
+L29:           if (!mbool) goto L231;
+L43:           float mfloat = this->IsHoveredAnim->GetEndTime();
+L93:           float mfloat1 = this->GetAnimationCurrentTime(this->IsHoveredAnim);
+L130:          float mfloat2 = Subtract_FloatFloat(mfloat, mfloat1);
+L176:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->IsHoveredAnim, mfloat2, 1, 1, 1);
+L226:          <End of Inlined Event Graph Function>;
+L231:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->IsHoveredAnim, 0, 1, 1, 1);
+============ END FUNCTION DeselectAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION SelectAnim ==============
+L0:            bool mbool = this->IsAnimationPlaying(this->IsHoveredAnim);
+L29:           if (!mbool) goto L135;
+L43:           float mfloat = this->GetAnimationCurrentTime(this->IsHoveredAnim);
+L80:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->IsHoveredAnim, mfloat, 1, 0, 1);
+L130:          <End of Inlined Event Graph Function>;
+L135:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->IsHoveredAnim, 0, 1, 0, 1);
+============ END FUNCTION SelectAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSelected ==============
+L0:            bool LocalIsSelected = isSelected;
+L19:           if (!LocalIsSelected) goto L152;
+L33:           this->SkipSizeLerp(true);
+L48:           CanvasPanelSlot* mCanvasPanelSlot = WidgetLayoutLibrary->SlotAsCanvasSlot(this);
+L91:           mCanvasPanelSlot->SetZOrder(3);
+L128:          this->mIsSelected = LocalIsSelected;
+L147:          <End of Inlined Event Graph Function>;
+L152:          if (!this->mIsSelected) goto L266;
+L166:          CanvasPanelSlot* mCanvasPanelSlot1 = WidgetLayoutLibrary->SlotAsCanvasSlot(this);
+L209:          mCanvasPanelSlot1->SetZOrder(0);
+L246:          this->StartSizeLerp(false);
+L261:          goto L128;
+============ END FUNCTION SetSelected ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_AreaSelection_Button(444);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION LerpSize ==============
+L0:            this->ExecuteUbergraph_Widget_AreaSelection_Button(1229);
+============ END FUNCTION LerpSize ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_AreaSelection_Button(2656);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_AreaSelection_Button(2661);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_AreaSelection_Button.Widget_AreaSelection_Button_C:ExecuteUbergraph_Widget_AreaSelection_Button.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_AreaSelection_Button(3950);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Menu/Widget_AreaSelection_Button.Widget_AreaSelection_Button_C:ExecuteUbergraph_Widget_AreaSelection_Button.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Menu/Widget_AreaSelection_Button.Widget_AreaSelection_Button_C:ExecuteUbergraph_Widget_AreaSelection_Button.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_AreaSelection_Button(3955);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_AreaSelection_Button ==============
+L10:           this->SetExperimentalLabelVisibility();
+L24:           if (!this->mIsLocked) goto L135;
+L38:           MaterialInstanceDynamic* mMaterialInstanceDynamic = this->RetainerBox_0->GetEffectMaterial();
+L80:           mMaterialInstanceDynamic->SetScalarParameterValue("amount", 0.8999999761581421);
+L130:          <End of Inlined Event Graph Function>;
+L135:          mMaterialInstanceDynamic = this->RetainerBox_0->GetEffectMaterial();
+L177:          mMaterialInstanceDynamic->SetScalarParameterValue("amount", 0);
+L227:          <End of Inlined Event Graph Function>;
+L232:          bool mbool = Not_PreBool(this->mIsLocked);
+L261:          if (!mbool) goto L3983;
+L275:          this->Widget_ButtonShine->PlayShineAnim();
+L311:          this->SetSelected(true);
+L326:          this->OnClicked->ProcessMulticastDelegate(this->mStartingLocs);
+L354:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L378:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Click, mPlayerController, true);
+L439:          <End of Inlined Event Graph Function>;
+L444:          bool mbool1 = Not_PreBool(this->mIsLocked);
+L473:          if (!mbool1) goto L777;
+L487:          int32 Temp_int_Variable = 2;
+L510:          int32 Temp_int_Variable1 = 0;
+L533:          CanvasPanelSlot* mCanvasPanelSlot = WidgetLayoutLibrary->SlotAsCanvasSlot(this);
+L576:          bool Temp_bool_Variable = this->mIsSelected;
+L595:          mCanvasPanelSlot->SetZOrder(switch (Temp_bool_Variable) {
+case false -> Temp_int_Variable1;
+case true -> Temp_int_Variable;
+default -> mint32;
+});
+L680:          if (!this->mIsSelected) goto L828;
+L694:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L749:          this->SetBorderTint(mSlateColor);
+L772:          <End of Inlined Event Graph Function>;
+L777:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->LockedHover, 0, 1, 1, 1);
+L823:          <End of Inlined Event Graph Function>;
+L828:          this->StartSizeLerp(false);
+L843:          <End of Inlined Event Graph Function>;
+L848:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L872:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_MouseOver, mPlayerController1, true);
+L933:          this->StartSizeLerp(true);
+L948:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor1, [ref] mSlateColor1);
+L1003:         this->SetBorderTint(mSlateColor1);
+L1026:         <End of Inlined Event Graph Function>;
+L1031:         if (!this->mIsSelected) goto L848;
+L1045:         goto L948;
+L1050:         bool mbool2 = Not_PreBool(this->mIsLocked);
+L1079:         if (!mbool2) goto L1178;
+L1093:         CanvasPanelSlot* mCanvasPanelSlot1 = WidgetLayoutLibrary->SlotAsCanvasSlot(this);
+L1136:         mCanvasPanelSlot1->SetZOrder(3);
+L1173:         goto L1031;
+L1178:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->LockedHover, 0, 1, 0, 1);
+L1224:         <End of Inlined Event Graph Function>;
+L1229:         float mfloat = GameplayStatics->GetWorldDeltaSeconds(this);
+L1280:         float mfloat1 = Divide_FloatFloat(mfloat, this->mLerpDuration);
+L1326:         float mfloat2 = Add_FloatFloat(this->mLerpT, mfloat1);
+L1372:         this->mLerpT = mfloat2;
+L1399:         float mfloat3 = SelectFloat(620, 700, this->mIsGrowing);
+L1446:         float mfloat4 = SelectFloat(700, 620, this->mIsGrowing);
+L1493:         float mfloat5 = Ease(mfloat3, mfloat4, this->mLerpT, 7, 2, 2);
+L1560:         this->mButtonSize->SetHeightOverride(mfloat5);
+L1601:         float mfloat6 = Add_FloatFloat(this->mWidth, this->mHoverWidthIncrease);
+L1647:         float mfloat7 = Add_FloatFloat(this->mWidth, this->mHoverWidthIncrease);
+L1693:         float mfloat8 = SelectFloat(this->mWidth, mfloat6, this->mIsGrowing);
+L1748:         float mfloat9 = SelectFloat(mfloat7, this->mWidth, this->mIsGrowing);
+L1803:         float mfloat10 = Ease(mfloat8, mfloat9, this->mLerpT, 7, 2, 2);
+L1870:         this->mButtonSize->SetWidthOverride(mfloat10);
+L1911:         float mfloat11 = SelectFloat(0, 1, this->mIsGrowing);
+L1958:         float mfloat12 = SelectFloat(1, 0, this->mIsGrowing);
+L2005:         float mfloat13 = Ease(mfloat11, mfloat12, this->mLerpT, 7, 2, 2);
+L2072:         this->mBorder->SetRenderOpacity(mfloat13);
+L2113:         this->mTitleContainer->SetRenderOpacity(mfloat13);
+L2154:         this->mDescriptionContainer->SetRenderOpacity(mfloat13);
+L2195:         OverlaySlot* mOverlaySlot = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mButtonSize);
+L2246:         float mfloat14 = SelectFloat(this->mSpacing, 0, this->mIsGrowing);
+L2297:         float mfloat15 = SelectFloat(0, this->mSpacing, this->mIsGrowing);
+L2348:         float mfloat16 = Ease(mfloat14, mfloat15, this->mLerpT, 7, 2, 2);
+L2415:         mMargin.Left = mfloat16;
+L2451:         mMargin.Top = 0;
+L2483:         mMargin.Right = mfloat16;
+L2519:         mMargin.Bottom = 0;
+L2551:         mOverlaySlot->SetPadding(mMargin);
+L2592:         bool mbool3 = GreaterEqual_FloatFloat(this->mLerpT, 1);
+L2626:         if (!mbool3) goto L3983;
+L2640:         this->mIsLerping = false;
+L2651:         <End of Inlined Event Graph Function>;
+L2656:         goto L1050;
+L2661:         goto L232;
+L2666:         this->mButtonSize->SetWidthOverride(this->mWidth);
+L2707:         OverlaySlot* mOverlaySlot1 = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mButtonSize);
+L2758:         mMargin1.Left = this->mSpacing;
+L2794:         mMargin1.Top = 0;
+L2826:         mMargin1.Right = this->mSpacing;
+L2862:         mMargin1.Bottom = 0;
+L2894:         mOverlaySlot1->SetPadding(mMargin1);
+L2935:         float mfloat17 = Multiply_FloatFloat(this->mSpacing, 2);
+L2977:         float mfloat18 = Add_FloatFloat(this->mWidth, mfloat17);
+L3023:         CanvasPanelSlot* mCanvasPanelSlot2 = WidgetLayoutLibrary->SlotAsCanvasSlot(this->mScaleBox);
+L3074:         Vector2D mVector2D = mCanvasPanelSlot2->GetSize();
+L3124:         BreakVector2D(mVector2D, [ref] mfloat19, [ref] mfloat20);
+L3161:         Vector2D mVector2D1 = MakeVector2D(mfloat18, mfloat20);
+L3207:         mCanvasPanelSlot2->SetSize(mVector2D1);
+L3248:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] this->mStartingLocs.Name_15_B24B9E3F4D2123245CD4C3AC88089645);
+L3316:         this->mAreaNameTextObject->SetTitle(mFString);
+L3361:         this->mDescriptionTextObject->SetText(this->mStartingLocs.Description_16_FC7E65A7491E131F357F18A1353545CB);
+L3415:         mSlateBrush.ImageSize = this->mLevelScreenshotObject->Brush.ImageSize;
+L3482:         mSlateBrush.Margin = this->mLevelScreenshotObject->Brush.Margin;
+L3549:         mSlateBrush.TintColor = this->mLevelScreenshotObject->Brush.TintColor;
+L3616:         mSlateBrush.ResourceObject = this->mStartingLocs.Image_17_BEFE2AB0455E5D921A998EB9F17BDDC1;
+L3653:         mSlateBrush.DrawAs = this->mLevelScreenshotObject->Brush.DrawAs;
+L3720:         mSlateBrush.Tiling = this->mLevelScreenshotObject->Brush.Tiling;
+L3787:         mSlateBrush.Mirroring = this->mLevelScreenshotObject->Brush.Mirroring;
+L3854:         this->mLevelScreenshotObject->SetBrush([ref] mSlateBrush);
+L3899:         goto L10;
+L3904:         this->mDescriptionSizebox->SetWidthOverride(this->mWidth);
+L3945:         goto L2666;
+L3950:         goto L3904;
+L3955:         if (!this->mIsLerping) goto L3983;
+L3969:         this->LerpSize();
+============ END FUNCTION ExecuteUbergraph_Widget_AreaSelection_Button ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============

@@ -1,0 +1,180 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/NobeliskDetonator/EquipChild_NobeliskDetonator.EquipChild_NobeliskDetonator_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION NotifyReloadComplete ==============
+L0:            this->ExecuteUbergraph_EquipChild_NobeliskDetonator(10);
+============ END FUNCTION NotifyReloadComplete ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyEndPrimaryFire ==============
+L0:            this->ExecuteUbergraph_EquipChild_NobeliskDetonator(3931);
+============ END FUNCTION NotifyEndPrimaryFire ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyReloading ==============
+L0:            this->ExecuteUbergraph_EquipChild_NobeliskDetonator(15);
+============ END FUNCTION NotifyReloading ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyBeginPrimaryFire ==============
+L0:            this->ExecuteUbergraph_EquipChild_NobeliskDetonator(336);
+============ END FUNCTION NotifyBeginPrimaryFire ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEquip ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/NobeliskDetonator/EquipChild_NobeliskDetonator.EquipChild_NobeliskDetonator_C:ExecuteUbergraph_EquipChild_NobeliskDetonator.K2Node_Event_character) = Character;
+L18:           this->ExecuteUbergraph_EquipChild_NobeliskDetonator(3714);
+============ END FUNCTION OnEquip ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyPrimaryFireExecuted ==============
+L0:            this->ExecuteUbergraph_EquipChild_NobeliskDetonator(3775);
+============ END FUNCTION NotifyPrimaryFireExecuted ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_EquipChild_NobeliskDetonator ==============
+L10:           <End of Inlined Event Graph Function>;
+L15:           bool mbool = this->mParentEquipment->IsLocalInstigator();
+L57:           if (!mbool) goto L3936;
+L71:           this->Explosive_skel->SetVisibility(true, true);
+L105:          AnimInstance* mAnimInstance = this->Explosive_skel->GetAnimInstance();
+L147:          bool mbool1 = mAnimInstance->Montage_IsPlaying(NobeliskDetonatorReload_01_Montage);
+L198:          if (!mbool1) goto L217;
+L212:          <End of Inlined Event Graph Function>;
+L217:          mAnimInstance = this->Explosive_skel->GetAnimInstance();
+L259:          float mfloat = mAnimInstance->Montage_Play(NobeliskDetonatorReload_01_Montage, 1, 0, 0, true);
+L331:          <End of Inlined Event Graph Function>;
+L336:          bool mbool2 = this->mParentEquipment->IsLocalInstigator();
+L378:          if (!mbool2) goto L3936;
+L392:          Actor* mActor = this->GetOwner();
+L412:          FGWeapon* mFGWeapon = Cast<Class /Script/FactoryGame.FGWeapon>(mActor);
+L448:          bool mbool3 = mFGWeapon;
+L477:          if (!mbool3) goto L3936;
+L491:          FGCharacterPlayer* mFGCharacterPlayer = mFGWeapon->GetInstigatorCharacter();
+L533:          SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L575:          AnimInstance* mAnimInstance1 = mSkeletalMeshComponent->GetAnimInstance();
+L617:          bool mbool4 = mAnimInstance1->Montage_IsPlaying(NobeliskDetonatorThrowCharge_01_Montage);
+L668:          if (!mbool4) goto L687;
+L682:          <End of Inlined Event Graph Function>;
+L687:          mFGCharacterPlayer = mFGWeapon->GetInstigatorCharacter();
+L729:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L771:          mAnimInstance1 = mSkeletalMeshComponent->GetAnimInstance();
+L813:          float mfloat1 = mAnimInstance1->Montage_Play(NobeliskDetonatorThrowCharge_01_Montage, 1, 1, 0, true);
+L885:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_E_Nobelisk_Throw, this, true);
+L938:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_E_Nobelisk_StopEquips, this->mParentEquipment, true);
+L999:          <End of Inlined Event Graph Function>;
+L1004:         Actor* mActor1 = this->GetOwner();
+L1024:         FGWeapon* mFGWeapon1 = Cast<Class /Script/FactoryGame.FGWeapon>(mActor1);
+L1060:         bool mbool5 = mFGWeapon1;
+L1089:         if (!mbool5) goto L3936;
+L1103:         FGCharacterPlayer* mFGCharacterPlayer1 = mFGWeapon1->GetInstigatorCharacter();
+L1145:         SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L1187:         AnimInstance* mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
+L1229:         bool mbool6 = mAnimInstance2->Montage_IsPlaying(NobeliskDetonatorLongThrow_01_Montage);
+L1280:         if (!mbool6) goto L1299;
+L1294:         <End of Inlined Event Graph Function>;
+L1299:         mFGCharacterPlayer1 = mFGWeapon1->GetInstigatorCharacter();
+L1341:         mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L1383:         mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
+L1425:         float mfloat2 = mAnimInstance2->Montage_Play(NobeliskDetonatorLongThrow_01_Montage, 1, 1, 0, true);
+L1497:         mFGCharacterPlayer1 = mFGWeapon1->GetInstigatorCharacter();
+L1539:         Controller* mController = mFGCharacterPlayer1->GetInstigatorController();
+L1581:         PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L1617:         bool mbool7 = mPlayerController;
+L1646:         if (!mbool7) goto L3936;
+L1660:         mPlayerController->ClientPlayCameraAnim(NobeliskLongThrow_01_CameraAnim, 2, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L1742:         AnimInstance* mAnimInstance3 = this->Explosive_skel->GetAnimInstance();
+L1784:         bool mbool8 = mAnimInstance3->Montage_IsPlaying(NobeliskDetonatorThrow_01_Montage);
+L1835:         if (!mbool8) goto L1854;
+L1849:         <End of Inlined Event Graph Function>;
+L1854:         mAnimInstance3 = this->Explosive_skel->GetAnimInstance();
+L1896:         float mfloat3 = mAnimInstance3->Montage_Play(NobeliskDetonatorThrow_01_Montage, 1, 0, 0, true);
+L1968:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_E_Nobelisk_Release, this, true);
+L2021:         <End of Inlined Event Graph Function>;
+L2026:         Actor* mActor2 = this->GetOwner();
+L2046:         FGNobeliskDetonator* mFGNobeliskDetonator = Cast<Class /Script/FactoryGame.FGNobeliskDetonator>(mActor2);
+L2082:         bool mbool9 = mFGNobeliskDetonator;
+L2111:         if (!mbool9) goto L3936;
+L2125:         float mfloat4 = mFGNobeliskDetonator->GetChargePct();
+L2175:         bool mbool10 = InRange_FloatFloat(mfloat4, 0, 0.30000001192092896, true, true);
+L2216:         if (!mbool10) goto L2525;
+L2230:         Actor* mActor3 = this->GetOwner();
+L2250:         FGWeapon* mFGWeapon2 = Cast<Class /Script/FactoryGame.FGWeapon>(mActor3);
+L2286:         bool mbool11 = mFGWeapon2;
+L2315:         if (!mbool11) goto L3936;
+L2329:         FGCharacterPlayer* mFGCharacterPlayer2 = mFGWeapon2->GetInstigatorCharacter();
+L2371:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
+L2413:         AnimInstance* mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L2455:         bool mbool12 = mAnimInstance4->Montage_IsPlaying(NobeliskDetonatorShortThrow_01_Montage);
+L2506:         if (!mbool12) goto L3035;
+L2520:         <End of Inlined Event Graph Function>;
+L2525:         mfloat4 = mFGNobeliskDetonator->GetChargePct();
+L2575:         bool mbool13 = InRange_FloatFloat(mfloat4, 0.30000001192092896, 0.800000011920929, true, true);
+L2616:         if (!mbool13) goto L2925;
+L2630:         Actor* mActor4 = this->GetOwner();
+L2650:         FGWeapon* mFGWeapon3 = Cast<Class /Script/FactoryGame.FGWeapon>(mActor4);
+L2686:         bool mbool14 = mFGWeapon3;
+L2715:         if (!mbool14) goto L3936;
+L2729:         FGCharacterPlayer* mFGCharacterPlayer3 = mFGWeapon3->GetInstigatorCharacter();
+L2771:         SkeletalMeshComponent* mSkeletalMeshComponent3 = mFGCharacterPlayer3->GetMesh1P();
+L2813:         AnimInstance* mAnimInstance5 = mSkeletalMeshComponent3->GetAnimInstance();
+L2855:         bool mbool15 = mAnimInstance5->Montage_IsPlaying(NobeliskDetonatorMiddleThrow_01_Montage);
+L2906:         if (!mbool15) goto L3238;
+L2920:         <End of Inlined Event Graph Function>;
+L2925:         mfloat4 = mFGNobeliskDetonator->GetChargePct();
+L2975:         bool mbool16 = InRange_FloatFloat(mfloat4, 0.800000011920929, 1, true, true);
+L3016:         if (!mbool16) goto L3936;
+L3030:         goto L1004;
+L3035:         mFGCharacterPlayer2 = mFGWeapon2->GetInstigatorCharacter();
+L3077:         mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
+L3119:         mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L3161:         float mfloat5 = mAnimInstance4->Montage_Play(NobeliskDetonatorShortThrow_01_Montage, 1, 1, 0, true);
+L3233:         goto L1742;
+L3238:         mFGCharacterPlayer3 = mFGWeapon3->GetInstigatorCharacter();
+L3280:         mSkeletalMeshComponent3 = mFGCharacterPlayer3->GetMesh1P();
+L3322:         mAnimInstance5 = mSkeletalMeshComponent3->GetAnimInstance();
+L3364:         float mfloat6 = mAnimInstance5->Montage_Play(NobeliskDetonatorMiddleThrow_01_Montage, 1, 1, 0, true);
+L3436:         goto L1742;
+L3441:         AnimInstance* mAnimInstance6 = this->Explosive_skel->GetAnimInstance();
+L3483:         float mfloat7 = mAnimInstance6->Montage_Play(NobeliskDetonatorEquipExplosive_01_Montage, 1, 0, 0, true);
+L3555:         <End of Inlined Event Graph Function>;
+L3560:         this->Explosive_skel->SetVisibility(this->mIsLoaded, true);
+L3602:         mAnimInstance6 = this->Explosive_skel->GetAnimInstance();
+L3644:         bool mbool17 = mAnimInstance6->Montage_IsPlaying(NobeliskDetonatorEquipExplosive_01_Montage);
+L3695:         if (!mbool17) goto L3441;
+L3709:         <End of Inlined Event Graph Function>;
+L3714:         bool mbool18 = this->mParentEquipment->IsLocalInstigator();
+L3756:         if (!mbool18) goto L3936;
+L3770:         goto L3560;
+L3775:         bool mbool19 = this->mParentEquipment->IsLocalInstigator();
+L3817:         if (!mbool19) goto L3936;
+L3831:         this->Explosive_skel->SetVisibility(false, true);
+L3865:         <End of Inlined Event Graph Function>;
+L3870:         bool mbool20 = this->mParentEquipment->IsLocalInstigator();
+L3912:         if (!mbool20) goto L3936;
+L3926:         goto L2026;
+L3931:         goto L3870;
+============ END FUNCTION ExecuteUbergraph_EquipChild_NobeliskDetonator ==============

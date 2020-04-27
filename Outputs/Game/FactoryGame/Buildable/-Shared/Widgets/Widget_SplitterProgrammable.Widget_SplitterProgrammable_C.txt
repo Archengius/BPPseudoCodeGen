@@ -1,0 +1,488 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_SplitterProgrammable.Widget_SplitterProgrammable_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION DeslectAllRules ==============
+L0:            ExecutionFlow.Push(L849);
+L5:            int32 Temp_int_Variable = 0;
+L28:           int32 mint32 = this->mContainer->GetChildrenCount();
+L78:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L116:          if (!mbool) goto ExecutionFlow.Pop();
+L126:          ExecutionFlow.Push(L701);
+L131:          Widget* mWidget = this->mContainer->GetChildAt(Temp_int_Variable);
+L182:          Widget_Splitter_OutputList* mWidget_Splitter_OutputList = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Splitter_OutputList.Widget_Splitter_OutputList_C>(mWidget);
+L218:          bool mbool1 = mWidget_Splitter_OutputList;
+L247:          if (!mbool1) goto ExecutionFlow.Pop();
+L257:          int32 Temp_int_Variable1 = 0;
+L280:          int32 mint321 = mWidget_Splitter_OutputList->mOutputContainer->GetChildrenCount();
+L352:          bool mbool2 = LessEqual_IntInt(Temp_int_Variable1, mint321);
+L390:          if (!mbool2) goto ExecutionFlow.Pop();
+L400:          ExecutionFlow.Push(L775);
+L405:          Widget* mWidget1 = mWidget_Splitter_OutputList->mOutputContainer->GetChildAt(Temp_int_Variable1);
+L478:          Widget_SplitterProgrammableRule* mWidget_SplitterProgrammableRule = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_SplitterProgrammableRule.Widget_SplitterProgrammableRule_C>(mWidget1);
+L514:          bool mbool3 = mWidget_SplitterProgrammableRule;
+L543:          if (!mbool3) goto ExecutionFlow.Pop();
+L553:          bool mbool4 = NotEqual_ObjectObject(mWidget_SplitterProgrammableRule->mItemClassButton, this->mActiveRule->mItemClassButton);
+L635:          if (!mbool4) goto ExecutionFlow.Pop();
+L645:          mWidget_SplitterProgrammableRule->mItemClassButton->mIsSelected = false;
+L700:          goto ExecutionFlow.Pop();
+L701:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L743:          Temp_int_Variable = mint322;
+L770:          goto L28;
+L775:          int32 mint323 = Add_IntInt(Temp_int_Variable1, 1);
+L817:          Temp_int_Variable1 = mint323;
+L844:          goto L280;
+============ END FUNCTION DeslectAllRules ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetAddButtonVisibility ==============
+L0:            ExecutionFlow.Push(L406);
+L5:            int32 Temp_int_Variable = 0;
+L28:           int32 mint32 = this->mContainer->GetChildrenCount();
+L78:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L116:          if (!mbool) goto ExecutionFlow.Pop();
+L126:          ExecutionFlow.Push(L332);
+L131:          Widget* mWidget = this->mContainer->GetChildAt(Temp_int_Variable);
+L182:          Widget_Splitter_OutputList* mWidget_Splitter_OutputList = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Splitter_OutputList.Widget_Splitter_OutputList_C>(mWidget);
+L218:          bool mbool1 = mWidget_Splitter_OutputList;
+L247:          if (!mbool1) goto ExecutionFlow.Pop();
+L257:          bool mbool2 = Not_PreBool(this->mIsSmartSplitter);
+L286:          mWidget_Splitter_OutputList->ShowHideAddButton(mbool2);
+L331:          goto ExecutionFlow.Pop();
+L332:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L374:          Temp_int_Variable = mint321;
+L401:          goto L28;
+============ END FUNCTION SetAddButtonVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckIfSmartSplitter ==============
+L0:            Widget_SplitterSmart* mWidget_SplitterSmart = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_SplitterSmart.Widget_SplitterSmart_C>(this);
+L28:           bool mbool = mWidget_SplitterSmart;
+L57:           if (!mbool) goto L87;
+L71:           this->mIsSmartSplitter = true;
+L82:           <End of Inlined Event Graph Function>;
+L87:           this->mIsSmartSplitter = false;
+============ END FUNCTION CheckIfSmartSplitter ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLastRuleIndex ==============
+L0:            int32 mint32 = this->mSplitterSmart->GetNumSortRules();
+L50:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L92:           int32 ReturnValue = mint321;
+============ END FUNCTION GetLastRuleIndex ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRuleIndexes ==============
+L0:            ExecutionFlow.Push(L1974);
+L5:            int32 Temp_int_Variable1 = 0;
+L28:           int32 mint32 = this->mCenterOutputList->mOutputContainer->GetChildrenCount();
+L100:          bool mbool = LessEqual_IntInt(Temp_int_Variable1, mint32);
+L138:          if (!mbool) goto L374;
+L152:          ExecutionFlow.Push(L1752);
+L157:          Widget* mWidget = this->mCenterOutputList->mOutputContainer->GetChildAt(Temp_int_Variable1);
+L230:          Widget_SplitterProgrammableRule* mWidget_SplitterProgrammableRule = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_SplitterProgrammableRule.Widget_SplitterProgrammableRule_C>(mWidget);
+L266:          bool mbool1 = mWidget_SplitterProgrammableRule;
+L295:          if (!mbool1) goto ExecutionFlow.Pop();
+L305:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalListOfRuleWidgets, [ref] mWidget_SplitterProgrammableRule);
+L373:          goto ExecutionFlow.Pop();
+L374:          int32 Temp_int_Variable = 0;
+L397:          int32 mint322 = this->mLeftOutputList->mOutputContainer->GetChildrenCount();
+L469:          bool mbool2 = LessEqual_IntInt(Temp_int_Variable, mint322);
+L507:          if (!mbool2) goto L743;
+L521:          ExecutionFlow.Push(L1826);
+L526:          Widget* mWidget1 = this->mLeftOutputList->mOutputContainer->GetChildAt(Temp_int_Variable);
+L599:          Widget_SplitterProgrammableRule* mWidget_SplitterProgrammableRule1 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_SplitterProgrammableRule.Widget_SplitterProgrammableRule_C>(mWidget1);
+L635:          bool mbool3 = mWidget_SplitterProgrammableRule1;
+L664:          if (!mbool3) goto ExecutionFlow.Pop();
+L674:          int32 mint323 = KismetArrayLibrary->Array_Add([ref] LocalListOfRuleWidgets, [ref] mWidget_SplitterProgrammableRule1);
+L742:          goto ExecutionFlow.Pop();
+L743:          int32 Temp_int_Variable2 = 0;
+L766:          int32 mint324 = this->mRightOutputList->mOutputContainer->GetChildrenCount();
+L838:          bool mbool4 = LessEqual_IntInt(Temp_int_Variable2, mint324);
+L876:          if (!mbool4) goto L1112;
+L890:          ExecutionFlow.Push(L1900);
+L895:          Widget* mWidget2 = this->mRightOutputList->mOutputContainer->GetChildAt(Temp_int_Variable2);
+L968:          Widget_SplitterProgrammableRule* mWidget_SplitterProgrammableRule2 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_SplitterProgrammableRule.Widget_SplitterProgrammableRule_C>(mWidget2);
+L1004:         bool mbool5 = mWidget_SplitterProgrammableRule2;
+L1033:         if (!mbool5) goto ExecutionFlow.Pop();
+L1043:         int32 mint325 = KismetArrayLibrary->Array_Add([ref] LocalListOfRuleWidgets, [ref] mWidget_SplitterProgrammableRule2);
+L1111:         goto ExecutionFlow.Pop();
+L1112:         int32 Temp_int_Variable3 = 0;
+L1135:         int32 mint326 = this->mSplitterSmart->GetNumSortRules();
+L1185:         int32 mint327 = Subtract_IntInt(mint326, 1);
+L1227:         bool mbool6 = LessEqual_IntInt(Temp_int_Variable3, mint327);
+L1265:         if (!mbool6) goto ExecutionFlow.Pop();
+L1275:         ExecutionFlow.Push(L1678);
+L1280:         KismetArrayLibrary->Array_Get([ref] LocalListOfRuleWidgets, Temp_int_Variable3, [ref] mWidget_SplitterProgrammableRule3);
+L1339:         Widget_SplitterProgrammableRule* LocalRule = mWidget_SplitterProgrammableRule3;
+L1358:         LocalRule->mRuleIndex = Temp_int_Variable3;
+L1407:         SplitterSortRule mSplitterSortRule = this->mSplitterSmart->GetSortRuleAt(LocalRule->mRuleIndex);
+L1488:         LocalRule->SetRuleItemClass(mSplitterSortRule.ItemClass);
+L1542:         mSplitterSortRule = this->mSplitterSmart->GetSortRuleAt(LocalRule->mRuleIndex);
+L1623:         LocalRule->SetRuleOutputIndex(mSplitterSortRule.OutputIndex);
+L1677:         goto ExecutionFlow.Pop();
+L1678:         int32 mint328 = Add_IntInt(Temp_int_Variable3, 1);
+L1720:         Temp_int_Variable3 = mint328;
+L1747:         goto L1135;
+L1752:         int32 mint329 = Add_IntInt(Temp_int_Variable1, 1);
+L1794:         Temp_int_Variable1 = mint329;
+L1821:         goto L28;
+L1826:         int32 mint3210 = Add_IntInt(Temp_int_Variable, 1);
+L1868:         Temp_int_Variable = mint3210;
+L1895:         goto L397;
+L1900:         int32 mint3211 = Add_IntInt(Temp_int_Variable2, 1);
+L1942:         Temp_int_Variable2 = mint3211;
+L1969:         goto L766;
+============ END FUNCTION UpdateRuleIndexes ==============
+
+
+
+
+
+============ BEGIN FUNCTION GenerateRules ==============
+L0:            ExecutionFlow.Push(L753);
+L5:            int32 Temp_int_Variable = 0;
+L28:           int32 mint32 = this->GetNumSortRules();
+L60:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L102:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L140:          if (!mbool) goto ExecutionFlow.Pop();
+L150:          ExecutionFlow.Push(L679);
+L155:          int32 LocalIndex = Temp_int_Variable;
+L182:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L206:          Widget_SplitterProgrammableRule* mWidget_SplitterProgrammableRule = WidgetBlueprintLibrary->Create(this, Widget_SplitterProgrammableRule, mPlayerController);
+L267:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_SplitterProgrammableRule, "mSplitterSmart", this->mSplitterSmart);
+L330:          KismetSystemLibrary->SetIntPropertyByName(mWidget_SplitterProgrammableRule, "mRuleIndex", LocalIndex);
+L393:          bool mbool1 = Not_PreBool(this->mIsSmartSplitter);
+L422:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_SplitterProgrammableRule, "mShowDeleteButton", mbool1);
+L485:          Widget_SplitterProgrammableRule* LocalSplitterRule = mWidget_SplitterProgrammableRule;
+L504:          SplitterSortRule mSplitterSortRule = this->mSplitterSmart->GetSortRuleAt(LocalIndex);
+L563:          this->GetOutputFromIndex(mSplitterSortRule.OutputIndex, [ref] mVerticalBox);
+L604:          PanelSlot* mPanelSlot = mVerticalBox->AddChild(LocalSplitterRule);
+L655:          this->SetSortRuleWidgetBindings([ref] LocalSplitterRule);
+L678:          goto ExecutionFlow.Pop();
+L679:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L721:          Temp_int_Variable = mint322;
+L748:          goto L28;
+============ END FUNCTION GenerateRules ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetOutputFromIndex ==============
+L0:            bool mbool = NotEqual_IntInt(index, 0);
+L34:           if (!mbool) goto L149;
+L48:           mbool = NotEqual_IntInt(index, 1);
+L82:           if (!mbool) goto L214;
+L96:           mbool = NotEqual_IntInt(index, 2);
+L130:          if (!mbool) goto L260;
+L144:          <End of Inlined Event Graph Function>;
+L149:          VerticalBox* LocalList = this->mCenterOutputList->mOutputContainer;
+L190:          VerticalBox* List = LocalList;
+L209:          <End of Inlined Event Graph Function>;
+L214:          LocalList = this->mRightOutputList->mOutputContainer;
+L255:          goto L190;
+L260:          LocalList = this->mLeftOutputList->mOutputContainer;
+L301:          goto L190;
+============ END FUNCTION GetOutputFromIndex ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddRuleToOutput ==============
+L0:            int32 mint32 = this->mSplitterSmart->GetNumSortRules();
+L50:           int32 mint321 = this->mSplitterSmart->GetMaxNumSortRules();
+L100:          bool mbool = Less_IntInt(mint32, mint321);
+L138:          if (!mbool) goto L502;
+L152:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L176:          Widget_SplitterProgrammableRule* mWidget_SplitterProgrammableRule = WidgetBlueprintLibrary->Create(this, Widget_SplitterProgrammableRule, mPlayerController);
+L237:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_SplitterProgrammableRule, "mSplitterSmart", this->mSplitterSmart);
+L300:          KismetSystemLibrary->SetIntPropertyByName(mWidget_SplitterProgrammableRule, "mRuleIndex", RuleIndex);
+L363:          Widget_SplitterProgrammableRule* LocalSplitterRule = mWidget_SplitterProgrammableRule;
+L382:          this->GetOutputFromIndex(SplitterSortRule.OutputIndex, [ref] mVerticalBox);
+L423:          PanelSlot* mPanelSlot = mVerticalBox->AddChild(LocalSplitterRule);
+L474:          this->SetSortRuleWidgetBindings([ref] LocalSplitterRule);
+L497:          <End of Inlined Event Graph Function>;
+L502:          KismetSystemLibrary->PrintString(this, "maximum rules reached", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L599:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L623:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController1, "[object Object]", "[object Object]", [ref] Temp_delegate_Variable, 0, nullptr, nullptr);
+============ END FUNCTION AddRuleToOutput ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetWindowTitle ==============
+L0:            FGBuildableFactory* mFGBuildableFactory = Cast<Class /Script/FactoryGame.FGBuildableFactory>(this->mInteractObject);
+L36:           bool mbool = mFGBuildableFactory;
+L65:           this->Widget_Window_DarkMode->SetTitle(mFGBuildableFactory->mDisplayName);
+============ END FUNCTION SetWindowTitle ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSortRuleWidgetBindings ==============
+L0:            mFScriptDelegate->BindUFunction(this, OnRuleRemoved);
+L23:           Widget->OnRemoved.AddUnique(mFScriptDelegate);
+L64:           mFScriptDelegate1->BindUFunction(this, OnRuleUpdated);
+L87:           Widget->OnUpdated.AddUnique(mFScriptDelegate1);
+L128:          mFScriptDelegate2->BindUFunction(this, ShowDescriptors);
+L151:          Widget->OnClicked.AddUnique(mFScriptDelegate2);
+============ END FUNCTION SetSortRuleWidgetBindings ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNumSortRules ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mSplitterSmart);
+L51:           if (!mbool) goto L147;
+L65:           int32 mint32 = this->mSplitterSmart->GetNumSortRules();
+L115:          int32 ReturnValue = mint32;
+L142:          goto L170;
+L147:          ReturnValue = 0;
+============ END FUNCTION GetNumSortRules ==============
+
+
+
+
+
+============ BEGIN FUNCTION InitWindow ==============
+L0:            this->Widget_Window_DarkMode->SetTitle(this->mSplitterSmart->mDisplayName);
+L67:           mFScriptDelegate->BindUFunction(this, OnEscapePressed);
+L90:           this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate);
+============ END FUNCTION InitWindow ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRuleRemoved ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_SplitterProgrammable.Widget_SplitterProgrammable_C:ExecuteUbergraph_Widget_SplitterProgrammable.K2Node_CustomEvent_SplitterRule1) = SplitterRule;
+L18:           this->ExecuteUbergraph_Widget_SplitterProgrammable(2193);
+============ END FUNCTION OnRuleRemoved ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRuleUpdated ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_SplitterProgrammable.Widget_SplitterProgrammable_C:ExecuteUbergraph_Widget_SplitterProgrammable.K2Node_CustomEvent_RuleIndex) = RuleIndex;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_SplitterProgrammable.Widget_SplitterProgrammable_C:ExecuteUbergraph_Widget_SplitterProgrammable.K2Node_CustomEvent_RuleData1) = RuleData;
+L36:           this->ExecuteUbergraph_Widget_SplitterProgrammable(2188);
+============ END FUNCTION OnRuleUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRuleAdded ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_SplitterProgrammable.Widget_SplitterProgrammable_C:ExecuteUbergraph_Widget_SplitterProgrammable.K2Node_CustomEvent_RuleData) = RuleData;
+L18:           this->ExecuteUbergraph_Widget_SplitterProgrammable(2027);
+============ END FUNCTION OnRuleAdded ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_SplitterProgrammable.Widget_SplitterProgrammable_C:ExecuteUbergraph_Widget_SplitterProgrammable.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_SplitterProgrammable(616);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowDescriptors ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_SplitterProgrammable.Widget_SplitterProgrammable_C:ExecuteUbergraph_Widget_SplitterProgrammable.K2Node_CustomEvent_SplitterRule) = SplitterRule;
+L18:           this->ExecuteUbergraph_Widget_SplitterProgrammable(1158);
+============ END FUNCTION ShowDescriptors ==============
+
+
+
+
+
+============ BEGIN FUNCTION HideDescriptors ==============
+L0:            this->ExecuteUbergraph_Widget_SplitterProgrammable(1387);
+============ END FUNCTION HideDescriptors ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRuleFromDescriptorList ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_SplitterProgrammable.Widget_SplitterProgrammable_C:ExecuteUbergraph_Widget_SplitterProgrammable.K2Node_CustomEvent_SelectedDescriptor) = SelectedDescriptor;
+L18:           this->ExecuteUbergraph_Widget_SplitterProgrammable(1565);
+============ END FUNCTION UpdateRuleFromDescriptorList ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SplitterProgrammable(2234);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateListFromServer ==============
+L0:            this->ExecuteUbergraph_Widget_SplitterProgrammable(2239);
+============ END FUNCTION UpdateListFromServer ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_SplitterProgrammable(2340);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mLeftOutputList_K2Node_ComponentBoundEvent_0_OnAddClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SplitterProgrammable(2373);
+============ END FUNCTION BndEvt__mLeftOutputList_K2Node_ComponentBoundEvent_0_OnAddClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mCenterOutputList_K2Node_ComponentBoundEvent_1_OnAddClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SplitterProgrammable(2378);
+============ END FUNCTION BndEvt__mCenterOutputList_K2Node_ComponentBoundEvent_1_OnAddClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mRightOutputList_K2Node_ComponentBoundEvent_2_OnAddClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SplitterProgrammable(15);
+============ END FUNCTION BndEvt__mRightOutputList_K2Node_ComponentBoundEvent_2_OnAddClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SplitterProgrammable ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           mSplitterSortRule.ItemClass = nullptr;
+L35:           mSplitterSortRule.OutputIndex = 1;
+L67:           this->OnRuleAdded(mSplitterSortRule);
+L90:           mSplitterSortRule.ItemClass = nullptr;
+L110:          mSplitterSortRule.OutputIndex = 1;
+L142:          int32 mint32 = this->GetLastRuleIndex();
+L174:          this->AddRuleToOutput([ref] mSplitterSortRule, mint32);
+L206:          goto ExecutionFlow.Pop();
+L207:          this->UpdateRuleIndexes();
+L221:          goto ExecutionFlow.Pop();
+L222:          this->Widget_ProgrammableSplitter_List->SetVisibility(2);
+L260:          goto ExecutionFlow.Pop();
+L261:          this->GetDefaultRCO([ref] mBP_RemoteCallObject);
+L284:          mBP_RemoteCallObject->Server_AddSortRule(this->mSplitterSmart, mSplitterSortRule1);
+L338:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 207, UUID = -1611680896, ExecutionFunction = "ExecuteUbergraph_Widget_SplitterProgrammable", CallbackTarget = this));
+L414:          goto ExecutionFlow.Pop();
+L415:          this->GetDefaultRCO([ref] mBP_RemoteCallObject1);
+L438:          mBP_RemoteCallObject1->Server_RemoveSortRule(this->mSplitterSmart, mWidget_SplitterProgrammableRule->mRuleIndex);
+L514:          this->UpdateRuleIndexes();
+L528:          goto ExecutionFlow.Pop();
+L529:          this->GetDefaultRCO([ref] mBP_RemoteCallObject2);
+L552:          mBP_RemoteCallObject2->Server_UpdateSortRule(this->mSplitterSmart, mint321, mSplitterSortRule2);
+L615:          goto ExecutionFlow.Pop();
+L616:          this->PreConstruct(mbool);
+L635:          this->SetWindowTitle();
+L649:          goto ExecutionFlow.Pop();
+L650:          mSplitterSortRule3.ItemClass = nullptr;
+L670:          mSplitterSortRule3.OutputIndex = 2;
+L702:          this->OnRuleAdded(mSplitterSortRule3);
+L725:          mSplitterSortRule3.ItemClass = nullptr;
+L745:          mSplitterSortRule3.OutputIndex = 2;
+L777:          int32 mint322 = this->GetLastRuleIndex();
+L809:          this->AddRuleToOutput([ref] mSplitterSortRule3, mint322);
+L841:          goto ExecutionFlow.Pop();
+L842:          mSplitterSortRule4.ItemClass = nullptr;
+L862:          mSplitterSortRule4.OutputIndex = 0;
+L894:          this->OnRuleAdded(mSplitterSortRule4);
+L917:          mSplitterSortRule4.ItemClass = nullptr;
+L937:          mSplitterSortRule4.OutputIndex = 0;
+L969:          int32 mint323 = this->GetLastRuleIndex();
+L1001:         this->AddRuleToOutput([ref] mSplitterSortRule4, mint323);
+L1033:         goto ExecutionFlow.Pop();
+L1034:         this->GenerateRules();
+L1048:         this->Widget_ProgrammableSplitter_List->GenerateDescriptorList(this->mSplitterSmart);
+L1093:         mFScriptDelegate->BindUFunction(this, UpdateRuleFromDescriptorList);
+L1116:         this->Widget_ProgrammableSplitter_List->OnSelectionChanged.AddUnique(mFScriptDelegate);
+L1157:         goto ExecutionFlow.Pop();
+L1158:         bool mbool1 = NotEqual_ObjectObject(mWidget_SplitterProgrammableRule1, this->mActiveRule);
+L1196:         if (!mbool1) goto L1372;
+L1210:         this->mActiveRule = mWidget_SplitterProgrammableRule1;
+L1229:         this->Widget_ProgrammableSplitter_List->SetVisibility(0);
+L1267:         UMGSequencePlayer* mUMGSequencePlayer = this->Widget_ProgrammableSplitter_List->PlayAnimation(this->Widget_ProgrammableSplitter_List->FadeInList, 0, 1, 0, 1);
+L1357:         this->DeslectAllRules();
+L1371:         goto ExecutionFlow.Pop();
+L1372:         this->HideDescriptors();
+L1386:         goto ExecutionFlow.Pop();
+L1387:         this->mActiveRule = nullptr;
+L1398:         UMGSequencePlayer* mUMGSequencePlayer1 = this->Widget_ProgrammableSplitter_List->PlayAnimation(this->Widget_ProgrammableSplitter_List->FadeInList, 0, 1, 1, 1);
+L1488:         KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 222, UUID = -122024525, ExecutionFunction = "ExecuteUbergraph_Widget_SplitterProgrammable", CallbackTarget = this));
+L1564:         goto ExecutionFlow.Pop();
+L1565:         bool mbool2 = KismetSystemLibrary->IsValid(this->mActiveRule);
+L1616:         if (!mbool2) goto ExecutionFlow.Pop();
+L1626:         SplitterSortRule mSplitterSortRule5 = this->mSplitterSmart->GetSortRuleAt(this->mActiveRule->mRuleIndex);
+L1707:         mSplitterSortRule6.ItemClass = mTSubclassOf<FGItemDescriptor>;
+L1735:         mSplitterSortRule6.OutputIndex = mSplitterSortRule5.OutputIndex;
+L1780:         this->OnRuleUpdated(this->mActiveRule->mRuleIndex, mSplitterSortRule6);
+L1834:         mSplitterSortRule7.ItemClass = mTSubclassOf<FGItemDescriptor>;
+L1862:         mSplitterSortRule7.OutputIndex = this->mActiveRule->mCachedRule.OutputIndex;
+L1929:         this->mActiveRule->ForceRefreshButton(mSplitterSortRule7);
+L1974:         this->HideDescriptors();
+L1988:         goto ExecutionFlow.Pop();
+L1989:         this->HideDescriptors();
+L2003:         goto L415;
+L2008:         this->HideDescriptors();
+L2022:         goto L261;
+L2027:         goto L2008;
+L2032:         FGBuildableSplitterSmart* mFGBuildableSplitterSmart = Cast<Class /Script/FactoryGame.FGBuildableSplitterSmart>(this->mInteractObject);
+L2068:         bool mbool3 = mFGBuildableSplitterSmart;
+L2097:         if (!mbool3) goto ExecutionFlow.Pop();
+L2107:         this->mSplitterSmart = mFGBuildableSplitterSmart;
+L2126:         this->InitWindow();
+L2140:         this->CheckIfSmartSplitter();
+L2154:         this->SetAddButtonVisibility();
+L2168:         goto L1034;
+L2173:         this->Construct();
+L2183:         goto L2032;
+L2188:         goto L529;
+L2193:         mWidget_SplitterProgrammableRule->RemoveFromParent();
+L2229:         goto L1989;
+L2234:         goto L2173;
+L2239:         KismetSystemLibrary->PrintString(this, "UpdateList", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L2325:         this->UpdateRuleIndexes();
+L2339:         goto ExecutionFlow.Pop();
+L2340:         this->mSplitterSmart->OnSortRulesChangedDelegate->Clear();
+L2372:         goto ExecutionFlow.Pop();
+L2373:         goto L650;
+L2378:         goto L842;
+============ END FUNCTION ExecuteUbergraph_Widget_SplitterProgrammable ==============

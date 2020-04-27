@@ -1,0 +1,105 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Splitter/Widget_ProgrammableSplitter_List.Widget_ProgrammableSplitter_List_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GenerateDescriptorList ==============
+L0:            ExecutionFlow.Push(L2549);
+L5:            bool mbool = KismetSystemLibrary->IsValid(SmartSplitter);
+L56:           if (!mbool) goto ExecutionFlow.Pop();
+L66:           this->mSmartSplitter = SmartSplitter;
+L85:           FGBlueprintFunctionLibrary->GetAllDescriptorsSorted(this->mSmartSplitter, [ref] this->mItemDescriptor);
+L135:          const TSubclassOf<FGItemDescriptor> Temp_class_Variable2 = FGAnyUndefinedDescriptor;
+L154:          KismetArrayLibrary->Array_Insert([ref] this->mItemDescriptor, [ref] Temp_class_Variable2, 0);
+L209:          const TSubclassOf<FGItemDescriptor> Temp_class_Variable1 = FGWildCardDescriptor;
+L228:          KismetArrayLibrary->Array_Insert([ref] this->mItemDescriptor, [ref] Temp_class_Variable1, 0);
+L283:          const TSubclassOf<FGItemDescriptor> Temp_class_Variable = FGNoneDescriptor;
+L302:          KismetArrayLibrary->Array_Insert([ref] this->mItemDescriptor, [ref] Temp_class_Variable, 0);
+L357:          int32 Temp_int_Loop_Counter_Variable = 0;
+L380:          int32 Temp_int_Array_Index_Variable = 0;
+L403:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mItemDescriptor);
+L462:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L500:          if (!mbool1) goto ExecutionFlow.Pop();
+L510:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L537:          ExecutionFlow.Push(L1323);
+L542:          bool mbool2 = NotEqual_IntInt(Temp_int_Array_Index_Variable, 0);
+L576:          if (!mbool2) goto L1397;
+L590:          mbool2 = NotEqual_IntInt(Temp_int_Array_Index_Variable, 1);
+L624:          if (!mbool2) goto L1781;
+L638:          mbool2 = NotEqual_IntInt(Temp_int_Array_Index_Variable, 2);
+L672:          if (!mbool2) goto L2165;
+L686:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L710:          Widget_ListButton* mWidget_ListButton = WidgetBlueprintLibrary->Create(this, Widget_ListButton, mPlayerController);
+L771:          KismetArrayLibrary->Array_Get([ref] this->mItemDescriptor, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
+L830:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mTSubclassOf<FGItemDescriptor>);
+L881:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton, "mIcon", mTexture2D);
+L944:          KismetArrayLibrary->Array_Get([ref] this->mItemDescriptor, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
+L1003:         FText mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGItemDescriptor>);
+L1062:         KismetSystemLibrary->SetTextPropertyByName(mWidget_ListButton, "mTitle", [ref] mFText);
+L1125:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton, "mListWidget", this->mList);
+L1188:         Widget_ListButton* localButton = mWidget_ListButton;
+L1207:         PanelSlot* mPanelSlot = this->mList->AddChild(localButton);
+L1258:         mFScriptDelegate->BindUFunction(this, GetSelectedDescriptor);
+L1281:         localButton->OnClicked.AddUnique(mFScriptDelegate);
+L1322:         goto ExecutionFlow.Pop();
+L1323:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1365:         Temp_int_Loop_Counter_Variable = mint321;
+L1392:         goto L403;
+L1397:         Widget_ListButton* mWidget_ListButton1 = WidgetBlueprintLibrary->Create(this, Widget_ListButton, nullptr);
+L1450:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton1, "mIcon", SortRule_None);
+L1513:         KismetArrayLibrary->Array_Get([ref] this->mItemDescriptor, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
+L1572:         FText mFText1 = FGItemDescriptor->GetItemName(mTSubclassOf<FGItemDescriptor>);
+L1631:         KismetSystemLibrary->SetTextPropertyByName(mWidget_ListButton1, "mTitle", [ref] mFText1);
+L1694:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton1, "mListWidget", this->mList);
+L1757:         localButton = mWidget_ListButton1;
+L1776:         goto L1207;
+L1781:         Widget_ListButton* mWidget_ListButton2 = WidgetBlueprintLibrary->Create(this, Widget_ListButton, nullptr);
+L1834:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton2, "mIcon", Reset_Icon);
+L1897:         KismetArrayLibrary->Array_Get([ref] this->mItemDescriptor, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
+L1956:         mFText1 = FGItemDescriptor->GetItemName(mTSubclassOf<FGItemDescriptor>);
+L2015:         KismetSystemLibrary->SetTextPropertyByName(mWidget_ListButton2, "mTitle", [ref] mFText1);
+L2078:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton2, "mListWidget", this->mList);
+L2141:         localButton = mWidget_ListButton2;
+L2160:         goto L1207;
+L2165:         Widget_ListButton* mWidget_ListButton3 = WidgetBlueprintLibrary->Create(this, Widget_ListButton, nullptr);
+L2218:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton3, "mIcon", SortRule_AnyUndefined);
+L2281:         KismetArrayLibrary->Array_Get([ref] this->mItemDescriptor, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
+L2340:         mFText1 = FGItemDescriptor->GetItemName(mTSubclassOf<FGItemDescriptor>);
+L2399:         KismetSystemLibrary->SetTextPropertyByName(mWidget_ListButton3, "mTitle", [ref] mFText1);
+L2462:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton3, "mListWidget", this->mList);
+L2525:         localButton = mWidget_ListButton3;
+L2544:         goto L1207;
+============ END FUNCTION GenerateDescriptorList ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSelectedDescriptor ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Splitter/Widget_ProgrammableSplitter_List.Widget_ProgrammableSplitter_List_C:ExecuteUbergraph_Widget_ProgrammableSplitter_List.K2Node_CustomEvent_ButtonIndex) = ButtonIndex;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Splitter/Widget_ProgrammableSplitter_List.Widget_ProgrammableSplitter_List_C:ExecuteUbergraph_Widget_ProgrammableSplitter_List.K2Node_CustomEvent_button) = Button;
+L36:           this->ExecuteUbergraph_Widget_ProgrammableSplitter_List(43);
+============ END FUNCTION GetSelectedDescriptor ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ProgrammableSplitter_List ==============
+L10:           this->OnSelectionChanged->ProcessMulticastDelegate(this->mSelectedDescriptor);
+L38:           <End of Inlined Event Graph Function>;
+L43:           this->mSelectedInt = mint32;
+L70:           KismetArrayLibrary->Array_Get([ref] this->mItemDescriptor, this->mSelectedInt, [ref] mTSubclassOf<FGItemDescriptor>);
+L129:          this->mSelectedDescriptor = mTSubclassOf<FGItemDescriptor>;
+L148:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_ProgrammableSplitter_List ==============
+
+
+
+
+
+============ BEGIN FUNCTION onSelectionChanged__DelegateSignature ==============
+============ END FUNCTION onSelectionChanged__DelegateSignature ==============

@@ -1,0 +1,285 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/-Shared/UI/Widget_Vehicle.Widget_Vehicle_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnItemAddedOrRemoved ==============
+L0:            this->UpdateTransferStatus();
+============ END FUNCTION OnItemAddedOrRemoved ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTransferStatus ==============
+L0:            ExecutionFlow.Push(L1026);
+L5:            ExecutionFlow.Push(L355);
+L10:           TArray<InventoryStack> mTArray<InventoryStack> = [];
+L21:           this->VehicleInventory->GetInventoryStacks([ref] mTArray<InventoryStack>);
+L62:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<InventoryStack>);
+L121:          float mfloat = Conv_IntToFloat(mint32);
+L158:          int32 mint321 = this->VehicleInventory->GetSizeLinear();
+L208:          float mfloat1 = Conv_IntToFloat(mint321);
+L245:          float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L291:          this->mProgressBarLoadingUnloading->mProgressBar->SetPercent(mfloat2);
+L354:          goto ExecutionFlow.Pop();
+L355:          bool mbool = this->mTruckStationLoadingStatus->IsVisible();
+L397:          bool mbool1 = BooleanOR(this->BPVehicle->mIsUnloadingVehicle, this->BPVehicle->mIsLoadingVehicle);
+L479:          bool mbool2 = NotEqual_BoolBool(mbool, mbool1);
+L517:          if (!mbool2) goto ExecutionFlow.Pop();
+L527:          uint8 Temp_byte_Variable = 0;
+L547:          uint8 Temp_byte_Variable1 = 2;
+L567:          mbool1 = BooleanOR(this->BPVehicle->mIsUnloadingVehicle, this->BPVehicle->mIsLoadingVehicle);
+L649:          bool Temp_bool_Variable = mbool1;
+L668:          this->mTruckStationLoadingStatus->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L757:          FText Temp_text_Variable = "[object Object]";
+L825:          FText Temp_text_Variable1 = "[object Object]";
+L895:          bool Temp_bool_Variable1 = this->BPVehicle->mIsLoadingVehicle;
+L936:          this->mTransferStatusText->SetText(switch (Temp_bool_Variable1) {
+case false -> Temp_text_Variable1;
+case true -> Temp_text_Variable;
+default -> mFText;
+});
+L1025:         goto ExecutionFlow.Pop();
+============ END FUNCTION UpdateTransferStatus ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSelfDrivingText ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           bool mbool1 = mFGPlayerController->GetIsUsingGamepad();
+L131:          FString mFString = SelectString("LB", "C", mbool1);
+L175:          FString mFString1 = KismetStringLibrary->Concat_StrStr("Press [", mFString);
+L243:          FString mFString2 = KismetStringLibrary->Concat_StrStr(mFString1, "] to open Self Driving Menu");
+L331:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString2);
+L390:          FText ReturnValue = mFText;
+============ END FUNCTION GetSelfDrivingText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetVehicleHealthPercent ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           BP_WheeledVehicle* mBP_WheeledVehicle = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C>(mPawn);
+L56:           bool mbool = mBP_WheeledVehicle;
+L85:           if (!mbool) goto L314;
+L99:           FGHealthComponent* mFGHealthComponent = mBP_WheeledVehicle->GetHealthComponent();
+L141:          float mfloat = mFGHealthComponent->GetCurrentHealth();
+L191:          float mfloat1 = mFGHealthComponent->GetMaxHealth();
+L241:          float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L287:          float ReturnValue = mfloat2;
+============ END FUNCTION GetVehicleHealthPercent ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCurrentSpeedVisibility ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           BP_WheeledVehicle* mBP_WheeledVehicle = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C>(mPawn);
+L56:           bool mbool = mBP_WheeledVehicle;
+L85:           if (!mbool) goto L285;
+L99:           uint8 Temp_byte_Variable = 0;
+L119:          uint8 Temp_byte_Variable1 = 2;
+L139:          bool mbool1 = Greater_IntInt(mBP_WheeledVehicle->mSpeedInKMH, 0);
+L195:          bool Temp_bool_Variable = mbool1;
+L214:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetCurrentSpeedVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCurrentGearText ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           BP_WheeledVehicle* mBP_WheeledVehicle = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C>(mPawn);
+L56:           bool mbool = mBP_WheeledVehicle;
+L85:           if (!mbool) goto L798;
+L99:           WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = mBP_WheeledVehicle->GetVehicleMovementComponent();
+L141:          int32 mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
+L191:          bool mbool1 = Greater_IntInt(mint32, 0);
+L225:          if (!mbool1) goto L434;
+L239:          mWheeledVehicleMovementComponent = mBP_WheeledVehicle->GetVehicleMovementComponent();
+L281:          mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
+L331:          FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
+L402:          FText ReturnValue = mFText;
+L429:          goto L798;
+L434:          mWheeledVehicleMovementComponent = mBP_WheeledVehicle->GetVehicleMovementComponent();
+L476:          mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
+L526:          bool mbool2 = LessEqual_IntInt(mint32, -1);
+L560:          if (!mbool2) goto L638;
+L574:          ReturnValue = "[object Object]";
+L633:          goto L798;
+L638:          mWheeledVehicleMovementComponent = mBP_WheeledVehicle->GetVehicleMovementComponent();
+L680:          mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
+L730:          bool mbool3 = EqualEqual_IntInt(mint32, 0);
+L764:          if (!mbool3) goto L798;
+L778:          ReturnValue = ;
+============ END FUNCTION GetCurrentGearText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCurrentSpeedinKMHText ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           BP_WheeledVehicle* mBP_WheeledVehicle = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C>(mPawn);
+L56:           bool mbool = mBP_WheeledVehicle;
+L85:           if (!mbool) goto L261;
+L99:           int32 mint32 = Abs_Int(mBP_WheeledVehicle->mSpeedInKMH);
+L158:          FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
+L229:          FText ReturnValue = mFText;
+L256:          goto L281;
+L261:          ReturnValue = ;
+============ END FUNCTION GetCurrentSpeedinKMHText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRPMText ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           BP_WheeledVehicle* mBP_WheeledVehicle = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C>(mPawn);
+L56:           bool mbool = mBP_WheeledVehicle;
+L85:           if (!mbool) goto L306;
+L99:           WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = mBP_WheeledVehicle->GetVehicleMovementComponent();
+L141:          float mfloat = mWheeledVehicleMovementComponent->GetEngineRotationSpeed();
+L191:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 0, 3);
+L274:          FText ReturnValue = mFText;
+L301:          goto L326;
+L306:          ReturnValue = ;
+============ END FUNCTION GetRPMText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            FGInventoryComponent* mFGInventoryComponent = Vehicle->GetFuelInventory();
+L42:           this->mFuelInventorySlot->mCachedInventoryComponent = mFGInventoryComponent;
+L83:           if (!Vehicle->mIsRecording) goto L133;
+L119:          this->StartRecording();
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopRecording ==============
+L0:            this->StopAnimation(this->StartRecordHUDBox);
+L19:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->StopRecordingAnim, 0, 1, 0, 1);
+L65:           this->Recording->SetVisibility(2);
+L103:          this->mRecordText->SetText("[object Object]");
+L192:          this->RecordIcon->SetVisibility(2);
+L230:          this->StopIcon->SetVisibility(0);
+L268:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->StopAnim, 0, 0, 0, 1);
+============ END FUNCTION StopRecording ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartRecording ==============
+L0:            this->Recording->SetVisibility(0);
+L38:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->StartRecordHUDBox, 0, 0, 0, 1);
+L84:           this->RecordIcon->SetVisibility(0);
+L122:          this->StopIcon->SetVisibility(2);
+L160:          this->mRecordText->SetText("[object Object]");
+L248:          this->StopAnimation(this->StopAnim);
+============ END FUNCTION StartRecording ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Vehicle(1382);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/UI/Widget_Vehicle.Widget_Vehicle_C:ExecuteUbergraph_Widget_Vehicle.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/UI/Widget_Vehicle.Widget_Vehicle_C:ExecuteUbergraph_Widget_Vehicle.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_Vehicle(809);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION AutoPilotCheck ==============
+L0:            this->ExecuteUbergraph_Widget_Vehicle(1172);
+============ END FUNCTION AutoPilotCheck ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Vehicle ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->UpdateTransferStatus();
+L29:           this->Init(this->BPVehicle);
+L52:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->StopAnim, 0, 0, 0, 1);
+L98:           this->AutoPilotCheck();
+L112:          mFScriptDelegate->BindUFunction(this, AutoPilotCheck);
+L135:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.5, true);
+L200:          this->AutoPilotTimer = mTimerHandle;
+L227:          goto ExecutionFlow.Pop();
+L228:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L248:          BP_WheeledVehicle* mBP_WheeledVehicle = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C>(mPawn);
+L284:          bool mbool = mBP_WheeledVehicle;
+L313:          if (!mbool) goto L732;
+L327:          this->BPVehicle = mBP_WheeledVehicle;
+L346:          mFScriptDelegate1->BindUFunction(this, StartRecording);
+L369:          this->BPVehicle->OnStartRecording.AddUnique(mFScriptDelegate1);
+L410:          mFScriptDelegate2->BindUFunction(this, StopRecording);
+L433:          this->BPVehicle->OnStopRecording.AddUnique(mFScriptDelegate2);
+L474:          mFScriptDelegate3->BindUFunction(this, UpdateTransferStatus);
+L497:          this->BPVehicle->TranferStatusChangedDelegate.AddUnique(mFScriptDelegate3);
+L538:          FGInventoryComponent* mFGInventoryComponent = this->BPVehicle->GetStorageInventory();
+L580:          this->VehicleInventory = mFGInventoryComponent;
+L599:          mFScriptDelegate4->BindUFunction(this, OnItemAddedOrRemoved);
+L622:          this->VehicleInventory->OnItemAddedDelegate.AddUnique(mFScriptDelegate4);
+L663:          mFScriptDelegate4->BindUFunction(this, OnItemAddedOrRemoved);
+L686:          this->VehicleInventory->OnItemRemovedDelegate.AddUnique(mFScriptDelegate4);
+L727:          goto L15;
+L732:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 228, UUID = 1878698236, ExecutionFunction = "ExecuteUbergraph_Widget_Vehicle", CallbackTarget = this));
+L808:          goto ExecutionFlow.Pop();
+L809:          bool mbool1 = KismetSystemLibrary->IsValid(this->BPVehicle);
+L860:          if (!mbool1) goto ExecutionFlow.Pop();
+L870:          float mfloat = this->BPVehicle->GetForwardSpeed();
+L920:          float mfloat1 = Abs(mfloat);
+L957:          float mfloat2 = Divide_FloatFloat(mfloat1, 28);
+L999:          float mfloat3 = Multiply_FloatFloat(mfloat2, 0.6000000238418579);
+L1041:         float mfloat4 = Subtract_FloatFloat(mfloat3, 45);
+L1083:         float mfloat5 = FClamp(mfloat4, -45, 45);
+L1130:         this->PointerContainer->SetRenderAngle(mfloat5);
+L1171:         goto ExecutionFlow.Pop();
+L1172:         if (!this->BPVehicle->mIsAutoPilotEnabled) goto L1288;
+L1208:         this->AutoPilotText->SetText("[object Object]");
+L1287:         goto ExecutionFlow.Pop();
+L1288:         this->AutoPilotText->SetText("[object Object]");
+L1366:         goto ExecutionFlow.Pop();
+L1367:         this->Construct();
+L1377:         goto L228;
+L1382:         goto L1367;
+============ END FUNCTION ExecuteUbergraph_Widget_Vehicle ==============

@@ -1,0 +1,187 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/Beacon/UI/Widget_Beacon.Widget_Beacon_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetBeaconColor ==============
+L0:            GetInterfaceUObject(this->mBeacon)->SetActorRepresentationColor(Color);
+============ END FUNCTION SetBeaconColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetBeaconText ==============
+L0:            FText mFText = GetInterfaceUObject(this->mBeacon)->SetActorRepresentationText([ref] text);
+============ END FUNCTION SetBeaconText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Beacon(10);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mColorButton_K2Node_ComponentBoundEvent_115_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Beacon(1163);
+============ END FUNCTION BndEvt__mColorButton_K2Node_ComponentBoundEvent_115_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnColorPicked ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/Beacon/UI/Widget_Beacon.Widget_Beacon_C:ExecuteUbergraph_Widget_Beacon.K2Node_CustomEvent_Color) = Color;
+L18:           this->ExecuteUbergraph_Widget_Beacon(1453);
+============ END FUNCTION OnColorPicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Window_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Beacon(1897);
+============ END FUNCTION BndEvt__Widget_Window_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPickup ==============
+L0:            this->ExecuteUbergraph_Widget_Beacon(1916);
+============ END FUNCTION OnPickup ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mTowerName_K2Node_ComponentBoundEvent_1_OnEditableTextCommittedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Equipment/Beacon/UI/Widget_Beacon.Widget_Beacon_C:ExecuteUbergraph_Widget_Beacon.K2Node_ComponentBoundEvent_Text) = text;
+L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Equipment/Beacon/UI/Widget_Beacon.Widget_Beacon_C:ExecuteUbergraph_Widget_Beacon.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
+L36:           this->ExecuteUbergraph_Widget_Beacon(1921);
+============ END FUNCTION BndEvt__mTowerName_K2Node_ComponentBoundEvent_1_OnEditableTextCommittedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateColor ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/Beacon/UI/Widget_Beacon.Widget_Beacon_C:ExecuteUbergraph_Widget_Beacon.K2Node_CustomEvent_New_Color) = New Color;
+L18:           this->ExecuteUbergraph_Widget_Beacon(3284);
+============ END FUNCTION UpdateColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Beacon ==============
+L10:           this->Construct();
+L20:           mFScriptDelegate->BindUFunction(this, OnPickup);
+L43:           this->Widget_GlowingFactoryButton->mButton->OnClicked.AddUnique(mFScriptDelegate);
+L106:          mFScriptDelegate1->BindUFunction(this, OnEscapePressed);
+L129:          this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate1);
+L170:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L194:          this->mBeaconName->SetUserFocus(mPlayerController);
+L235:          FText mFText = this->mBeacon->GetActorRepresentationText();
+L289:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L348:          bool mbool = KismetStringLibrary->EqualEqual_StriStri(mFString, "");
+L401:          FText mFText1 = KismetTextLibrary->Conv_StringToText("Beacon");
+L459:          bool mbool1 = KismetTextLibrary->EqualEqual_TextText([ref] mFText, [ref] mFText1);
+L519:          bool mbool2 = BooleanOR(mbool, mbool1);
+L557:          if (!mbool2) goto L658;
+L571:          this->Widget_Window_DarkMode->SetTitle("[object Object]");
+L653:          <End of Inlined Event Graph Function>;
+L658:          this->mBeaconName->SetText(mFText);
+L699:          FText mFText2 = this->mBeaconName->GetText();
+L749:          this->mFinalText = mFText2;
+L776:          mFormatArgumentData.ArgumentName = "BeaconName";
+L815:          mFormatArgumentData.ArgumentValueType = 4;
+L844:          mFormatArgumentData.ArgumentValue = this->mFinalText;
+L880:          mFormatArgumentData.ArgumentValueInt = 0;
+L912:          mFormatArgumentData.ArgumentValueFloat = 0;
+L944:          mFormatArgumentData.ArgumentValueGender = 0;
+L973:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L993:          FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1113:         this->Widget_Window_DarkMode->SetTitle(mFText3);
+L1158:         <End of Inlined Event Graph Function>;
+L1163:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1187:         Widget_ColorPicker_SingleColor* mWidget_ColorPicker_SingleColor = WidgetBlueprintLibrary->Create(this, Widget_ColorPicker_SingleColor, mPlayerController1);
+L1248:         KismetSystemLibrary->SetStructurePropertyByName(mWidget_ColorPicker_SingleColor, "StartColor", [ref] this->mBeacon->mCompassColor);
+L1333:         OverlaySlot* mOverlaySlot = this->mColorPickerContainer->AddChildToOverlay(mWidget_ColorPicker_SingleColor);
+L1384:         mFScriptDelegate2->BindUFunction(this, UpdateColor);
+L1407:         mWidget_ColorPicker_SingleColor->OnClose.AddUnique(mFScriptDelegate2);
+L1448:         <End of Inlined Event Graph Function>;
+L1453:         this->SetBeaconColor(mLinearColor);
+L1476:         this->SetVisibility(0);
+L1506:         <End of Inlined Event Graph Function>;
+L1511:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1535:         BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController2);
+L1571:         bool mbool3 = mBP_PlayerController;
+L1600:         if (!mbool3) goto L3307;
+L1614:         Pawn* mPawn = this->GetOwningPlayerPawn();
+L1634:         FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L1670:         bool mbool4 = mFGCharacterPlayer;
+L1699:         if (!mbool4) goto L3307;
+L1713:         BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L1764:         mBP_RemoteCallObject->ServerPickUpBeacon(this->mBeacon, mFGCharacterPlayer);
+L1818:         <End of Inlined Event Graph Function>;
+L1823:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L1847:         this->mBeacon->CloseWidget(mPlayerController3);
+L1892:         goto L1511;
+L1897:         this->OnEscapePressed();
+L1911:         <End of Inlined Event Graph Function>;
+L1916:         goto L1823;
+L1921:         bool mbool5 = EqualEqual_ByteByte(muint8, 1);
+L1952:         bool mbool6 = EqualEqual_ByteByte(muint8, 2);
+L1983:         bool mbool7 = BooleanOR(mbool5, mbool6);
+L2021:         if (!mbool7) goto L2983;
+L2035:         this->mFinalText = mconst FText;
+L2062:         FText Temp_text_Variable2 = "[object Object]";
+L2126:         bool mbool8 = KismetTextLibrary->TextIsEmpty([ref] this->mFinalText);
+L2177:         bool Temp_bool_Variable2 = mbool8;
+L2196:         this->SetBeaconText(switch (Temp_bool_Variable2) {
+case false -> this->mFinalText;
+case true -> Temp_text_Variable2;
+default -> mFText4;
+});
+L2263:         mFormatArgumentData1.ArgumentName = "BeaconName";
+L2302:         mFormatArgumentData1.ArgumentValueType = 4;
+L2331:         mFormatArgumentData1.ArgumentValue = this->mFinalText;
+L2367:         mFormatArgumentData1.ArgumentValueInt = 0;
+L2399:         mFormatArgumentData1.ArgumentValueFloat = 0;
+L2431:         mFormatArgumentData1.ArgumentValueGender = 0;
+L2460:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
+L2480:         FText mFText5 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L2599:         FText Temp_text_Variable1 = "[object Object]";
+L2663:         FText mFText6 = KismetTextLibrary->Conv_StringToText("Beacon");
+L2721:         bool mbool9 = KismetTextLibrary->EqualEqual_TextText([ref] this->mFinalText, [ref] mFText6);
+L2781:         mbool8 = KismetTextLibrary->TextIsEmpty([ref] this->mFinalText);
+L2832:         bool mbool10 = BooleanOR(mbool8, mbool9);
+L2870:         bool Temp_bool_Variable1 = mbool10;
+L2889:         this->Widget_Window_DarkMode->SetTitle(switch (Temp_bool_Variable1) {
+case false -> mFText5;
+case true -> Temp_text_Variable1;
+default -> mFText7;
+});
+L2978:         <End of Inlined Event Graph Function>;
+L2983:         FText mFText8 = this->mBeacon->GetActorRepresentationText();
+L3037:         FText Temp_text_Variable = ;
+L3057:         FText mFText9 = KismetTextLibrary->Conv_StringToText("Beacon");
+L3115:         bool mbool11 = KismetTextLibrary->EqualEqual_TextText([ref] mFText8, [ref] mFText9);
+L3175:         bool Temp_bool_Variable = mbool11;
+L3194:         this->mBeaconName->SetText(switch (Temp_bool_Variable) {
+case false -> mFText8;
+case true -> Temp_text_Variable;
+default -> mFText10;
+});
+L3279:         <End of Inlined Event Graph Function>;
+L3284:         this->SetBeaconColor(mLinearColor1);
+============ END FUNCTION ExecuteUbergraph_Widget_Beacon ==============

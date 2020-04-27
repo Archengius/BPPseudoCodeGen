@@ -1,0 +1,110 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_Tooltip.Widget_Tooltip_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetItemDescription ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mItemDescriptor.ItemClass);
+L60:           if (!mbool) goto L174;
+L74:           FText mFText = FGItemDescriptor->GetItemDescription(this->mItemDescriptor.ItemClass);
+L142:          FText ReturnValue = mFText;
+L169:          goto L340;
+L174:          bool mbool1 = KismetSystemLibrary->IsValidClass(this->mRecipe);
+L225:          if (!mbool1) goto L313;
+L239:          ReturnValue = "[object Object]";
+L308:          goto L340;
+L313:          ReturnValue = this->mDescriptionText;
+============ END FUNCTION GetItemDescription ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemName ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mItemDescriptor.ItemClass);
+L60:           if (!mbool) goto L174;
+L74:           FText mFText = FGItemDescriptor->GetItemName(this->mItemDescriptor.ItemClass);
+L142:          FText ReturnValue = mFText;
+L169:          goto L685;
+L174:          bool mbool1 = KismetSystemLibrary->IsValidClass(this->mRecipe);
+L225:          if (!mbool1) goto L658;
+L239:          FText mFText1 = FGRecipe->GetRecipeName(this->mRecipe);
+L298:          mFormatArgumentData.ArgumentName = "X";
+L328:          mFormatArgumentData.ArgumentValueType = 4;
+L357:          mFormatArgumentData.ArgumentValue = mFText1;
+L393:          mFormatArgumentData.ArgumentValueInt = 0;
+L425:          mFormatArgumentData.ArgumentValueFloat = 0;
+L457:          mFormatArgumentData.ArgumentValueGender = 0;
+L486:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L506:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L626:          ReturnValue = mFText2;
+L653:          goto L685;
+L658:          ReturnValue = this->mTitleText;
+============ END FUNCTION GetItemName ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Tooltip(1675);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Tooltip ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->SpawnAnim, 0, 1, 0, 1);
+L61:           bool mbool = KismetSystemLibrary->IsValidClass(this->mItemDescriptor.ItemClass);
+L121:          TSubclassOf<FGResourceDescriptor> mTSubclassOf<FGResourceDescriptor> = ClassCast<Class /Script/FactoryGame.FGResourceDescriptor>(this->mItemDescriptor.ItemClass);
+L166:          bool mbool1 = mTSubclassOf<FGResourceDescriptor>;
+L195:          bool mbool2 = Not_PreBool(mbool1);
+L224:          bool mbool3 = BooleanAND(mbool, mbool2);
+L262:          if (!mbool3) goto ExecutionFlow.Pop();
+L272:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L296:          FGRecipeManager* mFGRecipeManager = FGRecipeManager->Get(mPlayerController);
+L347:          TArray<TSubclassOf<FGRecipe>> mTArray<TSubclassOf<FGRecipe>> = mFGRecipeManager->FindRecipesByProduct(this->mItemDescriptor.ItemClass);
+L415:          int32 Temp_int_Loop_Counter_Variable = 0;
+L438:          int32 Temp_int_Array_Index_Variable = 0;
+L461:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGRecipe>>);
+L520:          bool mbool4 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L558:          if (!mbool4) goto ExecutionFlow.Pop();
+L568:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L595:          ExecutionFlow.Push(L1601);
+L600:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L624:          Widget_TooltipRecipe* mWidget_TooltipRecipe = WidgetBlueprintLibrary->Create(this, Widget_TooltipRecipe, mPlayerController1);
+L685:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGRecipe>);
+L744:          KismetSystemLibrary->SetClassPropertyByName(mWidget_TooltipRecipe, "mRecipe", mTSubclassOf<FGRecipe>);
+L807:          FText Temp_text_Variable = "[object Object]";
+L882:          FString mFString = KismetStringLibrary->Conv_IntToString(Temp_int_Array_Index_Variable);
+L941:          FString mFString1 = KismetStringLibrary->Concat_StrStr("Alternate Recipe ", mFString);
+L1019:         FString mFString2 = KismetStringLibrary->Concat_StrStr(mFString1, ":");
+L1081:         FText mFText = KismetTextLibrary->Conv_StringToText(mFString2);
+L1140:         bool mbool5 = Greater_IntInt(Temp_int_Array_Index_Variable, 0);
+L1174:         bool Temp_bool_Variable = mbool5;
+L1193:         KismetSystemLibrary->SetTextPropertyByName(mWidget_TooltipRecipe, "mRecipeNameText", [ref] switch (Temp_bool_Variable) {
+case false -> Temp_text_Variable;
+case true -> mFText;
+default -> mFText1;
+});
+L1300:         TSubclassOf<FGVehicleDescriptor> mTSubclassOf<FGVehicleDescriptor> = ClassCast<Class /Script/FactoryGame.FGVehicleDescriptor>(this->mItemDescriptor.ItemClass);
+L1345:         bool mbool6 = mTSubclassOf<FGVehicleDescriptor>;
+L1374:         TSubclassOf<FGBuildingDescriptor> mTSubclassOf<FGBuildingDescriptor> = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(this->mItemDescriptor.ItemClass);
+L1419:         bool mbool7 = mTSubclassOf<FGBuildingDescriptor>;
+L1448:         bool mbool8 = BooleanOR(mbool7, mbool6);
+L1486:         KismetSystemLibrary->SetBoolPropertyByName(mWidget_TooltipRecipe, "HideProductionInfo", mbool8);
+L1549:         PanelSlot* mPanelSlot = this->mRecipesContainer->AddChild(mWidget_TooltipRecipe);
+L1600:         goto ExecutionFlow.Pop();
+L1601:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1643:         Temp_int_Loop_Counter_Variable = mint321;
+L1670:         goto L461;
+L1675:         this->mRecipesContainer->ClearChildren();
+L1711:         this->ToolTipContent->SetVisibility(4);
+L1749:         KismetSystemLibrary->Delay(this, 0.5, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 1492738409, ExecutionFunction = "ExecuteUbergraph_Widget_Tooltip", CallbackTarget = this));
+L1825:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_Tooltip ==============

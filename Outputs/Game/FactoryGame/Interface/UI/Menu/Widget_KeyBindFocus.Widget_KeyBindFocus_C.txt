@@ -1,0 +1,114 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_KeyBindFocus.Widget_KeyBindFocus_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyUp ==============
+L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->Key_IsModifierKey([ref] mKey);
+L110:          if (!mbool) goto L310;
+L124:          mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L183:          InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromKeyEvent([ref] InKeyEvent);
+L242:          this->HandleInput(mInputEvent, mKey, [ref] mEventReply);
+L283:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnKeyUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION HandleInput ==============
+L0:            bool mbool = KismetInputLibrary->Key_IsGamepadKey([ref] keyPressed);
+L51:           bool mbool1 = Not_PreBool(mbool);
+L80:           if (!mbool1) goto L414;
+L94:           bool mbool2 = KismetInputLibrary->EqualEqual_KeyKey(keyPressed, ScriptStruct /Script/InputCore.Key(KeyName = "Escape"));
+L172:          bool mbool3 = Not_PreBool(mbool2);
+L201:          if (!mbool3) goto L269;
+L215:          this->mKeyOwner->HandleInput(InputEvent, keyPressed);
+L269:          this->mKeyOwner->mButton->SetKeyboardFocus();
+L323:          this->RemoveFromParent();
+L337:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L387:          EventReply Handled = mEventReply;
+============ END FUNCTION HandleInput ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseWheel ==============
+L0:            InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromPointerEvent([ref] MouseEvent);
+L59:           float mfloat = KismetInputLibrary->PointerEvent_GetWheelDelta([ref] MouseEvent);
+L118:          bool mbool = Greater_FloatFloat(mfloat, 0);
+L152:          Key Temp_struct_Variable = ScriptStruct /Script/InputCore.Key(KeyName = "MouseScrollUp");
+L197:          bool Temp_bool_Variable = mbool;
+L216:          Key Temp_struct_Variable1 = ScriptStruct /Script/InputCore.Key(KeyName = "MouseScrollDown");
+L261:          this->HandleInput(mInputEvent, switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mKey;
+}, [ref] mEventReply);
+L346:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnMouseWheel ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetKeyRebindText ==============
+L0:            mFormatArgumentData.ArgumentName = "A";
+L30:           mFormatArgumentData.ArgumentValueType = 4;
+L59:           mFormatArgumentData.ArgumentValue = this->mKeyOwner->mKeyBindData.DisplayName_5_0A86F675465E0C811D17A287BB986630;
+L126:          mFormatArgumentData.ArgumentValueInt = 0;
+L158:          mFormatArgumentData.ArgumentValueFloat = 0;
+L190:          mFormatArgumentData.ArgumentValueGender = 0;
+L219:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L239:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L363:          FText ReturnValue = mFText;
+============ END FUNCTION GetKeyRebindText ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyDown ==============
+L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->Key_IsModifierKey([ref] mKey);
+L110:          bool mbool1 = Not_PreBool(mbool);
+L139:          if (!mbool1) goto L339;
+L153:          mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L212:          InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromKeyEvent([ref] InKeyEvent);
+L271:          this->HandleInput(mInputEvent, mKey, [ref] mEventReply);
+L312:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonDown ==============
+L0:            Key mKey = KismetInputLibrary->PointerEvent_GetEffectingButton([ref] MouseEvent);
+L59:           InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromPointerEvent([ref] MouseEvent);
+L118:          this->HandleInput(mInputEvent, mKey, [ref] mEventReply);
+L159:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnMouseButtonDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_KeyBindFocus(25);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_KeyBindFocus ==============
+L10:           this->SetKeyboardFocus();
+L20:           <End of Inlined Event Graph Function>;
+L25:           goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_KeyBindFocus ==============

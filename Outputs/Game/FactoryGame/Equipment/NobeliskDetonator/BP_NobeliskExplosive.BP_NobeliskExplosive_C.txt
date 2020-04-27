@@ -1,0 +1,101 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/NobeliskDetonator/BP_NobeliskExplosive.BP_NobeliskExplosive_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ShouldSave ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION ShouldSave ==============
+
+
+
+
+
+============ BEGIN FUNCTION GatherDependencies ==============
+L0:            TArray<Object*> mTArray<Object> = [];
+L11:           TArray<Object*> out_dependentObjects = mTArray<Object>;
+============ END FUNCTION GatherDependencies ==============
+
+
+
+
+
+============ BEGIN FUNCTION NeedTransform ==============
+L0:            bool ReturnValue = false;
+============ END FUNCTION NeedTransform ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayExplosionEffects ==============
+L0:            this->ExecuteUbergraph_BP_NobeliskExplosive(1741);
+============ END FUNCTION PlayExplosionEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveHit ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/NobeliskDetonator/BP_NobeliskExplosive.BP_NobeliskExplosive_C:ExecuteUbergraph_BP_NobeliskExplosive.K2Node_Event_MyComp) = MyComp;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/NobeliskDetonator/BP_NobeliskExplosive.BP_NobeliskExplosive_C:ExecuteUbergraph_BP_NobeliskExplosive.K2Node_Event_Other) = Other;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/NobeliskDetonator/BP_NobeliskExplosive.BP_NobeliskExplosive_C:ExecuteUbergraph_BP_NobeliskExplosive.K2Node_Event_OtherComp) = OtherComp;
+L54:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Equipment/NobeliskDetonator/BP_NobeliskExplosive.BP_NobeliskExplosive_C:ExecuteUbergraph_BP_NobeliskExplosive.K2Node_Event_bSelfMoved) = bSelfMoved;
+L72:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/NobeliskDetonator/BP_NobeliskExplosive.BP_NobeliskExplosive_C:ExecuteUbergraph_BP_NobeliskExplosive.K2Node_Event_HitLocation) = HitLocation;
+L90:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/NobeliskDetonator/BP_NobeliskExplosive.BP_NobeliskExplosive_C:ExecuteUbergraph_BP_NobeliskExplosive.K2Node_Event_HitNormal) = HitNormal;
+L108:          PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/NobeliskDetonator/BP_NobeliskExplosive.BP_NobeliskExplosive_C:ExecuteUbergraph_BP_NobeliskExplosive.K2Node_Event_NormalImpulse) = NormalImpulse;
+L126:          PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/NobeliskDetonator/BP_NobeliskExplosive.BP_NobeliskExplosive_C:ExecuteUbergraph_BP_NobeliskExplosive.K2Node_Event_Hit) = Hit;
+L144:          this->ExecuteUbergraph_BP_NobeliskExplosive(964);
+============ END FUNCTION ReceiveHit ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_NobeliskExplosive ==============
+L10:           bool mbool = KismetStringLibrary->NotEqual_StriStri(this->mPhysicalMaterialExplosion, "PhysMat_Rock");
+L75:           if (!mbool) goto L173;
+L89:           mbool = KismetStringLibrary->NotEqual_StriStri(this->mPhysicalMaterialExplosion, "PhysMat_Tree");
+L154:          if (!mbool) goto L280;
+L168:          <End of Inlined Event Graph Function>;
+L173:          Vector mVector = this->K2_GetActorLocation();
+L201:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAtLocation(this, Play_Nobelisk_WorldDestruction_SmallRock, mVector, Rotator::FromPitchYawRoll(0, 0, 0));
+L275:          <End of Inlined Event Graph Function>;
+L280:          mVector = this->K2_GetActorLocation();
+L308:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAtLocation(this, Play_Nobelisk_WorldDestruction_Tree, mVector, Rotator::FromPitchYawRoll(0, 0, 0));
+L382:          <End of Inlined Event Graph Function>;
+L387:          this->NobelisExplosive_Skel->SetHiddenInGame(true, true);
+L421:          this->RadialForce->FireImpulse();
+L457:          Vector mVector1 = this->K2_GetActorLocation();
+L485:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, P_Nobelisk_Explosion_01, mVector1, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L575:          Vector mVector2 = this->K2_GetActorLocation();
+L603:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAtLocation(this, Play_E_Nobelisk_Explosion, mVector2, Rotator::FromPitchYawRoll(0, 0, 0));
+L677:          mVector2 = this->K2_GetActorLocation();
+L705:          GameplayStatics->PlayWorldCameraShake(this, NobeliskExplosion_01, mVector2, 0, 10000, 1, 1, false);
+L777:          bool mbool1 = KismetStringLibrary->EqualEqual_StrStr(this->mPhysicalMaterialExplosion, "PhysMat_Tree");
+L842:          bool mbool2 = KismetStringLibrary->EqualEqual_StrStr(this->mPhysicalMaterialExplosion, "PhysMat_Rock");
+L907:          bool mbool3 = BooleanOR(mbool2, mbool1);
+L945:          if (!mbool3) goto L1746;
+L959:          goto L10;
+L964:          this->ReceiveHit(mPrimitiveComponent, mActor, mPrimitiveComponent1, mbool4, mVector3, mVector4, mVector5, [ref] mconst HitResult);
+L1046:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_E_Nobelisk_Explosion_StickBump, this, true);
+L1099:         MaterialInterface* mMaterialInterface = mPrimitiveComponent1->GetMaterial(0);
+L1150:         bool mbool5 = KismetSystemLibrary->IsValid(mMaterialInterface);
+L1201:         if (!mbool5) goto L1746;
+L1215:         mMaterialInterface = mPrimitiveComponent1->GetMaterial(0);
+L1266:         PhysicalMaterial* mPhysicalMaterial = mMaterialInterface->GetPhysicalMaterial();
+L1312:         FString mFString = KismetSystemLibrary->GetDisplayName(mPhysicalMaterial);
+L1371:         bool mbool6 = KismetStringLibrary->EqualEqual_StrStr(mFString, "PhysMat_Tree");
+L1436:         bool mbool7 = KismetStringLibrary->EqualEqual_StrStr(mFString, "PhysMat_Rock");
+L1501:         bool mbool8 = BooleanOR(mbool7, mbool6);
+L1539:         if (!mbool8) goto L1746;
+L1553:         mMaterialInterface = mPrimitiveComponent1->GetMaterial(0);
+L1604:         mPhysicalMaterial = mMaterialInterface->GetPhysicalMaterial();
+L1650:         mFString = KismetSystemLibrary->GetDisplayName(mPhysicalMaterial);
+L1709:         this->mPhysicalMaterialExplosion = mFString;
+L1736:         <End of Inlined Event Graph Function>;
+L1741:         goto L387;
+============ END FUNCTION ExecuteUbergraph_BP_NobeliskExplosive ==============

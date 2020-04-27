@@ -1,0 +1,449 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION AddInviteToInviteList ==============
+L0:            bool mbool = BlueprintMapLibrary->Map_Find([ref] this->mInviteToButton, [ref] invite, [ref] mWidget_Multiplayer_ListButton);
+L69:           if (!mbool) goto L88;
+L83:           <End of Inlined Event Graph Function>;
+L88:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L112:          Widget_Multiplayer_ListButton* mWidget_Multiplayer_ListButton1 = WidgetBlueprintLibrary->Create(this, Widget_Multiplayer_ListButton, mPlayerController);
+L173:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Multiplayer_ListButton1, "mParentWidget", this->ManageInvites);
+L236:          this->SetupButtonForJoinInvite([ref] mWidget_Multiplayer_ListButton1, [ref] invite);
+L268:          this->ManageInvites->Sort();
+============ END FUNCTION AddInviteToInviteList ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateFriendInviteButton ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           PendingInvite mPendingInvite = FGInviteLibrary->GetInviteFromSender(mPlayerController, [ref] netId);
+L92:           bool mbool = BlueprintMapLibrary->Map_Find([ref] this->mInviteToButton, [ref] mPendingInvite, [ref] mWidget_Multiplayer_ListButton);
+L161:          if (!mbool) goto L413;
+L175:          mPlayerController = this->GetOwningPlayer();
+L199:          mPendingInvite = FGInviteLibrary->GetInviteFromSender(mPlayerController, [ref] netId);
+L267:          mbool = BlueprintMapLibrary->Map_Find([ref] this->mInviteToButton, [ref] mPendingInvite, [ref] mWidget_Multiplayer_ListButton);
+L336:          mWidget_Multiplayer_ListButton->SetupForJoinInvite([ref] mPendingInvite);
+L381:          this->ManageInvites->Sort();
+============ END FUNCTION UpdateFriendInviteButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupButtonForJoinInvite ==============
+L0:            Button->SetupForJoinInvite([ref] invite);
+L45:           BlueprintMapLibrary->Map_Add([ref] this->mButtonToInvite, [ref] Button, [ref] invite);
+L104:          BlueprintMapLibrary->Map_Add([ref] this->mInviteToButton, [ref] invite, [ref] Button);
+L163:          mFScriptDelegate->BindUFunction(this, OnJoinInvite);
+L186:          Button->OnActionButtonClicked.AddUnique(mFScriptDelegate);
+L227:          VerticalBoxSlot* mVerticalBoxSlot = this->ManageInvites->AddChildToVerticalBox(Button);
+============ END FUNCTION SetupButtonForJoinInvite ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupButtonForSendInvite ==============
+L0:            Button->SetupForSendInvite([ref] onlineFriend);
+L45:           UniqueNetIdRepl mUniqueNetIdRepl = FGFriendsLibrary->GetFriendUniqueNetId([ref] onlineFriend);
+L104:          BlueprintMapLibrary->Map_Add([ref] this->mFriendToButton, [ref] mUniqueNetIdRepl, [ref] Button);
+L163:          BlueprintMapLibrary->Map_Add([ref] this->mButtonToFriend, [ref] Button, [ref] onlineFriend);
+L222:          mFScriptDelegate->BindUFunction(this, OnInvite);
+L245:          Button->OnActionButtonClicked.AddUnique(mFScriptDelegate);
+L286:          VerticalBoxSlot* mVerticalBoxSlot = this->InvitePlayers->AddChildToVerticalBox(Button);
+============ END FUNCTION SetupButtonForSendInvite ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateOrAddFriendsToInvite ==============
+L0:            ExecutionFlow.Push(L975);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] UpdatedFriends);
+L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L148:          if (!mbool) goto L628;
+L162:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L189:          ExecutionFlow.Push(L661);
+L194:          KismetArrayLibrary->Array_Get([ref] UpdatedFriends, Temp_int_Array_Index_Variable, [ref] mFGOnlineFriend);
+L253:          UniqueNetIdRepl mUniqueNetIdRepl = FGFriendsLibrary->GetFriendUniqueNetId([ref] mFGOnlineFriend);
+L312:          bool mbool1 = BlueprintMapLibrary->Map_Find([ref] this->mFriendToButton, [ref] mUniqueNetIdRepl, [ref] mWidget_Multiplayer_ListButton);
+L381:          if (!mbool1) goto L735;
+L395:          KismetArrayLibrary->Array_Get([ref] UpdatedFriends, Temp_int_Array_Index_Variable, [ref] mFGOnlineFriend);
+L454:          mUniqueNetIdRepl = FGFriendsLibrary->GetFriendUniqueNetId([ref] mFGOnlineFriend);
+L513:          mbool1 = BlueprintMapLibrary->Map_Find([ref] this->mFriendToButton, [ref] mUniqueNetIdRepl, [ref] mWidget_Multiplayer_ListButton);
+L582:          mWidget_Multiplayer_ListButton->SetupForSendInvite([ref] mFGOnlineFriend);
+L627:          goto ExecutionFlow.Pop();
+L628:          this->InvitePlayers->Sort();
+L660:          goto ExecutionFlow.Pop();
+L661:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L703:          Temp_int_Loop_Counter_Variable = mint321;
+L730:          goto L51;
+L735:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L759:          Widget_Multiplayer_ListButton* mWidget_Multiplayer_ListButton1 = WidgetBlueprintLibrary->Create(this, Widget_Multiplayer_ListButton, mPlayerController);
+L820:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Multiplayer_ListButton1, "mParentWidget", this->InvitePlayers);
+L883:          KismetArrayLibrary->Array_Get([ref] UpdatedFriends, Temp_int_Array_Index_Variable, [ref] mFGOnlineFriend);
+L942:          this->SetupButtonForSendInvite(mWidget_Multiplayer_ListButton1, [ref] mFGOnlineFriend);
+L974:          goto ExecutionFlow.Pop();
+============ END FUNCTION UpdateOrAddFriendsToInvite ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateInviteFriendButton ==============
+L0:            bool mbool = BlueprintMapLibrary->Map_Find([ref] this->mFriendToButton, [ref] friendId, [ref] mWidget_Multiplayer_ListButton);
+L69:           if (!mbool) goto L321;
+L83:           LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L107:          FGOnlineFriend mFGOnlineFriend = FGFriendsLibrary->GetFriendFromNetId(mLocalPlayer, [ref] friendId);
+L175:          mbool = BlueprintMapLibrary->Map_Find([ref] this->mFriendToButton, [ref] friendId, [ref] mWidget_Multiplayer_ListButton);
+L244:          mWidget_Multiplayer_ListButton->SetupForSendInvite([ref] mFGOnlineFriend);
+L289:          this->InvitePlayers->Sort();
+============ END FUNCTION UpdateInviteFriendButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateInviteList ==============
+L0:            ExecutionFlow.Push(L640);
+L5:            this->ClearInviteList();
+L19:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L43:           TArray<PendingInvite> mTArray<PendingInvite> = [];
+L54:           FGInviteLibrary->GetPendingInvites(mPlayerController, [ref] mTArray<PendingInvite>);
+L104:          int32 Temp_int_Loop_Counter_Variable = 0;
+L127:          int32 Temp_int_Array_Index_Variable = 0;
+L150:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<PendingInvite>);
+L209:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L247:          if (!mbool) goto L533;
+L261:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L288:          ExecutionFlow.Push(L566);
+L293:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L317:          Widget_Multiplayer_ListButton* mWidget_Multiplayer_ListButton = WidgetBlueprintLibrary->Create(this, Widget_Multiplayer_ListButton, mPlayerController1);
+L378:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Multiplayer_ListButton, "mParentWidget", this->InvitePlayers);
+L441:          KismetArrayLibrary->Array_Get([ref] mTArray<PendingInvite>, Temp_int_Array_Index_Variable, [ref] mPendingInvite);
+L500:          this->SetupButtonForJoinInvite([ref] mWidget_Multiplayer_ListButton, [ref] mPendingInvite);
+L532:          goto ExecutionFlow.Pop();
+L533:          this->ManageInvites->Sort();
+L565:          goto ExecutionFlow.Pop();
+L566:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L608:          Temp_int_Loop_Counter_Variable = mint321;
+L635:          goto L150;
+============ END FUNCTION PopulateInviteList ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearInviteList ==============
+L0:            this->ManageInvites->ClearChildren();
+L36:           BlueprintMapLibrary->Map_Clear([ref] this->mButtonToInvite);
+L77:           BlueprintMapLibrary->Map_Clear([ref] this->mInviteToButton);
+============ END FUNCTION ClearInviteList ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearInvitePlayerList ==============
+L0:            this->InvitePlayers->ClearChildren();
+L36:           BlueprintMapLibrary->Map_Clear([ref] this->mButtonToFriend);
+L77:           BlueprintMapLibrary->Map_Clear([ref] this->mFriendToButton);
+============ END FUNCTION ClearInvitePlayerList ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateFriendsToInvite ==============
+L0:            ExecutionFlow.Push(L733);
+L5:            this->ClearInvitePlayerList();
+L19:           LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L43:           FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L79:           bool mbool = mFGLocalPlayer;
+L108:          TArray<FGOnlineFriend> mTArray<FGOnlineFriend> = [];
+L119:          bool mbool1 = mFGLocalPlayer->GetFriendList([ref] mTArray<FGOnlineFriend>);
+L170:          TArray<FGOnlineFriend> FriendsList = mTArray<FGOnlineFriend>;
+L197:          int32 Temp_int_Loop_Counter_Variable = 0;
+L220:          int32 Temp_int_Array_Index_Variable = 0;
+L243:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] FriendsList);
+L302:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L340:          if (!mbool2) goto L626;
+L354:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L381:          ExecutionFlow.Push(L659);
+L386:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L410:          Widget_Multiplayer_ListButton* mWidget_Multiplayer_ListButton = WidgetBlueprintLibrary->Create(this, Widget_Multiplayer_ListButton, mPlayerController);
+L471:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Multiplayer_ListButton, "mParentWidget", this->InvitePlayers);
+L534:          KismetArrayLibrary->Array_Get([ref] FriendsList, Temp_int_Array_Index_Variable, [ref] mFGOnlineFriend);
+L593:          this->SetupButtonForSendInvite(mWidget_Multiplayer_ListButton, [ref] mFGOnlineFriend);
+L625:          goto ExecutionFlow.Pop();
+L626:          this->InvitePlayers->Sort();
+L658:          goto ExecutionFlow.Pop();
+L659:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L701:          Temp_int_Loop_Counter_Variable = mint321;
+L728:          goto L243;
+============ END FUNCTION PopulateFriendsToInvite ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEscape ==============
+L0:            this->ExecuteUbergraph_Widget_ManageInvites(784);
+============ END FUNCTION OnEscape ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ManageInvites(15);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnJoinInvite ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C:ExecuteUbergraph_Widget_ManageInvites.K2Node_CustomEvent_button) = Button;
+L18:           this->ExecuteUbergraph_Widget_ManageInvites(300);
+============ END FUNCTION OnJoinInvite ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddInvitePlayersDelegates ==============
+L0:            this->ExecuteUbergraph_Widget_ManageInvites(523);
+============ END FUNCTION AddInvitePlayersDelegates ==============
+
+
+
+
+
+============ BEGIN FUNCTION FriendListUpdated_InvitePlayerss ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C:ExecuteUbergraph_Widget_ManageInvites.K2Node_CustomEvent_updatedFriends) = UpdatedFriends;
+L18:           this->ExecuteUbergraph_Widget_ManageInvites(751);
+============ END FUNCTION FriendListUpdated_InvitePlayerss ==============
+
+
+
+
+
+============ BEGIN FUNCTION PresenceUpdated_InvitePlayers ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C:ExecuteUbergraph_Widget_ManageInvites.K2Node_CustomEvent_updatedId1) = updatedId;
+L18:           this->ExecuteUbergraph_Widget_ManageInvites(789);
+============ END FUNCTION PresenceUpdated_InvitePlayers ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveInvitePlayersDelegates ==============
+L0:            this->ExecuteUbergraph_Widget_ManageInvites(1041);
+============ END FUNCTION RemoveInvitePlayersDelegates ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddManageInvitesDelegates ==============
+L0:            this->ExecuteUbergraph_Widget_ManageInvites(1046);
+============ END FUNCTION AddManageInvitesDelegates ==============
+
+
+
+
+
+============ BEGIN FUNCTION FriendsPresenceUpdate_ManageInvites ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C:ExecuteUbergraph_Widget_ManageInvites.K2Node_CustomEvent_updatedId) = updatedId;
+L18:           this->ExecuteUbergraph_Widget_ManageInvites(1274);
+============ END FUNCTION FriendsPresenceUpdate_ManageInvites ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveManageInvitesDelegates ==============
+L0:            this->ExecuteUbergraph_Widget_ManageInvites(1526);
+============ END FUNCTION RemoveManageInvitesDelegates ==============
+
+
+
+
+
+============ BEGIN FUNCTION InviteReceived_ManageInvites ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C:ExecuteUbergraph_Widget_ManageInvites.K2Node_CustomEvent_receivedInvite) = receivedInvite;
+L18:           this->ExecuteUbergraph_Widget_ManageInvites(1531);
+============ END FUNCTION InviteReceived_ManageInvites ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMenuExit ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C:ExecuteUbergraph_Widget_ManageInvites.K2Node_Event_prevMenu1) = prevMenu;
+L18:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C:ExecuteUbergraph_Widget_ManageInvites.K2Node_Event_noAnimation) = noAnimation;
+L36:           this->ExecuteUbergraph_Widget_ManageInvites(1792);
+============ END FUNCTION OnMenuExit ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSwitcher_K2Node_ComponentBoundEvent_0_OnActiveWidgetSet__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C:ExecuteUbergraph_Widget_ManageInvites.K2Node_ComponentBoundEvent_oldWidget) = oldWidget;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C:ExecuteUbergraph_Widget_ManageInvites.K2Node_ComponentBoundEvent_newWidget) = newWidget;
+L36:           this->ExecuteUbergraph_Widget_ManageInvites(2089);
+============ END FUNCTION BndEvt__mSwitcher_K2Node_ComponentBoundEvent_0_OnActiveWidgetSet__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMenuEnter ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C:ExecuteUbergraph_Widget_ManageInvites.K2Node_Event_prevMenu) = prevMenu;
+L18:           this->ExecuteUbergraph_Widget_ManageInvites(2142);
+============ END FUNCTION OnMenuEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_ManageInvites(2240);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnInvite ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageInvites.Widget_ManageInvites_C:ExecuteUbergraph_Widget_ManageInvites.K2Node_CustomEvent_ClickedButton) = ClickedButton;
+L18:           this->ExecuteUbergraph_Widget_ManageInvites(2279);
+============ END FUNCTION OnInvite ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ManageInvites ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->Construct();
+L25:           HUDHelpers->IsInMainMenu(this, this, [ref] mbool);
+L72:           uint8 Temp_byte_Variable = 0;
+L92:           uint8 Temp_byte_Variable1 = 1;
+L112:          bool Temp_bool_Variable = mbool;
+L131:          this->mInvitePlayers->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L220:          goto ExecutionFlow.Pop();
+L221:          this->mOwningMenu->OnEscape();
+L257:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->UpdateManageListTimer);
+L299:          goto ExecutionFlow.Pop();
+L300:          bool mbool1 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToInvite, [ref] mWidget_Multiplayer_ListButton, [ref] mPendingInvite);
+L369:          if (!mbool1) goto ExecutionFlow.Pop();
+L379:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L403:          mbool1 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToInvite, [ref] mWidget_Multiplayer_ListButton, [ref] mPendingInvite);
+L472:          FGInviteLibrary->JoinInvite(mPlayerController, [ref] mPendingInvite);
+L522:          goto ExecutionFlow.Pop();
+L523:          LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L547:          FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L583:          bool mbool2 = mFGLocalPlayer;
+L612:          if (!mbool2) goto ExecutionFlow.Pop();
+L622:          mFScriptDelegate->BindUFunction(this, FriendListUpdated_InvitePlayerss);
+L645:          mFGLocalPlayer->mOnFriendsListUpdated.AddUnique(mFScriptDelegate);
+L686:          mFScriptDelegate1->BindUFunction(this, PresenceUpdated_InvitePlayers);
+L709:          mFGLocalPlayer->mOnFriendsPresenceUpdated.AddUnique(mFScriptDelegate1);
+L750:          goto ExecutionFlow.Pop();
+L751:          this->UpdateOrAddFriendsToInvite([ref] mUpdatedFriends.Friends);
+L783:          goto ExecutionFlow.Pop();
+L784:          goto L221;
+L789:          this->UpdateInviteFriendButton(mconst UniqueNetIdRepl);
+L812:          goto ExecutionFlow.Pop();
+L813:          LocalPlayer* mLocalPlayer1 = this->GetOwningLocalPlayer();
+L837:          FGLocalPlayer* mFGLocalPlayer1 = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer1);
+L873:          bool mbool3 = mFGLocalPlayer1;
+L902:          if (!mbool3) goto ExecutionFlow.Pop();
+L912:          mFScriptDelegate->BindUFunction(this, FriendListUpdated_InvitePlayerss);
+L935:          mFGLocalPlayer1->mOnFriendsListUpdated.Remove(mFScriptDelegate);
+L976:          mFScriptDelegate1->BindUFunction(this, PresenceUpdated_InvitePlayers);
+L999:          mFGLocalPlayer1->mOnFriendsPresenceUpdated.Remove(mFScriptDelegate1);
+L1040:         goto ExecutionFlow.Pop();
+L1041:         goto L813;
+L1046:         LocalPlayer* mLocalPlayer2 = this->GetOwningLocalPlayer();
+L1070:         FGLocalPlayer* mFGLocalPlayer2 = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer2);
+L1106:         bool mbool4 = mFGLocalPlayer2;
+L1135:         if (!mbool4) goto ExecutionFlow.Pop();
+L1145:         mFScriptDelegate2->BindUFunction(this, InviteReceived_ManageInvites);
+L1168:         mFGLocalPlayer2->mOnInviteReceived.AddUnique(mFScriptDelegate2);
+L1209:         mFScriptDelegate3->BindUFunction(this, FriendsPresenceUpdate_ManageInvites);
+L1232:         mFGLocalPlayer2->mOnFriendsPresenceUpdated.AddUnique(mFScriptDelegate3);
+L1273:         goto ExecutionFlow.Pop();
+L1274:         this->UpdateFriendInviteButton([ref] mconst UniqueNetIdRepl1);
+L1297:         goto ExecutionFlow.Pop();
+L1298:         LocalPlayer* mLocalPlayer3 = this->GetOwningLocalPlayer();
+L1322:         FGLocalPlayer* mFGLocalPlayer3 = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer3);
+L1358:         bool mbool5 = mFGLocalPlayer3;
+L1387:         if (!mbool5) goto ExecutionFlow.Pop();
+L1397:         mFScriptDelegate2->BindUFunction(this, InviteReceived_ManageInvites);
+L1420:         mFGLocalPlayer3->mOnInviteReceived.Remove(mFScriptDelegate2);
+L1461:         mFScriptDelegate3->BindUFunction(this, FriendsPresenceUpdate_ManageInvites);
+L1484:         mFGLocalPlayer3->mOnFriendsPresenceUpdated.Remove(mFScriptDelegate3);
+L1525:         goto ExecutionFlow.Pop();
+L1526:         goto L1298;
+L1531:         this->AddInviteToInviteList([ref] mconst PendingInvite);
+L1554:         goto ExecutionFlow.Pop();
+L1555:         mFScriptDelegate4->BindUFunction(this->mOwningMenu, RestoreFocusOnPopupClosed);
+L1586:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1610:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController1, "[object Object]", "[object Object]", [ref] mFScriptDelegate4, 0, nullptr, nullptr);
+L1762:         goto ExecutionFlow.Pop();
+L1763:         this->RemoveInvitePlayersDelegates();
+L1777:         this->RemoveManageInvitesDelegates();
+L1791:         goto ExecutionFlow.Pop();
+L1792:         this->OnMenuExit(mWidget, mbool6);
+L1820:         goto L1763;
+L1825:         ExecutionFlow.Push(L1951);
+L1830:         PanelWidget* mPanelWidget = Cast<Class /Script/UMG.PanelWidget>(mWidget1);
+L1866:         bool mbool7 = mPanelWidget;
+L1895:         if (!mbool7) goto ExecutionFlow.Pop();
+L1905:         this->mSettings->PlayListSpawnAnim(mPanelWidget);
+L1950:         goto ExecutionFlow.Pop();
+L1951:         bool mbool8 = EqualEqual_ObjectObject(mWidget1, this->InvitePlayers);
+L1989:         if (!mbool8) goto L2046;
+L2003:         this->RemoveManageInvitesDelegates();
+L2017:         this->AddInvitePlayersDelegates();
+L2031:         this->PopulateFriendsToInvite();
+L2045:         goto ExecutionFlow.Pop();
+L2046:         this->RemoveInvitePlayersDelegates();
+L2060:         this->AddManageInvitesDelegates();
+L2074:         this->PopulateInviteList();
+L2088:         goto ExecutionFlow.Pop();
+L2089:         bool mbool9 = NotEqual_ObjectObject(mWidget2, mWidget1);
+L2127:         if (!mbool9) goto ExecutionFlow.Pop();
+L2137:         goto L1825;
+L2142:         this->OnMenuEnter(mWidget3);
+L2161:         this->mSwitcher->SetActiveWidgetIndex(0);
+L2202:         this->mNavigation->PlayListSpawnAnim(nullptr);
+L2239:         goto ExecutionFlow.Pop();
+L2240:         this->Destruct();
+L2250:         this->RemoveInvitePlayersDelegates();
+L2264:         this->RemoveManageInvitesDelegates();
+L2278:         goto ExecutionFlow.Pop();
+L2279:         bool mbool10 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToFriend, [ref] mWidget_Multiplayer_ListButton1, [ref] mFGOnlineFriend);
+L2348:         if (!mbool10) goto ExecutionFlow.Pop();
+L2358:         LocalPlayer* mLocalPlayer4 = this->GetOwningLocalPlayer();
+L2382:         mbool10 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToFriend, [ref] mWidget_Multiplayer_ListButton1, [ref] mFGOnlineFriend);
+L2451:         FGInviteLibrary->SendInviteToFriend(mLocalPlayer4, [ref] mFGOnlineFriend);
+L2501:         goto L1555;
+============ END FUNCTION ExecuteUbergraph_Widget_ManageInvites ==============

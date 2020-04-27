@@ -1,0 +1,383 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPostPayOffSlot.Widget_TradingPostPayOffSlot_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION StopEmptyAnim ==============
+L0:            this->StopAnimation(this->EmptyAnim);
+L19:           mLinearColor.R = 1;
+L51:           mLinearColor.G = 1;
+L83:           mLinearColor.B = 1;
+L115:          mLinearColor.A = 1;
+L147:          this->mItemImage->SetColorAndOpacity(mLinearColor);
+============ END FUNCTION StopEmptyAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION DropOntoInventorySlot ==============
+L0:            FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(this);
+L43:           bool mbool = mFGSchematicManager->IsShipAtTradingPost();
+L85:           InventorySlot->GetItemClass([ref] mTSubclassOf<FGItemDescriptor>);
+L130:          bool mbool1 = Less_IntInt(this->mCurrentPaidOff, this->mItemAmount.amount);
+L177:          bool mbool2 = EqualEqual_ClassClass(mTSubclassOf<FGItemDescriptor>, this->mItemAmount.ItemClass);
+L224:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L262:          bool mbool4 = BooleanAND(mbool3, mbool);
+L300:          if (!mbool4) goto L577;
+L314:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L338:          BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
+L374:          bool mbool5 = mBP_PlayerController;
+L403:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L454:          mBP_RemoteCallObject->Server_PayOffOnSchematic(this->mSchematic, InventorySlot->mCachedInventoryComponent, InventorySlot->mSlotIdx);
+L561:          bool Result = true;
+L572:          <End of Inlined Event Graph Function>;
+L577:          Result = false;
+============ END FUNCTION DropOntoInventorySlot ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSlotBackgroundBrush ==============
+L0:            bool mbool = EqualEqual_IntInt(this->mCurrentPaidOff, this->mItemAmount.amount);
+L47:           if (!mbool) goto L597;
+L61:           this->StopAnimation(this->AniDragDropSlot);
+L80:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L135:          mSlateBrush.ImageSize = this->PayOffSlotBG->Brush.ImageSize;
+L202:          mSlateBrush.Margin = this->PayOffSlotBG->Brush.Margin;
+L269:          mSlateBrush.TintColor = mSlateColor;
+L305:          mSlateBrush.ResourceObject = this->PayOffSlotBG->Brush.ResourceObject;
+L364:          mSlateBrush.DrawAs = this->PayOffSlotBG->Brush.DrawAs;
+L431:          mSlateBrush.Tiling = this->PayOffSlotBG->Brush.Tiling;
+L498:          mSlateBrush.Mirroring = this->PayOffSlotBG->Brush.Mirroring;
+L565:          SlateBrush ReturnValue = mSlateBrush;
+L592:          goto L1109;
+L597:          HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L652:          mSlateBrush1.ImageSize = this->PayOffSlotBG->Brush.ImageSize;
+L719:          mSlateBrush1.Margin = this->PayOffSlotBG->Brush.Margin;
+L786:          mSlateBrush1.TintColor = mSlateColor1;
+L822:          mSlateBrush1.ResourceObject = this->PayOffSlotBG->Brush.ResourceObject;
+L881:          mSlateBrush1.DrawAs = this->PayOffSlotBG->Brush.DrawAs;
+L948:          mSlateBrush1.Tiling = this->PayOffSlotBG->Brush.Tiling;
+L1015:         mSlateBrush1.Mirroring = this->PayOffSlotBG->Brush.Mirroring;
+L1082:         ReturnValue = mSlateBrush1;
+============ END FUNCTION GetSlotBackgroundBrush ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetDarkGrayColor ==============
+L0:            HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           LinearColor ReturnValue = mLinearColor;
+============ END FUNCTION GetDarkGrayColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetProgressbarPercent ==============
+L0:            float LerpTime = 0.5;
+L23:           if (!false) goto L57;
+L29:           float ReturnValue = 1;
+L52:           goto L1226;
+L57:           float mfloat = GameplayStatics->GetWorldDeltaSeconds(this);
+L108:          float mfloat1 = Divide_FloatFloat(mfloat, LerpTime);
+L154:          float mfloat2 = Add_FloatFloat(mfloat1, this->T);
+L200:          this->T = mfloat2;
+L227:          float mfloat3 = FClamp(this->T, 0, 1);
+L274:          float mfloat4 = Conv_IntToFloat(this->mItemAmount.amount);
+L320:          float mfloat5 = Conv_IntToFloat(this->mCurrentPaidOff);
+L357:          float mfloat6 = Divide_FloatFloat(mfloat5, mfloat4);
+L403:          float mfloat7 = FClamp(mfloat6, 0, 1);
+L450:          float mfloat8 = Ease(this->LastValue, mfloat7, mfloat3, 7, 2, 2);
+L517:          bool mbool = EqualEqual_FloatFloat(mfloat8, mfloat7);
+L555:          if (!mbool) goto L909;
+L569:          mfloat3 = FClamp(this->T, 0, 1);
+L616:          mfloat4 = Conv_IntToFloat(this->mItemAmount.amount);
+L662:          mfloat5 = Conv_IntToFloat(this->mCurrentPaidOff);
+L699:          mfloat6 = Divide_FloatFloat(mfloat5, mfloat4);
+L745:          mfloat7 = FClamp(mfloat6, 0, 1);
+L792:          mfloat8 = Ease(this->LastValue, mfloat7, mfloat3, 7, 2, 2);
+L859:          this->LastValue = mfloat8;
+L886:          this->T = 0;
+L909:          mfloat3 = FClamp(this->T, 0, 1);
+L956:          mfloat4 = Conv_IntToFloat(this->mItemAmount.amount);
+L1002:         mfloat5 = Conv_IntToFloat(this->mCurrentPaidOff);
+L1039:         mfloat6 = Divide_FloatFloat(mfloat5, mfloat4);
+L1085:         mfloat7 = FClamp(mfloat6, 0, 1);
+L1132:         mfloat8 = Ease(this->LastValue, mfloat7, mfloat3, 7, 2, 2);
+L1199:         ReturnValue = mfloat8;
+============ END FUNCTION GetProgressbarPercent ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetTextboxFormating ==============
+L0:            bool mbool = Greater_IntInt(this->mCurrentPaidOff, 0);
+L34:           if (!mbool) goto L313;
+L48:           OverlaySlot* mOverlaySlot = WidgetLayoutLibrary->SlotAsOverlaySlot(this->TextboxContainer);
+L99:           mOverlaySlot->SetHorizontalAlignment(0);
+L133:          this->TextboxContainer->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 1));
+L189:          this->mStackSizeLbl->SetJustification(1);
+L223:          OverlaySlot* mOverlaySlot1 = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mStackSizeLbl);
+L274:          mOverlaySlot1->SetHorizontalAlignment(0);
+L308:          <End of Inlined Event Graph Function>;
+L313:          mOverlaySlot = WidgetLayoutLibrary->SlotAsOverlaySlot(this->TextboxContainer);
+L364:          mOverlaySlot->SetHorizontalAlignment(3);
+L398:          this->TextboxContainer->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 1, Y = 1));
+L454:          this->mStackSizeLbl->SetJustification(2);
+L488:          mOverlaySlot1 = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mStackSizeLbl);
+L539:          mOverlaySlot1->SetHorizontalAlignment(3);
+============ END FUNCTION SetTextboxFormating ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCustomTooltip ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController);
+L85:           KismetSystemLibrary->SetStructurePropertyByName(mWidget_Tooltip, "mItemDescriptor", [ref] this->mItemAmount);
+L148:          Widget* ReturnValue = mWidget_Tooltip;
+============ END FUNCTION GetCustomTooltip ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPaidOffSlotVisibility ==============
+L0:            bool mbool = EqualEqual_IntInt(this->mItemAmount.amount, this->mCurrentPaidOff);
+L47:           if (!mbool) goto L86;
+L61:           uint8 ReturnValue = 2;
+L81:           goto L106;
+L86:           ReturnValue = 3;
+============ END FUNCTION GetPaidOffSlotVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetProgressBarVisibility ==============
+L0:            bool mbool = EqualEqual_IntInt(this->mItemAmount.amount, this->mCurrentPaidOff);
+L47:           bool mbool1 = LessEqual_IntInt(this->mCurrentPaidOff, 1);
+L81:           bool mbool2 = BooleanOR(mbool1, mbool);
+L119:          if (!mbool2) goto L158;
+L133:          uint8 ReturnValue = 2;
+L153:          goto L178;
+L158:          ReturnValue = 3;
+============ END FUNCTION GetProgressBarVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPaidOffColorFeedback ==============
+L0:            float mfloat = Conv_IntToFloat(this->mCurrentPaidOff);
+L37:           float mfloat1 = FClamp(mfloat, 0, 1);
+L84:           LinearColor mLinearColor = LinearColorLerp(ScriptStruct /Script/CoreUObject.LinearColor(R = 0.6038280129432678, G = 0.5972020030021667, B = 0.5972020030021667, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0.9943370223045349, B = 0.9166669845581055, A = 1), mfloat1);
+L189:          mSlateColor.SpecifiedColor = mLinearColor;
+L225:          mSlateColor.ColorUseRule = 0;
+L254:          SlateColor ReturnValue = mSlateColor;
+============ END FUNCTION GetPaidOffColorFeedback ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPaidOffFeedbackImage ==============
+L0:            bool mbool = EqualEqual_IntInt(this->mCurrentPaidOff, this->mItemAmount.amount);
+L47:           if (!mbool) goto L86;
+L61:           uint8 ReturnValue = 3;
+L81:           goto L106;
+L86:           ReturnValue = 2;
+============ END FUNCTION GetPaidOffFeedbackImage ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDrop ==============
+L0:            int32 numToPayOff = 0;
+L23:           BP_DragNDropInventory* mBP_DragNDropInventory = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/BP_DragNDropInventory.BP_DragNDropInventory_C>(Operation);
+L59:           bool mbool = mBP_DragNDropInventory;
+L88:           if (!mbool) goto L259;
+L102:          Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mBP_DragNDropInventory->payload);
+L160:          bool mbool1 = mWidget_InventorySlot;
+L189:          if (!mbool1) goto L275;
+L203:          this->DropOntoInventorySlot(mWidget_InventorySlot, [ref] mbool2);
+L235:          bool ReturnValue = mbool2;
+L254:          goto L286;
+L259:          ReturnValue = false;
+L270:          goto L286;
+L275:          ReturnValue = false;
+============ END FUNCTION OnDrop ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemQuotaText ==============
+L0:            bool mbool = Greater_IntInt(this->mCurrentPaidOff, 0);
+L34:           if (!mbool) goto L608;
+L48:           this->SetTextboxFormating();
+L62:           mFormatArgumentData.ArgumentName = "1";
+L92:           mFormatArgumentData.ArgumentValueType = 0;
+L121:          mFormatArgumentData.ArgumentValue = ;
+L150:          mFormatArgumentData.ArgumentValueInt = this->mItemAmount.amount;
+L195:          mFormatArgumentData.ArgumentValueFloat = 0;
+L227:          mFormatArgumentData.ArgumentValueGender = 0;
+L256:          mFormatArgumentData1.ArgumentName = "0";
+L286:          mFormatArgumentData1.ArgumentValueType = 0;
+L315:          mFormatArgumentData1.ArgumentValue = ;
+L344:          mFormatArgumentData1.ArgumentValueInt = this->mCurrentPaidOff;
+L380:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L412:          mFormatArgumentData1.ArgumentValueGender = 0;
+L441:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
+L470:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L576:          FText ReturnValue = mFText;
+L603:          goto L729;
+L608:          this->SetTextboxFormating();
+L622:          FText mFText1 = KismetTextLibrary->Conv_IntToText(this->mItemAmount.amount, false, true, 1, 324);
+L702:          ReturnValue = mFText1;
+============ END FUNCTION GetItemQuotaText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemText ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mItemAmount.ItemClass);
+L60:           if (!mbool) goto L174;
+L74:           FText mFText = FGItemDescriptor->GetItemName(this->mItemAmount.ItemClass);
+L142:          FText ReturnValue = mFText;
+L169:          goto L194;
+L174:          ReturnValue = ;
+============ END FUNCTION GetItemText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemImage ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mItemAmount.ItemClass);
+L60:           if (!mbool) goto L596;
+L74:           Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(this->mItemAmount.ItemClass);
+L134:          mSlateBrush.ImageSize = this->mItemImage->Brush.ImageSize;
+L201:          mSlateBrush.Margin = this->mItemImage->Brush.Margin;
+L268:          mSlateBrush.TintColor = this->mItemImage->Brush.TintColor;
+L335:          mSlateBrush.ResourceObject = mTexture2D;
+L363:          mSlateBrush.DrawAs = this->mItemImage->Brush.DrawAs;
+L430:          mSlateBrush.Tiling = this->mItemImage->Brush.Tiling;
+L497:          mSlateBrush.Mirroring = this->mItemImage->Brush.Mirroring;
+L564:          SlateBrush ReturnValue = mSlateBrush;
+L591:          goto L824;
+L596:          ReturnValue = ScriptStruct /Script/SlateCore.SlateBrush(ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 32, Y = 32), Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0), TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0), ResourceObject = nullptr, ResourceName = "None", UVRegion = ScriptStruct /Script/CoreUObject.Box2D(Min = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), Max = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), bIsValid = 0), DrawAs = 3, Tiling = 0, Mirroring = 0, ImageType = 0, bIsDynamicallyLoaded = false, bHasUObject = false);
+============ END FUNCTION GetItemImage ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_TradingPostPayOffSlot(875);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSchematicPaidOff ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPostPayOffSlot.Widget_TradingPostPayOffSlot_C:ExecuteUbergraph_Widget_TradingPostPayOffSlot.K2Node_CustomEvent_SchematicManager) = schematicManager;
+L18:           this->ExecuteUbergraph_Widget_TradingPostPayOffSlot(1197);
+============ END FUNCTION OnSchematicPaidOff ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_TradingPostPayOffSlot(1202);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPostPayOffSlot.Widget_TradingPostPayOffSlot_C:ExecuteUbergraph_Widget_TradingPostPayOffSlot.K2Node_Event_MyGeometry1) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPostPayOffSlot.Widget_TradingPostPayOffSlot_C:ExecuteUbergraph_Widget_TradingPostPayOffSlot.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_TradingPostPayOffSlot(1361);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseEnter ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPostPayOffSlot.Widget_TradingPostPayOffSlot_C:ExecuteUbergraph_Widget_TradingPostPayOffSlot.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPostPayOffSlot.Widget_TradingPostPayOffSlot_C:ExecuteUbergraph_Widget_TradingPostPayOffSlot.K2Node_Event_MouseEvent) = MouseEvent;
+L36:           this->ExecuteUbergraph_Widget_TradingPostPayOffSlot(1390);
+============ END FUNCTION OnMouseEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_TradingPostPayOffSlot ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->StopEmptyAnim();
+L29:           goto ExecutionFlow.Pop();
+L30:           bool Temp_bool_True_if_break_was_hit_Variable = false;
+L41:           int32 Temp_int_Loop_Counter_Variable = 0;
+L64:           int32 Temp_int_Array_Index_Variable = 0;
+L87:           bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L116:          TArray<ItemAmount> mTArray<ItemAmount> = mFGSchematicManager->GetPaidOffCostFor(this->mSchematic);
+L175:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L234:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L272:          bool mbool2 = BooleanAND(mbool, mbool1);
+L310:          if (!mbool2) goto L706;
+L324:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L351:          ExecutionFlow.Push(L801);
+L356:          mTArray<ItemAmount> = mFGSchematicManager->GetPaidOffCostFor(this->mSchematic);
+L415:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L474:          bool mbool3 = EqualEqual_ClassClass(mItemAmount.ItemClass, this->mItemAmount.ItemClass);
+L530:          if (!mbool3) goto ExecutionFlow.Pop();
+L540:          mTArray<ItemAmount> = mFGSchematicManager->GetPaidOffCostFor(this->mSchematic);
+L599:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L658:          this->mCurrentPaidOff = mItemAmount.amount;
+L694:          Temp_bool_True_if_break_was_hit_Variable = true;
+L705:          goto ExecutionFlow.Pop();
+L706:          bool mbool4 = EqualEqual_IntInt(this->mCurrentPaidOff, 0);
+L740:          if (!mbool4) goto L15;
+L754:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->EmptyAnim, 0, 0, 0, 1);
+L800:          goto ExecutionFlow.Pop();
+L801:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L843:          Temp_int_Loop_Counter_Variable = mint321;
+L870:          goto L87;
+L875:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->AniDragDropSlot, 0, 0, 0, 1);
+L921:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L964:          mFScriptDelegate->BindUFunction(this, OnSchematicPaidOff);
+L987:          FGSchematicManager* mFGSchematicManager1 = FGSchematicManager->Get(mGameStateBase);
+L1038:         mFGSchematicManager1->PaidOffOnSchematicDelegate.AddUnique(mFScriptDelegate);
+L1079:         mGameStateBase = GameplayStatics->GetGameState(this);
+L1122:         mFGSchematicManager1 = FGSchematicManager->Get(mGameStateBase);
+L1173:         this->OnSchematicPaidOff(mFGSchematicManager1);
+L1196:         goto ExecutionFlow.Pop();
+L1197:         goto L30;
+L1202:         GameStateBase* mGameStateBase1 = GameplayStatics->GetGameState(this);
+L1245:         mFScriptDelegate1->BindUFunction(this, OnSchematicPaidOff);
+L1268:         FGSchematicManager* mFGSchematicManager2 = FGSchematicManager->Get(mGameStateBase1);
+L1319:         mFGSchematicManager2->PaidOffOnSchematicDelegate.Remove(mFScriptDelegate1);
+L1360:         goto ExecutionFlow.Pop();
+L1361:         this->Tick(mGeometry, mfloat);
+L1389:         goto ExecutionFlow.Pop();
+L1390:         Pawn* mPawn = this->GetOwningPlayerPawn();
+L1410:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_MouseOver, mPawn, true);
+L1471:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_TradingPostPayOffSlot ==============

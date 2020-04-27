@@ -1,0 +1,809 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateBeaconViewDistances ==============
+L0:            ExecutionFlow.Push(L726);
+L5:            bool mbool = GreaterEqual_IntInt(this->mBeaconInt, 0);
+L39:           if (!mbool) goto ExecutionFlow.Pop();
+L49:           int32 Temp_int_Loop_Counter_Variable = 0;
+L72:           int32 Temp_int_Array_Index_Variable = 0;
+L95:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mFilterCategories[this->mBeaconInt].ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212);
+L173:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L211:          if (!mbool1) goto ExecutionFlow.Pop();
+L221:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L248:          ExecutionFlow.Push(L652);
+L253:          Widget* mWidget = this->Widget_Map_Filters_Container->mBeaconContainer->GetChildAt(Temp_int_Array_Index_Variable);
+L326:          Widget_BeaconViewdistanceSlider* mWidget_BeaconViewdistanceSlider = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Minimap/MapFilters/Widget_BeaconViewdistanceSlider.Widget_BeaconViewdistanceSlider_C>(mWidget);
+L362:          bool mbool2 = mWidget_BeaconViewdistanceSlider;
+L391:          if (!mbool2) goto ExecutionFlow.Pop();
+L401:          KismetArrayLibrary->Array_Get([ref] this->mFilterCategories[this->mBeaconInt].ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212, Temp_int_Array_Index_Variable, [ref] mFGActorRepresentation);
+L479:          uint8 muint8 = mFGActorRepresentation->GetCompassViewDistance();
+L529:          int32 mint321 = Conv_ByteToInt(muint8);
+L566:          mWidget_BeaconViewdistanceSlider->mSelectedLevel = mint321;
+L615:          mWidget_BeaconViewdistanceSlider->UpdateSelectedLevel();
+L651:          goto ExecutionFlow.Pop();
+L652:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L694:          Temp_int_Loop_Counter_Variable = mint322;
+L721:          goto L95;
+============ END FUNCTION UpdateBeaconViewDistances ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupBeaconBindings ==============
+L0:            mFScriptDelegate->BindUFunction(this, OnBeaconViewDistanceChanged);
+L23:           WidgetBeaconViewdistanceSlider->OnViewDistanceChanged.AddUnique(mFScriptDelegate);
+L64:           mFScriptDelegate1->BindUFunction(this, OnBeaconHovered);
+L87:           WidgetBeaconViewdistanceSlider->OnHovered.AddUnique(mFScriptDelegate1);
+L128:          mFScriptDelegate2->BindUFunction(this, OnBeaconUnhovered);
+L151:          WidgetBeaconViewdistanceSlider->OnUnhovered.AddUnique(mFScriptDelegate2);
+L192:          mFScriptDelegate3->BindUFunction(this, OnBeaconVeiwDistanceHovered);
+L215:          WidgetBeaconViewdistanceSlider->OnViewDistanceHovered.AddUnique(mFScriptDelegate3);
+L256:          mFScriptDelegate4->BindUFunction(this, OnBeaconViewDistanceUnhovered);
+L279:          WidgetBeaconViewdistanceSlider->OnViewDistanceUnhovered.AddUnique(mFScriptDelegate4);
+============ END FUNCTION SetupBeaconBindings ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearSearch ==============
+L0:            this->Widget_Map_Filters_Container->mBeaconContainer->SetVisibility(0);
+L60:           this->Widget_Map_Filters_Container->mBeaconSearchResults->SetVisibility(1);
+L120:          this->Widget_Map_Filters_Container->Widget_InputBox->InputText->SetText();
+L202:          this->UpdateBeaconViewDistances();
+============ END FUNCTION ClearSearch ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateSearchResults ==============
+L0:            ExecutionFlow.Push(L1749);
+L5:            this->Widget_Map_Filters_Container->mBeaconContainer->SetVisibility(1);
+L65:           this->Widget_Map_Filters_Container->mBeaconSearchResults->SetVisibility(0);
+L125:          this->Widget_Map_Filters_Container->mBeaconSearchResults->ClearChildren();
+L183:          int32 Temp_int_Loop_Counter_Variable = 0;
+L206:          int32 Temp_int_Array_Index_Variable = 0;
+L229:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mFilterCategories[this->mBeaconInt].ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212);
+L307:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L345:          if (!mbool) goto L1466;
+L359:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L386:          ExecutionFlow.Push(L1595);
+L391:          KismetSystemLibrary->PrintString(this, "work pls?", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L476:          int32 LocalBeaconInt = Temp_int_Array_Index_Variable;
+L503:          KismetArrayLibrary->Array_Get([ref] this->mFilterCategories[this->mBeaconInt].ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212, Temp_int_Array_Index_Variable, [ref] mFGActorRepresentation);
+L581:          FGActorRepresentation* LocalActorRepresentation = mFGActorRepresentation;
+L600:          FText mFText = LocalActorRepresentation->GetRepresentationText();
+L650:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L709:          FString mFString1 = KismetTextLibrary->Conv_TextToString([ref] text);
+L768:          bool mbool1 = KismetStringLibrary->Contains(mFString, mFString1, false, false);
+L830:          if (!mbool1) goto L1669;
+L844:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalActorArray, [ref] LocalActorRepresentation);
+L912:          KismetArrayLibrary->Array_Get([ref] this->mFilterCategories[this->mBeaconInt].MapObject_10_E7619CDE4C223F0B26B78DA3C3602333, LocalBeaconInt, [ref] mWidget_MapObject);
+L990:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] LocalObjectArray, [ref] mWidget_MapObject);
+L1058:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1082:         Widget_BeaconViewdistanceSlider* mWidget_BeaconViewdistanceSlider = WidgetBlueprintLibrary->Create(this, Widget_BeaconViewdistanceSlider, mPlayerController);
+L1143:         FText mFText1 = LocalActorRepresentation->GetRepresentationText();
+L1193:         KismetSystemLibrary->SetTextPropertyByName(mWidget_BeaconViewdistanceSlider, "mName", [ref] mFText1);
+L1256:         uint8 muint8 = LocalActorRepresentation->GetCompassViewDistance();
+L1306:         KismetSystemLibrary->SetBytePropertyByName(mWidget_BeaconViewdistanceSlider, "mCompassViewDistance", muint8);
+L1369:         PanelSlot* mPanelSlot = this->Widget_Map_Filters_Container->mBeaconSearchResults->AddChild(mWidget_BeaconViewdistanceSlider);
+L1442:         this->SetupBeaconBindings(mWidget_BeaconViewdistanceSlider);
+L1465:         goto ExecutionFlow.Pop();
+L1466:         mMapFilterStruct.RepresentationType_3_5D457985464D101149CAEF83656C9370 = 1;
+L1495:         mMapFilterStruct.ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212 = LocalActorArray;
+L1531:         mMapFilterStruct.MapObject_10_E7619CDE4C223F0B26B78DA3C3602333 = LocalObjectArray;
+L1567:         this->mBeaconSearchResult = mMapFilterStruct;
+L1594:         goto ExecutionFlow.Pop();
+L1595:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1637:         Temp_int_Loop_Counter_Variable = mint323;
+L1664:         goto L229;
+L1669:         KismetSystemLibrary->PrintString(this, "wat", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L1748:         goto ExecutionFlow.Pop();
+============ END FUNCTION PopulateSearchResults ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetBeacons ==============
+L0:            uint8 muint8 = this->Widget_Map_Filters_Container->mBeaconSearchResults->GetVisibility();
+L72:           uint8 Temp_byte_Variable = muint8;
+L99:           MapFilterStruct BeaconCategory = switch (Temp_byte_Variable) {
+case 0 -> this->mBeaconSearchResult;
+case 1 -> this->mFilterCategories[this->mBeaconInt];
+case 2 -> this->mFilterCategories[this->mBeaconInt];
+case 3 -> this->mBeaconSearchResult;
+case 4 -> this->mBeaconSearchResult;
+default -> mMapFilterStruct;
+};
+============ END FUNCTION GetBeacons ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddChildToBeacons ==============
+L0:            uint8 muint8 = actorRepresentation->GetRepresentationType();
+L50:           bool mbool = EqualEqual_ByteByte(muint8, 1);
+L81:           if (!mbool) goto L474;
+L95:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L119:          Widget_BeaconViewdistanceSlider* mWidget_BeaconViewdistanceSlider = WidgetBlueprintLibrary->Create(this, Widget_BeaconViewdistanceSlider, mPlayerController);
+L180:          FText mFText = actorRepresentation->GetRepresentationText();
+L230:          KismetSystemLibrary->SetTextPropertyByName(mWidget_BeaconViewdistanceSlider, "mName", [ref] mFText);
+L293:          uint8 muint81 = actorRepresentation->GetCompassViewDistance();
+L343:          KismetSystemLibrary->SetBytePropertyByName(mWidget_BeaconViewdistanceSlider, "mCompassViewDistance", muint81);
+L406:          this->Widget_Map_Filters_Container->AddChildToBeacons(mWidget_BeaconViewdistanceSlider);
+L451:          this->SetupBeaconBindings(mWidget_BeaconViewdistanceSlider);
+============ END FUNCTION AddChildToBeacons ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveActorRepresentationFromFilterCategories ==============
+L0:            ExecutionFlow.Push(L1455);
+L5:            uint8 LocalRepresentationType = 0;
+L25:           uint8 muint8 = actorRepresentation->GetRepresentationType();
+L75:           LocalRepresentationType = muint8;
+L102:          int32 Temp_int_Loop_Counter_Variable = 0;
+L125:          int32 Temp_int_Array_Index_Variable1 = 0;
+L148:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mFilterCategories);
+L207:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L245:          if (!mbool) goto ExecutionFlow.Pop();
+L255:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
+L282:          ExecutionFlow.Push(L1006);
+L287:          int32 LocalFilterCategoryInt = Temp_int_Array_Index_Variable1;
+L314:          KismetArrayLibrary->Array_Get([ref] this->mFilterCategories, Temp_int_Array_Index_Variable1, [ref] mMapFilterStruct);
+L373:          MapFilterStruct LocalFilterCategory = mMapFilterStruct;
+L400:          bool mbool1 = EqualEqual_ByteByte(LocalFilterCategory.RepresentationType_3_5D457985464D101149CAEF83656C9370, LocalRepresentationType);
+L447:          if (!mbool1) goto ExecutionFlow.Pop();
+L457:          bool Temp_bool_True_if_break_was_hit_Variable = false;
+L468:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L491:          int32 Temp_int_Array_Index_Variable = 0;
+L514:          bool mbool2 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L543:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] LocalFilterCategory.ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212);
+L611:          bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint321);
+L649:          bool mbool4 = BooleanAND(mbool2, mbool3);
+L687:          if (!mbool4) goto L1080;
+L701:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
+L728:          ExecutionFlow.Push(L1381);
+L733:          int32 LocalActorRepresentationInt = Temp_int_Array_Index_Variable;
+L760:          KismetArrayLibrary->Array_Get([ref] LocalFilterCategory.ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212, Temp_int_Array_Index_Variable, [ref] mFGActorRepresentation);
+L828:          bool mbool5 = EqualEqual_ObjectObject(mFGActorRepresentation, actorRepresentation);
+L866:          if (!mbool5) goto ExecutionFlow.Pop();
+L876:          KismetArrayLibrary->Array_Remove([ref] LocalFilterCategory.ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212, LocalActorRepresentationInt);
+L935:          KismetArrayLibrary->Array_Remove([ref] LocalFilterCategory.MapObject_10_E7619CDE4C223F0B26B78DA3C3602333, LocalActorRepresentationInt);
+L994:          Temp_bool_True_if_break_was_hit_Variable = true;
+L1005:         goto ExecutionFlow.Pop();
+L1006:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1048:         Temp_int_Loop_Counter_Variable = mint322;
+L1075:         goto L148;
+L1080:         int32 mint323 = KismetArrayLibrary->Array_Length([ref] LocalFilterCategory.ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212);
+L1148:         bool mbool6 = Less_IntInt(mint323, 1);
+L1182:         if (!mbool6) goto L1320;
+L1196:         KismetArrayLibrary->Array_Remove([ref] this->mFilterCategories, LocalFilterCategoryInt);
+L1246:         bool mbool7 = this->Widget_Map_Filters_Container->mFilterContainer->RemoveChildAt(LocalFilterCategoryInt);
+L1319:         goto ExecutionFlow.Pop();
+L1320:         KismetArrayLibrary->Array_Set([ref] this->mFilterCategories, LocalFilterCategoryInt, [ref] LocalFilterCategory, false);
+L1380:         goto ExecutionFlow.Pop();
+L1381:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1423:         Temp_int_Loop_Counter_Variable1 = mint324;
+L1450:         goto L514;
+============ END FUNCTION RemoveActorRepresentationFromFilterCategories ==============
+
+
+
+
+
+============ BEGIN FUNCTION UglyFixForActorName ==============
+L0:            FString mFString = KismetNodeHelperLibrary->GetEnumeratorUserFriendlyName(ERepresentationType, actorRepresentation);
+L68:           uint8 Temp_byte_Variable = actorRepresentation;
+L95:           FString mFString1 = KismetStringLibrary->Replace(mFString, "RT_", "", 0);
+L163:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString1);
+L222:          FText Temp_text_Variable = "[object Object]";
+L294:          FText Temp_text_Variable1 = "[object Object]";
+L360:          FText Temp_text_Variable2 = "[object Object]";
+L432:          FText Temp_text_Variable3 = "[object Object]";
+L496:          FText Temp_text_Variable4 = "[object Object]";
+L566:          FText Temp_text_Variable5 = "[object Object]";
+L638:          FText Temp_text_Variable6 = "[object Object]";
+L705:          FText Temp_text_Variable7 = "[object Object]";
+L775:          FText Temp_text_Variable8 = "[object Object]";
+L840:          FText Temp_text_Variable9 = "[object Object]";
+L902:          FText Temp_text_Variable10 = "[object Object]";
+L963:          FText Temp_text_Variable11 = "[object Object]";
+L1027:         FText Temp_text_Variable12 = "[object Object]";
+L1092:         FText Temp_text_Variable13 = "[object Object]";
+L1155:         FText mFText1 = KismetTextLibrary->GetEmptyText();
+L1205:         bool mbool = KismetTextLibrary->EqualEqual_IgnoreCase_TextText([ref] switch (Temp_byte_Variable) {
+case 0 -> Temp_text_Variable13;
+case 1 -> Temp_text_Variable12;
+case 2 -> Temp_text_Variable11;
+case 3 -> Temp_text_Variable10;
+case 4 -> Temp_text_Variable9;
+case 5 -> Temp_text_Variable8;
+case 6 -> Temp_text_Variable7;
+case 7 -> Temp_text_Variable6;
+case 8 -> Temp_text_Variable5;
+case 9 -> Temp_text_Variable4;
+case 10 -> Temp_text_Variable3;
+case 11 -> Temp_text_Variable2;
+case 12 -> Temp_text_Variable1;
+case 13 -> Temp_text_Variable;
+default -> mFText2;
+}, [ref] mFText1);
+L1491:         bool Temp_bool_Variable = mbool;
+L1510:         FText ReturnValue = switch (Temp_bool_Variable) {
+case false -> switch (Temp_byte_Variable) {
+case 0 -> Temp_text_Variable13;
+case 1 -> Temp_text_Variable12;
+case 2 -> Temp_text_Variable11;
+case 3 -> Temp_text_Variable10;
+case 4 -> Temp_text_Variable9;
+case 5 -> Temp_text_Variable8;
+case 6 -> Temp_text_Variable7;
+case 7 -> Temp_text_Variable6;
+case 8 -> Temp_text_Variable5;
+case 9 -> Temp_text_Variable4;
+case 10 -> Temp_text_Variable3;
+case 11 -> Temp_text_Variable2;
+case 12 -> Temp_text_Variable1;
+case 13 -> Temp_text_Variable;
+default -> mFText2;
+};
+case true -> mFText;
+default -> mFText3;
+};
+============ END FUNCTION UglyFixForActorName ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateMapObjectVisibility ==============
+L0:            bool localVisible = false;
+============ END FUNCTION UpdateMapObjectVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCompassRepresentation ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L63:           bool mbool = mFGActorRepresentationManager->GetCompassRepresentationTypeFilter(mPawn, Type);
+L123:          bool ReturnValue = mbool;
+============ END FUNCTION GetCompassRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetMapRepresentation ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L63:           bool mbool = mFGActorRepresentationManager->GetMapRepresentationTypeFilter(mPawn, Type);
+L123:          bool ReturnValue = mbool;
+============ END FUNCTION GetMapRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetCompassRepresentation ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L63:           mFGActorRepresentationManager->SetCompassRepresentationTypeFilter(mPawn, Type, visible);
+============ END FUNCTION SetCompassRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetMapRepresentation ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L63:           mFGActorRepresentationManager->SetMapRepresentationTypeFilter(mPawn, Type, visible);
+============ END FUNCTION SetMapRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIndexInParent ==============
+L0:            PanelWidget* mPanelWidget = Widget->GetParent();
+L42:           int32 mint32 = mPanelWidget->GetChildIndex(Widget);
+L101:          int32 ReturnValue = mint32;
+============ END FUNCTION GetIndexInParent ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddUniqueToFilterCategories ==============
+L0:            ExecutionFlow.Push(L1416);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mFilterCategories);
+L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L148:          if (!mbool) goto L938;
+L162:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L189:          ExecutionFlow.Push(L1342);
+L194:          KismetArrayLibrary->Array_Get([ref] this->mFilterCategories, Temp_int_Array_Index_Variable, [ref] mMapFilterStruct);
+L253:          TArray<FGActorRepresentation*> LocalRepresentationArray = mMapFilterStruct.ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212;
+L289:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalRepresentationArray, [ref] actorRepresentation);
+L357:          KismetArrayLibrary->Array_Get([ref] this->mFilterCategories, Temp_int_Array_Index_Variable, [ref] mMapFilterStruct);
+L416:          TArray<Widget_MapObject*> LocalMapObjectArray = mMapFilterStruct.MapObject_10_E7619CDE4C223F0B26B78DA3C3602333;
+L452:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] LocalMapObjectArray, [ref] WidgetMapObject);
+L520:          uint8 muint8 = actorRepresentation->GetRepresentationType();
+L570:          KismetArrayLibrary->Array_Get([ref] this->mFilterCategories, Temp_int_Array_Index_Variable, [ref] mMapFilterStruct);
+L629:          bool mbool1 = EqualEqual_ByteByte(muint8, mMapFilterStruct.RepresentationType_3_5D457985464D101149CAEF83656C9370);
+L676:          if (!mbool1) goto ExecutionFlow.Pop();
+L686:          KismetArrayLibrary->Array_Get([ref] this->mFilterCategories, Temp_int_Array_Index_Variable, [ref] mMapFilterStruct);
+L745:          mMapFilterStruct1.RepresentationType_3_5D457985464D101149CAEF83656C9370 = mMapFilterStruct.RepresentationType_3_5D457985464D101149CAEF83656C9370;
+L790:          mMapFilterStruct1.ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212 = LocalRepresentationArray;
+L826:          mMapFilterStruct1.MapObject_10_E7619CDE4C223F0B26B78DA3C3602333 = LocalMapObjectArray;
+L862:          KismetArrayLibrary->Array_Set([ref] this->mFilterCategories, Temp_int_Array_Index_Variable, [ref] mMapFilterStruct1, false);
+L922:          bool CreatedNewCategory = false;
+L933:          <End of Inlined Event Graph Function>;
+L938:          TArray<Widget_MapObject*> mTArray<Widget_MapObject> = [WidgetMapObject];
+L958:          TArray<FGActorRepresentation*> mTArray<FGActorRepresentation> = [actorRepresentation];
+L978:          uint8 muint81 = actorRepresentation->GetRepresentationType();
+L1028:         mMapFilterStruct2.RepresentationType_3_5D457985464D101149CAEF83656C9370 = muint81;
+L1064:         mMapFilterStruct2.ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212 = mTArray<FGActorRepresentation>;
+L1100:         mMapFilterStruct2.MapObject_10_E7619CDE4C223F0B26B78DA3C3602333 = mTArray<Widget_MapObject>;
+L1136:         int32 mint323 = KismetArrayLibrary->Array_Add([ref] this->mFilterCategories, [ref] mMapFilterStruct2);
+L1204:         uint8 muint82 = actorRepresentation->GetRepresentationType();
+L1254:         bool mbool2 = EqualEqual_ByteByte(muint82, 1);
+L1285:         if (!mbool2) goto L1326;
+L1299:         this->mBeaconInt = mint323;
+L1326:         CreatedNewCategory = true;
+L1337:         <End of Inlined Event Graph Function>;
+L1342:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1384:         Temp_int_Loop_Counter_Variable = mint324;
+L1411:         goto L51;
+============ END FUNCTION AddUniqueToFilterCategories ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddChildToFilters ==============
+L0:            bool MapRepresentation = false;
+L11:           bool CompassRepresentation = false;
+L22:           bool mbool = this->GetMapRepresentation(actorRepresentation);
+L55:           MapRepresentation = mbool;
+L74:           bool mbool1 = this->GetCompassRepresentation(actorRepresentation);
+L107:          CompassRepresentation = mbool1;
+L126:          FText mFText = this->UglyFixForActorName(actorRepresentation);
+L167:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L191:          Widget_FilterButton* mWidget_FilterButton = WidgetBlueprintLibrary->Create(this, Widget_FilterButton, mPlayerController);
+L252:          KismetSystemLibrary->SetTextPropertyByName(mWidget_FilterButton, "mName", [ref] mFText);
+L315:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_FilterButton, "mShowOnCompass", CompassRepresentation);
+L378:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_FilterButton, "mShowOnMap", MapRepresentation);
+L441:          this->Widget_Map_Filters_Container->AddChildToFilters(mWidget_FilterButton);
+L486:          mFScriptDelegate->BindUFunction(this, OnFilterHovered);
+L509:          mWidget_FilterButton->OnHovered.AddUnique(mFScriptDelegate);
+L550:          mFScriptDelegate1->BindUFunction(this, OnFilterUnhovered);
+L573:          mWidget_FilterButton->OnUnhovered.AddUnique(mFScriptDelegate1);
+L614:          mFScriptDelegate2->BindUFunction(this, onFilterShowOnMapChanged);
+L637:          mWidget_FilterButton->mShowOnMapChanged.AddUnique(mFScriptDelegate2);
+L678:          mFScriptDelegate3->BindUFunction(this, onFilterShowOnCompassChanged);
+L701:          mWidget_FilterButton->mShowOnCompassChanged.AddUnique(mFScriptDelegate3);
+============ END FUNCTION AddChildToFilters ==============
+
+
+
+
+
+============ BEGIN FUNCTION NormalizedValueToZoomValue ==============
+L0:            float mfloat = Subtract_FloatFloat(this->Widget_Map->mMaxZoom, this->Widget_Map->mMinZoom);
+L90:           float mfloat1 = Multiply_FloatFloat(NormalizedValue, mfloat);
+L136:          float mfloat2 = Add_FloatFloat(mfloat1, this->Widget_Map->mMinZoom);
+L204:          Vector2D mVector2D = MakeVector2D(mfloat2, mfloat2);
+L250:          Vector2D ZoomValue = mVector2D;
+============ END FUNCTION NormalizedValueToZoomValue ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateZoomSlider ==============
+L0:            BreakVector2D(this->Widget_Map->mMapZoomContainer->RenderTransform.Scale, [ref] mfloat, [ref] mfloat1);
+L90:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 1, 1);
+L173:          mFormatArgumentData.ArgumentName = "Zoom";
+L206:          mFormatArgumentData.ArgumentValueType = 4;
+L235:          mFormatArgumentData.ArgumentValue = mFText;
+L271:          mFormatArgumentData.ArgumentValueInt = 0;
+L303:          mFormatArgumentData.ArgumentValueFloat = 0;
+L335:          mFormatArgumentData.ArgumentValueGender = 0;
+L364:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L384:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L490:          this->mZoomText->SetText(mFText1);
+L535:          float mfloat2 = Subtract_FloatFloat(this->Widget_Map->mMaxZoom, this->Widget_Map->mMinZoom);
+L625:          BreakVector2D(this->Widget_Map->mMapZoomContainer->RenderTransform.Scale, [ref] mfloat, [ref] mfloat1);
+L715:          float mfloat3 = Subtract_FloatFloat(mfloat, this->Widget_Map->mMinZoom);
+L783:          float mfloat4 = Divide_FloatFloat(mfloat3, mfloat2);
+L829:          this->mZoomSlider->SetValue(mfloat4);
+============ END FUNCTION UpdateZoomSlider ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetOpenMap ==============
+L0:            this->IsMapOpen = OpenMap;
+============ END FUNCTION SetOpenMap ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_MapContainer(1333);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION CloseMap ==============
+L0:            this->ExecuteUbergraph_Widget_MapContainer(1528);
+============ END FUNCTION CloseMap ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEscapePressed ==============
+L0:            this->ExecuteUbergraph_Widget_MapContainer(1545);
+============ END FUNCTION OnEscapePressed ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_MapContainer(1560);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mZoomSlider_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_ComponentBoundEvent_Value) = Value;
+L18:           this->ExecuteUbergraph_Widget_MapContainer(1674);
+============ END FUNCTION BndEvt__mZoomSlider_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetInputMode ==============
+L0:            this->ExecuteUbergraph_Widget_MapContainer(1752);
+============ END FUNCTION SetInputMode ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Map_K2Node_ComponentBoundEvent_1_OnObjectAddedToMapDispatch__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_ComponentBoundEvent_ActorRepresentation1) = actorRepresentation;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_ComponentBoundEvent_WidgetMapObject) = WidgetMapObject;
+L36:           this->ExecuteUbergraph_Widget_MapContainer(1860);
+============ END FUNCTION BndEvt__Widget_Map_K2Node_ComponentBoundEvent_1_OnObjectAddedToMapDispatch__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Map_K2Node_ComponentBoundEvent_2_OnObjectUpdatedOnMapDispatch__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_ComponentBoundEvent_ActorRepresentation) = actorRepresentation;
+L18:           this->ExecuteUbergraph_Widget_MapContainer(2599);
+============ END FUNCTION BndEvt__Widget_Map_K2Node_ComponentBoundEvent_2_OnObjectUpdatedOnMapDispatch__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Map_K2Node_ComponentBoundEvent_3_OnObjectRemovedFromMapDispatch__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_ComponentBoundEvent_ActorRespresentation) = ActorRespresentation;
+L18:           this->ExecuteUbergraph_Widget_MapContainer(2600);
+============ END FUNCTION BndEvt__Widget_Map_K2Node_ComponentBoundEvent_3_OnObjectRemovedFromMapDispatch__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFilterHovered ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_Instigator7) = Instigator;
+L18:           this->ExecuteUbergraph_Widget_MapContainer(3215);
+============ END FUNCTION OnFilterHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFilterUnhovered ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_Instigator6) = Instigator;
+L18:           this->ExecuteUbergraph_Widget_MapContainer(3327);
+============ END FUNCTION OnFilterUnhovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION onFilterShowOnMapChanged ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_Instigator5) = Instigator;
+L18:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_ShowOnMap) = ShowOnMap;
+L36:           this->ExecuteUbergraph_Widget_MapContainer(3393);
+============ END FUNCTION onFilterShowOnMapChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION onFilterShowOnCompassChanged ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_Instigator4) = Instigator;
+L18:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_ShowOnCompass) = ShowOnCompass;
+L36:           this->ExecuteUbergraph_Widget_MapContainer(3486);
+============ END FUNCTION onFilterShowOnCompassChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_MapContainer(3579);
+============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnBeaconViewDistanceChanged ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_Instigator3) = Instigator;
+L18:           PERSISTENT_FRAME(EnumProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_NewViewDistance) = NewViewDistance;
+L36:           this->ExecuteUbergraph_Widget_MapContainer(3584);
+============ END FUNCTION OnBeaconViewDistanceChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnBeaconHovered ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_Instigaotr) = Instigaotr;
+L18:           this->ExecuteUbergraph_Widget_MapContainer(3850);
+============ END FUNCTION OnBeaconHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnBeaconUnhovered ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_Instigator2) = Instigator;
+L18:           this->ExecuteUbergraph_Widget_MapContainer(4019);
+============ END FUNCTION OnBeaconUnhovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnBeaconVeiwDistanceHovered ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_Instigator1) = Instigator;
+L18:           PERSISTENT_FRAME(EnumProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_ViewDistance) = viewDistance;
+L36:           this->ExecuteUbergraph_Widget_MapContainer(4188);
+============ END FUNCTION OnBeaconVeiwDistanceHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnBeaconViewDistanceUnhovered ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_CustomEvent_Instigator) = Instigator;
+L18:           this->ExecuteUbergraph_Widget_MapContainer(4366);
+============ END FUNCTION OnBeaconViewDistanceUnhovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Map_Filters_Container_K2Node_ComponentBoundEvent_5_OnBeaconSearchChanged__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapContainer.Widget_MapContainer_C:ExecuteUbergraph_Widget_MapContainer.K2Node_ComponentBoundEvent_Text) = text;
+L18:           this->ExecuteUbergraph_Widget_MapContainer(4535);
+============ END FUNCTION BndEvt__Widget_Map_Filters_Container_K2Node_ComponentBoundEvent_5_OnBeaconSearchChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Map_Filters_Container_K2Node_ComponentBoundEvent_6_OnClearSearchResults__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_MapContainer(4559);
+============ END FUNCTION BndEvt__Widget_Map_Filters_Container_K2Node_ComponentBoundEvent_6_OnClearSearchResults__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_MapContainer ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L176);
+L20:           int32 mint32 = this->GetIndexInParent(mWidget_FilterButton);
+L61:           KismetArrayLibrary->Array_Get([ref] this->mFilterCategories[mint32].MapObject_10_E7619CDE4C223F0B26B78DA3C3602333, Temp_int_Array_Index_Variable1, [ref] mWidget_MapObject);
+L139:          mWidget_MapObject->HighlightOnMap();
+L175:          goto ExecutionFlow.Pop();
+L176:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L218:          int32 Temp_int_Loop_Counter_Variable1 = mint321;
+L245:          mint32 = this->GetIndexInParent(mWidget_FilterButton);
+L286:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->mFilterCategories[mint32].MapObject_10_E7619CDE4C223F0B26B78DA3C3602333);
+L364:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint322);
+L402:          if (!mbool) goto ExecutionFlow.Pop();
+L412:          int32 Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable1;
+L439:          goto L15;
+L444:          bool mbool1 = Not_PreBool(Temp_bool_Variable);
+L473:          bool Temp_bool_Variable = mbool1;
+L492:          if (!Temp_bool_Variable) goto L682;
+L506:          UMGSequencePlayer* mUMGSequencePlayer = this->Widget_Map_Filters_Container->PlayAnimation(this->Widget_Map_Filters_Container->SpawnAnim, 0, 1, 1, 1);
+L596:          this->mMenuButtonText->SetText("[object Object]");
+L681:          goto ExecutionFlow.Pop();
+L682:          UMGSequencePlayer* mUMGSequencePlayer1 = this->Widget_Map_Filters_Container->PlayAnimation(this->Widget_Map_Filters_Container->SpawnAnim, 0, 1, 0, 1);
+L772:          this->mMenuButtonText->SetText("[object Object]");
+L857:          goto ExecutionFlow.Pop();
+L858:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L900:          int32 Temp_int_Loop_Counter_Variable = mint323;
+L927:          int32 mint324 = this->GetIndexInParent(mWidget_FilterButton1);
+L968:          int32 mint325 = KismetArrayLibrary->Array_Length([ref] this->mFilterCategories[mint324].MapObject_10_E7619CDE4C223F0B26B78DA3C3602333);
+L1046:         bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint325);
+L1084:         if (!mbool2) goto ExecutionFlow.Pop();
+L1094:         int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L1121:         ExecutionFlow.Push(L858);
+L1126:         mint324 = this->GetIndexInParent(mWidget_FilterButton1);
+L1167:         KismetArrayLibrary->Array_Get([ref] this->mFilterCategories[mint324].MapObject_10_E7619CDE4C223F0B26B78DA3C3602333, Temp_int_Array_Index_Variable, [ref] mWidget_MapObject1);
+L1245:         mWidget_MapObject1->UnhighlightOnMap();
+L1281:         goto ExecutionFlow.Pop();
+L1282:         Temp_int_Loop_Counter_Variable = 0;
+L1305:         Temp_int_Array_Index_Variable = 0;
+L1328:         goto L927;
+L1333:         mFScriptDelegate->BindUFunction(this, CloseMap);
+L1356:         this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate);
+L1397:         this->UpdateZoomSlider();
+L1411:         mFScriptDelegate1->BindUFunction(this, UpdateZoomSlider);
+L1434:         this->Widget_Map->ZoomChanged.AddUnique(mFScriptDelegate1);
+L1475:         this->Widget_Map->ListenForInputActions(this);
+L1512:         goto ExecutionFlow.Pop();
+L1513:         this->OnEscapePressed();
+L1527:         goto ExecutionFlow.Pop();
+L1528:         goto L1513;
+L1533:         this->IsMapOpen = false;
+L1544:         goto ExecutionFlow.Pop();
+L1545:         this->OnEscapePressed();
+L1555:         goto L1533;
+L1560:         KismetArrayLibrary->Array_Clear([ref] this->mFilterCategories);
+L1601:         this->Widget_Map_Filters_Container->mBeaconContainer->ClearChildren();
+L1659:         this->ClearSearch();
+L1673:         goto ExecutionFlow.Pop();
+L1674:         this->NormalizedValueToZoomValue(mfloat, [ref] mVector2D);
+L1706:         this->Widget_Map->ZoomMap(mVector2D);
+L1751:         goto ExecutionFlow.Pop();
+L1752:         this->SetInputMode();
+L1762:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1786:         Widget* mWidget = this->GetDefaultFocusWidget();
+L1806:         WidgetBlueprintLibrary->SetInputMode_GameAndUIEx(mPlayerController, mWidget, 0, false);
+L1859:         goto ExecutionFlow.Pop();
+L1860:         this->AddChildToBeacons(mFGActorRepresentation);
+L1883:         uint8 muint8 = mFGActorRepresentation->GetRepresentationType();
+L1933:         bool mbool3 = NotEqual_ByteByte(muint8, 0);
+L1964:         if (!mbool3) goto L2474;
+L1978:         mbool3 = NotEqual_ByteByte(muint8, 1);
+L2009:         if (!mbool3) goto L2474;
+L2023:         mbool3 = NotEqual_ByteByte(muint8, 2);
+L2054:         if (!mbool3) goto L2474;
+L2068:         mbool3 = NotEqual_ByteByte(muint8, 3);
+L2099:         if (!mbool3) goto L2474;
+L2113:         mbool3 = NotEqual_ByteByte(muint8, 5);
+L2144:         if (!mbool3) goto L2474;
+L2158:         mbool3 = NotEqual_ByteByte(muint8, 6);
+L2189:         if (!mbool3) goto L2474;
+L2203:         mbool3 = NotEqual_ByteByte(muint8, 8);
+L2234:         if (!mbool3) goto L2474;
+L2248:         mbool3 = NotEqual_ByteByte(muint8, 9);
+L2279:         if (!mbool3) goto L2474;
+L2293:         mbool3 = NotEqual_ByteByte(muint8, 10);
+L2324:         if (!mbool3) goto L2474;
+L2338:         mbool3 = NotEqual_ByteByte(muint8, 11);
+L2369:         if (!mbool3) goto L2474;
+L2383:         mbool3 = NotEqual_ByteByte(muint8, 12);
+L2414:         if (!mbool3) goto L2474;
+L2428:         mbool3 = NotEqual_ByteByte(muint8, 13);
+L2459:         if (!mbool3) goto L2474;
+L2473:         goto ExecutionFlow.Pop();
+L2474:         this->AddUniqueToFilterCategories(mFGActorRepresentation, mWidget_MapObject2, [ref] mbool4);
+L2515:         if (!mbool4) goto ExecutionFlow.Pop();
+L2525:         uint8 muint81 = mFGActorRepresentation->GetRepresentationType();
+L2575:         this->AddChildToFilters(muint81);
+L2598:         goto ExecutionFlow.Pop();
+L2599:         goto ExecutionFlow.Pop();
+L2600:         uint8 muint82 = mFGActorRepresentation1->GetRepresentationType();
+L2650:         bool mbool5 = NotEqual_ByteByte(muint82, 0);
+L2681:         if (!mbool5) goto L3191;
+L2695:         mbool5 = NotEqual_ByteByte(muint82, 1);
+L2726:         if (!mbool5) goto L3191;
+L2740:         mbool5 = NotEqual_ByteByte(muint82, 2);
+L2771:         if (!mbool5) goto L3191;
+L2785:         mbool5 = NotEqual_ByteByte(muint82, 3);
+L2816:         if (!mbool5) goto L3191;
+L2830:         mbool5 = NotEqual_ByteByte(muint82, 5);
+L2861:         if (!mbool5) goto L3191;
+L2875:         mbool5 = NotEqual_ByteByte(muint82, 6);
+L2906:         if (!mbool5) goto L3191;
+L2920:         mbool5 = NotEqual_ByteByte(muint82, 8);
+L2951:         if (!mbool5) goto L3191;
+L2965:         mbool5 = NotEqual_ByteByte(muint82, 9);
+L2996:         if (!mbool5) goto L3191;
+L3010:         mbool5 = NotEqual_ByteByte(muint82, 10);
+L3041:         if (!mbool5) goto L3191;
+L3055:         mbool5 = NotEqual_ByteByte(muint82, 11);
+L3086:         if (!mbool5) goto L3191;
+L3100:         mbool5 = NotEqual_ByteByte(muint82, 12);
+L3131:         if (!mbool5) goto L3191;
+L3145:         mbool5 = NotEqual_ByteByte(muint82, 13);
+L3176:         if (!mbool5) goto L3191;
+L3190:         goto ExecutionFlow.Pop();
+L3191:         this->RemoveActorRepresentationFromFilterCategories([ref] mFGActorRepresentation1);
+L3214:         goto ExecutionFlow.Pop();
+L3215:         bool mbool6 = KismetSystemLibrary->IsValid(mWidget_FilterButton);
+L3266:         if (!mbool6) goto ExecutionFlow.Pop();
+L3276:         Temp_int_Loop_Counter_Variable1 = 0;
+L3299:         Temp_int_Array_Index_Variable1 = 0;
+L3322:         goto L245;
+L3327:         bool mbool7 = KismetSystemLibrary->IsValid(mWidget_FilterButton1);
+L3378:         if (!mbool7) goto ExecutionFlow.Pop();
+L3388:         goto L1282;
+L3393:         int32 mint326 = this->GetIndexInParent(mWidget_FilterButton2);
+L3434:         this->SetMapRepresentation(this->mFilterCategories[mint326].RepresentationType_3_5D457985464D101149CAEF83656C9370, mbool8);
+L3485:         goto ExecutionFlow.Pop();
+L3486:         int32 mint327 = this->GetIndexInParent(mWidget_FilterButton3);
+L3527:         this->SetCompassRepresentation(this->mFilterCategories[mint327].RepresentationType_3_5D457985464D101149CAEF83656C9370, mbool9);
+L3578:         goto ExecutionFlow.Pop();
+L3579:         goto L444;
+L3584:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L3608:         BPHUDHelpers->GetDefaultRCO(mPlayerController1, this, [ref] mBP_RemoteCallObject);
+L3663:         int32 mint328 = this->GetIndexInParent(mWidget_BeaconViewdistanceSlider);
+L3704:         this->GetBeacons([ref] mMapFilterStruct);
+L3727:         KismetArrayLibrary->Array_Get([ref] mMapFilterStruct.ActorRepresentation_6_2C64EC784A601AFE845DA2834D3A2212, mint328, [ref] mFGActorRepresentation2);
+L3795:         mBP_RemoteCallObject->Internal_Server_SetActorRepresentationCompassViewDistance(mFGActorRepresentation2, muint83);
+L3849:         goto ExecutionFlow.Pop();
+L3850:         int32 mint329 = this->GetIndexInParent(mWidget_BeaconViewdistanceSlider1);
+L3891:         this->GetBeacons([ref] mMapFilterStruct1);
+L3914:         KismetArrayLibrary->Array_Get([ref] mMapFilterStruct1.MapObject_10_E7619CDE4C223F0B26B78DA3C3602333, mint329, [ref] mWidget_MapObject3);
+L3982:         mWidget_MapObject3->HighlightOnMap();
+L4018:         goto ExecutionFlow.Pop();
+L4019:         int32 mint3210 = this->GetIndexInParent(mWidget_BeaconViewdistanceSlider2);
+L4060:         this->GetBeacons([ref] mMapFilterStruct2);
+L4083:         KismetArrayLibrary->Array_Get([ref] mMapFilterStruct2.MapObject_10_E7619CDE4C223F0B26B78DA3C3602333, mint3210, [ref] mWidget_MapObject4);
+L4151:         mWidget_MapObject4->UnhighlightOnMap();
+L4187:         goto ExecutionFlow.Pop();
+L4188:         int32 mint3211 = this->GetIndexInParent(mWidget_BeaconViewdistanceSlider3);
+L4229:         this->GetBeacons([ref] mMapFilterStruct3);
+L4252:         KismetArrayLibrary->Array_Get([ref] mMapFilterStruct3.MapObject_10_E7619CDE4C223F0B26B78DA3C3602333, mint3211, [ref] mWidget_MapObject5);
+L4320:         mWidget_MapObject5->ShowViewDistanceIndicator(muint84);
+L4365:         goto ExecutionFlow.Pop();
+L4366:         int32 mint3212 = this->GetIndexInParent(mWidget_BeaconViewdistanceSlider4);
+L4407:         this->GetBeacons([ref] mMapFilterStruct4);
+L4430:         KismetArrayLibrary->Array_Get([ref] mMapFilterStruct4.MapObject_10_E7619CDE4C223F0B26B78DA3C3602333, mint3212, [ref] mWidget_MapObject6);
+L4498:         mWidget_MapObject6->HideViewDistanceIndicator();
+L4534:         goto ExecutionFlow.Pop();
+L4535:         this->PopulateSearchResults(mFText);
+L4558:         goto ExecutionFlow.Pop();
+L4559:         this->ClearSearch();
+L4573:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_MapContainer ==============

@@ -1,0 +1,489 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Widget_Window_DarkMode.Widget_Window_DarkMode_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonUp ==============
+L0:            this->Widget_UI_ParticleManager->CreateParticle();
+L36:           EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L86:           EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnMouseButtonUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnNumKeyDown ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           bool mbool = this->HasUserFocusedDescendants(mPlayerController);
+L53:           if (!mbool) goto L874;
+L67:           bool mbool1 = this->InventorySlot->HasAnyChildren();
+L109:          if (!mbool1) goto L922;
+L123:          Widget* mWidget = this->InventorySlot->GetChildAt(0);
+L170:          Widget_PlayerInventoryAddon* mWidget_PlayerInventoryAddon = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Character/Player/Widget_PlayerInventoryAddon.Widget_PlayerInventoryAddon_C>(mWidget);
+L206:          bool mbool2 = mWidget_PlayerInventoryAddon;
+L235:          if (!mbool2) goto L1004;
+L249:          Widget_PlayerInventoryAddon* InventoryAddon = mWidget_PlayerInventoryAddon;
+L268:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L292:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);
+L328:          bool mbool3 = mFGPlayerController;
+L357:          int32 mint32 = mFGPlayerController->GetShortcutIndexFromKey([ref] KeyEvent);
+L416:          int32 LocalIndex = mint32;
+L443:          int32 mint321 = InventoryAddon->mRelevantInventory->GetChildrenCount();
+L515:          bool mbool4 = Less_IntInt(LocalIndex, mint321);
+L553:          if (!mbool4) goto L1086;
+L567:          Widget* mWidget1 = InventoryAddon->mRelevantInventory->GetChildAt(LocalIndex);
+L640:          Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mWidget1);
+L676:          bool mbool5 = mWidget_InventorySlot;
+L705:          if (!mbool5) goto L1168;
+L719:          InventoryAddon->OnInventorySlotMoveStack(mWidget_InventorySlot);
+L764:          this->OnRelevantShortcutPressed->ProcessMulticastDelegate(mWidget_InventorySlot);
+L792:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L842:          EventReply ReturnValue = mEventReply;
+L869:          goto L1245;
+L874:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L898:          this->SetUserFocus(mPlayerController2);
+L917:          goto L67;
+L922:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L972:          ReturnValue = mEventReply1;
+L999:          goto L1245;
+L1004:         EventReply mEventReply2 = WidgetBlueprintLibrary->Unhandled();
+L1054:         ReturnValue = mEventReply2;
+L1081:         goto L1245;
+L1086:         EventReply mEventReply3 = WidgetBlueprintLibrary->Unhandled();
+L1136:         ReturnValue = mEventReply3;
+L1163:         goto L1245;
+L1168:         EventReply mEventReply4 = WidgetBlueprintLibrary->Unhandled();
+L1218:         ReturnValue = mEventReply4;
+============ END FUNCTION OnNumKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyUp ==============
+L0:            EventReply mEventReply = this->OnNumKeyDown(InKeyEvent);
+L41:           EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnKeyUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonDown ==============
+============ END FUNCTION OnMouseButtonDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION InitTabs ==============
+L0:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mTabs);
+L59:           bool mbool = Greater_IntInt(mint32, 0);
+L93:           if (!mbool) goto L462;
+L107:          this->Widget_TabsContainer->mButtons = this->mTabs;
+L156:          int32 mint321 = this->WindowBody->GetChildrenCount();
+L206:          bool mbool1 = Greater_IntInt(mint321, 0);
+L240:          if (!mbool1) goto L421;
+L254:          Widget* mWidget = this->WindowBody->GetChildAt(0);
+L301:          Widget_SlidingTabs* mWidget_SlidingTabs = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SlidingTabs.Widget_SlidingTabs_C>(mWidget);
+L337:          bool mbool2 = mWidget_SlidingTabs;
+L366:          if (!mbool2) goto L421;
+L380:          this->Widget_TabsContainer->mSlidingTabsWidget = mWidget_SlidingTabs;
+L421:          this->Widget_TabsContainer->Init();
+L457:          <End of Inlined Event Graph Function>;
+L462:          mImageAndText.Texture_4_7082C106445A08AB1E68E496718E5427 = nullptr;
+L482:          mImageAndText.Text_5_FD671CE446AF05CA543E228C049AB0F9 = this->mTitleText;
+L518:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->mTabs, [ref] mImageAndText);
+L586:          goto L107;
+============ END FUNCTION InitTabs ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetInventoryVisibility ==============
+L0:            this->mShowInventory = mShowInventory;
+L19:           bool LocalAnimate = Animate;
+L38:           if (!this->mShowInventory) goto L520;
+L52:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L76:           HUD* mHUD = mPlayerController->GetHUD();
+L118:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L154:          bool mbool = mFGHUD;
+L183:          FGGameUI* mFGGameUI = mFGHUD->GetGameUI();
+L225:          mFGGameUI->SetShowInventory(true);
+L258:          if (!LocalAnimate) goto L801;
+L272:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mShowInventoryTimer);
+L314:          this->ForceLayoutPrepass();
+L324:          this->mShowInventoryT = 0;
+L347:          this->mStartLerpSize = this->mInventorySizeBox->WidthOverride;
+L396:          mFScriptDelegate->BindUFunction(this, LerpShowInventory);
+L419:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mLerpUpdateTime, true);
+L488:          this->mShowInventoryTimer = mTimerHandle;
+L515:          <End of Inlined Event Graph Function>;
+L520:          if (!LocalAnimate) goto L553;
+L534:          if (!this->mIsOverrideWidthSet) goto L1088;
+L548:          goto L272;
+L553:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L577:          HUD* mHUD1 = mPlayerController1->GetHUD();
+L619:          FGHUD* mFGHUD1 = Cast<Class /Script/FactoryGame.FGHUD>(mHUD1);
+L655:          bool mbool1 = mFGHUD1;
+L684:          FGGameUI* mFGGameUI1 = mFGHUD1->GetGameUI();
+L726:          mFGGameUI1->SetShowInventory(false);
+L759:          this->mInventorySizeBox->SetWidthOverride(0);
+L796:          <End of Inlined Event Graph Function>;
+L801:          Vector2D mVector2D = this->InventorySlot->GetDesiredSize();
+L851:          BreakVector2D(mVector2D, [ref] mfloat, [ref] mfloat1);
+L888:          bool mbool2 = Greater_FloatFloat(mfloat, 0);
+L922:          this->mIsOverrideWidthSet = mbool2;
+L941:          if (!this->mIsOverrideWidthSet) goto L1232;
+L955:          Vector2D mVector2D1 = this->InventorySlot->GetDesiredSize();
+L1005:         BreakVector2D(mVector2D1, [ref] mfloat2, [ref] mfloat3);
+L1042:         this->mInventorySizeBox->SetWidthOverride(mfloat2);
+L1083:         <End of Inlined Event Graph Function>;
+L1088:         Vector2D mVector2D2 = this->InventorySlot->GetDesiredSize();
+L1138:         BreakVector2D(mVector2D2, [ref] mfloat4, [ref] mfloat5);
+L1175:         this->mInventorySizeBox->SetWidthOverride(mfloat4);
+L1216:         this->mIsOverrideWidthSet = true;
+L1227:         goto L272;
+============ END FUNCTION SetInventoryVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetDividerButtonSlotVisibility ==============
+L0:            bool mbool = this->ButtonSlot->HasAnyChildren();
+L42:           if (!mbool) goto L81;
+L56:           uint8 ReturnValue = 3;
+L76:           goto L101;
+L81:           ReturnValue = 1;
+============ END FUNCTION GetDividerButtonSlotVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNavigationVisibiliy ==============
+L0:            uint8 Temp_byte_Variable = 1;
+L20:           uint8 Temp_byte_Variable1 = 4;
+L40:           bool mbool = KismetTextLibrary->TextIsEmpty([ref] this->mNavigationWidget->mNavigationText);
+L113:          bool Temp_bool_Variable = mbool;
+L132:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetNavigationVisibiliy ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetInventoryBodyVisibility ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
+L79:           bool mbool = KismetSystemLibrary->IsValid(mFGGameUI);
+L130:          if (!mbool) goto L522;
+L144:          uint8 Temp_byte_Variable = 4;
+L164:          uint8 Temp_byte_Variable1 = 1;
+L184:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L208:          HUDHelpers->GetFGGameUI(mPlayerController1, this, [ref] mFGGameUI1);
+L263:          bool mbool1 = mFGGameUI1->GetShowInventory();
+L305:          int32 mint32 = this->InventorySlot->GetChildrenCount();
+L355:          bool mbool2 = Greater_IntInt(mint32, 0);
+L389:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L427:          bool Temp_bool_Variable = mbool3;
+L446:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+L517:          goto L542;
+L522:          ReturnValue = 1;
+============ END FUNCTION GetInventoryBodyVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTopButtonSlotVisibility ==============
+L0:            bool mbool = this->ButtonSlot->HasAnyChildren();
+L42:           if (!mbool) goto L81;
+L56:           uint8 ReturnValue = 0;
+L76:           goto L101;
+L81:           ReturnValue = 1;
+============ END FUNCTION GetTopButtonSlotVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDrop ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION OnDrop ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetTitle ==============
+L0:            this->mTitleText = Title;
+L27:           this->Widget_TitleLabel_DarkMode->SetTitle(this->mTitleText);
+L72:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mTabs);
+L131:          bool mbool = EqualEqual_IntInt(mint32, 1);
+L165:          if (!mbool) goto L377;
+L179:          KismetArrayLibrary->Array_Get([ref] this->mTabs, 0, [ref] mImageAndText);
+L234:          mImageAndText1.Texture_4_7082C106445A08AB1E68E496718E5427 = mImageAndText.Texture_4_7082C106445A08AB1E68E496718E5427;
+L271:          mImageAndText1.Text_5_FD671CE446AF05CA543E228C049AB0F9 = this->mTitleText;
+L307:          KismetArrayLibrary->Array_Set([ref] this->mTabs, 0, [ref] mImageAndText1, false);
+L363:          this->InitTabs();
+============ END FUNCTION SetTitle ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(944);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEscapePressed ==============
+L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1099);
+============ END FUNCTION OnEscapePressed ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1199);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Widget_Window_DarkMode.Widget_Window_DarkMode_C:ExecuteUbergraph_Widget_Window_DarkMode.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Widget_Window_DarkMode.Widget_Window_DarkMode_C:ExecuteUbergraph_Widget_Window_DarkMode.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_Window_DarkMode(1210);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnConstructAnimFinished ==============
+L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1452);
+============ END FUNCTION OnConstructAnimFinished ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Widget_Window_DarkMode.Widget_Window_DarkMode_C:ExecuteUbergraph_Widget_Window_DarkMode.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_Window_DarkMode(1489);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCloseButtonClicked ==============
+L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1966);
+============ END FUNCTION OnCloseButtonClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION LerpShowInventory ==============
+L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1971);
+============ END FUNCTION LerpShowInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_2_OnButtonClicked__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/Widget_Window_DarkMode.Widget_Window_DarkMode_C:ExecuteUbergraph_Widget_Window_DarkMode.K2Node_ComponentBoundEvent_ButtonIndex) = ButtonIndex;
+L18:           this->ExecuteUbergraph_Widget_Window_DarkMode(2750);
+============ END FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_2_OnButtonClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_0_OnNoTabsGenerated__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(2779);
+============ END FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_0_OnNoTabsGenerated__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_1_OnTabsGenerated__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(2818);
+============ END FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_1_OnTabsGenerated__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupRelevantInventory ==============
+L0:            PERSISTENT_FRAME(ArrayProperty /Game/FactoryGame/Interface/UI/Widget_Window_DarkMode.Widget_Window_DarkMode_C:ExecuteUbergraph_Widget_Window_DarkMode.K2Node_CustomEvent_RelevantClasses) = relevantClasses;
+L18:           this->ExecuteUbergraph_Widget_Window_DarkMode(2857);
+============ END FUNCTION SetupRelevantInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Window_DarkMode ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool mbool = this->InventorySlot->HasAnyChildren();
+L57:           if (!mbool) goto L288;
+L71:           Widget* mWidget = this->InventorySlot->GetChildAt(0);
+L118:          Widget_PlayerInventoryAddon* mWidget_PlayerInventoryAddon = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Character/Player/Widget_PlayerInventoryAddon.Widget_PlayerInventoryAddon_C>(mWidget);
+L154:          bool mbool1 = mWidget_PlayerInventoryAddon;
+L183:          if (!mbool1) goto L288;
+L197:          mWidget_PlayerInventoryAddon->SetupRelevantInventory([ref] mconst TArray<TSubclassOf<FGItemDescriptor>>);
+L242:          mWidget_PlayerInventoryAddon->SetRelevantItemsText(this->mRelevantItemsText);
+L287:          goto ExecutionFlow.Pop();
+L288:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 611849551, ExecutionFunction = "ExecuteUbergraph_Widget_Window_DarkMode", CallbackTarget = this));
+L364:          goto ExecutionFlow.Pop();
+L365:          int32 mint32 = this->InventorySlot->GetChildrenCount();
+L415:          bool mbool2 = EqualEqual_IntInt(mint32, 0);
+L449:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L473:          HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
+L528:          bool mbool3 = mFGGameUI->GetWindowWantsInventoryAddon();
+L570:          bool mbool4 = BooleanAND(mbool3, mbool2);
+L608:          bool mbool5 = BooleanAND(mbool4, this->mCanShowInventory);
+L646:          if (!mbool5) goto L675;
+L660:          if (!Temp_bool_Variable) goto L713;
+L674:          goto ExecutionFlow.Pop();
+L675:          bool Temp_bool_Variable = false;
+L686:          if (!Temp_bool_Variable2) goto L701;
+L700:          goto ExecutionFlow.Pop();
+L701:          bool Temp_bool_Variable2 = true;
+L712:          goto ExecutionFlow.Pop();
+L713:          Temp_bool_Variable = true;
+L724:          Temp_bool_Variable2 = false;
+L735:          mPlayerController = this->GetOwningPlayer();
+L759:          HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
+L814:          BP_GameUI* mBP_GameUI = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C>(mFGGameUI);
+L850:          bool mbool6 = mBP_GameUI;
+L879:          if (!mbool6) goto ExecutionFlow.Pop();
+L889:          mBP_GameUI->CreateAddOnPlayerInventory(this->InventorySlot, [ref] mWidget_PlayerInventoryAddon1);
+L943:          goto ExecutionFlow.Pop();
+L944:          this->Construct();
+L954:          mFScriptDelegate->BindUFunction(this, OnConstructAnimFinished);
+L977:          this->Widget_Anim_Up_Slide->BindToAnimationFinished(this->Widget_Anim_Up_Slide->EnableAnim, mFScriptDelegate);
+L1049:         this->Widget_UI_ParticleManager->mParticleWidgets = this->mParticleWidgets;
+L1098:         goto ExecutionFlow.Pop();
+L1099:         bool mbool7 = Not_PreBool(this->mOverrideCloseButton);
+L1128:         if (!mbool7) goto L1179;
+L1142:         this->Widget_Anim_Up_Slide->CloseAnim();
+L1178:         goto ExecutionFlow.Pop();
+L1179:         this->OnClose->ProcessMulticastDelegate();
+L1198:         goto ExecutionFlow.Pop();
+L1199:         this->Destruct();
+L1209:         goto ExecutionFlow.Pop();
+L1210:         uint8 muint8 = this->GetInventoryBodyVisibility();
+L1242:         this->InventorySlot->SetVisibility(muint8);
+L1287:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1311:         HUDHelpers->GetFGGameUI(mPlayerController1, this, [ref] mFGGameUI1);
+L1366:         bool mbool8 = KismetSystemLibrary->IsValid(mFGGameUI1);
+L1417:         if (!mbool8) goto ExecutionFlow.Pop();
+L1427:         goto L365;
+L1432:         this->OnClose->ProcessMulticastDelegate();
+L1451:         goto ExecutionFlow.Pop();
+L1452:         if (!this->Widget_Anim_Up_Slide->CloseAnimStarted) goto ExecutionFlow.Pop();
+L1484:         goto L1432;
+L1489:         this->SetTitle(this->mTitleText);
+L1512:         ExecutionFlow.Push(L1881);
+L1517:         ExecutionFlow.Push(L1580);
+L1522:         ExecutionFlow.Push(L1636);
+L1527:         if (!this->mShowFicsitLogo) goto L1927;
+L1541:         this->FicsItLogo->SetVisibility(0);
+L1579:         goto ExecutionFlow.Pop();
+L1580:         this->Widget_TabsContainer->mOverrideButtonFunctions = this->mOverwriteTabButtonFunctions;
+L1621:         this->InitTabs();
+L1635:         goto ExecutionFlow.Pop();
+L1636:         if (!this->mShowCloseButton) goto ExecutionFlow.Pop();
+L1646:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1670:         Widget_TitleButton_DarkMode* mWidget_TitleButton_DarkMode = WidgetBlueprintLibrary->Create(this, Widget_TitleButton_DarkMode, mPlayerController2);
+L1731:         mFScriptDelegate1->BindUFunction(this, OnCloseButtonClicked);
+L1754:         mWidget_TitleButton_DarkMode->OnClicked.AddUnique(mFScriptDelegate1);
+L1795:         OverlaySlot* mOverlaySlot = this->CloseButtonOverlay->AddChildToOverlay(mWidget_TitleButton_DarkMode);
+L1846:         mOverlaySlot->SetVerticalAlignment(0);
+L1880:         goto ExecutionFlow.Pop();
+L1881:         this->mHintContainer->SetKeybindingHints([ref] this->mKeyBindingHints);
+L1926:         goto ExecutionFlow.Pop();
+L1927:         this->FicsItLogo->SetVisibility(2);
+L1965:         goto ExecutionFlow.Pop();
+L1966:         goto L1099;
+L1971:         float mfloat = Divide_FloatFloat(this->mLerpUpdateTime, this->mLerpSlideTime);
+L2017:         float mfloat1 = Add_FloatFloat(mfloat, this->mShowInventoryT);
+L2063:         float mfloat2 = FClamp(mfloat1, 0, 1);
+L2110:         this->mShowInventoryT = mfloat2;
+L2137:         float Temp_float_Variable = 0;
+L2160:         Vector2D mVector2D = this->InventorySlot->GetDesiredSize();
+L2210:         BreakVector2D(mVector2D, [ref] mfloat3, [ref] mfloat4);
+L2247:         bool Temp_bool_Variable1 = this->mShowInventory;
+L2266:         float mfloat5 = Ease(this->mStartLerpSize, switch (Temp_bool_Variable1) {
+case false -> Temp_float_Variable;
+case true -> mfloat3;
+default -> mfloat6;
+}, this->mShowInventoryT, 6, 4, 2);
+L2377:         this->mInventorySizeBox->SetWidthOverride(mfloat5);
+L2418:         bool mbool9 = GreaterEqual_FloatFloat(this->mShowInventoryT, 1);
+L2452:         if (!mbool9) goto ExecutionFlow.Pop();
+L2462:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mShowInventoryTimer);
+L2504:         bool mbool10 = Not_PreBool(this->mShowInventory);
+L2533:         if (!mbool10) goto ExecutionFlow.Pop();
+L2543:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L2567:         HUD* mHUD = mPlayerController3->GetHUD();
+L2609:         FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L2645:         bool mbool11 = mFGHUD;
+L2674:         FGGameUI* mFGGameUI2 = mFGHUD->GetGameUI();
+L2716:         mFGGameUI2->SetShowInventory(false);
+L2749:         goto ExecutionFlow.Pop();
+L2750:         this->OnTabButtonClicked->ProcessMulticastDelegate(mint321);
+L2778:         goto ExecutionFlow.Pop();
+L2779:         this->mTabsDivider->SetVisibility(1);
+L2817:         goto ExecutionFlow.Pop();
+L2818:         this->mTabsDivider->SetVisibility(4);
+L2856:         goto ExecutionFlow.Pop();
+L2857:         goto L15;
+============ END FUNCTION ExecuteUbergraph_Widget_Window_DarkMode ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRelevantShortcutPressed__DelegateSignature ==============
+============ END FUNCTION OnRelevantShortcutPressed__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnTabButtonClicked__DelegateSignature ==============
+============ END FUNCTION OnTabButtonClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClose__DelegateSignature ==============
+============ END FUNCTION OnClose__DelegateSignature ==============

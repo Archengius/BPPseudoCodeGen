@@ -1,0 +1,56 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_PlayerInteraction.Widget_PlayerInteraction_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetInteractionText ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L56:           bool mbool = mFGCharacterPlayer;
+L85:           if (!mbool) goto L374;
+L99:           Actor* mActor = mFGCharacterPlayer->GetBestUsableActor();
+L141:          TScriptInterface<FGUseableInterface> mTScriptInterface<FGUseableInterface> = QueryInterface<Class /Script/FactoryGame.FGUseableInterface>(mActor);
+L177:          bool mbool1 = mTScriptInterface<FGUseableInterface>;
+L206:          if (!mbool1) goto L399;
+L220:          FText mFText = GetInterfaceUObject(mTScriptInterface<FGUseableInterface>)->GetLookAtDecription(mFGCharacterPlayer, [ref] mFGCharacterPlayer->mCachedUseState);
+L315:          FText Temp_text_Variable = mFText;
+L342:          FText ReturnValue = Temp_text_Variable;
+L369:          goto L424;
+L374:          ReturnValue = ;
+L394:          goto L424;
+L399:          Temp_text_Variable = ;
+L419:          goto L342;
+============ END FUNCTION GetInteractionText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_PlayerInteraction.Widget_PlayerInteraction_C:ExecuteUbergraph_Widget_PlayerInteraction.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Widget_PlayerInteraction.Widget_PlayerInteraction_C:ExecuteUbergraph_Widget_PlayerInteraction.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_PlayerInteraction(10);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PlayerInteraction ==============
+L10:           this->Tick(mGeometry, mfloat);
+L38:           FText mFText = this->GetInteractionText();
+L70:           this->mInteractionText->SetText([ref] mFText);
+L111:          uint8 Temp_byte_Variable = 2;
+L131:          uint8 Temp_byte_Variable1 = 4;
+L151:          FText mFText1 = this->GetInteractionText();
+L183:          bool mbool = KismetTextLibrary->TextIsEmpty([ref] mFText1);
+L234:          bool Temp_bool_Variable = mbool;
+L253:          this->Overlay_0->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+============ END FUNCTION ExecuteUbergraph_Widget_PlayerInteraction ==============

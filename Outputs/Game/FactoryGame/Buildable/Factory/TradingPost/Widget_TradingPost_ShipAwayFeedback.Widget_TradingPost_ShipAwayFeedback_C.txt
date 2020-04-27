@@ -1,0 +1,213 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost_ShipAwayFeedback.Widget_TradingPost_ShipAwayFeedback_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetProgressBarVisibility ==============
+L0:            uint8 ReturnValue = 2;
+============ END FUNCTION GetProgressBarVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetProgressbarPercent ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L75:           bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L126:          if (!mbool) goto L381;
+L140:          mPlayerController = this->GetOwningPlayer();
+L164:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L215:          float mfloat = mFGSchematicManager->GetTimeUntilShipReturn();
+L265:          float mfloat1 = Divide_FloatFloat(mfloat, 360);
+L307:          float mfloat2 = Subtract_FloatFloat(1, mfloat1);
+L349:          float ReturnValue = mfloat2;
+L376:          goto L404;
+L381:          ReturnValue = 0;
+============ END FUNCTION GetProgressbarPercent ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicTitle ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L75:           bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L126:          if (!mbool) goto L1965;
+L140:          mPlayerController = this->GetOwningPlayer();
+L164:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L215:          bool mbool1 = mFGSchematicManager->IsShipAtTradingPost();
+L257:          if (!mbool1) goto L1669;
+L271:          mPlayerController = this->GetOwningPlayer();
+L295:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L346:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L388:          bool mbool2 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L439:          if (!mbool2) goto L1709;
+L453:          mPlayerController = this->GetOwningPlayer();
+L477:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L528:          mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L570:          bool mbool3 = mFGSchematicManager->IsSchematicPaidOff(mTSubclassOf<FGSchematic>);
+L621:          if (!mbool3) goto L1794;
+L635:          mPlayerController = this->GetOwningPlayer();
+L659:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L710:          mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L752:          int32 mint32 = FGSchematic->GetTechTier(mTSubclassOf<FGSchematic>);
+L811:          bool mbool4 = Greater_IntInt(mint32, 0);
+L845:          if (!mbool4) goto L1881;
+L859:          FText TitleInfo = "[object Object]";
+L934:          mPlayerController = this->GetOwningPlayer();
+L958:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L1009:         mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L1051:         FText mFText = FGSchematic->GetSchematicDisplayName(mTSubclassOf<FGSchematic>);
+L1110:         mFormatArgumentData.ArgumentName = "Title";
+L1144:         mFormatArgumentData.ArgumentValueType = 4;
+L1173:         mFormatArgumentData.ArgumentValue = mFText;
+L1209:         mFormatArgumentData.ArgumentValueInt = 0;
+L1241:         mFormatArgumentData.ArgumentValueFloat = 0;
+L1273:         mFormatArgumentData.ArgumentValueGender = 0;
+L1302:         mFormatArgumentData1.ArgumentName = "Info";
+L1335:         mFormatArgumentData1.ArgumentValueType = 4;
+L1364:         mFormatArgumentData1.ArgumentValue = TitleInfo;
+L1400:         mFormatArgumentData1.ArgumentValueInt = 0;
+L1432:         mFormatArgumentData1.ArgumentValueFloat = 0;
+L1464:         mFormatArgumentData1.ArgumentValueGender = 0;
+L1493:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
+L1522:         FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1637:         FText ReturnValue = mFText1;
+L1664:         goto L1965;
+L1669:         ReturnValue = "[object Object]";
+L1704:         goto L1965;
+L1709:         ReturnValue = "[object Object]";
+L1789:         goto L1965;
+L1794:         TitleInfo = "[object Object]";
+L1876:         goto L934;
+L1881:         TitleInfo = "[object Object]";
+L1960:         goto L934;
+============ END FUNCTION GetSchematicTitle ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetScematicIcon ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L75:           bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L126:          if (!mbool) goto L1557;
+L140:          mPlayerController = this->GetOwningPlayer();
+L164:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L215:          bool mbool1 = mFGSchematicManager->IsShipAtTradingPost();
+L257:          if (!mbool1) goto L1100;
+L271:          mPlayerController = this->GetOwningPlayer();
+L295:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L346:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L388:          bool mbool2 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L439:          if (!mbool2) goto L1557;
+L453:          mPlayerController = this->GetOwningPlayer();
+L477:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L528:          mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L570:          SlateBrush mSlateBrush = FGSchematic->GetItemIcon(mTSubclassOf<FGSchematic>);
+L629:          mSlateBrush1.ImageSize = this->SchematicIcon->Brush.ImageSize;
+L696:          mSlateBrush1.Margin = this->SchematicIcon->Brush.Margin;
+L763:          mSlateBrush1.TintColor = this->SchematicIcon->Brush.TintColor;
+L830:          mSlateBrush1.ResourceObject = mSlateBrush.ResourceObject;
+L867:          mSlateBrush1.DrawAs = this->SchematicIcon->Brush.DrawAs;
+L934:          mSlateBrush1.Tiling = this->SchematicIcon->Brush.Tiling;
+L1001:         mSlateBrush1.Mirroring = this->SchematicIcon->Brush.Mirroring;
+L1068:         SlateBrush ReturnValue = mSlateBrush1;
+L1095:         goto L1557;
+L1100:         mSlateBrush2.ImageSize = this->SchematicIcon->Brush.ImageSize;
+L1167:         mSlateBrush2.Margin = this->SchematicIcon->Brush.Margin;
+L1234:         mSlateBrush2.TintColor = this->SchematicIcon->Brush.TintColor;
+L1301:         mSlateBrush2.ResourceObject = Hub_PodIcon;
+L1329:         mSlateBrush2.DrawAs = this->SchematicIcon->Brush.DrawAs;
+L1396:         mSlateBrush2.Tiling = this->SchematicIcon->Brush.Tiling;
+L1463:         mSlateBrush2.Mirroring = this->SchematicIcon->Brush.Mirroring;
+L1530:         ReturnValue = mSlateBrush2;
+============ END FUNCTION GetScematicIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetShipTimerText ==============
+L0:            ExecutionFlow.Push(L2696);
+L5:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L29:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L80:           bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L131:          if (!mbool) goto L1409;
+L145:          mPlayerController = this->GetOwningPlayer();
+L169:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L220:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L262:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L313:          if (!mbool1) goto L1409;
+L327:          mPlayerController = this->GetOwningPlayer();
+L351:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L402:          bool mbool2 = mFGSchematicManager->IsShipAtTradingPost();
+L444:          if (!mbool2) goto L1434;
+L458:          int32 Temp_int_Loop_Counter_Variable = 0;
+L481:          int32 Temp_int_Array_Index_Variable = 0;
+L504:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L528:          FGSchematicManager* mFGSchematicManager1 = FGSchematicManager->Get(mPlayerController1);
+L579:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic>1 = mFGSchematicManager1->GetActiveSchematic();
+L621:          TArray<ItemAmount> mTArray<ItemAmount> = mFGSchematicManager1->GetPaidOffCostFor(mTSubclassOf<FGSchematic>1);
+L680:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L739:          bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L777:          if (!mbool3) goto L2045;
+L791:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L818:          ExecutionFlow.Push(L2622);
+L823:          mPlayerController1 = this->GetOwningPlayer();
+L847:          mFGSchematicManager1 = FGSchematicManager->Get(mPlayerController1);
+L898:          mTSubclassOf<FGSchematic>1 = mFGSchematicManager1->GetActiveSchematic();
+L940:          mTArray<ItemAmount> = mFGSchematicManager1->GetPaidOffCostFor(mTSubclassOf<FGSchematic>1);
+L999:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L1058:         int32 mint321 = Add_IntInt(TotalPaidOff, mItemAmount.amount);
+L1113:         int32 TotalPaidOff = mint321;
+L1140:         mPlayerController1 = this->GetOwningPlayer();
+L1164:         mFGSchematicManager1 = FGSchematicManager->Get(mPlayerController1);
+L1215:         mTSubclassOf<FGSchematic>1 = mFGSchematicManager1->GetActiveSchematic();
+L1257:         TArray<ItemAmount> mTArray<ItemAmount>1 = FGSchematic->GetCost(mTSubclassOf<FGSchematic>1);
+L1316:         int32 mint322 = Add_IntInt(totalCost, mTArray<ItemAmount>1[Temp_int_Array_Index_Variable].amount);
+L1381:         int32 totalCost = mint322;
+L1408:         goto ExecutionFlow.Pop();
+L1409:         FText ReturnValue = ;
+L1429:         goto L2696;
+L1434:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1458:         FGSchematicManager* mFGSchematicManager2 = FGSchematicManager->Get(mPlayerController2);
+L1509:         float mfloat = mFGSchematicManager2->GetTimeUntilShipReturn();
+L1559:         FString mFString = KismetStringLibrary->TimeSecondsToString(mfloat);
+L1618:         FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L1677:         mFormatArgumentData.ArgumentName = "Time";
+L1710:         mFormatArgumentData.ArgumentValueType = 4;
+L1739:         mFormatArgumentData.ArgumentValue = mFText;
+L1775:         mFormatArgumentData.ArgumentValueInt = 0;
+L1807:         mFormatArgumentData.ArgumentValueFloat = 0;
+L1839:         mFormatArgumentData.ArgumentValueGender = 0;
+L1868:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L1888:         FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L2013:         ReturnValue = mFText1;
+L2040:         goto L2696;
+L2045:         mFormatArgumentData1.ArgumentName = "PaidOff";
+L2081:         mFormatArgumentData1.ArgumentValueType = 0;
+L2110:         mFormatArgumentData1.ArgumentValue = ;
+L2139:         mFormatArgumentData1.ArgumentValueInt = TotalPaidOff;
+L2175:         mFormatArgumentData1.ArgumentValueFloat = 0;
+L2207:         mFormatArgumentData1.ArgumentValueGender = 0;
+L2236:         mFormatArgumentData2.ArgumentName = "Cost";
+L2269:         mFormatArgumentData2.ArgumentValueType = 0;
+L2298:         mFormatArgumentData2.ArgumentValue = ;
+L2327:         mFormatArgumentData2.ArgumentValueInt = totalCost;
+L2363:         mFormatArgumentData2.ArgumentValueFloat = 0;
+L2395:         mFormatArgumentData2.ArgumentValueGender = 0;
+L2424:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1, mFormatArgumentData2];
+L2453:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L2590:         ReturnValue = mFText2;
+L2617:         goto L2696;
+L2622:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2664:         Temp_int_Loop_Counter_Variable = mint323;
+L2691:         goto L504;
+============ END FUNCTION GetShipTimerText ==============

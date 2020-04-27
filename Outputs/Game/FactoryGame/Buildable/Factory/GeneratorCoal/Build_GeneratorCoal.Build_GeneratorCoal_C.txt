@@ -1,0 +1,91 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/GeneratorCoal/Build_GeneratorCoal.Build_GeneratorCoal_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION StartProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/GeneratorCoal/Build_GeneratorCoal.Build_GeneratorCoal_C:ExecuteUbergraph_Build_GeneratorCoal.K2Node_Event_didStartProducing) = didStartProducing;
+L18:           this->ExecuteUbergraph_Build_GeneratorCoal(1527);
+============ END FUNCTION StartProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/GeneratorCoal/Build_GeneratorCoal.Build_GeneratorCoal_C:ExecuteUbergraph_Build_GeneratorCoal.K2Node_Event_didStopProducing) = didStopProducing;
+L18:           this->ExecuteUbergraph_Build_GeneratorCoal(1503);
+============ END FUNCTION StopProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Build_GeneratorCoal(1498);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Build_GeneratorCoal(1381);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_GeneratorCoal ==============
+L10:           this->TryStopProductionLoopEffects(false);
+L21:           <End of Inlined Event Graph Function>;
+L26:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(Play_B_Generator_Coal_MixDown_Exhaust, this->MainMesh, "smokeVfxSocket", true);
+L100:          <End of Inlined Event Graph Function>;
+L105:          bool mbool = KismetSystemLibrary->IsValid(this->mCoalGenSmokeVfx);
+L156:          if (!mbool) goto L1551;
+L170:          this->mCoalGenSmokeVfx->K2_DestroyComponent(this);
+L203:          if (!mbool1) goto L444;
+L217:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(Stop_B_Generator_Coal_MixDown_TurbineLoop, this->MainMesh, "AudioSocketTurbine", true);
+L291:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAttached(Stop_B_Generator_Coal_MixDown_Furnace, this->MainMesh, "AudioSocketFurnace", true);
+L365:          AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEventAttached(Stop_B_Generator_Coal_MixDown_Exhaust, this->MainMesh, "smokeVfxSocket", true);
+L439:          <End of Inlined Event Graph Function>;
+L444:          AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEventAttached(Stop_B_Generator_Coal_MixDown_TurbineLoop_Quick, this->MainMesh, "AudioSocketTurbine", true);
+L518:          AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEventAttached(Stop_B_Generator_Coal_MixDown_Furnace_Quick, this->MainMesh, "AudioSocketFurnace", true);
+L592:          AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEventAttached(Stop_B_Generator_Coal_MixDown_Exhaust_Quick, this->MainMesh, "smokeVfxSocket", true);
+L666:          <End of Inlined Event Graph Function>;
+L671:          AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEventAttached(Play_B_Generator_Coal_MixDown_Furnace, this->MainMesh, "AudioSocketFurnace", true);
+L745:          goto L26;
+L750:          AkComponent* mAkComponent8 = AkGameplayStatics->PostAkEventAttached(Play_B_Generator_Coal_MixDown_TurbineLoop, this->MainMesh, "AudioSocketTurbine", true);
+L824:          goto L671;
+L829:          bool mbool2 = KismetSystemLibrary->IsValid(this->mCoalGenSmokeVfx);
+L880:          if (!mbool2) goto L899;
+L894:          <End of Inlined Event Graph Function>;
+L899:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(P_Generator_Coal_01, this->MainMesh, "smokeVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1016:         this->mCoalGenSmokeVfx = mParticleSystemComponent;
+L1035:         this->mCoalGenSmokeVfx->SetEmitterEnable("Red", false);
+L1085:         this->mCoalGenSmokeVfx->SetEmitterEnable("Sparks", false);
+L1135:         if (!mbool3) goto L1154;
+L1149:         goto L750;
+L1154:         AkComponent* mAkComponent9 = AkGameplayStatics->PostAkEventAttached(Play_B_Generator_Coal_MixDown_TurbineLoop_Quick, this->MainMesh, "AudioSocketTurbine", true);
+L1228:         AkComponent* mAkComponent10 = AkGameplayStatics->PostAkEventAttached(Play_B_Generator_Coal_MixDown_Furnace_Quick, this->MainMesh, "AudioSocketFurnace", true);
+L1302:         AkComponent* mAkComponent11 = AkGameplayStatics->PostAkEventAttached(Play_B_Generator_Coal_MixDown_Exhaust_Quick, this->MainMesh, "smokeVfxSocket", true);
+L1376:         <End of Inlined Event Graph Function>;
+L1381:         this->GainedSignificance();
+L1391:         bool mbool4 = this->CanStartPowerProduction();
+L1415:         if (!mbool4) goto L1551;
+L1429:         this->TryStartProductionLoopEffects(false);
+L1440:         <End of Inlined Event Graph Function>;
+L1445:         this->LostSignificance();
+L1455:         bool mbool5 = this->CanStartPowerProduction();
+L1479:         if (!mbool5) goto L1551;
+L1493:         goto L10;
+L1498:         goto L1445;
+L1503:         this->StopProductionLoopEffects(mbool1);
+L1522:         goto L105;
+L1527:         this->StartProductionLoopEffects(mbool3);
+L1546:         goto L829;
+============ END FUNCTION ExecuteUbergraph_Build_GeneratorCoal ==============

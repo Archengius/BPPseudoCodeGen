@@ -1,0 +1,117 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/PortableMiner/Equip_PortableMinerDispenser.Equip_PortableMinerDispenser_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SpawnPortableMiner ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/PortableMiner/Equip_PortableMinerDispenser.Equip_PortableMinerDispenser_C:ExecuteUbergraph_Equip_PortableMinerDispenser.K2Node_Event_resourceNode) = resourceNode;
+L18:           this->ExecuteUbergraph_Equip_PortableMinerDispenser(16);
+============ END FUNCTION SpawnPortableMiner ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlaySpawnEffects ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/PortableMiner/Equip_PortableMinerDispenser.Equip_PortableMinerDispenser_C:ExecuteUbergraph_Equip_PortableMinerDispenser.K2Node_CustomEvent_portableMiner) = PortableMiner;
+L18:           this->ExecuteUbergraph_Equip_PortableMinerDispenser(15);
+============ END FUNCTION PlaySpawnEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_PortableMinerDispenser(1245);
+============ END FUNCTION WasEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasUnEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_PortableMinerDispenser(2437);
+============ END FUNCTION WasUnEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Equip_PortableMinerDispenser ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           goto ExecutionFlow.Pop();
+L16:           FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
+L36:           mFGCharacterPlayer->GetActorEyesViewPoint([ref] mVector, [ref] mRotator);
+L90:           Vector mVector1 = GetForwardVector(mRotator);
+L127:          Vector mVector2 = Multiply_VectorFloat(mVector1, 3000);
+L169:          Vector mVector3 = Add_VectorVector(mVector, mVector2);
+L215:          bool mbool = KismetSystemLibrary->LineTraceSingle(this, mVector, mVector3, 0, false, [ref] Temp_object_Variable, 0, [ref] mHitResult, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 1, B = 0, A = 1), 5);
+L373:          GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool1, [ref] mbool2, [ref] mfloat, [ref] mfloat1, [ref] mVector4, [ref] mVector5, [ref] mVector6, [ref] mVector7, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint32, [ref] mint321, [ref] mVector8, [ref] mVector9);
+L558:          Transform mTransform = MakeTransform(mVector4, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1));
+L621:          Actor* mActor1 = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_PortableMiner, [ref] mTransform, 0, nullptr);
+L685:          GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool1, [ref] mbool2, [ref] mfloat, [ref] mfloat1, [ref] mVector4, [ref] mVector5, [ref] mVector6, [ref] mVector7, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint32, [ref] mint321, [ref] mVector8, [ref] mVector9);
+L870:          mTransform = MakeTransform(mVector4, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1));
+L933:          BP_PortableMiner* mBP_PortableMiner = GameplayStatics->FinishSpawningActor(mActor1, [ref] mTransform);
+L993:          mBP_PortableMiner->FlushNetDormancy();
+L1025:         mBP_PortableMiner->mExtractResourceNode = mFGResourceNode;
+L1066:         FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L1086:         FGInventoryComponentEquipment* mFGInventoryComponentEquipment = mFGCharacterPlayer1->GetEquipmentSlot(1);
+L1130:         int32 mint322 = mFGInventoryComponentEquipment->GetActiveIndex();
+L1180:         mFGInventoryComponentEquipment->RemoveAllFromIndex(mint322);
+L1221:         this->PlaySpawnEffects(mBP_PortableMiner);
+L1244:         goto ExecutionFlow.Pop();
+L1245:         this->WasEquipped();
+L1255:         bool mbool3 = this->IsLocalInstigator();
+L1275:         if (!mbool3) goto ExecutionFlow.Pop();
+L1285:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_EQ_PM_Equip, this, true);
+L1338:         bool mbool4 = this->ShouldShowStinger();
+L1358:         if (!mbool4) goto L1542;
+L1372:         FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L1392:         SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer2->GetMesh1P();
+L1434:         AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L1476:         bool mbool5 = mAnimInstance->Montage_IsPlaying(PortableMinerStinger_01_Montage);
+L1527:         if (!mbool5) goto L2009;
+L1541:         goto ExecutionFlow.Pop();
+L1542:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L1562:         SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer3->GetMesh1P();
+L1604:         AnimInstance* mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L1646:         bool mbool6 = mAnimInstance1->Montage_IsPlaying(PortableMinerEquip_01_Montage);
+L1697:         if (!mbool6) goto L1712;
+L1711:         goto ExecutionFlow.Pop();
+L1712:         ExecutionFlow.Push(L1894);
+L1717:         mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L1737:         mSkeletalMeshComponent1 = mFGCharacterPlayer3->GetMesh1P();
+L1779:         mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L1821:         float mfloat2 = mAnimInstance1->Montage_Play(PortableMinerEquip_01_Montage, 1, 0, 0, true);
+L1893:         goto ExecutionFlow.Pop();
+L1894:         AnimInstance* mAnimInstance2 = this->1P_PortableMiner->GetAnimInstance();
+L1936:         float mfloat3 = mAnimInstance2->Montage_Play(PortableMinerEquip_01_Montage, 1, 0, 0, true);
+L2008:         goto ExecutionFlow.Pop();
+L2009:         ExecutionFlow.Push(L2191);
+L2014:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L2034:         mSkeletalMeshComponent = mFGCharacterPlayer2->GetMesh1P();
+L2076:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L2118:         float mfloat4 = mAnimInstance->Montage_Play(PortableMinerStinger_01_Montage, 1, 0, 0, true);
+L2190:         goto ExecutionFlow.Pop();
+L2191:         AnimInstance* mAnimInstance3 = this->1P_PortableMiner->GetAnimInstance();
+L2233:         float mfloat5 = mAnimInstance3->Montage_Play(PortableMinerStinger_01_Montage, 1, 0, 0, true);
+L2305:         goto ExecutionFlow.Pop();
+L2306:         AnimInstance* mAnimInstance4 = this->1P_PortableMiner->GetAnimInstance();
+L2348:         AnimMontage* mAnimMontage = mAnimInstance4->GetCurrentActiveMontage();
+L2390:         mAnimInstance4->Montage_Stop(0, mAnimMontage);
+L2436:         goto ExecutionFlow.Pop();
+L2437:         this->WasUnEquipped();
+L2447:         bool mbool7 = this->IsLocalInstigator();
+L2467:         if (!mbool7) goto ExecutionFlow.Pop();
+L2477:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(nullptr, this, true);
+L2522:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_P_ResourcePickUp, this, true);
+L2575:         FGCharacterPlayer* mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L2595:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer4->GetMesh1P();
+L2637:         AnimInstance* mAnimInstance5 = mSkeletalMeshComponent2->GetAnimInstance();
+L2679:         AnimMontage* mAnimMontage1 = mAnimInstance5->GetCurrentActiveMontage();
+L2721:         mAnimInstance5->Montage_Stop(0, mAnimMontage1);
+L2767:         goto L2306;
+============ END FUNCTION ExecuteUbergraph_Equip_PortableMinerDispenser ==============

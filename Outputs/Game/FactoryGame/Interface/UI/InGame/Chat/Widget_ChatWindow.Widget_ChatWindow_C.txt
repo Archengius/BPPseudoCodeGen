@@ -1,0 +1,246 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatWindow.Widget_ChatWindow_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ExitChat ==============
+L0:            this->SetInputWindowVisibility(false);
+L15:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L39:           HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
+L94:           BP_GameUI* mBP_GameUI = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C>(mFGGameUI);
+L130:          bool mbool = mBP_GameUI;
+L159:          if (!mbool) goto L223;
+L173:          mBP_GameUI->ResetInput();
+L209:          this->UpdateVisibility();
+============ END FUNCTION ExitChat ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPlayerBeginTypeMessage ==============
+L0:            this->SetInputWindowVisibility(true);
+L15:           this->SetupDefaultFocus();
+L29:           this->SetInputMode();
+L43:           this->InputWindow->mInputField->SetKeyboardFocus();
+L97:           this->UpdateVisibility();
+============ END FUNCTION OnPlayerBeginTypeMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateVisibility ==============
+L0:            uint8 Temp_byte_Variable6 = 0;
+L20:           uint8 Temp_byte_Variable7 = 2;
+L40:           bool Temp_bool_Variable2 = this->mChatInputVisible;
+L59:           this->InputWindow->SetVisibility(switch (Temp_bool_Variable2) {
+case false -> Temp_byte_Variable7;
+case true -> Temp_byte_Variable6;
+default -> muint8;
+});
+L148:          this->mMessageContent->SetVisibility(switch (Temp_bool_Variable2) {
+case false -> Temp_byte_Variable7;
+case true -> Temp_byte_Variable6;
+default -> muint8;
+});
+L237:          uint8 Temp_byte_Variable2 = 3;
+L257:          uint8 Temp_byte_Variable3 = 1;
+L277:          bool Temp_bool_Variable = this->mChatInputVisible;
+L296:          this->mMessageScrollBox->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint81;
+});
+L385:          uint8 Temp_byte_Variable = 2;
+L405:          uint8 Temp_byte_Variable1 = 3;
+L425:          bool Temp_bool_Variable3 = this->mChatInputVisible;
+L444:          this->mFreshMessageScrollBox->SetVisibility(switch (Temp_bool_Variable3) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint82;
+});
+L533:          uint8 Temp_byte_Variable4 = 4;
+L553:          uint8 Temp_byte_Variable5 = 2;
+L573:          this->IsLastMessageFresh([ref] mbool);
+L596:          bool mbool1 = BooleanOR(mbool, this->mChatInputVisible);
+L634:          bool Temp_bool_Variable1 = mbool1;
+L653:          this->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable5;
+case true -> Temp_byte_Variable4;
+default -> muint83;
+});
+============ END FUNCTION UpdateVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnChatMessageReceived ==============
+L0:            this->CacheChatMessages();
+L14:           this->MatchWidgetsAndMessages();
+L28:           this->UpdateVisibility();
+============ END FUNCTION OnChatMessageReceived ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetInputWindowVisibility ==============
+L0:            this->mChatInputVisible = visible;
+============ END FUNCTION SetInputWindowVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetInputWindowVisibility ==============
+L0:            bool ReturnValue = this->mChatInputVisible;
+============ END FUNCTION GetInputWindowVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION CacheChatMessages ==============
+L0:            KismetArrayLibrary->Array_Clear([ref] this->mCachedChatMessages);
+L41:           GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L84:           FGChatManager* mFGChatManager = FGChatManager->Get(mGameStateBase);
+L135:          mFGChatManager->GetReceivedChatMessages([ref] this->mCachedChatMessages);
+L176:          int32 mint32 = this->mMessageVBox->GetChildrenCount();
+L226:          mGameStateBase = GameplayStatics->GetGameState(this);
+L269:          mFGChatManager = FGChatManager->Get(mGameStateBase);
+L320:          int32 mint321 = mFGChatManager->GetMaxNumMessagesInHistory();
+L370:          bool mbool = EqualEqual_IntInt(mint32, mint321);
+L408:          if (!mbool) goto L469;
+L422:          bool mbool1 = this->mMessageVBox->RemoveChildAt(0);
+============ END FUNCTION CacheChatMessages ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsLastMessageFresh ==============
+L0:            int32 mint32 = this->mFreshMessageVBox->GetChildrenCount();
+L50:           bool mbool = Greater_IntInt(mint32, 0);
+L84:           bool IsFresh = mbool;
+============ END FUNCTION IsLastMessageFresh ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveMessageWidget ==============
+L0:            int32 mint32 = this->mMessageVBox->GetChildrenCount();
+L50:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L92:           int32 mint322 = Min(mint321, 0);
+L134:          bool mbool = this->mMessageVBox->RemoveChildAt(mint322);
+============ END FUNCTION RemoveMessageWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddMessageWidget ==============
+L0:            ExecutionFlow.Push(L845);
+L5:            int32 mint32 = this->mMessageVBox->GetChildrenCount();
+L55:           KismetArrayLibrary->Array_Get([ref] this->mCachedChatMessages, mint32, [ref] mChatMessageStruct);
+L114:          ChatMessageStruct newMessage = mChatMessageStruct;
+L141:          ExecutionFlow.Push(L401);
+L146:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L170:          Widget_ChatMessageRow* mWidget_ChatMessageRow = WidgetBlueprintLibrary->Create(this, Widget_ChatMessageRow, mPlayerController);
+L231:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ChatMessageRow, "mChatWindow", this);
+L286:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ChatMessageRow, "mChatMessage", [ref] newMessage);
+L349:          VerticalBoxSlot* mVerticalBoxSlot = this->mMessageVBox->AddChildToVerticalBox(mWidget_ChatMessageRow);
+L400:          goto ExecutionFlow.Pop();
+L401:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L425:          Widget_ChatMessageRow* mWidget_ChatMessageRow1 = WidgetBlueprintLibrary->Create(this, Widget_ChatMessageRow, mPlayerController1);
+L486:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ChatMessageRow1, "mChatWindow", this);
+L541:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ChatMessageRow1, "mChatMessage", [ref] newMessage);
+L604:          VerticalBoxSlot* mVerticalBoxSlot1 = this->mFreshMessageVBox->AddChildToVerticalBox(mWidget_ChatMessageRow1);
+L655:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L698:          FGChatManager* mFGChatManager = FGChatManager->Get(mGameStateBase);
+L749:          float mfloat = mFGChatManager->GetMessageVisibleDuration();
+L799:          mWidget_ChatMessageRow1->RemoveWidgetAfterDelay(mfloat);
+L844:          goto ExecutionFlow.Pop();
+============ END FUNCTION AddMessageWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION MatchWidgetsAndMessages ==============
+L0:            ExecutionFlow.Push(L427);
+L5:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mCachedChatMessages);
+L64:           int32 mint321 = this->mMessageVBox->GetChildrenCount();
+L114:          bool mbool = NotEqual_IntInt(mint321, mint32);
+L152:          if (!mbool) goto L347;
+L166:          ExecutionFlow.Push(L5);
+L171:          mint32 = KismetArrayLibrary->Array_Length([ref] this->mCachedChatMessages);
+L230:          mint321 = this->mMessageVBox->GetChildrenCount();
+L280:          bool mbool1 = Less_IntInt(mint321, mint32);
+L318:          if (!mbool1) goto L412;
+L332:          this->AddMessageWidget();
+L346:          goto ExecutionFlow.Pop();
+L347:          this->mMessageScrollBox->ScrollToEnd();
+L379:          this->mFreshMessageScrollBox->ScrollToEnd();
+L411:          goto ExecutionFlow.Pop();
+L412:          this->RemoveMessageWidget();
+L426:          goto ExecutionFlow.Pop();
+============ END FUNCTION MatchWidgetsAndMessages ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRemovedFromFocusPath ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatWindow.Widget_ChatWindow_C:ExecuteUbergraph_Widget_ChatWindow.K2Node_Event_InFocusEvent) = InFocusEvent;
+L18:           this->ExecuteUbergraph_Widget_ChatWindow(48);
+============ END FUNCTION OnRemovedFromFocusPath ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseEnter ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatWindow.Widget_ChatWindow_C:ExecuteUbergraph_Widget_ChatWindow.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatWindow.Widget_ChatWindow_C:ExecuteUbergraph_Widget_ChatWindow.K2Node_Event_MouseEvent1) = MouseEvent;
+L36:           this->ExecuteUbergraph_Widget_ChatWindow(124);
+============ END FUNCTION OnMouseEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseLeave ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatWindow.Widget_ChatWindow_C:ExecuteUbergraph_Widget_ChatWindow.K2Node_Event_MouseEvent) = MouseEvent;
+L18:           this->ExecuteUbergraph_Widget_ChatWindow(140);
+============ END FUNCTION OnMouseLeave ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ChatWindow(10);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ChatWindow ==============
+L10:           this->InputWindow->mChatWindow = this;
+L43:           <End of Inlined Event Graph Function>;
+L48:           if (!this->mChatInputVisible) goto L151;
+L62:           bool mbool = Not_PreBool(this->IsMouseHoveringChatWindow);
+L91:           if (!mbool) goto L151;
+L105:          this->ExitChat();
+L119:          <End of Inlined Event Graph Function>;
+L124:          this->IsMouseHoveringChatWindow = true;
+L135:          <End of Inlined Event Graph Function>;
+L140:          this->IsMouseHoveringChatWindow = false;
+============ END FUNCTION ExecuteUbergraph_Widget_ChatWindow ==============

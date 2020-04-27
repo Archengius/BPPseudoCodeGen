@@ -1,0 +1,190 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/ShockShank/Equip_ShockShank.Equip_ShockShank_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION WasEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_ShockShank(2903);
+============ END FUNCTION WasEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasUnEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_ShockShank(5118);
+============ END FUNCTION WasUnEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayStunEffects ==============
+L0:            this->ExecuteUbergraph_Equip_ShockShank(2998);
+============ END FUNCTION PlayStunEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHitTarget ==============
+L0:            this->ExecuteUbergraph_Equip_ShockShank(5123);
+============ END FUNCTION OnHitTarget ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Equip_ShockShank ==============
+L10:           this->WasUnEquipped();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
+L40:           bool mbool = mFGCharacterPlayer->IsLocallyControlled();
+L86:           if (!mbool) goto L5123;
+L100:          mFGCharacterPlayer = this->GetInstigatorCharacter();
+L120:          SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L162:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L204:          AnimMontage* mAnimMontage = mAnimInstance->GetCurrentActiveMontage();
+L246:          mAnimInstance->Montage_Stop(0, mAnimMontage);
+L292:          AnimInstance* mAnimInstance1 = this->ShockShank_skl->GetAnimInstance();
+L334:          AnimMontage* mAnimMontage1 = mAnimInstance1->GetCurrentActiveMontage();
+L376:          mAnimInstance1->Montage_Stop(0, mAnimMontage1);
+L422:          Pawn* mPawn = this->GetInstigator();
+L442:          Controller* mController = mPawn->GetController();
+L484:          PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L520:          bool mbool1 = mPlayerController;
+L549:          if (!mbool1) goto L5123;
+L563:          mPlayerController->PlayerCameraManager->StopAllCameraAnims(true);
+L622:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L642:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Stop_EQ_ShockShank_EquipStinger, mFGCharacterPlayer1, true);
+L703:          <End of Inlined Event Graph Function>;
+L708:          bool mbool2 = EqualEqual_IntInt(this->mRandomStingerAnim, 1);
+L742:          if (!mbool2) goto L1099;
+L756:          FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L776:          SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L818:          AnimInstance* mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
+L860:          bool mbool3 = KismetSystemLibrary->IsValid(mAnimInstance2);
+L911:          if (!mbool3) goto L5123;
+L925:          mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L945:          mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L987:          mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
+L1029:         bool mbool4 = mAnimInstance2->Montage_IsPlaying(ShockShankStinger_02_Montage);
+L1080:         if (!mbool4) goto L1818;
+L1094:         <End of Inlined Event Graph Function>;
+L1099:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L1119:         mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L1161:         mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
+L1203:         bool mbool5 = KismetSystemLibrary->IsValid(mAnimInstance2);
+L1254:         if (!mbool5) goto L5123;
+L1268:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L1288:         mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L1330:         mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
+L1372:         bool mbool6 = mAnimInstance2->Montage_IsPlaying(ShockShankStinger_03_Montage);
+L1423:         if (!mbool6) goto L1442;
+L1437:         <End of Inlined Event Graph Function>;
+L1442:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L1462:         mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L1504:         mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
+L1546:         float mfloat = mAnimInstance2->Montage_Play(ShockShankStinger_03_Montage, 1, 1, 0, true);
+L1618:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L1638:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_EQ_ShockShank_StingerV2_02, mFGCharacterPlayer3, true);
+L1699:         AnimInstance* mAnimInstance3 = this->ShockShank_skl->GetAnimInstance();
+L1741:         float mfloat1 = mAnimInstance3->Montage_Play(ShockShankStinger_02_Montage, 1, 0, 0, true);
+L1813:         <End of Inlined Event Graph Function>;
+L1818:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L1838:         mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L1880:         mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
+L1922:         float mfloat2 = mAnimInstance2->Montage_Play(ShockShankStinger_02_Montage, 1, 1, 0, true);
+L1994:         FGCharacterPlayer* mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L2014:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_EQ_ShockShank_StingerV2_01, mFGCharacterPlayer4, true);
+L2075:         goto L1699;
+L2080:         bool mbool7 = this->ShouldShowStinger();
+L2100:         if (!mbool7) goto L2184;
+L2114:         int32 mint32 = RandomIntegerInRange(0, 1);
+L2152:         this->mRandomStingerAnim = mint32;
+L2179:         goto L708;
+L2184:         FGCharacterPlayer* mFGCharacterPlayer5 = this->GetInstigatorCharacter();
+L2204:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer5->GetMesh1P();
+L2246:         AnimInstance* mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L2288:         bool mbool8 = KismetSystemLibrary->IsValid(mAnimInstance4);
+L2339:         if (!mbool8) goto L5123;
+L2353:         mFGCharacterPlayer5 = this->GetInstigatorCharacter();
+L2373:         mSkeletalMeshComponent2 = mFGCharacterPlayer5->GetMesh1P();
+L2415:         mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L2457:         bool mbool9 = mAnimInstance4->Montage_IsPlaying(ShockShankEquip_01_Montage);
+L2508:         if (!mbool9) goto L2527;
+L2522:         <End of Inlined Event Graph Function>;
+L2527:         mFGCharacterPlayer5 = this->GetInstigatorCharacter();
+L2547:         mSkeletalMeshComponent2 = mFGCharacterPlayer5->GetMesh1P();
+L2589:         mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L2631:         float mfloat3 = mAnimInstance4->Montage_Play(ShockShankEquip_01_Montage, 1, 0, 0, true);
+L2703:         AnimInstance* mAnimInstance5 = this->ShockShank_skl->GetAnimInstance();
+L2745:         float mfloat4 = mAnimInstance5->Montage_Play(ShockShankEquip_01_Montage, 1, 0, 0, true);
+L2817:         FGCharacterPlayer* mFGCharacterPlayer6 = this->GetInstigatorCharacter();
+L2837:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_EQ_ShockShank_EquipV2, mFGCharacterPlayer6, true);
+L2898:         <End of Inlined Event Graph Function>;
+L2903:         this->WasEquipped();
+L2913:         FGCharacterPlayer* mFGCharacterPlayer7 = this->GetInstigatorCharacter();
+L2933:         bool mbool10 = mFGCharacterPlayer7->IsLocallyControlled();
+L2979:         if (!mbool10) goto L5123;
+L2993:         goto L2080;
+L2998:         this->PlayStunEffects();
+L3008:         FGCharacterPlayer* mFGCharacterPlayer8 = this->GetInstigatorCharacter();
+L3028:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Stop_EQ_ShockShank_EquipStinger, mFGCharacterPlayer8, true);
+L3089:         FGCharacterPlayer* mFGCharacterPlayer9 = this->GetInstigatorCharacter();
+L3109:         SkeletalMeshComponent* mSkeletalMeshComponent3 = mFGCharacterPlayer9->GetMesh1P();
+L3151:         AnimInstance* mAnimInstance6 = mSkeletalMeshComponent3->GetAnimInstance();
+L3193:         bool mbool11 = KismetSystemLibrary->IsValid(mAnimInstance6);
+L3244:         if (!mbool11) goto L5123;
+L3258:         int32 mint321 = RandomIntegerInRange(0, 50);
+L3296:         this->mRandomAttackAnim = mint321;
+L3323:         bool mbool12 = this->GetShouldPlaySecondSwing();
+L3343:         if (!mbool12) goto L4547;
+L3357:         bool mbool13 = GreaterEqual_IntInt(this->mRandomAttackAnim, 48);
+L3391:         if (!mbool13) goto L3976;
+L3405:         mFGCharacterPlayer9 = this->GetInstigatorCharacter();
+L3425:         mSkeletalMeshComponent3 = mFGCharacterPlayer9->GetMesh1P();
+L3467:         mAnimInstance6 = mSkeletalMeshComponent3->GetAnimInstance();
+L3509:         float mfloat5 = mAnimInstance6->Montage_Play(ShockShankAttack_04_Montage, 1, 0, 0, true);
+L3581:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEvent(Play_EQ_ShockShank_Punch, this, true);
+L3634:         AnimInstance* mAnimInstance7 = this->ShockShank_skl->GetAnimInstance();
+L3676:         float mfloat6 = mAnimInstance7->Montage_Play(ShockShankAttack_01_Montage, 1, 0, 0, true);
+L3748:         Pawn* mPawn1 = this->GetInstigator();
+L3768:         Controller* mController1 = mPawn1->GetController();
+L3810:         PlayerController* mPlayerController1 = Cast<Class /Script/Engine.PlayerController>(mController1);
+L3846:         bool mbool14 = mPlayerController1;
+L3875:         if (!mbool14) goto L5123;
+L3889:         mPlayerController1->ClientPlayCameraAnim(ShockShankAttack_04_CameraAnim, 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L3971:         <End of Inlined Event Graph Function>;
+L3976:         mFGCharacterPlayer9 = this->GetInstigatorCharacter();
+L3996:         mSkeletalMeshComponent3 = mFGCharacterPlayer9->GetMesh1P();
+L4038:         mAnimInstance6 = mSkeletalMeshComponent3->GetAnimInstance();
+L4080:         float mfloat7 = mAnimInstance6->Montage_Play(ShockShankAttack_03_Montage, 1, 0, 0, true);
+L4152:         AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEvent(Play_EQ_ShockShank_HitRattle, this, true);
+L4205:         AnimInstance* mAnimInstance8 = this->ShockShank_skl->GetAnimInstance();
+L4247:         float mfloat8 = mAnimInstance8->Montage_Play(ShockShankAttack_01_Montage, 1, 0, 0, true);
+L4319:         Pawn* mPawn2 = this->GetInstigator();
+L4339:         Controller* mController2 = mPawn2->GetController();
+L4381:         PlayerController* mPlayerController2 = Cast<Class /Script/Engine.PlayerController>(mController2);
+L4417:         bool mbool15 = mPlayerController2;
+L4446:         if (!mbool15) goto L5123;
+L4460:         mPlayerController2->ClientPlayCameraAnim(ShockShankAttack_03_CamerAnim, 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L4542:         <End of Inlined Event Graph Function>;
+L4547:         mFGCharacterPlayer9 = this->GetInstigatorCharacter();
+L4567:         mSkeletalMeshComponent3 = mFGCharacterPlayer9->GetMesh1P();
+L4609:         mAnimInstance6 = mSkeletalMeshComponent3->GetAnimInstance();
+L4651:         float mfloat9 = mAnimInstance6->Montage_Play(ShockShankAttack_01_Montage, 1, 0, 0, true);
+L4723:         AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEvent(Play_EQ_ShockShank_HitRattle, this, true);
+L4776:         AnimInstance* mAnimInstance9 = this->ShockShank_skl->GetAnimInstance();
+L4818:         float mfloat10 = mAnimInstance9->Montage_Play(ShockShankAttack_01_Montage, 1, 0, 0, true);
+L4890:         Pawn* mPawn3 = this->GetInstigator();
+L4910:         Controller* mController3 = mPawn3->GetController();
+L4952:         PlayerController* mPlayerController3 = Cast<Class /Script/Engine.PlayerController>(mController3);
+L4988:         bool mbool16 = mPlayerController3;
+L5017:         if (!mbool16) goto L5123;
+L5031:         mPlayerController3->ClientPlayCameraAnim(ShockShankAttack_01_CameraAnim, 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L5113:         <End of Inlined Event Graph Function>;
+L5118:         goto L10;
+============ END FUNCTION ExecuteUbergraph_Equip_ShockShank ==============

@@ -1,0 +1,69 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/WorkBench/Build_WorkBenchIntegrated.Build_WorkBenchIntegrated_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CanBeSampled ==============
+L0:            bool ReturnValue = false;
+============ END FUNCTION CanBeSampled ==============
+
+
+
+
+
+============ BEGIN FUNCTION CanDismantle ==============
+L0:            bool mbool = this->ActorHasTag("Integrated");
+L33:           bool mbool1 = Not_PreBool(mbool);
+L62:           bool ReturnValue = mbool1;
+============ END FUNCTION CanDismantle ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLookAtDecription ==============
+L0:            bool mbool = EqualEqual_ClassClass(State.State, UseState_WorkBench);
+L47:           if (!mbool) goto L161;
+L61:           FText mFText = this->GetLookAtDecription(byCharacter, [ref] byCharacter->mCachedUseState);
+L129:          FText ReturnValue = mFText;
+L156:          goto L188;
+L161:          ReturnValue = this->mOccupiedText;
+============ END FUNCTION GetLookAtDecription ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsUseable ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION IsUseable ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateUseState ==============
+L0:            Controller* mController = byCharacter->GetController();
+L42:           PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L78:           bool mbool = mPlayerController;
+L107:          if (!mbool) goto L637;
+L121:          HUD* mHUD = mPlayerController->GetHUD();
+L163:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L199:          bool mbool1 = mFGHUD;
+L228:          if (!mbool1) goto L637;
+L242:          FGCharacterPlayer* mFGCharacterPlayer = this->BP_WorkBenchComponent->GetWorkBenchUser();
+L284:          bool mbool2 = KismetSystemLibrary->IsValid(mFGCharacterPlayer);
+L335:          if (!mbool2) goto L553;
+L349:          FGCharacterPlayer* mFGCharacterPlayer1 = this->BP_WorkBenchComponent->GetWorkBenchUser();
+L391:          bool mbool3 = EqualEqual_ObjectObject(mFGCharacterPlayer1, byCharacter);
+L429:          bool mbool4 = Not_PreBool(mbool3);
+L458:          if (!mbool4) goto L553;
+L472:          FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, nullptr);
+L514:          mFGHUD->SetCrosshairState(0);
+L548:          <End of Inlined Event Graph Function>;
+L553:          FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, UseState_WorkBench);
+L603:          mFGHUD->SetCrosshairState(5);
+============ END FUNCTION UpdateUseState ==============

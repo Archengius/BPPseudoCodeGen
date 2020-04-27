@@ -1,0 +1,254 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop_Item.BPW_ResourceSinkShop_Item_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked ==============
+L0:            this->GetButtonState([ref] muint8);
+L23:           bool mbool = EqualEqual_ByteByte(muint8, 0);
+L54:           if (!mbool) goto L156;
+L68:           this->OnShopItemClicked->ProcessMulticastDelegate(this->FGSchematic);
+L96:           this->UpdateButtonState();
+L110:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->AddedToCartAnim, 0, 1, 0, 1);
+============ END FUNCTION OnClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonState ==============
+L0:            bool mbool = FGSchematic->IsRepeatPurchasesAllowed(this->FGSchematic);
+L51:           if (!mbool) goto L90;
+L65:           uint8 State = 0;
+L85:           <End of Inlined Event Graph Function>;
+L90:           if (!this->mIsAddedToCart) goto L129;
+L104:          State = 1;
+L124:          <End of Inlined Event Graph Function>;
+L129:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L153:          FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L204:          bool mbool1 = mFGSchematicManager->IsSchematicPurchased(this->FGSchematic);
+L255:          if (!mbool1) goto L294;
+L269:          State = 2;
+L289:          <End of Inlined Event Graph Function>;
+L294:          State = 0;
+============ END FUNCTION GetButtonState ==============
+
+
+
+
+
+============ BEGIN FUNCTION OpenTooltipMenu ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           BPW_ResourceSink_InfoBox* mBPW_ResourceSink_InfoBox = WidgetBlueprintLibrary->Create(this, BPW_ResourceSink_InfoBox, mPlayerController);
+L85:           KismetSystemLibrary->SetClassPropertyByName(mBPW_ResourceSink_InfoBox, "mHoveredSchematic", this->FGSchematic);
+L148:          this->mTooltipWidget = mBPW_ResourceSink_InfoBox;
+L167:          this->mTooltipWidget->UpdateTooltipInfo(this->FGSchematic);
+L212:          Widget* ReturnValue = this->mTooltipWidget;
+============ END FUNCTION OpenTooltipMenu ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateButtonState ==============
+L0:            uint8 NewLocalVar_0 = 0;
+L20:           this->GetButtonState([ref] muint8);
+L43:           bool mbool = NotEqual_ByteByte(muint8, 0);
+L74:           if (!mbool) goto L183;
+L88:           mbool = NotEqual_ByteByte(muint8, 1);
+L119:          if (!mbool) goto L406;
+L133:          mbool = NotEqual_ByteByte(muint8, 2);
+L164:          if (!mbool) goto L669;
+L178:          <End of Inlined Event Graph Function>;
+L183:          this->mAddToCart_Button->SetVisibility(0);
+L221:          this->mUnavailableText->SetVisibility(2);
+L259:          MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mRetainerBox->GetEffectMaterial();
+L301:          mMaterialInstanceDynamic->SetScalarParameterValue("amount", 0);
+L351:          this->GetButtonState([ref] muint81);
+L374:          this->mOldState = muint81;
+L401:          <End of Inlined Event Graph Function>;
+L406:          this->mUnavailableText->SetVisibility(0);
+L444:          this->mUnavailableText->SetText("[object Object]");
+L535:          this->mAddToCart_Button->SetVisibility(2);
+L573:          bool mbool1 = EqualEqual_ByteByte(this->mOldState, 0);
+L604:          if (!mbool1) goto L1026;
+L618:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->OnHoverAnim, 0, 1, 1, 1);
+L664:          goto L351;
+L669:          this->mAddToCart_Button->SetVisibility(2);
+L707:          this->mUnavailableText->SetVisibility(0);
+L745:          this->mUnavailableText->SetText("[object Object]");
+L838:          MaterialInstanceDynamic* mMaterialInstanceDynamic1 = this->mRetainerBox->GetEffectMaterial();
+L880:          mMaterialInstanceDynamic1->SetScalarParameterValue("amount", 1);
+L930:          bool mbool2 = EqualEqual_ByteByte(this->mOldState, 0);
+L961:          if (!mbool2) goto L1026;
+L975:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->OnHoverAnim, 0, 1, 1, 1);
+L1021:         goto L351;
+============ END FUNCTION UpdateButtonState ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemCost ==============
+L0:            FText mFText = KismetTextLibrary->Conv_IntToText(Cost, false, true, 1, 324);
+L71:           this->mItemCostText = mFText;
+L98:           mFormatArgumentData.ArgumentName = "Cost";
+L131:          mFormatArgumentData.ArgumentValueType = 4;
+L160:          mFormatArgumentData.ArgumentValue = this->mItemCostText;
+L196:          mFormatArgumentData.ArgumentValueInt = 0;
+L228:          mFormatArgumentData.ArgumentValueFloat = 0;
+L260:          mFormatArgumentData.ArgumentValueGender = 0;
+L289:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L309:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L416:          this->mSchematicCostText->SetText(mFText1);
+============ END FUNCTION GetItemCost ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemIcon ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->FGSchematic);
+L51:           if (!mbool) goto L543;
+L65:           SlateBrush mSlateBrush = FGSchematic->GetItemIcon(this->FGSchematic);
+L124:          Texture2D* mTexture2D = WidgetBlueprintLibrary->GetBrushResourceAsTexture2D([ref] mSlateBrush);
+L175:          this->mItemIconBrush = mTexture2D;
+L194:          mSlateBrush1.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 32, Y = 32);
+L245:          mSlateBrush1.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
+L306:          mSlateBrush1.TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0);
+L383:          mSlateBrush1.ResourceObject = this->mItemIconBrush;
+L411:          mSlateBrush1.DrawAs = 3;
+L440:          mSlateBrush1.Tiling = 0;
+L469:          mSlateBrush1.Mirroring = 0;
+L498:          this->mIcon->SetBrush([ref] mSlateBrush1);
+============ END FUNCTION GetItemIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemName ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->FGSchematic);
+L51:           if (!mbool) goto L255;
+L65:           FText mFText = FGSchematic->GetSchematicDisplayName(this->FGSchematic);
+L124:          this->mItemNameText = mFText;
+L151:          FText mFText1 = KismetTextLibrary->TextToUpper([ref] this->mItemNameText);
+L210:          this->mShopItemName->SetText(mFText1);
+============ END FUNCTION GetItemName ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(77);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(215);
+============ END FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(234);
+============ END FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(351);
+============ END FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION SimulateOnHovered ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(538);
+============ END FUNCTION SimulateOnHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION SimulateOnUnhovered ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(554);
+============ END FUNCTION SimulateOnUnhovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mAddToCart_Button_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(570);
+============ END FUNCTION BndEvt__mAddToCart_Button_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_ResourceSinkShop_Item ==============
+L10:           this->GetItemIcon();
+L24:           this->GetItemCost(this->mSchematicCost);
+L47:           this->bIsFocusable = true;
+L58:           this->UpdateButtonState();
+L72:           <End of Inlined Event Graph Function>;
+L77:           this->GetItemName();
+L91:           goto L10;
+L96:           this->GetButtonState([ref] muint8);
+L119:          bool mbool = EqualEqual_ByteByte(muint8, 0);
+L150:          if (!mbool) goto L584;
+L164:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->OnHoverAnim, 0, 1, 0, 1);
+L210:          <End of Inlined Event Graph Function>;
+L215:          this->OnClicked();
+L229:          <End of Inlined Event Graph Function>;
+L234:          this->OnShopItemHovered->ProcessMulticastDelegate(this->FGSchematic, this);
+L277:          this->Widget_AutoScrollingContainer->StartAutoScroll();
+L313:          this->mTooltipMenuAnchor->Open(false);
+L346:          goto L96;
+L351:          this->Widget_AutoScrollingContainer->StopAutoScroll();
+L387:          this->mTooltipMenuAnchor->Close();
+L419:          this->GetButtonState([ref] muint81);
+L442:          bool mbool1 = EqualEqual_ByteByte(muint81, 0);
+L473:          if (!mbool1) goto L584;
+L487:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->OnHoverAnim, 0, 1, 1, 1);
+L533:          <End of Inlined Event Graph Function>;
+L538:          this->mForceHover = true;
+L549:          goto L234;
+L554:          this->mForceHover = false;
+L565:          goto L351;
+L570:          this->OnClicked();
+============ END FUNCTION ExecuteUbergraph_BPW_ResourceSinkShop_Item ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnBuyButtonClicked__DelegateSignature ==============
+============ END FUNCTION OnBuyButtonClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnShopItemHovered__DelegateSignature ==============
+============ END FUNCTION OnShopItemHovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnShopItemClicked__DelegateSignature ==============
+============ END FUNCTION OnShopItemClicked__DelegateSignature ==============

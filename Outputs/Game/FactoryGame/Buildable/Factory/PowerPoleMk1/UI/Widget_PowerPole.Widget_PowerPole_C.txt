@@ -1,0 +1,141 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/PowerPoleMk1/UI/Widget_PowerPole.Widget_PowerPole_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateHeaderText ==============
+L0:            FGBuildable* mFGBuildable = Cast<Class /Script/FactoryGame.FGBuildable>(this->mInteractObject);
+L36:           bool mbool = mFGBuildable;
+L65:           if (!mbool) goto L146;
+L79:           this->Widget_Window_DarkMode->SetTitle(mFGBuildable->mDisplayName);
+============ END FUNCTION UpdateHeaderText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetFuseVisibility ==============
+L0:            FGPowerCircuit* mFGPowerCircuit = this->mPowerCircuitGraph->GetPowerCircuit();
+L42:           bool mbool = KismetSystemLibrary->IsValid(mFGPowerCircuit);
+L93:           if (!mbool) goto L230;
+L107:          mFGPowerCircuit = this->mPowerCircuitGraph->GetPowerCircuit();
+L149:          bool mbool1 = mFGPowerCircuit->IsFuseTriggered();
+L191:          if (!mbool1) goto L230;
+L205:          uint8 ReturnValue = 4;
+L225:          goto L250;
+L230:          ReturnValue = 1;
+============ END FUNCTION GetFuseVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnGetPowerCircuit ==============
+L0:            FGPowerCircuit* mFGPowerCircuit = this->mPowerPole->GetPowerCircuit();
+L42:           FGPowerCircuit* ReturnValue = mFGPowerCircuit;
+============ END FUNCTION OnGetPowerCircuit ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsConnected ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mPowerPole);
+L51:           if (!mbool) goto L177;
+L65:           FGPowerCircuit* mFGPowerCircuit = this->mPowerPole->GetPowerCircuit();
+L107:          bool mbool1 = KismetSystemLibrary->IsValid(mFGPowerCircuit);
+L158:          bool IsConnected = mbool1;
+============ END FUNCTION IsConnected ==============
+
+
+
+
+
+============ BEGIN FUNCTION Cleanup ==============
+L0:            this->Widget_Window_DarkMode->OnClose->Clear();
+============ END FUNCTION Cleanup ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPowerCircuitGraphVisibility ==============
+L0:            this->IsConnected([ref] mbool);
+L23:           if (!mbool) goto L62;
+L37:           uint8 ReturnValue = 0;
+L57:           goto L82;
+L62:           ReturnValue = 1;
+============ END FUNCTION GetPowerCircuitGraphVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_PowerPole(700);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_PowerPole(270);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_PowerPole(285);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResetFuse ==============
+L0:            this->ExecuteUbergraph_Widget_PowerPole(705);
+============ END FUNCTION ResetFuse ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PowerPole ==============
+L10:           this->UpdateHeaderText();
+L24:           mFScriptDelegate->BindUFunction(this, OnEscapePressed);
+L47:           this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate);
+L88:           mFScriptDelegate1->BindUFunction(this, ResetFuse);
+L111:          this->Widget_Fusebox->ResetFuse.AddUnique(mFScriptDelegate1);
+L152:          <End of Inlined Event Graph Function>;
+L157:          this->Init();
+L167:          FGBuildablePowerPole* mFGBuildablePowerPole = Cast<Class /Script/FactoryGame.FGBuildablePowerPole>(this->mInteractObject);
+L203:          bool mbool = mFGBuildablePowerPole;
+L232:          if (!mbool) goto L710;
+L246:          this->mPowerPole = mFGBuildablePowerPole;
+L265:          <End of Inlined Event Graph Function>;
+L270:          this->Construct();
+L280:          goto L10;
+L285:          this->Destruct();
+L295:          this->Cleanup();
+L309:          <End of Inlined Event Graph Function>;
+L314:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L338:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_PowerLossWarning_ResetFuse, mPlayerController, true);
+L399:          <End of Inlined Event Graph Function>;
+L404:          mPlayerController = this->GetOwningPlayer();
+L428:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L464:          bool mbool1 = mFGPlayerController;
+L493:          if (!mbool1) goto L710;
+L507:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L558:          FGPowerCircuit* mFGPowerCircuit = this->mPowerCircuitGraph->GetPowerCircuit();
+L600:          int32 mint32 = mFGPowerCircuit->GetCircuitID();
+L650:          mBP_RemoteCallObject->Server_ResetFuse(mint32);
+L695:          goto L314;
+L700:          goto L157;
+L705:          goto L404;
+============ END FUNCTION ExecuteUbergraph_Widget_PowerPole ==============

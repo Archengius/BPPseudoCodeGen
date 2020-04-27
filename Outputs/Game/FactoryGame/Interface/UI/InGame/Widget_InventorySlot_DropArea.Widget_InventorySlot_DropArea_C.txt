@@ -1,0 +1,103 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_InventorySlot_DropArea.Widget_InventorySlot_DropArea_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnDropInventorySlot ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(InventorySlot);
+L51:           FString mFString = KismetStringLibrary->Conv_BoolToString(mbool);
+L110:          KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L193:          this->FindCorrectSlot(InventorySlot, [ref] mWidget_InventorySlot, [ref] mbool1);
+L234:          if (!mbool1) goto L367;
+L248:          this->FindCorrectSlot(InventorySlot, [ref] mWidget_InventorySlot, [ref] mbool1);
+L289:          mWidget_InventorySlot->DropOntoInventorySlot(InventorySlot, [ref] mbool2);
+L343:          bool Result = mbool2;
+L362:          <End of Inlined Event Graph Function>;
+L367:          Result = false;
+============ END FUNCTION OnDropInventorySlot ==============
+
+
+
+
+
+============ BEGIN FUNCTION FindCorrectSlot ==============
+L0:            ExecutionFlow.Push(L708);
+L5:            bool Temp_bool_True_if_break_was_hit_Variable = false;
+L16:           int32 Temp_int_Loop_Counter_Variable = 0;
+L39:           int32 Temp_int_Array_Index_Variable = 0;
+L62:           bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L91:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mInventorySlots);
+L150:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L188:          bool mbool2 = BooleanAND(mbool, mbool1);
+L226:          if (!mbool2) goto L591;
+L240:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L267:          ExecutionFlow.Push(L634);
+L272:          payload->GetItemClass([ref] mTSubclassOf<FGItemDescriptor>);
+L317:          KismetArrayLibrary->Array_Get([ref] this->mInventorySlots, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L376:          bool mbool3 = mWidget_InventorySlot->mCachedInventoryComponent->IsItemAllowed(mTSubclassOf<FGItemDescriptor>, mWidget_InventorySlot->mSlotIdx);
+L480:          if (!mbool3) goto ExecutionFlow.Pop();
+L490:          KismetArrayLibrary->Array_Get([ref] this->mInventorySlots, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L549:          Widget_InventorySlot* LocalInventorySlot = mWidget_InventorySlot;
+L568:          bool LocalFoundSlot = true;
+L579:          Temp_bool_True_if_break_was_hit_Variable = true;
+L590:          goto ExecutionFlow.Pop();
+L591:          Widget_InventorySlot* InventorySlot = LocalInventorySlot;
+L610:          bool success = LocalFoundSlot;
+L629:          <End of Inlined Event Graph Function>;
+L634:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L676:          Temp_int_Loop_Counter_Variable = mint321;
+L703:          goto L62;
+============ END FUNCTION FindCorrectSlot ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDrop ==============
+L0:            BP_DragNDropInventory* mBP_DragNDropInventory = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/BP_DragNDropInventory.BP_DragNDropInventory_C>(Operation);
+L36:           bool mbool = mBP_DragNDropInventory;
+L65:           if (!mbool) goto L384;
+L79:           Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mBP_DragNDropInventory->payload);
+L137:          bool mbool1 = mWidget_InventorySlot;
+L166:          if (!mbool1) goto L400;
+L180:          Widget_InventorySlot* LocalInventorySlot = mWidget_InventorySlot;
+L199:          bool mbool2 = NotEqual_ByteByte(this->mDropAreaState, 0);
+L230:          if (!mbool2) goto L416;
+L244:          mbool2 = NotEqual_ByteByte(this->mDropAreaState, 1);
+L275:          if (!mbool2) goto L472;
+L289:          mbool2 = NotEqual_ByteByte(this->mDropAreaState, 2);
+L320:          if (!mbool2) goto L631;
+L334:          mbool2 = NotEqual_ByteByte(this->mDropAreaState, 3);
+L365:          if (!mbool2) goto L790;
+L379:          goto L944;
+L384:          bool ReturnValue = false;
+L395:          goto L944;
+L400:          ReturnValue = false;
+L411:          goto L944;
+L416:          this->OnDropInventorySlot(LocalInventorySlot, [ref] mbool3);
+L448:          ReturnValue = mbool3;
+L467:          goto L944;
+L472:          bool mbool4 = KismetSystemLibrary->IsValid(this->mHudPayOffGrid);
+L523:          if (!mbool4) goto L615;
+L537:          this->mHudPayOffGrid->DropInventorySlotStack(LocalInventorySlot, [ref] mbool5);
+L591:          ReturnValue = mbool5;
+L610:          goto L944;
+L615:          ReturnValue = false;
+L626:          goto L944;
+L631:          bool mbool6 = KismetSystemLibrary->IsValid(this->mSpaceElevator);
+L682:          if (!mbool6) goto L774;
+L696:          this->mSpaceElevator->DropInventorySlotStack(LocalInventorySlot, [ref] mbool7);
+L750:          ReturnValue = mbool7;
+L769:          goto L944;
+L774:          ReturnValue = false;
+L785:          goto L944;
+L790:          bool mbool8 = KismetSystemLibrary->IsValid(this->mMAMResearchSlot);
+L841:          if (!mbool8) goto L933;
+L855:          this->mMAMResearchSlot->DropOntoInventorySlot(LocalInventorySlot, [ref] mbool9);
+L909:          ReturnValue = mbool9;
+L928:          goto L944;
+L933:          ReturnValue = false;
+============ END FUNCTION OnDrop ==============

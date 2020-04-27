@@ -1,0 +1,167 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_MenuButton.Widget_MenuButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetHoverColor ==============
+L0:            bool mbool = this->MenuButton->IsHovered();
+L46:           if (!mbool) goto L303;
+L60:           HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L115:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L170:          mbool = this->MenuButton->IsHovered();
+L216:          LinearColor mLinearColor2 = SelectColor(mLinearColor1, mLinearColor, mbool);
+L271:          LinearColor ReturnValue = mLinearColor2;
+L298:          goto L707;
+L303:          bool mbool1 = KismetSystemLibrary->IsValid(this->mCachedTabSwitcher);
+L354:          if (!mbool1) goto L625;
+L368:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor2, [ref] mLinearColor3);
+L423:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor4, [ref] mSlateColor3);
+L478:          bool mbool2 = EqualEqual_IntInt(this->mCachedTabSwitcher->ActiveWidgetIndex, this->mIndexAsChild);
+L538:          LinearColor mLinearColor5 = SelectColor(mLinearColor4, mLinearColor3, mbool2);
+L593:          ReturnValue = mLinearColor5;
+L620:          goto L707;
+L625:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor4, [ref] mLinearColor6);
+L680:          ReturnValue = mLinearColor6;
+============ END FUNCTION GetHoverColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonColor ==============
+L0:            bool mbool = this->MenuButton->IsHovered();
+L46:           if (!mbool) goto L303;
+L60:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L115:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L170:          mbool = this->MenuButton->IsHovered();
+L216:          LinearColor mLinearColor2 = SelectColor(mLinearColor, mLinearColor1, mbool);
+L271:          LinearColor ReturnValue = mLinearColor2;
+L298:          goto L620;
+L303:          bool mbool1 = KismetSystemLibrary->IsValid(this->mCachedTabSwitcher);
+L354:          if (!mbool1) goto L620;
+L368:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor2, [ref] mLinearColor3);
+L423:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor4, [ref] mSlateColor3);
+L478:          bool mbool2 = EqualEqual_IntInt(this->mCachedTabSwitcher->ActiveWidgetIndex, this->mIndexAsChild);
+L538:          LinearColor mLinearColor5 = SelectColor(mLinearColor4, mLinearColor3, mbool2);
+L593:          ReturnValue = mLinearColor5;
+============ END FUNCTION GetButtonColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetFocused ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           this->MenuButton->SetUserFocus(mPlayerController);
+L65:           this->MenuButton->SetKeyboardFocus();
+============ END FUNCTION SetFocused ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFocusReceived ==============
+============ END FUNCTION OnFocusReceived ==============
+
+
+
+
+
+============ BEGIN FUNCTION HideButton ==============
+L0:            this->MenuButton->SetVisibility(2);
+============ END FUNCTION HideButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_MenuButton(699);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_MenuButton(766);
+============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_MenuButton(846);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnThisMenuButtonClicked ==============
+L0:            this->ExecuteUbergraph_Widget_MenuButton(851);
+============ END FUNCTION OnThisMenuButtonClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_MenuButton ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L110);
+L20:           KismetArrayLibrary->Array_Get([ref] mTArray<WidgetSwitcher>, Temp_int_Array_Index_Variable, [ref] mWidgetSwitcher);
+L79:           this->mCachedTabSwitcher = mWidgetSwitcher;
+L98:           bool Temp_bool_True_if_break_was_hit_Variable = true;
+L109:          goto ExecutionFlow.Pop();
+L110:          int32 mint32 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L152:          int32 Temp_int_Loop_Counter_Variable = mint32;
+L179:          bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L208:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<WidgetSwitcher>);
+L267:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L305:          bool mbool2 = BooleanAND(mbool, mbool1);
+L343:          if (!mbool2) goto L389;
+L357:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L384:          goto L15;
+L389:          mFScriptDelegate->BindUFunction(this, OnThisMenuButtonClicked);
+L412:          this->OnClickedAsTabSwitcher.AddUnique(mFScriptDelegate);
+L431:          PanelWidget* mPanelWidget = this->GetParent();
+L451:          int32 mint322 = mPanelWidget->GetChildIndex(this);
+L502:          this->mIndexAsChild = mint322;
+L529:          goto ExecutionFlow.Pop();
+L530:          bool mbool3 = KismetSystemLibrary->IsValid(this->mCachedTabSwitcher);
+L581:          if (!mbool3) goto ExecutionFlow.Pop();
+L591:          this->mCachedTabSwitcher->SetActiveWidgetIndex(this->mIndexAsChild);
+L636:          goto ExecutionFlow.Pop();
+L637:          Temp_bool_True_if_break_was_hit_Variable = false;
+L648:          Temp_int_Loop_Counter_Variable = 0;
+L671:          Temp_int_Array_Index_Variable = 0;
+L694:          goto L179;
+L699:          TArray<WidgetSwitcher*> mTArray<WidgetSwitcher> = [];
+L710:          FGBlueprintFunctionLibrary->GetAllWidgetsOfClassInHierarchy(this, WidgetSwitcher, [ref] mTArray<WidgetSwitcher>);
+L761:          goto L637;
+L766:          this->mCachedTabSwitcher->SetActiveWidgetIndex(this->mIndexAsChild);
+L811:          this->OnClicked->ProcessMulticastDelegate();
+L830:          goto ExecutionFlow.Pop();
+L831:          this->HideButton();
+L845:          goto ExecutionFlow.Pop();
+L846:          goto L831;
+L851:          goto L530;
+============ END FUNCTION ExecuteUbergraph_Widget_MenuButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClickedAsTabSwitcher__DelegateSignature ==============
+============ END FUNCTION OnClickedAsTabSwitcher__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============

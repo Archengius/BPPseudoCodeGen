@@ -1,0 +1,175 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Player/Widget_PlayerHealthBar.Widget_PlayerHealthBar_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetHealthFillColor ==============
+L0:            this->IsValidHealthComponent([ref] mbool);
+L23:           if (!mbool) goto L266;
+L37:           float mfloat = this->mPlayerHealthComponent->GetCurrentHealth();
+L87:           float mfloat1 = FClamp(mfloat, 0, 1);
+L134:          LinearColor mLinearColor = LinearColorLerp(ScriptStruct /Script/CoreUObject.LinearColor(R = 0.838798999786377, G = 0.8713669776916504, B = 0.887923002243042, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), mfloat1);
+L239:          LinearColor ReturnValue = mLinearColor;
+============ END FUNCTION GetHealthFillColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsValidHealthComponent ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mPlayerHealthComponent);
+L51:           if (!mbool) goto L155;
+L65:           bool mbool1 = this->mPlayerHealthComponent->IsDead();
+L107:          bool mbool2 = Not_PreBool(mbool1);
+L136:          bool local_valid = mbool2;
+L155:          bool Valid = local_valid;
+============ END FUNCTION IsValidHealthComponent ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetHealthbar ==============
+L0:            uint8 local_visibility = 2;
+============ END FUNCTION GetHealthbar ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetProgressbarPercent ==============
+L0:            this->IsValidHealthComponent([ref] mbool);
+L23:           if (!mbool) goto L215;
+L37:           float mfloat = this->mPlayerHealthComponent->GetCurrentHealth();
+L87:           float mfloat1 = this->mPlayerHealthComponent->GetMaxHealth();
+L137:          float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L183:          float ReturnValue = mfloat2;
+L210:          goto L238;
+L215:          ReturnValue = 0;
+============ END FUNCTION GetProgressbarPercent ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerHealthBar(2119);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Player/Widget_PlayerHealthBar.Widget_PlayerHealthBar_C:ExecuteUbergraph_Widget_PlayerHealthBar.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Player/Widget_PlayerHealthBar.Widget_PlayerHealthBar_C:ExecuteUbergraph_Widget_PlayerHealthBar.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_PlayerHealthBar(847);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResetAnimGate ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerHealthBar(2091);
+============ END FUNCTION ResetAnimGate ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupHealthComponent ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerHealthBar(2114);
+============ END FUNCTION SetupHealthComponent ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PlayerHealthBar ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->SetupHealthComponent();
+L29:           goto ExecutionFlow.Pop();
+L30:           if (!this->IsVehicleHud) goto L400;
+L44:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L68:           Pawn* mPawn = mPlayerController->K2_GetPawn();
+L110:          FGVehicle* mFGVehicle = Cast<Class /Script/FactoryGame.FGVehicle>(mPawn);
+L146:          bool mbool = mFGVehicle;
+L175:          if (!mbool) goto L684;
+L189:          FGCharacterPlayer* mFGCharacterPlayer = mFGVehicle->GetDriver();
+L231:          bool mbool1 = KismetSystemLibrary->IsValid(mFGCharacterPlayer);
+L282:          if (!mbool1) goto L684;
+L296:          mFGCharacterPlayer = mFGVehicle->GetDriver();
+L338:          FGHealthComponent* mFGHealthComponent = mFGCharacterPlayer->GetHealthComponent();
+L380:          this->mPlayerHealthComponent = mFGHealthComponent;
+L399:          goto ExecutionFlow.Pop();
+L400:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L424:          Pawn* mPawn1 = mPlayerController1->K2_GetPawn();
+L466:          FGCharacterPlayer* mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn1);
+L502:          bool mbool2 = mFGCharacterPlayer1;
+L531:          if (!mbool2) goto L607;
+L545:          FGHealthComponent* mFGHealthComponent1 = mFGCharacterPlayer1->GetHealthComponent();
+L587:          this->mPlayerHealthComponent = mFGHealthComponent1;
+L606:          goto ExecutionFlow.Pop();
+L607:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1458383184, ExecutionFunction = "ExecuteUbergraph_Widget_PlayerHealthBar", CallbackTarget = this));
+L683:          goto ExecutionFlow.Pop();
+L684:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 761, UUID = 1048239902, ExecutionFunction = "ExecuteUbergraph_Widget_PlayerHealthBar", CallbackTarget = this));
+L760:          goto ExecutionFlow.Pop();
+L761:          this->SetupHealthComponent();
+L775:          goto ExecutionFlow.Pop();
+L776:          this->Construct();
+L786:          this->SetupHealthComponent();
+L800:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->RadiationDamage, 0, 0, 0, 1);
+L846:          goto ExecutionFlow.Pop();
+L847:          this->Tick(mGeometry, mfloat);
+L875:          this->IsValidHealthComponent([ref] mbool3);
+L898:          if (!mbool3) goto L1836;
+L912:          float mfloat1 = this->mPlayerHealthComponent->GetMaxHealth();
+L962:          float mfloat2 = this->mPlayerHealthComponent->GetCurrentHealth();
+L1012:         float mfloat3 = MapRangeUnclamped(mfloat2, 0, mfloat1, 0, 100);
+L1073:         bool mbool4 = NotEqual_FloatFloat(this->mCachedHealth, mfloat3);
+L1111:         if (!mbool4) goto ExecutionFlow.Pop();
+L1121:         mfloat1 = this->mPlayerHealthComponent->GetMaxHealth();
+L1171:         mfloat2 = this->mPlayerHealthComponent->GetCurrentHealth();
+L1221:         mfloat3 = MapRangeUnclamped(mfloat2, 0, mfloat1, 0, 100);
+L1282:         this->mCachedHealth = mfloat3;
+L1309:         mfloat1 = this->mPlayerHealthComponent->GetMaxHealth();
+L1359:         mfloat2 = this->mPlayerHealthComponent->GetCurrentHealth();
+L1409:         mfloat3 = MapRangeUnclamped(mfloat2, 0, mfloat1, 0, 100);
+L1470:         bool mbool5 = LessEqual_FloatFloat(mfloat3, 30);
+L1504:         if (!mbool5) goto L1538;
+L1518:         ExecutionFlow.Push(L1851);
+L1523:         if (!Temp_bool_Has_Been_Initd_Variable) goto L2066;
+L1537:         goto ExecutionFlow.Pop();
+L1538:         this->StopAnimation(this->Ani_Damage);
+L1557:         mfloat1 = this->mPlayerHealthComponent->GetMaxHealth();
+L1607:         mfloat2 = this->mPlayerHealthComponent->GetCurrentHealth();
+L1657:         mfloat3 = MapRangeUnclamped(mfloat2, 0, mfloat1, 0, 100);
+L1718:         bool mbool6 = Greater_FloatFloat(mfloat3, 30.010000228881836);
+L1752:         if (!mbool6) goto ExecutionFlow.Pop();
+L1762:         LinearColor mLinearColor = this->GetHealthFillColor();
+L1794:         this->ProgressBarHealth->SetFillColorAndOpacity(mLinearColor);
+L1835:         goto ExecutionFlow.Pop();
+L1836:         this->SetupHealthComponent();
+L1850:         goto ExecutionFlow.Pop();
+L1851:         if (!Temp_bool_IsClosed_Variable) goto L1866;
+L1865:         goto ExecutionFlow.Pop();
+L1866:         bool Temp_bool_IsClosed_Variable = true;
+L1877:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->Ani_Damage, 0, 0, 0, 0.800000011920929);
+L1923:         mFScriptDelegate->BindUFunction(this, ResetAnimGate);
+L1946:         float mfloat4 = this->Ani_Damage->GetEndTime();
+L1996:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, mfloat4, false);
+L2065:         goto ExecutionFlow.Pop();
+L2066:         bool Temp_bool_Has_Been_Initd_Variable = true;
+L2077:         if (!false) goto ExecutionFlow.Pop();
+L2079:         Temp_bool_IsClosed_Variable = true;
+L2090:         goto ExecutionFlow.Pop();
+L2091:         Temp_bool_IsClosed_Variable = false;
+L2102:         Temp_bool_Has_Been_Initd_Variable = true;
+L2113:         goto ExecutionFlow.Pop();
+L2114:         goto L30;
+L2119:         goto L776;
+============ END FUNCTION ExecuteUbergraph_Widget_PlayerHealthBar ==============

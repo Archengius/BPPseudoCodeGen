@@ -1,0 +1,1113 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/MAMTree/Widget_MAMTree_Grid.Widget_MAMTree_Grid_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnPreviewMouseButtonDown ==============
+L0:            bool mbool = Not_PreBool(this->mIsEditor);
+L29:           if (!mbool) goto L411;
+L43:           this->IsSelectedNodeValid([ref] mbool1);
+L66:           if (!mbool1) goto L411;
+L80:           bool mbool2 = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] this->mSelectedNodeCoordinates, [ref] mWidget_MAMTree_Node);
+L149:          bool mbool3 = mWidget_MAMTree_Node->IsHovered();
+L195:          bool mbool4 = Not_PreBool(mbool3);
+L224:          if (!mbool4) goto L334;
+L238:          this->ResetSelectedNode();
+L252:          EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L302:          EventReply ReturnValue = mEventReply;
+L329:          goto L411;
+L334:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L384:          ReturnValue = mEventReply1;
+============ END FUNCTION OnPreviewMouseButtonDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNodeState ==============
+L0:            ExecutionFlow.Push(L2294);
+L5:            bool IsAvailable = false;
+L16:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L40:           FGResearchManager* mFGResearchManager = FGResearchManager->Get(mPlayerController);
+L91:           bool mbool = BlueprintMapLibrary->Map_Find([ref] NewNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct);
+L160:          bool mbool1 = mFGResearchManager->IsResearchBeingConducted(mMAMTree_NodeData_Struct.Schematic_27_3663A42446FDB4387D0C81AFC23E225B);
+L220:          bool mbool2 = Not_PreBool(mbool1);
+L249:          if (!mbool2) goto L1216;
+L263:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L287:          FGResearchManager* mFGResearchManager1 = FGResearchManager->Get(mPlayerController1);
+L338:          bool mbool3 = mFGResearchManager1->IsResesearchTreeUnlocked(this->SelectedResearchTree);
+L389:          if (!mbool3) goto L1241;
+L403:          bool mbool4 = BlueprintMapLibrary->Map_Find([ref] NewNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct1);
+L472:          bool mbool5 = this->IsSchematicResearched(mMAMTree_NodeData_Struct1.Schematic_27_3663A42446FDB4387D0C81AFC23E225B);
+L514:          bool mbool6 = Not_PreBool(mbool5);
+L543:          if (!mbool6) goto L1266;
+L557:          IsAvailable = true;
+L568:          bool IsUnhidden = true;
+L579:          bool Temp_bool_True_if_break_was_hit_Variable1 = false;
+L590:          int32 Temp_int_Loop_Counter_Variable = 0;
+L613:          int32 Temp_int_Array_Index_Variable1 = 0;
+L636:          bool mbool7 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable1);
+L665:          bool mbool8 = BlueprintMapLibrary->Map_Find([ref] NewNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct2);
+L734:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mMAMTree_NodeData_Struct2.Parents_20_7A099B96409362536B743BA1CC77C234);
+L802:          bool mbool9 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L840:          bool mbool10 = BooleanAND(mbool7, mbool9);
+L878:          if (!mbool10) goto L1291;
+L892:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
+L919:          ExecutionFlow.Push(L2220);
+L924:          IsAvailable = false;
+L935:          mbool8 = BlueprintMapLibrary->Map_Find([ref] NewNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct2);
+L1004:         KismetArrayLibrary->Array_Get([ref] mMAMTree_NodeData_Struct2.Parents_20_7A099B96409362536B743BA1CC77C234, Temp_int_Array_Index_Variable1, [ref] mIntVector2D);
+L1072:         bool mbool11 = BlueprintMapLibrary->Map_Find([ref] NewNodeData, [ref] mIntVector2D, [ref] mMAMTree_NodeData_Struct3);
+L1141:         bool mbool12 = this->IsSchematicResearched(mMAMTree_NodeData_Struct3.Schematic_27_3663A42446FDB4387D0C81AFC23E225B);
+L1183:         if (!mbool12) goto ExecutionFlow.Pop();
+L1193:         IsAvailable = true;
+L1204:         Temp_bool_True_if_break_was_hit_Variable1 = true;
+L1215:         goto ExecutionFlow.Pop();
+L1216:         uint8 NodeState = 4;
+L1236:         <End of Inlined Event Graph Function>;
+L1241:         NodeState = 3;
+L1261:         <End of Inlined Event Graph Function>;
+L1266:         NodeState = 2;
+L1286:         <End of Inlined Event Graph Function>;
+L1291:         bool Temp_bool_True_if_break_was_hit_Variable = false;
+L1302:         int32 Temp_int_Loop_Counter_Variable1 = 0;
+L1325:         int32 Temp_int_Array_Index_Variable = 0;
+L1348:         bool mbool13 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L1377:         bool mbool14 = BlueprintMapLibrary->Map_Find([ref] NewNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct4);
+L1446:         int32 mint321 = KismetArrayLibrary->Array_Length([ref] mMAMTree_NodeData_Struct4.UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63);
+L1514:         bool mbool15 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint321);
+L1552:         bool mbool16 = BooleanAND(mbool13, mbool15);
+L1590:         if (!mbool16) goto L2002;
+L1604:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
+L1631:         ExecutionFlow.Push(L1928);
+L1636:         IsUnhidden = false;
+L1647:         mbool14 = BlueprintMapLibrary->Map_Find([ref] NewNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct4);
+L1716:         KismetArrayLibrary->Array_Get([ref] mMAMTree_NodeData_Struct4.UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63, Temp_int_Array_Index_Variable, [ref] mIntVector2D1);
+L1784:         bool mbool17 = BlueprintMapLibrary->Map_Find([ref] NewNodeData, [ref] mIntVector2D1, [ref] mMAMTree_NodeData_Struct5);
+L1853:         bool mbool18 = this->IsSchematicResearched(mMAMTree_NodeData_Struct5.Schematic_27_3663A42446FDB4387D0C81AFC23E225B);
+L1895:         if (!mbool18) goto ExecutionFlow.Pop();
+L1905:         IsUnhidden = true;
+L1916:         Temp_bool_True_if_break_was_hit_Variable = true;
+L1927:         goto ExecutionFlow.Pop();
+L1928:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1970:         Temp_int_Loop_Counter_Variable1 = mint322;
+L1997:         goto L1348;
+L2002:         uint8 Temp_byte_Variable = 3;
+L2022:         uint8 Temp_byte_Variable1 = 1;
+L2042:         bool Temp_bool_Variable = IsUnhidden;
+L2061:         uint8 Temp_byte_Variable2 = 0;
+L2081:         bool Temp_bool_Variable1 = IsAvailable;
+L2100:         NodeState = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable2;
+default -> muint81;
+};
+default -> muint8;
+};
+L2215:         <End of Inlined Event Graph Function>;
+L2220:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2262:         Temp_int_Loop_Counter_Variable = mint323;
+L2289:         goto L636;
+============ END FUNCTION GetNodeState ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsSchematicResearched ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L75:           bool mbool = mFGSchematicManager->IsSchematicPurchased(SchematicClass);
+L126:          bool ReturnValue = mbool;
+============ END FUNCTION IsSchematicResearched ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResetSelectedNode ==============
+L0:            bool mbool = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] this->mSelectedNodeCoordinates, [ref] mWidget_MAMTree_Node);
+L69:           if (!mbool) goto L310;
+L83:           mbool = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] this->mSelectedNodeCoordinates, [ref] mWidget_MAMTree_Node);
+L152:          mWidget_MAMTree_Node->SetIsSelected(false);
+L189:          mIntVector2D.X_2_3FF107F84D30EB52DD50898C7D2CAD67 = -1;
+L221:          mIntVector2D.Y_4_F18C5B824136D7759146338CAA496F0A = -1;
+L253:          this->mSelectedNodeCoordinates = mIntVector2D;
+L280:          this->TellNodesIfOtherNodeIsSelected(false);
+L295:          this->OnNodeClicked(false);
+============ END FUNCTION ResetSelectedNode ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnResearchStarted ==============
+L0:            this->IsSelectedNodeValid([ref] mbool);
+L23:           if (!mbool) goto L143;
+L37:           bool mbool1 = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] this->mSelectedNodeCoordinates, [ref] mMAMTree_NodeData_Struct);
+L106:          this->OnResearchSelectedSchematic->ProcessMulticastDelegate(mMAMTree_NodeData_Struct.Schematic_27_3663A42446FDB4387D0C81AFC23E225B);
+============ END FUNCTION OnResearchStarted ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnParentNodeUnhovered ==============
+L0:            ExecutionFlow.Push(L1171);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           bool mbool = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct);
+L120:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mMAMTree_NodeData_Struct.NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA);
+L188:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L226:          if (!mbool1) goto L516;
+L240:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L267:          ExecutionFlow.Push(L1097);
+L272:          mbool = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct);
+L341:          KismetArrayLibrary->Array_Get([ref] mMAMTree_NodeData_Struct.NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA, Temp_int_Array_Index_Variable, [ref] mIntVector2D);
+L409:          bool mbool2 = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] mIntVector2D, [ref] mWidget_MAMTree_Node);
+L478:          mWidget_MAMTree_Node->ShowHideUnlockIcon(false);
+L515:          goto ExecutionFlow.Pop();
+L516:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L539:          int32 Temp_int_Array_Index_Variable1 = 0;
+L562:          bool mbool3 = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct1);
+L631:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mMAMTree_NodeData_Struct1.UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63);
+L699:          bool mbool4 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint321);
+L737:          if (!mbool4) goto ExecutionFlow.Pop();
+L747:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable1;
+L774:          ExecutionFlow.Push(L1023);
+L779:          mbool3 = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct1);
+L848:          KismetArrayLibrary->Array_Get([ref] mMAMTree_NodeData_Struct1.UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63, Temp_int_Array_Index_Variable1, [ref] mIntVector2D1);
+L916:          bool mbool5 = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] mIntVector2D1, [ref] mWidget_MAMTree_Node1);
+L985:          mWidget_MAMTree_Node1->ShowHideKeyIcon(false);
+L1022:         goto ExecutionFlow.Pop();
+L1023:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1065:         Temp_int_Loop_Counter_Variable1 = mint322;
+L1092:         goto L562;
+L1097:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1139:         Temp_int_Loop_Counter_Variable = mint323;
+L1166:         goto L51;
+============ END FUNCTION OnParentNodeUnhovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnParentNodeHovered ==============
+L0:            ExecutionFlow.Push(L2657);
+L5:            bool mbool = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct);
+L74:           bool mbool1 = this->IsSchematicResearched(mMAMTree_NodeData_Struct.Schematic_27_3663A42446FDB4387D0C81AFC23E225B);
+L116:          bool mbool2 = Not_PreBool(mbool1);
+L145:          if (!mbool2) goto ExecutionFlow.Pop();
+L155:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L178:          int32 Temp_int_Array_Index_Variable1 = 0;
+L201:          mbool = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct);
+L270:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mMAMTree_NodeData_Struct.NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA);
+L338:          bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint32);
+L376:          if (!mbool3) goto L1205;
+L390:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable1;
+L417:          ExecutionFlow.Push(L2430);
+L422:          mbool = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct);
+L491:          KismetArrayLibrary->Array_Get([ref] mMAMTree_NodeData_Struct.NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA, Temp_int_Array_Index_Variable1, [ref] mIntVector2D);
+L559:          bool mbool4 = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] mIntVector2D, [ref] mWidget_MAMTree_Node);
+L628:          bool mbool5 = EqualEqual_ByteByte(mWidget_MAMTree_Node->mNodeState, 3);
+L681:          if (!mbool5) goto ExecutionFlow.Pop();
+L691:          mbool = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct);
+L760:          KismetArrayLibrary->Array_Get([ref] mMAMTree_NodeData_Struct.NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA, Temp_int_Array_Index_Variable1, [ref] mIntVector2D);
+L828:          mbool4 = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] mIntVector2D, [ref] mWidget_MAMTree_Node);
+L897:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalNodeObjects, [ref] mWidget_MAMTree_Node);
+L965:          mbool = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct);
+L1034:         KismetArrayLibrary->Array_Get([ref] mMAMTree_NodeData_Struct.NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA, Temp_int_Array_Index_Variable1, [ref] mIntVector2D);
+L1102:         mbool4 = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] mIntVector2D, [ref] mWidget_MAMTree_Node);
+L1171:         mWidget_MAMTree_Node->mShowUnlockIcon = true;
+L1204:         goto ExecutionFlow.Pop();
+L1205:         this->ShowUnlockIconOnNodes([ref] LocalNodeObjects);
+L1228:         bool Temp_bool_True_if_break_was_hit_Variable = false;
+L1239:         int32 Temp_int_Loop_Counter_Variable2 = 0;
+L1262:         int32 Temp_int_Array_Index_Variable2 = 0;
+L1285:         bool mbool6 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L1314:         bool mbool7 = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct1);
+L1383:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] mMAMTree_NodeData_Struct1.UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63);
+L1451:         bool mbool8 = Less_IntInt(Temp_int_Loop_Counter_Variable2, mint322);
+L1489:         bool mbool9 = BooleanAND(mbool6, mbool8);
+L1527:         if (!mbool9) goto L2139;
+L1541:         Temp_int_Array_Index_Variable2 = Temp_int_Loop_Counter_Variable2;
+L1568:         ExecutionFlow.Push(L2504);
+L1573:         mbool7 = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct1);
+L1642:         KismetArrayLibrary->Array_Get([ref] mMAMTree_NodeData_Struct1.UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63, Temp_int_Array_Index_Variable2, [ref] mIntVector2D1);
+L1710:         bool mbool10 = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] mIntVector2D1, [ref] mMAMTree_NodeData_Struct2);
+L1779:         bool mbool11 = this->IsSchematicResearched(mMAMTree_NodeData_Struct2.Schematic_27_3663A42446FDB4387D0C81AFC23E225B);
+L1821:         bool mbool12 = Not_PreBool(mbool11);
+L1850:         if (!mbool12) goto L2578;
+L1864:         mbool7 = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] Coordinates, [ref] mMAMTree_NodeData_Struct1);
+L1933:         KismetArrayLibrary->Array_Get([ref] mMAMTree_NodeData_Struct1.UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63, Temp_int_Array_Index_Variable2, [ref] mIntVector2D1);
+L2001:         bool mbool13 = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] mIntVector2D1, [ref] mWidget_MAMTree_Node1);
+L2070:         int32 mint323 = KismetArrayLibrary->Array_Add([ref] LocalUnhiddenBy, [ref] mWidget_MAMTree_Node1);
+L2138:         goto ExecutionFlow.Pop();
+L2139:         int32 Temp_int_Loop_Counter_Variable = 0;
+L2162:         int32 Temp_int_Array_Index_Variable = 0;
+L2185:         int32 mint324 = KismetArrayLibrary->Array_Length([ref] LocalUnhiddenBy);
+L2244:         bool mbool14 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint324);
+L2282:         if (!mbool14) goto L2425;
+L2296:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L2323:         ExecutionFlow.Push(L2583);
+L2328:         KismetArrayLibrary->Array_Get([ref] LocalUnhiddenBy, Temp_int_Array_Index_Variable, [ref] mWidget_MAMTree_Node2);
+L2387:         mWidget_MAMTree_Node2->ShowHideKeyIcon(true);
+L2424:         goto ExecutionFlow.Pop();
+L2425:         <End of Inlined Event Graph Function>;
+L2430:         int32 mint325 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L2472:         Temp_int_Loop_Counter_Variable1 = mint325;
+L2499:         goto L201;
+L2504:         int32 mint326 = Add_IntInt(Temp_int_Loop_Counter_Variable2, 1);
+L2546:         Temp_int_Loop_Counter_Variable2 = mint326;
+L2573:         goto L1285;
+L2578:         <End of Inlined Event Graph Function>;
+L2583:         int32 mint327 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2625:         Temp_int_Loop_Counter_Variable = mint327;
+L2652:         goto L2185;
+============ END FUNCTION OnParentNodeHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION TellNodesIfOtherNodeIsSelected ==============
+L0:            ExecutionFlow.Push(L495);
+L5:            TArray<IntVector2D> mTArray<IntVector2D> = [];
+L16:           BlueprintMapLibrary->Map_Keys([ref] this->mNodeObjects, [ref] mTArray<IntVector2D>);
+L66:           int32 Temp_int_Loop_Counter_Variable = 0;
+L89:           int32 Temp_int_Array_Index_Variable = 0;
+L112:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<IntVector2D>);
+L171:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L209:          if (!mbool) goto ExecutionFlow.Pop();
+L219:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L246:          ExecutionFlow.Push(L421);
+L251:          KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>, Temp_int_Array_Index_Variable, [ref] mIntVector2D);
+L310:          bool mbool1 = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] mIntVector2D, [ref] mWidget_MAMTree_Node);
+L379:          mWidget_MAMTree_Node->mIsOtherSelected = isSelected;
+L420:          goto ExecutionFlow.Pop();
+L421:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L463:          Temp_int_Loop_Counter_Variable = mint321;
+L490:          goto L112;
+============ END FUNCTION TellNodesIfOtherNodeIsSelected ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupCavases ==============
+L0:            this->mParentGridCanvas = GridCanvas;
+L19:           this->mParentNodeCavas = NodeCanvas;
+L38:           this->mParentRoads = Roads;
+============ END FUNCTION SetupCavases ==============
+
+
+
+
+
+============ BEGIN FUNCTION EditorOnly_SetupTileFeedback ==============
+============ END FUNCTION EditorOnly_SetupTileFeedback ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnGenerateTree ==============
+============ END FUNCTION OnGenerateTree ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnNodeClicked ==============
+============ END FUNCTION OnNodeClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION EditorOnly_OnActiveNodesUpdated ==============
+============ END FUNCTION EditorOnly_OnActiveNodesUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDataCleared ==============
+============ END FUNCTION OnDataCleared ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnTreeLoaded ==============
+============ END FUNCTION OnTreeLoaded ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsSelectedNodeValid ==============
+L0:            bool mbool = GreaterEqual_IntInt(this->mSelectedNodeCoordinates.X_2_3FF107F84D30EB52DD50898C7D2CAD67, 0);
+L43:           bool mbool1 = GreaterEqual_IntInt(this->mSelectedNodeCoordinates.Y_4_F18C5B824136D7759146338CAA496F0A, 0);
+L86:           bool mbool2 = BooleanAND(mbool, mbool1);
+L124:          bool IsValid = mbool2;
+============ END FUNCTION IsSelectedNodeValid ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnParentNodeClicked ==============
+L0:            this->IsSelectedNodeValid([ref] mbool);
+L23:           if (!mbool) goto L143;
+L37:           bool mbool1 = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] this->mSelectedNodeCoordinates, [ref] mWidget_MAMTree_Node);
+L106:          mWidget_MAMTree_Node->SetIsSelected(false);
+L143:          bool mbool2 = EqualEqual_IntInt(Coordinate.X_2_3FF107F84D30EB52DD50898C7D2CAD67, this->mSelectedNodeCoordinates.X_2_3FF107F84D30EB52DD50898C7D2CAD67);
+L199:          bool mbool3 = EqualEqual_IntInt(Coordinate.Y_4_F18C5B824136D7759146338CAA496F0A, this->mSelectedNodeCoordinates.Y_4_F18C5B824136D7759146338CAA496F0A);
+L255:          bool mbool4 = BooleanAND(mbool2, mbool3);
+L293:          if (!mbool4) goto L326;
+L307:          this->ResetSelectedNode();
+L321:          <End of Inlined Event Graph Function>;
+L326:          this->mSelectedNodeCoordinates = Coordinate;
+L353:          bool mbool5 = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] this->mSelectedNodeCoordinates, [ref] mWidget_MAMTree_Node1);
+L422:          mWidget_MAMTree_Node1->SetIsSelected(true);
+L459:          this->TellNodesIfOtherNodeIsSelected(true);
+L474:          this->OnNodeClicked(true);
+============ END FUNCTION OnParentNodeClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRoads ==============
+L0:            ExecutionFlow.Push(L1342);
+L5:            KismetArrayLibrary->Array_Clear([ref] this->mConvertedRoadData);
+L46:           TArray<IntVector2D> mTArray<IntVector2D> = [];
+L57:           BlueprintMapLibrary->Map_Keys([ref] this->mNodeData, [ref] mTArray<IntVector2D>);
+L107:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L130:          int32 Temp_int_Array_Index_Variable = 0;
+L153:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<IntVector2D>);
+L212:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint32);
+L250:          if (!mbool) goto ExecutionFlow.Pop();
+L260:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
+L287:          ExecutionFlow.Push(L701);
+L292:          KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>, Temp_int_Array_Index_Variable, [ref] mIntVector2D);
+L351:          bool mbool1 = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] mIntVector2D, [ref] mMAMTree_NodeData_Struct);
+L420:          TArray<IntVector2D> mTArray<IntVector2D>1 = [];
+L431:          BlueprintMapLibrary->Map_Keys([ref] mMAMTree_NodeData_Struct.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A, [ref] mTArray<IntVector2D>1);
+L490:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<IntVector2D>1);
+L549:          bool mbool2 = EqualEqual_IntInt(mint321, 0);
+L583:          if (!mbool2) goto L775;
+L597:          TArray<IntVector2D> mTArray<IntVector2D>2 = [];
+L608:          KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>, Temp_int_Array_Index_Variable, [ref] mIntVector2D);
+L667:          this->DrawRoad(mIntVector2D, [ref] mTArray<IntVector2D>2, false);
+L700:          goto ExecutionFlow.Pop();
+L701:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L743:          Temp_int_Loop_Counter_Variable1 = mint322;
+L770:          goto L153;
+L775:          int32 Temp_int_Loop_Counter_Variable = 0;
+L798:          int32 Temp_int_Array_Index_Variable1 = 0;
+L821:          int32 mint323 = KismetArrayLibrary->Array_Length([ref] mTArray<IntVector2D>1);
+L880:          bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint323);
+L918:          if (!mbool3) goto ExecutionFlow.Pop();
+L928:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
+L955:          ExecutionFlow.Push(L1268);
+L960:          KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>, Temp_int_Array_Index_Variable, [ref] mIntVector2D);
+L1019:         mbool1 = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] mIntVector2D, [ref] mMAMTree_NodeData_Struct);
+L1088:         KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>1, Temp_int_Array_Index_Variable1, [ref] mIntVector2D1);
+L1147:         bool mbool4 = BlueprintMapLibrary->Map_Find([ref] mMAMTree_NodeData_Struct.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A, [ref] mIntVector2D1, [ref] mMAMTree_RoadPoints);
+L1225:         this->DrawRoad(mIntVector2D, [ref] mMAMTree_RoadPoints.Points_10_9533B9104470D8E053E7ACA5C4C9F865, false);
+L1267:         goto ExecutionFlow.Pop();
+L1268:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1310:         Temp_int_Loop_Counter_Variable = mint324;
+L1337:         goto L821;
+============ END FUNCTION UpdateRoads ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearData ==============
+L0:            this->mParentGridCanvas->ClearChildren();
+L36:           this->mParentNodeCavas->ClearChildren();
+L72:           BlueprintMapLibrary->Map_Clear([ref] this->mNodeData);
+L113:          mIntVector2D.X_2_3FF107F84D30EB52DD50898C7D2CAD67 = -1;
+L145:          mIntVector2D.Y_4_F18C5B824136D7759146338CAA496F0A = -1;
+L177:          this->mSelectedNodeCoordinates = mIntVector2D;
+L204:          this->mLastRoadDirection = 2;
+L224:          BlueprintMapLibrary->Map_Clear([ref] this->mNodeObjects);
+L265:          BlueprintMapLibrary->Map_Clear([ref] this->mRoadOccupiedTiles);
+L306:          KismetArrayLibrary->Array_Clear([ref] this->mTempRoadOccupiedTiles);
+L347:          KismetArrayLibrary->Array_Clear([ref] this->mUnHiddenNodes);
+L388:          KismetArrayLibrary->Array_Clear([ref] this->mConvertedRoadData);
+L429:          KismetArrayLibrary->Array_Clear([ref] this->mParentRoads->mTempRoad);
+L492:          KismetArrayLibrary->Array_Clear([ref] this->mParentRoads->mConvertedRoadData);
+L555:          KismetArrayLibrary->Array_Clear([ref] this->mParentRoads->mHighlightedRoadData);
+L618:          KismetArrayLibrary->Array_Clear([ref] this->mConvertedHighlightRoadData);
+L659:          this->OnDataCleared();
+============ END FUNCTION ClearData ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRoadPointsFromCoordinates ==============
+L0:            uint8 muint8 = this->GetRoadDirection(StartCoordinates, EndCoordinates);
+L50:           uint8 LocalRoadDirection = muint8;
+L77:           bool mbool = NotEqual_ByteByte(LocalRoadDirection, 2);
+L108:          if (!mbool) goto L217;
+L122:          mbool = NotEqual_ByteByte(LocalRoadDirection, 3);
+L153:          if (!mbool) goto L443;
+L167:          mbool = NotEqual_ByteByte(LocalRoadDirection, 4);
+L198:          if (!mbool) goto L443;
+L212:          <End of Inlined Event Graph Function>;
+L217:          this->mLastRoadDirection = LocalRoadDirection;
+L244:          this->GetPixelPosOnGrid(EndCoordinates, [ref] mVector2D);
+L276:          Vector2D mVector2D1 = Divide_Vector2DFloat(this->mTileSize, 2);
+L318:          Vector2D mVector2D2 = Add_Vector2DVector2D(mVector2D, mVector2D1);
+L364:          TArray<Vector2D> mTArray<Vector2D> = [mVector2D2];
+L384:          TArray<Vector2D> ConvertedRoadPoints = mTArray<Vector2D>;
+L411:          uint8 RoadDirection = LocalRoadDirection;
+L438:          <End of Inlined Event Graph Function>;
+L443:          bool mbool1 = NotEqual_ByteByte(this->mLastRoadDirection, 2);
+L474:          if (!mbool1) goto L892;
+L488:          mbool1 = NotEqual_ByteByte(this->mLastRoadDirection, 3);
+L519:          if (!mbool1) goto L583;
+L533:          mbool1 = NotEqual_ByteByte(this->mLastRoadDirection, 4);
+L564:          if (!mbool1) goto L583;
+L578:          <End of Inlined Event Graph Function>;
+L583:          this->mLastRoadDirection = LocalRoadDirection;
+L610:          this->GetPixelPosOnGrid(EndCoordinates, [ref] mVector2D3);
+L642:          BreakVector2D(this->mTileSize, [ref] mfloat, [ref] mfloat1);
+L679:          float mfloat2 = Divide_FloatFloat(mfloat, 2);
+L721:          Vector2D mVector2D4 = MakeVector2D(mfloat2, mfloat1);
+L767:          Vector2D mVector2D5 = Add_Vector2DVector2D(mVector2D3, mVector2D4);
+L813:          TArray<Vector2D> mTArray<Vector2D>1 = [mVector2D5];
+L833:          ConvertedRoadPoints = mTArray<Vector2D>1;
+L860:          RoadDirection = LocalRoadDirection;
+L887:          <End of Inlined Event Graph Function>;
+L892:          this->mLastRoadDirection = LocalRoadDirection;
+L919:          this->GetPixelPosOnGrid(EndCoordinates, [ref] mVector2D3);
+L951:          this->GetPixelPosOnGrid(StartCoordinates, [ref] mVector2D6);
+L983:          BreakVector2D(this->mTileSize, [ref] mfloat, [ref] mfloat1);
+L1020:         mfloat2 = Divide_FloatFloat(mfloat, 2);
+L1062:         BreakVector2D(this->mTileSize, [ref] mfloat3, [ref] mfloat4);
+L1099:         mVector2D4 = MakeVector2D(mfloat2, mfloat1);
+L1145:         float mfloat5 = Divide_FloatFloat(mfloat3, 2);
+L1187:         mVector2D5 = Add_Vector2DVector2D(mVector2D3, mVector2D4);
+L1233:         Vector2D mVector2D7 = MakeVector2D(mfloat5, mfloat4);
+L1279:         Vector2D mVector2D8 = Add_Vector2DVector2D(mVector2D6, mVector2D7);
+L1325:         TArray<Vector2D> mTArray<Vector2D>2 = [mVector2D8, mVector2D5];
+L1354:         ConvertedRoadPoints = mTArray<Vector2D>2;
+L1381:         RoadDirection = LocalRoadDirection;
+============ END FUNCTION GetRoadPointsFromCoordinates ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRoadDirection ==============
+L0:            ExecutionFlow.Push(L873);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           this->GetRoadHighlightOffsets_OLD(StartCoordinates, [ref] mTArray<IntVector2D>);
+L83:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<IntVector2D>);
+L142:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L180:          if (!mbool) goto ExecutionFlow.Pop();
+L190:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L217:          ExecutionFlow.Push(L799);
+L222:          int32 LocalDirectionalIndex = Temp_int_Array_Index_Variable;
+L249:          this->GetRoadHighlightOffsets_OLD(StartCoordinates, [ref] mTArray<IntVector2D>);
+L281:          KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>, Temp_int_Array_Index_Variable, [ref] mIntVector2D);
+L340:          int32 mint321 = Subtract_IntInt(EndCoordinates.Y_4_F18C5B824136D7759146338CAA496F0A, StartCoordinates.Y_4_F18C5B824136D7759146338CAA496F0A);
+L404:          bool mbool1 = EqualEqual_IntInt(mint321, mIntVector2D.Y_4_F18C5B824136D7759146338CAA496F0A);
+L451:          int32 mint322 = Subtract_IntInt(EndCoordinates.X_2_3FF107F84D30EB52DD50898C7D2CAD67, StartCoordinates.X_2_3FF107F84D30EB52DD50898C7D2CAD67);
+L515:          bool mbool2 = EqualEqual_IntInt(mint322, mIntVector2D.X_2_3FF107F84D30EB52DD50898C7D2CAD67);
+L562:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L600:          if (!mbool3) goto ExecutionFlow.Pop();
+L610:          uint8 Temp_byte_Variable = 4;
+L630:          uint8 Temp_byte_Variable1 = 2;
+L650:          uint8 Temp_byte_Variable2 = 3;
+L670:          int32 Temp_int_Variable = LocalDirectionalIndex;
+L697:          uint8 ReturnValue = switch (Temp_int_Variable) {
+case 0 -> Temp_byte_Variable2;
+case 1 -> Temp_byte_Variable1;
+case 2 -> Temp_byte_Variable;
+default -> muint8;
+};
+L794:          goto L873;
+L799:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L841:          Temp_int_Loop_Counter_Variable = mint323;
+L868:          goto L51;
+============ END FUNCTION GetRoadDirection ==============
+
+
+
+
+
+============ BEGIN FUNCTION DrawRoad ==============
+L0:            ExecutionFlow.Push(L1067);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTempRoadTiles);
+L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L148:          if (!mbool) goto L671;
+L162:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L189:          ExecutionFlow.Push(L993);
+L194:          KismetArrayLibrary->Array_Get([ref] mTempRoadTiles, Temp_int_Array_Index_Variable, [ref] mIntVector2D);
+L253:          IntVector2D LocalEndCoordinate = mIntVector2D;
+L280:          bool mbool1 = EqualEqual_IntInt(Temp_int_Array_Index_Variable, 0);
+L314:          if (!mbool1) goto L543;
+L328:          IntVector2D LocalStartCoordinate = Coordinates;
+L355:          Vector2D mVector2D = Divide_Vector2DFloat(this->mTileSize, 2);
+L397:          this->GetPixelPosOnGrid(LocalStartCoordinate, [ref] mVector2D1);
+L429:          Vector2D mVector2D2 = Add_Vector2DVector2D(mVector2D1, mVector2D);
+L475:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] TempConvertedRoadPoints, [ref] mVector2D2);
+L543:          this->GetRoadPointsFromCoordinates(LocalStartCoordinate, LocalEndCoordinate, [ref] mTArray<Vector2D>, [ref] muint8);
+L593:          KismetArrayLibrary->Array_Append([ref] TempConvertedRoadPoints, [ref] mTArray<Vector2D>);
+L643:          LocalStartCoordinate = LocalEndCoordinate;
+L670:          goto ExecutionFlow.Pop();
+L671:          if (!HighlightedRoad) goto L839;
+L685:          mMAMTree_Vector2D_Array.Vector2D_3_76B5E3A240A6EA60DBBF68A46C881CB3 = TempConvertedRoadPoints;
+L721:          int32 mint322 = KismetArrayLibrary->Array_AddUnique([ref] this->mConvertedHighlightRoadData, [ref] mMAMTree_Vector2D_Array);
+L789:          this->mParentRoads->mHighlightedRoadData = this->mConvertedHighlightRoadData;
+L838:          goto ExecutionFlow.Pop();
+L839:          mMAMTree_Vector2D_Array1.Vector2D_3_76B5E3A240A6EA60DBBF68A46C881CB3 = TempConvertedRoadPoints;
+L875:          int32 mint323 = KismetArrayLibrary->Array_AddUnique([ref] this->mConvertedRoadData, [ref] mMAMTree_Vector2D_Array1);
+L943:          this->mParentRoads->mConvertedRoadData = this->mConvertedRoadData;
+L992:          goto ExecutionFlow.Pop();
+L993:          int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1035:         Temp_int_Loop_Counter_Variable = mint324;
+L1062:         goto L51;
+============ END FUNCTION DrawRoad ==============
+
+
+
+
+
+============ BEGIN FUNCTION GenerateOccupiedTilesFromRoadPoints ==============
+L0:            this->UpdateOccupiedRoadTiles_OLD(Road);
+============ END FUNCTION GenerateOccupiedTilesFromRoadPoints ==============
+
+
+
+
+
+============ BEGIN FUNCTION GenerateTree ==============
+L0:            ExecutionFlow.Push(L4124);
+L5:            this->ClearData();
+L19:           this->OnGenerateTree();
+L33:           TArray<IntVector2D> mTArray<IntVector2D> = [];
+L44:           BlueprintMapLibrary->Map_Keys([ref] NodeData, [ref] mTArray<IntVector2D>);
+L94:           int32 Temp_int_Loop_Counter_Variable4 = 0;
+L117:          int32 Temp_int_Array_Index_Variable3 = 0;
+L140:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<IntVector2D>);
+L199:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable4, mint32);
+L237:          if (!mbool) goto L1261;
+L251:          Temp_int_Array_Index_Variable3 = Temp_int_Loop_Counter_Variable4;
+L278:          ExecutionFlow.Push(L3341);
+L283:          KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>, Temp_int_Array_Index_Variable3, [ref] mIntVector2D);
+L342:          IntVector2D LocalCoordinate = mIntVector2D;
+L369:          bool mbool1 = BlueprintMapLibrary->Map_Find([ref] NodeData, [ref] LocalCoordinate, [ref] mMAMTree_NodeData_Struct);
+L438:          MAMTree_NodeData_Struct LocalNodeData = mMAMTree_NodeData_Struct;
+L465:          this->CreateNodeObject(LocalNodeData);
+L488:          mFormatArgumentData.ArgumentName = "y";
+L518:          mFormatArgumentData.ArgumentValueType = 0;
+L547:          mFormatArgumentData.ArgumentValue = ;
+L576:          mFormatArgumentData.ArgumentValueInt = LocalCoordinate.Y_4_F18C5B824136D7759146338CAA496F0A;
+L621:          mFormatArgumentData.ArgumentValueFloat = 0;
+L653:          mFormatArgumentData.ArgumentValueGender = 0;
+L682:          mFormatArgumentData1.ArgumentName = "currentText";
+L722:          mFormatArgumentData1.ArgumentValueType = 4;
+L751:          mFormatArgumentData1.ArgumentValue = localText;
+L787:          mFormatArgumentData1.ArgumentValueInt = 0;
+L819:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L851:          mFormatArgumentData1.ArgumentValueGender = 0;
+L880:          mFormatArgumentData2.ArgumentName = "x";
+L910:          mFormatArgumentData2.ArgumentValueType = 0;
+L939:          mFormatArgumentData2.ArgumentValue = ;
+L968:          mFormatArgumentData2.ArgumentValueInt = LocalCoordinate.X_2_3FF107F84D30EB52DD50898C7D2CAD67;
+L1013:         mFormatArgumentData2.ArgumentValueFloat = 0;
+L1045:         mFormatArgumentData2.ArgumentValueGender = 0;
+L1074:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData2, mFormatArgumentData];
+L1112:         FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1233:         FText localText = mFText;
+L1260:         goto ExecutionFlow.Pop();
+L1261:         this->EditorOnly_OnActiveNodesUpdated(localText);
+L1284:         TArray<IntVector2D> mTArray<IntVector2D>1 = [];
+L1295:         BlueprintMapLibrary->Map_Keys([ref] NodeData, [ref] mTArray<IntVector2D>1);
+L1345:         int32 Temp_int_Loop_Counter_Variable2 = 0;
+L1368:         int32 Temp_int_Array_Index_Variable2 = 0;
+L1391:         int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<IntVector2D>1);
+L1450:         bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable2, mint321);
+L1488:         if (!mbool2) goto ExecutionFlow.Pop();
+L1498:         Temp_int_Array_Index_Variable2 = Temp_int_Loop_Counter_Variable2;
+L1525:         ExecutionFlow.Push(L3267);
+L1530:         KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>1, Temp_int_Array_Index_Variable2, [ref] mIntVector2D1);
+L1589:         LocalCoordinate = mIntVector2D1;
+L1616:         bool mbool3 = BlueprintMapLibrary->Map_Find([ref] NodeData, [ref] LocalCoordinate, [ref] mMAMTree_NodeData_Struct1);
+L1685:         LocalNodeData = mMAMTree_NodeData_Struct1;
+L1712:         this->GetNodeState(LocalCoordinate, NodeData, [ref] muint8);
+L1753:         bool mbool4 = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] LocalCoordinate, [ref] mWidget_MAMTree_Node);
+L1822:         mWidget_MAMTree_Node->SetNodeState(muint8);
+L1867:         TArray<IntVector2D> mTArray<IntVector2D>2 = [];
+L1878:         BlueprintMapLibrary->Map_Keys([ref] LocalNodeData.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A, [ref] mTArray<IntVector2D>2);
+L1937:         int32 Temp_int_Loop_Counter_Variable = 0;
+L1960:         int32 Temp_int_Array_Index_Variable1 = 0;
+L1983:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArray<IntVector2D>2);
+L2042:         bool mbool5 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint322);
+L2080:         if (!mbool5) goto L3415;
+L2094:         Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
+L2121:         ExecutionFlow.Push(L3976);
+L2126:         int32 Temp_int_Loop_Counter_Variable3 = 0;
+L2149:         int32 Temp_int_Array_Index_Variable = 0;
+L2172:         KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>2, Temp_int_Array_Index_Variable1, [ref] mIntVector2D2);
+L2231:         bool mbool6 = BlueprintMapLibrary->Map_Find([ref] LocalNodeData.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A, [ref] mIntVector2D2, [ref] mMAMTree_RoadPoints);
+L2309:         int32 mint323 = KismetArrayLibrary->Array_Length([ref] mMAMTree_RoadPoints.Points_10_9533B9104470D8E053E7ACA5C4C9F865);
+L2377:         bool mbool7 = Less_IntInt(Temp_int_Loop_Counter_Variable3, mint323);
+L2415:         if (!mbool7) goto ExecutionFlow.Pop();
+L2425:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable3;
+L2452:         ExecutionFlow.Push(L4050);
+L2457:         KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>2, Temp_int_Array_Index_Variable1, [ref] mIntVector2D2);
+L2516:         mbool6 = BlueprintMapLibrary->Map_Find([ref] LocalNodeData.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A, [ref] mIntVector2D2, [ref] mMAMTree_RoadPoints);
+L2594:         KismetArrayLibrary->Array_Get([ref] mMAMTree_RoadPoints.Points_10_9533B9104470D8E053E7ACA5C4C9F865, Temp_int_Array_Index_Variable, [ref] mIntVector2D3);
+L2662:         bool mbool8 = BlueprintMapLibrary->Map_Find([ref] this->mRoadOccupiedTiles, [ref] mIntVector2D3, [ref] mMAMTree_RoadOccupiedTile);
+L2731:         TArray<MAMTree_RoadStartEnd> TempOccupiedTiles = mMAMTree_RoadOccupiedTile.Roads_16_A42C107B4337EA6F58623680B876D371;
+L2767:         KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>2, Temp_int_Array_Index_Variable1, [ref] mIntVector2D2);
+L2826:         mMAMTree_RoadStartEnd.StartCoordinates_2_83B7BFD546264BAE632A5787A046FEEA = LocalCoordinate;
+L2862:         mMAMTree_RoadStartEnd.EndCoordinates_4_202B84034EC084E34F1935958692341D = mIntVector2D2;
+L2898:         int32 mint324 = KismetArrayLibrary->Array_Add([ref] TempOccupiedTiles, [ref] mMAMTree_RoadStartEnd);
+L2966:         mMAMTree_RoadOccupiedTile1.Roads_16_A42C107B4337EA6F58623680B876D371 = TempOccupiedTiles;
+L3002:         KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>2, Temp_int_Array_Index_Variable1, [ref] mIntVector2D2);
+L3061:         mbool6 = BlueprintMapLibrary->Map_Find([ref] LocalNodeData.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A, [ref] mIntVector2D2, [ref] mMAMTree_RoadPoints);
+L3139:         KismetArrayLibrary->Array_Get([ref] mMAMTree_RoadPoints.Points_10_9533B9104470D8E053E7ACA5C4C9F865, Temp_int_Array_Index_Variable, [ref] mIntVector2D3);
+L3207:         BlueprintMapLibrary->Map_Add([ref] this->mRoadOccupiedTiles, [ref] mIntVector2D3, [ref] mMAMTree_RoadOccupiedTile1);
+L3266:         goto ExecutionFlow.Pop();
+L3267:         int32 mint325 = Add_IntInt(Temp_int_Loop_Counter_Variable2, 1);
+L3309:         Temp_int_Loop_Counter_Variable2 = mint325;
+L3336:         goto L1391;
+L3341:         int32 mint326 = Add_IntInt(Temp_int_Loop_Counter_Variable4, 1);
+L3383:         Temp_int_Loop_Counter_Variable4 = mint326;
+L3410:         goto L140;
+L3415:         bool mbool9 = this->IsSchematicResearched(LocalNodeData.Schematic_27_3663A42446FDB4387D0C81AFC23E225B);
+L3457:         if (!mbool9) goto ExecutionFlow.Pop();
+L3467:         TArray<IntVector2D> mTArray<IntVector2D>3 = [];
+L3478:         BlueprintMapLibrary->Map_Keys([ref] LocalNodeData.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A, [ref] mTArray<IntVector2D>3);
+L3537:         int32 Temp_int_Loop_Counter_Variable1 = 0;
+L3560:         int32 Temp_int_Array_Index_Variable4 = 0;
+L3583:         int32 mint327 = KismetArrayLibrary->Array_Length([ref] mTArray<IntVector2D>3);
+L3642:         bool mbool10 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint327);
+L3680:         if (!mbool10) goto ExecutionFlow.Pop();
+L3690:         Temp_int_Array_Index_Variable4 = Temp_int_Loop_Counter_Variable1;
+L3717:         ExecutionFlow.Push(L3902);
+L3722:         KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>3, Temp_int_Array_Index_Variable4, [ref] mIntVector2D4);
+L3781:         bool mbool11 = BlueprintMapLibrary->Map_Find([ref] LocalNodeData.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A, [ref] mIntVector2D4, [ref] mMAMTree_RoadPoints1);
+L3859:         this->DrawRoad(LocalCoordinate, [ref] mMAMTree_RoadPoints1.Points_10_9533B9104470D8E053E7ACA5C4C9F865, true);
+L3901:         goto ExecutionFlow.Pop();
+L3902:         int32 mint328 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L3944:         Temp_int_Loop_Counter_Variable1 = mint328;
+L3971:         goto L3583;
+L3976:         int32 mint329 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L4018:         Temp_int_Loop_Counter_Variable = mint329;
+L4045:         goto L1983;
+L4050:         int32 mint3210 = Add_IntInt(Temp_int_Loop_Counter_Variable3, 1);
+L4092:         Temp_int_Loop_Counter_Variable3 = mint3210;
+L4119:         goto L2172;
+============ END FUNCTION GenerateTree ==============
+
+
+
+
+
+============ BEGIN FUNCTION LoadSelectedTree ==============
+L0:            ExecutionFlow.Push(L714);
+L5:            bool mbool = KismetSystemLibrary->IsValidClass(this->SelectedResearchTree);
+L56:           if (!mbool) goto ExecutionFlow.Pop();
+L66:           BlueprintMapLibrary->Map_Clear([ref] this->mNodeData);
+L107:          TArray<FGResearchTreeNode*> mTArray<FGResearchTreeNode> = FGResearchTree->GetNodes(this->SelectedResearchTree);
+L166:          int32 Temp_int_Loop_Counter_Variable = 0;
+L189:          int32 Temp_int_Array_Index_Variable = 0;
+L212:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGResearchTreeNode>);
+L271:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L309:          if (!mbool1) goto L602;
+L323:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L350:          ExecutionFlow.Push(L640);
+L355:          KismetArrayLibrary->Array_Get([ref] mTArray<FGResearchTreeNode>, Temp_int_Array_Index_Variable, [ref] mFGResearchTreeNode);
+L414:          BPD_ResearchTreeNode* mBPD_ResearchTreeNode = Cast<BlueprintGeneratedClass /Game/FactoryGame/Schematics/Research/BPD_ResearchTreeNode.BPD_ResearchTreeNode_C>(mFGResearchTreeNode);
+L450:          bool mbool2 = mBPD_ResearchTreeNode;
+L479:          if (!mbool2) goto ExecutionFlow.Pop();
+L489:          BlueprintMapLibrary->Map_Add([ref] this->mNodeData, [ref] mBPD_ResearchTreeNode->mNodeDataStruct.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292, [ref] mBPD_ResearchTreeNode->mNodeDataStruct);
+L601:          goto ExecutionFlow.Pop();
+L602:          this->GenerateTree(this->mNodeData);
+L625:          this->OnTreeLoaded();
+L639:          goto ExecutionFlow.Pop();
+L640:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L682:          Temp_int_Loop_Counter_Variable = mint321;
+L709:          goto L212;
+============ END FUNCTION LoadSelectedTree ==============
+
+
+
+
+
+============ BEGIN FUNCTION SelectResearchTree ==============
+L0:            this->SelectedResearchTree = researchTree;
+L19:           this->LoadSelectedTree();
+============ END FUNCTION SelectResearchTree ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetInvalidCoordinates ==============
+L0:            mIntVector2D.X_2_3FF107F84D30EB52DD50898C7D2CAD67 = -1;
+L32:           mIntVector2D.Y_4_F18C5B824136D7759146338CAA496F0A = -1;
+L64:           IntVector2D Coordinates = mIntVector2D;
+============ END FUNCTION GetInvalidCoordinates ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveRelevantRoadOccupiedTiles ==============
+L0:            ExecutionFlow.Push(L2716);
+L5:            int32 mint32 = BlueprintMapLibrary->Map_Length([ref] this->mRoadOccupiedTiles);
+L64:           FString mFString = KismetStringLibrary->Conv_IntToString(mint32);
+L123:          FString mFString1 = KismetStringLibrary->Concat_StrStr("Get key length: ", mFString);
+L200:          KismetSystemLibrary->PrintString(this, mFString1, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L283:          TArray<MAMTree_RoadOccupiedTile> mTArray<MAMTree_RoadOccupiedTile> = [];
+L294:          BlueprintMapLibrary->Map_Values([ref] this->mRoadOccupiedTiles, [ref] mTArray<MAMTree_RoadOccupiedTile>);
+L344:          bool Temp_bool_True_if_break_was_hit_Variable = false;
+L355:          int32 Temp_int_Loop_Counter_Variable = 0;
+L378:          int32 Temp_int_Array_Index_Variable = 0;
+L401:          bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L430:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<MAMTree_RoadOccupiedTile>);
+L489:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L527:          bool mbool2 = BooleanAND(mbool, mbool1);
+L565:          if (!mbool2) goto L1596;
+L579:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L606:          ExecutionFlow.Push(L2507);
+L611:          int32 LocalTileIndex = Temp_int_Array_Index_Variable;
+L638:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L661:          int32 Temp_int_Array_Index_Variable2 = 0;
+L684:          KismetArrayLibrary->Array_Get([ref] mTArray<MAMTree_RoadOccupiedTile>, Temp_int_Array_Index_Variable, [ref] mMAMTree_RoadOccupiedTile);
+L743:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] mMAMTree_RoadOccupiedTile.Roads_16_A42C107B4337EA6F58623680B876D371);
+L811:          bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint322);
+L849:          if (!mbool3) goto ExecutionFlow.Pop();
+L859:          Temp_int_Array_Index_Variable2 = Temp_int_Loop_Counter_Variable1;
+L886:          ExecutionFlow.Push(L2581);
+L891:          int32 LocalRoadIndex = Temp_int_Array_Index_Variable2;
+L918:          KismetArrayLibrary->Array_Get([ref] mTArray<MAMTree_RoadOccupiedTile>, Temp_int_Array_Index_Variable, [ref] mMAMTree_RoadOccupiedTile);
+L977:          KismetArrayLibrary->Array_Get([ref] mMAMTree_RoadOccupiedTile.Roads_16_A42C107B4337EA6F58623680B876D371, Temp_int_Array_Index_Variable2, [ref] mMAMTree_RoadStartEnd);
+L1045:         bool mbool4 = EqualEqual_IntInt(mMAMTree_RoadStartEnd.EndCoordinates_4_202B84034EC084E34F1935958692341D.Y_4_F18C5B824136D7759146338CAA496F0A, RoadStartEnd.EndCoordinates_4_202B84034EC084E34F1935958692341D.Y_4_F18C5B824136D7759146338CAA496F0A);
+L1119:         bool mbool5 = EqualEqual_IntInt(mMAMTree_RoadStartEnd.EndCoordinates_4_202B84034EC084E34F1935958692341D.X_2_3FF107F84D30EB52DD50898C7D2CAD67, RoadStartEnd.EndCoordinates_4_202B84034EC084E34F1935958692341D.X_2_3FF107F84D30EB52DD50898C7D2CAD67);
+L1193:         bool mbool6 = EqualEqual_IntInt(RoadStartEnd.StartCoordinates_2_83B7BFD546264BAE632A5787A046FEEA.X_2_3FF107F84D30EB52DD50898C7D2CAD67, mMAMTree_RoadStartEnd.StartCoordinates_2_83B7BFD546264BAE632A5787A046FEEA.X_2_3FF107F84D30EB52DD50898C7D2CAD67);
+L1267:         bool mbool7 = EqualEqual_IntInt(RoadStartEnd.StartCoordinates_2_83B7BFD546264BAE632A5787A046FEEA.Y_4_F18C5B824136D7759146338CAA496F0A, mMAMTree_RoadStartEnd.StartCoordinates_2_83B7BFD546264BAE632A5787A046FEEA.Y_4_F18C5B824136D7759146338CAA496F0A);
+L1341:         bool mbool8 = BooleanAND(mbool6, mbool7);
+L1379:         bool mbool9 = BooleanAND(mbool8, mbool5);
+L1417:         bool mbool10 = BooleanAND(mbool9, mbool4);
+L1455:         if (!mbool10) goto ExecutionFlow.Pop();
+L1465:         TArray<IntVector2D> mTArray<IntVector2D> = [];
+L1476:         BlueprintMapLibrary->Map_Keys([ref] this->mRoadOccupiedTiles, [ref] mTArray<IntVector2D>);
+L1526:         BlueprintMapLibrary->Map_Add([ref] LocalTileToUpdateArray, [ref] mTArray<IntVector2D>[LocalTileIndex], [ref] LocalRoadIndex);
+L1595:         goto ExecutionFlow.Pop();
+L1596:         TArray<IntVector2D> mTArray<IntVector2D>1 = [];
+L1607:         BlueprintMapLibrary->Map_Keys([ref] LocalTileToUpdateArray, [ref] mTArray<IntVector2D>1);
+L1657:         int32 Temp_int_Loop_Counter_Variable2 = 0;
+L1680:         int32 Temp_int_Array_Index_Variable1 = 0;
+L1703:         int32 mint323 = KismetArrayLibrary->Array_Length([ref] mTArray<IntVector2D>1);
+L1762:         bool mbool11 = Less_IntInt(Temp_int_Loop_Counter_Variable2, mint323);
+L1800:         if (!mbool11) goto ExecutionFlow.Pop();
+L1810:         Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable2;
+L1837:         ExecutionFlow.Push(L2433);
+L1842:         KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>1, Temp_int_Array_Index_Variable1, [ref] mIntVector2D);
+L1901:         IntVector2D LocalTileToUpdate = mIntVector2D;
+L1928:         bool mbool12 = BlueprintMapLibrary->Map_Find([ref] this->mRoadOccupiedTiles, [ref] LocalTileToUpdate, [ref] mMAMTree_RoadOccupiedTile1);
+L1997:         int32 mint324 = KismetArrayLibrary->Array_Length([ref] mMAMTree_RoadOccupiedTile1.Roads_16_A42C107B4337EA6F58623680B876D371);
+L2065:         bool mbool13 = Greater_IntInt(mint324, 1);
+L2099:         if (!mbool13) goto L2655;
+L2113:         bool mbool14 = BlueprintMapLibrary->Map_Find([ref] this->mRoadOccupiedTiles, [ref] LocalTileToUpdate, [ref] mMAMTree_RoadOccupiedTile2);
+L2182:         TArray<MAMTree_RoadStartEnd> TempRoads = mMAMTree_RoadOccupiedTile2.Roads_16_A42C107B4337EA6F58623680B876D371;
+L2218:         bool mbool15 = BlueprintMapLibrary->Map_Find([ref] LocalTileToUpdateArray, [ref] LocalTileToUpdate, [ref] mint325);
+L2287:         KismetArrayLibrary->Array_Remove([ref] TempRoads, mint325);
+L2337:         mMAMTree_RoadOccupiedTile3.Roads_16_A42C107B4337EA6F58623680B876D371 = TempRoads;
+L2373:         BlueprintMapLibrary->Map_Add([ref] this->mRoadOccupiedTiles, [ref] LocalTileToUpdate, [ref] mMAMTree_RoadOccupiedTile3);
+L2432:         goto ExecutionFlow.Pop();
+L2433:         int32 mint326 = Add_IntInt(Temp_int_Loop_Counter_Variable2, 1);
+L2475:         Temp_int_Loop_Counter_Variable2 = mint326;
+L2502:         goto L1703;
+L2507:         int32 mint327 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2549:         Temp_int_Loop_Counter_Variable = mint327;
+L2576:         goto L401;
+L2581:         int32 mint328 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L2623:         Temp_int_Loop_Counter_Variable1 = mint328;
+L2650:         goto L684;
+L2655:         bool mbool16 = BlueprintMapLibrary->Map_Remove([ref] this->mRoadOccupiedTiles, [ref] LocalTileToUpdate);
+L2715:         goto ExecutionFlow.Pop();
+============ END FUNCTION RemoveRelevantRoadOccupiedTiles ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateOccupiedRoadTiles_OLD ==============
+L0:            ExecutionFlow.Push(L893);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mTempRoadOccupiedTiles);
+L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L148:          if (!mbool) goto L508;
+L162:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L189:          ExecutionFlow.Push(L550);
+L194:          KismetArrayLibrary->Array_Get([ref] this->mTempRoadOccupiedTiles, Temp_int_Array_Index_Variable, [ref] mIntVector2D);
+L253:          IntVector2D LocalCoordinate = mIntVector2D;
+L280:          bool mbool1 = BlueprintMapLibrary->Map_Find([ref] this->mRoadOccupiedTiles, [ref] LocalCoordinate, [ref] mMAMTree_RoadOccupiedTile);
+L349:          bool mbool2 = Not_PreBool(mbool1);
+L378:          if (!mbool2) goto L624;
+L392:          TArray<MAMTree_RoadStartEnd> mTArray<MAMTree_RoadStartEnd> = [Road];
+L412:          mMAMTree_RoadOccupiedTile1.Roads_16_A42C107B4337EA6F58623680B876D371 = mTArray<MAMTree_RoadStartEnd>;
+L448:          BlueprintMapLibrary->Map_Add([ref] this->mRoadOccupiedTiles, [ref] LocalCoordinate, [ref] mMAMTree_RoadOccupiedTile1);
+L507:          goto ExecutionFlow.Pop();
+L508:          KismetArrayLibrary->Array_Clear([ref] this->mTempRoadOccupiedTiles);
+L549:          goto ExecutionFlow.Pop();
+L550:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L592:          Temp_int_Loop_Counter_Variable = mint321;
+L619:          goto L51;
+L624:          mbool1 = BlueprintMapLibrary->Map_Find([ref] this->mRoadOccupiedTiles, [ref] LocalCoordinate, [ref] mMAMTree_RoadOccupiedTile);
+L693:          TArray<MAMTree_RoadStartEnd> TempRoadPoints = mMAMTree_RoadOccupiedTile.Roads_16_A42C107B4337EA6F58623680B876D371;
+L729:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] TempRoadPoints, [ref] Road);
+L797:          mMAMTree_RoadOccupiedTile2.Roads_16_A42C107B4337EA6F58623680B876D371 = TempRoadPoints;
+L833:          BlueprintMapLibrary->Map_Add([ref] this->mRoadOccupiedTiles, [ref] LocalCoordinate, [ref] mMAMTree_RoadOccupiedTile2);
+L892:          goto ExecutionFlow.Pop();
+============ END FUNCTION UpdateOccupiedRoadTiles_OLD ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddOrUpdateNodeObject ==============
+L0:            BlueprintMapLibrary->Map_Add([ref] this->mNodeData, [ref] Coordinate, [ref] NodeData);
+L59:           this->UpdateRoads();
+L73:           bool mbool = BlueprintMapLibrary->Map_Find([ref] this->mNodeObjects, [ref] Coordinate, [ref] mWidget_MAMTree_Node);
+L142:          mWidget_MAMTree_Node->UpdateNodeIcon(NodeData);
+============ END FUNCTION AddOrUpdateNodeObject ==============
+
+
+
+
+
+============ BEGIN FUNCTION PositionWidgetOnGrid ==============
+L0:            CanvasPanelSlot* mCanvasPanelSlot = CanvasPanel->AddChildToCanvas(Widget);
+L51:           this->GetPixelPosOnGrid(Coordinates, [ref] mVector2D);
+L83:           mCanvasPanelSlot->SetPosition(mVector2D);
+L124:          mCanvasPanelSlot->SetSize(this->mTileSize);
+============ END FUNCTION PositionWidgetOnGrid ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPixelPosOnGrid ==============
+L0:            int32 mint32 = Percent_IntInt(Coordinates.X_2_3FF107F84D30EB52DD50898C7D2CAD67, 2);
+L51:           BreakVector2D(this->mTileSize, [ref] mfloat, [ref] mfloat1);
+L88:           bool mbool = EqualEqual_IntInt(mint32, 0);
+L122:          float mfloat2 = Divide_FloatFloat(mfloat1, 2);
+L164:          bool Temp_bool_Variable = mbool;
+L183:          BreakVector2D(this->mTileSize, [ref] mfloat3, [ref] mfloat4);
+L220:          float mfloat5 = Multiply_IntFloat(Coordinates.X_2_3FF107F84D30EB52DD50898C7D2CAD67, mfloat3);
+L275:          float mfloat6 = Multiply_IntFloat(Coordinates.Y_4_F18C5B824136D7759146338CAA496F0A, mfloat4);
+L330:          float mfloat7 = Add_FloatFloat(mfloat6, mfloat2);
+L376:          Vector2D mVector2D = MakeVector2D(mfloat5, switch (Temp_bool_Variable) {
+case false -> mfloat6;
+case true -> mfloat7;
+default -> mfloat8;
+});
+L466:          Vector2D Position = mVector2D;
+============ END FUNCTION GetPixelPosOnGrid ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsTileRoadHighlighted ==============
+L0:            ExecutionFlow.Push(L693);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           this->GetRoadHighlightOffsets_OLD(this->mSelectedNodeCoordinates, [ref] mTArray<IntVector2D>);
+L83:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<IntVector2D>);
+L142:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L180:          if (!mbool) goto L603;
+L194:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L221:          ExecutionFlow.Push(L619);
+L226:          this->GetRoadHighlightOffsets_OLD(this->mSelectedNodeCoordinates, [ref] mTArray<IntVector2D>);
+L258:          KismetArrayLibrary->Array_Get([ref] mTArray<IntVector2D>, Temp_int_Array_Index_Variable, [ref] mIntVector2D);
+L317:          int32 mint321 = Add_IntInt(mIntVector2D.Y_4_F18C5B824136D7759146338CAA496F0A, this->mSelectedNodeCoordinates.Y_4_F18C5B824136D7759146338CAA496F0A);
+L381:          int32 mint322 = Add_IntInt(mIntVector2D.X_2_3FF107F84D30EB52DD50898C7D2CAD67, this->mSelectedNodeCoordinates.X_2_3FF107F84D30EB52DD50898C7D2CAD67);
+L445:          bool mbool1 = EqualEqual_IntInt(Coordinates.Y_4_F18C5B824136D7759146338CAA496F0A, mint321);
+L492:          bool mbool2 = EqualEqual_IntInt(Coordinates.X_2_3FF107F84D30EB52DD50898C7D2CAD67, mint322);
+L539:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L577:          if (!mbool3) goto ExecutionFlow.Pop();
+L587:          bool Return = true;
+L598:          <End of Inlined Event Graph Function>;
+L603:          Return = false;
+L614:          <End of Inlined Event Graph Function>;
+L619:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L661:          Temp_int_Loop_Counter_Variable = mint323;
+L688:          goto L51;
+============ END FUNCTION IsTileRoadHighlighted ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRoadHighlightOffsets_OLD ==============
+L0:            int32 mint32 = Percent_IntInt(Coordinates.X_2_3FF107F84D30EB52DD50898C7D2CAD67, 2);
+L51:           int32 Temp_int_Variable = 1;
+L74:           bool mbool = EqualEqual_IntInt(mint32, 0);
+L108:          bool Temp_bool_Variable = mbool;
+L127:          int32 Temp_int_Variable1 = 0;
+L150:          mIntVector2D.X_2_3FF107F84D30EB52DD50898C7D2CAD67 = 0;
+L182:          mIntVector2D.Y_4_F18C5B824136D7759146338CAA496F0A = 1;
+L214:          mIntVector2D1.X_2_3FF107F84D30EB52DD50898C7D2CAD67 = 1;
+L246:          mIntVector2D1.Y_4_F18C5B824136D7759146338CAA496F0A = switch (Temp_bool_Variable) {
+case false -> Temp_int_Variable1;
+case true -> Temp_int_Variable;
+default -> mint321;
+};
+L326:          mIntVector2D2.X_2_3FF107F84D30EB52DD50898C7D2CAD67 = -1;
+L358:          mIntVector2D2.Y_4_F18C5B824136D7759146338CAA496F0A = switch (Temp_bool_Variable) {
+case false -> Temp_int_Variable1;
+case true -> Temp_int_Variable;
+default -> mint321;
+};
+L438:          TArray<IntVector2D> mTArray<IntVector2D> = [mIntVector2D2, mIntVector2D, mIntVector2D1];
+L476:          TArray<IntVector2D> Array = mTArray<IntVector2D>;
+============ END FUNCTION GetRoadHighlightOffsets_OLD ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreateNodeObject ==============
+L0:            ExecutionFlow.Push(L2552);
+L5:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L29:           Widget_MAMTree_Node* mWidget_MAMTree_Node = WidgetBlueprintLibrary->Create(this, Widget_MAMTree_Node, mPlayerController);
+L90:           KismetSystemLibrary->SetStructurePropertyByName(mWidget_MAMTree_Node, "mNodeData", [ref] NodeData);
+L153:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_MAMTree_Node, "mIsEditor", this->mIsEditor);
+L216:          Widget_MAMTree_Node* LocalWidget = mWidget_MAMTree_Node;
+L235:          BlueprintMapLibrary->Map_Add([ref] this->mNodeObjects, [ref] NodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292, [ref] LocalWidget);
+L303:          mFScriptDelegate->BindUFunction(this, OnParentNodeClicked);
+L326:          LocalWidget->OnClicked.AddUnique(mFScriptDelegate);
+L367:          mFScriptDelegate1->BindUFunction(this, OnParentNodeHovered);
+L390:          LocalWidget->OnHovered.AddUnique(mFScriptDelegate1);
+L431:          mFScriptDelegate2->BindUFunction(this, OnParentNodeUnhovered);
+L454:          LocalWidget->OnUnhovered.AddUnique(mFScriptDelegate2);
+L495:          mFScriptDelegate3->BindUFunction(this, OnResearchStarted);
+L518:          LocalWidget->OnResearchStarted.AddUnique(mFScriptDelegate3);
+L559:          this->PositionWidgetOnGrid(this->mParentNodeCavas, LocalWidget, NodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292);
+L609:          mMAMTree_NodeData_Struct.Schematic_27_3663A42446FDB4387D0C81AFC23E225B = NodeData.Schematic_27_3663A42446FDB4387D0C81AFC23E225B;
+L646:          mMAMTree_NodeData_Struct.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292 = NodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292;
+L691:          mMAMTree_NodeData_Struct.Parents_20_7A099B96409362536B743BA1CC77C234 = NodeData.Parents_20_7A099B96409362536B743BA1CC77C234;
+L736:          mMAMTree_NodeData_Struct.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A = NodeData.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A;
+L781:          mMAMTree_NodeData_Struct.UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63 = NodeData.UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63;
+L826:          mMAMTree_NodeData_Struct.NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA = NodeData.NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA;
+L871:          this->AddOrUpdateNodeObject([ref] NodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292, [ref] mMAMTree_NodeData_Struct);
+L912:          bool mbool = BlueprintMapLibrary->Map_Find([ref] this->mRoadOccupiedTiles, [ref] NodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292, [ref] mMAMTree_RoadOccupiedTile);
+L990:          if (!mbool) goto ExecutionFlow.Pop();
+L1000:         KismetSystemLibrary->PrintString(this, "Tile Occuptied", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L1090:         int32 Temp_int_Loop_Counter_Variable = 0;
+L1113:         int32 Temp_int_Array_Index_Variable = 0;
+L1136:         mbool = BlueprintMapLibrary->Map_Find([ref] this->mRoadOccupiedTiles, [ref] NodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292, [ref] mMAMTree_RoadOccupiedTile);
+L1214:         int32 mint32 = KismetArrayLibrary->Array_Length([ref] mMAMTree_RoadOccupiedTile.Roads_16_A42C107B4337EA6F58623680B876D371);
+L1282:         bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L1320:         if (!mbool1) goto ExecutionFlow.Pop();
+L1330:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L1357:         ExecutionFlow.Push(L2478);
+L1362:         mbool = BlueprintMapLibrary->Map_Find([ref] this->mRoadOccupiedTiles, [ref] NodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292, [ref] mMAMTree_RoadOccupiedTile);
+L1440:         KismetArrayLibrary->Array_Get([ref] mMAMTree_RoadOccupiedTile.Roads_16_A42C107B4337EA6F58623680B876D371, Temp_int_Array_Index_Variable, [ref] mMAMTree_RoadStartEnd);
+L1508:         IntVector2D LocalOccupiedRoadStart = mMAMTree_RoadStartEnd.StartCoordinates_2_83B7BFD546264BAE632A5787A046FEEA;
+L1544:         bool mbool2 = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] LocalOccupiedRoadStart, [ref] mMAMTree_NodeData_Struct1);
+L1613:         TMap<IntVector2D, MAMTree_RoadPoints> TempChildrenAndRoads = mMAMTree_NodeData_Struct1.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A;
+L1649:         mbool = BlueprintMapLibrary->Map_Find([ref] this->mRoadOccupiedTiles, [ref] NodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292, [ref] mMAMTree_RoadOccupiedTile);
+L1727:         KismetArrayLibrary->Array_Get([ref] mMAMTree_RoadOccupiedTile.Roads_16_A42C107B4337EA6F58623680B876D371, Temp_int_Array_Index_Variable, [ref] mMAMTree_RoadStartEnd);
+L1795:         bool mbool3 = BlueprintMapLibrary->Map_Remove([ref] TempChildrenAndRoads, [ref] mMAMTree_RoadStartEnd.EndCoordinates_4_202B84034EC084E34F1935958692341D);
+L1864:         bool mbool4 = BlueprintMapLibrary->Map_Find([ref] this->mNodeData, [ref] LocalOccupiedRoadStart, [ref] mMAMTree_NodeData_Struct2);
+L1933:         mMAMTree_NodeData_Struct3.Schematic_27_3663A42446FDB4387D0C81AFC23E225B = mMAMTree_NodeData_Struct2.Schematic_27_3663A42446FDB4387D0C81AFC23E225B;
+L1970:         mMAMTree_NodeData_Struct3.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292 = mMAMTree_NodeData_Struct2.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292;
+L2015:         mMAMTree_NodeData_Struct3.Parents_20_7A099B96409362536B743BA1CC77C234 = mMAMTree_NodeData_Struct2.Parents_20_7A099B96409362536B743BA1CC77C234;
+L2060:         mMAMTree_NodeData_Struct3.ChildrenAndRoads_34_758C9E0D4F09DAF4BBAD309358952A0A = TempChildrenAndRoads;
+L2096:         mMAMTree_NodeData_Struct3.UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63 = mMAMTree_NodeData_Struct2.UnhiddenBy_38_909B07D7461225A33C48A68A7139FE63;
+L2141:         mMAMTree_NodeData_Struct3.NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA = mMAMTree_NodeData_Struct2.NodesToUnhide_33_A6E465554D49C98EE2A0ECB493BE5CBA;
+L2186:         this->AddOrUpdateNodeObject([ref] LocalOccupiedRoadStart, [ref] mMAMTree_NodeData_Struct3);
+L2218:         mbool = BlueprintMapLibrary->Map_Find([ref] this->mRoadOccupiedTiles, [ref] NodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292, [ref] mMAMTree_RoadOccupiedTile);
+L2296:         KismetArrayLibrary->Array_Get([ref] mMAMTree_RoadOccupiedTile.Roads_16_A42C107B4337EA6F58623680B876D371, Temp_int_Array_Index_Variable, [ref] mMAMTree_RoadStartEnd);
+L2364:         mMAMTree_RoadStartEnd1.StartCoordinates_2_83B7BFD546264BAE632A5787A046FEEA = mMAMTree_RoadStartEnd.StartCoordinates_2_83B7BFD546264BAE632A5787A046FEEA;
+L2409:         mMAMTree_RoadStartEnd1.EndCoordinates_4_202B84034EC084E34F1935958692341D = mMAMTree_RoadStartEnd.EndCoordinates_4_202B84034EC084E34F1935958692341D;
+L2454:         this->RemoveRelevantRoadOccupiedTiles(mMAMTree_RoadStartEnd1);
+L2477:         goto ExecutionFlow.Pop();
+L2478:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2520:         Temp_int_Loop_Counter_Variable = mint321;
+L2547:         goto L1136;
+============ END FUNCTION CreateNodeObject ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowUnlockIconOnNodes ==============
+L0:            PERSISTENT_FRAME(ArrayProperty /Game/FactoryGame/Interface/UI/InGame/MAMTree/Widget_MAMTree_Grid.Widget_MAMTree_Grid_C:ExecuteUbergraph_Widget_MAMTree_Grid.K2Node_CustomEvent_NodeObjects) = NodeObjects;
+L18:           this->ExecuteUbergraph_Widget_MAMTree_Grid(589);
+============ END FUNCTION ShowUnlockIconOnNodes ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_MAMTree_Grid ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L266);
+L20:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mconst TArray<Widget_MAMTree_Node>);
+L79:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L121:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L159:          if (!mbool) goto ExecutionFlow.Pop();
+L169:          KismetArrayLibrary->Array_Get([ref] mconst TArray<Widget_MAMTree_Node>, Temp_int_Variable, [ref] mWidget_MAMTree_Node);
+L228:          mWidget_MAMTree_Node->ShowHideUnlockIcon(true);
+L265:          goto ExecutionFlow.Pop();
+L266:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L308:          int32 Temp_int_Variable = mint322;
+L335:          mint32 = KismetArrayLibrary->Array_Length([ref] mconst TArray<Widget_MAMTree_Node>);
+L394:          mint321 = Subtract_IntInt(mint32, 1);
+L436:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint321);
+L474:          if (!mbool1) goto ExecutionFlow.Pop();
+L484:          KismetSystemLibrary->Delay(this, 0.05000000074505806, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1055183482, ExecutionFunction = "ExecuteUbergraph_Widget_MAMTree_Grid", CallbackTarget = this));
+L560:          goto ExecutionFlow.Pop();
+L561:          Temp_int_Variable = 0;
+L584:          goto L335;
+L589:          goto L561;
+============ END FUNCTION ExecuteUbergraph_Widget_MAMTree_Grid ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnResearchSelectedSchematic__DelegateSignature ==============
+============ END FUNCTION OnResearchSelectedSchematic__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSaveTree__DelegateSignature ==============
+============ END FUNCTION OnSaveTree__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnLoadClicked__DelegateSignature ==============
+============ END FUNCTION OnLoadClicked__DelegateSignature ==============

@@ -1,0 +1,237 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Char_CrabHatcher.Char_CrabHatcher_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SpawnTimer ==============
+L0:            bool mbool = Less_IntInt(this->mEnemiesSpawned, this->mEnemiesToSpawn);
+L38:           if (!mbool) goto L1193;
+L52:           int32 mint32 = Add_IntInt(this->mEnemiesSpawned, 1);
+L94:           int32 Temp_int_Variable = mint32;
+L121:          this->mEnemiesSpawned = Temp_int_Variable;
+L148:          Rotator mRotator = this->K2_GetActorRotation();
+L176:          Vector mVector = this->K2_GetActorLocation();
+L204:          Vector mVector1 = MakeVector(300, 300, 100);
+L247:          Vector mVector2 = RandomPointInBoundingBox(mVector, mVector1);
+L293:          Vector mVector3 = Add_VectorVector(mVector2, Vector(0, 0, 100));
+L343:          Transform mTransform = MakeTransform(mVector3, mRotator, Vector(1, 1, 1));
+L402:          Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, Char_BabyCrab, [ref] mTransform, 2, nullptr);
+L466:          KismetSystemLibrary->SetObjectPropertyByName(mActor, "Instigator", this);
+L521:          mRotator = this->K2_GetActorRotation();
+L549:          mVector = this->K2_GetActorLocation();
+L577:          mVector1 = MakeVector(300, 300, 100);
+L620:          mVector2 = RandomPointInBoundingBox(mVector, mVector1);
+L666:          mVector3 = Add_VectorVector(mVector2, Vector(0, 0, 100));
+L716:          mTransform = MakeTransform(mVector3, mRotator, Vector(1, 1, 1));
+L775:          Char_BabyCrab* mChar_BabyCrab = GameplayStatics->FinishSpawningActor(mActor, [ref] mTransform);
+L835:          FGCreatureSpawner* mFGCreatureSpawner = this->GetSpawner();
+L855:          bool mbool1 = KismetSystemLibrary->IsValid(mFGCreatureSpawner);
+L906:          if (!mbool1) goto L981;
+L920:          mFGCreatureSpawner = this->GetSpawner();
+L940:          mFGCreatureSpawner->AddCreature(mChar_BabyCrab);
+L981:          Vector mVector4 = RandomUnitVector();
+L1009:         Vector mVector5 = Multiply_VectorFloat(mVector4, 1000);
+L1051:         mChar_BabyCrab->CharacterMovement->AddImpulse(mVector5, true);
+L1119:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimer(this, "SpawnTimer", 0.10000000149011612, false);
+L1188:         <End of Inlined Event Graph Function>;
+L1193:         this->mHealthComponent->Kill();
+============ END FUNCTION SpawnTimer ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlaySpawnEffects ==============
+L0:            this->CapsuleComponent->SetCollisionEnabled(0);
+L38:           this->StaticMesh->SetCollisionEnabled(0);
+L76:           this->Mesh->SetCollisionEnabled(0);
+L114:          this->Mesh->SetVisibility(false, true);
+L148:          this->EvokeParticles();
+============ END FUNCTION PlaySpawnEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnLoaded_380093F94E88F37148B05C99D8047F22 ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Char_CrabHatcher.Char_CrabHatcher_C:ExecuteUbergraph_Char_CrabHatcher.K2Node_CustomEvent_Loaded) = Loaded;
+L18:           this->ExecuteUbergraph_Char_CrabHatcher(1936);
+============ END FUNCTION OnLoaded_380093F94E88F37148B05C99D8047F22 ==============
+
+
+
+
+
+============ BEGIN FUNCTION Damaged ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Char_CrabHatcher.Char_CrabHatcher_C:ExecuteUbergraph_Char_CrabHatcher.K2Node_CustomEvent_damagedActor) = DamagedActor;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Char_CrabHatcher.Char_CrabHatcher_C:ExecuteUbergraph_Char_CrabHatcher.K2Node_CustomEvent_Damage) = Damage;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Char_CrabHatcher.Char_CrabHatcher_C:ExecuteUbergraph_Char_CrabHatcher.K2Node_CustomEvent_damageType) = DamageType;
+L54:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Char_CrabHatcher.Char_CrabHatcher_C:ExecuteUbergraph_Char_CrabHatcher.K2Node_CustomEvent_instigatedBy) = InstigatedBy;
+L72:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Char_CrabHatcher.Char_CrabHatcher_C:ExecuteUbergraph_Char_CrabHatcher.K2Node_CustomEvent_damageCauser) = DamageCauser;
+L90:           this->ExecuteUbergraph_Char_CrabHatcher(939);
+============ END FUNCTION Damaged ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnCrabs ==============
+L0:            this->ExecuteUbergraph_Char_CrabHatcher(954);
+============ END FUNCTION SpawnCrabs ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartExpanding ==============
+L0:            this->ExecuteUbergraph_Char_CrabHatcher(1569);
+============ END FUNCTION StartExpanding ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveActorBeginOverlap ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Char_CrabHatcher.Char_CrabHatcher_C:ExecuteUbergraph_Char_CrabHatcher.K2Node_Event_OtherActor) = OtherActor;
+L18:           this->ExecuteUbergraph_Char_CrabHatcher(1599);
+============ END FUNCTION ReceiveActorBeginOverlap ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Char_CrabHatcher(1703);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Char_CrabHatcher(1813);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveEndPlay ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Char_CrabHatcher.Char_CrabHatcher_C:ExecuteUbergraph_Char_CrabHatcher.K2Node_Event_EndPlayReason) = EndPlayReason;
+L18:           this->ExecuteUbergraph_Char_CrabHatcher(1888);
+============ END FUNCTION ReceiveEndPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Char_CrabHatcher(1893);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION EvokeParticles ==============
+L0:            this->ExecuteUbergraph_Char_CrabHatcher(1898);
+============ END FUNCTION EvokeParticles ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveDied ==============
+L0:            this->ExecuteUbergraph_Char_CrabHatcher(1960);
+============ END FUNCTION ReceiveDied ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Char_CrabHatcher ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->SetLifeSpan(1);
+L34:           goto ExecutionFlow.Pop();
+L35:           mFScriptDelegate->BindUFunction(this, OnLoaded_380093F94E88F37148B05C99D8047F22);
+L58:           KismetSystemLibrary->LoadAsset(this, this->mCrabParticles, mFScriptDelegate, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = -1, UUID = 696170389, ExecutionFunction = "ExecuteUbergraph_Char_CrabHatcher", CallbackTarget = this));
+L147:          goto ExecutionFlow.Pop();
+L148:          ParticleSystem* mParticleSystem = Cast<Class /Script/Engine.ParticleSystem>(Temp_object_Variable);
+L184:          bool mbool = mParticleSystem;
+L213:          if (!mbool) goto ExecutionFlow.Pop();
+L223:          Vector mVector = this->StaticMesh->K2_GetComponentLocation();
+L273:          Vector mVector1 = Add_VectorVector(mVector, Vector(0, 0, 200));
+L323:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, mParticleSystem, mVector1, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L413:          this->mExplodingEggs_VFX = mParticleSystemComponent;
+L432:          this->PlaySpawnEffects();
+L446:          this->SetDidSpawnCrabs(true);
+L457:          bool mbool1 = this->HasAuthority();
+L477:          if (!mbool1) goto ExecutionFlow.Pop();
+L487:          this->SpawnTimer();
+L501:          goto ExecutionFlow.Pop();
+L502:          float mfloat = this->mGrowAnimation->GetPlayLength();
+L556:          this->SetAnimationLength(mfloat);
+L575:          this->Mesh->SetAnimation(this->mGrowAnimation);
+L616:          mFScriptDelegate1->BindUFunction(this, Damaged);
+L639:          this->OnTakeAnyDamage.AddUnique(mFScriptDelegate1);
+L658:          goto ExecutionFlow.Pop();
+L659:          this->ReceiveBeginPlay();
+L669:          ExecutionFlow.Push(L714);
+L674:          FGBlueprintFunctionLibrary->AddGainSignificanceObjectToSignificanceManager(this, this, 5000);
+L713:          goto ExecutionFlow.Pop();
+L714:          bool mbool2 = this->GetDidSpawnCrabs();
+L734:          if (!mbool2) goto L897;
+L748:          this->Mesh->SetVisibility(false, true);
+L782:          this->CapsuleComponent->SetCollisionEnabled(0);
+L820:          this->StaticMesh->SetCollisionEnabled(0);
+L858:          this->Mesh->SetCollisionEnabled(0);
+L896:          goto ExecutionFlow.Pop();
+L897:          this->CharacterMovement->SetUpdatedComponent(nullptr);
+L934:          goto L502;
+L939:          this->SpawnCrabs();
+L953:          goto ExecutionFlow.Pop();
+L954:          this->SpawnCrabs();
+L964:          Object* mObject = KismetSystemLibrary->Conv_SoftObjectReferenceToObject([ref] this->mCrabParticles);
+L1015:         bool mbool3 = KismetSystemLibrary->IsValid(mObject);
+L1066:         if (!mbool3) goto L35;
+L1080:         mObject = KismetSystemLibrary->Conv_SoftObjectReferenceToObject([ref] this->mCrabParticles);
+L1131:         ParticleSystem* mParticleSystem1 = Cast<Class /Script/Engine.ParticleSystem>(mObject);
+L1167:         bool mbool4 = mParticleSystem1;
+L1196:         if (!mbool4) goto ExecutionFlow.Pop();
+L1206:         mVector = this->StaticMesh->K2_GetComponentLocation();
+L1256:         mVector1 = Add_VectorVector(mVector, Vector(0, 0, 200));
+L1306:         ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAtLocation(this, mParticleSystem1, mVector1, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L1396:         this->mExplodingEggs_VFX = mParticleSystemComponent1;
+L1415:         goto L432;
+L1420:         SkeletalMeshComponent* mSkeletalMeshComponent = this->GetMesh3P();
+L1444:         Vector mVector2 = mSkeletalMeshComponent->K2_GetComponentLocation();
+L1494:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAtLocation(this, Play_E_Hatchery_Hive, mVector2, Rotator::FromPitchYawRoll(0, 0, 0));
+L1568:         goto ExecutionFlow.Pop();
+L1569:         this->StartExpanding();
+L1579:         goto L1420;
+L1584:         this->SpawnCrabs();
+L1598:         goto ExecutionFlow.Pop();
+L1599:         TSubclassOf<Actor> mTSubclassOf<Actor> = GameplayStatics->GetObjectClass(mActor);
+L1650:         bool mbool5 = ClassIsChildOf(mTSubclassOf<Actor>, FGWheeledVehicle);
+L1688:         if (!mbool5) goto ExecutionFlow.Pop();
+L1698:         goto L1584;
+L1703:         this->Mesh->SetComponentTickInterval(0);
+L1740:         this->CharacterMovement->SetComponentTickInterval(0);
+L1777:         goto ExecutionFlow.Pop();
+L1778:         FGBlueprintFunctionLibrary->RemoveGainSignificanceObjectFromSignificanceManager(this, this);
+L1812:         goto ExecutionFlow.Pop();
+L1813:         this->Mesh->SetComponentTickInterval(0.10000000149011612);
+L1850:         this->CharacterMovement->SetComponentTickInterval(0.4000000059604645);
+L1887:         goto ExecutionFlow.Pop();
+L1888:         goto L1778;
+L1893:         goto L659;
+L1898:         this->mExplodingEggs_VFX->Activate(false);
+L1935:         goto ExecutionFlow.Pop();
+L1936:         Object* Temp_object_Variable = mObject1;
+L1955:         goto L148;
+L1960:         this->ReceiveDied();
+L1970:         goto L15;
+============ END FUNCTION ExecuteUbergraph_Char_CrabHatcher ==============

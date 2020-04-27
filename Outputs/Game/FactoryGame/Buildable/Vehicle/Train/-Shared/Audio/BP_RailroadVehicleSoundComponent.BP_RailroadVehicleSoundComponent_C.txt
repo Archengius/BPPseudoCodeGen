@@ -1,0 +1,217 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Train/-Shared/Audio/BP_RailroadVehicleSoundComponent.BP_RailroadVehicleSoundComponent_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION mSpeedKmH ==============
+L0:            float mfloat = this->mVehicleMovementComponent->GetForwardSpeed();
+L50:           float mfloat1 = FGBlueprintFunctionLibrary->CmS2KmH(mfloat);
+L109:          float mfloat2 = Abs(mfloat1);
+L146:          float Speed = mfloat2;
+============ END FUNCTION mSpeedKmH ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnStartedMoving ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(2601);
+============ END FUNCTION OnStartedMoving ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnStoppedMoving ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(3415);
+============ END FUNCTION OnStoppedMoving ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRTPCs ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(3410);
+============ END FUNCTION UpdateRTPCs ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDynamicBrakesApplied ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(48);
+============ END FUNCTION OnDynamicBrakesApplied ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnAirBrakesApplied ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(827);
+============ END FUNCTION OnAirBrakesApplied ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnAirBrakesReleased ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(832);
+============ END FUNCTION OnAirBrakesReleased ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDynamicBrakesReleased ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(1010);
+============ END FUNCTION OnDynamicBrakesReleased ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnThrottleReleased ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(1966);
+============ END FUNCTION OnThrottleReleased ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnThrottleApplied ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(1967);
+============ END FUNCTION OnThrottleApplied ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnStoppedMovingRelay ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(2159);
+============ END FUNCTION OnStoppedMovingRelay ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartIdleSounds ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(3420);
+============ END FUNCTION StartIdleSounds ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopAllSounds ==============
+L0:            this->ExecuteUbergraph_BP_RailroadVehicleSoundComponent(3480);
+============ END FUNCTION StopAllSounds ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_RailroadVehicleSoundComponent ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->mAllVehicleCentersAkComponent->Stop();
+L47:           goto ExecutionFlow.Pop();
+L48:           this->mSpeedKmH([ref] mfloat);
+L71:           bool mbool = GreaterEqual_FloatFloat(mfloat, 1);
+L105:          if (!mbool) goto ExecutionFlow.Pop();
+L115:          ExecutionFlow.Push(L391);
+L120:          bool mbool1 = GreaterEqual_FloatFloat(mfloat, 80);
+L154:          if (!mbool1) goto L663;
+L168:          int32 mint32 = this->mWheelsetsAkComponent->PostAkEvent(Play_Train_Rework_Engine_MetalGroan);
+L227:          int32 mint321 = this->mWheelsetsAkComponent->PostAkEvent(Play_Train_Rework_Engine_Brakes_01);
+L286:          float mfloat1 = RandomFloatInRange(0, 3);
+L324:          bool mbool2 = this->mWheelsetsAkComponent->SeekOnEventBySeconds(Play_Train_Rework_Engine_Brakes_01, mfloat1, false, 0);
+L390:          goto ExecutionFlow.Pop();
+L391:          bool mbool3 = GreaterEqual_FloatFloat(mfloat, 60);
+L425:          if (!mbool3) goto L603;
+L439:          int32 mint322 = this->mWheelsetsAkComponent->PostAkEvent(Play_Train_Rework_Engine_Brakes_01);
+L498:          float mfloat2 = RandomFloatInRange(2, 6);
+L536:          bool mbool4 = this->mWheelsetsAkComponent->SeekOnEventBySeconds(Play_Train_Rework_Engine_Brakes_01, mfloat2, false, 0);
+L602:          goto ExecutionFlow.Pop();
+L603:          int32 mint323 = this->mWheelsetsAkComponent->PostAkEvent(Play_Train_Rework_Engine_Brakes_02);
+L662:          goto ExecutionFlow.Pop();
+L663:          int32 mint324 = this->mWheelsetsAkComponent->PostAkEvent(Play_Train_Rework_Engine_MetalGroan);
+L722:          float mfloat3 = RandomFloatInRange(1, 4);
+L760:          bool mbool5 = this->mWheelsetsAkComponent->SeekOnEventBySeconds(Play_Train_Rework_Engine_MetalGroan, mfloat3, false, 0);
+L826:          goto ExecutionFlow.Pop();
+L827:          goto L48;
+L832:          int32 mint325 = this->mWheelsetsAkComponent->PostAkEvent(Stop_Train_Rework_Engine_MetalGroan);
+L891:          int32 mint326 = this->mWheelsetsAkComponent->PostAkEvent(Stop_Train_Rework_Engine_Brakes_01_Quick);
+L950:          int32 mint327 = this->mWheelsetsAkComponent->PostAkEvent(Stop_Train_Rework_Engine_Brakes_02_Quick);
+L1009:         goto ExecutionFlow.Pop();
+L1010:         goto L832;
+L1015:         int32 mint328 = this->mEnginesAkComponent->PostAkEvent(Stop_Vehicle_Train_Engine_Noise);
+L1074:         int32 mint329 = this->mAllVehicleCentersAkComponent->PostAkEvent(Stop_Train_Rework_StartGroan);
+L1133:         goto ExecutionFlow.Pop();
+L1134:         int32 mint3210 = this->mWheelsetsAkComponent->PostAkEvent(Stop_Train_Rework_Engine_Brakes_02);
+L1193:         goto ExecutionFlow.Pop();
+L1194:         float mfloat4 = this->mVehicleMovementComponent->GetMaxAirBrakingEffort();
+L1244:         float mfloat5 = this->mVehicleMovementComponent->GetAirBrakingForce();
+L1294:         float mfloat6 = Divide_FloatFloat(mfloat5, mfloat4);
+L1340:         bool mbool6 = GreaterEqual_FloatFloat(mfloat6, 1);
+L1374:         if (!mbool6) goto L1388;
+L1388:         float mfloat7 = this->mVehicleMovementComponent->GetForwardSpeed();
+L1438:         float mfloat8 = FGBlueprintFunctionLibrary->CmS2KmH(mfloat7);
+L1497:         float mfloat9 = Abs(mfloat8);
+L1534:         float mfloat10 = Divide_FloatFloat(mfloat9, 100);
+L1576:         float mfloat11 = this->mLocomotiveMovementComponent->GetTractiveForce();
+L1626:         float mfloat12 = Divide_FloatFloat(mfloat11, 1000000);
+L1668:         float mfloat13 = FClamp(mfloat12, 10, 200);
+L1715:         float mfloat14 = Multiply_FloatFloat(mfloat13, mfloat10);
+L1761:         this->mEnginesAkComponent->SetRTPCValue("RTPC_V_Train_Tracktive_Force", mfloat14, 0);
+L1837:         goto ExecutionFlow.Pop();
+L1838:         int32 mint3211 = this->mWheelsetsAkComponent->PostAkEvent(Stop_Train_Rework_Engine_Brakes_01);
+L1897:         goto L1134;
+L1902:         int32 mint3212 = this->mWheelsetsAkComponent->PostAkEvent(Stop_Train_Rework_Engine_MetalGroan);
+L1961:         goto L1838;
+L1966:         goto ExecutionFlow.Pop();
+L1967:         goto ExecutionFlow.Pop();
+L1968:         this->mSpeedKmH([ref] mfloat15);
+L1991:         bool mbool7 = LessEqual_FloatFloat(mfloat15, 1);
+L2025:         if (!mbool7) goto ExecutionFlow.Pop();
+L2035:         int32 mint3213 = this->mAllVehicleCentersAkComponent->PostAkEvent(Play_Train_Rework_StartGroan);
+L2094:         goto ExecutionFlow.Pop();
+L2095:         int32 mint3214 = this->mEnginesAkComponent->PostAkEvent(Play_Vehicle_Train_Engine_Noise);
+L2154:         goto L1968;
+L2159:         goto L1902;
+L2164:         this->OnStoppedMovingRelay();
+L2178:         int32 mint3215 = this->mWheelsetsAkComponent->PostAkEvent(Stop_Vehicle_Train_RailMovement);
+L2237:         int32 mint3216 = this->mWheelsetsAkComponent->PostAkEvent(Stop_Train_Rework_Passby);
+L2296:         int32 mint3217 = this->mWheelsetsAkComponent->PostAkEvent(Stop_Vehicle_Train_Brake_Squeal);
+L2355:         int32 mint3218 = this->mEnginesAkComponent->PostAkEvent(Stop_Vehicle_Train_WindForce);
+L2414:         int32 mint3219 = this->mEnginesAkComponent->PostAkEvent(Stop_Train_Engine);
+L2473:         goto L1015;
+L2478:         int32 mint3220 = this->mEnginesAkComponent->PostAkEvent(Play_Vehicle_Train_WindForce);
+L2537:         int32 mint3221 = this->mEnginesAkComponent->PostAkEvent(Play_Train_Engine);
+L2596:         goto L2095;
+L2601:         int32 mint3222 = this->mWheelsetsAkComponent->PostAkEvent(Play_Vehicle_Train_RailMovement);
+L2660:         int32 mint3223 = this->mWheelsetsAkComponent->PostAkEvent(Play_Train_Rework_Passby);
+L2719:         int32 mint3224 = this->mWheelsetsAkComponent->PostAkEvent(Play_Vehicle_Train_Brake_Squeal);
+L2778:         goto L2478;
+L2783:         bool mbool8 = KismetSystemLibrary->IsValid(this->mLocomotiveMovementComponent);
+L2834:         if (!mbool8) goto ExecutionFlow.Pop();
+L2844:         float mfloat16 = this->mVehicleMovementComponent->GetForwardSpeed();
+L2894:         float mfloat17 = FGBlueprintFunctionLibrary->CmS2KmH(mfloat16);
+L2953:         float mfloat18 = Abs(mfloat17);
+L2990:         this->mWheelsetsAkComponent->SetRTPCValue("RTPC_V_Train_Speed", mfloat18, 0);
+L3056:         this->mEnginesAkComponent->SetRTPCValue("RTPC_V_Train_Speed", mfloat18, 0);
+L3122:         this->mAllVehicleCentersAkComponent->SetRTPCValue("RTPC_V_Train_Speed", mfloat18, 0);
+L3188:         float mfloat19 = this->mVehicleMovementComponent->GetMaxAirBrakingEffort();
+L3238:         float mfloat20 = this->mVehicleMovementComponent->GetAirBrakingForce();
+L3288:         float mfloat21 = Divide_FloatFloat(mfloat20, mfloat19);
+L3334:         this->mWheelsetsAkComponent->SetRTPCValue("RTPC_V_Train_BrakeForce", mfloat21, 0);
+L3405:         goto L1194;
+L3410:         goto L2783;
+L3415:         goto L2164;
+L3420:         int32 mint3225 = this->mEnginesAkComponent->PostAkEvent(Play_Train_Rework_Engine_Idle);
+L3479:         goto ExecutionFlow.Pop();
+L3480:         this->mWheelsetsAkComponent->Stop();
+L3512:         this->mEnginesAkComponent->Stop();
+L3544:         goto L15;
+============ END FUNCTION ExecuteUbergraph_BP_RailroadVehicleSoundComponent ==============

@@ -1,0 +1,256 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/Train/Station/Build_TrainStation.Build_TrainStation_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetActorCompassViewDistance ==============
+L0:            uint8 ReturnValue = 4;
+============ END FUNCTION GetActorCompassViewDistance ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorCompassViewDistance ==============
+L0:            uint8 ReturnValue = 0;
+============ END FUNCTION SetActorCompassViewDistance ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddAsRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L145;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->CreateAndAddNewRepresentation(this, false);
+L121:          bool ReturnValue = mbool1;
+L140:          goto L156;
+L145:          ReturnValue = false;
+============ END FUNCTION AddAsRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorFogOfWarRevealRadius ==============
+L0:            float ReturnValue = 0;
+============ END FUNCTION GetActorFogOfWarRevealRadius ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorFogOfWarRevealType ==============
+L0:            uint8 ReturnValue = 0;
+============ END FUNCTION GetActorFogOfWarRevealType ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationColor ==============
+L0:            HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           LinearColor ReturnValue = mLinearColor;
+============ END FUNCTION GetActorRepresentationColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationText ==============
+L0:            FGTrainStationIdentifier* mFGTrainStationIdentifier = this->GetStationIdentifier();
+L34:           bool mbool = KismetSystemLibrary->IsValid(mFGTrainStationIdentifier);
+L85:           if (!mbool) goto L462;
+L99:           FGTrainStationIdentifier* mFGTrainStationIdentifier1 = this->GetStationIdentifier();
+L133:          FGTrainStationIdentifier* localStationIdentifier = mFGTrainStationIdentifier1;
+L152:          FText mFText = KismetTextLibrary->Conv_StringToText("Train Station");
+L217:          FText mFText1 = localStationIdentifier->GetStationName();
+L267:          bool mbool1 = KismetTextLibrary->TextIsEmpty([ref] mFText1);
+L318:          bool mbool2 = KismetTextLibrary->EqualEqual_IgnoreCase_TextText([ref] mFText1, [ref] mFText);
+L378:          bool mbool3 = BooleanOR(mbool1, mbool2);
+L416:          if (!mbool3) goto L557;
+L430:          FText ReturnValue = this->mMapText;
+L457:          goto L1146;
+L462:          ReturnValue = "[object Object]";
+L552:          goto L1146;
+L557:          FText mFText2 = localStationIdentifier->GetStationName();
+L607:          mFormatArgumentData.ArgumentName = "B";
+L637:          mFormatArgumentData.ArgumentValueType = 4;
+L666:          mFormatArgumentData.ArgumentValue = mFText2;
+L702:          mFormatArgumentData.ArgumentValueInt = 0;
+L734:          mFormatArgumentData.ArgumentValueFloat = 0;
+L766:          mFormatArgumentData.ArgumentValueGender = 0;
+L795:          mFormatArgumentData1.ArgumentName = "A";
+L825:          mFormatArgumentData1.ArgumentValueType = 4;
+L854:          mFormatArgumentData1.ArgumentValue = this->mMapText;
+L890:          mFormatArgumentData1.ArgumentValueInt = 0;
+L922:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L954:          mFormatArgumentData1.ArgumentValueGender = 0;
+L983:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
+L1012:         FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1119:         ReturnValue = mFText3;
+============ END FUNCTION GetActorRepresentationText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationTexture ==============
+L0:            Texture2D* ReturnValue = TrainStation;
+============ END FUNCTION GetActorRepresentationTexture ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationType ==============
+L0:            uint8 ReturnValue = 11;
+============ END FUNCTION GetActorRepresentationType ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorShouldShowInCompass ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION GetActorShouldShowInCompass ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorShouldShowOnMap ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION GetActorShouldShowOnMap ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRealActorLocation ==============
+L0:            Vector mVector = this->K2_GetActorLocation();
+L28:           Vector ReturnValue = mVector;
+============ END FUNCTION GetRealActorLocation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRealActorRotation ==============
+L0:            Rotator ReturnValue = Rotator::FromPitchYawRoll(0, 0, 0);
+============ END FUNCTION GetRealActorRotation ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsActorStatic ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION IsActorStatic ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveAsRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L144;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->RemoveRepresentationOfActor(this);
+L120:          bool ReturnValue = mbool1;
+L139:          goto L155;
+L144:          ReturnValue = false;
+============ END FUNCTION RemoveAsRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorRepresentationText ==============
+L0:            this->FlushNetDormancy();
+L10:           this->mMapText = newText;
+L37:           FText ReturnValue = this->mMapText;
+============ END FUNCTION SetActorRepresentationText ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L145;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->UpdateRepresentation(this, false);
+L121:          bool ReturnValue = mbool1;
+L140:          goto L156;
+L145:          ReturnValue = false;
+============ END FUNCTION UpdateRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorRepresentationColor ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/Train/Station/Build_TrainStation.Build_TrainStation_C:ExecuteUbergraph_Build_TrainStation.K2Node_Event_newColor) = NewColor;
+L18:           this->ExecuteUbergraph_Build_TrainStation(39);
+============ END FUNCTION SetActorRepresentationColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnNameChanged ==============
+L0:            this->ExecuteUbergraph_Build_TrainStation(44);
+============ END FUNCTION OnNameChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Build_TrainStation(430);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveEndPlay ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Buildable/Factory/Train/Station/Build_TrainStation.Build_TrainStation_C:ExecuteUbergraph_Build_TrainStation.K2Node_Event_EndPlayReason) = EndPlayReason;
+L18:           this->ExecuteUbergraph_Build_TrainStation(469);
+============ END FUNCTION ReceiveEndPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_TrainStation ==============
+L10:           bool mbool = this->UpdateRepresentation();
+L34:           <End of Inlined Event Graph Function>;
+L39:           <End of Inlined Event Graph Function>;
+L44:           FText Temp_text_Variable = "[object Object]";
+L115:          FGTrainStationIdentifier* mFGTrainStationIdentifier = this->GetStationIdentifier();
+L135:          bool mbool1 = KismetSystemLibrary->IsValid(mFGTrainStationIdentifier);
+L186:          FText mFText = mFGTrainStationIdentifier->GetStationName();
+L236:          bool Temp_bool_Variable = mbool1;
+L255:          this->Name->K2_SetText([ref] switch (Temp_bool_Variable) {
+case false -> Temp_text_Variable;
+case true -> mFText;
+default -> mFText1;
+});
+L340:          this->Name_back->K2_SetText([ref] switch (Temp_bool_Variable) {
+case false -> Temp_text_Variable;
+case true -> mFText;
+default -> mFText1;
+});
+L425:          goto L10;
+L430:          this->ReceiveBeginPlay();
+L440:          bool mbool2 = this->AddAsRepresentation();
+L464:          <End of Inlined Event Graph Function>;
+L469:          this->ReceiveEndPlay(muint8);
+L488:          bool mbool3 = this->RemoveAsRepresentation();
+============ END FUNCTION ExecuteUbergraph_Build_TrainStation ==============

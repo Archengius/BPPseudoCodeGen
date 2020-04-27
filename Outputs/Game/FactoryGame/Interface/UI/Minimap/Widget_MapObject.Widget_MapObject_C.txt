@@ -1,0 +1,314 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Minimap/Widget_MapObject.Widget_MapObject_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION HideViewDistanceIndicator ==============
+L0:            this->mViewDistanceIndicator->SetVisibility(1);
+L38:           this->StopAnimation(this->ani_ViewDistancePulse);
+============ END FUNCTION HideViewDistanceIndicator ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowViewDistanceIndicator ==============
+L0:            this->mViewDistancePulse->SetVisibility(3);
+L38:           BreakVector2D(this->RenderTransform.Scale, [ref] mfloat, [ref] mfloat1);
+L84:           float mfloat2 = Divide_FloatFloat(1, mfloat);
+L126:          Vector2D mVector2D = MakeVector2D(mfloat2, mfloat2);
+L172:          this->mViewDistanceIndicator->SetRenderScale(mVector2D);
+L213:          this->mViewDistancePulse->SetRenderScale(mVector2D);
+L254:          bool mbool = EqualEqual_ByteByte(viewDistance, 4);
+L285:          if (!mbool) goto L2159;
+L299:          this->mViewDistanceIndicator->SetVisibility(1);
+L337:          float Temp_float_Variable = 750000;
+L360:          bool mbool1 = EqualEqual_ByteByte(viewDistance, 4);
+L391:          bool Temp_bool_Variable = mbool1;
+L410:          FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L453:          float mfloat3 = mFGActorRepresentationManager->GetDistanceValueFromCompassViewDistance(viewDistance);
+L512:          PanelWidget* mPanelWidget = this->GetParent();
+L532:          FGMinimapCaptureActor* mFGMinimapCaptureActor = FGMapFunctionLibrary->GetMinimapCaptureActor(mPanelWidget);
+L583:          PanelWidget* mPanelWidget1 = this->GetParent();
+L603:          const Geometry mconst Geometry = mPanelWidget1->GetCachedGeometry();
+L653:          Vector2D mVector2D1 = SlateBlueprintLibrary->GetLocalSize([ref] mconst Geometry);
+L712:          BreakVector2D(mVector2D1, [ref] mfloat4, [ref] mfloat5);
+L749:          float mfloat6 = FGMapFunctionLibrary->GetMapDistance(mFGMinimapCaptureActor, switch (Temp_bool_Variable) {
+case false -> mfloat3;
+case true -> Temp_float_Variable;
+default -> mfloat7;
+}, mfloat4);
+L870:          float mfloat8 = Multiply_FloatFloat(mfloat6, 2);
+L912:          Vector2D mVector2D2 = MakeVector2D(mfloat8, mfloat8);
+L958:          this->mViewDistanceIndicator->SetBrushSize(mVector2D2);
+L999:          this->mViewDistancePulse->SetBrushSize(mVector2D2);
+L1040:         MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mViewDistancePulse->GetDynamicMaterial();
+L1082:         MaterialInstanceDynamic* mMaterialInstanceDynamic1 = this->mViewDistanceIndicator->GetDynamicMaterial();
+L1124:         BreakVector2D(this->RenderTransform.Scale, [ref] mfloat9, [ref] mfloat10);
+L1170:         float mfloat11 = Divide_FloatFloat(1, mfloat9);
+L1212:         BreakVector2D(this->mViewDistanceIndicator->Brush.ImageSize, [ref] mfloat12, [ref] mfloat13);
+L1280:         float mfloat14 = Multiply_FloatFloat(mfloat12, mfloat11);
+L1326:         mMaterialInstanceDynamic1->SetScalarParameterValue("MaxSize", mfloat14);
+L1380:         mMaterialInstanceDynamic->SetScalarParameterValue("MaxSize", mfloat14);
+L1434:         bool mbool2 = EqualEqual_ByteByte(viewDistance, 4);
+L1465:         float Temp_float_Variable1 = 750000;
+L1488:         bool Temp_bool_Variable1 = mbool2;
+L1507:         FGActorRepresentationManager* mFGActorRepresentationManager1 = FGActorRepresentationManager->Get(this);
+L1550:         FGActorRepresentationManager* mFGActorRepresentationManager2 = FGActorRepresentationManager->Get(this);
+L1593:         float mfloat15 = mFGActorRepresentationManager1->GetDistanceValueFromCompassViewDistance(1);
+L1645:         float mfloat16 = mFGActorRepresentationManager2->GetDistanceValueFromCompassViewDistance(viewDistance);
+L1704:         BreakVector2D(this->RenderTransform.Scale, [ref] mfloat17, [ref] mfloat18);
+L1750:         float mfloat19 = Multiply_FloatFloat(mfloat17, 0.05000000074505806);
+L1792:         float mfloat20 = Divide_FloatFloat(mfloat15, switch (Temp_bool_Variable1) {
+case false -> mfloat16;
+case true -> Temp_float_Variable1;
+default -> mfloat21;
+});
+L1882:         float mfloat22 = Multiply_FloatFloat(mfloat19, mfloat20);
+L1928:         mMaterialInstanceDynamic1->SetScalarParameterValue("StrokeWidth", mfloat22);
+L1982:         mMaterialInstanceDynamic->SetScalarParameterValue("StrokeWidth", mfloat22);
+L2036:         bool mbool3 = this->IsAnimationPlaying(this->ani_ViewDistancePulse);
+L2065:         bool mbool4 = Not_PreBool(mbool3);
+L2094:         if (!mbool4) goto L2202;
+L2108:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ani_ViewDistancePulse, 0, 0, 0, 1);
+L2154:         <End of Inlined Event Graph Function>;
+L2159:         this->mViewDistanceIndicator->SetVisibility(3);
+L2197:         goto L337;
+============ END FUNCTION ShowViewDistanceIndicator ==============
+
+
+
+
+
+============ BEGIN FUNCTION UnhighlightOnMap ==============
+L0:            this->mMapHighlightOverlay->SetVisibility(1);
+L38:           CanvasPanelSlot* mCanvasPanelSlot = WidgetLayoutLibrary->SlotAsCanvasSlot(this);
+L81:           mCanvasPanelSlot->SetZOrder(this->mZOrder);
+============ END FUNCTION UnhighlightOnMap ==============
+
+
+
+
+
+============ BEGIN FUNCTION HighlightOnMap ==============
+L0:            UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ani_Highlight, 0, 1, 0, 1);
+L46:           CanvasPanelSlot* mCanvasPanelSlot = WidgetLayoutLibrary->SlotAsCanvasSlot(this);
+L89:           mCanvasPanelSlot->SetZOrder(1000);
+============ END FUNCTION HighlightOnMap ==============
+
+
+
+
+
+============ BEGIN FUNCTION mShowActorDetails ==============
+L0:            uint8 muint8 = this->mActorRepresentation->GetRepresentationType();
+L50:           bool mbool = NotEqual_ByteByte(muint8, 3);
+L81:           if (!mbool) goto L280;
+L95:           mbool = NotEqual_ByteByte(muint8, 6);
+L126:          if (!mbool) goto L652;
+L140:          mbool = NotEqual_ByteByte(muint8, 8);
+L171:          if (!mbool) goto L676;
+L185:          mbool = NotEqual_ByteByte(muint8, 11);
+L216:          if (!mbool) goto L700;
+L230:          mbool = NotEqual_ByteByte(muint8, 13);
+L261:          if (!mbool) goto L724;
+L275:          <End of Inlined Event Graph Function>;
+L280:          TSubclassOf<Widget_ActorDetails_Parent> ActorDetailsWidget = Widget_ActorDetails_Hub;
+L299:          Actor* mActor = this->mActorRepresentation->GetRealActor();
+L341:          bool mbool1 = KismetSystemLibrary->IsValid(mActor);
+L392:          if (!mbool1) goto L748;
+L406:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L430:          Widget_ActorDetails_Parent* mWidget_ActorDetails_Parent = WidgetBlueprintLibrary->Create(this, ActorDetailsWidget, mPlayerController);
+L491:          mActor = this->mActorRepresentation->GetRealActor();
+L533:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ActorDetails_Parent, "mActor", mActor);
+L596:          PanelSlot* mPanelSlot = this->mActorDetailsContainer->AddChild(mWidget_ActorDetails_Parent);
+L647:          <End of Inlined Event Graph Function>;
+L652:          ActorDetailsWidget = Widget_ActorDetails_RadarTower;
+L671:          goto L299;
+L676:          ActorDetailsWidget = Widget_ActorDetails_SpaceElevator;
+L695:          goto L299;
+L700:          ActorDetailsWidget = Widget_ActorDetails_TrainStation;
+L719:          goto L299;
+L724:          ActorDetailsWidget = Widget_ActorDetails_DockingStation;
+L743:          goto L299;
+============ END FUNCTION mShowActorDetails ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapObject.Widget_MapObject_C:ExecuteUbergraph_Widget_MapObject.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapObject.Widget_MapObject_C:ExecuteUbergraph_Widget_MapObject.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_MapObject(101);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnObjectFiltered ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapObject.Widget_MapObject_C:ExecuteUbergraph_Widget_MapObject.K2Node_Event_visible) = visible;
+L18:           this->ExecuteUbergraph_Widget_MapObject(397);
+============ END FUNCTION OnObjectFiltered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnObjectMoved ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapObject.Widget_MapObject_C:ExecuteUbergraph_Widget_MapObject.K2Node_Event_normalizedLocation) = normalizedLocation;
+L18:           this->ExecuteUbergraph_Widget_MapObject(524);
+============ END FUNCTION OnObjectMoved ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnActorRepresentationUpdated ==============
+L0:            this->ExecuteUbergraph_Widget_MapObject(1382);
+============ END FUNCTION OnActorRepresentationUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_MapObject(2027);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION DestructionTimer ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapObject.Widget_MapObject_C:ExecuteUbergraph_Widget_MapObject.K2Node_CustomEvent_Time) = Time;
+L18:           this->ExecuteUbergraph_Widget_MapObject(2032);
+============ END FUNCTION DestructionTimer ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_MapCompass_Icon_K2Node_ComponentBoundEvent_0_OnUnhovered__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_MapObject(2113);
+============ END FUNCTION BndEvt__Widget_MapCompass_Icon_K2Node_ComponentBoundEvent_0_OnUnhovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_MapCompass_Icon_K2Node_ComponentBoundEvent_1_OnHovered__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_MapObject(2170);
+============ END FUNCTION BndEvt__Widget_MapCompass_Icon_K2Node_ComponentBoundEvent_1_OnHovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowActorDetailsEvent ==============
+L0:            this->ExecuteUbergraph_Widget_MapObject(2205);
+============ END FUNCTION ShowActorDetailsEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_MapObject ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->RemoveFromParent();
+L29:           goto ExecutionFlow.Pop();
+L30:           bool mbool = this->Widget_MapCompass_Icon->IsHovered();
+L76:           if (!mbool) goto ExecutionFlow.Pop();
+L86:           this->mShowActorDetails();
+L100:          goto ExecutionFlow.Pop();
+L101:          PanelWidget* mPanelWidget = this->GetParent();
+L121:          const Geometry mconst Geometry = mPanelWidget->GetCachedGeometry();
+L171:          Vector2D mVector2D = SlateBlueprintLibrary->GetLocalSize([ref] mconst Geometry);
+L230:          Vector2D mVector2D1 = SlateBlueprintLibrary->GetAbsoluteSize([ref] mconst Geometry);
+L289:          Vector2D mVector2D2 = Divide_Vector2DVector2D(mVector2D, mVector2D1);
+L335:          Vector2D mVector2D3 = Multiply_Vector2DFloat(mVector2D2, 0.800000011920929);
+L377:          this->SetRenderScale(mVector2D3);
+L396:          goto ExecutionFlow.Pop();
+L397:          uint8 Temp_byte_Variable = 0;
+L417:          uint8 Temp_byte_Variable1 = 2;
+L437:          bool Temp_bool_Variable = mbool1;
+L456:          this->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L523:          goto ExecutionFlow.Pop();
+L524:          BreakVector2D(mVector2D4, [ref] mfloat, [ref] mfloat1);
+L561:          PanelWidget* mPanelWidget1 = this->GetParent();
+L581:          const Geometry mconst Geometry1 = mPanelWidget1->GetCachedGeometry();
+L631:          Vector2D mVector2D5 = SlateBlueprintLibrary->GetLocalSize([ref] mconst Geometry1);
+L690:          BreakVector2D(mVector2D5, [ref] mfloat2, [ref] mfloat3);
+L727:          float mfloat4 = Lerp(0, mfloat3, mfloat1);
+L778:          float mfloat5 = Lerp(0, mfloat2, mfloat);
+L829:          Vector2D mVector2D6 = MakeVector2D(mfloat5, mfloat4);
+L875:          this->mPositionOnCanvas = mVector2D6;
+L902:          CanvasPanelSlot* mCanvasPanelSlot = WidgetLayoutLibrary->SlotAsCanvasSlot(this);
+L945:          mCanvasPanelSlot->SetPosition(this->mPositionOnCanvas);
+L986:          Actor* mActor = this->mActorRepresentation->GetRealActor();
+L1028:         bool mbool2 = this->mActorRepresentation->IsActorStatic();
+L1070:         bool mbool3 = KismetSystemLibrary->IsValid(mActor);
+L1121:         bool mbool4 = Not_PreBool(mbool2);
+L1150:         bool mbool5 = BooleanAND(mbool4, mbool3);
+L1188:         if (!mbool5) goto ExecutionFlow.Pop();
+L1198:         Actor* mActor1 = this->mActorRepresentation->GetRealActor();
+L1240:         Rotator mRotator = mActor1->K2_GetActorRotation();
+L1290:         BreakRotator(mRotator, [ref] mfloat6, [ref] mfloat7, [ref] mfloat8);
+L1336:         this->Widget_MapCompass_Icon->SetRotation(mfloat8);
+L1381:         goto ExecutionFlow.Pop();
+L1382:         this->Widget_MapCompass_Icon->UpdateActor(this->mActorRepresentation, false);
+L1428:         goto ExecutionFlow.Pop();
+L1429:         CanvasPanelSlot* mCanvasPanelSlot1 = WidgetLayoutLibrary->SlotAsCanvasSlot(this);
+L1472:         mCanvasPanelSlot1->SetAutoSize(true);
+L1505:         mCanvasPanelSlot1 = WidgetLayoutLibrary->SlotAsCanvasSlot(this);
+L1548:         mAnchorData.Offsets = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
+L1609:         mAnchorData.Anchors = ScriptStruct /Script/Slate.Anchors(Minimum = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), Maximum = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0));
+L1698:         mAnchorData.Alignment = ScriptStruct /Script/CoreUObject.Vector2D(X = 0.5, Y = 0.5);
+L1749:         mCanvasPanelSlot1->SetLayout([ref] mAnchorData);
+L1790:         uint8 Temp_byte_Variable2 = 0;
+L1810:         uint8 Temp_byte_Variable3 = 2;
+L1830:         bool Temp_bool_Variable1 = this->mFilteredVisibility;
+L1849:         this->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint81;
+});
+L1916:         uint8 muint82 = this->mActorRepresentation->GetRepresentationType();
+L1966:         bool mbool6 = EqualEqual_ByteByte(muint82, 0);
+L1997:         if (!mbool6) goto ExecutionFlow.Pop();
+L2007:         this->DestructionTimer(10);
+L2026:         goto ExecutionFlow.Pop();
+L2027:         goto L1429;
+L2032:         KismetSystemLibrary->RetriggerableDelay(this, mfloat9, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1604952896, ExecutionFunction = "ExecuteUbergraph_Widget_MapObject", CallbackTarget = this));
+L2112:         goto ExecutionFlow.Pop();
+L2113:         this->OnUnhovered->ProcessMulticastDelegate(this);
+L2133:         this->mActorDetailsContainer->ClearChildren();
+L2169:         goto ExecutionFlow.Pop();
+L2170:         this->OnHovered->ProcessMulticastDelegate(this);
+L2190:         this->ShowActorDetailsEvent();
+L2204:         goto ExecutionFlow.Pop();
+L2205:         KismetSystemLibrary->RetriggerableDelay(this, 0.5, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 30, UUID = -1292680761, ExecutionFunction = "ExecuteUbergraph_Widget_MapObject", CallbackTarget = this));
+L2281:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_MapObject ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUnhovered__DelegateSignature ==============
+============ END FUNCTION OnUnhovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHovered__DelegateSignature ==============
+============ END FUNCTION OnHovered__DelegateSignature ==============

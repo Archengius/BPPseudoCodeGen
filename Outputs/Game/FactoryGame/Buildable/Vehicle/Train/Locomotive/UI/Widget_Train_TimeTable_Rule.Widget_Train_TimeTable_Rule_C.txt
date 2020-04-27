@@ -1,0 +1,352 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable_Rule.Widget_Train_TimeTable_Rule_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetIsNextStop ==============
+L0:            this->mIsNextStop = mIsNextStop;
+L19:           uint8 Temp_byte_Variable = 3;
+L39:           uint8 Temp_byte_Variable1 = 2;
+L59:           bool Temp_bool_Variable1 = this->mIsNextStop;
+L78:           this->mNextStop->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L167:          LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L219:          LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.6038280129432678, G = 0.5972020030021667, B = 0.5972020030021667, A = 0.20000000298023224);
+L271:          bool mbool = Not_PreBool(this->mIsNextStop);
+L300:          bool Temp_bool_Variable = mbool;
+L319:          this->mSetCurrentStopButton->SetColorAndOpacity(switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mLinearColor;
+});
+============ END FUNCTION SetIsNextStop ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUnhovered ==============
+L0:            bool mbool = Not_PreBool(this->mIsSelected);
+L29:           if (!mbool) goto L81;
+L43:           this->mBackground->SetVisibility(2);
+============ END FUNCTION OnUnhovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHovered ==============
+L0:            this->mBackground->SetVisibility(3);
+============ END FUNCTION OnHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayNewNameAnim ==============
+L0:            UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->NameChange, 0, 1, 0, 1);
+============ END FUNCTION PlayNewNameAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetOrderButtonsVisibility ==============
+L0:            this->mOrderUpVisible = UpVisible;
+L19:           this->mOrderDownVisible = DownVisible;
+L38:           LinearColor Temp_struct_Variable2 = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L90:           LinearColor Temp_struct_Variable3 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.6038280129432678, G = 0.5972020030021667, B = 0.5972020030021667, A = 0.20000000298023224);
+L142:          bool Temp_bool_Variable1 = this->mOrderUpVisible;
+L161:          this->mMoveUp->SetColorAndOpacity(switch (Temp_bool_Variable1) {
+case false -> Temp_struct_Variable3;
+case true -> Temp_struct_Variable2;
+default -> mLinearColor;
+});
+L246:          LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L298:          LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.6038280129432678, G = 0.5972020030021667, B = 0.5972020030021667, A = 0.20000000298023224);
+L350:          bool Temp_bool_Variable = this->mOrderDownVisible;
+L369:          this->mMoveDown->SetColorAndOpacity(switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mLinearColor1;
+});
+============ END FUNCTION SetOrderButtonsVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRule ==============
+L0:            this->mStation = mStation;
+L19:           FText mFText = this->mStation->GetStationName();
+L69:           this->SetTitle(mFText);
+============ END FUNCTION UpdateRule ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetIsSelected ==============
+L0:            this->mIsSelected = mIsSelected;
+L19:           bool Temp_bool_Variable1 = this->mIsSelected;
+L38:           LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.05951099842786789, A = 1);
+L90:           LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.05951099842786789, A = 0);
+L142:          mSlateColor.SpecifiedColor = switch (Temp_bool_Variable1) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mLinearColor;
+};
+L222:          mSlateColor.ColorUseRule = 0;
+L251:          mSlateBrush.ImageSize = this->mButton->WidgetStyle.Normal.ImageSize;
+L327:          mSlateBrush.Margin = this->mButton->WidgetStyle.Normal.Margin;
+L403:          mSlateBrush.TintColor = mSlateColor;
+L439:          mSlateBrush.ResourceObject = this->mButton->WidgetStyle.Normal.ResourceObject;
+L507:          mSlateBrush.DrawAs = 3;
+L536:          mSlateBrush.Tiling = this->mButton->WidgetStyle.Normal.Tiling;
+L612:          mSlateBrush.Mirroring = this->mButton->WidgetStyle.Normal.Mirroring;
+L688:          mButtonStyle.Normal = mSlateBrush;
+L724:          mButtonStyle.Hovered = this->mButton->WidgetStyle.Hovered;
+L791:          mButtonStyle.Pressed = this->mButton->WidgetStyle.Pressed;
+L858:          mButtonStyle.Disabled = this->mButton->WidgetStyle.Disabled;
+L925:          mButtonStyle.NormalPadding = this->mButton->WidgetStyle.NormalPadding;
+L992:          mButtonStyle.PressedPadding = this->mButton->WidgetStyle.PressedPadding;
+L1059:         mButtonStyle.PressedSlateSound = this->mButton->WidgetStyle.PressedSlateSound;
+L1126:         mButtonStyle.HoveredSlateSound = this->mButton->WidgetStyle.HoveredSlateSound;
+L1193:         this->mButton->SetStyle([ref] mButtonStyle);
+L1234:         uint8 Temp_byte_Variable = 0;
+L1254:         uint8 Temp_byte_Variable1 = 2;
+L1274:         bool Temp_bool_Variable = this->mIsSelected;
+L1293:         this->mBackground->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+============ END FUNCTION SetIsSelected ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetTitle ==============
+L0:            this->mTitle = mTitle;
+L27:           this->mTitleObject->SetText(this->mTitle);
+============ END FUNCTION SetTitle ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable_Rule.Widget_Train_TimeTable_Rule_C:ExecuteUbergraph_Widget_Train_TimeTable_Rule.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(35);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(86);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(189);
+============ END FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mMoveUp_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(214);
+============ END FUNCTION BndEvt__mMoveUp_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mMoveDown_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(253);
+============ END FUNCTION BndEvt__mMoveDown_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(292);
+============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(297);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_6_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(316);
+============ END FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_6_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mMoveUp_K2Node_ComponentBoundEvent_7_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(321);
+============ END FUNCTION BndEvt__mMoveUp_K2Node_ComponentBoundEvent_7_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mMoveDown_K2Node_ComponentBoundEvent_8_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(326);
+============ END FUNCTION BndEvt__mMoveDown_K2Node_ComponentBoundEvent_8_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_9_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(331);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_9_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_10_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(350);
+============ END FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_10_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mMoveUp_K2Node_ComponentBoundEvent_11_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(355);
+============ END FUNCTION BndEvt__mMoveUp_K2Node_ComponentBoundEvent_11_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mMoveDown_K2Node_ComponentBoundEvent_12_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(360);
+============ END FUNCTION BndEvt__mMoveDown_K2Node_ComponentBoundEvent_12_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSetCurrentStopButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(365);
+============ END FUNCTION BndEvt__mSetCurrentStopButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSetCurrentStopButton_K2Node_ComponentBoundEvent_13_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(370);
+============ END FUNCTION BndEvt__mSetCurrentStopButton_K2Node_ComponentBoundEvent_13_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSetCurrentStopButton_K2Node_ComponentBoundEvent_14_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable_Rule(375);
+============ END FUNCTION BndEvt__mSetCurrentStopButton_K2Node_ComponentBoundEvent_14_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Train_TimeTable_Rule ==============
+L10:           this->OnSetCurrentStopClicked->ProcessMulticastDelegate(this);
+L30:           <End of Inlined Event Graph Function>;
+L35:           this->SetTitle(this->mTitle);
+L58:           this->SetIsSelected(this->mIsSelected);
+L81:           <End of Inlined Event Graph Function>;
+L86:           FText mFText = this->mStation->GetStationName();
+L136:          this->SetTitle(mFText);
+L159:          <End of Inlined Event Graph Function>;
+L164:          this->OnClicked->ProcessMulticastDelegate(this);
+L184:          <End of Inlined Event Graph Function>;
+L189:          this->OnDeleted->ProcessMulticastDelegate(this);
+L209:          <End of Inlined Event Graph Function>;
+L214:          if (!this->mOrderUpVisible) goto L423;
+L228:          this->OnMoveUpClicked->ProcessMulticastDelegate(this);
+L248:          <End of Inlined Event Graph Function>;
+L253:          if (!this->mOrderDownVisible) goto L423;
+L267:          this->OnMoveDownClicked->ProcessMulticastDelegate(this);
+L287:          <End of Inlined Event Graph Function>;
+L292:          goto L164;
+L297:          this->OnHovered();
+L311:          <End of Inlined Event Graph Function>;
+L316:          goto L297;
+L321:          goto L297;
+L326:          goto L297;
+L331:          this->OnUnhovered();
+L345:          <End of Inlined Event Graph Function>;
+L350:          goto L331;
+L355:          goto L331;
+L360:          goto L331;
+L365:          goto L297;
+L370:          goto L331;
+L375:          bool mbool = Not_PreBool(this->mIsNextStop);
+L404:          if (!mbool) goto L423;
+L418:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_Train_TimeTable_Rule ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSetCurrentStopClicked__DelegateSignature ==============
+============ END FUNCTION OnSetCurrentStopClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMoveDownClicked__DelegateSignature ==============
+============ END FUNCTION OnMoveDownClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMoveUpClicked__DelegateSignature ==============
+============ END FUNCTION OnMoveUpClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDeleted__DelegateSignature ==============
+============ END FUNCTION OnDeleted__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============

@@ -1,0 +1,127 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Spitter/SmallSpitter/BP_SpitterProjectileSingle.BP_SpitterProjectileSingle_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION Gravity Scale over Time__FinishedFunc ==============
+L0:            this->ExecuteUbergraph_BP_SpitterProjectileSingle(15);
+============ END FUNCTION Gravity Scale over Time__FinishedFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION Gravity Scale over Time__UpdateFunc ==============
+L0:            this->ExecuteUbergraph_BP_SpitterProjectileSingle(2524);
+============ END FUNCTION Gravity Scale over Time__UpdateFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_SpitterProjectileSingle(2469);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mProjectileMovement_K2Node_ComponentBoundEvent_0_ActorComponentActivatedSignature__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/SmallSpitter/BP_SpitterProjectileSingle.BP_SpitterProjectileSingle_C:ExecuteUbergraph_BP_SpitterProjectileSingle.K2Node_ComponentBoundEvent_Component) = component;
+L18:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/SmallSpitter/BP_SpitterProjectileSingle.BP_SpitterProjectileSingle_C:ExecuteUbergraph_BP_SpitterProjectileSingle.K2Node_ComponentBoundEvent_bReset) = bReset;
+L36:           this->ExecuteUbergraph_BP_SpitterProjectileSingle(856);
+============ END FUNCTION BndEvt__mProjectileMovement_K2Node_ComponentBoundEvent_0_ActorComponentActivatedSignature__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayExplosionEffects ==============
+L0:            this->ExecuteUbergraph_BP_SpitterProjectileSingle(2153);
+============ END FUNCTION PlayExplosionEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_SpitterProjectileSingle ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           goto ExecutionFlow.Pop();
+L16:           this->mProjectileMovement->Activate(false);
+L53:           Actor* mActor = this->GetOwner();
+L73:           FGEnemy* mFGEnemy = Cast<Class /Script/FactoryGame.FGEnemy>(mActor);
+L109:          bool mbool = mFGEnemy;
+L138:          if (!mbool) goto ExecutionFlow.Pop();
+L148:          Actor* mActor1 = mFGEnemy->GetCurrentAggroTarget();
+L190:          SceneComponent* mSceneComponent = mActor1->K2_GetRootComponent();
+L232:          this->mProjectileMovement->HomingTargetComponent = mSceneComponent;
+L273:          goto ExecutionFlow.Pop();
+L274:          this->SetLifeSpan(1);
+L293:          SphereComponent* mSphereComponent = this->GetCollisionSphere();
+L313:          mSphereComponent->SetCollisionEnabled(0);
+L351:          goto ExecutionFlow.Pop();
+L352:          this->ReceiveBeginPlay();
+L362:          ExecutionFlow.Push(L726);
+L367:          PlayerController* mPlayerController = GameplayStatics->GetPlayerController(this, 0);
+L415:          bool mbool1 = KismetSystemLibrary->IsValid(mPlayerController);
+L466:          if (!mbool1) goto ExecutionFlow.Pop();
+L476:          mPlayerController = GameplayStatics->GetPlayerController(this, 0);
+L524:          BPHUDHelpers->GetFGHud(mPlayerController, this, [ref] mFGHUD);
+L579:          FGGameUI* mFGGameUI = mFGHUD->GetGameUI();
+L621:          FText mFText = KismetSystemLibrary->MakeLiteralText();
+L673:          mFGGameUI->ShowDirectionalSubtitle([ref] mFText, this, 0, false);
+L725:          goto ExecutionFlow.Pop();
+L726:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_E_Spitter_Projectile_Loop, this, true);
+L779:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 16, UUID = 1270434869, ExecutionFunction = "ExecuteUbergraph_BP_SpitterProjectileSingle", CallbackTarget = this));
+L855:          goto ExecutionFlow.Pop();
+L856:          Actor* mActor2 = this->GetOwner();
+L876:          FGEnemy* mFGEnemy1 = Cast<Class /Script/FactoryGame.FGEnemy>(mActor2);
+L912:          bool mbool2 = mFGEnemy1;
+L941:          if (!mbool2) goto ExecutionFlow.Pop();
+L951:          Vector mVector = this->GetProjectileTargetLocation();
+L979:          Vector mVector1 = this->K2_GetActorLocation();
+L1007:         BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L1053:         Actor* mActor3 = mFGEnemy1->GetCurrentAggroTarget();
+L1095:         Vector mVector2 = mActor3->GetVelocity();
+L1149:         float mfloat3 = VSize(mVector2);
+L1186:         float mfloat4 = FMin(mfloat3, 800);
+L1228:         Vector mVector3 = Normal(mVector2, 0.00009999999747378752);
+L1270:         Vector mVector4 = Multiply_VectorFloat(mVector3, mfloat4);
+L1316:         Vector mVector5 = this->GetProjectileTargetLocation();
+L1344:         Vector mVector6 = this->K2_GetActorLocation();
+L1372:         Vector mVector7 = Subtract_VectorVector(mVector5, mVector6);
+L1418:         float mfloat5 = VSize(mVector7);
+L1455:         float mfloat6 = Divide_FloatFloat(mfloat5, 2000);
+L1497:         Vector mVector8 = Multiply_VectorFloat(mVector4, mfloat6);
+L1543:         Vector mVector9 = Add_VectorVector(mVector8, mVector);
+L1589:         BreakVector(mVector9, [ref] mfloat7, [ref] mfloat8, [ref] mfloat9);
+L1635:         Vector mVector10 = MakeVector(mfloat7, mfloat8, mfloat2);
+L1690:         Vector mVector11 = Subtract_VectorVector(mVector10, mVector1);
+L1736:         Vector mVector12 = Normal(mVector11, 0.00009999999747378752);
+L1778:         Vector mVector13 = Add_VectorVector(mVector12, Vector(0, 0, 0.05000000074505806));
+L1828:         Vector mVector14 = Multiply_VectorFloat(mVector13, 2000);
+L1870:         this->mProjectileMovement->Velocity = mVector14;
+L1919:         this->Gravity Scale over Time->PlayFromStart();
+L1951:         goto ExecutionFlow.Pop();
+L1952:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_E_Spitter_Projectile_Loop, this, true);
+L2005:         Vector mVector15 = this->K2_GetActorLocation();
+L2033:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAtLocation(this, Play_E_Spitter_Projectile_Land, mVector15, Rotator::FromPitchYawRoll(0, 0, 0));
+L2107:         goto L274;
+L2112:         this->Projectile->Deactivate();
+L2148:         goto L1952;
+L2153:         Vector mVector16 = this->K2_GetActorLocation();
+L2181:         SphereComponent* mSphereComponent1 = this->GetCollisionSphere();
+L2201:         Vector mVector17 = MakeVector(0, 0, mSphereComponent1->SphereRadius);
+L2270:         Vector mVector18 = Subtract_VectorVector(mVector16, mVector17);
+L2316:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, P_SpitImpact_01, mVector18, Rotator::FromPitchYawRoll(0, 0, 0), Vector(0.699999988079071, 0.699999988079071, 0.699999988079071), true, 0);
+L2406:         mParticleSystemComponent->SetVectorParameter("Color", Vector(3, 0.5, 0));
+L2464:         goto L2112;
+L2469:         goto L352;
+L2474:         this->mProjectileMovement->ProjectileGravityScale = this->Gravity_Scale_over_Time_Gravity_Scale_02A6598A4993DE75B793A890687A4F4F;
+L2523:         goto ExecutionFlow.Pop();
+L2524:         goto L2474;
+============ END FUNCTION ExecuteUbergraph_BP_SpitterProjectileSingle ==============

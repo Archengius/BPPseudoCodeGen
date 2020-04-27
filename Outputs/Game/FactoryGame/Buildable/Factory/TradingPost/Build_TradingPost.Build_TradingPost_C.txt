@@ -1,0 +1,304 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/TradingPost/Build_TradingPost.Build_TradingPost_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetActorCompassViewDistance ==============
+L0:            uint8 ReturnValue = 4;
+============ END FUNCTION GetActorCompassViewDistance ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorCompassViewDistance ==============
+L0:            uint8 ReturnValue = 0;
+============ END FUNCTION SetActorCompassViewDistance ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorRepresentationText ==============
+L0:            this->FlushNetDormancy();
+L10:           this->mMapText = newText;
+L37:           FText ReturnValue = this->mMapText;
+============ END FUNCTION SetActorRepresentationText ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRepresentation ==============
+L0:            bool ReturnValue = false;
+============ END FUNCTION UpdateRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationColor ==============
+L0:            HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           LinearColor ReturnValue = mLinearColor;
+============ END FUNCTION GetActorRepresentationColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationText ==============
+L0:            FText ReturnValue = this->mMapText;
+============ END FUNCTION GetActorRepresentationText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationTexture ==============
+L0:            Texture2D* ReturnValue = MapCompass_Icon_hub;
+============ END FUNCTION GetActorRepresentationTexture ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationType ==============
+L0:            uint8 ReturnValue = 3;
+============ END FUNCTION GetActorRepresentationType ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorShouldShowInCompass ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION GetActorShouldShowInCompass ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorFogOfWarRevealRadius ==============
+L0:            float ReturnValue = 80000;
+============ END FUNCTION GetActorFogOfWarRevealRadius ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorFogOfWarRevealType ==============
+L0:            uint8 ReturnValue = 1;
+============ END FUNCTION GetActorFogOfWarRevealType ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveAsRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L144;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->RemoveRepresentationOfActor(this);
+L120:          bool ReturnValue = mbool1;
+L139:          goto L155;
+L144:          ReturnValue = false;
+============ END FUNCTION RemoveAsRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRealActorRotation ==============
+L0:            Rotator ReturnValue = Rotator::FromPitchYawRoll(0, 0, 0);
+============ END FUNCTION GetRealActorRotation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRealActorLocation ==============
+L0:            Vector mVector = this->K2_GetActorLocation();
+L28:           Vector ReturnValue = mVector;
+============ END FUNCTION GetRealActorLocation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorShouldShowOnMap ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION GetActorShouldShowOnMap ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddAsRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L145;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->CreateAndAddNewRepresentation(this, false);
+L121:          bool ReturnValue = mbool1;
+L140:          goto L156;
+L145:          ReturnValue = false;
+============ END FUNCTION AddAsRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsActorStatic ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION IsActorStatic ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTradingPostVisibility ==============
+L0:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L43:           FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
+L79:           bool mbool = mFGGameState;
+L108:          if (!mbool) goto L563;
+L122:          FGTutorialIntroManager* mFGTutorialIntroManager = FGTutorialIntroManager->Get(mFGGameState);
+L173:          bool mbool1 = KismetSystemLibrary->IsValid(mFGTutorialIntroManager);
+L224:          if (!mbool1) goto L311;
+L238:          bool mbool2 = this->AreChildBuildingsLoaded();
+L258:          if (!mbool2) goto L475;
+L272:          this->UpdateGeneratorVisibility();
+L282:          this->UpdateStorageVisibility();
+L292:          this->UpdateMainMesh();
+L306:          <End of Inlined Event Graph Function>;
+L311:          FString mFString = KismetStringLibrary->Concat_StrStr("could not find intromanager", "");
+L392:          KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L475:          mFScriptDelegate->BindUFunction(this, UpdateTradingPostVisibility);
+L498:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, false);
+============ END FUNCTION UpdateTradingPostVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateMainMesh ==============
+L0:            ExecutionFlow.Push(L1421);
+L5:            this->FlagReevaluateMaterialOnColored();
+L15:           int32 mint32 = this->GetTradingPostLevel();
+L43:           int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->meshes);
+L102:          int32 mint322 = Subtract_IntInt(mint321, 1);
+L144:          int32 mint323 = Min(mint32, mint322);
+L190:          KismetArrayLibrary->Array_Get([ref] this->meshes, mint323, [ref] mStaticMesh);
+L249:          bool mbool = this->MainMesh->SetStaticMesh(mStaticMesh);
+L304:          int32 mint324 = this->GetTradingPostLevel();
+L332:          bool mbool1 = GreaterEqual_IntInt(mint324, 4);
+L366:          this->SM_KorolevPoster->SetVisibility(mbool1, false);
+L408:          if (!true) goto ExecutionFlow.Pop();
+L410:          int32 Temp_int_Loop_Counter_Variable = 0;
+L433:          int32 Temp_int_Array_Index_Variable = 0;
+L456:          TArray<MaterialInterface*> mTArray<MaterialInterface> = this->MainMesh->GetMaterials();
+L510:          int32 mint325 = KismetArrayLibrary->Array_Length([ref] mTArray<MaterialInterface>);
+L569:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint325);
+L607:          if (!mbool2) goto ExecutionFlow.Pop();
+L617:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L644:          ExecutionFlow.Push(L1347);
+L649:          mint32 = this->GetTradingPostLevel();
+L677:          mint321 = KismetArrayLibrary->Array_Length([ref] this->meshes);
+L736:          mint322 = Subtract_IntInt(mint321, 1);
+L778:          mint323 = Min(mint32, mint322);
+L824:          KismetArrayLibrary->Array_Get([ref] this->meshes, mint323, [ref] mStaticMesh);
+L883:          MaterialInterface* mMaterialInterface = mStaticMesh->GetMaterial(Temp_int_Array_Index_Variable);
+L934:          this->MainMesh->SetMaterial(Temp_int_Array_Index_Variable, mMaterialInterface);
+L988:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L1031:         FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
+L1067:         bool mbool3 = mFGGameState;
+L1096:         FGTutorialIntroManager* mFGTutorialIntroManager = FGTutorialIntroManager->Get(mFGGameState);
+L1147:         int32 mint326 = mFGTutorialIntroManager->GetTradingPostLevel();
+L1197:         bool mbool4 = GreaterEqual_IntInt(mint326, this->mShipUpgradeLevel);
+L1235:         if (!mbool4) goto ExecutionFlow.Pop();
+L1245:         this->MainMesh_skl->K2_SetAnimInstanceClass(Anim_Tradingpost);
+L1290:         this->MainMesh_skl->SetSkeletalMesh(Tradingpost_skl, false);
+L1336:         this->ReapplyColorSlot();
+L1346:         goto ExecutionFlow.Pop();
+L1347:         int32 mint327 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1389:         Temp_int_Loop_Counter_Variable = mint327;
+L1416:         goto L456;
+============ END FUNCTION UpdateMainMesh ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__WhatIsThis?_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Build_TradingPost.Build_TradingPost_C:ExecuteUbergraph_Build_TradingPost.K2Node_ComponentBoundEvent_OverlappedComponent) = OverlappedComponent;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Build_TradingPost.Build_TradingPost_C:ExecuteUbergraph_Build_TradingPost.K2Node_ComponentBoundEvent_OtherActor) = OtherActor;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Build_TradingPost.Build_TradingPost_C:ExecuteUbergraph_Build_TradingPost.K2Node_ComponentBoundEvent_OtherComp) = OtherComp;
+L54:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Build_TradingPost.Build_TradingPost_C:ExecuteUbergraph_Build_TradingPost.K2Node_ComponentBoundEvent_OtherBodyIndex) = OtherBodyIndex;
+L72:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Build_TradingPost.Build_TradingPost_C:ExecuteUbergraph_Build_TradingPost.K2Node_ComponentBoundEvent_bFromSweep) = bFromSweep;
+L90:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Build_TradingPost.Build_TradingPost_C:ExecuteUbergraph_Build_TradingPost.K2Node_ComponentBoundEvent_SweepResult) = SweepResult;
+L108:          this->ExecuteUbergraph_Build_TradingPost(242);
+============ END FUNCTION BndEvt__WhatIsThis?_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnTradingPostUpgraded ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Build_TradingPost.Build_TradingPost_C:ExecuteUbergraph_Build_TradingPost.K2Node_Event_level) = Level;
+L18:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Build_TradingPost.Build_TradingPost_C:ExecuteUbergraph_Build_TradingPost.K2Node_Event_suppressBuildEffects) = suppressBuildEffects;
+L36:           this->ExecuteUbergraph_Build_TradingPost(186);
+============ END FUNCTION OnTradingPostUpgraded ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorRepresentationColor ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Build_TradingPost.Build_TradingPost_C:ExecuteUbergraph_Build_TradingPost.K2Node_Event_newColor) = NewColor;
+L18:           this->ExecuteUbergraph_Build_TradingPost(191);
+============ END FUNCTION SetActorRepresentationColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Build_TradingPost(192);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveDestroyed ==============
+L0:            this->ExecuteUbergraph_Build_TradingPost(237);
+============ END FUNCTION ReceiveDestroyed ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_TradingPost ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->ReceiveBeginPlay();
+L25:           bool mbool = this->AddAsRepresentation();
+L49:           this->UpdateTradingPostVisibility();
+L63:           goto ExecutionFlow.Pop();
+L64:           if (!mbool1) goto L79;
+L78:           goto ExecutionFlow.Pop();
+L79:           this->PlayBuildEffects(nullptr);
+L94:           goto ExecutionFlow.Pop();
+L95:           this->UpdateTradingPostVisibility();
+L109:          KismetSystemLibrary->Delay(this, 0.019999999552965164, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 64, UUID = 1877753389, ExecutionFunction = "ExecuteUbergraph_Build_TradingPost", CallbackTarget = this));
+L185:          goto ExecutionFlow.Pop();
+L186:          goto L95;
+L191:          goto ExecutionFlow.Pop();
+L192:          goto L15;
+L197:          bool mbool2 = this->RemoveAsRepresentation();
+L221:          goto ExecutionFlow.Pop();
+L222:          this->ReceiveDestroyed();
+L232:          goto L197;
+L237:          goto L222;
+L242:          goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Build_TradingPost ==============

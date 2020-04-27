@@ -1,0 +1,60 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_WaterNotifier.Widget_WaterNotifier_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetTitleText ==============
+L0:            this->mTitleMessageText = messageText;
+L27:           FString mFString = KismetTextLibrary->Conv_TextToString([ref] this->mTitleMessageText);
+L86:           this->Widget_LetterSpacedText->SetTitle(mFString);
+============ END FUNCTION SetTitleText ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetMessageText ==============
+L0:            this->mText = messageText;
+L27:           this->mMessageText->SetText(this->mText);
+============ END FUNCTION SetMessageText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_WaterNotifier(77);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveNotifier ==============
+L0:            this->ExecuteUbergraph_Widget_WaterNotifier(301);
+============ END FUNCTION RemoveNotifier ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_WaterNotifier ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->RemoveFromParent();
+L29:           goto ExecutionFlow.Pop();
+L30:           this->SetMessageText(this->mText);
+L53:           this->SetTitleText(this->mTitleMessageText);
+L76:           goto ExecutionFlow.Pop();
+L77:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->SpawnAnimation, 0, 1, 0, 0.800000011920929);
+L123:          mFScriptDelegate->BindUFunction(this, RemoveNotifier);
+L146:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mTimeToLive, false);
+L215:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L235:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_CodexMessage_Blip, mPawn, true);
+L296:          goto L30;
+L301:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->SpawnAnimation, 0, 1, 1, 1);
+L347:          KismetSystemLibrary->Delay(this, 1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 342720649, ExecutionFunction = "ExecuteUbergraph_Widget_WaterNotifier", CallbackTarget = this));
+L423:          goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_WaterNotifier ==============

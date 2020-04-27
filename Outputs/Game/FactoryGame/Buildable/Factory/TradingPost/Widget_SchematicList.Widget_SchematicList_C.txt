@@ -1,0 +1,113 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_SchematicList.Widget_SchematicList_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetTradingPostWidget ==============
+============ END FUNCTION GetTradingPostWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateSchematicForTier ==============
+L0:            ExecutionFlow.Push(L870);
+L5:            TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>> = [];
+L16:           this->mSchematicManager->GetAvailableSchematics([ref] mTArray<TSubclassOf<FGSchematic>>);
+L57:           TArray<TSubclassOf<FGSchematic>> allSchematics = mTArray<TSubclassOf<FGSchematic>>;
+L84:           int32 Temp_int_Loop_Counter_Variable = 0;
+L107:          int32 Temp_int_Array_Index_Variable = 0;
+L130:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] allSchematics);
+L189:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L227:          if (!mbool) goto L764;
+L241:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L268:          ExecutionFlow.Push(L796);
+L273:          KismetArrayLibrary->Array_Get([ref] allSchematics, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
+L332:          uint8 muint8 = FGSchematic->GetType(mTSubclassOf<FGSchematic>);
+L391:          bool mbool1 = EqualEqual_ByteByte(muint8, 2);
+L422:          bool mbool2 = EqualEqual_ByteByte(muint8, 3);
+L453:          int32 mint321 = FGSchematic->GetTechTier(mTSubclassOf<FGSchematic>);
+L512:          bool mbool3 = BooleanOR(mbool2, mbool1);
+L550:          bool mbool4 = EqualEqual_IntInt(mint321, inTier);
+L588:          bool mbool5 = BooleanAND(mbool3, mbool4);
+L626:          if (!mbool5) goto ExecutionFlow.Pop();
+L636:          KismetArrayLibrary->Array_Get([ref] allSchematics, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
+L695:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] localSchematics, [ref] mTSubclassOf<FGSchematic>);
+L763:          goto ExecutionFlow.Pop();
+L764:          TArray<TSubclassOf<FGSchematic>> schematicsInRing = localSchematics;
+L791:          <End of Inlined Event Graph Function>;
+L796:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L838:          Temp_int_Loop_Counter_Variable = mint323;
+L865:          goto L130;
+============ END FUNCTION PopulateSchematicForTier ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreateSchematicButtons ==============
+L0:            ExecutionFlow.Push(L709);
+L5:            this->mGrid->ClearChildren();
+L41:           this->PopulateSchematicForTier(this->mCurrentDisplayedTier, [ref] mTArray<TSubclassOf<FGSchematic>>);
+L73:           int32 Temp_int_Loop_Counter_Variable = 0;
+L96:           int32 Temp_int_Array_Index_Variable = 0;
+L119:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGSchematic>>);
+L178:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L216:          if (!mbool) goto ExecutionFlow.Pop();
+L226:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L253:          ExecutionFlow.Push(L635);
+L258:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L282:          Widget_SchematicButton* mWidget_SchematicButton = WidgetBlueprintLibrary->Create(this, Widget_SchematicButton, mPlayerController);
+L343:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGSchematic>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
+L402:          KismetSystemLibrary->SetClassPropertyByName(mWidget_SchematicButton, "mSchematicClass", mTSubclassOf<FGSchematic>);
+L465:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_SchematicButton, "mSchematicList", this);
+L520:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_SchematicButton, "mTradingPostWidget", this->mTradingPostWidget);
+L583:          HorizontalBoxSlot* mHorizontalBoxSlot = this->mGrid->AddChildToHorizontalBox(mWidget_SchematicButton);
+L634:          goto ExecutionFlow.Pop();
+L635:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L677:          Temp_int_Loop_Counter_Variable = mint321;
+L704:          goto L119;
+============ END FUNCTION CreateSchematicButtons ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SchematicList(266);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_SchematicList(384);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SchematicList ==============
+L10:           int32 mint32 = this->mSchematicManager->GetHighestAvailableTechTier();
+L60:           this->mHighestTier = mint32;
+L87:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L111:          BP_PlayerState* mBP_PlayerState = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C>(mPlayerController->PlayerState);
+L169:          bool mbool = mBP_PlayerState;
+L198:          if (!mbool) goto L558;
+L212:          this->mCurrentDisplayedTier = mBP_PlayerState->mLastSchematicTierInUI;
+L261:          <End of Inlined Event Graph Function>;
+L266:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L309:          FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mGameStateBase);
+L360:          this->mSchematicManager = mFGSchematicManager;
+L379:          goto L10;
+L384:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L408:          BP_PlayerState* mBP_PlayerState1 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C>(mPlayerController1->PlayerState);
+L466:          bool mbool1 = mBP_PlayerState1;
+L495:          if (!mbool1) goto L558;
+L509:          mBP_PlayerState1->mLastSchematicTierInUI = this->mCurrentDisplayedTier;
+============ END FUNCTION ExecuteUbergraph_Widget_SchematicList ==============

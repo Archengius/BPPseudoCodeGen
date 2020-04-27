@@ -1,0 +1,148 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_StandbyButton.Widget_StandbyButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetIsProductionPaused ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mBuildableFactory);
+L51:           if (!mbool) goto L296;
+L65:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L89:           BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
+L125:          bool mbool1 = mBP_PlayerController;
+L154:          if (!mbool1) goto L296;
+L168:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L219:          mBP_RemoteCallObject->Server_SetIsProductionPausedOnFactory(this->mBuildableFactory, IsPaused);
+L273:          this->SetStandbyButtonBrush(IsPaused);
+============ END FUNCTION SetIsProductionPaused ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mStandbyButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_StandbyButton(1656);
+============ END FUNCTION BndEvt__mStandbyButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetStandbyButtonBrush ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_StandbyButton.Widget_StandbyButton_C:ExecuteUbergraph_Widget_StandbyButton.K2Node_CustomEvent_productionIsPaused) = productionIsPaused;
+L18:           this->ExecuteUbergraph_Widget_StandbyButton(1293);
+============ END FUNCTION SetStandbyButtonBrush ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mStandbyButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_StandbyButton(1057);
+============ END FUNCTION BndEvt__mStandbyButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mStandbyButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_StandbyButton(1675);
+============ END FUNCTION BndEvt__mStandbyButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_StandbyButton.Widget_StandbyButton_C:ExecuteUbergraph_Widget_StandbyButton.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_StandbyButton(1775);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_StandbyButton(1776);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_StandbyButton ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool mbool = KismetSystemLibrary->IsValid(this->mBuildableFactory);
+L66:           if (!mbool) goto L146;
+L80:           bool mbool1 = this->mBuildableFactory->IsProductionPaused();
+L122:          this->SetStandbyButtonBrush(mbool1);
+L145:          goto ExecutionFlow.Pop();
+L146:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 852787722, ExecutionFunction = "ExecuteUbergraph_Widget_StandbyButton", CallbackTarget = this));
+L222:          goto ExecutionFlow.Pop();
+L223:          mSlateBrush.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 18, Y = 37);
+L274:          mSlateBrush.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
+L335:          mSlateBrush.TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0);
+L412:          mSlateBrush.ResourceObject = StandbyButtonPressed;
+L440:          mSlateBrush.DrawAs = 3;
+L469:          mSlateBrush.Tiling = 0;
+L498:          mSlateBrush.Mirroring = 0;
+L527:          this->mButtonImage->SetBrush([ref] mSlateBrush);
+L572:          this->mButtonOverlay->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = -12));
+L628:          this->mSoundButtonOnOff = true;
+L639:          goto ExecutionFlow.Pop();
+L640:          mSlateBrush1.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 18, Y = 37);
+L691:          mSlateBrush1.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
+L752:          mSlateBrush1.TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0);
+L829:          mSlateBrush1.ResourceObject = StandbyButtonUnpressed;
+L857:          mSlateBrush1.DrawAs = 3;
+L886:          mSlateBrush1.Tiling = 0;
+L915:          mSlateBrush1.Mirroring = 0;
+L944:          this->mButtonImage->SetBrush([ref] mSlateBrush1);
+L989:          this->mButtonOverlay->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = -12));
+L1045:         this->mSoundButtonOnOff = false;
+L1056:         goto ExecutionFlow.Pop();
+L1057:         if (!this->mIsProductionPaused) goto L1118;
+L1071:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->hover_noPower, 0, 1, 1, 1);
+L1117:         goto ExecutionFlow.Pop();
+L1118:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->hover, 0, 1, 1, 1);
+L1164:         goto ExecutionFlow.Pop();
+L1165:         UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->hover, 0, 1, 0, 1);
+L1211:         Pawn* mPawn = this->GetOwningPlayerPawn();
+L1231:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_StandBy_Hover_Powered, mPawn, true);
+L1292:         goto ExecutionFlow.Pop();
+L1293:         this->mIsProductionPaused = mbool2;
+L1312:         if (!this->mIsProductionPaused) goto L223;
+L1326:         goto L640;
+L1331:         this->OnStandbyClicked->ProcessMulticastDelegate();
+L1350:         if (!this->mSoundButtonOnOff) goto L1446;
+L1364:         Pawn* mPawn1 = this->GetOwningPlayerPawn();
+L1384:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_StandBy_UnTicked, mPawn1, true);
+L1445:         goto ExecutionFlow.Pop();
+L1446:         mPawn1 = this->GetOwningPlayerPawn();
+L1466:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_UI_StandBy_Ticked, mPawn1, true);
+L1527:         goto ExecutionFlow.Pop();
+L1528:         UMGSequencePlayer* mUMGSequencePlayer3 = this->PlayAnimation(this->hover_noPower, 0, 1, 0, 1);
+L1574:         mPawn = this->GetOwningPlayerPawn();
+L1594:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_UI_StandBy_Hover_UnPowered, mPawn, true);
+L1655:         goto ExecutionFlow.Pop();
+L1656:         if (!this->mIsProductionPaused) goto L1165;
+L1670:         goto L1528;
+L1675:         bool mbool3 = Not_PreBool(this->mUseLegacyImplementation);
+L1704:         if (!mbool3) goto L1331;
+L1718:         bool mbool4 = Not_PreBool(this->mIsProductionPaused);
+L1747:         this->SetIsProductionPaused(mbool4);
+L1770:         goto L1331;
+L1775:         goto ExecutionFlow.Pop();
+L1776:         bool mbool5 = Not_PreBool(this->mUseLegacyImplementation);
+L1805:         if (!mbool5) goto ExecutionFlow.Pop();
+L1815:         goto L15;
+============ END FUNCTION ExecuteUbergraph_Widget_StandbyButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnStandbyClicked__DelegateSignature ==============
+============ END FUNCTION OnStandbyClicked__DelegateSignature ==============

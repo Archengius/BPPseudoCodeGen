@@ -1,0 +1,165 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_SubMenuBackground.Widget_SubMenuBackground_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnSpawnAnim ==============
+L0:            ExecutionFlow.Push(L1387);
+L5:            KismetArrayLibrary->Array_Clear([ref] this->mListItems);
+L46:           bool mbool = KismetSystemLibrary->IsValid(OverwritePanelWIdget);
+L97:           if (!mbool) goto L492;
+L111:          PanelWidget* LocalPanelWidget = OverwritePanelWIdget;
+L130:          int32 Temp_int_Variable = 0;
+L153:          int32 mint32 = LocalPanelWidget->GetChildrenCount();
+L203:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint32);
+L241:          if (!mbool1) goto L1298;
+L255:          ExecutionFlow.Push(L1313);
+L260:          Widget* mWidget = LocalPanelWidget->GetChildAt(Temp_int_Variable);
+L311:          UserWidget* mUserWidget = Cast<Class /Script/UMG.UserWidget>(mWidget);
+L347:          bool mbool2 = mUserWidget;
+L376:          if (!mbool2) goto ExecutionFlow.Pop();
+L386:          mUserWidget->SetRenderOpacity(0);
+L423:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mListItems, [ref] mUserWidget);
+L491:          goto ExecutionFlow.Pop();
+L492:          bool mbool3 = this->mContent->HasAnyChildren();
+L534:          if (!mbool3) goto ExecutionFlow.Pop();
+L544:          Widget* mWidget1 = this->mContent->GetChildAt(0);
+L591:          PanelWidget* mPanelWidget = Cast<Class /Script/UMG.PanelWidget>(mWidget1);
+L627:          bool mbool4 = mPanelWidget;
+L656:          if (!mbool4) goto L694;
+L670:          LocalPanelWidget = mPanelWidget;
+L689:          goto L130;
+L694:          mWidget1 = this->mContent->GetChildAt(0);
+L741:          Widget_Scrollbox* mWidget_Scrollbox = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Scrollbox.Widget_Scrollbox_C>(mWidget1);
+L777:          bool mbool5 = mWidget_Scrollbox;
+L806:          if (!mbool5) goto L1070;
+L820:          bool mbool6 = mWidget_Scrollbox->mScrollableContent->HasAnyChildren();
+L884:          if (!mbool6) goto L1070;
+L898:          Widget* mWidget2 = mWidget_Scrollbox->mScrollableContent->GetChildAt(0);
+L967:          PanelWidget* mPanelWidget1 = Cast<Class /Script/UMG.PanelWidget>(mWidget2);
+L1003:         bool mbool7 = mPanelWidget1;
+L1032:         if (!mbool7) goto L1070;
+L1046:         LocalPanelWidget = mPanelWidget1;
+L1065:         goto L130;
+L1070:         Widget* mWidget3 = this->mContent->GetChildAt(0);
+L1117:         UserWidget* mUserWidget1 = Cast<Class /Script/UMG.UserWidget>(mWidget3);
+L1153:         bool mbool8 = mUserWidget1;
+L1182:         if (!mbool8) goto ExecutionFlow.Pop();
+L1192:         mUserWidget1->SetRenderOpacity(0);
+L1229:         UMGSequencePlayer* mUMGSequencePlayer = mUserWidget1->PlayAnimation(this->ListItemSpawn, 0, 1, 0, 1);
+L1297:         goto ExecutionFlow.Pop();
+L1298:         this->OnListSpawnAnim();
+L1312:         goto ExecutionFlow.Pop();
+L1313:         int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L1355:         Temp_int_Variable = mint322;
+L1382:         goto L153;
+============ END FUNCTION OnSpawnAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SubMenuBackground(879);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayListSpawnAnim ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SubMenuBackground.Widget_SubMenuBackground_C:ExecuteUbergraph_Widget_SubMenuBackground.K2Node_CustomEvent_OverwritePanelWIdget) = OverwritePanelWIdget;
+L18:           this->ExecuteUbergraph_Widget_SubMenuBackground(1176);
+============ END FUNCTION PlayListSpawnAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SubMenuBackground.Widget_SubMenuBackground_C:ExecuteUbergraph_Widget_SubMenuBackground.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_SubMenuBackground(1251);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnListSpawnAnim ==============
+L0:            this->ExecuteUbergraph_Widget_SubMenuBackground(1344);
+============ END FUNCTION OnListSpawnAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayBackgroundSpawnAnim ==============
+L0:            this->ExecuteUbergraph_Widget_SubMenuBackground(1372);
+============ END FUNCTION PlayBackgroundSpawnAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SubMenuBackground ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L148);
+L20:           KismetArrayLibrary->Array_Get([ref] this->mListItems, Temp_int_Variable, [ref] mUserWidget);
+L79:           UMGSequencePlayer* mUMGSequencePlayer = mUserWidget->PlayAnimation(this->ListItemSpawn, 0, 1, 0, 1);
+L147:          goto ExecutionFlow.Pop();
+L148:          int32 mint32 = Add_IntInt(Temp_int_Variable, 1);
+L190:          int32 Temp_int_Variable = mint32;
+L217:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mListItems);
+L276:          int32 mint322 = Subtract_IntInt(mint321, 1);
+L318:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint322);
+L356:          if (!mbool) goto ExecutionFlow.Pop();
+L366:          KismetSystemLibrary->Delay(this, 0.05000000074505806, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -962210269, ExecutionFunction = "ExecuteUbergraph_Widget_SubMenuBackground", CallbackTarget = this));
+L442:          goto ExecutionFlow.Pop();
+L443:          ExecutionFlow.Push(L620);
+L448:          KismetArrayLibrary->Array_Get([ref] this->mListItems, Temp_int_Array_Index_Variable, [ref] mUserWidget1);
+L507:          Widget_FrontEnd_Button* mWidget_FrontEnd_Button = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_FrontEnd_Button.Widget_FrontEnd_Button_C>(mUserWidget1);
+L543:          bool mbool1 = mWidget_FrontEnd_Button;
+L572:          if (!mbool1) goto ExecutionFlow.Pop();
+L582:          mWidget_FrontEnd_Button->SetSelected(false);
+L619:          goto ExecutionFlow.Pop();
+L620:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L662:          int32 Temp_int_Loop_Counter_Variable = mint323;
+L689:          int32 mint324 = KismetArrayLibrary->Array_Length([ref] this->mListItems);
+L748:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint324);
+L786:          if (!mbool2) goto ExecutionFlow.Pop();
+L796:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L823:          goto L443;
+L828:          Temp_int_Loop_Counter_Variable = 0;
+L851:          Temp_int_Array_Index_Variable = 0;
+L874:          goto L689;
+L879:          uint8 Temp_byte_Variable = 0;
+L899:          uint8 Temp_byte_Variable1 = 2;
+L919:          bool Temp_bool_Variable1 = this->mShowBackground;
+L938:          this->mBackgroundContainer->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L1027:         uint8 Temp_byte_Variable2 = 3;
+L1047:         uint8 Temp_byte_Variable3 = 2;
+L1067:         bool Temp_bool_Variable = this->mShowBackground;
+L1086:         this->mGradientContainer->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint81;
+});
+L1175:         goto ExecutionFlow.Pop();
+L1176:         this->OnSpawnAnim(mPanelWidget);
+L1199:         goto L828;
+L1204:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->SpawnAnim, 0, 1, 0, 1);
+L1250:         goto ExecutionFlow.Pop();
+L1251:         OverlaySlot* mOverlaySlot = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mContent);
+L1302:         mOverlaySlot->SetPadding(this->mContentPadding);
+L1343:         goto ExecutionFlow.Pop();
+L1344:         Temp_int_Variable = 0;
+L1367:         goto L217;
+L1372:         goto L1204;
+============ END FUNCTION ExecuteUbergraph_Widget_SubMenuBackground ==============

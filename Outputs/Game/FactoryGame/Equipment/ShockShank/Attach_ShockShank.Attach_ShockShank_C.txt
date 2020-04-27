@@ -1,0 +1,57 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/ShockShank/Attach_ShockShank.Attach_ShockShank_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION PlayUseEffect ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/ShockShank/Attach_ShockShank.Attach_ShockShank_C:ExecuteUbergraph_Attach_ShockShank.K2Node_Event_useLocation) = UseLocation;
+L18:           this->ExecuteUbergraph_Attach_ShockShank(609);
+============ END FUNCTION PlayUseEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayAttachEffects3P ==============
+L0:            this->ExecuteUbergraph_Attach_ShockShank(1020);
+============ END FUNCTION PlayAttachEffects3P ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Attach_ShockShank ==============
+L10:           this->PlayAttachEffects3P();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = this->GetAttachedTo();
+L40:           SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
+L86:           AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L128:          bool mbool = KismetSystemLibrary->IsValid(mAnimInstance);
+L179:          if (!mbool) goto L1025;
+L193:          mFGCharacterPlayer = this->GetAttachedTo();
+L213:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
+L259:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L301:          bool mbool1 = mAnimInstance->Montage_IsPlaying(StunSpearEquip_02_Montage);
+L352:          if (!mbool1) goto L371;
+L366:          <End of Inlined Event Graph Function>;
+L371:          mFGCharacterPlayer = this->GetAttachedTo();
+L391:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
+L437:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L479:          float mfloat = mAnimInstance->Montage_Play(StunSpearEquip_02_Montage, 1, 0, 0, true);
+L551:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_EQ_ShockShank_EquipV2_3P, this, true);
+L604:          <End of Inlined Event Graph Function>;
+L609:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetAttachedTo();
+L629:          SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh3P();
+L675:          AnimInstance* mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L717:          bool mbool2 = KismetSystemLibrary->IsValid(mAnimInstance1);
+L768:          if (!mbool2) goto L1025;
+L782:          mFGCharacterPlayer1 = this->GetAttachedTo();
+L802:          mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh3P();
+L848:          mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L890:          float mfloat1 = mAnimInstance1->Montage_Play(ShockShankAttack_01_Montage, 1, 0, 0, true);
+L962:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_EQ_ShockShank_HitRattle_3P, this, true);
+L1015:         <End of Inlined Event Graph Function>;
+L1020:         goto L10;
+============ END FUNCTION ExecuteUbergraph_Attach_ShockShank ==============

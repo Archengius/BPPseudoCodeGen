@@ -1,0 +1,129 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/BPW_GenericSchematicRewardButton.BPW_GenericSchematicRewardButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseMove ==============
+L0:            Vector2D mVector2D = WidgetLayoutLibrary->GetMousePositionOnViewport(this);
+L51:           SlateBlueprintLibrary->LocalToViewport(this, [ref] MyGeometry, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D1, [ref] mVector2D2);
+L135:          CanvasPanelSlot* mCanvasPanelSlot = WidgetLayoutLibrary->SlotAsCanvasSlot(this->mToolTip);
+L186:          Vector2D mVector2D3 = Subtract_Vector2DVector2D(mVector2D, mVector2D2);
+L232:          Vector2D mVector2D4 = Add_Vector2DVector2D(mVector2D3, ScriptStruct /Script/CoreUObject.Vector2D(X = 15, Y = 15));
+L293:          mCanvasPanelSlot->SetPosition(mVector2D4);
+L334:          EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L384:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnMouseMove ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTooltip ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mItemDescriptor);
+L51:           if (!mbool) goto L378;
+L65:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L89:           Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController);
+L150:          mItemAmount.ItemClass = this->mItemDescriptor;
+L178:          mItemAmount.amount = 0;
+L210:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_Tooltip, "mItemDescriptor", [ref] mItemAmount);
+L273:          KismetSystemLibrary->PrintString(this, "Hello", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L354:          Widget* ReturnValue = mWidget_Tooltip;
+L373:          goto L389;
+L378:          ReturnValue = nullptr;
+============ END FUNCTION GetTooltip ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetUnlockData ==============
+L0:            mSlateBrush.ImageSize = this->mIconObject->Brush.ImageSize;
+L67:           mSlateBrush.Margin = this->mIconObject->Brush.Margin;
+L134:          mSlateBrush.TintColor = this->mIconObject->Brush.TintColor;
+L201:          mSlateBrush.ResourceObject = this->mUnlockData.UnlockIcon_9_3E3B124C41C68907A6EB9FAD36C04BC4;
+L238:          mSlateBrush.DrawAs = this->mIconObject->Brush.DrawAs;
+L305:          mSlateBrush.Tiling = this->mIconObject->Brush.Tiling;
+L372:          mSlateBrush.Mirroring = this->mIconObject->Brush.Mirroring;
+L439:          this->mIconObject->SetBrush([ref] mSlateBrush);
+L484:          this->mTextObject->SetText(this->mUnlockData.UnlockName_2_490383D6421D4A92D86E1F835769488A);
+L538:          FGUnlockRecipe* mFGUnlockRecipe = Cast<Class /Script/FactoryGame.FGUnlockRecipe>(this->mUnlockData.Unlock_29_06E6D017481991B0E94072A4F21FCC03);
+L583:          bool mbool = mFGUnlockRecipe;
+L612:          if (!mbool) goto L892;
+L626:          TArray<TSubclassOf<FGRecipe>> mTArray<TSubclassOf<FGRecipe>> = mFGUnlockRecipe->GetRecipesToUnlock();
+L676:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>, this->mUnlockData.UnlockStructIndex_34_716E881C402D058998F7CDA17E1E4BF2, [ref] mTSubclassOf<FGRecipe>);
+L744:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(mTSubclassOf<FGRecipe>, false);
+L804:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L859:          this->mItemDescriptor = mItemAmount.ItemClass;
+L887:          <End of Inlined Event Graph Function>;
+L892:          FGUnlockScannableResource* mFGUnlockScannableResource = Cast<Class /Script/FactoryGame.FGUnlockScannableResource>(this->mUnlockData.Unlock_29_06E6D017481991B0E94072A4F21FCC03);
+L937:          bool mbool1 = mFGUnlockScannableResource;
+L966:          if (!mbool1) goto L1122;
+L980:          TArray<TSubclassOf<FGResourceDescriptor>> mTArray<TSubclassOf<FGResourceDescriptor>> = mFGUnlockScannableResource->GetResourcesToAddToScanner();
+L1030:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResourceDescriptor>>, this->mUnlockData.UnlockStructIndex_34_716E881C402D058998F7CDA17E1E4BF2, [ref] mTSubclassOf<FGResourceDescriptor>);
+L1098:         this->mItemDescriptor = mTSubclassOf<FGResourceDescriptor>;
+L1117:         <End of Inlined Event Graph Function>;
+L1122:         FGUnlockInventorySlot* mFGUnlockInventorySlot = Cast<Class /Script/FactoryGame.FGUnlockInventorySlot>(this->mUnlockData.Unlock_29_06E6D017481991B0E94072A4F21FCC03);
+L1167:         bool mbool2 = mFGUnlockInventorySlot;
+L1196:         if (!mbool2) goto L1215;
+L1210:         <End of Inlined Event Graph Function>;
+L1215:         FGUnlockGiveItem* mFGUnlockGiveItem = Cast<Class /Script/FactoryGame.FGUnlockGiveItem>(this->mUnlockData.Unlock_29_06E6D017481991B0E94072A4F21FCC03);
+L1260:         bool mbool3 = mFGUnlockGiveItem;
+L1289:         if (!mbool3) goto L1454;
+L1303:         TArray<ItemAmount> mTArray<ItemAmount>1 = mFGUnlockGiveItem->GetItemsToGive();
+L1353:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, this->mUnlockData.UnlockStructIndex_34_716E881C402D058998F7CDA17E1E4BF2, [ref] mItemAmount1);
+L1421:         this->mItemDescriptor = mItemAmount1.ItemClass;
+L1449:         <End of Inlined Event Graph Function>;
+L1454:         FGUnlockArmEquipmentSlot* mFGUnlockArmEquipmentSlot = Cast<Class /Script/FactoryGame.FGUnlockArmEquipmentSlot>(this->mUnlockData.Unlock_29_06E6D017481991B0E94072A4F21FCC03);
+L1499:         bool mbool4 = mFGUnlockArmEquipmentSlot;
+L1528:         if (!mbool4) goto L1547;
+L1542:         <End of Inlined Event Graph Function>;
+L1547:         FGUnlockBuildEfficiency* mFGUnlockBuildEfficiency = Cast<Class /Script/FactoryGame.FGUnlockBuildEfficiency>(this->mUnlockData.Unlock_29_06E6D017481991B0E94072A4F21FCC03);
+L1592:         bool mbool5 = mFGUnlockBuildEfficiency;
+L1621:         if (!mbool5) goto L1640;
+L1635:         <End of Inlined Event Graph Function>;
+L1640:         FGUnlockMap* mFGUnlockMap = Cast<Class /Script/FactoryGame.FGUnlockMap>(this->mUnlockData.Unlock_29_06E6D017481991B0E94072A4F21FCC03);
+L1685:         bool mbool6 = mFGUnlockMap;
+L1714:         if (!mbool6) goto L1728;
+============ END FUNCTION SetUnlockData ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BPW_GenericSchematicRewardButton(70);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_GenericSchematicRewardButton(98);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_GenericSchematicRewardButton(136);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_GenericSchematicRewardButton ==============
+L10:           if (!this->mShouldAlwaysAutoScrollText) goto L168;
+L24:           this->Widget_AutoScrollingContainer->DelayedStartAutoScroll(0.5);
+L65:           <End of Inlined Event Graph Function>;
+L70:           this->SetUnlockData(this->mUnlockData);
+L93:           goto L10;
+L98:           this->mToolTip->Open(false);
+L131:          <End of Inlined Event Graph Function>;
+L136:          this->mToolTip->Close();
+============ END FUNCTION ExecuteUbergraph_BPW_GenericSchematicRewardButton ==============

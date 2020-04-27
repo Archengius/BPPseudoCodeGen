@@ -1,0 +1,329 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/BP_ProximitySubsystem.BP_ProximitySubsystem_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetupMapAreaEffect ==============
+L0:            ExecutionFlow.Push(L385);
+L5:            ParticleSystem* mParticleSystem = this->GetParticleSystemFromMapArea(newArea);
+L34:           ParticleSystem* localTemplate = mParticleSystem;
+L53:           ExecutionFlow.Push(L167);
+L58:           bool mbool = KismetSystemLibrary->IsValid(this->mCurrentAreaParticle);
+L109:          if (!mbool) goto ExecutionFlow.Pop();
+L119:          this->mCurrentAreaParticle->Deactivate();
+L155:          this->mCurrentAreaParticle = nullptr;
+L166:          goto ExecutionFlow.Pop();
+L167:          bool mbool1 = KismetSystemLibrary->IsValid(localTemplate);
+L218:          if (!mbool1) goto ExecutionFlow.Pop();
+L228:          SceneComponent* mSceneComponent = this->K2_GetRootComponent();
+L248:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(localTemplate, mSceneComponent, "None", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 3, true, 0);
+L365:          this->mCurrentAreaParticle = mParticleSystemComponent;
+L384:          goto ExecutionFlow.Pop();
+============ END FUNCTION SetupMapAreaEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION OcclusionInterpAlpha__FinishedFunc ==============
+L0:            this->ExecuteUbergraph_BP_ProximitySubsystem(7886);
+============ END FUNCTION OcclusionInterpAlpha__FinishedFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION OcclusionInterpAlpha__UpdateFunc ==============
+L0:            this->ExecuteUbergraph_BP_ProximitySubsystem(7669);
+============ END FUNCTION OcclusionInterpAlpha__UpdateFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetWindSpeedEvent ==============
+L0:            this->ExecuteUbergraph_BP_ProximitySubsystem(75);
+============ END FUNCTION SetWindSpeedEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION VirtualWindSystemEvent ==============
+L0:            this->ExecuteUbergraph_BP_ProximitySubsystem(370);
+============ END FUNCTION VirtualWindSystemEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateWindTimer ==============
+L0:            this->ExecuteUbergraph_BP_ProximitySubsystem(722);
+============ END FUNCTION UpdateWindTimer ==============
+
+
+
+
+
+============ BEGIN FUNCTION WindOcclusionEvent ==============
+L0:            this->ExecuteUbergraph_BP_ProximitySubsystem(935);
+============ END FUNCTION WindOcclusionEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION WindOcclusionTimer ==============
+L0:            this->ExecuteUbergraph_BP_ProximitySubsystem(1051);
+============ END FUNCTION WindOcclusionTimer ==============
+
+
+
+
+
+============ BEGIN FUNCTION Ambient ==============
+L0:            this->ExecuteUbergraph_BP_ProximitySubsystem(6531);
+============ END FUNCTION Ambient ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_ProximitySubsystem(7481);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEnteredMapArea ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Character/Player/BP_ProximitySubsystem.BP_ProximitySubsystem_C:ExecuteUbergraph_BP_ProximitySubsystem.K2Node_Event_newArea) = newArea;
+L18:           this->ExecuteUbergraph_BP_ProximitySubsystem(7486);
+============ END FUNCTION OnEnteredMapArea ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPawnChanged ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/BP_ProximitySubsystem.BP_ProximitySubsystem_C:ExecuteUbergraph_BP_ProximitySubsystem.K2Node_Event_newPawn) = newPawn;
+L18:           this->ExecuteUbergraph_BP_ProximitySubsystem(7649);
+============ END FUNCTION OnPawnChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION CalculateWindOcclusionEvent ==============
+L0:            this->ExecuteUbergraph_BP_ProximitySubsystem(7674);
+============ END FUNCTION CalculateWindOcclusionEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_ProximitySubsystem ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           AkGameplayStatics->SetGlobalRTPCValue("RTPC_Occlusion", this->OcclusionInterpAlpha_OcclusionAlpha_393DB8FF4199240D3BAF62908831E857, 0);
+L74:           goto ExecutionFlow.Pop();
+L75:           bool mbool = RandomBoolWithWeight(0.6000000238418579);
+L100:          float mfloat = RandomFloatInRange(10, 20);
+L138:          float mfloat1 = RandomFloatInRange(15, 30);
+L176:          bool Temp_bool_Variable = mbool;
+L195:          float mfloat2 = MapRangeClamped(switch (Temp_bool_Variable) {
+case false -> mfloat;
+case true -> mfloat1;
+default -> mfloat3;
+}, 0, 30, 0, 100);
+L296:          AkGameplayStatics->SetGlobalRTPCValue("RTPC_WindSpeedAmplitude", mfloat2, 0);
+L355:          this->UpdateWindTimer();
+L369:          goto ExecutionFlow.Pop();
+L370:          this->SetWindSpeedEvent();
+L384:          goto ExecutionFlow.Pop();
+L385:          int32 Temp_int_Array_Index_Variable = 0;
+L408:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<BP_Sky_Sphere>);
+L467:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L505:          if (!mbool1) goto ExecutionFlow.Pop();
+L515:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L542:          ExecutionFlow.Push(L648);
+L547:          KismetArrayLibrary->Array_Get([ref] mTArray<BP_Sky_Sphere>, Temp_int_Array_Index_Variable, [ref] mBP_Sky_Sphere);
+L606:          this->mGlobalPostProcess = mBP_Sky_Sphere->mGlobalPostProcess;
+L647:          goto ExecutionFlow.Pop();
+L648:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L690:          int32 Temp_int_Loop_Counter_Variable = mint321;
+L717:          goto L408;
+L722:          float mfloat4 = RandomFloatInRange(15, 45);
+L760:          mFScriptDelegate->BindUFunction(this, SetWindSpeedEvent);
+L783:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, mfloat4, false);
+L852:          goto ExecutionFlow.Pop();
+L853:          KismetSystemLibrary->PrintString(this, "Hello", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L934:          goto ExecutionFlow.Pop();
+L935:          mFScriptDelegate1->BindUFunction(this, WindOcclusionTimer);
+L958:          TimerHandle mTimerHandle1 = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate1, 0.10000000149011612, true);
+L1023:         this->mWindOcclusionTimer = mTimerHandle1;
+L1050:         goto ExecutionFlow.Pop();
+L1051:         LinearColor mLinearColor = KismetMaterialLibrary->GetVectorParameterValue(this, MPC_Weather, "WindDirection");
+L1124:         this->mOcclusionValuePerTrace = 0;
+L1147:         Vector mVector = MakeVector(mLinearColor.R, mLinearColor.G, 0);
+L1216:         Vector mVector1 = Normal(mVector, 0.00009999999747378752);
+L1258:         BreakVector(mVector1, [ref] mfloat5, [ref] mfloat6, [ref] mfloat7);
+L1304:         float mfloat8 = RandomFloatInRange(-0.05000000074505806, 0.05000000074505806);
+L1342:         Vector mVector2 = MakeVector(mfloat5, mfloat6, mfloat8);
+L1397:         this->WindDir = mVector2;
+L1424:         mVector = MakeVector(mLinearColor.R, mLinearColor.G, 0);
+L1493:         mVector1 = Normal(mVector, 0.00009999999747378752);
+L1535:         BreakVector(mVector1, [ref] mfloat5, [ref] mfloat6, [ref] mfloat7);
+L1581:         mfloat8 = RandomFloatInRange(-0.05000000074505806, 0.05000000074505806);
+L1619:         mVector2 = MakeVector(mfloat5, mfloat6, mfloat8);
+L1674:         BreakVector(mVector2, [ref] mfloat9, [ref] mfloat10, [ref] mfloat11);
+L1720:         float mfloat12 = Multiply_FloatFloat(mfloat10, -1);
+L1762:         Vector mVector3 = MakeVector(mfloat12, mfloat9, 0);
+L1813:         this->WindSideDir = mVector3;
+L1840:         int32 Temp_int_Variable = 0;
+L1863:         int32 mint322 = Divide_IntInt(this->mNumberOfWindOcclusionTraces, 2);
+L1905:         int32 mint323 = Subtract_IntInt(mint322, 1);
+L1947:         bool mbool2 = LessEqual_IntInt(Temp_int_Variable, mint323);
+L1985:         if (!mbool2) goto L5079;
+L1999:         ExecutionFlow.Push(L5094);
+L2004:         int32 mint324 = Add_IntInt(Temp_int_Variable, 1);
+L2046:         const TArray<uint8> mconst TArray<uint8> = [0];
+L2059:         PlayerCameraManager* mPlayerCameraManager = GameplayStatics->GetPlayerCameraManager(this, 0);
+L2107:         Vector mVector4 = mPlayerCameraManager->K2_GetActorLocation();
+L2157:         BreakVector(mVector4, [ref] mfloat13, [ref] mfloat14, [ref] mfloat15);
+L2203:         float mfloat16 = Add_FloatFloat(mfloat15, 0.07999999821186066);
+L2245:         Vector mVector5 = MakeVector(mfloat13, mfloat14, mfloat16);
+L2300:         float mfloat17 = Multiply_IntFloat(mint324, this->mWindOcclusionTraceSpread);
+L2346:         Vector mVector6 = Multiply_VectorFloat(this->WindSideDir, mfloat17);
+L2392:         Vector mVector7 = Add_VectorVector(this->WindDir, mVector6);
+L2438:         Vector mVector8 = Normal(mVector7, 0.00009999999747378752);
+L2480:         Vector mVector9 = Multiply_VectorFloat(mVector8, this->mWindOcclusionTraceDistance);
+L2526:         Vector mVector10 = Add_VectorVector(mVector5, mVector9);
+L2572:         bool mbool3 = KismetSystemLibrary->LineTraceSingleForObjects(this, mVector5, mVector10, [ref] mconst TArray<uint8>, false, [ref] Temp_object_Variable1, 0, [ref] mHitResult, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 1, B = 0.6550760269165039, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0.3459010124206543, B = 0, A = 1), 1);
+L2737:         GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool4, [ref] mbool5, [ref] mfloat18, [ref] mfloat19, [ref] mVector11, [ref] mVector12, [ref] mVector13, [ref] mVector14, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint325, [ref] mint326, [ref] mVector15, [ref] mVector16);
+L2922:         FString mFString = KismetSystemLibrary->GetDisplayName(mPhysicalMaterial);
+L2981:         bool mbool6 = KismetStringLibrary->EqualEqual_StrStr(mFString, "PhysMat_Rock");
+L3046:         if (!mbool6) goto L5168;
+L3060:         GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool4, [ref] mbool5, [ref] mfloat18, [ref] mfloat19, [ref] mVector11, [ref] mVector12, [ref] mVector13, [ref] mVector14, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint325, [ref] mint326, [ref] mVector15, [ref] mVector16);
+L3245:         Vector mVector17 = Subtract_VectorVector(mVector12, mVector15);
+L3291:         float mfloat20 = VSize(mVector17);
+L3328:         int32 mint327 = Divide_IntInt(100, this->mNumberOfWindOcclusionTraces);
+L3370:         float mfloat21 = Conv_IntToFloat(mint327);
+L3407:         float mfloat22 = MapRangeClamped(mfloat20, 100, 1500, 0, mfloat21);
+L3468:         float mfloat23 = Add_FloatFloat(this->mOcclusionValuePerTrace, mfloat22);
+L3514:         this->mOcclusionValuePerTrace = mfloat23;
+L3541:         mint324 = Add_IntInt(Temp_int_Variable, 1);
+L3583:         mPlayerCameraManager = GameplayStatics->GetPlayerCameraManager(this, 0);
+L3631:         mVector4 = mPlayerCameraManager->K2_GetActorLocation();
+L3681:         BreakVector(mVector4, [ref] mfloat13, [ref] mfloat14, [ref] mfloat15);
+L3727:         mfloat16 = Add_FloatFloat(mfloat15, 0.07999999821186066);
+L3769:         mVector5 = MakeVector(mfloat13, mfloat14, mfloat16);
+L3824:         mfloat17 = Multiply_IntFloat(mint324, this->mWindOcclusionTraceSpread);
+L3870:         const TArray<uint8> mconst TArray<uint8>1 = [0];
+L3883:         mVector6 = Multiply_VectorFloat(this->WindSideDir, mfloat17);
+L3929:         Vector mVector18 = Subtract_VectorVector(this->WindDir, mVector6);
+L3975:         Vector mVector19 = Normal(mVector18, 0.00009999999747378752);
+L4017:         Vector mVector20 = Multiply_VectorFloat(mVector19, this->mWindOcclusionTraceDistance);
+L4063:         Vector mVector21 = Add_VectorVector(mVector5, mVector20);
+L4109:         bool mbool7 = KismetSystemLibrary->LineTraceSingleForObjects(this, mVector5, mVector21, [ref] mconst TArray<uint8>1, false, [ref] Temp_object_Variable, 0, [ref] mHitResult1, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0.40088599920272827, G = 0, B = 1, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0.05176699906587601, A = 1), 1);
+L4274:         GameplayStatics->BreakHitResult([ref] mHitResult1, [ref] mbool8, [ref] mbool9, [ref] mfloat24, [ref] mfloat25, [ref] mVector22, [ref] mVector23, [ref] mVector24, [ref] mVector25, [ref] mPhysicalMaterial1, [ref] mActor1, [ref] mPrimitiveComponent1, [ref] mFName1, [ref] mint328, [ref] mint329, [ref] mVector26, [ref] mVector27);
+L4459:         FString mFString1 = KismetSystemLibrary->GetDisplayName(mPhysicalMaterial1);
+L4518:         bool mbool10 = KismetStringLibrary->EqualEqual_StrStr(mFString1, "PhysMat_Rock");
+L4583:         if (!mbool10) goto L5386;
+L4597:         GameplayStatics->BreakHitResult([ref] mHitResult1, [ref] mbool8, [ref] mbool9, [ref] mfloat24, [ref] mfloat25, [ref] mVector22, [ref] mVector23, [ref] mVector24, [ref] mVector25, [ref] mPhysicalMaterial1, [ref] mActor1, [ref] mPrimitiveComponent1, [ref] mFName1, [ref] mint328, [ref] mint329, [ref] mVector26, [ref] mVector27);
+L4782:         Vector mVector28 = Subtract_VectorVector(mVector23, mVector26);
+L4828:         float mfloat26 = VSize(mVector28);
+L4865:         int32 mint3210 = Divide_IntInt(100, this->mNumberOfWindOcclusionTraces);
+L4907:         float mfloat27 = Conv_IntToFloat(mint3210);
+L4944:         float mfloat28 = MapRangeClamped(mfloat26, 100, 1500, 0, mfloat27);
+L5005:         float mfloat29 = Add_FloatFloat(this->mOcclusionValuePerTrace, mfloat28);
+L5051:         this->mOcclusionValuePerTrace = mfloat29;
+L5078:         goto ExecutionFlow.Pop();
+L5079:         this->CalculateWindOcclusionEvent();
+L5093:         goto ExecutionFlow.Pop();
+L5094:         int32 mint3211 = Add_IntInt(Temp_int_Variable, 1);
+L5136:         Temp_int_Variable = mint3211;
+L5163:         goto L1863;
+L5168:         int32 mint3212 = Divide_IntInt(100, this->mNumberOfWindOcclusionTraces);
+L5210:         float mfloat30 = Conv_IntToFloat(mint3212);
+L5247:         float mfloat31 = MapRangeClamped(this->mWindOcclusionTraceDistance, 100, 1500, 0, mfloat30);
+L5308:         float mfloat32 = Add_FloatFloat(this->mOcclusionValuePerTrace, mfloat31);
+L5354:         this->mOcclusionValuePerTrace = mfloat32;
+L5381:         goto L3541;
+L5386:         int32 mint3213 = Divide_IntInt(100, this->mNumberOfWindOcclusionTraces);
+L5428:         float mfloat33 = Conv_IntToFloat(mint3213);
+L5465:         float mfloat34 = MapRangeClamped(this->mWindOcclusionTraceDistance, 100, 1500, 0, mfloat33);
+L5526:         float mfloat35 = Add_FloatFloat(this->mOcclusionValuePerTrace, mfloat34);
+L5572:         this->mOcclusionValuePerTrace = mfloat35;
+L5599:         goto ExecutionFlow.Pop();
+L5600:         this->OcclusionInterpAlpha->SetComponentTickInterval(0.10000000149011612);
+L5637:         TArray<BP_Sky_Sphere*> mTArray<BP_Sky_Sphere> = [];
+L5648:         GameplayStatics->GetAllActorsOfClass(this, BP_Sky_Sphere, [ref] mTArray<BP_Sky_Sphere>);
+L5699:         Temp_int_Loop_Counter_Variable = 0;
+L5722:         goto L385;
+L5727:         this->IsInDesertDune = true;
+L5738:         bool mbool11 = KismetSystemLibrary->IsValid(this->mGlobalPostProcess);
+L5789:         if (!mbool11) goto ExecutionFlow.Pop();
+L5799:         mWeightedBlendable.Weight = 1;
+L5831:         mWeightedBlendable.Object = this->mHeatHaze_Mat;
+L5859:         mWeightedBlendable1.Weight = 1;
+L5891:         mWeightedBlendable1.Object = this->mPPI_OutlineColored;
+L5919:         TArray<WeightedBlendable> mTArray<WeightedBlendable> = [mWeightedBlendable1, mWeightedBlendable];
+L5948:         mWeightedBlendables.Array = mTArray<WeightedBlendable>;
+L5984:         this->mGlobalPostProcess->Settings.WeightedBlendables = mWeightedBlendables;
+L6042:         this->mGlobalPostProcess->Settings = this->mGlobalPostProcess->Settings;
+L6113:         goto ExecutionFlow.Pop();
+L6114:         this->IsInDesertDune = false;
+L6125:         bool mbool12 = KismetSystemLibrary->IsValid(this->mGlobalPostProcess);
+L6176:         if (!mbool12) goto ExecutionFlow.Pop();
+L6186:         mWeightedBlendable2.Weight = 0;
+L6218:         mWeightedBlendable2.Object = this->mHeatHaze_Mat;
+L6246:         mWeightedBlendable1.Weight = 1;
+L6278:         mWeightedBlendable1.Object = this->mPPI_OutlineColored;
+L6306:         TArray<WeightedBlendable> mTArray<WeightedBlendable>1 = [mWeightedBlendable1, mWeightedBlendable2];
+L6335:         mWeightedBlendables1.Array = mTArray<WeightedBlendable>1;
+L6371:         this->mGlobalPostProcess->Settings.WeightedBlendables = mWeightedBlendables1;
+L6429:         this->mGlobalPostProcess->Settings = this->mGlobalPostProcess->Settings;
+L6500:         goto ExecutionFlow.Pop();
+L6501:         if (!this->IsInDesertDune) goto L5727;
+L6515:         goto ExecutionFlow.Pop();
+L6516:         if (!this->IsInDesertDune) goto ExecutionFlow.Pop();
+L6526:         goto L6114;
+L6531:         Vector mVector29 = MakeVector(0, 0, -2155);
+L6574:         Pawn* mPawn = GameplayStatics->GetPlayerPawn(this, 0);
+L6622:         Vector mVector30 = mPawn->K2_GetActorLocation();
+L6672:         Vector mVector31 = mPawn->GetActorForwardVector();
+L6722:         Vector mVector32 = Multiply_VectorFloat(mVector31, 25);
+L6764:         Vector mVector33 = Add_VectorVector(mVector30, mVector32);
+L6810:         Vector mVector34 = Add_VectorVector(mVector33, mVector29);
+L6856:         bool mbool13 = KismetSystemLibrary->LineTraceSingle(this, mVector33, mVector34, 0, false, [ref] Temp_object_Variable2, 0, [ref] mHitResult2, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 1, B = 0, A = 1), 5);
+L7014:         mPawn = GameplayStatics->GetPlayerPawn(this, 0);
+L7062:         Rotator mRotator = mPawn->K2_GetActorRotation();
+L7112:         BreakRotator(mRotator, [ref] mfloat36, [ref] mfloat37, [ref] mfloat38);
+L7158:         Rotator mRotator1 = MakeRotator(0, 0, mfloat38);
+L7205:         GameplayStatics->BreakHitResult([ref] mHitResult2, [ref] mbool14, [ref] mbool15, [ref] mfloat39, [ref] mfloat40, [ref] mVector35, [ref] mVector36, [ref] mVector37, [ref] mVector38, [ref] mPhysicalMaterial2, [ref] mActor2, [ref] mPrimitiveComponent2, [ref] mFName2, [ref] mint3214, [ref] mint3215, [ref] mVector39, [ref] mVector40);
+L7390:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, P_StarFishAmbient_01, mVector35, mRotator1, Vector(1, 1, 1), true, 0);
+L7476:         goto L853;
+L7481:         goto L5600;
+L7486:         this->OnEnteredMapArea(mTSubclassOf<FGMapArea>);
+L7505:         this->SetupMapAreaEffect(mTSubclassOf<FGMapArea>);
+L7528:         int32 mint3216 = KismetArrayLibrary->Array_Find([ref] this->mWindAreas, [ref] mTSubclassOf<FGMapArea>);
+L7596:         bool mbool16 = GreaterEqual_IntInt(mint3216, 0);
+L7630:         if (!mbool16) goto L6516;
+L7644:         goto L6501;
+L7649:         this->OnPawnChanged(mPawn1);
+L7668:         goto ExecutionFlow.Pop();
+L7669:         goto L15;
+L7674:         bool mbool17 = EqualEqual_FloatFloat(this->SetOcclusionValue, 0);
+L7708:         bool mbool18 = EqualEqual_FloatFloat(this->SetOcclusionValue, 100);
+L7742:         bool mbool19 = BooleanOR(mbool17, mbool18);
+L7780:         if (!mbool19) goto L7822;
+L7794:         this->SetOcclusionValue = this->mOcclusionValuePerTrace;
+L7821:         goto ExecutionFlow.Pop();
+L7822:         AkGameplayStatics->SetGlobalRTPCValue("RTPC_Occlusion", this->mOcclusionValuePerTrace, 0);
+L7881:         goto L7794;
+L7886:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_BP_ProximitySubsystem ==============

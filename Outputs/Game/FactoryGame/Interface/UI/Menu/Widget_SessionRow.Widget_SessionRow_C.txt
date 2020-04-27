@@ -1,0 +1,378 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_SessionRow.Widget_SessionRow_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetDisabled ==============
+L0:            HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           this->mTintBorder->SetContentColorAndOpacity(mLinearColor);
+============ END FUNCTION SetDisabled ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPointerVisibility ==============
+L0:            uint8 Temp_byte_Variable = 3;
+L20:           uint8 Temp_byte_Variable1 = 1;
+L40:           bool Temp_bool_Variable = this->isSelected;
+L59:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetPointerVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnButtonClicked ==============
+L0:            ExecutionFlow.Push(L1168);
+L5:            if (!this->isSelected) goto L247;
+L19:           this->isSelected = false;
+L30:           this->mLoadSessionWidget->mSavesContainer->ClearChildren();
+L88:           this->mLoadSessionWidget->mCurrentSession = ScriptStruct /Script/FactoryGame.SessionSaveStruct(SaveHeaders = StructProperty /Script/FactoryGame.SessionSaveStruct:SaveHeaders.SaveHeaders[] {[]});
+L156:          UMGSequencePlayer* mUMGSequencePlayer = this->mLoadSessionWidget->PlayAnimation(this->mLoadSessionWidget->ShowDeleteSessionButton, 0, 1, 1, 1);
+L246:          goto ExecutionFlow.Pop();
+L247:          this->isSelected = true;
+L258:          int32 Temp_int_Variable = 0;
+L281:          int32 mint32 = this->mLoadSessionWidget->mSessionVBox->GetChildrenCount();
+L353:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L391:          if (!mbool) goto L705;
+L405:          ExecutionFlow.Push(L1094);
+L410:          Widget* mWidget = this->mLoadSessionWidget->mSessionVBox->GetChildAt(Temp_int_Variable);
+L483:          bool mbool1 = NotEqual_ObjectObject(mWidget, this);
+L513:          if (!mbool1) goto ExecutionFlow.Pop();
+L523:          mWidget = this->mLoadSessionWidget->mSessionVBox->GetChildAt(Temp_int_Variable);
+L596:          Widget_SessionRow* mWidget_SessionRow = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_SessionRow.Widget_SessionRow_C>(mWidget);
+L632:          bool mbool2 = mWidget_SessionRow;
+L661:          if (!mbool2) goto ExecutionFlow.Pop();
+L671:          mWidget_SessionRow->isSelected = false;
+L704:          goto ExecutionFlow.Pop();
+L705:          this->mLoadSessionWidget->mCurrentSession = this->mSaveSession;
+L754:          this->mLoadSessionWidget->PopulateSavesFromSession(this->mSaveSession);
+L799:          this->mLoadSessionWidget->mSaves->OnSpawnAnim(nullptr);
+L858:          float mfloat = this->mLoadSessionWidget->DeleteSessionButton->GetRenderOpacity();
+L930:          bool mbool3 = Greater_FloatFloat(mfloat, 0);
+L964:          bool mbool4 = Not_PreBool(mbool3);
+L993:          if (!mbool4) goto ExecutionFlow.Pop();
+L1003:         UMGSequencePlayer* mUMGSequencePlayer1 = this->mLoadSessionWidget->PlayAnimation(this->mLoadSessionWidget->ShowDeleteSessionButton, 0, 1, 0, 1);
+L1093:         goto ExecutionFlow.Pop();
+L1094:         int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L1136:         Temp_int_Variable = mint321;
+L1163:         goto L281;
+============ END FUNCTION OnButtonClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetMostRecentSaveFromSession ==============
+L0:            KismetArrayLibrary->Array_Get([ref] this->mSaveSession.SaveHeaders, 0, [ref] mSaveHeader);
+L64:           FString mFString = FGSaveSession->GetSessionName([ref] mSaveHeader);
+L123:          int32 mint32 = KismetStringLibrary->Len(mFString);
+L182:          bool mbool = Greater_IntInt(mint32, 0);
+L216:          if (!mbool) goto L321;
+L230:          KismetArrayLibrary->Array_Get([ref] this->mSaveSession.SaveHeaders, 0, [ref] mSaveHeader);
+L294:          this->mRecentSave = mSaveHeader;
+============ END FUNCTION GetMostRecentSaveFromSession ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLastSaveTime ==============
+L0:            if (!this->mSetButtonInfoToCurrentSession) goto L153;
+L14:           DateTime mDateTime = Now();
+L42:           FText mFText = KismetTextLibrary->AsTimeZoneDateTime_DateTime([ref] mDateTime, "");
+L103:          this->mSaveTime->SetText(mFText);
+L148:          <End of Inlined Event Graph Function>;
+L153:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mSaveSession.SaveHeaders);
+L221:          bool mbool = Greater_IntInt(mint32, 0);
+L255:          if (!mbool) goto L503;
+L269:          KismetArrayLibrary->Array_Get([ref] this->mSaveSession.SaveHeaders, 0, [ref] mSaveHeader);
+L333:          DateTime mDateTime1 = FGSaveSession->GetSaveDateTime([ref] mSaveHeader);
+L392:          FText mFText1 = KismetTextLibrary->AsTimeZoneDateTime_DateTime([ref] mDateTime1, "");
+L453:          this->mSaveTime->SetText(mFText1);
+L498:          <End of Inlined Event Graph Function>;
+L503:          this->mSaveTime->SetText("[object Object]");
+============ END FUNCTION GetLastSaveTime ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSessionName ==============
+L0:            if (!this->mSetButtonInfoToCurrentSession) goto L281;
+L14:           GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L57:           FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
+L93:           bool mbool = mFGGameState;
+L122:          FString mFString = mFGGameState->GetSessionName();
+L172:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L231:          this->mTitle->SetText(mFText);
+L276:          <End of Inlined Event Graph Function>;
+L281:          FString mFString1 = FGSaveSession->GetSaveSessionName([ref] this->mSaveSession);
+L340:          FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString1);
+L399:          this->mTitle->SetText(mFText1);
+============ END FUNCTION GetSessionName ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLastSaveName ==============
+L0:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mSaveSession.SaveHeaders);
+L68:           bool mbool = Greater_IntInt(mint32, 0);
+L102:          if (!mbool) goto L348;
+L116:          KismetArrayLibrary->Array_Get([ref] this->mSaveSession.SaveHeaders, 0, [ref] mSaveHeader);
+L180:          FString mFString = FGSaveSession->GetName([ref] mSaveHeader);
+L239:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L298:          this->mLastSaveName->SetText(mFText);
+L343:          <End of Inlined Event Graph Function>;
+L348:          this->mLastSaveName->SetText("[object Object]");
+============ END FUNCTION GetLastSaveName ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateSavesFromSession ==============
+L0:            ExecutionFlow.Push(L684);
+L5:            this->mLoadSessionWidget->mSavesContainer->ClearChildren();
+L63:           int32 Temp_int_Loop_Counter_Variable = 0;
+L86:           int32 Temp_int_Array_Index_Variable = 0;
+L109:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] session.SaveHeaders);
+L177:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L215:          if (!mbool) goto ExecutionFlow.Pop();
+L225:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L252:          ExecutionFlow.Push(L610);
+L257:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L281:          Widget_SessionSaveRow* mWidget_SessionSaveRow = WidgetBlueprintLibrary->Create(this, Widget_SessionSaveRow, mPlayerController);
+L342:          KismetArrayLibrary->Array_Get([ref] session.SaveHeaders, Temp_int_Array_Index_Variable, [ref] mSaveHeader);
+L410:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_SessionSaveRow, "mSaveHeader", [ref] mSaveHeader);
+L473:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_SessionSaveRow, "LoadSessionWidget", this->mLoadSessionWidget);
+L536:          PanelSlot* mPanelSlot = this->mLoadSessionWidget->mSavesContainer->AddChild(mWidget_SessionSaveRow);
+L609:          goto ExecutionFlow.Pop();
+L610:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L652:          Temp_int_Loop_Counter_Variable = mint321;
+L679:          goto L109;
+============ END FUNCTION PopulateSavesFromSession ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFocusReceived ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           this->mSessionRowButton->SetUserFocus(mPlayerController);
+L65:           EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L115:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnFocusReceived ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSaveTextColor ==============
+L0:            HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           bool Temp_bool_Variable = this->isSelected;
+L74:           HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L129:          bool mbool = this->mSessionRowButton->IsHovered();
+L175:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor2, [ref] mLinearColor2);
+L230:          bool Temp_bool_Variable1 = mbool;
+L249:          SlateColor ReturnValue = switch (Temp_bool_Variable1) {
+case false -> switch (Temp_bool_Variable) {
+case false -> mSlateColor;
+case true -> mSlateColor1;
+default -> mSlateColor4;
+};
+case true -> mSlateColor2;
+default -> mSlateColor3;
+};
+============ END FUNCTION GetSaveTextColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIconColor ==============
+L0:            HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor1, [ref] mSlateColor1);
+L110:          bool mbool = this->mSessionRowButton->IsHovered();
+L156:          LinearColor mLinearColor2 = SelectColor(mLinearColor1, mLinearColor, mbool);
+L211:          LinearColor ReturnValue = mLinearColor2;
+============ END FUNCTION GetIconColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonHoverColor ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mLoadSessionWidget);
+L51:           if (!mbool) goto L626;
+L65:           FString mFString = FGSaveSession->GetSaveSessionName([ref] this->mLoadSessionWidget->mCurrentSession);
+L146:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L201:          FString mFString1 = FGSaveSession->GetSaveSessionName([ref] this->mSaveSession);
+L260:          bool mbool1 = KismetStringLibrary->EqualEqual_StrStr(mFString, mFString1);
+L320:          bool mbool2 = this->mSessionRowButton->IsHovered();
+L366:          bool mbool3 = BooleanOR(mbool1, this->isSelected);
+L404:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor1, [ref] mSlateColor1);
+L459:          LinearColor mLinearColor2 = SelectColor(mLinearColor, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0), mbool3);
+L539:          LinearColor mLinearColor3 = SelectColor(mLinearColor1, mLinearColor2, mbool2);
+L594:          LinearColor ReturnValue = mLinearColor3;
+L621:          goto L823;
+L626:          LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L678:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor2, [ref] mLinearColor4);
+L733:          bool Temp_bool_Variable = this->isSelected;
+L752:          ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable;
+case true -> mLinearColor4;
+default -> mLinearColor5;
+};
+============ END FUNCTION GetButtonHoverColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_120_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SessionRow(290);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_120_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSessionRowButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SessionRow(430);
+============ END FUNCTION BndEvt__mSessionRowButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SessionRow(558);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SessionRow.Widget_SessionRow_C:ExecuteUbergraph_Widget_SessionRow.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_SessionRow(563);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mLoadButton_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SessionRow(610);
+============ END FUNCTION BndEvt__mLoadButton_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mDeleteSessionButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SessionRow(615);
+============ END FUNCTION BndEvt__mDeleteSessionButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ConfirmDeleteSessionPopUp ==============
+L0:            this->ExecuteUbergraph_Widget_SessionRow(634);
+============ END FUNCTION ConfirmDeleteSessionPopUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION Event DeleteSession ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SessionRow.Widget_SessionRow_C:ExecuteUbergraph_Widget_SessionRow.K2Node_CustomEvent_confirmed) = confirmed;
+L18:           this->ExecuteUbergraph_Widget_SessionRow(929);
+============ END FUNCTION Event DeleteSession ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSessionRowButton_K2Node_ComponentBoundEvent_3_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SessionRow(1333);
+============ END FUNCTION BndEvt__mSessionRowButton_K2Node_ComponentBoundEvent_3_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDeleteSessionDone ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SessionRow.Widget_SessionRow_C:ExecuteUbergraph_Widget_SessionRow.K2Node_CustomEvent_success) = success;
+L18:           this->ExecuteUbergraph_Widget_SessionRow(10);
+============ END FUNCTION OnDeleteSessionDone ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SessionRow ==============
+L10:           this->mLoadSessionWidget->PopulateSessionList();
+L46:           <End of Inlined Event Graph Function>;
+L51:           bool mbool = KismetSystemLibrary->IsValid(this->mLoadSessionWidget);
+L102:          if (!mbool) goto L269;
+L116:          uint8 Temp_byte_Variable = 2;
+L136:          bool Temp_bool_Variable = this->isSelected;
+L155:          uint8 Temp_byte_Variable1 = 0;
+L175:          this->mLoadDelBox->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L264:          <End of Inlined Event Graph Function>;
+L269:          this->SetVisibility(3);
+L285:          goto L116;
+L290:          this->OnButtonClicked();
+L304:          this->mLoadSessionWidget->HideLoadAndDeleteButtons();
+L340:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L364:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Click, mPlayerController, true);
+L425:          <End of Inlined Event Graph Function>;
+L430:          this->mLoadDelBox->SetVisibility(0);
+L468:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L492:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_MouseOver, mPlayerController1, true);
+L553:          <End of Inlined Event Graph Function>;
+L558:          goto L51;
+L563:          this->GetLastSaveName();
+L577:          this->GetSessionName();
+L591:          this->GetLastSaveTime();
+L605:          <End of Inlined Event Graph Function>;
+L610:          <End of Inlined Event Graph Function>;
+L615:          this->ConfirmDeleteSessionPopUp();
+L629:          <End of Inlined Event Graph Function>;
+L634:          mFScriptDelegate->BindUFunction(this, Event DeleteSession);
+L657:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L681:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", "[object Object]", [ref] mFScriptDelegate, 1, nullptr, nullptr);
+L924:          <End of Inlined Event Graph Function>;
+L929:          if (!mbool1) goto L1414;
+L943:          this->mLoadSessionWidget->mOwningMenu->RestoreFocusOnPopupClosed(false);
+L1002:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L1026:         FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController3);
+L1062:         bool mbool2 = mFGPlayerControllerBase;
+L1091:         if (!mbool2) goto L1414;
+L1105:         FGAdminInterface* mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L1147:         bool mbool3 = KismetSystemLibrary->IsValid(mFGAdminInterface);
+L1198:         if (!mbool3) goto L1414;
+L1212:         mFScriptDelegate1->BindUFunction(this, OnDeleteSessionDone);
+L1235:         mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L1277:         mFGAdminInterface->DeleteSaveSession(false, [ref] this->mSaveSession, mFScriptDelegate1);
+L1328:         <End of Inlined Event Graph Function>;
+L1333:         bool mbool4 = Not_PreBool(this->isSelected);
+L1362:         if (!mbool4) goto L1414;
+L1376:         this->mLoadDelBox->SetVisibility(2);
+============ END FUNCTION ExecuteUbergraph_Widget_SessionRow ==============

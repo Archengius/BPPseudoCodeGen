@@ -1,0 +1,154 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Compass/Widget_CompassObjectResource.Widget_CompassObjectResource_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetText_0 ==============
+L0:            FGActorRepresentation* mFGActorRepresentation = this->GetActorRepresentation();
+L20:           bool mbool = KismetSystemLibrary->IsValid(mFGActorRepresentation);
+L71:           if (!mbool) goto L764;
+L85:           Pawn* mPawn = GameplayStatics->GetPlayerPawn(this, 0);
+L133:          mFGActorRepresentation = this->GetActorRepresentation();
+L153:          Vector mVector = mPawn->K2_GetActorLocation();
+L203:          Vector mVector1 = mFGActorRepresentation->GetActorLocation();
+L253:          Vector mVector2 = Subtract_VectorVector(mVector1, mVector);
+L299:          float mfloat = VSize(mVector2);
+L336:          float mfloat1 = Divide_FloatFloat(mfloat, 100);
+L378:          int32 mint32 = FTrunc(mfloat1);
+L415:          mFormatArgumentData.ArgumentName = "Distance";
+L452:          mFormatArgumentData.ArgumentValueType = 0;
+L481:          mFormatArgumentData.ArgumentValue = ;
+L510:          mFormatArgumentData.ArgumentValueInt = mint32;
+L546:          mFormatArgumentData.ArgumentValueFloat = 0;
+L578:          mFormatArgumentData.ArgumentValueGender = 0;
+L607:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L627:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L737:          FText ReturnValue = mFText;
+============ END FUNCTION GetText_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCompassObjectAddedToPanel ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Compass/Widget_CompassObjectResource.Widget_CompassObjectResource_C:ExecuteUbergraph_Widget_CompassObjectResource.K2Node_Event_parentSlot) = parentSlot;
+L18:           this->ExecuteUbergraph_Widget_CompassObjectResource(15);
+============ END FUNCTION OnCompassObjectAddedToPanel ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_CompassObjectResource(2036);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCompassObjectUpdated ==============
+L0:            this->ExecuteUbergraph_Widget_CompassObjectResource(2093);
+============ END FUNCTION OnCompassObjectUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Compass/Widget_CompassObjectResource.Widget_CompassObjectResource_C:ExecuteUbergraph_Widget_CompassObjectResource.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Compass/Widget_CompassObjectResource.Widget_CompassObjectResource_C:ExecuteUbergraph_Widget_CompassObjectResource.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_CompassObjectResource(2150);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnObjectCentered ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Compass/Widget_CompassObjectResource.Widget_CompassObjectResource_C:ExecuteUbergraph_Widget_CompassObjectResource.K2Node_Event_centered) = centered;
+L18:           this->ExecuteUbergraph_Widget_CompassObjectResource(2155);
+============ END FUNCTION OnObjectCentered ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_CompassObjectResource ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->OnCompassObjectAddedToPanel(mCanvasPanelSlot);
+L34:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->NewAnimation_1, 0, 1, 0, 1);
+L80:           mCanvasPanelSlot->SetAutoSize(false);
+L113:          mCanvasPanelSlot->SetSize(ScriptStruct /Script/CoreUObject.Vector2D(X = 50, Y = 50));
+L169:          goto ExecutionFlow.Pop();
+L170:          float mfloat = this->GetAlphaAmount();
+L198:          this->mTextAlpha = mfloat;
+L225:          goto ExecutionFlow.Pop();
+L226:          if (!this->mIsBlocking) goto L397;
+L240:          this->mDistanceText->SetOpacity(this->mTextAlpha);
+L281:          float mfloat1 = Multiply_FloatFloat(mfloat2, 5);
+L323:          float mfloat3 = Subtract_FloatFloat(this->mTextAlpha, mfloat1);
+L369:          this->mTextAlpha = mfloat3;
+L396:          goto ExecutionFlow.Pop();
+L397:          mfloat = this->GetAlphaAmount();
+L425:          this->mDistanceText->SetOpacity(mfloat);
+L466:          goto L170;
+L471:          ExecutionFlow.Push(L1958);
+L476:          ExecutionFlow.Push(L226);
+L481:          Pawn* mPawn = GameplayStatics->GetPlayerPawn(this, 0);
+L529:          Vector mVector = mPawn->K2_GetActorLocation();
+L579:          float mfloat4 = FClamp(this->minIconSize, 0, 1);
+L626:          float mfloat5 = Subtract_FloatFloat(mfloat4, 1);
+L668:          float mfloat6 = FClamp(this->maxIconSize, 0, 1);
+L715:          float mfloat7 = Abs(mfloat5);
+L752:          float mfloat8 = Subtract_FloatFloat(mfloat6, 1);
+L794:          float mfloat9 = Abs(mfloat8);
+L831:          Vector mVector1 = this->mActorRepresentation->GetActorLocation();
+L881:          Vector mVector2 = Subtract_VectorVector(mVector1, mVector);
+L927:          float mfloat10 = VSize(mVector2);
+L964:          float mfloat11 = NormalizeToRange(mfloat10, this->MinRangeFromTarget, this->MaxRangeFromTarget);
+L1019:         float mfloat12 = FClamp(mfloat11, mfloat9, mfloat7);
+L1074:         float mfloat13 = Subtract_FloatFloat(mfloat12, 1);
+L1116:         float mfloat14 = Abs(mfloat13);
+L1153:         Vector2D mVector2D = MakeVector2D(mfloat14, mfloat14);
+L1199:         this->mImage->SetRenderScale(mVector2D);
+L1240:         mPawn = GameplayStatics->GetPlayerPawn(this, 0);
+L1288:         mVector = mPawn->K2_GetActorLocation();
+L1338:         mfloat4 = FClamp(this->minIconSize, 0, 1);
+L1385:         mfloat5 = Subtract_FloatFloat(mfloat4, 1);
+L1427:         mfloat6 = FClamp(this->maxIconSize, 0, 1);
+L1474:         mfloat7 = Abs(mfloat5);
+L1511:         mfloat8 = Subtract_FloatFloat(mfloat6, 1);
+L1553:         mfloat9 = Abs(mfloat8);
+L1590:         mVector1 = this->mActorRepresentation->GetActorLocation();
+L1640:         mVector2 = Subtract_VectorVector(mVector1, mVector);
+L1686:         mfloat10 = VSize(mVector2);
+L1723:         mfloat11 = NormalizeToRange(mfloat10, this->MinRangeFromTarget, this->MaxRangeFromTarget);
+L1778:         mfloat12 = FClamp(mfloat11, mfloat9, mfloat7);
+L1833:         mfloat13 = Subtract_FloatFloat(mfloat12, 1);
+L1875:         mfloat14 = Abs(mfloat13);
+L1912:         this->Widget_MapCompass_Icon->SetScale(mfloat14);
+L1957:         goto ExecutionFlow.Pop();
+L1958:         FText mFText = this->GetText_0();
+L1990:         this->Widget_MapCompass_Icon->SetDescription(mFText);
+L2035:         goto ExecutionFlow.Pop();
+L2036:         this->Construct();
+L2046:         this->Widget_MapCompass_Icon->UpdateActor(this->mActorRepresentation, true);
+L2092:         goto ExecutionFlow.Pop();
+L2093:         this->OnCompassObjectUpdated();
+L2103:         this->Widget_MapCompass_Icon->UpdateActor(this->mActorRepresentation, true);
+L2149:         goto ExecutionFlow.Pop();
+L2150:         goto L471;
+L2155:         uint8 Temp_byte_Variable = 1;
+L2175:         uint8 Temp_byte_Variable1 = 0;
+L2195:         bool Temp_bool_Variable = mbool;
+L2214:         UMGSequencePlayer* mUMGSequencePlayer1 = this->Widget_MapCompass_Icon->PlayAnimation(this->Widget_MapCompass_Icon->ShowDescription, 0, 1, switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+}, 1);
+L2355:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_CompassObjectResource ==============

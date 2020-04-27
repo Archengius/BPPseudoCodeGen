@@ -1,0 +1,195 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_Popup.Widget_Popup_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CancelClicked ==============
+L0:            this->DoClosePopup(false);
+============ END FUNCTION CancelClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OkClicked ==============
+L0:            this->DoClosePopup(true);
+============ END FUNCTION OkClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckButtonState ==============
+L0:            if (!this->mIsContentContainerType) goto L74;
+L14:           bool mbool = this->Widget_PopupContent->GetShouldOkayBeEnabled();
+L60:           if (!mbool) goto L135;
+L74:           bool mbool1 = this->mConfrimButton->GetIsEnabled();
+L116:          if (!mbool1) goto L233;
+L130:          <End of Inlined Event Graph Function>;
+L135:          mbool1 = this->mConfrimButton->GetIsEnabled();
+L177:          if (!mbool1) goto L270;
+L191:          this->mConfrimButton->SetIsEnabled(false);
+L228:          <End of Inlined Event Graph Function>;
+L233:          this->mConfrimButton->SetIsEnabled(true);
+============ END FUNCTION CheckButtonState ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyUp ==============
+L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Escape"));
+L137:          if (!mbool) goto L248;
+L151:          this->DoClosePopup(false);
+L166:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L216:          EventReply ReturnValue = mEventReply;
+L243:          goto L325;
+L248:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L298:          ReturnValue = mEventReply1;
+============ END FUNCTION OnKeyUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION DoClosePopup ==============
+L0:            if (!this->mIsContentContainerType) goto L50;
+L14:           this->Widget_PopupContent->NotifyPopupConfirmed();
+L50:           this->mPopupWasConfirmed = ConfirmClicked;
+L69:           this->CallPopupClosedClicked(ConfirmClicked);
+L88:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L112:          HUD* mHUD = mPlayerController->GetHUD();
+L154:          FGHUDBase* mFGHUDBase = Cast<Class /Script/FactoryGame.FGHUDBase>(mHUD);
+L190:          bool mbool = mFGHUDBase;
+L219:          if (!mbool) goto L311;
+L233:          FGBaseUI* mFGBaseUI = mFGHUDBase->GetBaseUI();
+L275:          mFGBaseUI->ClosePopup();
+============ END FUNCTION DoClosePopup ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_Popup(2477);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Popup(2457);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_Popup.Widget_Popup_C:ExecuteUbergraph_Widget_Popup.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Widget_Popup.Widget_Popup_C:ExecuteUbergraph_Widget_Popup.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_Popup(1980);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Popup(2284);
+============ END FUNCTION BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Popup ==============
+L10:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L34:           Widget_StandardButton* mWidget_StandardButton = WidgetBlueprintLibrary->Create(this, Widget_StandardButton, mPlayerController);
+L95:           const FText Temp_text_Variable = "[object Object]";
+L159:          KismetSystemLibrary->SetTextPropertyByName(mWidget_StandardButton, "mText", [ref] Temp_text_Variable);
+L222:          mSlateBrush.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 20, Y = 20);
+L273:          mSlateBrush.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
+L334:          mSlateBrush.TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0);
+L411:          mSlateBrush.ResourceObject = Cross;
+L439:          mSlateBrush.DrawAs = 3;
+L468:          mSlateBrush.Tiling = 0;
+L497:          mSlateBrush.Mirroring = 0;
+L526:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_StandardButton, "mIconBrush", [ref] mSlateBrush);
+L589:          HorizontalBoxSlot* mHorizontalBoxSlot = this->mButtonBox->AddChildToHorizontalBox(mWidget_StandardButton);
+L640:          mFScriptDelegate->BindUFunction(this, CancelClicked);
+L663:          mWidget_StandardButton->OnClicked.AddUnique(mFScriptDelegate);
+L704:          <End of Inlined Event Graph Function>;
+L709:          OverlaySlot* mOverlaySlot = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mConfrimButton);
+L760:          mOverlaySlot->SetHorizontalAlignment(2);
+L794:          <End of Inlined Event Graph Function>;
+L799:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L823:          Widget_PopupDefaultText* mWidget_PopupDefaultText = WidgetBlueprintLibrary->Create(this, Widget_PopupDefaultText, mPlayerController1);
+L884:          KismetSystemLibrary->SetTextPropertyByName(mWidget_PopupDefaultText, "mBody", [ref] this->mPopupData.Body);
+L956:          PanelSlot* mPanelSlot = this->mSlot->AddChild(mWidget_PopupDefaultText);
+L1007:         this->Widget_Window_DarkMode->SetTitle(this->mPopupData.Title);
+L1061:         mFScriptDelegate1->BindUFunction(this, CancelClicked);
+L1084:         this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate1);
+L1125:         bool mbool = NotEqual_ByteByte(this->mPopupData.ID, 0);
+L1165:         if (!mbool) goto L1292;
+L1179:         mbool = NotEqual_ByteByte(this->mPopupData.ID, 1);
+L1219:         if (!mbool) goto L10;
+L1233:         mbool = NotEqual_ByteByte(this->mPopupData.ID, 2);
+L1273:         if (!mbool) goto L1351;
+L1287:         <End of Inlined Event Graph Function>;
+L1292:         this->mConfrimButton->mButton->SetKeyboardFocus();
+L1346:         goto L709;
+L1351:         this->mButtonBox->SetVisibility(1);
+L1389:         <End of Inlined Event Graph Function>;
+L1394:         this->mInstigator = this->mPopupData.Instigator;
+L1422:         bool mbool1 = ClassIsChildOf(this->mPopupData.PopupClass, UserWidget);
+L1469:         if (!mbool1) goto L1964;
+L1483:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1507:         UserWidget* mUserWidget = WidgetBlueprintLibrary->Create(this, this->mPopupData.PopupClass, mPlayerController2);
+L1577:         FGPopupWidgetContent* mFGPopupWidgetContent = Cast<Class /Script/FactoryGame.FGPopupWidgetContent>(mUserWidget);
+L1613:         bool mbool2 = mFGPopupWidgetContent;
+L1642:         if (!mbool2) goto L1948;
+L1656:         this->Widget_PopupContent = mFGPopupWidgetContent;
+L1675:         this->mIsContentContainerType = true;
+L1686:         mFGPopupWidgetContent->mPopupWidget = this;
+L1719:         bool mbool3 = KismetSystemLibrary->IsValid(this->mInstigator);
+L1770:         if (!mbool3) goto L1892;
+L1784:         mFGPopupWidgetContent->SetOptionalTextElements([ref] this->mPopupData.Body, [ref] this->mDefaultDesc);
+L1847:         mFGPopupWidgetContent->SetInstigatorAndInitialize(this->mInstigator);
+L1892:         PanelSlot* mPanelSlot1 = this->mSlot->AddChild(mUserWidget);
+L1943:         goto L1007;
+L1948:         this->mIsContentContainerType = false;
+L1959:         goto L1892;
+L1964:         this->mIsContentContainerType = false;
+L1975:         goto L799;
+L1980:         this->Tick(mGeometry, mfloat);
+L2008:         this->CheckButtonState();
+L2022:         bool mbool4 = this->HasFocusedDescendants();
+L2042:         bool mbool5 = Not_PreBool(mbool4);
+L2071:         Widget* mWidget = this->GetDefaultFocusWidget();
+L2091:         bool mbool6 = KismetSystemLibrary->IsValid(mWidget);
+L2142:         bool mbool7 = BooleanAND(mbool5, mbool6);
+L2180:         if (!mbool7) goto L2482;
+L2194:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L2218:         Widget* mWidget1 = this->GetDefaultFocusWidget();
+L2238:         mWidget1->SetUserFocus(mPlayerController3);
+L2279:         <End of Inlined Event Graph Function>;
+L2284:         this->DoClosePopup(true);
+L2299:         <End of Inlined Event Graph Function>;
+L2304:         this->SetDefaultFocusWidget(this->mConfrimButton->mButton);
+L2345:         <End of Inlined Event Graph Function>;
+L2350:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
+L2374:         this->mConfrimButton->mButton->SetUserFocus(mPlayerController4);
+L2437:         goto L2304;
+L2442:         this->Construct();
+L2452:         goto L1394;
+L2457:         goto L2442;
+L2462:         this->Init();
+L2472:         goto L2350;
+L2477:         goto L2462;
+============ END FUNCTION ExecuteUbergraph_Widget_Popup ==============

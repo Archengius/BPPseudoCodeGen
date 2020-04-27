@@ -1,0 +1,54 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTS_IsVehicleStuck.BTS_IsVehicleStuck_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTickAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTS_IsVehicleStuck.BTS_IsVehicleStuck_C:ExecuteUbergraph_BTS_IsVehicleStuck.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTS_IsVehicleStuck.BTS_IsVehicleStuck_C:ExecuteUbergraph_BTS_IsVehicleStuck.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTS_IsVehicleStuck.BTS_IsVehicleStuck_C:ExecuteUbergraph_BTS_IsVehicleStuck.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L54:           this->ExecuteUbergraph_BTS_IsVehicleStuck(205);
+============ END FUNCTION ReceiveTickAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTS_IsVehicleStuck ==============
+L10:           this->mTimeSpentStuck = 0;
+L33:           BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->IsStuckKey, false);
+L76:           <End of Inlined Event Graph Function>;
+L81:           BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->IsStuckKey, true);
+L124:          this->mTimeSpentStuck = 0;
+L147:          <End of Inlined Event Graph Function>;
+L152:          bool mbool = Greater_FloatFloat(this->mTimeSpentStuck, 4);
+L186:          if (!mbool) goto L33;
+L200:          goto L81;
+L205:          BP_WheeledVehicle* mBP_WheeledVehicle = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C>(mPawn);
+L241:          bool mbool1 = mBP_WheeledVehicle;
+L270:          if (!mbool1) goto L1117;
+L284:          bool mbool2 = BTFunctionLibrary->GetBlackboardValueAsBool(this, [ref] this->IsStuckKey);
+L336:          bool mbool3 = Not_PreBool(mbool2);
+L365:          bool mbool4 = Greater_IntInt(mBP_WheeledVehicle->mSpeedLimit, 0);
+L421:          bool mbool5 = mBP_WheeledVehicle->IsSimulated();
+L463:          mBP_WheeledVehicle->canMove([ref] mbool6);
+L508:          bool mbool7 = Not_PreBool(mbool5);
+L537:          bool mbool8 = BooleanAND(mBP_WheeledVehicle->mIsAtStation, mbool4);
+L597:          bool mbool9 = Greater_IntInt(mBP_WheeledVehicle->mSpeedLimit, 0);
+L653:          bool mbool10 = Not_PreBool(mBP_WheeledVehicle->mIsAtStation);
+L704:          bool mbool11 = BooleanOR(mbool10, mbool8);
+L742:          int32 mint32 = Abs_Int(mBP_WheeledVehicle->mSpeedInKMH);
+L801:          bool mbool12 = LessEqual_IntInt(mint32, 2);
+L835:          bool mbool13 = BooleanAND(mbool7, mbool12);
+L873:          bool mbool14 = BooleanAND(mbool13, mbool9);
+L911:          bool mbool15 = BooleanAND(mbool14, mbool3);
+L949:          bool mbool16 = BooleanAND(mbool15, mbool11);
+L987:          bool mbool17 = BooleanAND(mbool16, mbool6);
+L1025:         if (!mbool17) goto L10;
+L1039:         float mfloat = Add_FloatFloat(mfloat1, this->mTimeSpentStuck);
+L1085:         this->mTimeSpentStuck = mfloat;
+L1112:         goto L152;
+============ END FUNCTION ExecuteUbergraph_BTS_IsVehicleStuck ==============

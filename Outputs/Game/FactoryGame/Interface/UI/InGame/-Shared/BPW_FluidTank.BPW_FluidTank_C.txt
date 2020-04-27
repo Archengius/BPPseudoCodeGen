@@ -1,0 +1,89 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/BPW_FluidTank.BPW_FluidTank_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetAliasingDensity ==============
+L0:            this->mAliasingDensity = Value;
+L27:           MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mRetainBox->GetEffectMaterial();
+L69:           mMaterialInstanceDynamic->SetScalarParameterValue("AliasingDensity", this->mAliasingDensity);
+============ END FUNCTION SetAliasingDensity ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetFluidFilledOffset ==============
+L0:            this->mFluidFilledOffset = mFluidFilledOffset;
+L27:           Vector2D mVector2D = MakeVector2D(1, this->mFluidFilledOffset);
+L69:           this->mFluidFilled->SetRenderScale(mVector2D);
+============ END FUNCTION SetFluidFilledOffset ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTankValue ==============
+L0:            this->mCurrentValue = Value;
+L27:           MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mRetainBox->GetEffectMaterial();
+L69:           bool mbool = KismetSystemLibrary->IsValid(mMaterialInstanceDynamic);
+L120:          if (!mbool) goto L837;
+L134:          MaterialInstanceDynamic* mMaterialInstanceDynamic1 = this->mRetainBox->GetEffectMaterial();
+L176:          MaterialInstanceDynamic* EffectMaterial = mMaterialInstanceDynamic1;
+L195:          EffectMaterial->SetScalarParameterValue("FillAmount", this->mCurrentValue);
+L249:          float mfloat = Multiply_FloatFloat(this->mCurrentValue, 2);
+L291:          float mfloat1 = Subtract_FloatFloat(2, mfloat);
+L333:          bool mbool1 = Greater_FloatFloat(mfloat, 1);
+L367:          bool Temp_bool_Variable = mbool1;
+L386:          float mfloat2 = Ease(0, 1, switch (Temp_bool_Variable) {
+case false -> mfloat;
+case true -> mfloat1;
+default -> mfloat3;
+}, 12, 2, 2);
+L489:          EffectMaterial->SetScalarParameterValue("XScale", mfloat2);
+L543:          mfloat = Multiply_FloatFloat(this->mCurrentValue, 2);
+L585:          mfloat1 = Subtract_FloatFloat(2, mfloat);
+L627:          mbool1 = Greater_FloatFloat(mfloat, 1);
+L661:          Temp_bool_Variable = mbool1;
+L680:          float mfloat4 = Ease(0.10000000149011612, 1, switch (Temp_bool_Variable) {
+case false -> mfloat;
+case true -> mfloat1;
+default -> mfloat3;
+}, 12, 2, 2);
+L783:          EffectMaterial->SetScalarParameterValue("YScale", mfloat4);
+============ END FUNCTION UpdateTankValue ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetTint ==============
+L0:            this->mTint = Tint;
+L27:           MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mRetainBox->GetEffectMaterial();
+L69:           mMaterialInstanceDynamic->SetVectorParameterValue("Tint", this->mTint);
+L123:          this->mFluidFilled->SetColorAndOpacity(this->mTint);
+============ END FUNCTION SetTint ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/BPW_FluidTank.BPW_FluidTank_C:ExecuteUbergraph_BPW_FluidTank.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_BPW_FluidTank(38);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_FluidTank ==============
+L10:           this->SetAliasingDensity(this->mAliasingDensity);
+L33:           <End of Inlined Event Graph Function>;
+L38:           this->SetTint(this->mTint);
+L61:           this->SetFluidFilledOffset(this->mFluidFilledOffset);
+L84:           goto L10;
+============ END FUNCTION ExecuteUbergraph_BPW_FluidTank ==============

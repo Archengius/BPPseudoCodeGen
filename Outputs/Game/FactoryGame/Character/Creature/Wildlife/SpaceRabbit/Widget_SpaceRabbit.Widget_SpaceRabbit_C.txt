@@ -1,0 +1,81 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Widget_SpaceRabbit.Widget_SpaceRabbit_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION DropInventorySlotStack ==============
+L0:            this->DropInventoryStackOnInventoryWidget(InventorySlot, this->mInventoryUI, [ref] mbool);
+L41:           bool WasStackMoved = mbool;
+============ END FUNCTION DropInventorySlotStack ==============
+
+
+
+
+
+============ BEGIN FUNCTION Cleanup ==============
+L0:            this->Widget_Window_DarkMode->OnClose->Clear();
+============ END FUNCTION Cleanup ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceRabbit(10);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceRabbit(1034);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceRabbit(1049);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SpaceRabbit ==============
+L10:           this->Init();
+L20:           Actor* mActor = Cast<Class /Script/Engine.Actor>(this->mInteractObject);
+L56:           bool mbool = mActor;
+L85:           bool mbool1 = KismetSystemLibrary->IsValid(mActor);
+L136:          FGInventoryComponent* mFGInventoryComponent = mActor->GetComponentByClass(FGInventoryComponent);
+L187:          bool mbool2 = KismetSystemLibrary->IsValid(mFGInventoryComponent);
+L238:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L276:          if (!mbool3) goto L890;
+L290:          mActor = Cast<Class /Script/Engine.Actor>(this->mInteractObject);
+L326:          mbool = mActor;
+L355:          mFGInventoryComponent = mActor->GetComponentByClass(FGInventoryComponent);
+L406:          this->mInventoryUI->Init(mFGInventoryComponent);
+L451:          mFScriptDelegate->BindUFunction(this, OnEscapePressed);
+L474:          this->Widget_Window_DarkMode->OnClose.Remove(mFScriptDelegate);
+L515:          int32 Temp_int_Variable = 0;
+L538:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mInventoryUI->mInventorySlots);
+L619:          bool mbool4 = Less_IntInt(Temp_int_Variable, mint32);
+L657:          if (!mbool4) goto L1073;
+L671:          KismetArrayLibrary->Array_Get([ref] this->mInventoryUI->mInventorySlots, Temp_int_Variable, [ref] mWidget_InventorySlot);
+L752:          mFScriptDelegate1->BindUFunction(this, OnInventorySlotStackMove);
+L775:          mWidget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate1);
+L816:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L858:          Temp_int_Variable = mint321;
+L885:          goto L538;
+L890:          KismetSystemLibrary->PrintString(this, "Error::Invalid input class in Widget_SpaceRabbit, INVESTIGATE! ", false, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L1029:         <End of Inlined Event Graph Function>;
+L1034:         this->Construct();
+L1044:         <End of Inlined Event Graph Function>;
+L1049:         this->Destruct();
+L1059:         this->Cleanup();
+============ END FUNCTION ExecuteUbergraph_Widget_SpaceRabbit ==============

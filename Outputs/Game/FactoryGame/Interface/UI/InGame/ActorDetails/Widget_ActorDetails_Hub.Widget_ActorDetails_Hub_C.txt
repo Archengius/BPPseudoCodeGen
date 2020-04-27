@@ -1,0 +1,186 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/ActorDetails/Widget_ActorDetails_Hub.Widget_ActorDetails_Hub_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION FromSecondsToText ==============
+L0:            Timespan mTimespan = FromSeconds(Seconds);
+L37:           BreakTimespan(mTimespan, [ref] mint32, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324);
+L101:          int32 mint325 = Multiply_IntInt(mint32, 24);
+L143:          FText mFText = KismetTextLibrary->Conv_IntToText(mint323, false, true, 2, 324);
+L214:          int32 mint326 = Add_IntInt(mint325, mint321);
+L260:          mFormatArgumentData.ArgumentName = "sec";
+L292:          mFormatArgumentData.ArgumentValueType = 4;
+L321:          mFormatArgumentData.ArgumentValue = mFText;
+L357:          mFormatArgumentData.ArgumentValueInt = 0;
+L389:          mFormatArgumentData.ArgumentValueFloat = 0;
+L421:          mFormatArgumentData.ArgumentValueGender = 0;
+L450:          int32 mint327 = Multiply_IntInt(mint326, 60);
+L492:          int32 mint328 = Add_IntInt(mint327, mint322);
+L538:          FText mFText1 = KismetTextLibrary->Conv_IntToText(mint328, false, true, 2, 324);
+L609:          mFormatArgumentData1.ArgumentName = "min";
+L641:          mFormatArgumentData1.ArgumentValueType = 4;
+L670:          mFormatArgumentData1.ArgumentValue = mFText1;
+L706:          mFormatArgumentData1.ArgumentValueInt = 0;
+L738:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L770:          mFormatArgumentData1.ArgumentValueGender = 0;
+L799:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
+L828:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L938:          FText Result = mFText2;
+============ END FUNCTION FromSecondsToText ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateInfo ==============
+L0:            ExecutionFlow.Push(L1907);
+L5:            FText Temp_text_Variable1 = "[object Object]";
+L82:           bool mbool = this->mSchematicManager->IsShipAtTradingPost();
+L124:          FText Temp_text_Variable2 = "[object Object]";
+L200:          bool Temp_bool_Variable2 = mbool;
+L219:          this->mMilstoneLabel->SetText(switch (Temp_bool_Variable2) {
+case false -> Temp_text_Variable1;
+case true -> Temp_text_Variable2;
+default -> mFText;
+});
+L308:          FText Temp_text_Variable = "[object Object]";
+L387:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = this->mSchematicManager->GetActiveSchematic();
+L429:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L480:          float mfloat = this->mSchematicManager->GetTimeUntilShipReturn();
+L530:          bool Temp_bool_Variable1 = mbool1;
+L549:          this->FromSecondsToText(mfloat, [ref] mFText1);
+L581:          FText mFText2 = FGSchematic->GetSchematicDisplayName(mTSubclassOf<FGSchematic>);
+L640:          bool mbool2 = this->mSchematicManager->IsShipAtTradingPost();
+L682:          bool Temp_bool_Variable = mbool2;
+L701:          this->mMilestoneName->SetText(switch (Temp_bool_Variable) {
+case false -> mFText1;
+case true -> switch (Temp_bool_Variable1) {
+case false -> Temp_text_Variable;
+case true -> mFText2;
+default -> mFText4;
+};
+default -> mFText3;
+});
+L834:          mTSubclassOf<FGSchematic> = this->mSchematicManager->GetActiveSchematic();
+L876:          mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L927:          mbool2 = this->mSchematicManager->IsShipAtTradingPost();
+L969:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L1007:         if (!mbool3) goto ExecutionFlow.Pop();
+L1017:         int32 Temp_int_Loop_Counter_Variable = 0;
+L1040:         int32 Temp_int_Array_Index_Variable = 0;
+L1063:         TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic>1 = this->mSchematicManager->GetActiveSchematic();
+L1105:         TArray<ItemAmount> mTArray<ItemAmount> = FGSchematic->GetCost(mTSubclassOf<FGSchematic>1);
+L1164:         int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L1223:         bool mbool4 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L1261:         if (!mbool4) goto ExecutionFlow.Pop();
+L1271:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L1298:         ExecutionFlow.Push(L1833);
+L1303:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1327:         Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, Widget_CostSlotWrapper, mPlayerController);
+L1388:         TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic>2 = this->mSchematicManager->GetActiveSchematic();
+L1430:         TArray<ItemAmount> mTArray<ItemAmount>1 = this->mSchematicManager->GetPaidOffCostFor(mTSubclassOf<FGSchematic>2);
+L1489:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L1548:         mTSubclassOf<FGSchematic>1 = this->mSchematicManager->GetActiveSchematic();
+L1590:         mTArray<ItemAmount> = FGSchematic->GetCost(mTSubclassOf<FGSchematic>1);
+L1649:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount1);
+L1708:         mWidget_CostSlotWrapper->Setup CostIcon(nullptr, mItemAmount1, nullptr, 0, mItemAmount.amount, false, false, false);
+L1781:         PanelSlot* mPanelSlot = this->mCostSlotContainer->AddChild(mWidget_CostSlotWrapper);
+L1832:         goto ExecutionFlow.Pop();
+L1833:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1875:         Temp_int_Loop_Counter_Variable = mint321;
+L1902:         goto L1063;
+============ END FUNCTION UpdateInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ActorDetails_Hub(1689);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateInfoEvent ==============
+L0:            this->ExecuteUbergraph_Widget_ActorDetails_Hub(711);
+============ END FUNCTION UpdateInfoEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateMAMInfo ==============
+L0:            this->ExecuteUbergraph_Widget_ActorDetails_Hub(1521);
+============ END FUNCTION UpdateMAMInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ActorDetails_Hub ==============
+L10:           this->UpdateInfo();
+L24:           bool mbool = this->mSchematicManager->IsShipAtTradingPost();
+L66:           if (!mbool) goto L351;
+L80:           FGResearchManager* mFGResearchManager = FGResearchManager->Get(this);
+L123:          bool mbool1 = mFGResearchManager->IsAnyResearchBeingConducted();
+L165:          if (!mbool1) goto L471;
+L179:          this->mMamInfo->SetVisibility(3);
+L217:          this->UpdateMAMInfo();
+L231:          mFScriptDelegate->BindUFunction(this, UpdateMAMInfo);
+L254:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.5, true);
+L319:          this->MamInfoTimer = mTimerHandle;
+L346:          <End of Inlined Event Graph Function>;
+L351:          mFScriptDelegate1->BindUFunction(this, UpdateInfoEvent);
+L374:          TimerHandle mTimerHandle1 = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate1, 0.20000000298023224, true);
+L439:          this->UpdateInfoTimer = mTimerHandle1;
+L466:          goto L80;
+L471:          this->mMamInfo->SetVisibility(1);
+L509:          <End of Inlined Event Graph Function>;
+L514:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L557:          FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
+L593:          bool mbool2 = mFGGameState;
+L622:          if (!mbool2) goto L1694;
+L636:          FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mFGGameState);
+L687:          this->mSchematicManager = mFGSchematicManager;
+L706:          goto L10;
+L711:          this->UpdateInfo();
+L725:          bool mbool3 = this->mSchematicManager->IsShipAtTradingPost();
+L767:          if (!mbool3) goto L1694;
+L781:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->UpdateInfoTimer);
+L823:          <End of Inlined Event Graph Function>;
+L828:          FGResearchManager* mFGResearchManager1 = FGResearchManager->Get(this);
+L871:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = mFGResearchManager1->GetResearchBeingConducted();
+L913:          FText mFText = FGSchematic->GetSchematicDisplayName(mTSubclassOf<FGSchematic>);
+L972:          this->mMamResearchName->SetText(mFText);
+L1017:         Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(nullptr);
+L1060:         this->mMamIcon->SetBrushFromTexture(mTexture2D, false);
+L1106:         FGResearchManager* mFGResearchManager2 = FGResearchManager->Get(this);
+L1149:         bool mbool4 = mFGResearchManager2->IsAnyResearchBeingConducted();
+L1191:         if (!mbool4) goto L1210;
+L1205:         <End of Inlined Event Graph Function>;
+L1210:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->MamInfoTimer);
+L1252:         this->mMamInfo->SetVisibility(1);
+L1290:         <End of Inlined Event Graph Function>;
+L1295:         mFGResearchManager1 = FGResearchManager->Get(this);
+L1338:         mTSubclassOf<FGSchematic> = mFGResearchManager1->GetResearchBeingConducted();
+L1380:         float mfloat = mFGResearchManager1->GetOngoingResearchTimeLeft(mTSubclassOf<FGSchematic>);
+L1439:         this->FromSecondsToText(mfloat, [ref] mFText1);
+L1471:         this->mMamTimeLeft->SetText(mFText1);
+L1516:         goto L828;
+L1521:         goto L1295;
+L1526:         FGBuildableTradingPost* mFGBuildableTradingPost = Cast<Class /Script/FactoryGame.FGBuildableTradingPost>(this->mActor);
+L1562:         bool mbool5 = mFGBuildableTradingPost;
+L1591:         if (!mbool5) goto L1694;
+L1605:         this->mTradingPost = mFGBuildableTradingPost;
+L1624:         goto L514;
+L1629:         this->Construct();
+L1639:         this->Widget_ActorDetails_Container->SetShowPointer(this->ShowPointer);
+L1684:         goto L1526;
+L1689:         goto L1629;
+============ END FUNCTION ExecuteUbergraph_Widget_ActorDetails_Hub ==============

@@ -1,0 +1,139 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ProgressBar.Widget_ProgressBar_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetUseIconContainer ==============
+L0:            this->mUseIconContainer = mUseIconContainer;
+L19:           uint8 Temp_byte_Variable = 3;
+L39:           uint8 Temp_byte_Variable1 = 1;
+L59:           bool Temp_bool_Variable = this->mUseIconContainer;
+L78:           this->mIconContainer->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+============ END FUNCTION SetUseIconContainer ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetShowIcon ==============
+L0:            this->mShowIcon = mShowIcon;
+L19:           uint8 Temp_byte_Variable = 3;
+L39:           uint8 Temp_byte_Variable1 = 2;
+L59:           bool Temp_bool_Variable1 = this->mShowIcon;
+L78:           this->mIconObject->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L167:          float Temp_float_Variable = 1;
+L190:          float Temp_float_Variable1 = 0.5;
+L213:          bool Temp_bool_Variable = this->mShowIcon;
+L232:          this->mIconContainer->SetRenderOpacity(switch (Temp_bool_Variable) {
+case false -> Temp_float_Variable1;
+case true -> Temp_float_Variable;
+default -> mfloat;
+});
+============ END FUNCTION SetShowIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetIcon ==============
+L0:            this->mIcon = mIcon;
+L19:           mSlateBrush.ImageSize = this->mIconObject->Brush.ImageSize;
+L86:           mSlateBrush.Margin = this->mIconObject->Brush.Margin;
+L153:          mSlateBrush.TintColor = this->mIconObject->Brush.TintColor;
+L220:          mSlateBrush.ResourceObject = this->mIcon;
+L248:          mSlateBrush.DrawAs = this->mIconObject->Brush.DrawAs;
+L315:          mSlateBrush.Tiling = this->mIconObject->Brush.Tiling;
+L382:          mSlateBrush.Mirroring = this->mIconObject->Brush.Mirroring;
+L449:          this->mIconObject->SetBrush([ref] mSlateBrush);
+============ END FUNCTION SetIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCurveType ==============
+L0:            CurveFloat* Curve = nullptr;
+============ END FUNCTION GetCurveType ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetProgressBarFillColor ==============
+L0:            float mfloat = FClamp(InputValue, 0, 1);
+L47:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L102:          HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L157:          LinearColor mLinearColor2 = LinearColorLerp(mLinearColor1, mLinearColor, mfloat);
+L212:          this->mProgressBar->SetFillColorAndOpacity(mLinearColor2);
+============ END FUNCTION SetProgressBarFillColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION LerpBar ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ProgressBar.Widget_ProgressBar_C:ExecuteUbergraph_Widget_ProgressBar.K2Node_CustomEvent_StartValue) = StartValue;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ProgressBar.Widget_ProgressBar_C:ExecuteUbergraph_Widget_ProgressBar.K2Node_CustomEvent_EndValue) = EndValue;
+L36:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ProgressBar.Widget_ProgressBar_C:ExecuteUbergraph_Widget_ProgressBar.K2Node_CustomEvent_LerpTime) = LerpTime;
+L54:           this->ExecuteUbergraph_Widget_ProgressBar(758);
+============ END FUNCTION LerpBar ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ProgressBar.Widget_ProgressBar_C:ExecuteUbergraph_Widget_ProgressBar.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_ProgressBar(933);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ProgressBar ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L248);
+L20:           float mfloat = Divide_FloatFloat(this->SecondsPerLerpUpdate, mfloat1);
+L66:           float mfloat2 = Add_FloatFloat(this->T, mfloat);
+L112:          this->T = mfloat2;
+L139:          float mfloat3 = Ease(this->LerpStartValue, this->LerpEndValue, this->T, 6, 2, 2);
+L206:          this->mProgressBar->SetPercent(mfloat3);
+L247:          goto ExecutionFlow.Pop();
+L248:          bool mbool = Less_FloatFloat(this->T, 1);
+L282:          bool mbool1 = BooleanAND(this->LerpActive, mbool);
+L320:          if (!mbool1) goto L415;
+L334:          KismetSystemLibrary->Delay(this, this->SecondsPerLerpUpdate, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 79583239, ExecutionFunction = "ExecuteUbergraph_Widget_ProgressBar", CallbackTarget = this));
+L414:          goto ExecutionFlow.Pop();
+L415:          this->LerpActive = false;
+L426:          KismetSystemLibrary->PrintString(this, "Completed", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L511:          goto ExecutionFlow.Pop();
+L512:          this->SetUseIconContainer(this->mUseIconContainer);
+L535:          this->SetShowIcon(this->mShowIcon);
+L558:          this->SetIcon(this->mIcon);
+L581:          goto ExecutionFlow.Pop();
+L582:          this->LerpActive = true;
+L593:          KismetSystemLibrary->PrintString(this, "Started", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L676:          this->LerpStartValue = mfloat4;
+L703:          this->LerpEndValue = mfloat5;
+L730:          this->T = 0;
+L753:          goto L248;
+L758:          this->LerpActive = false;
+L769:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 582, UUID = 999773456, ExecutionFunction = "ExecuteUbergraph_Widget_ProgressBar", CallbackTarget = this));
+L845:          goto ExecutionFlow.Pop();
+L846:          this->Border_0->SetBrushColor(this->mBorderTint);
+L887:          this->mProgressBar->SetFillColorAndOpacity(this->mBarTint);
+L928:          goto L512;
+L933:          goto L846;
+============ END FUNCTION ExecuteUbergraph_Widget_ProgressBar ==============

@@ -1,0 +1,105 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop_CartList.BPW_ResourceSinkShop_CartList_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateEmptyCartFeedback ==============
+L0:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mCartItemStruct);
+L59:           bool mbool = LessEqual_IntInt(mint32, 0);
+L93:           if (!mbool) goto L150;
+L107:          this->mEmptyCartFeedback->SetVisibility(0);
+L145:          <End of Inlined Event Graph Function>;
+L150:          this->mEmptyCartFeedback->SetVisibility(1);
+============ END FUNCTION UpdateEmptyCartFeedback ==============
+
+
+
+
+
+============ BEGIN FUNCTION ChangeItemAmount ==============
+L0:            this->OnItemAmountChanged->ProcessMulticastDelegate(schematic, NewAmount);
+============ END FUNCTION ChangeItemAmount ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveItemFromCart ==============
+L0:            this->OnItemRemovedFromCart->ProcessMulticastDelegate(mSchematic);
+============ END FUNCTION RemoveItemFromCart ==============
+
+
+
+
+
+============ BEGIN FUNCTION GenerateCartList ==============
+L0:            ExecutionFlow.Push(L748);
+L5:            this->mCartItemStruct = mCartItemStruct;
+L32:           this->mCartItemVerticalBox->ClearChildren();
+L68:           int32 Temp_int_Loop_Counter_Variable = 0;
+L91:           int32 Temp_int_Array_Index_Variable = 0;
+L114:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mCartItemStruct);
+L173:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L211:          if (!mbool) goto ExecutionFlow.Pop();
+L221:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L248:          ExecutionFlow.Push(L674);
+L253:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L277:          BPW_ResourceSinkShop_CartItem* mBPW_ResourceSinkShop_CartItem = WidgetBlueprintLibrary->Create(this, BPW_ResourceSinkShop_CartItem, mPlayerController);
+L338:          KismetArrayLibrary->Array_Get([ref] this->mCartItemStruct, Temp_int_Array_Index_Variable, [ref] mResourceSinkShop_CartItem_Struct);
+L397:          KismetSystemLibrary->SetStructurePropertyByName(mBPW_ResourceSinkShop_CartItem, "mCartItem", [ref] mResourceSinkShop_CartItem_Struct);
+L460:          VerticalBoxSlot* mVerticalBoxSlot = this->mCartItemVerticalBox->AddChildToVerticalBox(mBPW_ResourceSinkShop_CartItem);
+L511:          mVerticalBoxSlot->SetVerticalAlignment(1);
+L545:          mFScriptDelegate->BindUFunction(this, RemoveItemFromCart);
+L568:          mBPW_ResourceSinkShop_CartItem->OnRemoveButtonClicked.AddUnique(mFScriptDelegate);
+L609:          mFScriptDelegate1->BindUFunction(this, ChangeItemAmount);
+L632:          mBPW_ResourceSinkShop_CartItem->OnItemAmountChanged.AddUnique(mFScriptDelegate1);
+L673:          goto ExecutionFlow.Pop();
+L674:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L716:          Temp_int_Loop_Counter_Variable = mint321;
+L743:          goto L114;
+============ END FUNCTION GenerateCartList ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_CartList(29);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_CartList(57);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_ResourceSinkShop_CartList ==============
+L10:           this->UpdateEmptyCartFeedback();
+L24:           <End of Inlined Event Graph Function>;
+L29:           this->GenerateCartList([ref] this->mCartItemStruct);
+L52:           goto L10;
+L57:           this->OnItemRemovedFromCart->Clear();
+============ END FUNCTION ExecuteUbergraph_BPW_ResourceSinkShop_CartList ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnItemAmountChanged__DelegateSignature ==============
+============ END FUNCTION OnItemAmountChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnItemRemovedFromCart__DelegateSignature ==============
+============ END FUNCTION OnItemRemovedFromCart__DelegateSignature ==============

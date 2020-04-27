@@ -1,0 +1,243 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/RadialMenu/Widget_RadialMenu.Widget_RadialMenu_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION Update Button Angles ==============
+L0:            int32 Temp_int_Variable = 0;
+L23:           int32 mint32 = this->mContent->GetChildrenCount();
+L73:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L111:          if (!mbool) goto L199;
+L125:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L167:          Temp_int_Variable = mint321;
+L194:          goto L23;
+============ END FUNCTION Update Button Angles ==============
+
+
+
+
+
+============ BEGIN FUNCTION Set Angle ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
+L60:           bool mbool = mBP_PlayerController;
+L89:           if (!mbool) goto L2714;
+L103:          bool mbool1 = mBP_PlayerController->GetIsUsingGamepad();
+L145:          if (!mbool1) goto L1306;
+L159:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L183:          mPlayerController1->GetInputAnalogStickState(1, [ref] mfloat, [ref] mfloat1);
+L235:          bool mbool2 = Less_FloatFloat(mfloat1, 0);
+L269:          bool mbool3 = Greater_FloatFloat(mfloat1, 0);
+L303:          bool mbool4 = Less_FloatFloat(mfloat, 0);
+L337:          bool mbool5 = Greater_FloatFloat(mfloat, 0);
+L371:          bool mbool6 = BooleanOR(mbool5, mbool4);
+L409:          bool mbool7 = BooleanOR(mbool6, mbool3);
+L447:          bool mbool8 = BooleanOR(mbool7, mbool2);
+L485:          this->OutsideDeadSpace = mbool8;
+L504:          mPlayerController1 = this->GetOwningPlayer();
+L528:          mPlayerController1->GetInputAnalogStickState(1, [ref] mfloat, [ref] mfloat1);
+L580:          Vector mVector = MakeVector(mfloat, mfloat1, 0);
+L631:          Rotator mRotator = MakeRotFromY([ref] mVector);
+L668:          BreakRotator(mRotator, [ref] mfloat2, [ref] mfloat3, [ref] mfloat4);
+L714:          float mfloat5 = Add_FloatFloat(mfloat2, 90);
+L756:          float mfloat6 = Divide_FloatFloat(mfloat5, 360);
+L798:          float mfloat7 = Subtract_FloatFloat(mfloat6, this->AngleOffset);
+L844:          bool mbool9 = Less_FloatFloat(mfloat7, 0);
+L878:          if (!mbool9) goto L2347;
+L892:          mPlayerController1 = this->GetOwningPlayer();
+L916:          mPlayerController1->GetInputAnalogStickState(1, [ref] mfloat, [ref] mfloat1);
+L968:          mVector = MakeVector(mfloat, mfloat1, 0);
+L1019:         mRotator = MakeRotFromY([ref] mVector);
+L1056:         BreakRotator(mRotator, [ref] mfloat2, [ref] mfloat3, [ref] mfloat4);
+L1102:         mfloat5 = Add_FloatFloat(mfloat2, 90);
+L1144:         mfloat6 = Divide_FloatFloat(mfloat5, 360);
+L1186:         mfloat7 = Subtract_FloatFloat(mfloat6, this->AngleOffset);
+L1232:         float mfloat8 = Add_FloatFloat(1, mfloat7);
+L1274:         this->Angle = mfloat8;
+L1301:         <End of Inlined Event Graph Function>;
+L1306:         this->OutsideDeadSpace = true;
+L1317:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1341:         mPlayerController2->GetInputMouseDelta([ref] mfloat9, [ref] mfloat10);
+L1391:         Vector2D mVector2D = MakeVector2D(mfloat9, mfloat10);
+L1437:         Vector2D mVector2D1 = Multiply_Vector2DFloat(mVector2D, this->mSensitivity);
+L1483:         Vector2D mVector2D2 = Add_Vector2DVector2D(mVector2D1, this->mClampedMousePos);
+L1529:         BreakVector2D(mVector2D2, [ref] mfloat11, [ref] mfloat12);
+L1566:         Vector2D mVector2D3 = Normal2D(mVector2D2);
+L1603:         BreakVector2D(mVector2D3, [ref] mfloat13, [ref] mfloat14);
+L1640:         float mfloat15 = Abs(mfloat14);
+L1677:         float mfloat16 = Multiply_FloatFloat(mfloat15, -1);
+L1719:         float mfloat17 = FClamp(mfloat12, mfloat16, mfloat15);
+L1774:         float mfloat18 = Abs(mfloat13);
+L1811:         float mfloat19 = Multiply_FloatFloat(mfloat18, -1);
+L1853:         float mfloat20 = FClamp(mfloat11, mfloat19, mfloat18);
+L1908:         Vector2D mVector2D4 = MakeVector2D(mfloat20, mfloat17);
+L1954:         this->mClampedMousePos = mVector2D4;
+L1981:         Vector2D mVector2D5 = Normal2D(this->mClampedMousePos);
+L2018:         BreakVector2D(mVector2D5, [ref] mfloat21, [ref] mfloat22);
+L2055:         Vector mVector1 = MakeVector(mfloat21, mfloat22, 0);
+L2106:         Rotator mRotator1 = MakeRotFromY([ref] mVector1);
+L2143:         BreakRotator(mRotator1, [ref] mfloat23, [ref] mfloat24, [ref] mfloat25);
+L2189:         float mfloat26 = Divide_FloatFloat(mfloat23, 360);
+L2231:         float mfloat27 = Subtract_FloatFloat(1, mfloat26);
+L2273:         float mfloat28 = Subtract_FloatFloat(mfloat27, 0.5);
+L2315:         this->Angle = mfloat28;
+L2342:         <End of Inlined Event Graph Function>;
+L2347:         mPlayerController1 = this->GetOwningPlayer();
+L2371:         mPlayerController1->GetInputAnalogStickState(1, [ref] mfloat, [ref] mfloat1);
+L2423:         mVector = MakeVector(mfloat, mfloat1, 0);
+L2474:         mRotator = MakeRotFromY([ref] mVector);
+L2511:         BreakRotator(mRotator, [ref] mfloat2, [ref] mfloat3, [ref] mfloat4);
+L2557:         mfloat5 = Add_FloatFloat(mfloat2, 90);
+L2599:         mfloat6 = Divide_FloatFloat(mfloat5, 360);
+L2641:         mfloat7 = Subtract_FloatFloat(mfloat6, this->AngleOffset);
+L2687:         this->Angle = mfloat7;
+============ END FUNCTION Set Angle ==============
+
+
+
+
+
+============ BEGIN FUNCTION Close Radial Menu ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           mPlayerController->SetIgnoreLookInput(false);
+L61:           mPlayerController = this->GetOwningPlayer();
+L85:           mPlayerController->bShowMouseCursor = false;
+============ END FUNCTION Close Radial Menu ==============
+
+
+
+
+
+============ BEGIN FUNCTION Open Radial Menu ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           mPlayerController->SetIgnoreLookInput(true);
+L61:           mPlayerController = this->GetOwningPlayer();
+L85:           mPlayerController->bShowMouseCursor = false;
+L118:          mPlayerController = this->GetOwningPlayer();
+L142:          Vector2D mVector2D = WidgetLayoutLibrary->GetViewportSize(this);
+L193:          BreakVector2D(mVector2D, [ref] mfloat, [ref] mfloat1);
+L230:          int32 mint32 = FTrunc(mfloat1);
+L267:          int32 mint321 = FTrunc(mfloat);
+L304:          int32 mint322 = Divide_IntInt(mint32, 2);
+L346:          int32 mint323 = Divide_IntInt(mint321, 2);
+L388:          mPlayerController->SetMouseLocation(mint323, mint322);
+============ END FUNCTION Open Radial Menu ==============
+
+
+
+
+
+============ BEGIN FUNCTION Generate Radial Menu ==============
+L0:            this->ExecuteUbergraph_Widget_RadialMenu(2209);
+============ END FUNCTION Generate Radial Menu ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_RadialMenu(2429);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/RadialMenu/Widget_RadialMenu.Widget_RadialMenu_C:ExecuteUbergraph_Widget_RadialMenu.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/RadialMenu/Widget_RadialMenu.Widget_RadialMenu_C:ExecuteUbergraph_Widget_RadialMenu.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_RadialMenu(2444);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION Create Radial Menu ==============
+L0:            this->ExecuteUbergraph_Widget_RadialMenu(2948);
+============ END FUNCTION Create Radial Menu ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_RadialMenu ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->mTitleText->SetText("[object Object]");
+L95:           this->mInfoContainer->SetRenderOpacity(0);
+L132:          goto ExecutionFlow.Pop();
+L133:          int32 Temp_int_Variable = 0;
+L156:          int32 mint32 = KismetArrayLibrary->Array_LastIndex([ref] this->Buttons);
+L215:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L253:          if (!mbool) goto ExecutionFlow.Pop();
+L263:          ExecutionFlow.Push(L2135);
+L268:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L292:          Widget_RadialMenuButton* mWidget_RadialMenuButton = WidgetBlueprintLibrary->Create(this, Widget_RadialMenuButton, mPlayerController);
+L353:          float mfloat = Conv_IntToFloat(Temp_int_Variable);
+L390:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->Buttons);
+L449:          float mfloat1 = Conv_IntToFloat(mint321);
+L486:          float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L532:          float mfloat3 = Add_FloatFloat(mfloat2, this->ButtonSpacing);
+L578:          float mfloat4 = Add_FloatFloat(mfloat3, this->AngleOffset);
+L624:          KismetSystemLibrary->SetFloatPropertyByName(mWidget_RadialMenuButton, "startPoint", mfloat4);
+L687:          mint321 = KismetArrayLibrary->Array_Length([ref] this->Buttons);
+L746:          mfloat1 = Conv_IntToFloat(mint321);
+L783:          float mfloat5 = Divide_FloatFloat(1, mfloat1);
+L825:          float mfloat6 = Subtract_FloatFloat(mfloat5, this->ButtonSpacing);
+L871:          KismetSystemLibrary->SetFloatPropertyByName(mWidget_RadialMenuButton, "endPoint", mfloat6);
+L934:          mfloat = Conv_IntToFloat(Temp_int_Variable);
+L971:          mint321 = KismetArrayLibrary->Array_Length([ref] this->Buttons);
+L1030:         mfloat1 = Conv_IntToFloat(mint321);
+L1067:         mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L1113:         KismetSystemLibrary->SetFloatPropertyByName(mWidget_RadialMenuButton, "MinValue", mfloat2);
+L1176:         mfloat = Conv_IntToFloat(Temp_int_Variable);
+L1213:         float mfloat7 = Add_FloatFloat(mfloat, 1);
+L1255:         mint321 = KismetArrayLibrary->Array_Length([ref] this->Buttons);
+L1314:         mfloat1 = Conv_IntToFloat(mint321);
+L1351:         mfloat5 = Divide_FloatFloat(1, mfloat1);
+L1393:         float mfloat8 = Multiply_FloatFloat(mfloat7, mfloat5);
+L1439:         KismetSystemLibrary->SetFloatPropertyByName(mWidget_RadialMenuButton, "MaxValue", mfloat8);
+L1502:         KismetArrayLibrary->Array_Get([ref] this->Buttons, Temp_int_Variable, [ref] mFName);
+L1561:         KismetSystemLibrary->SetNamePropertyByName(mWidget_RadialMenuButton, "Name", [ref] mFName);
+L1624:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_RadialMenuButton, "mRadialMenu", this);
+L1679:         KismetSystemLibrary->SetIntPropertyByName(mWidget_RadialMenuButton, "ButtonInteger", Temp_int_Variable);
+L1742:         mint321 = KismetArrayLibrary->Array_Length([ref] this->Buttons);
+L1801:         bool mbool1 = Less_IntInt(mint321, 2);
+L1835:         KismetSystemLibrary->SetBoolPropertyByName(mWidget_RadialMenuButton, "SingleButton", mbool1);
+L1898:         KismetArrayLibrary->Array_Get([ref] this->mIconTextures, Temp_int_Variable, [ref] mTexture);
+L1957:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_RadialMenuButton, "mInputTextureIcon", mTexture);
+L2020:         KismetSystemLibrary->SetBoolPropertyByName(mWidget_RadialMenuButton, "mMonochromeIcon", this->mMonochromeIcons);
+L2083:         PanelSlot* mPanelSlot = this->mContent->AddChild(mWidget_RadialMenuButton);
+L2134:         goto ExecutionFlow.Pop();
+L2135:         int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L2177:         Temp_int_Variable = mint322;
+L2204:         goto L156;
+L2209:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] this->mDescText);
+L2268:         this->Widget_LetterSpacedText->SetTitle(mFString);
+L2313:         this->mContent->ClearChildren();
+L2349:         goto L133;
+L2354:         this->Generate Radial Menu();
+L2368:         this->Open Radial Menu();
+L2382:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->SpawnAnimation, 0, 1, 0, 1);
+L2428:         goto ExecutionFlow.Pop();
+L2429:         this->Close Radial Menu();
+L2443:         goto ExecutionFlow.Pop();
+L2444:         this->Set Angle();
+L2458:         if (!this->OutsideDeadSpace) goto L2877;
+L2472:         HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L2527:         this->Pointer->SetContentColorAndOpacity(mLinearColor);
+L2568:         float mfloat9 = Subtract_FloatFloat(1, this->Angle);
+L2610:         float mfloat10 = Multiply_FloatFloat(mfloat9, 360);
+L2652:         float mfloat11 = Add_FloatFloat(mfloat10, 180);
+L2694:         this->Pointer->SetRenderAngle(mfloat11);
+L2735:         FText mFText = KismetTextLibrary->Conv_NameToText(this->ActiveName);
+L2794:         this->mTitleText->SetText(mFText);
+L2839:         this->mInfoContainer->SetRenderOpacity(1);
+L2876:         goto ExecutionFlow.Pop();
+L2877:         this->Pointer->SetContentColorAndOpacity(ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 0));
+L2943:         goto L15;
+L2948:         goto L2354;
+============ END FUNCTION ExecuteUbergraph_Widget_RadialMenu ==============

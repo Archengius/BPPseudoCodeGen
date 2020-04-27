@@ -1,0 +1,273 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_SchematicRewardItem.Widget_SchematicRewardItem_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateVisibility ==============
+L0:            uint8 Temp_byte_Variable2 = 1;
+L20:           uint8 Temp_byte_Variable3 = 0;
+L40:           bool mbool = BooleanOR(this->mIsSchematicPurchased, this->mIsSchematicLocked);
+L78:           bool Temp_bool_Variable1 = mbool;
+L97:           this->Widget_ButtonSpotLight->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint8;
+});
+L186:          uint8 Temp_byte_Variable = 4;
+L206:          uint8 Temp_byte_Variable1 = 1;
+L226:          this->IsValidRewardItem([ref] mbool1);
+L249:          bool Temp_bool_Variable = mbool1;
+L268:          this->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint81;
+});
+============ END FUNCTION UpdateVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetCategoryIconColor ==============
+L0:            bool mbool = BooleanOR(this->mIsSchematicLocked, this->mIsSchematicPurchased);
+L38:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L93:           bool Temp_bool_Variable = mbool;
+L112:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L167:          this->mRewardCategoryIcon->SetColorAndOpacity(switch (Temp_bool_Variable) {
+case false -> mLinearColor1;
+case true -> mLinearColor;
+default -> mLinearColor2;
+});
+============ END FUNCTION SetCategoryIconColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLockedIcon ==============
+L0:            bool mbool = BooleanOR(this->mIsSchematicPurchased, this->mIsSchematicLocked);
+L38:           if (!mbool) goto L109;
+L52:           LinearColor ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 0.5);
+L104:          goto L161;
+L109:          ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+============ END FUNCTION GetLockedIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetCategoryTexture ==============
+L0:            TSubclassOf<FGBuildingDescriptor> mTSubclassOf<FGBuildingDescriptor> = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(ItemClass);
+L36:           bool mbool = mTSubclassOf<FGBuildingDescriptor>;
+L65:           if (!mbool) goto L103;
+L79:           this->mCategoryIconTexture = Recipe_Icon_Building;
+L98:           <End of Inlined Event Graph Function>;
+L103:          TSubclassOf<FGDecorDescriptor> mTSubclassOf<FGDecorDescriptor> = ClassCast<Class /Script/FactoryGame.FGDecorDescriptor>(ItemClass);
+L139:          bool mbool1 = mTSubclassOf<FGDecorDescriptor>;
+L168:          if (!mbool1) goto L206;
+L182:          this->mCategoryIconTexture = Recipe_Icon_Decor;
+L201:          <End of Inlined Event Graph Function>;
+L206:          TSubclassOf<FGEquipmentDescriptor> mTSubclassOf<FGEquipmentDescriptor> = ClassCast<Class /Script/FactoryGame.FGEquipmentDescriptor>(ItemClass);
+L242:          bool mbool2 = mTSubclassOf<FGEquipmentDescriptor>;
+L271:          if (!mbool2) goto L309;
+L285:          this->mCategoryIconTexture = Recipe_Icon_Equipment;
+L304:          <End of Inlined Event Graph Function>;
+L309:          TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = ClassCast<Class /Script/FactoryGame.FGItemDescriptor>(ItemClass);
+L345:          bool mbool3 = mTSubclassOf<FGItemDescriptor>;
+L374:          if (!mbool3) goto L412;
+L388:          this->mCategoryIconTexture = Recipe_Icon_Item;
+L407:          <End of Inlined Event Graph Function>;
+L412:          TSubclassOf<FGMapAreaZoneDescriptor> mTSubclassOf<FGMapAreaZoneDescriptor> = ClassCast<Class /Script/FactoryGame.FGMapAreaZoneDescriptor>(ItemClass);
+L448:          bool mbool4 = mTSubclassOf<FGMapAreaZoneDescriptor>;
+L477:          if (!mbool4) goto L515;
+L491:          this->mCategoryIconTexture = Recipe_Icon_Map;
+L510:          <End of Inlined Event Graph Function>;
+L515:          TSubclassOf<FGPoleDescriptor> mTSubclassOf<FGPoleDescriptor> = ClassCast<Class /Script/FactoryGame.FGPoleDescriptor>(ItemClass);
+L551:          bool mbool5 = mTSubclassOf<FGPoleDescriptor>;
+L580:          if (!mbool5) goto L618;
+L594:          this->mCategoryIconTexture = Recipe_Icon_Building;
+L613:          <End of Inlined Event Graph Function>;
+L618:          TSubclassOf<FGResourceDescriptor> mTSubclassOf<FGResourceDescriptor> = ClassCast<Class /Script/FactoryGame.FGResourceDescriptor>(ItemClass);
+L654:          bool mbool6 = mTSubclassOf<FGResourceDescriptor>;
+L683:          if (!mbool6) goto L721;
+L697:          this->mCategoryIconTexture = Recipe_Icon_Resource;
+L716:          <End of Inlined Event Graph Function>;
+L721:          TSubclassOf<FGVehicleDescriptor> mTSubclassOf<FGVehicleDescriptor> = ClassCast<Class /Script/FactoryGame.FGVehicleDescriptor>(ItemClass);
+L757:          bool mbool7 = mTSubclassOf<FGVehicleDescriptor>;
+L786:          if (!mbool7) goto L824;
+L800:          this->mCategoryIconTexture = Recipe_Icon_Vehicle;
+L819:          <End of Inlined Event Graph Function>;
+L824:          this->mCategoryIconTexture = Cross;
+============ END FUNCTION SetCategoryTexture ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCategoryIcon ==============
+L0:            mSlateBrush.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 20, Y = 20);
+L51:           mSlateBrush.Margin = this->mRewardCategoryIcon->Brush.Margin;
+L118:          mSlateBrush.TintColor = this->mRewardCategoryIcon->Brush.TintColor;
+L185:          mSlateBrush.ResourceObject = this->mCategoryIconTexture;
+L213:          mSlateBrush.DrawAs = this->mRewardCategoryIcon->Brush.DrawAs;
+L280:          mSlateBrush.Tiling = this->mRewardCategoryIcon->Brush.Tiling;
+L347:          mSlateBrush.Mirroring = this->mRewardCategoryIcon->Brush.Mirroring;
+L414:          SlateBrush ReturnValue = mSlateBrush;
+============ END FUNCTION GetCategoryIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLinesColor ==============
+L0:            bool mbool = this->IsHovered();
+L24:           if (!mbool) goto L125;
+L38:           HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L93:           LinearColor ReturnValue = mLinearColor;
+L120:          goto L207;
+L125:          HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L180:          ReturnValue = mLinearColor1;
+============ END FUNCTION GetLinesColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonColor ==============
+L0:            bool mbool = this->IsHovered();
+L24:           if (!mbool) goto L344;
+L38:           bool mbool1 = BooleanOR(this->mIsSchematicPurchased, this->mIsSchematicLocked);
+L76:           if (!mbool1) goto L401;
+L90:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L145:          mLinearColor1.R = mLinearColor.R;
+L190:          mLinearColor1.G = mLinearColor.G;
+L235:          mLinearColor1.B = mLinearColor.B;
+L280:          mLinearColor1.A = 0.20000000298023224;
+L312:          LinearColor ReturnValue = mLinearColor1;
+L339:          goto L483;
+L344:          ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L396:          goto L483;
+L401:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor2);
+L456:          ReturnValue = mLinearColor2;
+============ END FUNCTION GetButtonColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCategoryIconBackgroundColor ==============
+L0:            bool mbool = BooleanOR(this->mIsSchematicPurchased, this->mIsSchematicLocked);
+L38:           if (!mbool) goto L306;
+L52:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L107:          mLinearColor1.R = mLinearColor.R;
+L152:          mLinearColor1.G = mLinearColor.G;
+L197:          mLinearColor1.B = mLinearColor.B;
+L242:          mLinearColor1.A = 0.5;
+L274:          LinearColor ReturnValue = mLinearColor1;
+L301:          goto L358;
+L306:          ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+============ END FUNCTION GetCategoryIconBackgroundColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetHoverColor ==============
+L0:            bool mbool = this->IsHovered();
+L24:           if (!mbool) goto L125;
+L38:           HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L93:           SlateColor ReturnValue = mSlateColor;
+L120:          goto L346;
+L125:          bool mbool1 = BooleanOR(this->mIsSchematicPurchased, this->mIsSchematicLocked);
+L163:          if (!mbool1) goto L264;
+L177:          HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L232:          ReturnValue = mSlateColor1;
+L259:          goto L346;
+L264:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor2, [ref] mLinearColor2);
+L319:          ReturnValue = mSlateColor2;
+============ END FUNCTION GetHoverColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsValidRewardItem ==============
+L0:            bool IsValid = false;
+============ END FUNCTION IsValidRewardItem ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRewardClicked ==============
+============ END FUNCTION OnRewardClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetName ==============
+L0:            FText ReturnValue = ;
+============ END FUNCTION GetName ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIcon ==============
+L0:            SlateBrush ReturnValue = ScriptStruct /Script/SlateCore.SlateBrush(ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 32, Y = 32), Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0), TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0), ResourceObject = nullptr, ResourceName = "None", UVRegion = ScriptStruct /Script/CoreUObject.Box2D(Min = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), Max = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), bIsValid = 0), DrawAs = 3, Tiling = 0, Mirroring = 0, ImageType = 0, bIsDynamicallyLoaded = false, bHasUObject = false);
+============ END FUNCTION GetIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SchematicRewardItem(10);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SchematicRewardItem(340);
+============ END FUNCTION BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_19_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SchematicRewardItem(528);
+============ END FUNCTION BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_19_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SchematicRewardItem ==============
+L10:           this->TextBlock_0->SetText(this->mTitle);
+L55:           this->SetCategoryIconColor();
+L69:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L93:           BP_SchematicHelper->IsSchematicLockedInAnyWay(mPlayerController, this->mSchematicClass, this, [ref] mbool);
+L157:          this->mIsSchematicLocked = mbool;
+L176:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L200:          FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController1);
+L251:          bool mbool1 = mFGSchematicManager->IsSchematicPurchased(this->mSchematicClass);
+L302:          this->mIsSchematicPurchased = mbool1;
+L321:          this->UpdateVisibility();
+L335:          <End of Inlined Event Graph Function>;
+L340:          Widget_TradingPost* mWidget_TradingPost = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost.Widget_TradingPost_C>(this->mTradingPostWidget);
+L376:          bool mbool2 = mWidget_TradingPost;
+L405:          mWidget_TradingPost->UpdateRewardInfoFromProduct(this);
+L442:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L462:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_MouseOver, mPawn, true);
+L523:          <End of Inlined Event Graph Function>;
+L528:          Widget_TradingPost* mWidget_TradingPost1 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost.Widget_TradingPost_C>(this->mTradingPostWidget);
+L564:          bool mbool3 = mWidget_TradingPost1;
+L593:          mWidget_TradingPost1->SetDefaultDescriptionText(this->mSchematicClass);
+============ END FUNCTION ExecuteUbergraph_Widget_SchematicRewardItem ==============

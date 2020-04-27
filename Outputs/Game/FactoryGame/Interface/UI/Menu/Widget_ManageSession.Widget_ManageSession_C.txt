@@ -1,0 +1,272 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_ManageSession.Widget_ManageSession_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateSessionID ==============
+L0:            LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L24:           FString mFString = FGSessionLibrary->GetSessionID(mLocalPlayer);
+L83:           FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L142:          this->mSessionIDText->SetText(mFText);
+============ END FUNCTION UpdateSessionID ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearIngamePlayerList ==============
+L0:            this->ManagePlayers->ClearChildren();
+L36:           BlueprintMapLibrary->Map_Clear([ref] this->mButtonToIngamePlayer);
+============ END FUNCTION ClearIngamePlayerList ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsHost ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           bool mbool = EqualEqual_ObjectObject(State, mPlayerController->PlayerState);
+L84:           bool isOurself = mbool;
+============ END FUNCTION IsHost ==============
+
+
+
+
+
+============ BEGIN FUNCTION DisableSessionType ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           HUDHelpers->HasValidAdminInterface(mPlayerController, this, [ref] mbool);
+L79:           this->Widget_Options_DropdownBox->mDropdownBox->SetIsEnabled(mbool);
+L146:          mPlayerController = this->GetOwningPlayer();
+L170:          HUDHelpers->HasValidAdminInterface(mPlayerController, this, [ref] mbool);
+L225:          if (!mbool) goto L337;
+L239:          FText mFText = KismetSystemLibrary->MakeLiteralText();
+L291:          this->Widget_Options_DropdownBox->SetToolTipText([ref] mFText);
+L332:          <End of Inlined Event Graph Function>;
+L337:          FText mFText1 = KismetSystemLibrary->MakeLiteralText("[object Object]");
+L468:          this->Widget_Options_DropdownBox->SetToolTipText([ref] mFText1);
+============ END FUNCTION DisableSessionType ==============
+
+
+
+
+
+============ BEGIN FUNCTION DisableClientOptions ==============
+L0:            this->DisableSessionType();
+============ END FUNCTION DisableClientOptions ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateCurrentSessionType ==============
+L0:            FString Temp_string_Variable = "Friends Only";
+L32:           FString Temp_string_Variable1 = "Private";
+L59:           LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L83:           BlueprintSessionResult mBlueprintSessionResult = FGSessionLibrary->GetMySession(mLocalPlayer);
+L142:          uint8 muint8 = FGSessionLibrary->GetSessionVisibility([ref] mBlueprintSessionResult);
+L201:          uint8 Temp_byte_Variable = muint8;
+L228:          this->Widget_Options_DropdownBox->mDropdownBox->SetSelectedOption(switch (Temp_byte_Variable) {
+case 0 -> Temp_string_Variable1;
+case 1 -> Temp_string_Variable;
+default -> mFString;
+});
+============ END FUNCTION UpdateCurrentSessionType ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateManagePlayerList ==============
+L0:            ExecutionFlow.Push(L1002);
+L5:            this->ClearIngamePlayerList();
+L19:           int32 Temp_int_Loop_Counter_Variable = 0;
+L42:           int32 Temp_int_Array_Index_Variable = 0;
+L65:           GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L108:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mGameStateBase->PlayerArray);
+L189:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L227:          if (!mbool) goto ExecutionFlow.Pop();
+L237:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L264:          ExecutionFlow.Push(L928);
+L269:          mGameStateBase = GameplayStatics->GetGameState(this);
+L312:          KismetArrayLibrary->Array_Get([ref] mGameStateBase->PlayerArray, Temp_int_Array_Index_Variable, [ref] mPlayerState);
+L393:          FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(mPlayerState);
+L429:          bool mbool1 = mFGPlayerState;
+L458:          if (!mbool1) goto ExecutionFlow.Pop();
+L468:          Widget_Multiplayer_ListButton* mWidget_Multiplayer_ListButton = WidgetBlueprintLibrary->Create(this, Widget_Multiplayer_ListButton, nullptr);
+L521:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Multiplayer_ListButton, "mParentWidget", this->ManagePlayers);
+L584:          mWidget_Multiplayer_ListButton->SetupForManagePlayers(mFGPlayerState);
+L629:          mFScriptDelegate->BindUFunction(this, OnKick);
+L652:          mWidget_Multiplayer_ListButton->OnActionButtonClicked.AddUnique(mFScriptDelegate);
+L693:          VerticalBoxSlot* mVerticalBoxSlot = this->ManagePlayers->AddChildToVerticalBox(mWidget_Multiplayer_ListButton);
+L744:          mGameStateBase = GameplayStatics->GetGameState(this);
+L787:          KismetArrayLibrary->Array_Get([ref] mGameStateBase->PlayerArray, Temp_int_Array_Index_Variable, [ref] mPlayerState);
+L868:          BlueprintMapLibrary->Map_Add([ref] this->mButtonToIngamePlayer, [ref] mWidget_Multiplayer_ListButton, [ref] mPlayerState);
+L927:          goto ExecutionFlow.Pop();
+L928:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L970:          Temp_int_Loop_Counter_Variable = mint321;
+L997:          goto L65;
+============ END FUNCTION PopulateManagePlayerList ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearLeftSelection ==============
+L0:            ExecutionFlow.Push(L365);
+L5:            int32 Temp_int_Variable = 0;
+L28:           int32 mint32 = this->OptionsList->GetChildrenCount();
+L78:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L116:          if (!mbool) goto ExecutionFlow.Pop();
+L126:          ExecutionFlow.Push(L291);
+L131:          Widget* mWidget = this->OptionsList->GetChildAt(Temp_int_Variable);
+L182:          Widget_ListButton* mWidget_ListButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ListButton.Widget_ListButton_C>(mWidget);
+L218:          bool mbool1 = mWidget_ListButton;
+L247:          if (!mbool1) goto ExecutionFlow.Pop();
+L257:          mWidget_ListButton->mIsSelected = false;
+L290:          goto ExecutionFlow.Pop();
+L291:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L333:          Temp_int_Variable = mint321;
+L360:          goto L28;
+============ END FUNCTION ClearLeftSelection ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEscape ==============
+L0:            this->ExecuteUbergraph_Widget_ManageSession(1663);
+============ END FUNCTION OnEscape ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnKick ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageSession.Widget_ManageSession_C:ExecuteUbergraph_Widget_ManageSession.K2Node_CustomEvent_ClickedButton) = ClickedButton;
+L18:           this->ExecuteUbergraph_Widget_ManageSession(962);
+============ END FUNCTION OnKick ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Options_DropdownBox_K2Node_ComponentBoundEvent_0_onSelectionChanged__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(StrProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageSession.Widget_ManageSession_C:ExecuteUbergraph_Widget_ManageSession.K2Node_ComponentBoundEvent_SelectedOption) = SelectedOption;
+L18:           this->ExecuteUbergraph_Widget_ManageSession(43);
+============ END FUNCTION BndEvt__Widget_Options_DropdownBox_K2Node_ComponentBoundEvent_0_onSelectionChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnJoinInvite ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageSession.Widget_ManageSession_C:ExecuteUbergraph_Widget_ManageSession.K2Node_CustomEvent_button) = Button;
+L18:           this->ExecuteUbergraph_Widget_ManageSession(726);
+============ END FUNCTION OnJoinInvite ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnAnim ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageSession.Widget_ManageSession_C:ExecuteUbergraph_Widget_ManageSession.K2Node_Event_PlayBackgroundAnim) = PlayBackgroundAnim;
+L18:           this->ExecuteUbergraph_Widget_ManageSession(957);
+============ END FUNCTION SpawnAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMenuEnter ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageSession.Widget_ManageSession_C:ExecuteUbergraph_Widget_ManageSession.K2Node_Event_prevMenu) = prevMenu;
+L18:           this->ExecuteUbergraph_Widget_ManageSession(1416);
+============ END FUNCTION OnMenuEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSwitcher_K2Node_ComponentBoundEvent_1_OnActiveWidgetSet__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageSession.Widget_ManageSession_C:ExecuteUbergraph_Widget_ManageSession.K2Node_ComponentBoundEvent_oldWidget) = oldWidget;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_ManageSession.Widget_ManageSession_C:ExecuteUbergraph_Widget_ManageSession.K2Node_ComponentBoundEvent_newWidget) = newWidget;
+L36:           this->ExecuteUbergraph_Widget_ManageSession(1440);
+============ END FUNCTION BndEvt__mSwitcher_K2Node_ComponentBoundEvent_1_OnActiveWidgetSet__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mCopyToClipboard_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_ManageSession(1704);
+============ END FUNCTION BndEvt__mCopyToClipboard_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ManageSession ==============
+L10:           this->UpdateSessionID();
+L24:           this->DisableClientOptions();
+L38:           <End of Inlined Event Graph Function>;
+L43:           FString mFString = KismetStringLibrary->TrimTrailing(mFString1);
+L102:          bool mbool = KismetStringLibrary->NotEqual_StrStr(mFString, "");
+L155:          if (!mbool) goto L1795;
+L169:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L193:          FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController);
+L229:          bool mbool1 = mFGPlayerControllerBase;
+L258:          if (!mbool1) goto L1795;
+L272:          FGAdminInterface* mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L314:          bool mbool2 = KismetSystemLibrary->IsValid(mFGAdminInterface);
+L365:          if (!mbool2) goto L1795;
+L379:          BP_OnlineHelpers->SessionVisibilityStringToEnum(mFString1, this, [ref] muint8);
+L434:          mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L476:          mFGAdminInterface->SetSessionVisibility(muint8);
+L521:          <End of Inlined Event Graph Function>;
+L526:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->UpdateManageListTimer);
+L568:          <End of Inlined Event Graph Function>;
+L573:          this->UpdateCurrentSessionType();
+L587:          goto L10;
+L592:          this->PopulateManagePlayerList();
+L606:          mFScriptDelegate->BindUFunction(this, PopulateManagePlayerList);
+L629:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 10, true);
+L694:          this->UpdateManageListTimer = mTimerHandle;
+L721:          goto L573;
+L726:          bool mbool3 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToInvite, [ref] mWidget_Multiplayer_ListButton, [ref] mPendingInvite);
+L795:          if (!mbool3) goto L1795;
+L809:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L833:          mbool3 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToInvite, [ref] mWidget_Multiplayer_ListButton, [ref] mPendingInvite);
+L902:          FGInviteLibrary->JoinInvite(mPlayerController1, [ref] mPendingInvite);
+L952:          <End of Inlined Event Graph Function>;
+L957:          <End of Inlined Event Graph Function>;
+L962:          bool mbool4 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToIngamePlayer, [ref] mWidget_Multiplayer_ListButton1, [ref] mPlayerState);
+L1031:         if (!mbool4) goto L1795;
+L1045:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1069:         FGPlayerControllerBase* mFGPlayerControllerBase1 = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController2);
+L1105:         bool mbool5 = mFGPlayerControllerBase1;
+L1134:         if (!mbool5) goto L1795;
+L1148:         FGAdminInterface* mFGAdminInterface1 = mFGPlayerControllerBase1->GetAdminInterface();
+L1190:         bool mbool6 = KismetSystemLibrary->IsValid(mFGAdminInterface1);
+L1241:         if (!mbool6) goto L1795;
+L1255:         mbool4 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToIngamePlayer, [ref] mWidget_Multiplayer_ListButton1, [ref] mPlayerState);
+L1324:         mFGAdminInterface1 = mFGPlayerControllerBase1->GetAdminInterface();
+L1366:         mFGAdminInterface1->KickPlayer(mPlayerState);
+L1411:         <End of Inlined Event Graph Function>;
+L1416:         this->OnMenuEnter(mWidget);
+L1435:         goto L592;
+L1440:         bool mbool7 = NotEqual_ObjectObject(mWidget1, mWidget2);
+L1478:         if (!mbool7) goto L1795;
+L1492:         Widget* mWidget3 = this->mSwitcher->GetActiveWidget();
+L1534:         PanelWidget* mPanelWidget = Cast<Class /Script/UMG.PanelWidget>(mWidget3);
+L1570:         bool mbool8 = mPanelWidget;
+L1599:         if (!mbool8) goto L1795;
+L1613:         this->mSettings->PlayListSpawnAnim(mPanelWidget);
+L1658:         <End of Inlined Event Graph Function>;
+L1663:         this->mOwningMenu->OnEscape();
+L1699:         goto L526;
+L1704:         FText mFText = this->mSessionIDText->GetText();
+L1754:         FGBlueprintFunctionLibrary->CopyTextToClipboard(mFText);
+============ END FUNCTION ExecuteUbergraph_Widget_ManageSession ==============

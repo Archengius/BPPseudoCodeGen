@@ -1,0 +1,142 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/World/Environment/Sky/BP_Planet.BP_Planet_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ShouldSave ==============
+L0:            bool ReturnValue = false;
+============ END FUNCTION ShouldSave ==============
+
+
+
+
+
+============ BEGIN FUNCTION GatherDependencies ==============
+L0:            TArray<Object*> out_dependentObjects = ObjectProperty /Game/FactoryGame/World/Environment/Sky/BP_Planet.BP_Planet_C:GatherDependencies.out_dependentObjects.out_dependentObjects[] {[]};
+============ END FUNCTION GatherDependencies ==============
+
+
+
+
+
+============ BEGIN FUNCTION NeedTransform ==============
+L0:            bool ReturnValue = false;
+============ END FUNCTION NeedTransform ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateMaterialParameters ==============
+L0:            FGTimeOfDaySubsystem* mFGTimeOfDaySubsystem = FGTimeOfDaySubsystem->Get(this);
+L43:           bool mbool = KismetSystemLibrary->IsValid(mFGTimeOfDaySubsystem);
+L94:           if (!mbool) goto L314;
+L108:          mFGTimeOfDaySubsystem = FGTimeOfDaySubsystem->Get(this);
+L151:          float mfloat = mFGTimeOfDaySubsystem->GetTimeOfDayHours();
+L201:          float mfloat1 = this->mOpacityCurve->GetFloatValue(mfloat);
+L260:          this->mMaterialInstance->SetScalarParameterValue("DayNightFade", mfloat1);
+============ END FUNCTION UpdateMaterialParameters ==============
+
+
+
+
+
+============ BEGIN FUNCTION UserConstructionScript ==============
+L0:            MaterialInstanceDynamic* mMaterialInstanceDynamic = this->SkeletalMesh->CreateDynamicMaterialInstance(0, this->mMaterial, "None");
+L73:           this->mMaterialInstance = mMaterialInstanceDynamic;
+L92:           mSingleAnimationPlayData.AnimToPlay = this->mAnimToPlay;
+L120:          mSingleAnimationPlayData.bSavedLooping = true;
+L140:          mSingleAnimationPlayData.bSavedPlaying = true;
+L160:          mSingleAnimationPlayData.SavedPosition = this->mInitialLocation;
+L196:          mSingleAnimationPlayData.SavedPlayRate = 0.019999999552965164;
+L228:          this->SkeletalMesh->AnimationData = mSingleAnimationPlayData;
+============ END FUNCTION UserConstructionScript ==============
+
+
+
+
+
+============ BEGIN FUNCTION PostSaveGame ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/World/Environment/Sky/BP_Planet.BP_Planet_C:ExecuteUbergraph_BP_Planet.K2Node_Event_saveVersion3) = SaveVersion;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/World/Environment/Sky/BP_Planet.BP_Planet_C:ExecuteUbergraph_BP_Planet.K2Node_Event_gameVersion3) = GameVersion;
+L36:           this->ExecuteUbergraph_BP_Planet(10);
+============ END FUNCTION PostSaveGame ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreLoadGame ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/World/Environment/Sky/BP_Planet.BP_Planet_C:ExecuteUbergraph_BP_Planet.K2Node_Event_saveVersion2) = SaveVersion;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/World/Environment/Sky/BP_Planet.BP_Planet_C:ExecuteUbergraph_BP_Planet.K2Node_Event_gameVersion2) = GameVersion;
+L36:           this->ExecuteUbergraph_BP_Planet(379);
+============ END FUNCTION PreLoadGame ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_Planet(15);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/World/Environment/Sky/BP_Planet.BP_Planet_C:ExecuteUbergraph_BP_Planet.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_BP_Planet(62);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdatePreview ==============
+L0:            this->ExecuteUbergraph_BP_Planet(287);
+============ END FUNCTION UpdatePreview ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreSaveGame ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/World/Environment/Sky/BP_Planet.BP_Planet_C:ExecuteUbergraph_BP_Planet.K2Node_Event_saveVersion1) = SaveVersion;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/World/Environment/Sky/BP_Planet.BP_Planet_C:ExecuteUbergraph_BP_Planet.K2Node_Event_gameVersion1) = GameVersion;
+L36:           this->ExecuteUbergraph_BP_Planet(292);
+============ END FUNCTION PreSaveGame ==============
+
+
+
+
+
+============ BEGIN FUNCTION PostLoadGame ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/World/Environment/Sky/BP_Planet.BP_Planet_C:ExecuteUbergraph_BP_Planet.K2Node_Event_saveVersion) = SaveVersion;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/World/Environment/Sky/BP_Planet.BP_Planet_C:ExecuteUbergraph_BP_Planet.K2Node_Event_gameVersion) = GameVersion;
+L36:           this->ExecuteUbergraph_BP_Planet(374);
+============ END FUNCTION PostLoadGame ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_Planet ==============
+L10:           <End of Inlined Event Graph Function>;
+L15:           this->SkeletalMesh->SetPosition(this->mInitialLocation, false);
+L57:           <End of Inlined Event Graph Function>;
+L62:           this->UpdateMaterialParameters();
+L76:           FGTimeOfDaySubsystem* mFGTimeOfDaySubsystem = FGTimeOfDaySubsystem->Get(this);
+L119:          float mfloat = mFGTimeOfDaySubsystem->GetTimeOfDayHours();
+L169:          float mfloat1 = this->mRimLightCurve->GetFloatValue(mfloat);
+L228:          this->mMaterialInstance->SetScalarParameterValue("Fade_Alpha", mfloat1);
+L282:          <End of Inlined Event Graph Function>;
+L287:          goto L62;
+L292:          float mfloat2 = this->SkeletalMesh->GetPosition();
+L342:          this->mInitialLocation = mfloat2;
+L369:          <End of Inlined Event Graph Function>;
+L374:          <End of Inlined Event Graph Function>;
+============ END FUNCTION ExecuteUbergraph_BP_Planet ==============

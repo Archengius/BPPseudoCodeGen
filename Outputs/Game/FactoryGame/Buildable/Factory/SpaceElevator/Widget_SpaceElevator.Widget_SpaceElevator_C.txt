@@ -1,0 +1,575 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/SpaceElevator/Widget_SpaceElevator.Widget_SpaceElevator_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION DisplayEarlyAccessBlocker ==============
+L0:            ExecutionFlow.Push(L513);
+L5:            int32 Temp_int_Variable = this->mFirstUnlockTier;
+L32:           bool mbool = LessEqual_IntInt(Temp_int_Variable, this->mLastUnlockTier);
+L70:           if (!mbool) goto ExecutionFlow.Pop();
+L80:           ExecutionFlow.Push(L286);
+L85:           bool mbool1 = Less_IntInt(Temp_int_Variable, 1);
+L119:          if (!mbool1) goto L360;
+L133:          this->mBlocker->SetVisibility(0);
+L171:          this->mScreen->SetVisibility(1);
+L209:          this->Widget_Manufacturing_Warning->SetVisibility(0);
+L247:          this->mInteractionBlocker->SetVisibility(0);
+L285:          goto ExecutionFlow.Pop();
+L286:          int32 mint32 = Add_IntInt(Temp_int_Variable, 1);
+L328:          Temp_int_Variable = mint32;
+L355:          goto L32;
+L360:          this->mBlocker->SetVisibility(1);
+L398:          this->mScreen->SetVisibility(3);
+L436:          this->Widget_Manufacturing_Warning->SetVisibility(1);
+L474:          this->mInteractionBlocker->SetVisibility(1);
+L512:          goto ExecutionFlow.Pop();
+============ END FUNCTION DisplayEarlyAccessBlocker ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateHeaderText ==============
+L0:            FGBuildable* mFGBuildable = Cast<Class /Script/FactoryGame.FGBuildable>(this->mInteractObject);
+L36:           bool mbool = mFGBuildable;
+L65:           if (!mbool) goto L146;
+L79:           this->Widget_Window_DarkMode->SetTitle(mFGBuildable->mDisplayName);
+============ END FUNCTION UpdateHeaderText ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetStatusText ==============
+L0:            this->StatusText->SetText(text);
+L45:           if (!Pulsing) goto L107;
+L59:           bool mbool = this->IsAnimationPlaying(this->StatusPulse);
+L88:           if (!mbool) goto L253;
+L102:          <End of Inlined Event Graph Function>;
+L107:          this->StopAnimation(this->StatusPulse);
+L126:          this->StatusText->SetRenderOpacity(1);
+L163:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L187:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Stop_SpaceElevator_Chime, mPlayerController, true);
+L248:          <End of Inlined Event Graph Function>;
+L253:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->StatusPulse, 0, 0, 0, 1);
+============ END FUNCTION SetStatusText ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdatePhaseInfo ==============
+L0:            ExecutionFlow.Push(L2304);
+L5:            this->TierInfoContainer->ClearChildren();
+L41:           int32 Temp_int_Variable = this->mFirstUnlockTier;
+L68:           bool mbool = LessEqual_IntInt(Temp_int_Variable, this->mLastUnlockTier);
+L106:          if (!mbool) goto L954;
+L120:          ExecutionFlow.Push(L1835);
+L125:          int32 mint32 = Subtract_IntInt(this->mLastUnlockTier, 1);
+L167:          bool mbool1 = Less_IntInt(Temp_int_Variable, mint32);
+L205:          if (!mbool1) goto L1909;
+L219:          FText SeperatorSymbol = "[object Object]";
+L243:          Widget_SpaceElevator_TierInfo* mWidget_SpaceElevator_TierInfo = WidgetBlueprintLibrary->Create(this, Widget_SpaceElevator_TierInfo, nullptr);
+L296:          mFormatArgumentData.ArgumentName = "TierNum";
+L332:          mFormatArgumentData.ArgumentValueType = 0;
+L361:          mFormatArgumentData.ArgumentValue = ;
+L390:          mFormatArgumentData.ArgumentValueInt = Temp_int_Variable;
+L426:          mFormatArgumentData.ArgumentValueFloat = 0;
+L458:          mFormatArgumentData.ArgumentValueGender = 0;
+L487:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L507:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L620:          KismetSystemLibrary->SetTextPropertyByName(mWidget_SpaceElevator_TierInfo, "mText", [ref] mFText);
+L683:          HorizontalBoxSlot* mHorizontalBoxSlot = this->TierInfoContainer->AddChildToHorizontalBox(mWidget_SpaceElevator_TierInfo);
+L734:          bool mbool2 = Less_IntInt(Temp_int_Variable, this->mLastUnlockTier);
+L772:          if (!mbool2) goto L1939;
+L786:          Widget_SpaceElevator_TierInfo* mWidget_SpaceElevator_TierInfo1 = WidgetBlueprintLibrary->Create(this, Widget_SpaceElevator_TierInfo, nullptr);
+L839:          KismetSystemLibrary->SetTextPropertyByName(mWidget_SpaceElevator_TierInfo1, "mText", [ref] SeperatorSymbol);
+L902:          HorizontalBoxSlot* mHorizontalBoxSlot1 = this->TierInfoContainer->AddChildToHorizontalBox(mWidget_SpaceElevator_TierInfo1);
+L953:          goto ExecutionFlow.Pop();
+L954:          uint8 muint8 = this->GamePhaseManager->GetGamePhase();
+L1004:         uint8 muint81 = Add_ByteByte(muint8, 1);
+L1043:         uint8 muint82 = KismetNodeHelperLibrary->GetValidValue(EGamePhase, muint81);
+L1111:         FText mFText1 = this->GamePhaseManager->GetGamePhaseName(muint82);
+L1170:         this->PhaseName->SetText(mFText1);
+L1215:         uint8 muint83 = this->GamePhaseManager->GetGamePhase();
+L1265:         uint8 muint84 = Add_ByteByte(muint83, 1);
+L1304:         uint8 muint85 = KismetNodeHelperLibrary->GetValidValue(EGamePhase, muint84);
+L1372:         FText mFText2 = KismetTextLibrary->Conv_ByteToText(muint85);
+L1431:         mFormatArgumentData1.ArgumentName = "PhaseInt";
+L1468:         mFormatArgumentData1.ArgumentValueType = 4;
+L1497:         mFormatArgumentData1.ArgumentValue = mFText2;
+L1533:         mFormatArgumentData1.ArgumentValueInt = 0;
+L1565:         mFormatArgumentData1.ArgumentValueFloat = 0;
+L1597:         mFormatArgumentData1.ArgumentValueGender = 0;
+L1626:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
+L1646:         FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L1789:         this->SpaceElevatorTitle->SetText(mFText3);
+L1834:         goto ExecutionFlow.Pop();
+L1835:         int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L1877:         Temp_int_Variable = mint321;
+L1904:         goto L68;
+L1909:         SeperatorSymbol = "[object Object]";
+L1934:         goto L243;
+L1939:         bool mbool3 = Less_IntInt(Temp_int_Variable, 1);
+L1973:         if (!mbool3) goto ExecutionFlow.Pop();
+L1983:         this->PhaseName->SetText("[object Object]");
+L2079:         this->SpaceElevatorTitle->SetText("[object Object]");
+L2199:         Widget_SpaceElevator_TierInfo* mWidget_SpaceElevator_TierInfo2 = WidgetBlueprintLibrary->Create(this, Widget_SpaceElevator_TierInfo, nullptr);
+L2252:         HorizontalBoxSlot* mHorizontalBoxSlot2 = this->TierInfoContainer->AddChildToHorizontalBox(mWidget_SpaceElevator_TierInfo2);
+L2303:         goto ExecutionFlow.Pop();
+============ END FUNCTION UpdatePhaseInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetUnlockTiers ==============
+L0:            ExecutionFlow.Push(L582);
+L5:            int32 Temp_int_Variable = 0;
+L28:           bool mbool = LessEqual_IntInt(Temp_int_Variable, 10);
+L62:           if (!mbool) goto L421;
+L76:           ExecutionFlow.Push(L480);
+L81:           uint8 muint8 = this->GamePhaseManager->GetGamePhase();
+L131:          uint8 muint81 = this->GamePhaseManager->GetGamePhaseForTechTier(Temp_int_Variable);
+L190:          uint8 muint82 = Add_ByteByte(muint8, 1);
+L229:          uint8 muint83 = KismetNodeHelperLibrary->GetValidValue(EGamePhase, muint82);
+L297:          bool mbool1 = EqualEqual_ByteByte(muint83, muint81);
+L335:          if (!mbool1) goto ExecutionFlow.Pop();
+L345:          bool mbool2 = Less_IntInt(this->mFirstUnlockTier, 0);
+L379:          if (!mbool2) goto L554;
+L393:          this->mFirstUnlockTier = Temp_int_Variable;
+L420:          goto ExecutionFlow.Pop();
+L421:          int32 FirstUnlockTier = this->mFirstUnlockTier;
+L448:          int32 LastUnlockTier = this->mLastUnlockTier;
+L475:          <End of Inlined Event Graph Function>;
+L480:          int32 mint32 = Add_IntInt(Temp_int_Variable, 1);
+L522:          Temp_int_Variable = mint32;
+L549:          goto L28;
+L554:          this->mLastUnlockTier = Temp_int_Variable;
+L581:          goto ExecutionFlow.Pop();
+============ END FUNCTION SetUnlockTiers ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearInactiveLeverSelections ==============
+L0:            WidgetAnimation* LocalActiveAnim = ActiveAnimation;
+L19:           float mfloat = this->LoadLit->GetRenderOpacity();
+L69:           bool mbool = Greater_FloatFloat(mfloat, 0);
+L103:          bool mbool1 = NotEqual_ObjectObject(LocalActiveAnim, this->LoadTextAnim);
+L141:          bool mbool2 = BooleanAND(mbool1, mbool);
+L179:          if (!mbool2) goto L239;
+L193:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->LoadTextAnim, 0, 1, 1, 1);
+L239:          float mfloat1 = this->SealLit->GetRenderOpacity();
+L289:          bool mbool3 = Greater_FloatFloat(mfloat1, 0);
+L323:          bool mbool4 = NotEqual_ObjectObject(LocalActiveAnim, this->SealTextAnim);
+L361:          bool mbool5 = BooleanAND(mbool4, mbool3);
+L399:          if (!mbool5) goto L459;
+L413:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->SealTextAnim, 0, 1, 1, 1);
+L459:          bool mbool6 = NotEqual_ObjectObject(LocalActiveAnim, this->SendTextAnim);
+L497:          float mfloat2 = this->SendLit->GetRenderOpacity();
+L547:          bool mbool7 = Greater_FloatFloat(mfloat2, 0);
+L581:          bool mbool8 = BooleanAND(mbool6, mbool7);
+L619:          if (!mbool8) goto L679;
+L633:          UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->SendTextAnim, 0, 1, 1, 1);
+============ END FUNCTION ClearInactiveLeverSelections ==============
+
+
+
+
+
+============ BEGIN FUNCTION DropInventorySlotStack ==============
+L0:            ExecutionFlow.Push(L809);
+L5:            KismetSystemLibrary->PrintString(this, "dfasdfasdfas", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L93:           ExecutionFlow.Push(L569);
+L98:           bool Temp_bool_Variable = false;
+L109:          int32 Temp_int_Variable = 0;
+L132:          bool mbool = Not_PreBool(Temp_bool_Variable);
+L161:          int32 mint32 = this->PayOffContainer->GetChildrenCount();
+L211:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L253:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint321);
+L291:          bool mbool2 = BooleanAND(mbool, mbool1);
+L329:          if (!mbool2) goto L593;
+L343:          ExecutionFlow.Push(L692);
+L348:          Widget* mWidget = this->PayOffContainer->GetChildAt(Temp_int_Variable);
+L399:          Widget_SpaceElevatorPayOffSlot* mWidget_SpaceElevatorPayOffSlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/SpaceElevator/Widget_SpaceElevatorPayOffSlot.Widget_SpaceElevatorPayOffSlot_C>(mWidget);
+L435:          bool mbool3 = mWidget_SpaceElevatorPayOffSlot;
+L464:          if (!mbool3) goto ExecutionFlow.Pop();
+L474:          mWidget_SpaceElevatorPayOffSlot->DropOntoInventorySlot(InventorySlot, [ref] mbool4);
+L528:          bool LocalResult = mbool4;
+L547:          if (!LocalResult) goto ExecutionFlow.Pop();
+L557:          Temp_bool_Variable = true;
+L568:          goto ExecutionFlow.Pop();
+L569:          bool WasStackMoved = LocalResult;
+L588:          <End of Inlined Event Graph Function>;
+L593:          if (!LocalResult) goto L631;
+L607:          WasStackMoved = LocalResult;
+L626:          <End of Inlined Event Graph Function>;
+L631:          this->DropInventoryStackOnInventoryWidget(InventorySlot, this->Widget_Inventory, [ref] mbool5);
+L672:          LocalResult = mbool5;
+L691:          goto ExecutionFlow.Pop();
+L692:          mbool = Not_PreBool(Temp_bool_Variable);
+L721:          if (!mbool) goto L593;
+L735:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L777:          Temp_int_Variable = mint322;
+L804:          goto L132;
+============ END FUNCTION DropInventorySlotStack ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPayOffContainerVisibility ==============
+L0:            uint8 Temp_byte_Variable = 1;
+L20:           uint8 Temp_byte_Variable1 = 0;
+L40:           bool mbool = this->mSpaceElevator->IsFullyUpgraded();
+L82:           bool Temp_bool_Variable = mbool;
+L101:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetPayOffContainerVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupPayOffWidgets ==============
+L0:            ExecutionFlow.Push(L1270);
+L5:            this->PayOffContainer->ClearChildren();
+L41:           bool mbool = this->mSpaceElevator->IsFullyUpgraded();
+L83:           if (!mbool) goto L98;
+L97:           goto ExecutionFlow.Pop();
+L98:           GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L141:          FGGamePhaseManager* mFGGamePhaseManager = FGGamePhaseManager->Get(mGameStateBase);
+L192:          uint8 muint8 = mFGGamePhaseManager->GetGamePhase();
+L242:          uint8 muint81 = Add_ByteByte(muint8, 1);
+L281:          uint8 muint82 = KismetNodeHelperLibrary->GetValidValue(EGamePhase, muint81);
+L349:          mFGGamePhaseManager->GetBaseCostForGamePhase(muint82, [ref] PhaseCost);
+L399:          int32 Temp_int_Loop_Counter_Variable = 0;
+L422:          int32 Temp_int_Array_Index_Variable = 0;
+L445:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] PhaseCost);
+L504:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L542:          if (!mbool1) goto L1150;
+L556:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L583:          ExecutionFlow.Push(L1196);
+L588:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L612:          Widget_SpaceElevatorPayOffSlot* mWidget_SpaceElevatorPayOffSlot = WidgetBlueprintLibrary->Create(this, Widget_SpaceElevatorPayOffSlot, mPlayerController);
+L673:          KismetArrayLibrary->Array_Get([ref] PhaseCost, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L732:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_SpaceElevatorPayOffSlot, "mItemAmount", [ref] mItemAmount);
+L795:          KismetSystemLibrary->SetIntPropertyByName(mWidget_SpaceElevatorPayOffSlot, "mItemIndex", Temp_int_Array_Index_Variable);
+L858:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_SpaceElevatorPayOffSlot, "mSpaceElevator", this->mSpaceElevator);
+L921:          GridSlot* mGridSlot = this->PayOffContainer->AddChildToGrid(mWidget_SpaceElevatorPayOffSlot);
+L972:          mGridSlot->SetColumn(Temp_int_Array_Index_Variable);
+L1013:         KismetArrayLibrary->Array_Get([ref] PhaseCost, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L1072:         int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalRelevantClasses, [ref] mItemAmount.ItemClass);
+L1149:         goto ExecutionFlow.Pop();
+L1150:         this->Widget_Window_DarkMode->SetupRelevantInventory([ref] LocalRelevantClasses);
+L1195:         goto ExecutionFlow.Pop();
+L1196:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1238:         Temp_int_Loop_Counter_Variable = mint322;
+L1265:         goto L445;
+============ END FUNCTION SetupPayOffWidgets ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(30);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(616);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION PollAndSetupInventory ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(822);
+============ END FUNCTION PollAndSetupInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnGamePhaseChanged ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Buildable/Factory/SpaceElevator/Widget_SpaceElevator.Widget_SpaceElevator_C:ExecuteUbergraph_Widget_SpaceElevator.K2Node_CustomEvent_NewGamePhase) = NewGamePhase;
+L18:           this->ExecuteUbergraph_Widget_SpaceElevator(1190);
+============ END FUNCTION OnGamePhaseChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION On Lever Select ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/Factory/SpaceElevator/Widget_SpaceElevator.Widget_SpaceElevator_C:ExecuteUbergraph_Widget_SpaceElevator.K2Node_CustomEvent_SelectionIndex) = SelectionIndex;
+L18:           this->ExecuteUbergraph_Widget_SpaceElevator(1205);
+============ END FUNCTION On Lever Select ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUpgrade ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(2739);
+============ END FUNCTION OnUpgrade ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/SpaceElevator/Widget_SpaceElevator.Widget_SpaceElevator_C:ExecuteUbergraph_Widget_SpaceElevator.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/SpaceElevator/Widget_SpaceElevator.Widget_SpaceElevator_C:ExecuteUbergraph_Widget_SpaceElevator.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_SpaceElevator(3083);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ActivateSend ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(3398);
+============ END FUNCTION ActivateSend ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnSmoke ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(3725);
+============ END FUNCTION SpawnSmoke ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnSparksRight ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(3862);
+============ END FUNCTION SpawnSparksRight ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnSparksLeft ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(3946);
+============ END FUNCTION SpawnSparksLeft ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartShake ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(4030);
+============ END FUNCTION StartShake ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopShake ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(4077);
+============ END FUNCTION StopShake ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResetLever ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(4097);
+============ END FUNCTION ResetLever ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(4183);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_Chime ==============
+L0:            this->ExecuteUbergraph_Widget_SpaceElevator(4365);
+============ END FUNCTION AnimNotify_Chime ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SpaceElevator ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->DisplayEarlyAccessBlocker();
+L29:           goto ExecutionFlow.Pop();
+L30:           this->Construct();
+L40:           FGBuildableSpaceElevator* mFGBuildableSpaceElevator = Cast<Class /Script/FactoryGame.FGBuildableSpaceElevator>(this->mInteractObject);
+L76:           bool mbool = mFGBuildableSpaceElevator;
+L105:          if (!mbool) goto ExecutionFlow.Pop();
+L115:          this->mSpaceElevator = mFGBuildableSpaceElevator;
+L134:          this->UpdateHeaderText();
+L148:          mFScriptDelegate->BindUFunction(this, OnEscapePressed);
+L171:          this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate);
+L212:          mFScriptDelegate1->BindUFunction(this, On Lever Select);
+L235:          this->Widget_Lever->OnNewSelection.AddUnique(mFScriptDelegate1);
+L276:          this->Widget_Lever->mShakeAnim = this->WindowShake;
+L317:          this->Widget_Lever->mShakeAnimTarget = this;
+L350:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L393:          FGGamePhaseManager* mFGGamePhaseManager = FGGamePhaseManager->Get(mGameStateBase);
+L444:          this->GamePhaseManager = mFGGamePhaseManager;
+L463:          this->SetUnlockTiers([ref] mint32, [ref] mint321);
+L495:          this->UpdatePhaseInfo();
+L509:          this->SetStatusText("[object Object]", true);
+L578:          this->Widget_InventorySlot_DropArea->mSpaceElevator = this;
+L611:          goto L15;
+L616:          this->Init();
+L626:          this->PollAndSetupInventory();
+L640:          GameStateBase* mGameStateBase1 = GameplayStatics->GetGameState(this);
+L683:          mFScriptDelegate2->BindUFunction(this, OnGamePhaseChanged);
+L706:          FGGamePhaseManager* mFGGamePhaseManager1 = FGGamePhaseManager->Get(mGameStateBase1);
+L757:          mFGGamePhaseManager1->mOnGamePhaseChanged.AddUnique(mFScriptDelegate2);
+L798:          this->InitInventoryWidgetCallbacks(this->Widget_Inventory);
+L821:          goto ExecutionFlow.Pop();
+L822:          this->SetupPayOffWidgets();
+L836:          goto ExecutionFlow.Pop();
+L837:          if (!false) goto ExecutionFlow.Pop();
+L839:          bool Temp_bool_IsClosed_Variable = true;
+L850:          goto ExecutionFlow.Pop();
+L851:          bool Temp_bool_Variable = false;
+L862:          this->Widget_Lever->mMaxSelectionIndex = 1;
+L907:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->SealPulseAnim, 0, 0, 0, 1);
+L953:          this->Widget_Lever->SetShowButton(true);
+L990:          this->SetStatusText("[object Object]", true);
+L1055:         goto ExecutionFlow.Pop();
+L1056:         if (!Temp_bool_Variable) goto L1071;
+L1070:         goto ExecutionFlow.Pop();
+L1071:         Temp_bool_Variable = true;
+L1082:         ExecutionFlow.Push(L1102);
+L1087:         if (!Temp_bool_Has_Been_Initd_Variable) goto L1174;
+L1101:         goto ExecutionFlow.Pop();
+L1102:         if (!Temp_bool_IsClosed_Variable) goto L1117;
+L1116:         goto ExecutionFlow.Pop();
+L1117:         Temp_bool_IsClosed_Variable = true;
+L1128:         this->Widget_Lever->mMaxSelectionIndex = 0;
+L1173:         goto ExecutionFlow.Pop();
+L1174:         bool Temp_bool_Has_Been_Initd_Variable = true;
+L1185:         goto L837;
+L1190:         this->SetupPayOffWidgets();
+L1204:         goto ExecutionFlow.Pop();
+L1205:         bool mbool1 = NotEqual_IntInt(mint322, 0);
+L1239:         if (!mbool1) goto L2099;
+L1253:         mbool1 = NotEqual_IntInt(mint322, 1);
+L1287:         if (!mbool1) goto L1431;
+L1301:         mbool1 = NotEqual_IntInt(mint322, 2);
+L1335:         if (!mbool1) goto L2268;
+L1349:         KismetSystemLibrary->PrintString(this, "Errol", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L1430:         goto ExecutionFlow.Pop();
+L1431:         KismetSystemLibrary->PrintString(this, "Seal", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L1511:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1535:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_SpaceElevator_Lever_Clonk, mPlayerController, true);
+L1596:         mPlayerController = this->GetOwningPlayer();
+L1620:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_SpaceElevator_Compress, mPlayerController, true);
+L1681:         mPlayerController = this->GetOwningPlayer();
+L1705:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Stop_SpaceElevator_Lever_Pull, mPlayerController, true);
+L1766:         this->Widget_Lever->SetShowButton(false);
+L1803:         this->StopAnimation(this->SealPulseAnim);
+L1822:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->SealTextAnim, 0, 1, 0, 1);
+L1868:         this->ClearInactiveLeverSelections(this->SealTextAnim);
+L1891:         UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->SealCrate, 0, 1, 0, 1);
+L1937:         this->Widget_Lever->mMinSelectionIndex = 1;
+L1982:         mFScriptDelegate3->BindUFunction(this, ActivateSend);
+L2005:         this->BindToAnimationFinished(this->SealCrate, mFScriptDelegate3);
+L2033:         this->SetStatusText("[object Object]", false);
+L2098:         goto ExecutionFlow.Pop();
+L2099:         KismetSystemLibrary->PrintString(this, "Load", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L2179:         this->StopAnimation(this->LoadPulseAnim);
+L2198:         UMGSequencePlayer* mUMGSequencePlayer3 = this->PlayAnimation(this->LoadTextAnim, 0, 1, 0, 1);
+L2244:         this->ClearInactiveLeverSelections(this->LoadTextAnim);
+L2267:         goto ExecutionFlow.Pop();
+L2268:         KismetSystemLibrary->PrintString(this, "Send", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L2348:         this->Widget_Lever->mSliderLocked = true;
+L2381:         this->StopAnimation(this->SendPulseAnim);
+L2400:         UMGSequencePlayer* mUMGSequencePlayer4 = this->PlayAnimation(this->SendTextAnim, 0, 1, 0, 1);
+L2446:         this->ClearInactiveLeverSelections(this->SendTextAnim);
+L2469:         this->OnUpgrade();
+L2483:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L2507:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_SpaceElevator_Conveyor, mPlayerController1, true);
+L2568:         mPlayerController1 = this->GetOwningPlayer();
+L2592:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Play_SpaceElevator_Lever_Clonk_02, mPlayerController1, true);
+L2653:         mPlayerController1 = this->GetOwningPlayer();
+L2677:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEvent(Stop_SpaceElevator_Lever_Pull, mPlayerController1, true);
+L2738:         goto ExecutionFlow.Pop();
+L2739:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L2763:         BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController2);
+L2799:         bool mbool2 = mBP_PlayerController;
+L2828:         if (!mbool2) goto ExecutionFlow.Pop();
+L2838:         BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L2889:         mBP_RemoteCallObject->Server_SpaceElevatorUpgradePressed(this->mSpaceElevator);
+L2934:         UMGSequencePlayer* mUMGSequencePlayer5 = this->PlayAnimation(this->SendCrate, 0, 1, 0, 1);
+L2980:         this->Widget_Lever->SetShowButton(false);
+L3017:         this->SetStatusText("[object Object]", false);
+L3082:         goto ExecutionFlow.Pop();
+L3083:         bool mbool3 = this->mSpaceElevator->IsReadyToUpgrade();
+L3125:         if (!mbool3) goto L3170;
+L3139:         if (!Temp_bool_Variable1) goto L3154;
+L3153:         goto ExecutionFlow.Pop();
+L3154:         bool Temp_bool_Variable1 = true;
+L3165:         goto L851;
+L3170:         Temp_bool_Variable1 = false;
+L3181:         goto L1056;
+L3186:         this->Widget_Lever->CurrentSelectionIndex = 0;
+L3231:         this->Widget_Lever->mMinSelectionIndex = 0;
+L3276:         this->UnbindAllFromAnimationFinished(this->SendCrate);
+L3295:         this->SetStatusText("[object Object]", true);
+L3364:         this->Widget_Lever->mSliderLocked = false;
+L3397:         goto ExecutionFlow.Pop();
+L3398:         bool mbool4 = this->mSpaceElevator->IsFullyUpgraded();
+L3440:         bool mbool5 = Not_PreBool(mbool4);
+L3469:         if (!mbool5) goto ExecutionFlow.Pop();
+L3479:         this->Widget_Lever->mMaxSelectionIndex = 2;
+L3524:         UMGSequencePlayer* mUMGSequencePlayer6 = this->PlayAnimation(this->SendPulseAnim, 0, 0, 0, 1);
+L3570:         this->Widget_Lever->SetShowButton(true);
+L3607:         this->UnbindAllFromAnimationFinished(this->SealCrate);
+L3626:         this->SetStatusText("[object Object]", true);
+L3691:         this->Widget_Lever->mSliderLocked = false;
+L3724:         goto ExecutionFlow.Pop();
+L3725:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L3749:         Widget_Smoke* mWidget_Smoke = WidgetBlueprintLibrary->Create(this, Widget_Smoke, mPlayerController3);
+L3810:         OverlaySlot* mOverlaySlot = this->CrateSmokeContainer->AddChildToOverlay(mWidget_Smoke);
+L3861:         goto ExecutionFlow.Pop();
+L3862:         int32 mint323 = RandomIntegerInRange(5, 8);
+L3900:         this->SparksRight->CreateSparks(mint323);
+L3945:         goto ExecutionFlow.Pop();
+L3946:         int32 mint324 = RandomIntegerInRange(5, 8);
+L3984:         this->SparksLeft->CreateSparks(mint324);
+L4029:         goto ExecutionFlow.Pop();
+L4030:         UMGSequencePlayer* mUMGSequencePlayer7 = this->PlayAnimation(this->WindowShake, 0, 0, 0, 1);
+L4076:         goto ExecutionFlow.Pop();
+L4077:         this->StopAnimation(this->WindowShake);
+L4096:         goto ExecutionFlow.Pop();
+L4097:         KismetSystemLibrary->PrintString(this, "Hello", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L4178:         goto L3186;
+L4183:         this->Destruct();
+L4193:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
+L4217:         AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEvent(Stop_SpaceElevator_Compress, mPlayerController4, true);
+L4278:         goto ExecutionFlow.Pop();
+L4279:         PlayerController* mPlayerController5 = this->GetOwningPlayer();
+L4303:         AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEvent(Play_SpaceElevator_Chime, mPlayerController5, true);
+L4364:         goto ExecutionFlow.Pop();
+L4365:         goto L4279;
+============ END FUNCTION ExecuteUbergraph_Widget_SpaceElevator ==============

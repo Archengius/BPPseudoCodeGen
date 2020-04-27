@@ -1,0 +1,359 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/Pipeline/UI/Widget_PipelineInspector.Widget_PipelineInspector_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION InitFluid ==============
+L0:            TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->mCurrentPipe->GetFluidDescriptor();
+L42:           TSubclassOf<FGItemDescriptor> fluidDescriptor = mTSubclassOf<FGItemDescriptor>;
+L61:           LinearColor mLinearColor = FGItemDescriptor->GetFluidColorLinear(fluidDescriptor);
+L120:          this->BPW_WaterTank->SetTint(mLinearColor);
+L165:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(fluidDescriptor);
+L216:          mSlateBrush.ImageSize = this->mFluidIcon->Brush.ImageSize;
+L283:          mSlateBrush.Margin = this->mFluidIcon->Brush.Margin;
+L350:          mSlateBrush.TintColor = this->mFluidIcon->Brush.TintColor;
+L417:          mSlateBrush.ResourceObject = mTexture2D;
+L445:          mSlateBrush.DrawAs = this->mFluidIcon->Brush.DrawAs;
+L512:          mSlateBrush.Tiling = this->mFluidIcon->Brush.Tiling;
+L579:          mSlateBrush.Mirroring = this->mFluidIcon->Brush.Mirroring;
+L646:          this->mFluidIcon->SetBrush([ref] mSlateBrush);
+L691:          FText mFText = FGItemDescriptor->GetItemName(fluidDescriptor);
+L750:          this->mFluidName->SetText(mFText);
+L795:          float mfloat = this->mCurrentPipe->GetMaxContent();
+L845:          FText mFText1 = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 0, 1);
+L928:          this->mMaxAmountInPipe->SetText(mFText1);
+L973:          float mfloat1 = this->mCurrentPipe->GetFlowLimit();
+L1023:         float mfloat2 = Multiply_FloatFloat(mfloat1, 60);
+L1065:         FText mFText2 = KismetTextLibrary->Conv_FloatToText(mfloat2, 0, false, true, 1, 324, 0, 0);
+L1148:         this->mMaxFlowRateText->SetText(mFText2);
+L1193:         TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor>1 = this->mCurrentPipe->GetFluidDescriptor();
+L1235:         this->BPW_FlushHandle->mFluidDescriptor = mTSubclassOf<FGItemDescriptor>1;
+============ END FUNCTION InitFluid ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateGauge ==============
+L0:            float range = 134;
+============ END FUNCTION UpdateGauge ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTank ==============
+L0:            this->mCurrentBarValue = mNewValue;
+L27:           this->BPW_WaterTank->UpdateTankValue(this->mCurrentBarValue);
+L72:           float mfloat = this->mCurrentPipe->GetMaxContent();
+L122:          float mfloat1 = Multiply_FloatFloat(mfloat, this->mCurrentBarValue);
+L168:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat1, 0, false, true, 1, 324, 0, 1);
+L251:          this->mCurrentAmountInPipeText->SetText(mFText);
+============ END FUNCTION UpdateTank ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateFlowRate ==============
+L0:            float SmoothingWeight = 0.30000001192092896;
+L23:           float mfloat = this->mCurrentPipe->GetIndicatorFlow();
+L73:           float mfloat1 = Abs(mfloat);
+L110:          float mfloat2 = Add_FloatFloat(Multiply_FloatFloat(SmoothingWeight, mfloat1), Multiply_FloatFloat(Subtract_FloatFloat(1, SmoothingWeight), this->mOutflowSmoothed));
+L209:          this->mOutflowSmoothed = mfloat2;
+L236:          float mfloat3 = Multiply_FloatFloat(this->mOutflowSmoothed, 60);
+L278:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat3, 0, false, true, 1, 324, 0, 0);
+L361:          this->mFlowRateText->SetText(mFText);
+L406:          float mfloat4 = this->mCurrentPipe->GetFlowLimit();
+L456:          float mfloat5 = Divide_FloatFloat(this->mOutflowSmoothed, mfloat4);
+L502:          this->mFlowRateGauge->UpdateGaugeValue(mfloat5);
+============ END FUNCTION UpdateFlowRate ==============
+
+
+
+
+
+============ BEGIN FUNCTION FormatFlow ==============
+L0:            FText mFText = KismetTextLibrary->Conv_FloatToText(Flow, 0, false, true, 1, 324, 0, 2);
+L83:           FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L142:          FString mFString1 = KismetStringLibrary->Concat_StrStr(mFString, " m³/s");
+L214:          FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString1);
+L273:          FText text = mFText1;
+============ END FUNCTION FormatFlow ==============
+
+
+
+
+
+============ BEGIN FUNCTION FormatContentPct ==============
+L0:            float mfloat = Multiply_FloatFloat(Content, 100);
+L42:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 0, 2);
+L125:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L184:          FString mFString1 = KismetStringLibrary->Concat_StrStr(mFString, " %");
+L247:          FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString1);
+L306:          FText text = mFText1;
+============ END FUNCTION FormatContentPct ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetTexts ==============
+L0:            ExecutionFlow.Push(L1179);
+L5:            float mMaxAmount = 50000;
+L28:           TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->mCurrentPipe->GetFluidDescriptor();
+L70:           FText mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGItemDescriptor>);
+L129:          this->mTypeText->SetText(mFText);
+L174:          ExecutionFlow.Push(L616);
+L179:          ExecutionFlow.Push(L400);
+L184:          bool mbool = KismetSystemLibrary->IsValid(this->mPipe1);
+L235:          if (!mbool) goto ExecutionFlow.Pop();
+L245:          float mfloat = this->mPipe1->GetIndicatorFlow();
+L295:          float LocalFlow1 = mfloat;
+L322:          float mfloat1 = this->mPipe1->GetIndicatorContentPct();
+L372:          float LocalContent1 = mfloat1;
+L399:          goto ExecutionFlow.Pop();
+L400:          bool mbool1 = KismetSystemLibrary->IsValid(this->mPipe1);
+L451:          if (!mbool1) goto ExecutionFlow.Pop();
+L461:          float mfloat2 = this->mPipe1->GetIndicatorFlow();
+L511:          float LocalFlow2 = mfloat2;
+L538:          float mfloat3 = this->mPipe1->GetIndicatorContentPct();
+L588:          LocalFlow2 = mfloat3;
+L615:          goto ExecutionFlow.Pop();
+L616:          this->FormatFlow(LocalFlow1, [ref] mFText1);
+L648:          this->mRate1Text->SetText(mFText1);
+L693:          float mfloat4 = this->mCurrentPipe->GetIndicatorFlow();
+L743:          this->FormatFlow(mfloat4, [ref] mFText2);
+L775:          this->mRateText->SetText(mFText2);
+L820:          this->FormatFlow(LocalFlow2, [ref] mFText3);
+L852:          this->mRate2Text->SetText(mFText3);
+L897:          this->FormatContentPct(LocalContent1, [ref] mFText4);
+L929:          this->mContent1Text->SetText(mFText4);
+L974:          float mfloat5 = this->mCurrentPipe->GetIndicatorContentPct();
+L1024:         this->FormatContentPct(mfloat5, [ref] mFText5);
+L1056:         this->mContentText->SetText(mFText5);
+L1101:         this->FormatContentPct(LocalContent2, [ref] mFText6);
+L1133:         this->mContent2Text->SetText(mFText6);
+L1178:         goto ExecutionFlow.Pop();
+============ END FUNCTION SetTexts ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_PipelineInspector(892);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PipelineInspector(1698);
+============ END FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/Pipeline/UI/Widget_PipelineInspector.Widget_PipelineInspector_C:ExecuteUbergraph_Widget_PipelineInspector.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/Pipeline/UI/Widget_PipelineInspector.Widget_PipelineInspector_C:ExecuteUbergraph_Widget_PipelineInspector.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_PipelineInspector(2140);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_1629_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PipelineInspector(2155);
+============ END FUNCTION BndEvt__Button_1629_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCustomTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/Pipeline/UI/Widget_PipelineInspector.Widget_PipelineInspector_C:ExecuteUbergraph_Widget_PipelineInspector.K2Node_Event_UpdateTime) = UpdateTime;
+L18:           this->ExecuteUbergraph_Widget_PipelineInspector(2170);
+============ END FUNCTION OnCustomTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__BPW_PipeModule_K2Node_ComponentBoundEvent_2_OnFlush__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/Pipeline/UI/Widget_PipelineInspector.Widget_PipelineInspector_C:ExecuteUbergraph_Widget_PipelineInspector.K2Node_ComponentBoundEvent_FlushNetwork) = FlushNetwork;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/Pipeline/UI/Widget_PipelineInspector.Widget_PipelineInspector_C:ExecuteUbergraph_Widget_PipelineInspector.K2Node_ComponentBoundEvent_DrainDuration1) = DrainDuration;
+L36:           this->ExecuteUbergraph_Widget_PipelineInspector(2214);
+============ END FUNCTION BndEvt__BPW_PipeModule_K2Node_ComponentBoundEvent_2_OnFlush__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Flush ==============
+L0:            this->ExecuteUbergraph_Widget_PipelineInspector(2229);
+============ END FUNCTION Flush ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_PipelineInspector(2234);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mPipeNetworkButton_K2Node_ComponentBoundEvent_4_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PipelineInspector(2239);
+============ END FUNCTION BndEvt__mPipeNetworkButton_K2Node_ComponentBoundEvent_4_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mPipeSegmentButton_K2Node_ComponentBoundEvent_5_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PipelineInspector(2325);
+============ END FUNCTION BndEvt__mPipeSegmentButton_K2Node_ComponentBoundEvent_5_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_3_OnFlush__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/Pipeline/UI/Widget_PipelineInspector.Widget_PipelineInspector_C:ExecuteUbergraph_Widget_PipelineInspector.K2Node_ComponentBoundEvent_DrainDuration) = DrainDuration;
+L18:           this->ExecuteUbergraph_Widget_PipelineInspector(2411);
+============ END FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_3_OnFlush__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_6_OnFluidLerp__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/Pipeline/UI/Widget_PipelineInspector.Widget_PipelineInspector_C:ExecuteUbergraph_Widget_PipelineInspector.K2Node_ComponentBoundEvent_Alpha) = Alpha;
+L18:           this->ExecuteUbergraph_Widget_PipelineInspector(2427);
+============ END FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_6_OnFluidLerp__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_8_OnFluidFilledUp__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PipelineInspector(2576);
+============ END FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_8_OnFluidFilledUp__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PipelineInspector ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           KismetSystemLibrary->PrintString(this, "Error: Failed to get remote call object", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), 2);
+L130:          goto ExecutionFlow.Pop();
+L131:          bool mbool = KismetSystemLibrary->IsValid(this->mCurrentPipe);
+L182:          if (!mbool) goto L248;
+L196:          this->InitFluid();
+L210:          this->mPipeSegmentButton->SetIsSelected(true);
+L247:          goto ExecutionFlow.Pop();
+L248:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 131, UUID = -1295696372, ExecutionFunction = "ExecuteUbergraph_Widget_PipelineInspector", CallbackTarget = this));
+L324:          goto ExecutionFlow.Pop();
+L325:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L349:          BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
+L385:          bool mbool1 = mBP_PlayerController;
+L414:          if (!mbool1) goto L641;
+L428:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L479:          bool mbool2 = KismetSystemLibrary->IsValid(mBP_RemoteCallObject);
+L530:          if (!mbool2) goto L641;
+L544:          mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L595:          mBP_RemoteCallObject->Server_FlushPipeNetwork(this->mCurrentPipe);
+L640:          goto ExecutionFlow.Pop();
+L641:          KismetSystemLibrary->PrintString(this, "Error: Failed to get remote call object", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), 2);
+L756:          goto ExecutionFlow.Pop();
+L757:          bool mbool3 = KismetSystemLibrary->IsValid(this->mCurrentPipe);
+L808:          if (!mbool3) goto ExecutionFlow.Pop();
+L818:          float mfloat = this->mCurrentPipe->GetIndicatorContentPct();
+L868:          this->UpdateTank(mfloat);
+L891:          goto ExecutionFlow.Pop();
+L892:          this->Init();
+L902:          FGBuildablePipeline* mFGBuildablePipeline = Cast<Class /Script/FactoryGame.FGBuildablePipeline>(this->mInteractObject);
+L938:          bool mbool4 = mFGBuildablePipeline;
+L967:          if (!mbool4) goto ExecutionFlow.Pop();
+L977:          this->mCurrentPipe = mFGBuildablePipeline;
+L996:          this->Widget_Window_DarkMode->SetTitle(this->mCurrentPipe->mDisplayName);
+L1063:         ExecutionFlow.Push(L1383);
+L1068:         FGPipeConnectionComponent* mFGPipeConnectionComponent = this->mCurrentPipe->GetPipeConnection0();
+L1110:         bool mbool5 = mFGPipeConnectionComponent->IsConnected();
+L1152:         if (!mbool5) goto ExecutionFlow.Pop();
+L1162:         mFGPipeConnectionComponent = this->mCurrentPipe->GetPipeConnection0();
+L1204:         FGPipeConnectionComponentBase* mFGPipeConnectionComponentBase = mFGPipeConnectionComponent->GetConnection();
+L1246:         Actor* mActor = mFGPipeConnectionComponentBase->GetOwner();
+L1288:         FGBuildablePipeline* mFGBuildablePipeline1 = Cast<Class /Script/FactoryGame.FGBuildablePipeline>(mActor);
+L1324:         bool mbool6 = mFGBuildablePipeline1;
+L1353:         if (!mbool6) goto ExecutionFlow.Pop();
+L1363:         this->mPipe1 = mFGBuildablePipeline1;
+L1382:         goto ExecutionFlow.Pop();
+L1383:         FGPipeConnectionComponent* mFGPipeConnectionComponent1 = this->mCurrentPipe->GetPipeConnection1();
+L1425:         bool mbool7 = mFGPipeConnectionComponent1->IsConnected();
+L1467:         if (!mbool7) goto ExecutionFlow.Pop();
+L1477:         mFGPipeConnectionComponent1 = this->mCurrentPipe->GetPipeConnection1();
+L1519:         FGPipeConnectionComponentBase* mFGPipeConnectionComponentBase1 = mFGPipeConnectionComponent1->GetConnection();
+L1561:         Actor* mActor1 = mFGPipeConnectionComponentBase1->GetOwner();
+L1603:         FGBuildablePipeline* mFGBuildablePipeline2 = Cast<Class /Script/FactoryGame.FGBuildablePipeline>(mActor1);
+L1639:         bool mbool8 = mFGBuildablePipeline2;
+L1668:         if (!mbool8) goto ExecutionFlow.Pop();
+L1678:         this->mPipe2 = mFGBuildablePipeline2;
+L1697:         goto ExecutionFlow.Pop();
+L1698:         this->OnEscapePressed();
+L1712:         goto ExecutionFlow.Pop();
+L1713:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1737:         BP_PlayerController* mBP_PlayerController1 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController1);
+L1773:         bool mbool9 = mBP_PlayerController1;
+L1802:         if (!mbool9) goto L15;
+L1816:         BP_RemoteCallObject* mBP_RemoteCallObject1 = mBP_PlayerController1->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L1867:         bool mbool10 = KismetSystemLibrary->IsValid(mBP_RemoteCallObject1);
+L1918:         if (!mbool10) goto L15;
+L1932:         if (!this->mFlushNetwork) goto L2043;
+L1946:         mBP_RemoteCallObject1 = mBP_PlayerController1->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L1997:         mBP_RemoteCallObject1->Server_FlushPipeNetwork(this->mCurrentPipe);
+L2042:         goto ExecutionFlow.Pop();
+L2043:         mBP_RemoteCallObject1 = mBP_PlayerController1->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L2094:         mBP_RemoteCallObject1->Server_FlushIntegrant(this->mCurrentPipe);
+L2139:         goto ExecutionFlow.Pop();
+L2140:         this->UpdateFlowRate();
+L2154:         goto ExecutionFlow.Pop();
+L2155:         this->Flush();
+L2169:         goto ExecutionFlow.Pop();
+L2170:         bool mbool11 = Not_PreBool(this->mIsFlushing);
+L2199:         if (!mbool11) goto ExecutionFlow.Pop();
+L2209:         goto L757;
+L2214:         this->Flush();
+L2228:         goto ExecutionFlow.Pop();
+L2229:         goto L325;
+L2234:         goto L131;
+L2239:         this->mPipeNetworkButton->SetIsSelected(true);
+L2276:         this->mPipeSegmentButton->SetIsSelected(false);
+L2313:         this->mFlushNetwork = true;
+L2324:         goto ExecutionFlow.Pop();
+L2325:         this->mPipeNetworkButton->SetIsSelected(false);
+L2362:         this->mPipeSegmentButton->SetIsSelected(true);
+L2399:         this->mFlushNetwork = false;
+L2410:         goto ExecutionFlow.Pop();
+L2411:         this->mIsFlushing = true;
+L2422:         goto L1713;
+L2427:         float mfloat1 = this->mCurrentPipe->GetIndicatorContentPct();
+L2477:         float mfloat2 = Ease(mfloat1, 0, mfloat3, 4, 2, 2);
+L2540:         this->UpdateTank(mfloat2);
+L2563:         goto ExecutionFlow.Pop();
+L2564:         this->mIsFlushing = false;
+L2575:         goto ExecutionFlow.Pop();
+L2576:         goto L2564;
+============ END FUNCTION ExecuteUbergraph_Widget_PipelineInspector ==============

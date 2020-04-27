@@ -1,0 +1,84 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/-Shared/Blueprint/BP_GameState.BP_GameState_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION DumpVisistedMapAreas ==============
+L0:            ExecutionFlow.Push(L975);
+L5:            PlayerController* mPlayerController = GameplayStatics->GetPlayerController(this, 0);
+L53:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L89:           bool mbool = mFGPlayerController;
+L118:          TSubclassOf<FGMapArea> mTSubclassOf<FGMapArea> = mFGPlayerController->GetCurrentMapArea();
+L160:          FText mFText = FGMapArea->GetAreaDisplayName(mTSubclassOf<FGMapArea>);
+L219:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L278:          FString mFString1 = KismetStringLibrary->Concat_StrStr("Player is in: ", mFString);
+L353:          KismetSystemLibrary->PrintString(this, mFString1, true, false, ScriptStruct /Script/CoreUObject.LinearColor(R = 0.3371640145778656, G = 0.32777801156044006, B = 0.03688900172710419, A = 1), 0);
+L436:          this->GetVisitedMapAreas([ref] mapAreas);
+L455:          int32 Temp_int_Loop_Counter_Variable = 0;
+L478:          int32 Temp_int_Array_Index_Variable = 0;
+L501:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mapAreas);
+L560:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L598:          if (!mbool1) goto ExecutionFlow.Pop();
+L608:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L635:          ExecutionFlow.Push(L901);
+L640:          KismetArrayLibrary->Array_Get([ref] mapAreas, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGMapArea>1);
+L699:          FText mFText1 = FGMapArea->GetAreaDisplayName(mTSubclassOf<FGMapArea>1);
+L758:          FString mFString2 = KismetTextLibrary->Conv_TextToString([ref] mFText1);
+L817:          KismetSystemLibrary->PrintString(this, mFString2, true, false, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 0);
+L900:          goto ExecutionFlow.Pop();
+L901:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L943:          Temp_int_Loop_Counter_Variable = mint321;
+L970:          goto L501;
+============ END FUNCTION DumpVisistedMapAreas ==============
+
+
+
+
+
+============ BEGIN FUNCTION DumpActorRepresentations ==============
+L0:            ExecutionFlow.Push(L1020);
+L5:            FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L48:           mFGActorRepresentationManager->GetAllActorRepresentations([ref] allRepresentations);
+L89:           int32 Temp_int_Loop_Counter_Variable = 0;
+L112:          int32 Temp_int_Array_Index_Variable = 0;
+L135:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] allRepresentations);
+L194:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L232:          if (!mbool) goto ExecutionFlow.Pop();
+L242:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L269:          ExecutionFlow.Push(L946);
+L274:          FString mFString = KismetStringLibrary->Conv_IntToString(Temp_int_Array_Index_Variable);
+L333:          FString mFString1 = KismetStringLibrary->Concat_StrStr(mFString, ": ");
+L396:          KismetArrayLibrary->Array_Get([ref] allRepresentations, Temp_int_Array_Index_Variable, [ref] mFGActorRepresentation);
+L455:          Vector mVector = mFGActorRepresentation->GetActorLocation();
+L505:          FString mFString2 = KismetStringLibrary->Conv_VectorToString(mVector);
+L564:          Actor* mActor = mFGActorRepresentation->GetRealActor();
+L606:          FString mFString3 = KismetSystemLibrary->GetDisplayName(mActor);
+L665:          FString mFString4 = KismetStringLibrary->Concat_StrStr(mFString1, mFString3);
+L733:          FString mFString5 = KismetStringLibrary->Concat_StrStr(mFString4, "");
+L794:          FString mFString6 = KismetStringLibrary->Concat_StrStr(mFString5, mFString2);
+L862:          KismetSystemLibrary->PrintString(this, mFString6, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 0.00009999999747378752);
+L945:          goto ExecutionFlow.Pop();
+L946:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L988:          Temp_int_Loop_Counter_Variable = mint321;
+L1015:         goto L135;
+============ END FUNCTION DumpActorRepresentations ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/-Shared/Blueprint/BP_GameState.BP_GameState_C:ExecuteUbergraph_BP_GameState.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_BP_GameState(10);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_GameState ==============
+L10:           this->ReceiveTick(mfloat);
+============ END FUNCTION ExecuteUbergraph_BP_GameState ==============

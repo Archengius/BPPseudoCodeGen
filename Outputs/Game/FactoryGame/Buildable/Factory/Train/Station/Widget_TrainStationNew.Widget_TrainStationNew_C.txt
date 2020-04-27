@@ -1,0 +1,328 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/Train/Station/Widget_TrainStationNew.Widget_TrainStationNew_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CheckStationNameLengthAndValidity ==============
+L0:            ExecutionFlow.Push(L535);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mInvalidTrainStationNames);
+L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L148:          if (!mbool) goto ExecutionFlow.Pop();
+L158:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L185:          ExecutionFlow.Push(L461);
+L190:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] this->mStationNameText);
+L249:          KismetArrayLibrary->Array_Get([ref] this->mInvalidTrainStationNames, Temp_int_Array_Index_Variable, [ref] mFString1);
+L308:          FString mFString2 = KismetStringLibrary->GetSubstring(mFString, 0, 22);
+L377:          bool mbool1 = KismetStringLibrary->NotEqual_StriStri(mFString2, mFString1);
+L437:          bool StationNameIsValid = mbool1;
+L456:          <End of Inlined Event Graph Function>;
+L461:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L503:          Temp_int_Loop_Counter_Variable = mint321;
+L530:          goto L51;
+============ END FUNCTION CheckStationNameLengthAndValidity ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetRandomInfoMessage ==============
+L0:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mInfoTextMessages);
+L59:           int32 mint321 = RandomInteger(mint32);
+L96:           this->mInfoMessage->SetText(this->mInfoTextMessages[mint321]);
+============ END FUNCTION SetRandomInfoMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdatePowerStatus ==============
+L0:            ExecutionFlow.Push(L982);
+L5:            uint8 Temp_byte_Variable = 1;
+L25:           uint8 Temp_byte_Variable1 = 3;
+L45:           bool mbool = this->RailroadStation->HasPower();
+L91:           bool Temp_bool_Variable = mbool;
+L110:          this->mNoPowerWarning->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L199:          int32 Temp_int_Variable = 0;
+L222:          int32 mint32 = this->mTrainList->GetChildrenCount();
+L272:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint32);
+L310:          if (!mbool1) goto L646;
+L324:          ExecutionFlow.Push(L908);
+L329:          Widget* mWidget = this->mTrainList->GetChildAt(Temp_int_Variable);
+L380:          Widget_TrainButton* mWidget_TrainButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/Train/Station/Widget_TrainButton.Widget_TrainButton_C>(mWidget);
+L416:          bool mbool2 = mWidget_TrainButton;
+L445:          if (!mbool2) goto ExecutionFlow.Pop();
+L455:          bool mbool3 = this->RailroadStation->HasPower();
+L501:          bool mbool4 = Not_PreBool(mbool3);
+L530:          mWidget_TrainButton->Widget_TrainWarning->ShouldForceWarning(mbool4, "[object Object]");
+L645:          goto ExecutionFlow.Pop();
+L646:          bool mbool5 = this->mLocomotiveMenuContainer->HasAnyChildren();
+L688:          if (!mbool5) goto ExecutionFlow.Pop();
+L698:          Widget* mWidget1 = this->mLocomotiveMenuContainer->GetChildAt(0);
+L745:          Widget_Locomotive_Menu* mWidget_Locomotive_Menu = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Locomotive_Menu.Widget_Locomotive_Menu_C>(mWidget1);
+L781:          bool mbool6 = mWidget_Locomotive_Menu;
+L810:          if (!mbool6) goto ExecutionFlow.Pop();
+L820:          bool mbool7 = this->RailroadStation->HasPower();
+L866:          mWidget_Locomotive_Menu->mFakeHasPower = mbool7;
+L907:          goto ExecutionFlow.Pop();
+L908:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L950:          Temp_int_Variable = mint321;
+L977:          goto L222;
+============ END FUNCTION UpdatePowerStatus ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowLocomotiveMenu ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           Widget_Locomotive_Menu* mWidget_Locomotive_Menu = WidgetBlueprintLibrary->Create(this, Widget_Locomotive_Menu, mPlayerController);
+L85:           KismetSystemLibrary->SetObjectPropertyByName(mWidget_Locomotive_Menu, "mTrain", mTrain);
+L148:          bool mbool = this->RailroadStation->HasPower();
+L194:          mWidget_Locomotive_Menu->mFakeHasPower = mbool;
+L235:          PanelSlot* mPanelSlot = this->mLocomotiveMenuContainer->AddChild(mWidget_Locomotive_Menu);
+L286:          this->mTrainStationWindow->SetVisibility(3);
+L324:          this->mLocomotiveMenuContainer->SetVisibility(0);
+L362:          mFScriptDelegate->BindUFunction(this, OnLocomotiveMenuClosed);
+L385:          mWidget_Locomotive_Menu->OnClose.AddUnique(mFScriptDelegate);
+L426:          mFScriptDelegate1->BindUFunction(this, OnTrainNameChanged);
+L449:          mWidget_Locomotive_Menu->OnTrainNameChanged.AddUnique(mFScriptDelegate1);
+============ END FUNCTION ShowLocomotiveMenu ==============
+
+
+
+
+
+============ BEGIN FUNCTION GenerateTrainList ==============
+L0:            ExecutionFlow.Push(L1385);
+L5:            FGTrainStationIdentifier* mFGTrainStationIdentifier = this->RailroadStation->GetStationIdentifier();
+L47:           int32 mint32 = mFGTrainStationIdentifier->GetTrackGraphID();
+L97:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L121:          FGRailroadSubsystem* mFGRailroadSubsystem = FGRailroadSubsystem->Get(mPlayerController);
+L172:          TArray<FGTrain*> mTArray<FGTrain> = [];
+L183:          mFGRailroadSubsystem->GetTrains(mint32, [ref] mTArray<FGTrain>);
+L233:          int32 Temp_int_Loop_Counter_Variable = 0;
+L256:          int32 Temp_int_Array_Index_Variable = 0;
+L279:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<FGTrain>);
+L338:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L376:          if (!mbool) goto L1118;
+L390:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L417:          ExecutionFlow.Push(L1311);
+L422:          KismetArrayLibrary->Array_Get([ref] mTArray<FGTrain>, Temp_int_Array_Index_Variable, [ref] mFGTrain);
+L481:          FGTrain* localFGTrain = mFGTrain;
+L500:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L524:          Widget_TrainButton* mWidget_TrainButton = WidgetBlueprintLibrary->Create(this, Widget_TrainButton, mPlayerController1);
+L585:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_TrainButton, "mTrainObject", localFGTrain);
+L648:          FText Temp_text_Variable = "[object Object]";
+L716:          FText mFText = localFGTrain->GetTrainName();
+L766:          FText mFText1 = KismetTextLibrary->GetEmptyText();
+L816:          bool mbool1 = KismetTextLibrary->EqualEqual_TextText([ref] mFText, [ref] mFText1);
+L876:          bool Temp_bool_Variable = mbool1;
+L895:          KismetSystemLibrary->SetTextPropertyByName(mWidget_TrainButton, "mTitle", [ref] switch (Temp_bool_Variable) {
+case false -> mFText;
+case true -> Temp_text_Variable;
+default -> mFText2;
+});
+L1002:         PanelSlot* mPanelSlot = this->mTrainList->AddChild(mWidget_TrainButton);
+L1053:         mFScriptDelegate->BindUFunction(this, OnTrainButtonClicked);
+L1076:         mWidget_TrainButton->OnClicked.AddUnique(mFScriptDelegate);
+L1117:         goto ExecutionFlow.Pop();
+L1118:         int32 mint322 = this->mTrainList->GetChildrenCount();
+L1168:         FString mFString = KismetStringLibrary->Conv_IntToString(mint322);
+L1227:         KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L1310:         goto ExecutionFlow.Pop();
+L1311:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1353:         Temp_int_Loop_Counter_Variable = mint323;
+L1380:         goto L279;
+============ END FUNCTION GenerateTrainList ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetStationName ==============
+L0:            FText Temp_text_Variable = "[object Object]";
+L76:           FGTrainStationIdentifier* mFGTrainStationIdentifier = this->RailroadStation->GetStationIdentifier();
+L118:          bool mbool = KismetSystemLibrary->IsValid(mFGTrainStationIdentifier);
+L169:          FText mFText = mFGTrainStationIdentifier->GetStationName();
+L219:          bool Temp_bool_Variable = mbool;
+L238:          FText Name = switch (Temp_bool_Variable) {
+case false -> Temp_text_Variable;
+case true -> mFText;
+default -> mFText1;
+};
+============ END FUNCTION GetStationName ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetStationName ==============
+L0:            this->GetDefaultRCO([ref] mBP_RemoteCallObject);
+L23:           FGTrainStationIdentifier* mFGTrainStationIdentifier = this->RailroadStation->GetStationIdentifier();
+L65:           mBP_RemoteCallObject->Server_SetTrainStationName(mFGTrainStationIdentifier, Name);
+============ END FUNCTION SetStationName ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnGetPowerCircuit ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->RailroadStation);
+L51:           if (!mbool) goto L173;
+L65:           FGPowerInfoComponent* mFGPowerInfoComponent = this->RailroadStation->GetPowerInfo();
+L107:          FGPowerCircuit* mFGPowerCircuit = mFGPowerInfoComponent->GetPowerCircuit();
+L149:          FGPowerCircuit* ReturnValue = mFGPowerCircuit;
+L168:          goto L184;
+L173:          ReturnValue = nullptr;
+============ END FUNCTION OnGetPowerCircuit ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mStationNameInput_K2Node_ComponentBoundEvent_0_OnEditableTextCommittedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Buildable/Factory/Train/Station/Widget_TrainStationNew.Widget_TrainStationNew_C:ExecuteUbergraph_Widget_TrainStationNew.K2Node_ComponentBoundEvent_Text1) = text;
+L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Buildable/Factory/Train/Station/Widget_TrainStationNew.Widget_TrainStationNew_C:ExecuteUbergraph_Widget_TrainStationNew.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
+L36:           this->ExecuteUbergraph_Widget_TrainStationNew(391);
+============ END FUNCTION BndEvt__mStationNameInput_K2Node_ComponentBoundEvent_0_OnEditableTextCommittedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnTrainButtonClicked ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Factory/Train/Station/Widget_TrainStationNew.Widget_TrainStationNew_C:ExecuteUbergraph_Widget_TrainStationNew.K2Node_CustomEvent_button) = Button;
+L18:           this->ExecuteUbergraph_Widget_TrainStationNew(758);
+============ END FUNCTION OnTrainButtonClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnLocomotiveMenuClosed ==============
+L0:            this->ExecuteUbergraph_Widget_TrainStationNew(823);
+============ END FUNCTION OnLocomotiveMenuClosed ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnTrainNameChanged ==============
+L0:            this->ExecuteUbergraph_Widget_TrainStationNew(911);
+============ END FUNCTION OnTrainNameChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPowerChanged ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/Train/Station/Widget_TrainStationNew.Widget_TrainStationNew_C:ExecuteUbergraph_Widget_TrainStationNew.K2Node_CustomEvent_state) = State;
+L18:           this->ExecuteUbergraph_Widget_TrainStationNew(1029);
+============ END FUNCTION OnPowerChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mStationNameInput_K2Node_ComponentBoundEvent_1_OnEditableTextChangedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Buildable/Factory/Train/Station/Widget_TrainStationNew.Widget_TrainStationNew_C:ExecuteUbergraph_Widget_TrainStationNew.K2Node_ComponentBoundEvent_Text) = text;
+L18:           this->ExecuteUbergraph_Widget_TrainStationNew(1044);
+============ END FUNCTION BndEvt__mStationNameInput_K2Node_ComponentBoundEvent_1_OnEditableTextChangedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION AutoScrollInfoMessage ==============
+L0:            this->ExecuteUbergraph_Widget_TrainStationNew(1645);
+============ END FUNCTION AutoScrollInfoMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_TrainStationNew(1736);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_TrainStationNew ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->Widget_AutoScrollingContainer->StartAutoScroll();
+L51:           goto ExecutionFlow.Pop();
+L52:           this->Construct();
+L62:           mFScriptDelegate->BindUFunction(this, OnEscapePressed);
+L85:           this->mTrainStationWindow->OnClose.AddUnique(mFScriptDelegate);
+L126:          FGBuildableRailroadStation* mFGBuildableRailroadStation = Cast<Class /Script/FactoryGame.FGBuildableRailroadStation>(this->mInteractObject);
+L162:          bool mbool = mFGBuildableRailroadStation;
+L191:          if (!mbool) goto ExecutionFlow.Pop();
+L201:          this->RailroadStation = mFGBuildableRailroadStation;
+L220:          mFScriptDelegate1->BindUFunction(this, OnPowerChanged);
+L243:          this->RailroadStation->mOnHasPowerChanged.AddUnique(mFScriptDelegate1);
+L284:          this->GenerateTrainList();
+L298:          this->UpdatePowerStatus();
+L312:          this->AutoScrollInfoMessage();
+L326:          this->GetStationName([ref] mFText);
+L349:          this->mStationNameInput->SetText(mFText);
+L390:          goto ExecutionFlow.Pop();
+L391:          this->mInputMethod = muint8;
+L418:          this->mStationNameText = mconst FText;
+L445:          this->CheckStationNameLengthAndValidity([ref] mbool1);
+L468:          if (!mbool1) goto L618;
+L482:          bool mbool2 = NotEqual_ByteByte(this->mInputMethod, 0);
+L513:          if (!mbool2) goto L669;
+L527:          mbool2 = NotEqual_ByteByte(this->mInputMethod, 1);
+L558:          if (!mbool2) goto L734;
+L572:          mbool2 = NotEqual_ByteByte(this->mInputMethod, 2);
+L603:          if (!mbool2) goto L669;
+L617:          goto ExecutionFlow.Pop();
+L618:          this->SetStationName();
+L634:          this->mStationNameInput->SetText();
+L668:          goto ExecutionFlow.Pop();
+L669:          this->GetStationName([ref] mFText1);
+L692:          this->mStationNameInput->SetText(mFText1);
+L733:          goto ExecutionFlow.Pop();
+L734:          this->SetStationName(this->mStationNameText);
+L757:          goto ExecutionFlow.Pop();
+L758:          this->mActiveTrainButton = mWidget_TrainButton;
+L777:          this->ShowLocomotiveMenu(this->mActiveTrainButton->mTrainObject);
+L822:          goto ExecutionFlow.Pop();
+L823:          this->mTrainStationWindow->SetVisibility(0);
+L861:          this->mLocomotiveMenuContainer->SetVisibility(1);
+L899:          this->mActiveTrainButton = nullptr;
+L910:          goto ExecutionFlow.Pop();
+L911:          FText mFText2 = this->mActiveTrainButton->mTrainObject->GetTrainName();
+L983:          this->mActiveTrainButton->SetTitle(mFText2);
+L1028:         goto ExecutionFlow.Pop();
+L1029:         this->UpdatePowerStatus();
+L1043:         goto ExecutionFlow.Pop();
+L1044:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] mconst FText1);
+L1103:         int32 mint32 = KismetStringLibrary->Len(mFString);
+L1162:         bool mbool3 = Greater_IntInt(mint32, 22);
+L1196:         if (!mbool3) goto ExecutionFlow.Pop();
+L1206:         FString mFString1 = KismetTextLibrary->Conv_TextToString([ref] mconst FText1);
+L1265:         FString mFString2 = KismetStringLibrary->GetSubstring(mFString1, 0, 22);
+L1334:         FText mFText3 = KismetTextLibrary->Conv_StringToText(mFString2);
+L1393:         this->mStationNameInput->SetText(mFText3);
+L1434:         mFString1 = KismetTextLibrary->Conv_TextToString([ref] mconst FText1);
+L1493:         mFString2 = KismetStringLibrary->GetSubstring(mFString1, 0, 22);
+L1562:         mFText3 = KismetTextLibrary->Conv_StringToText(mFString2);
+L1621:         this->SetStationName(mFText3);
+L1644:         goto ExecutionFlow.Pop();
+L1645:         this->SetRandomInfoMessage();
+L1659:         KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 961414655, ExecutionFunction = "ExecuteUbergraph_Widget_TrainStationNew", CallbackTarget = this));
+L1735:         goto ExecutionFlow.Pop();
+L1736:         goto L52;
+============ END FUNCTION ExecuteUbergraph_Widget_TrainStationNew ==============

@@ -1,0 +1,244 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/World/Benefit/DropPod/Widget_DropPod_Door.Widget_DropPod_Door_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetHasBeenOpened ==============
+L0:            this->mDoorOpened = HasBeenOpened;
+L19:           if (!this->mDoorOpened) goto L52;
+L33:           this->SetHandleAngle(-90);
+============ END FUNCTION SetHasBeenOpened ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetLEDVisibility ==============
+L0:            if (!this->IsLocked) goto L95;
+L14:           this->ledOff->SetVisibility(0);
+L52:           this->ledOn->SetVisibility(2);
+L90:           <End of Inlined Event Graph Function>;
+L95:           this->ledOff->SetVisibility(2);
+L133:          this->ledOn->SetVisibility(0);
+L171:          goto L90;
+============ END FUNCTION SetLEDVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetHandleAngle ==============
+L0:            this->DoorHandleBack->SetRenderAngle(Angle);
+L41:           this->DoorHandleHighlight->SetRenderAngle(Angle);
+L82:           this->DoorHandleTop->SetRenderAngle(Angle);
+============ END FUNCTION SetHandleAngle ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_DropPod_Door(297);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/World/Benefit/DropPod/Widget_DropPod_Door.Widget_DropPod_Door_C:ExecuteUbergraph_Widget_DropPod_Door.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/World/Benefit/DropPod/Widget_DropPod_Door.Widget_DropPod_Door_C:ExecuteUbergraph_Widget_DropPod_Door.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_DropPod_Door(340);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/World/Benefit/DropPod/Widget_DropPod_Door.Widget_DropPod_Door_C:ExecuteUbergraph_Widget_DropPod_Door.K2Node_ComponentBoundEvent_Value) = Value;
+L18:           this->ExecuteUbergraph_Widget_DropPod_Door(764);
+============ END FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__HandleSlider_K2Node_ComponentBoundEvent_1_OnMouseCaptureEndEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_DropPod_Door(2537);
+============ END FUNCTION BndEvt__HandleSlider_K2Node_ComponentBoundEvent_1_OnMouseCaptureEndEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__HandleSlider_K2Node_ComponentBoundEvent_2_OnControllerCaptureEndEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_DropPod_Door(2823);
+============ END FUNCTION BndEvt__HandleSlider_K2Node_ComponentBoundEvent_2_OnControllerCaptureEndEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDoorOpen_Event ==============
+L0:            this->ExecuteUbergraph_Widget_DropPod_Door(2828);
+============ END FUNCTION OnDoorOpen_Event ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_DropPod_Door(3078);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_DropPod_Door ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool Temp_bool_IsClosed_Variable1 = false;
+L26:           bool Temp_bool_Has_Been_Initd_Variable = true;
+L37:           goto ExecutionFlow.Pop();
+L38:           Pawn* mPawn = this->GetOwningPlayerPawn();
+L58:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Stop_CrashPod_Door_SlideOpen, mPawn, true);
+L119:          goto ExecutionFlow.Pop();
+L120:          Pawn* mPawn1 = this->GetOwningPlayerPawn();
+L140:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_CrashPod_Door_CloseLoopV2, mPawn1, true);
+L201:          mPawn1 = this->GetOwningPlayerPawn();
+L221:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Stop_CrashPod_Door_OpenLoop, mPawn1, true);
+L282:          goto ExecutionFlow.Pop();
+L283:          if (!false) goto ExecutionFlow.Pop();
+L285:          bool Temp_bool_IsClosed_Variable = true;
+L296:          goto ExecutionFlow.Pop();
+L297:          mFScriptDelegate->BindUFunction(this, OnDoorOpen_Event);
+L320:          this->OnDoorOpen.AddUnique(mFScriptDelegate);
+L339:          goto ExecutionFlow.Pop();
+L340:          if (!this->ReturnHandle) goto ExecutionFlow.Pop();
+L350:          float mfloat = Add_FloatFloat(mfloat1, this->T);
+L396:          this->T = mfloat;
+L423:          float mfloat2 = FClamp(this->T, 0, 1);
+L470:          float mfloat3 = Ease(this->LastSliderValue, 0, mfloat2, 6, 2, 2);
+L533:          float mfloat4 = Multiply_FloatFloat(mfloat3, -90);
+L575:          this->SetHandleAngle(mfloat4);
+L598:          mfloat2 = FClamp(this->T, 0, 1);
+L645:          mfloat3 = Ease(this->LastSliderValue, 0, mfloat2, 6, 2, 2);
+L708:          bool mbool = LessEqual_FloatFloat(mfloat3, 0);
+L742:          if (!mbool) goto ExecutionFlow.Pop();
+L752:          this->ReturnHandle = false;
+L763:          goto ExecutionFlow.Pop();
+L764:          if (!this->mDoorOpened) goto L816;
+L778:          this->HandleSlider->SetValue(1);
+L815:          goto ExecutionFlow.Pop();
+L816:          float mfloat5 = this->DoorCurve->GetFloatValue(mfloat6);
+L875:          this->HandleSlider->SetValue(mfloat5);
+L916:          mfloat5 = this->DoorCurve->GetFloatValue(mfloat6);
+L975:          bool mbool1 = Greater_FloatFloat(mfloat5, 0.05000000074505806);
+L1009:         bool mbool2 = BooleanAND(this->IsLocked, mbool1);
+L1047:         if (!mbool2) goto L1327;
+L1061:         this->HandleSlider->SetValue(0.05000000074505806);
+L1098:         float mfloat7 = this->HandleSlider->GetValue();
+L1148:         float mfloat8 = Multiply_FloatFloat(mfloat7, -90);
+L1190:         this->SetHandleAngle(mfloat8);
+L1213:         float mfloat9 = this->HandleSlider->GetValue();
+L1263:         bool mbool3 = EqualEqual_FloatFloat(mfloat9, 1);
+L1297:         if (!mbool3) goto ExecutionFlow.Pop();
+L1307:         this->OnDoorOpen->ProcessMulticastDelegate();
+L1326:         goto ExecutionFlow.Pop();
+L1327:         ExecutionFlow.Push(L1337);
+L1332:         goto L1098;
+L1337:         if (!this->IsLocked) goto L1512;
+L1351:         mfloat5 = this->DoorCurve->GetFloatValue(mfloat6);
+L1410:         bool mbool4 = Greater_FloatFloat(mfloat5, 0.009999999776482582);
+L1444:         bool mbool5 = BooleanAND(this->IsLocked, mbool4);
+L1482:         if (!mbool5) goto ExecutionFlow.Pop();
+L1492:         ExecutionFlow.Push(L2076);
+L1497:         if (!Temp_bool_Has_Been_Initd_Variable) goto L2260;
+L1511:         goto ExecutionFlow.Pop();
+L1512:         this->mCurrentLeverValue = mfloat6;
+L1539:         bool mbool6 = GreaterEqual_FloatFloat(this->mCurrentLeverValue, this->mLastLeverValue);
+L1577:         if (!mbool6) goto L1728;
+L1591:         float mfloat10 = Add_FloatFloat(this->mLastLeverValue, 0.05000000074505806);
+L1633:         bool mbool7 = GreaterEqual_FloatFloat(this->mCurrentLeverValue, mfloat10);
+L1671:         if (!mbool7) goto ExecutionFlow.Pop();
+L1681:         this->mLastLeverValue = this->mCurrentLeverValue;
+L1708:         ExecutionFlow.Push(L2285);
+L1713:         if (!Temp_bool_Has_Been_Initd_Variable2) goto L2496;
+L1727:         goto ExecutionFlow.Pop();
+L1728:         float mfloat11 = Subtract_FloatFloat(this->mLastLeverValue, 0.05000000074505806);
+L1770:         bool mbool8 = LessEqual_FloatFloat(this->mCurrentLeverValue, mfloat11);
+L1808:         if (!mbool8) goto ExecutionFlow.Pop();
+L1818:         this->mLastLeverValue = this->mCurrentLeverValue;
+L1845:         ExecutionFlow.Push(L1865);
+L1850:         if (!Temp_bool_Has_Been_Initd_Variable1) goto L2521;
+L1864:         goto ExecutionFlow.Pop();
+L1865:         if (!Temp_bool_IsClosed_Variable) goto L1880;
+L1879:         goto ExecutionFlow.Pop();
+L1880:         Temp_bool_IsClosed_Variable = true;
+L1891:         Pawn* mPawn2 = this->GetOwningPlayerPawn();
+L1911:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_CrashPod_Door_CloseLoopV2, mPawn2, true);
+L1972:         mPawn2 = this->GetOwningPlayerPawn();
+L1992:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Stop_CrashPod_Door_OpenLoop, mPawn2, true);
+L2053:         bool Temp_bool_IsClosed_Variable2 = false;
+L2064:         bool Temp_bool_Has_Been_Initd_Variable2 = true;
+L2075:         goto ExecutionFlow.Pop();
+L2076:         if (!Temp_bool_IsClosed_Variable1) goto L2091;
+L2090:         goto ExecutionFlow.Pop();
+L2091:         Temp_bool_IsClosed_Variable1 = true;
+L2102:         Pawn* mPawn3 = this->GetOwningPlayerPawn();
+L2122:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEvent(Play_CrashPod_Door_Fail, mPawn3, true);
+L2183:         KismetSystemLibrary->Delay(this, 0.5, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 1308786644, ExecutionFunction = "ExecuteUbergraph_Widget_DropPod_Door", CallbackTarget = this));
+L2259:         goto ExecutionFlow.Pop();
+L2260:         Temp_bool_Has_Been_Initd_Variable = true;
+L2271:         if (!false) goto ExecutionFlow.Pop();
+L2273:         Temp_bool_IsClosed_Variable1 = true;
+L2284:         goto ExecutionFlow.Pop();
+L2285:         if (!Temp_bool_IsClosed_Variable2) goto L2300;
+L2299:         goto ExecutionFlow.Pop();
+L2300:         Temp_bool_IsClosed_Variable2 = true;
+L2311:         mPawn2 = this->GetOwningPlayerPawn();
+L2331:         AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEvent(Play_CrashPod_Door_OpenLoop, mPawn2, true);
+L2392:         mPawn2 = this->GetOwningPlayerPawn();
+L2412:         AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEvent(Stop_CrashPod_Door_CloseLoopV2, mPawn2, true);
+L2473:         Temp_bool_IsClosed_Variable = false;
+L2484:         bool Temp_bool_Has_Been_Initd_Variable1 = true;
+L2495:         goto ExecutionFlow.Pop();
+L2496:         Temp_bool_Has_Been_Initd_Variable2 = true;
+L2507:         if (!false) goto ExecutionFlow.Pop();
+L2509:         Temp_bool_IsClosed_Variable2 = true;
+L2520:         goto ExecutionFlow.Pop();
+L2521:         Temp_bool_Has_Been_Initd_Variable1 = true;
+L2532:         goto L283;
+L2537:         float mfloat12 = this->HandleSlider->GetValue();
+L2587:         bool mbool9 = Less_FloatFloat(mfloat12, 1);
+L2621:         if (!mbool9) goto L2784;
+L2635:         this->T = 0;
+L2658:         float mfloat13 = this->HandleSlider->GetValue();
+L2708:         this->LastSliderValue = mfloat13;
+L2735:         this->ReturnHandle = true;
+L2746:         this->HandleSlider->SetValue(0);
+L2783:         goto ExecutionFlow.Pop();
+L2784:         this->HandleSlider->SetVisibility(2);
+L2822:         goto ExecutionFlow.Pop();
+L2823:         goto L2537;
+L2828:         this->mDoorOpened = true;
+L2839:         mPawn1 = this->GetOwningPlayerPawn();
+L2859:         AkComponent* mAkComponent8 = AkGameplayStatics->PostAkEvent(Play_CrashPod_Door_Clonk, mPawn1, true);
+L2920:         mPawn1 = this->GetOwningPlayerPawn();
+L2940:         AkComponent* mAkComponent9 = AkGameplayStatics->PostAkEvent(Play_CrashPod_Door_SlideOpen, mPawn1, true);
+L3001:         KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 120, UUID = -223500841, ExecutionFunction = "ExecuteUbergraph_Widget_DropPod_Door", CallbackTarget = this));
+L3077:         goto ExecutionFlow.Pop();
+L3078:         this->Destruct();
+L3088:         goto L38;
+============ END FUNCTION ExecuteUbergraph_Widget_DropPod_Door ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDoorOpen__DelegateSignature ==============
+============ END FUNCTION OnDoorOpen__DelegateSignature ==============

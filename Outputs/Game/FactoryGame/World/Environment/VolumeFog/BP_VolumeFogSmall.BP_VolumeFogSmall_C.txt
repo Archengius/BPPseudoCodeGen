@@ -1,0 +1,87 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/World/Environment/VolumeFog/BP_VolumeFogSmall.BP_VolumeFogSmall_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateBrightness ==============
+L0:            FGTimeOfDaySubsystem* mFGTimeOfDaySubsystem = FGTimeOfDaySubsystem->Get(this);
+L43:           int32 mint32 = mFGTimeOfDaySubsystem->GetDayMinutes();
+L93:           float mfloat = Conv_IntToFloat(mint32);
+L130:          float mfloat1 = this->mBrightnessCurve->GetFloatValue(mfloat);
+L189:          float mfloat2 = Lerp(7, this->mBrightness, mfloat1);
+L240:          this->StaticMesh->SetScalarParameterValueOnMaterials("Brightness", mfloat2);
+============ END FUNCTION UpdateBrightness ==============
+
+
+
+
+
+============ BEGIN FUNCTION UserConstructionScript ==============
+L0:            Vector mVector = MakeVector(this->mSize_X, this->mSize_Y, 1);
+L51:           this->StaticMesh->SetRelativeScale3D(mVector);
+L96:           this->StaticMesh->SetScalarParameterValueOnMaterials("Brightness", this->mBrightness);
+L150:          this->StaticMesh->SetScalarParameterValueOnMaterials("AppearDistance", this->mAppear_Distance);
+L204:          this->StaticMesh->SetScalarParameterValueOnMaterials("FadeTransition", this->mFade_Transition);
+L258:          this->StaticMesh->SetScalarParameterValueOnMaterials("MountainFade", this->mMountainFade);
+============ END FUNCTION UserConstructionScript ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_BP_VolumeFogSmall(15);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_BP_VolumeFogSmall(10);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveEndPlay ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/World/Environment/VolumeFog/BP_VolumeFogSmall.BP_VolumeFogSmall_C:ExecuteUbergraph_BP_VolumeFogSmall.K2Node_Event_EndPlayReason) = EndPlayReason;
+L18:           this->ExecuteUbergraph_BP_VolumeFogSmall(20);
+============ END FUNCTION ReceiveEndPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/World/Environment/VolumeFog/BP_VolumeFogSmall.BP_VolumeFogSmall_C:ExecuteUbergraph_BP_VolumeFogSmall.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_BP_VolumeFogSmall(40);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_VolumeFogSmall(78);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_VolumeFogSmall ==============
+L10:           <End of Inlined Event Graph Function>;
+L15:           <End of Inlined Event Graph Function>;
+L20:           <End of Inlined Event Graph Function>;
+L25:           this->ReceiveBeginPlay();
+L35:           <End of Inlined Event Graph Function>;
+L40:           this->ReceiveTick(mfloat);
+L59:           this->UpdateBrightness();
+L73:           <End of Inlined Event Graph Function>;
+L78:           goto L25;
+============ END FUNCTION ExecuteUbergraph_BP_VolumeFogSmall ==============

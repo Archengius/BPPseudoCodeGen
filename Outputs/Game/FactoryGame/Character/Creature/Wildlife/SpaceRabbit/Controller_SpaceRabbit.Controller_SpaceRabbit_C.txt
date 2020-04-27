@@ -1,0 +1,157 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Controller_SpaceRabbit.Controller_SpaceRabbit_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION isThreat ==============
+L0:            int32 mint32 = KismetArrayLibrary->Array_Find([ref] this->mThreatTags, [ref] inTag);
+L68:           bool mbool = Greater_IntInt(mint32, -1);
+L102:          bool isThreat = mbool;
+============ END FUNCTION isThreat ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReactToSound ==============
+L0:            FName PanicBBKeyName = "DoPanic";
+L31:           FName mItemBBKeyName = "FetchItem";
+L62:           this->isThreat(Tag, [ref] mbool);
+L94:           if (!mbool) goto L138;
+L108:          this->StartPanic();
+L122:          bool didReact = true;
+L133:          <End of Inlined Event Graph Function>;
+L138:          bool mbool1 = EqualEqual_NameName(Tag, "Bone");
+L180:          if (!mbool1) goto L303;
+L194:          BlackboardComponent* mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(this);
+L237:          mBlackboardComponent->SetValueAsObject([ref] mItemBBKeyName, InActor);
+L287:          didReact = true;
+L298:          <End of Inlined Event Graph Function>;
+L303:          didReact = false;
+============ END FUNCTION ReactToSound ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetNewThreat ==============
+L0:            FName threatBBKeyName = "Threat";
+L31:           FName threatLocationBBKeyName = "ThreatLocation";
+L62:           this->mPotentialThreat = newThreat;
+L81:           bool mbool = KismetSystemLibrary->IsValid(this->mPotentialThreat);
+L132:          if (!mbool) goto L223;
+L146:          Vector mVector = this->mPotentialThreat->K2_GetActorLocation();
+L196:          Vector ThreatLocation = mVector;
+L223:          BlackboardComponent* mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(this);
+L266:          mBlackboardComponent->SetValueAsObject([ref] threatBBKeyName, this->mPotentialThreat);
+L316:          BlackboardComponent* mBlackboardComponent1 = AIBlueprintHelperLibrary->GetBlackboard(this);
+L359:          mBlackboardComponent1->SetValueAsVector([ref] threatLocationBBKeyName, ThreatLocation);
+L409:          Pawn* mPawn = this->K2_GetPawn();
+L429:          Char_SpaceRabbit* mChar_SpaceRabbit = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C>(mPawn);
+L465:          bool mbool1 = mChar_SpaceRabbit;
+L494:          if (!mbool1) goto L581;
+L508:          mChar_SpaceRabbit->FlushNetDormancy();
+L540:          mChar_SpaceRabbit->mPotentialThreat = this->mPotentialThreat;
+============ END FUNCTION SetNewThreat ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCurrentThreat ==============
+L0:            FGCharacterPlayer* outThreat = this->mPotentialThreat;
+============ END FUNCTION GetCurrentThreat ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceivePossess ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Controller_SpaceRabbit.Controller_SpaceRabbit_C:ExecuteUbergraph_Controller_SpaceRabbit.K2Node_Event_PossessedPawn) = PossessedPawn;
+L18:           this->ExecuteUbergraph_Controller_SpaceRabbit(1602);
+============ END FUNCTION ReceivePossess ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_0_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Controller_SpaceRabbit.Controller_SpaceRabbit_C:ExecuteUbergraph_Controller_SpaceRabbit.K2Node_ComponentBoundEvent_Actor) = Actor;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Controller_SpaceRabbit.Controller_SpaceRabbit_C:ExecuteUbergraph_Controller_SpaceRabbit.K2Node_ComponentBoundEvent_Stimulus) = Stimulus;
+L36:           this->ExecuteUbergraph_Controller_SpaceRabbit(559);
+============ END FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_0_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartPanic ==============
+L0:            this->ExecuteUbergraph_Controller_SpaceRabbit(1626);
+============ END FUNCTION StartPanic ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Controller_SpaceRabbit ==============
+L10:           bool mbool = this->RunBehaviorTree(BT_SpaceRabbit);
+L43:           this->GetCurrentThreat([ref] mFGCharacterPlayer);
+L66:           this->SetNewThreat(mFGCharacterPlayer);
+L89:           BlackboardComponent* mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(this);
+L132:          mBlackboardComponent->SetValueAsFloat([ref] this->mSneakLimitBBKeyName, this->mSneakLimit);
+L182:          mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(this);
+L225:          mBlackboardComponent->SetValueAsBool([ref] this->mIsCuriousBBKeyName, true);
+L267:          BlackboardComponent* mBlackboardComponent1 = AIBlueprintHelperLibrary->GetBlackboard(this);
+L310:          mBlackboardComponent1->SetValueAsFloat([ref] this->mPersonalDistanceBBKeyName, this->mPersonalDistance);
+L360:          Char_SpaceRabbit* mChar_SpaceRabbit = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C>(mPawn);
+L396:          bool mbool1 = mChar_SpaceRabbit;
+L425:          if (!mbool1) goto L1711;
+L439:          BlackboardComponent* mBlackboardComponent2 = AIBlueprintHelperLibrary->GetBlackboard(this);
+L482:          mBlackboardComponent2->SetValueAsObject([ref] this->mFriendBBKeyName, mChar_SpaceRabbit->mFriendActor);
+L554:          <End of Inlined Event Graph Function>;
+L559:          if (!mAIStimulus.bSuccessfullySensed) goto L669;
+L582:          this->ReactToSound(mActor, mAIStimulus.StimulusLocation, mAIStimulus.Tag, [ref] mbool2);
+L650:          if (!mbool2) goto L669;
+L664:          <End of Inlined Event Graph Function>;
+L669:          if (!mAIStimulus.bSuccessfullySensed) goto L785;
+L692:          this->GetCurrentThreat([ref] mFGCharacterPlayer1);
+L715:          bool mbool3 = KismetSystemLibrary->IsValid(mFGCharacterPlayer1);
+L766:          if (!mbool3) goto L968;
+L780:          <End of Inlined Event Graph Function>;
+L785:          this->GetCurrentThreat([ref] mFGCharacterPlayer2);
+L808:          bool mbool4 = KismetSystemLibrary->IsValid(mFGCharacterPlayer2);
+L859:          if (!mbool4) goto L1711;
+L873:          this->GetCurrentThreat([ref] mFGCharacterPlayer2);
+L896:          bool mbool5 = EqualEqual_ObjectObject(mActor, mFGCharacterPlayer2);
+L934:          if (!mbool5) goto L1711;
+L948:          this->SetNewThreat(nullptr);
+L963:          <End of Inlined Event Graph Function>;
+L968:          FGCharacterPlayer* mFGCharacterPlayer3 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor);
+L1004:         bool mbool6 = mFGCharacterPlayer3;
+L1033:         if (!mbool6) goto L1711;
+L1047:         AIPerceptionComponent* mAIPerceptionComponent = this->GetAIPerceptionComponent();
+L1067:         TArray<Actor*> mTArray<Actor> = [];
+L1078:         mAIPerceptionComponent->GetCurrentlyPerceivedActors(AISense_Sight, [ref] mTArray<Actor>);
+L1128:         int32 mint32 = KismetArrayLibrary->Array_Find([ref] mTArray<Actor>, [ref] mActor);
+L1196:         bool mbool7 = NotEqual_IntInt(mint32, -1);
+L1230:         if (!mbool7) goto L1711;
+L1244:         mAIPerceptionComponent = this->GetAIPerceptionComponent();
+L1264:         mTArray<Actor> = [];
+L1275:         mAIPerceptionComponent->GetCurrentlyPerceivedActors(AISense_Sight, [ref] mTArray<Actor>);
+L1325:         mint32 = KismetArrayLibrary->Array_Find([ref] mTArray<Actor>, [ref] mActor);
+L1393:         KismetArrayLibrary->Array_Get([ref] mTArray<Actor>, mint32, [ref] mActor1);
+L1452:         FGCharacterPlayer* mFGCharacterPlayer4 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor1);
+L1488:         bool mbool8 = mFGCharacterPlayer4;
+L1517:         if (!mbool8) goto L1711;
+L1531:         this->SetNewThreat(mFGCharacterPlayer4);
+L1554:         <End of Inlined Event Graph Function>;
+L1559:         bool mbool9 = this->UseBlackboard(BB_SpaceRabbit, [ref] mBlackboardComponent3);
+L1597:         goto L10;
+L1602:         this->ReceivePossess(mPawn);
+L1621:         goto L1559;
+L1626:         BlackboardComponent* mBlackboardComponent4 = AIBlueprintHelperLibrary->GetBlackboard(this);
+L1669:         mBlackboardComponent4->SetValueAsBool([ref] this->mPanicBBKeyName, true);
+============ END FUNCTION ExecuteUbergraph_Controller_SpaceRabbit ==============

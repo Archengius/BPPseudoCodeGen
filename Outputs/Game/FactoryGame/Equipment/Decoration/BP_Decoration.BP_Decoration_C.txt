@@ -1,0 +1,131 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/Decoration/BP_Decoration.BP_Decoration_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GatherDependencies ==============
+L0:            TArray<Object*> out_dependentObjects = ObjectProperty /Game/FactoryGame/Equipment/Decoration/BP_Decoration.BP_Decoration_C:GatherDependencies.out_dependentObjects.out_dependentObjects[] {[]};
+============ END FUNCTION GatherDependencies ==============
+
+
+
+
+
+============ BEGIN FUNCTION NeedTransform ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION NeedTransform ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShouldSave ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION ShouldSave ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLookAtDecription ==============
+L0:            Controller* mController = byCharacter->GetController();
+L42:           HUDHelpers->GetKeyNameForActionSimple(mController, "Use", this, [ref] mFText);
+L110:          mFormatArgumentData.ArgumentName = "BUTTON";
+L145:          mFormatArgumentData.ArgumentValueType = 4;
+L174:          mFormatArgumentData.ArgumentValue = mFText;
+L210:          mFormatArgumentData.ArgumentValueInt = 0;
+L242:          mFormatArgumentData.ArgumentValueFloat = 0;
+L274:          mFormatArgumentData.ArgumentValueGender = 0;
+L303:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L323:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L449:          FText ReturnValue = mFText1;
+============ END FUNCTION GetLookAtDecription ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsUseable ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION IsUseable ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateUseState ==============
+L0:            FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, FGUseState_Valid);
+============ END FUNCTION UpdateUseState ==============
+
+
+
+
+
+============ BEGIN FUNCTION PickUp ==============
+L0:            FGInventoryComponent* mFGInventoryComponent = inUser->GetInventory();
+L42:           FGInventoryComponent* localInventory = mFGInventoryComponent;
+L61:           InventoryItem mInventoryItem = FGInventoryLibrary->MakeInventoryItem(this->mDecorationDescriptor);
+L120:          InventoryStack mInventoryStack = FGInventoryLibrary->MakeInventoryStack(1, mInventoryItem);
+L184:          TArray<InventoryStack> mTArray<InventoryStack> = [mInventoryStack];
+L204:          TArray<InventoryStack> returnStack = mTArray<InventoryStack>;
+L231:          bool mbool = localInventory->HasEnoughSpaceForStacks([ref] returnStack);
+L282:          if (!mbool) goto L351;
+L296:          localInventory->AddStacks([ref] returnStack);
+L337:          this->K2_DestroyActor();
+============ END FUNCTION PickUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_Decoration(119);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUse ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/Decoration/BP_Decoration.BP_Decoration_C:ExecuteUbergraph_BP_Decoration.K2Node_Event_byCharacter) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/Decoration/BP_Decoration.BP_Decoration_C:ExecuteUbergraph_BP_Decoration.K2Node_Event_state) = State;
+L36:           this->ExecuteUbergraph_BP_Decoration(249);
+============ END FUNCTION OnUse ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupActor ==============
+L0:            this->ExecuteUbergraph_BP_Decoration(530);
+============ END FUNCTION SetupActor ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_Decoration ==============
+L10:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mSetupTimer);
+L52:           <End of Inlined Event Graph Function>;
+L57:           bool mbool = this->HasAuthority();
+L77:           if (!mbool) goto L535;
+L91:           this->PickUp(mFGCharacterPlayer);
+L114:          <End of Inlined Event Graph Function>;
+L119:          this->ReceiveBeginPlay();
+L129:          mFScriptDelegate->BindUFunction(this, SetupActor);
+L152:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
+L217:          this->mSetupTimer = mTimerHandle;
+L244:          <End of Inlined Event Graph Function>;
+L249:          goto L57;
+L254:          bool mbool1 = KismetSystemLibrary->IsValidClass(this->mDecorationDescriptor);
+L305:          if (!mbool1) goto L535;
+L319:          StaticMesh* mStaticMesh = FGDecorationDescriptor->GetGroundMesh(this->mDecorationDescriptor);
+L370:          bool mbool2 = this->StaticMesh->SetStaticMesh(mStaticMesh);
+L425:          Vector mVector = FGDecorationDescriptor->GetGroundMeshScale(this->mDecorationDescriptor);
+L484:          this->StaticMesh->SetWorldScale3D(mVector);
+L525:          goto L10;
+L530:          goto L254;
+============ END FUNCTION ExecuteUbergraph_BP_Decoration ==============

@@ -1,0 +1,166 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/BPW_BuildMenuButton_Base.BPW_BuildMenuButton_Base_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION Cleanup ==============
+L0:            this->OnButtonHovered->Clear();
+L10:           this->OnButtonUnhovered->Clear();
+L20:           this->OnButtonClicked->Clear();
+L30:           this->OnMenuOpened->Clear();
+============ END FUNCTION Cleanup ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetIcon ==============
+L0:            this->mIcon = mIcon;
+L19:           mSlateBrush.ImageSize = this->mIconObject->Brush.ImageSize;
+L86:           mSlateBrush.Margin = this->mIconObject->Brush.Margin;
+L153:          mSlateBrush.TintColor = this->mIconObject->Brush.TintColor;
+L220:          mSlateBrush.ResourceObject = this->mIcon;
+L248:          mSlateBrush.DrawAs = this->mIconObject->Brush.DrawAs;
+L315:          mSlateBrush.Tiling = this->mIconObject->Brush.Tiling;
+L382:          mSlateBrush.Mirroring = this->mIconObject->Brush.Mirroring;
+L449:          this->mIconObject->SetBrush([ref] mSlateBrush);
+============ END FUNCTION SetIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetName ==============
+L0:            this->mName = mName;
+L27:           this->mProductName->SetText(this->mName);
+============ END FUNCTION SetName ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonUp ==============
+L0:            Key mKey = KismetInputLibrary->PointerEvent_GetEffectingButton([ref] MouseEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "RightMouseButton"));
+L137:          if (!mbool) goto L266;
+L151:          this->mRightClickMenu->ToggleOpen(false);
+L184:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L234:          EventReply ReturnValue = mEventReply;
+L261:          goto L343;
+L266:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L316:          ReturnValue = mEventReply1;
+============ END FUNCTION OnMouseButtonUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetMenuContentWidget ==============
+L0:            this->mMenuContentWidget = mMenuContentWidget;
+============ END FUNCTION SetMenuContentWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnGetMenuContent_Binding ==============
+L0:            this->OnMenuOpened->ProcessMulticastDelegate();
+L19:           bool mbool = KismetSystemLibrary->IsValid(this->mMenuContentWidget);
+L70:           FString mFString = KismetStringLibrary->Conv_BoolToString(mbool);
+L129:          KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L212:          Widget* ReturnValue = this->mMenuContentWidget;
+============ END FUNCTION OnGetMenuContent_Binding ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/BPW_BuildMenuButton_Base.BPW_BuildMenuButton_Base_C:ExecuteUbergraph_BPW_BuildMenuButton_Base.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_BPW_BuildMenuButton_Base(29);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_BuildMenuButton_Base(80);
+============ END FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_BuildMenuButton_Base(182);
+============ END FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_BuildMenuButton_Base(252);
+============ END FUNCTION BndEvt__mRecipeButton_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_BPW_BuildMenuButton_Base(276);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_BuildMenuButton_Base ==============
+L10:           this->Cleanup();
+L24:           <End of Inlined Event Graph Function>;
+L29:           this->SetName(this->mName);
+L52:           this->SetIcon(this->mIcon);
+L75:           <End of Inlined Event Graph Function>;
+L80:           this->mRightClickMenu->Close();
+L112:          this->OnButtonUnhovered->ProcessMulticastDelegate();
+L131:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->OnHover, 0, 1, 1, 1);
+L177:          <End of Inlined Event Graph Function>;
+L182:          this->OnButtonHovered->ProcessMulticastDelegate();
+L201:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->OnHover, 0, 1, 0, 1);
+L247:          <End of Inlined Event Graph Function>;
+L252:          this->OnButtonClicked->ProcessMulticastDelegate();
+L271:          <End of Inlined Event Graph Function>;
+L276:          goto L10;
+============ END FUNCTION ExecuteUbergraph_BPW_BuildMenuButton_Base ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMenuOpened__DelegateSignature ==============
+============ END FUNCTION OnMenuOpened__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnButtonClicked__DelegateSignature ==============
+============ END FUNCTION OnButtonClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnButtonUnhovered__DelegateSignature ==============
+============ END FUNCTION OnButtonUnhovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnButtonHovered__DelegateSignature ==============
+============ END FUNCTION OnButtonHovered__DelegateSignature ==============

@@ -1,0 +1,307 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/WorkBench/BPW_MAM_HardDriveScanner.BPW_MAM_HardDriveScanner_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION RunSentienceSequence ==============
+L0:            if (!this->mSentienceProgramStarted) goto L457;
+L14:           bool mbool = Not_PreBool(this->mTypingText);
+L43:           if (!mbool) goto L669;
+L57:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mSentienceProgram);
+L116:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L158:          bool mbool1 = Less_IntInt(this->mSentienceIndex, mint321);
+L196:          if (!mbool1) goto L473;
+L210:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mResetTextTimerHandle);
+L252:          bool mbool2 = EqualEqual_IntInt(this->mSentienceIndex, 9);
+L286:          if (!mbool2) goto L641;
+L300:          this->mTypingSpeed = 0.11999999731779099;
+L323:          this->TypeText(this->mSentienceProgram[this->mSentienceIndex]);
+L356:          int32 mint322 = Add_IntInt(this->mSentienceIndex, 1);
+L398:          int32 Temp_int_Variable1 = mint322;
+L425:          this->mSentienceIndex = Temp_int_Variable1;
+L452:          <End of Inlined Event Graph Function>;
+L457:          this->mSentienceProgramStarted = true;
+L468:          goto L14;
+L473:          this->mTypingSpeed = 0.05000000074505806;
+L496:          this->ShowTimedMessage(this->mSentienceProgram[this->mSentienceIndex]);
+L529:          int32 mint323 = Add_IntInt(this->mSentienceIndex, 1);
+L571:          int32 Temp_int_Variable = mint323;
+L598:          this->mSentienceIndex = Temp_int_Variable;
+L625:          this->mRebooting = true;
+L636:          <End of Inlined Event Graph Function>;
+L641:          this->mTypingSpeed = 0.05000000074505806;
+L664:          goto L323;
+============ END FUNCTION RunSentienceSequence ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateCostIcon ==============
+L0:            mItemAmount.ItemClass = this->mHardDriveDescriptor;
+L28:           mItemAmount.amount = 1;
+L60:           Pawn* mPawn = this->GetOwningPlayerPawn();
+L80:           HUDHelpers->GetNumItemsFromPlayerInventory(mPawn, this->mHardDriveDescriptor, this, [ref] mint32);
+L144:          this->Widget_CostSlotWrapper->Setup CostIcon(nullptr, mItemAmount, nullptr, 0, mint32, false, false, false);
+============ END FUNCTION UpdateCostIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartIdleTextAnim ==============
+L0:            bool mbool = this->IsAnimationPlaying(this->IdleText);
+L29:           bool mbool1 = Not_PreBool(mbool);
+L58:           if (!mbool1) goto L118;
+L72:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->IdleText, 0, 0, 0, 1);
+============ END FUNCTION StartIdleTextAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetScanningText ==============
+============ END FUNCTION SetScanningText ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowTimedMessage ==============
+L0:            this->TypeText(text);
+L23:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mResetTextTimerHandle);
+L65:           mFScriptDelegate->BindUFunction(this, ResetText);
+L88:           FString mFString = KismetTextLibrary->Conv_TextToString([ref] this->mText);
+L147:          int32 mint32 = KismetStringLibrary->Len(mFString);
+L206:          float mfloat = Multiply_IntFloat(mint32, this->mTypingSpeed);
+L252:          float mfloat1 = Multiply_FloatFloat(mfloat, 1.2000000476837158);
+L294:          float mfloat2 = Add_FloatFloat(mfloat1, 3);
+L336:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, mfloat2, false);
+L405:          this->mResetTextTimerHandle = mTimerHandle;
+============ END FUNCTION ShowTimedMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResetText ==============
+L0:            this->TypeText(this->mDefaultText);
+L23:           this->mRebooting = false;
+============ END FUNCTION ResetText ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetText ==============
+L0:            FText mFText = KismetTextLibrary->TextToUpper([ref] mText);
+L59:           this->mText = mFText;
+L86:           mFormatArgumentData.ArgumentName = "text";
+L119:          mFormatArgumentData.ArgumentValueType = 4;
+L148:          mFormatArgumentData.ArgumentValue = this->mText;
+L184:          mFormatArgumentData.ArgumentValueInt = 0;
+L216:          mFormatArgumentData.ArgumentValueFloat = 0;
+L248:          mFormatArgumentData.ArgumentValueGender = 0;
+L277:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L297:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L403:          bool mbool = this->IsAnimationPlaying(this->IdleText);
+L432:          bool mbool1 = BooleanAND(mbool, this->mTextMarkerOn);
+L470:          bool Temp_bool_Variable = mbool1;
+L489:          this->mTextObject->SetText(switch (Temp_bool_Variable) {
+case false -> this->mText;
+case true -> mFText1;
+default -> mFText2;
+});
+L578:          this->mTypingText = false;
+L589:          if (!true) goto L595;
+============ END FUNCTION SetText ==============
+
+
+
+
+
+============ BEGIN FUNCTION IdleTextAnimFunction ==============
+L0:            bool mbool = Not_PreBool(this->mTextMarkerOn);
+L29:           this->mTextMarkerOn = mbool;
+L48:           FString mFString = KismetStringLibrary->Conv_BoolToString(this->mTextMarkerOn);
+L107:          KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0.13286800682544708, G = 0.13286800682544708, B = 0.13563300669193268, A = 1), 2);
+L190:          mFormatArgumentData.ArgumentName = "text";
+L223:          mFormatArgumentData.ArgumentValueType = 4;
+L252:          mFormatArgumentData.ArgumentValue = this->mText;
+L288:          mFormatArgumentData.ArgumentValueInt = 0;
+L320:          mFormatArgumentData.ArgumentValueFloat = 0;
+L352:          mFormatArgumentData.ArgumentValueGender = 0;
+L381:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L401:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L507:          bool Temp_bool_Variable = this->mTextMarkerOn;
+L526:          this->mTextObject->SetText(switch (Temp_bool_Variable) {
+case false -> this->mText;
+case true -> mFText;
+default -> mFText1;
+});
+============ END FUNCTION IdleTextAnimFunction ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/BPW_MAM_HardDriveScanner.BPW_MAM_HardDriveScanner_C:ExecuteUbergraph_BPW_MAM_HardDriveScanner.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_BPW_MAM_HardDriveScanner(880);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BPW_MAM_HardDriveScanner(904);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION TypeText ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/BPW_MAM_HardDriveScanner.BPW_MAM_HardDriveScanner_C:ExecuteUbergraph_BPW_MAM_HardDriveScanner.K2Node_CustomEvent_Text) = text;
+L18:           this->ExecuteUbergraph_BPW_MAM_HardDriveScanner(1012);
+============ END FUNCTION TypeText ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_102_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_MAM_HardDriveScanner(1156);
+============ END FUNCTION BndEvt__Button_102_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mScanButton_K2Node_ComponentBoundEvent_1_OnButtonReleasedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_MAM_HardDriveScanner(1714);
+============ END FUNCTION BndEvt__mScanButton_K2Node_ComponentBoundEvent_1_OnButtonReleasedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mScanButton_K2Node_ComponentBoundEvent_2_OnButtonPressedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_MAM_HardDriveScanner(2016);
+============ END FUNCTION BndEvt__mScanButton_K2Node_ComponentBoundEvent_2_OnButtonPressedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mScanButton_K2Node_ComponentBoundEvent_3_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_MAM_HardDriveScanner(2148);
+============ END FUNCTION BndEvt__mScanButton_K2Node_ComponentBoundEvent_3_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mScanButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_MAM_HardDriveScanner(2238);
+============ END FUNCTION BndEvt__mScanButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_MAM_HardDriveScanner ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->StartIdleTextAnim();
+L29:           goto ExecutionFlow.Pop();
+L30:           ExecutionFlow.Push(L487);
+L35:           if (!this->mTypingText) goto L865;
+L49:           FString mFString = KismetTextLibrary->Conv_TextToString([ref] this->mText);
+L108:          FString mFString1 = KismetTextLibrary->Conv_TextToString([ref] this->mText);
+L167:          int32 mint32 = KismetStringLibrary->Len(mFString1);
+L226:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L268:          int32 mint322 = Subtract_IntInt(mint321, Temp_int_Variable);
+L314:          FString mFString2 = KismetStringLibrary->LeftChop(mFString, mint322);
+L382:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString2);
+L441:          this->mTextObject->SetText(mFText);
+L486:          goto ExecutionFlow.Pop();
+L487:          int32 mint323 = Add_IntInt(Temp_int_Variable, 1);
+L529:          int32 Temp_int_Variable = mint323;
+L556:          FString mFString3 = KismetTextLibrary->Conv_TextToString([ref] this->mText);
+L615:          int32 mint324 = KismetStringLibrary->Len(mFString3);
+L674:          int32 mint325 = Subtract_IntInt(mint324, 1);
+L716:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint325);
+L754:          if (!mbool) goto L849;
+L768:          KismetSystemLibrary->Delay(this, this->mTypingSpeed, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 30, UUID = -1958267569, ExecutionFunction = "ExecuteUbergraph_BPW_MAM_HardDriveScanner", CallbackTarget = this));
+L848:          goto ExecutionFlow.Pop();
+L849:          this->mTypingText = false;
+L860:          goto L15;
+L865:          this->StartIdleTextAnim();
+L879:          goto ExecutionFlow.Pop();
+L880:          this->SetText(this->mText);
+L903:          goto ExecutionFlow.Pop();
+L904:          this->StartIdleTextAnim();
+L918:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->LightPulse, 0, 0, 0, 1);
+L964:          this->UpdateCostIcon();
+L978:          this->Widget_CostSlotWrapper->mForceEmptyAnim = true;
+L1011:         goto ExecutionFlow.Pop();
+L1012:         FText mFText1 = KismetTextLibrary->TextToUpper([ref] mFText2);
+L1071:         this->mText = mFText1;
+L1098:         this->mTypingText = true;
+L1109:         this->StopAnimation(this->IdleText);
+L1128:         Temp_int_Variable = 0;
+L1151:         goto L556;
+L1156:         Pawn* mPawn = this->GetOwningPlayerPawn();
+L1176:         HUDHelpers->GetNumItemsFromPlayerInventory(mPawn, this->mHardDriveDescriptor, this, [ref] mint326);
+L1240:         bool mbool1 = Greater_IntInt(mint326, 0);
+L1274:         if (!mbool1) goto L1322;
+L1288:         this->OnScanStarted->ProcessMulticastDelegate();
+L1307:         this->UpdateCostIcon();
+L1321:         goto ExecutionFlow.Pop();
+L1322:         bool mbool2 = Not_PreBool(this->mRebooting);
+L1351:         if (!mbool2) goto ExecutionFlow.Pop();
+L1361:         int32 mint327 = RandomInteger(100);
+L1394:         bool mbool3 = EqualEqual_IntInt(mint327, 0);
+L1428:         bool mbool4 = BooleanOR(mbool3, this->mSentienceProgramStarted);
+L1466:         int32 mint328 = KismetArrayLibrary->Array_Length([ref] this->mSentienceProgram);
+L1525:         bool mbool5 = Less_IntInt(this->mSentienceIndex, mint328);
+L1563:         bool mbool6 = BooleanAND(mbool4, mbool5);
+L1601:         if (!mbool6) goto L1630;
+L1615:         this->RunSentienceSequence();
+L1629:         goto ExecutionFlow.Pop();
+L1630:         this->ShowTimedMessage("[object Object]");
+L1713:         goto ExecutionFlow.Pop();
+L1714:         bool mbool7 = this->IsHovered();
+L1738:         if (!mbool7) goto L1884;
+L1752:         mSlateColor.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7604169845581055, G = 0.6674399971961975, B = 0.4956839978694916, A = 1);
+L1813:         mSlateColor.ColorUseRule = 0;
+L1842:         this->ButtonText->SetColorAndOpacity(mSlateColor);
+L1883:         goto ExecutionFlow.Pop();
+L1884:         mSlateColor1.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0.8777300119400024, B = 0.6518589854240417, A = 1);
+L1945:         mSlateColor1.ColorUseRule = 0;
+L1974:         this->ButtonText->SetColorAndOpacity(mSlateColor1);
+L2015:         goto ExecutionFlow.Pop();
+L2016:         mSlateColor2.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7604169845581055, G = 0.6003940105438232, B = 0.3009980022907257, A = 1);
+L2077:         mSlateColor2.ColorUseRule = 0;
+L2106:         this->ButtonText->SetColorAndOpacity(mSlateColor2);
+L2147:         goto ExecutionFlow.Pop();
+L2148:         bool mbool8 = this->mScanButton->IsPressed();
+L2190:         bool mbool9 = Not_PreBool(mbool8);
+L2219:         if (!mbool9) goto L2016;
+L2233:         goto L1752;
+L2238:         bool mbool10 = this->mScanButton->IsPressed();
+L2280:         bool mbool11 = Not_PreBool(mbool10);
+L2309:         if (!mbool11) goto L2016;
+L2323:         goto L1884;
+============ END FUNCTION ExecuteUbergraph_BPW_MAM_HardDriveScanner ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnScanStarted__DelegateSignature ==============
+============ END FUNCTION OnScanStarted__DelegateSignature ==============

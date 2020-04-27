@@ -1,0 +1,188 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Locomotive_HUD.Widget_Locomotive_HUD_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CheckHasPower ==============
+L0:            FGPowerInfoComponent* mFGPowerInfoComponent = this->BPLocomotive->GetPowerInfo();
+L42:           bool mbool = mFGPowerInfoComponent->HasPower();
+L84:           bool mbool1 = Not_PreBool(mbool);
+L113:          this->Widget_TrainWarning->ShouldForceWarning(mbool1, "[object Object]");
+============ END FUNCTION CheckHasPower ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSpeedometerPosition ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->BPLocomotive);
+L51:           if (!mbool) goto L388;
+L65:           float mfloat = this->BPLocomotive->mVehicleMovement->GetForwardSpeed();
+L137:          float mfloat1 = Abs(mfloat);
+L174:          float mfloat2 = Divide_FloatFloat(mfloat1, 28);
+L216:          float mfloat3 = Multiply_FloatFloat(mfloat2, 0.6000000238418579);
+L258:          float mfloat4 = Subtract_FloatFloat(mfloat3, 45);
+L300:          float mfloat5 = FClamp(mfloat4, -45, 45);
+L347:          this->PointerContainer->SetRenderAngle(mfloat5);
+============ END FUNCTION SetSpeedometerPosition ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPowerConsumptionText ==============
+L0:            FGPowerInfoComponent* mFGPowerInfoComponent = this->BPLocomotive->GetPowerInfo();
+L42:           float mfloat = mFGPowerInfoComponent->GetTargetConsumption();
+L92:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 0, 0);
+L175:          FText ReturnValue = mFText;
+============ END FUNCTION GetPowerConsumptionText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSpeedInKMHText ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->BPLocomotive);
+L51:           if (!mbool) goto L343;
+L65:           float mfloat = this->BPLocomotive->mVehicleMovement->GetForwardSpeed();
+L137:          float mfloat1 = FGBlueprintFunctionLibrary->CmS2KmH(mfloat);
+L196:          float mfloat2 = Abs(mfloat1);
+L233:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat2, 0, false, true, 1, 324, 0, 0);
+L316:          FText ReturnValue = mFText;
+============ END FUNCTION GetSpeedInKMHText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Locomotive_HUD.Widget_Locomotive_HUD_C:ExecuteUbergraph_Widget_Locomotive_HUD.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Locomotive_HUD.Widget_Locomotive_HUD_C:ExecuteUbergraph_Widget_Locomotive_HUD.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_Locomotive_HUD(983);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartBrakeIndicatorAnim ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1266);
+============ END FUNCTION StartBrakeIndicatorAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopBrakeIndicatorAnim ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1305);
+============ END FUNCTION StopBrakeIndicatorAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1344);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckIsDocked ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1359);
+============ END FUNCTION CheckIsDocked ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1364);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateStats ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1407);
+============ END FUNCTION UpdateStats ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Locomotive_HUD ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->CheckHasPower();
+L29:           goto ExecutionFlow.Pop();
+L30:           Pawn* mPawn = this->GetOwningPlayerPawn();
+L50:           BP_Locomotive* mBP_Locomotive = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/BP_Locomotive.BP_Locomotive_C>(mPawn);
+L86:           bool mbool = mBP_Locomotive;
+L115:          if (!mbool) goto L457;
+L129:          this->BPLocomotive = mBP_Locomotive;
+L148:          FGTrain* mFGTrain = this->BPLocomotive->GetTrain();
+L190:          this->Widget_TrainWarning->Init(mFGTrain);
+L235:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->anim_DockingPulse, 0, 0, 0, 1);
+L281:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->anim_BreakPulse, 0, 0, 0, 1);
+L327:          this->UpdateStats();
+L341:          mFScriptDelegate->BindUFunction(this, UpdateStats);
+L364:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.5, true);
+L429:          this->mUpdateStatsTimer = mTimerHandle;
+L456:          goto ExecutionFlow.Pop();
+L457:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 30, UUID = 90976893, ExecutionFunction = "ExecuteUbergraph_Widget_Locomotive_HUD", CallbackTarget = this));
+L533:          goto ExecutionFlow.Pop();
+L534:          bool Temp_bool_Variable = false;
+L545:          this->mDockingIndicator->SetVisibility(3);
+L583:          KismetSystemLibrary->PrintString(this, "Is Docked", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L668:          goto ExecutionFlow.Pop();
+L669:          bool Temp_bool_Variable1 = false;
+L680:          if (!Temp_bool_Variable2) goto L695;
+L694:          goto ExecutionFlow.Pop();
+L695:          bool Temp_bool_Variable2 = true;
+L706:          this->StopBrakeIndicatorAnim();
+L720:          goto ExecutionFlow.Pop();
+L721:          if (!Temp_bool_Variable1) goto L736;
+L735:          goto ExecutionFlow.Pop();
+L736:          Temp_bool_Variable1 = true;
+L747:          Temp_bool_Variable2 = false;
+L758:          this->StartBrakeIndicatorAnim();
+L772:          goto ExecutionFlow.Pop();
+L773:          if (!Temp_bool_Variable) goto L788;
+L787:          goto ExecutionFlow.Pop();
+L788:          Temp_bool_Variable = true;
+L799:          this->mDockingIndicator->SetVisibility(2);
+L837:          goto ExecutionFlow.Pop();
+L838:          FGTrain* mFGTrain1 = this->BPLocomotive->GetTrain();
+L880:          bool mbool1 = mFGTrain1->IsDocked();
+L922:          if (!mbool1) goto L951;
+L936:          if (!Temp_bool_Variable3) goto L967;
+L950:          goto ExecutionFlow.Pop();
+L951:          bool Temp_bool_Variable3 = false;
+L962:          goto L773;
+L967:          Temp_bool_Variable3 = true;
+L978:          goto L534;
+L983:          this->SetSpeedometerPosition();
+L997:          float mfloat = this->BPLocomotive->mVehicleMovement->GetAirBrake();
+L1069:         float mfloat1 = this->BPLocomotive->mVehicleMovement->GetDynamicBrake();
+L1141:         bool mbool2 = Greater_FloatFloat(mfloat, 0);
+L1175:         bool mbool3 = Greater_FloatFloat(mfloat1, 0);
+L1209:         bool mbool4 = BooleanOR(mbool3, mbool2);
+L1247:         if (!mbool4) goto L669;
+L1261:         goto L721;
+L1266:         this->mBrakeIndicator->SetVisibility(3);
+L1304:         goto ExecutionFlow.Pop();
+L1305:         this->mBrakeIndicator->SetVisibility(2);
+L1343:         goto ExecutionFlow.Pop();
+L1344:         this->Construct();
+L1354:         goto L30;
+L1359:         goto L838;
+L1364:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateStatsTimer);
+L1406:         goto ExecutionFlow.Pop();
+L1407:         this->CheckIsDocked();
+L1421:         goto L15;
+============ END FUNCTION ExecuteUbergraph_Widget_Locomotive_HUD ==============

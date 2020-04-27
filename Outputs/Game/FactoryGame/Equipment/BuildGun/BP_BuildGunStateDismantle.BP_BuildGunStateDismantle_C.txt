@@ -1,0 +1,147 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/BuildGun/BP_BuildGunStateDismantle.BP_BuildGunStateDismantle_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION TickState ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/BuildGun/BP_BuildGunStateDismantle.BP_BuildGunStateDismantle_C:ExecuteUbergraph_BP_BuildGunStateDismantle.K2Node_Event_deltaTime) = DeltaTime;
+L18:           this->ExecuteUbergraph_BP_BuildGunStateDismantle(2251);
+============ END FUNCTION TickState ==============
+
+
+
+
+
+============ BEGIN FUNCTION SecondaryFire ==============
+L0:            this->ExecuteUbergraph_BP_BuildGunStateDismantle(15);
+============ END FUNCTION SecondaryFire ==============
+
+
+
+
+
+============ BEGIN FUNCTION BeginState ==============
+L0:            this->ExecuteUbergraph_BP_BuildGunStateDismantle(316);
+============ END FUNCTION BeginState ==============
+
+
+
+
+
+============ BEGIN FUNCTION EndState ==============
+L0:            this->ExecuteUbergraph_BP_BuildGunStateDismantle(919);
+============ END FUNCTION EndState ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnStartDismantle ==============
+L0:            this->ExecuteUbergraph_BP_BuildGunStateDismantle(1166);
+============ END FUNCTION OnStartDismantle ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnStopDismantle ==============
+L0:            this->ExecuteUbergraph_BP_BuildGunStateDismantle(1703);
+============ END FUNCTION OnStopDismantle ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRecipeSampled ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Equipment/BuildGun/BP_BuildGunStateDismantle.BP_BuildGunStateDismantle_C:ExecuteUbergraph_BP_BuildGunStateDismantle.K2Node_Event_recipe) = Recipe;
+L18:           this->ExecuteUbergraph_BP_BuildGunStateDismantle(2271);
+============ END FUNCTION OnRecipeSampled ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_BuildGunStateDismantle ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->SecondaryFire();
+L25:           FGBuildGun* mFGBuildGun = this->GetBuildGun();
+L45:           bool mbool = mFGBuildGun->IsLocalInstigator();
+L87:           if (!mbool) goto ExecutionFlow.Pop();
+L97:           mFGBuildGun = this->GetBuildGun();
+L117:          FGCharacterPlayer* mFGCharacterPlayer = mFGBuildGun->GetInstigatorCharacter();
+L159:          mFGCharacterPlayer->ToggleBuildGun();
+L191:          goto ExecutionFlow.Pop();
+L192:          FGBuildGun* mFGBuildGun1 = this->GetBuildGun();
+L212:          Actor* mActor = mFGBuildGun1->GetOwner();
+L254:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_CloneBuilding, mActor, true);
+L315:          goto ExecutionFlow.Pop();
+L316:          this->BeginState();
+L326:          FGBuildGun* mFGBuildGun2 = this->GetBuildGun();
+L346:          bool mbool1 = mFGBuildGun2->IsLocalInstigator();
+L388:          if (!mbool1) goto ExecutionFlow.Pop();
+L398:          mFGBuildGun2 = this->GetBuildGun();
+L418:          Pawn* mPawn = mFGBuildGun2->GetInstigator();
+L460:          Controller* mController = mPawn->GetController();
+L502:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mController);
+L538:          bool mbool2 = mFGPlayerController;
+L567:          if (!mbool2) goto ExecutionFlow.Pop();
+L577:          Widget_DismantleMode* mWidget_DismantleMode = WidgetBlueprintLibrary->Create(this, Widget_DismantleMode, mFGPlayerController);
+L638:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_DismantleMode, "mOwningState", this);
+L693:          this->mDismantleUI = mWidget_DismantleMode;
+L712:          BPHUDHelpers->PushStackWidget(mFGPlayerController, this->mDismantleUI, this);
+L767:          HUD* mHUD = mFGPlayerController->GetHUD();
+L809:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L845:          bool mbool3 = mFGHUD;
+L874:          if (!mbool3) goto ExecutionFlow.Pop();
+L884:          mFGHUD->SetCrosshairState(6);
+L918:          goto ExecutionFlow.Pop();
+L919:          this->EndState();
+L929:          bool mbool4 = KismetSystemLibrary->IsValid(this->mDismantleUI);
+L980:          if (!mbool4) goto ExecutionFlow.Pop();
+L990:          FGBuildGun* mFGBuildGun3 = this->GetBuildGun();
+L1010:         Controller* mController1 = mFGBuildGun3->Instigator->GetController();
+L1074:         HUDHelpers->GetFGGameUI(mController1, this, [ref] mFGGameUI);
+L1129:         mFGGameUI->PopAllWidgets();
+L1165:         goto ExecutionFlow.Pop();
+L1166:         ExecutionFlow.Push(L1471);
+L1171:         FGBuildGun* mFGBuildGun4 = this->GetBuildGun();
+L1191:         FGCharacterPlayer* mFGCharacterPlayer1 = mFGBuildGun4->GetInstigatorCharacter();
+L1233:         SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer1->GetMesh1P();
+L1275:         AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L1317:         float mfloat = mAnimInstance->Montage_Play(BuildGunDismantle_01_Montage, 1, 1, 0, true);
+L1389:         FGBuildGun* mFGBuildGun5 = this->GetBuildGun();
+L1409:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_Dismantle_Bleeps_Stereo, mFGBuildGun5, true);
+L1470:         goto ExecutionFlow.Pop();
+L1471:         FGBuildGun* mFGBuildGun6 = this->GetBuildGun();
+L1491:         BP_BuildGun* mBP_BuildGun = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/BuildGun/BP_BuildGun.BP_BuildGun_C>(mFGBuildGun6);
+L1527:         bool mbool5 = mBP_BuildGun;
+L1556:         if (!mbool5) goto ExecutionFlow.Pop();
+L1566:         AnimInstance* mAnimInstance1 = mBP_BuildGun->BuildGun_Skl_01->GetAnimInstance();
+L1630:         float mfloat1 = mAnimInstance1->Montage_Play(BuildGunDismantle_01_Montage, 1, 0, 0, true);
+L1702:         goto ExecutionFlow.Pop();
+L1703:         float mfloat2 = this->GetBuildGunDelayPercentage();
+L1731:         bool mbool6 = GreaterEqual_FloatFloat(mfloat2, 1);
+L1765:         if (!mbool6) goto L1780;
+L1779:         goto ExecutionFlow.Pop();
+L1780:         ExecutionFlow.Push(L2140);
+L1785:         mFGBuildGun4 = this->GetBuildGun();
+L1805:         mFGCharacterPlayer1 = mFGBuildGun4->GetInstigatorCharacter();
+L1847:         mSkeletalMeshComponent = mFGCharacterPlayer1->GetMesh1P();
+L1889:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L1931:         mAnimInstance->Montage_Stop(0.5, BuildGunDismantle_01_Montage);
+L1977:         FGBuildGun* mFGBuildGun7 = this->GetBuildGun();
+L1997:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Stop_Dismantle_Bleeps_Stereo, mFGBuildGun7, true);
+L2058:         mFGBuildGun7 = this->GetBuildGun();
+L2078:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_Dismantle_Bleeps_Cancel, mFGBuildGun7, true);
+L2139:         goto ExecutionFlow.Pop();
+L2140:         mAnimInstance1 = mBP_BuildGun->BuildGun_Skl_01->GetAnimInstance();
+L2204:         mAnimInstance1->Montage_Stop(0.5, BuildGunDismantle_01_Montage);
+L2250:         goto ExecutionFlow.Pop();
+L2251:         this->TickState(mfloat3);
+L2270:         goto ExecutionFlow.Pop();
+L2271:         this->OnRecipeSampled(mTSubclassOf<FGRecipe>);
+L2290:         goto L192;
+============ END FUNCTION ExecuteUbergraph_BP_BuildGunStateDismantle ==============

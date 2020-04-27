@@ -1,0 +1,82 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Player/Widget_TakeDamageIndicator.Widget_TakeDamageIndicator_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetRotation ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           bool mbool = KismetSystemLibrary->IsValid(mPawn);
+L71:           if (!mbool) goto L182;
+L85:           mPawn = this->GetOwningPlayerPawn();
+L105:          Vector mVector = mPawn->K2_GetActorLocation();
+L155:          this->mPlayerPosition = mVector;
+L182:          bool mbool1 = KismetSystemLibrary->IsValid(this->DamageCauser);
+L233:          if (!mbool1) goto L324;
+L247:          Vector mVector1 = this->DamageCauser->K2_GetActorLocation();
+L297:          this->mDamagePosition = mVector1;
+L324:          Pawn* mPawn1 = this->GetOwningPlayerPawn();
+L344:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn1);
+L380:          bool mbool2 = mFGCharacterPlayer;
+L409:          float mfloat = mFGCharacterPlayer->GetRadiationDamageAngle();
+L459:          Vector mVector2 = Multiply_VectorVector(this->mPlayerPosition, Vector(1, 1, 0));
+L509:          bool Temp_bool_Variable = this->mIsRadiation;
+L528:          Vector mVector3 = Multiply_VectorVector(this->mDamagePosition, Vector(1, 1, 0));
+L578:          Pawn* mPawn2 = this->GetOwningPlayerPawn();
+L598:          Vector mVector4 = Subtract_VectorVector(mVector3, mVector2);
+L644:          Vector mVector5 = mPawn2->GetActorForwardVector();
+L694:          Vector mVector6 = Normal(mVector4, 0.00009999999747378752);
+L736:          BreakVector(mVector5, [ref] mfloat1, [ref] mfloat2, [ref] mfloat3);
+L782:          BreakVector(mVector6, [ref] mfloat4, [ref] mfloat5, [ref] mfloat6);
+L828:          float mfloat7 = DegAtan2(mfloat2, mfloat1);
+L874:          float mfloat8 = DegAtan2(mfloat5, mfloat4);
+L920:          float mfloat9 = Subtract_FloatFloat(mfloat8, mfloat7);
+L966:          this->Image_0->SetRenderAngle(switch (Temp_bool_Variable) {
+case false -> mfloat9;
+case true -> mfloat;
+default -> mfloat10;
+});
+============ END FUNCTION SetRotation ==============
+
+
+
+
+
+============ BEGIN FUNCTION DestroySelf ==============
+L0:            this->ExecuteUbergraph_Widget_TakeDamageIndicator(29);
+============ END FUNCTION DestroySelf ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_TakeDamageIndicator(48);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Player/Widget_TakeDamageIndicator.Widget_TakeDamageIndicator_C:ExecuteUbergraph_Widget_TakeDamageIndicator.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Player/Widget_TakeDamageIndicator.Widget_TakeDamageIndicator_C:ExecuteUbergraph_Widget_TakeDamageIndicator.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_TakeDamageIndicator(140);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_TakeDamageIndicator ==============
+L10:           this->SetRotation();
+L24:           <End of Inlined Event Graph Function>;
+L29:           this->RemoveFromParent();
+L43:           <End of Inlined Event Graph Function>;
+L48:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->FadeOutAnim, 0, 1, 0, 1);
+L94:           this->Image_0->SetColorAndOpacity(this->mColor);
+L135:          <End of Inlined Event Graph Function>;
+L140:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_TakeDamageIndicator ==============

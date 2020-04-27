@@ -1,0 +1,65 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_TooltipInventorySlots.Widget_TooltipInventorySlots_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetExtraInventorySlotText ==============
+L0:            BP_SchematicHelper->GetNumInventorySlotsUnlocked(this->mSchematic, this, [ref] mint32);
+L55:           FString mFString = KismetStringLibrary->Conv_IntToString(mint32);
+L114:          FString mFString1 = KismetStringLibrary->Concat_StrStr("+", mFString);
+L176:          FString mFString2 = KismetStringLibrary->Concat_StrStr(mFString1, " Inventory Slots");
+L253:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString2);
+L312:          FText NewParam = mFText;
+============ END FUNCTION GetExtraInventorySlotText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetExtraArmsSlotText ==============
+L0:            BP_SchematicHelper->GetNumArmEquipmentSlotsUnlocked(this->mSchematic, this, [ref] mint32);
+L55:           FString mFString = KismetStringLibrary->Conv_IntToString(mint32);
+L114:          FString mFString1 = KismetStringLibrary->Concat_StrStr("+", mFString);
+L176:          FString mFString2 = KismetStringLibrary->Concat_StrStr(mFString1, " Arms Slots");
+L248:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString2);
+L307:          FText NewParam = mFText;
+============ END FUNCTION GetExtraArmsSlotText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_TooltipInventorySlots(206);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_TooltipInventorySlots ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           Widget_RewardInventoryItems* mWidget_RewardInventoryItems = WidgetBlueprintLibrary->Create(this, Widget_RewardInventoryItems, nullptr);
+L68:           this->GetExtraArmsSlotText([ref] mFText);
+L91:           KismetSystemLibrary->SetTextPropertyByName(mWidget_RewardInventoryItems, "mText", [ref] mFText);
+L154:          PanelSlot* mPanelSlot = this->mContainer->AddChild(mWidget_RewardInventoryItems);
+L205:          goto ExecutionFlow.Pop();
+L206:          this->mContainer->ClearChildren();
+L242:          bool mbool = KismetSystemLibrary->IsValidClass(this->mSchematic);
+L293:          if (!mbool) goto ExecutionFlow.Pop();
+L303:          ExecutionFlow.Push(L596);
+L308:          BP_SchematicHelper->GetUnlocksInventorySlot(this->mSchematic, this, [ref] mbool1);
+L363:          if (!mbool1) goto ExecutionFlow.Pop();
+L373:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L397:          Widget_RewardInventoryItems* mWidget_RewardInventoryItems1 = WidgetBlueprintLibrary->Create(this, Widget_RewardInventoryItems, mPlayerController);
+L458:          this->GetExtraInventorySlotText([ref] mFText1);
+L481:          KismetSystemLibrary->SetTextPropertyByName(mWidget_RewardInventoryItems1, "mText", [ref] mFText1);
+L544:          PanelSlot* mPanelSlot1 = this->mContainer->AddChild(mWidget_RewardInventoryItems1);
+L595:          goto ExecutionFlow.Pop();
+L596:          BP_SchematicHelper->GetUnlocksHandSlots(this->mSchematic, this, [ref] mbool2);
+L651:          if (!mbool2) goto ExecutionFlow.Pop();
+L661:          goto L15;
+============ END FUNCTION ExecuteUbergraph_Widget_TooltipInventorySlots ==============

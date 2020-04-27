@@ -1,0 +1,244 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/ResourceScanner/BP_ResourceScanner.BP_ResourceScanner_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION IsScannerWheelVisible ==============
+L0:            bool mbool = this->scannerWidget->IsVisible();
+L42:           bool IsVisible = mbool;
+============ END FUNCTION IsScannerWheelVisible ==============
+
+
+
+
+
+============ BEGIN FUNCTION Timeline_0__FinishedFunc ==============
+L0:            this->ExecuteUbergraph_BP_ResourceScanner(5492);
+============ END FUNCTION Timeline_0__FinishedFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION Timeline_0__UpdateFunc ==============
+L0:            this->ExecuteUbergraph_BP_ResourceScanner(5427);
+============ END FUNCTION Timeline_0__UpdateFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowResourceDescriptorSelectUI ==============
+L0:            this->ExecuteUbergraph_BP_ResourceScanner(2879);
+============ END FUNCTION ShowResourceDescriptorSelectUI ==============
+
+
+
+
+
+============ BEGIN FUNCTION CloseResourceDescriptorSelectUI ==============
+L0:            this->ExecuteUbergraph_BP_ResourceScanner(2874);
+============ END FUNCTION CloseResourceDescriptorSelectUI ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayClusterEffects ==============
+L0:            PERSISTENT_FRAME(ArrayProperty /Game/FactoryGame/Equipment/ResourceScanner/BP_ResourceScanner.BP_ResourceScanner_C:ExecuteUbergraph_BP_ResourceScanner.K2Node_Event_clusters) = clusters;
+L18:           this->ExecuteUbergraph_BP_ResourceScanner(2884);
+============ END FUNCTION PlayClusterEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION Event Play Pulse Effect ==============
+L0:            this->ExecuteUbergraph_BP_ResourceScanner(5382);
+============ END FUNCTION Event Play Pulse Effect ==============
+
+
+
+
+
+============ BEGIN FUNCTION CustomEvent_0 ==============
+L0:            this->ExecuteUbergraph_BP_ResourceScanner(5422);
+============ END FUNCTION CustomEvent_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_ResourceScanner ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           Pawn* mPawn = this->GetInstigator();
+L35:           Vector mVector = mPawn->K2_GetActorLocation();
+L85:           KismetArrayLibrary->Array_Get([ref] mconst TArray<NodeClusterData>, this->mFakeLoopIndex, [ref] mNodeClusterData);
+L144:          Vector mVector1 = Subtract_VectorVector(mVector, mNodeClusterData.MidPoint);
+L199:          float mfloat = VSize(mVector1);
+L236:          float mfloat1 = Divide_FloatFloat(mfloat, this->mScannerTravelSpeed);
+L282:          float mfloat2 = Subtract_FloatFloat(mfloat1, this->mAcumulatedDelay);
+L328:          float mfloat3 = Add_FloatFloat(mfloat2, this->mAcumulatedDelay);
+L374:          this->mAcumulatedDelay = mfloat3;
+L401:          KismetArrayLibrary->Array_Get([ref] mconst TArray<NodeClusterData>, this->mFakeLoopIndex, [ref] mNodeClusterData);
+L460:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAtLocation(this, Play_EQ_Resource_Ping_Hit, mNodeClusterData.MidPoint, Rotator::FromPitchYawRoll(0, 0, 0));
+L543:          KismetArrayLibrary->Array_Get([ref] mconst TArray<NodeClusterData>, this->mFakeLoopIndex, [ref] mNodeClusterData);
+L602:          Texture2D* mTexture2D = FGResourceDescriptor->GetCompasTexture(mNodeClusterData.ResourceDescriptor);
+L662:          bool mbool = this->mActorRepresentationManager->CreateAndAddNewRepresentationNoActor(mNodeClusterData.MidPoint, mTexture2D, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), 25, true, true, 7, true);
+L775:          int32 Temp_int_Loop_Counter_Variable = 0;
+L798:          int32 Temp_int_Array_Index_Variable = 0;
+L821:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mconst TArray<NodeClusterData>[this->mFakeLoopIndex].Nodes);
+L899:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L937:          if (!mbool1) goto L1202;
+L951:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L978:          ExecutionFlow.Push(L1799);
+L983:          KismetArrayLibrary->Array_Get([ref] mconst TArray<NodeClusterData>[this->mFakeLoopIndex].Nodes, Temp_int_Array_Index_Variable, [ref] mFGResourceNode);
+L1061:         Vector mVector2 = mFGResourceNode->K2_GetActorLocation();
+L1111:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, P_HitPing_01, mVector2, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L1201:         goto ExecutionFlow.Pop();
+L1202:         int32 mint321 = Add_IntInt(this->mFakeLoopIndex, 1);
+L1244:         int32 Temp_int_Variable = mint321;
+L1271:         this->mFakeLoopIndex = Temp_int_Variable;
+L1298:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] mconst TArray<NodeClusterData>);
+L1357:         bool mbool2 = Less_IntInt(this->mFakeLoopIndex, mint322);
+L1395:         if (!mbool2) goto ExecutionFlow.Pop();
+L1405:         mPawn = this->GetInstigator();
+L1425:         mVector = mPawn->K2_GetActorLocation();
+L1475:         KismetArrayLibrary->Array_Get([ref] mconst TArray<NodeClusterData>, this->mFakeLoopIndex, [ref] mNodeClusterData);
+L1534:         mVector1 = Subtract_VectorVector(mVector, mNodeClusterData.MidPoint);
+L1589:         mfloat = VSize(mVector1);
+L1626:         mfloat1 = Divide_FloatFloat(mfloat, this->mScannerTravelSpeed);
+L1672:         mfloat2 = Subtract_FloatFloat(mfloat1, this->mAcumulatedDelay);
+L1718:         KismetSystemLibrary->Delay(this, mfloat2, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 1524315453, ExecutionFunction = "ExecuteUbergraph_BP_ResourceScanner", CallbackTarget = this));
+L1798:         goto ExecutionFlow.Pop();
+L1799:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1841:         Temp_int_Loop_Counter_Variable = mint323;
+L1868:         goto L821;
+L1873:         this->mFakeLoopIndex = 0;
+L1896:         this->Event Play Pulse Effect();
+L1910:         this->mAcumulatedDelay = 0;
+L1933:         goto L1298;
+L1938:         Pawn* mPawn1 = this->GetInstigator();
+L1958:         Controller* mController = mPawn1->GetController();
+L2000:         PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L2036:         bool mbool3 = mPlayerController;
+L2065:         if (!mbool3) goto ExecutionFlow.Pop();
+L2075:         Widget_ResourceScanner* mWidget_ResourceScanner = WidgetBlueprintLibrary->Create(this, Widget_ResourceScanner, mPlayerController);
+L2136:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_ResourceScanner, "mResourceScanner", this);
+L2191:         this->scannerWidget = mWidget_ResourceScanner;
+L2210:         FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
+L2230:         FGBuildGun* mFGBuildGun = mFGCharacterPlayer->GetBuildGun();
+L2272:         bool mbool4 = mFGBuildGun->IsEquipped();
+L2314:         if (!mbool4) goto L2380;
+L2328:         FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L2348:         mFGCharacterPlayer1->ToggleBuildGun();
+L2380:         Pawn* mPawn2 = this->GetInstigator();
+L2400:         Controller* mController1 = mPawn2->GetController();
+L2442:         BPHUDHelpers->PushStackWidget(mController1, this->scannerWidget, this);
+L2497:         mPawn2 = this->GetInstigator();
+L2517:         mController1 = mPawn2->GetController();
+L2559:         mController1->SetIgnoreLookInput(true);
+L2596:         goto ExecutionFlow.Pop();
+L2597:         bool mbool5 = KismetSystemLibrary->IsValid(this->scannerWidget);
+L2648:         if (!mbool5) goto ExecutionFlow.Pop();
+L2658:         Pawn* mPawn3 = this->GetInstigator();
+L2678:         Controller* mController2 = mPawn3->GetController();
+L2720:         BPHUDHelpers->PopStackWidget(mController2, this->scannerWidget, this);
+L2775:         mPawn3 = this->GetInstigator();
+L2795:         mController2 = mPawn3->GetController();
+L2837:         mController2->ResetIgnoreLookInput();
+L2873:         goto ExecutionFlow.Pop();
+L2874:         goto L2597;
+L2879:         goto L1938;
+L2884:         FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L2904:         SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer2->GetMesh1P();
+L2946:         AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L2988:         bool mbool6 = KismetSystemLibrary->IsValid(mAnimInstance);
+L3039:         if (!mbool6) goto ExecutionFlow.Pop();
+L3049:         this->BuildGun->SetVisibility(true, false);
+L3083:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L3103:         SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer3->GetMesh1P();
+L3145:         AnimInstance* mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L3187:         FGAnimPlayer* mFGAnimPlayer = Cast<Class /Script/FactoryGame.FGAnimPlayer>(mAnimInstance1);
+L3223:         bool mbool7 = mFGAnimPlayer;
+L3252:         if (!mbool7) goto ExecutionFlow.Pop();
+L3262:         ExecutionFlow.Push(L4216);
+L3267:         bool mbool8 = EqualEqual_ByteByte(mFGAnimPlayer->mArmSlotType, 0);
+L3320:         bool mbool9 = EqualEqual_ByteByte(mFGAnimPlayer->mArmSlotType, 1);
+L3373:         bool mbool10 = EqualEqual_ByteByte(mFGAnimPlayer->mArmSlotType, 4);
+L3426:         bool mbool11 = BooleanOR(mbool8, mbool9);
+L3464:         bool mbool12 = BooleanOR(mbool11, mbool10);
+L3502:         if (!mbool12) goto L3636;
+L3516:         ExecutionFlow.Push(L4556);
+L3521:         AnimInstance* mAnimInstance2 = this->BuildGun->GetAnimInstance();
+L3563:         float mfloat4 = mAnimInstance2->Montage_Play(BuildgunScan_01_Montage, 1, 0, 0, true);
+L3635:         goto ExecutionFlow.Pop();
+L3636:         bool mbool13 = EqualEqual_ByteByte(mFGAnimPlayer->mArmSlotType, 3);
+L3689:         if (!mbool13) goto L3919;
+L3703:         this->BuildGun->SetVisibility(false, false);
+L3737:         ExecutionFlow.Push(L4733);
+L3742:         FGCharacterPlayer* mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L3762:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer4->GetMesh1P();
+L3804:         AnimInstance* mAnimInstance3 = mSkeletalMeshComponent2->GetAnimInstance();
+L3846:         float mfloat5 = mAnimInstance3->Montage_Play(BuildgunScan_03_Montage, 1, 0, 0, true);
+L3918:         goto ExecutionFlow.Pop();
+L3919:         ExecutionFlow.Push(L4101);
+L3924:         mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L3944:         mSkeletalMeshComponent2 = mFGCharacterPlayer4->GetMesh1P();
+L3986:         mAnimInstance3 = mSkeletalMeshComponent2->GetAnimInstance();
+L4028:         float mfloat6 = mAnimInstance3->Montage_Play(BuildgunScan_02_Montage, 1, 0, 0, true);
+L4100:         goto ExecutionFlow.Pop();
+L4101:         AnimInstance* mAnimInstance4 = this->BuildGun->GetAnimInstance();
+L4143:         float mfloat7 = mAnimInstance4->Montage_Play(BuildgunScan_02_Montage, 1, 0, 0, true);
+L4215:         goto ExecutionFlow.Pop();
+L4216:         mFScriptDelegate->BindUFunction(this, CustomEvent_0);
+L4239:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 1.899999976158142, false);
+L4304:         this->OnClustersFound->ProcessMulticastDelegate([ref] mconst TArray<NodeClusterData>);
+L4332:         FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L4375:         this->mActorRepresentationManager = mFGActorRepresentationManager;
+L4394:         Pawn* mPawn4 = this->GetInstigator();
+L4414:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_EQ_Resource_Ping_Fire, mPawn4, true);
+L4475:         KismetSystemLibrary->Delay(this, this->mDelayAfterSound, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 1873, UUID = 1798278144, ExecutionFunction = "ExecuteUbergraph_BP_ResourceScanner", CallbackTarget = this));
+L4555:         goto ExecutionFlow.Pop();
+L4556:         FGCharacterPlayer* mFGCharacterPlayer5 = this->GetInstigatorCharacter();
+L4576:         SkeletalMeshComponent* mSkeletalMeshComponent3 = mFGCharacterPlayer5->GetMesh1P();
+L4618:         AnimInstance* mAnimInstance5 = mSkeletalMeshComponent3->GetAnimInstance();
+L4660:         float mfloat8 = mAnimInstance5->Montage_Play(BuildgunScan_01_Montage, 1, 0, 0, true);
+L4732:         goto ExecutionFlow.Pop();
+L4733:         FGCharacterPlayer* mFGCharacterPlayer6 = this->GetInstigatorCharacter();
+L4753:         FGBuildGun* mFGBuildGun1 = mFGCharacterPlayer6->GetBuildGun();
+L4795:         BP_BuildGun* mBP_BuildGun = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/BuildGun/BP_BuildGun.BP_BuildGun_C>(mFGBuildGun1);
+L4831:         bool mbool14 = mBP_BuildGun;
+L4860:         AnimInstance* mAnimInstance6 = mBP_BuildGun->BuildGun_Skl_01->GetAnimInstance();
+L4924:         float mfloat9 = mAnimInstance6->Montage_Play(BuildgunScan_03_Montage, 1, 0, 0, true);
+L4996:         goto ExecutionFlow.Pop();
+L4997:         Actor* mActor = this->GetOwner();
+L5017:         Char_Player* mChar_Player = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C>(mActor);
+L5053:         bool mbool15 = mChar_Player;
+L5082:         if (!mbool15) goto ExecutionFlow.Pop();
+L5092:         mChar_Player->PPSpawnScanner->Activate(false);
+L5151:         mChar_Player->PPSpawnScanner->BlendWeight = 1;
+L5218:         this->Timeline_0->PlayFromStart();
+L5250:         goto ExecutionFlow.Pop();
+L5251:         mChar_Player->PPSpawnScanner->BlendWeight = 0;
+L5318:         goto ExecutionFlow.Pop();
+L5319:         mChar_Player->PPSpawnScanner->Deactivate();
+L5377:         goto L5251;
+L5382:         goto L4997;
+L5387:         this->BuildGun->SetVisibility(false, false);
+L5421:         goto ExecutionFlow.Pop();
+L5422:         goto L5387;
+L5427:         KismetMaterialLibrary->SetScalarParameterValue(this, PostProcessParameters, "ScanTime", this->Timeline_0_NewTrack_0_8D03DE94407B43FDF4CBEDAE711F64BC);
+L5491:         goto ExecutionFlow.Pop();
+L5492:         goto L5319;
+============ END FUNCTION ExecuteUbergraph_BP_ResourceScanner ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClustersFound__DelegateSignature ==============
+============ END FUNCTION OnClustersFound__DelegateSignature ==============

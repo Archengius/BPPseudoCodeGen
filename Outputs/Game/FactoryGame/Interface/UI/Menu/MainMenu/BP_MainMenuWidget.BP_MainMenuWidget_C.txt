@@ -1,0 +1,508 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/MainMenu/BP_MainMenuWidget.BP_MainMenuWidget_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnSavesEnumerated ==============
+L0:            ExecutionFlow.Push(L638);
+L5:            ExecutionFlow.Push(L567);
+L10:           if (!success) goto L605;
+L24:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] saves);
+L83:           bool mbool = Greater_IntInt(mint32, 0);
+L117:          if (!mbool) goto L605;
+L131:          TArray<SessionSaveStruct> mTArray<SessionSaveStruct> = [];
+L142:          FGSaveSystem->GroupSavesPerSession([ref] saves, [ref] mTArray<SessionSaveStruct>);
+L192:          FGSaveSystem->SortSessions([ref] mTArray<SessionSaveStruct>, 1, 1);
+L237:          KismetArrayLibrary->Array_Get([ref] mTArray<SessionSaveStruct>[0].SaveHeaders, 0, [ref] mSaveHeader);
+L307:          FString mFString = FGSaveSession->GetSessionName([ref] mSaveHeader);
+L366:          int32 mint321 = KismetStringLibrary->Len(mFString);
+L425:          bool mbool1 = Greater_IntInt(mint321, 0);
+L459:          if (!mbool1) goto ExecutionFlow.Pop();
+L469:          KismetArrayLibrary->Array_Get([ref] mTArray<SessionSaveStruct>[0].SaveHeaders, 0, [ref] mSaveHeader);
+L539:          this->mRecentSave = mSaveHeader;
+L566:          goto ExecutionFlow.Pop();
+L567:          this->SetContinueButtonVisibility(this->mRecentSave);
+L590:          this->GetMostRecentSaveName();
+L604:          goto ExecutionFlow.Pop();
+L605:          this->mRecentSave = ScriptStruct /Script/FactoryGame.SaveHeader();
+L637:          goto ExecutionFlow.Pop();
+============ END FUNCTION OnSavesEnumerated ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetContinueButtonVisibility ==============
+L0:            int32 mint32 = FGSaveSession->GetPlayDurationSeconds([ref] recentSave);
+L59:           bool mbool = Greater_IntInt(mint32, 0);
+L93:           if (!mbool) goto L150;
+L107:          this->mButtonContinue->SetVisibility(0);
+L145:          <End of Inlined Event Graph Function>;
+L150:          this->mButtonContinue->SetVisibility(1);
+============ END FUNCTION SetContinueButtonVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetMostRecentSaveName ==============
+L0:            FString mFString = FGSaveSession->GetName([ref] this->mRecentSave);
+L59:           FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L118:          mFormatArgumentData.ArgumentName = "A";
+L148:          mFormatArgumentData.ArgumentValueType = 4;
+L177:          mFormatArgumentData.ArgumentValue = mFText;
+L213:          mFormatArgumentData.ArgumentValueInt = 0;
+L245:          mFormatArgumentData.ArgumentValueFloat = 0;
+L277:          mFormatArgumentData.ArgumentValueGender = 0;
+L306:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L326:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L441:          this->mButtonContinue->mSaveNameTextBlock->SetText(mFText1);
+L508:          FString mFString1 = FGSaveSession->GetSessionName([ref] this->mRecentSave);
+L567:          FText mFText2 = KismetTextLibrary->Conv_StringToText(mFString1);
+L626:          mFormatArgumentData1.ArgumentName = "A";
+L656:          mFormatArgumentData1.ArgumentValueType = 4;
+L685:          mFormatArgumentData1.ArgumentValue = mFText2;
+L721:          mFormatArgumentData1.ArgumentValueInt = 0;
+L753:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L785:          mFormatArgumentData1.ArgumentValueGender = 0;
+L814:          TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
+L834:          FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L950:          this->mButtonContinue->mSessionNameTextBlock->SetText(mFText3);
+============ END FUNCTION GetMostRecentSaveName ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetExperimentalVisibility ==============
+L0:            uint8 Temp_byte_Variable = 3;
+L20:           uint8 Temp_byte_Variable1 = 1;
+L40:           uint8 muint8 = FGVersionFunctionLibrary->GetGameVersion();
+L90:           bool mbool = EqualEqual_ByteByte(muint8, 1);
+L121:          bool Temp_bool_Variable = mbool;
+L140:          this->mExperimentalBuildLabel->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint81;
+});
+============ END FUNCTION GetExperimentalVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateUsername ==============
+L0:            LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L24:           FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L60:           bool mbool = mFGLocalPlayer;
+L89:           uint8 muint8 = mFGLocalPlayer->GetLoginState();
+L139:          bool mbool1 = NotEqual_ByteByte(muint8, 0);
+L170:          if (!mbool1) goto L324;
+L184:          mbool1 = NotEqual_ByteByte(muint8, 1);
+L215:          if (!mbool1) goto L556;
+L229:          mbool1 = NotEqual_ByteByte(muint8, 2);
+L260:          if (!mbool1) goto L740;
+L274:          mbool1 = NotEqual_ByteByte(muint8, 3);
+L305:          if (!mbool1) goto L324;
+L319:          <End of Inlined Event Graph Function>;
+L324:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [ScriptStruct /Script/Engine.FormatArgumentData(ArgumentName = "", ArgumentValueType = 0, ArgumentValue = , ArgumentValueInt = 0, ArgumentValueFloat = 0, ArgumentValueGender = 0)];
+L367:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L479:          FText local_loginText = mFText;
+L506:          this->UsernameLabel->SetText(local_loginText);
+L551:          <End of Inlined Event Graph Function>;
+L556:          TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [ScriptStruct /Script/Engine.FormatArgumentData(ArgumentName = "", ArgumentValueType = 0, ArgumentValue = , ArgumentValueInt = 0, ArgumentValueFloat = 0, ArgumentValueGender = 0)];
+L599:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L708:          local_loginText = mFText1;
+L735:          goto L506;
+L740:          TArray<FormatArgumentData> mTArray<FormatArgumentData>2 = [ScriptStruct /Script/Engine.FormatArgumentData(ArgumentName = "", ArgumentValueType = 0, ArgumentValue = , ArgumentValueInt = 0, ArgumentValueFloat = 0, ArgumentValueGender = 0)];
+L783:          mLocalPlayer = this->GetOwningLocalPlayer();
+L807:          mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L843:          mbool = mFGLocalPlayer;
+L872:          FString mFString = mFGLocalPlayer->GetUsername();
+L922:          FText mFText2 = KismetTextLibrary->Conv_StringToText(mFString);
+L981:          mFormatArgumentData.ArgumentName = "username";
+L1018:         mFormatArgumentData.ArgumentValueType = 4;
+L1047:         mFormatArgumentData.ArgumentValue = mFText2;
+L1083:         mFormatArgumentData.ArgumentValueInt = 0;
+L1115:         mFormatArgumentData.ArgumentValueFloat = 0;
+L1147:         mFormatArgumentData.ArgumentValueGender = 0;
+L1176:         TArray<FormatArgumentData> mTArray<FormatArgumentData>3 = [mFormatArgumentData];
+L1196:         FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>3);
+L1319:         FText mFText4 = KismetTextLibrary->Format(mFText3, mTArray<FormatArgumentData>2);
+L1387:         local_loginText = mFText4;
+L1414:         goto L506;
+============ END FUNCTION UpdateUsername ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateVersionString ==============
+L0:            GameInstance* mGameInstance = GameplayStatics->GetGameInstance(this);
+L43:           uint8 muint8 = FGNetworkLibrary->GetCachedNATType(mGameInstance);
+L102:          bool mbool = NotEqual_ByteByte(muint8, 3);
+L133:          if (!mbool) goto L1034;
+L147:          FString mFString = FGVersionFunctionLibrary->GetVersionString();
+L197:          mGameInstance = GameplayStatics->GetGameInstance(this);
+L240:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L299:          mFormatArgumentData.ArgumentName = "Version";
+L335:          mFormatArgumentData.ArgumentValueType = 4;
+L364:          mFormatArgumentData.ArgumentValue = mFText;
+L400:          mFormatArgumentData.ArgumentValueInt = 0;
+L432:          mFormatArgumentData.ArgumentValueFloat = 0;
+L464:          mFormatArgumentData.ArgumentValueGender = 0;
+L493:          uint8 muint81 = FGNetworkLibrary->GetCachedNATType(mGameInstance);
+L552:          FText mFText1 = FGNetworkLibrary->NATTypeToText(muint81);
+L611:          mFormatArgumentData1.ArgumentName = "NATType";
+L647:          mFormatArgumentData1.ArgumentValueType = 4;
+L676:          mFormatArgumentData1.ArgumentValue = mFText1;
+L712:          mFormatArgumentData1.ArgumentValueInt = 0;
+L744:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L776:          mFormatArgumentData1.ArgumentValueGender = 0;
+L805:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
+L834:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L957:          FText local_versionString = mFText2;
+L984:          this->VersionString->SetText(local_versionString);
+L1029:         <End of Inlined Event Graph Function>;
+L1034:         FString mFString1 = FGVersionFunctionLibrary->GetVersionString();
+L1084:         FText mFText3 = KismetTextLibrary->Conv_StringToText(mFString1);
+L1143:         mFormatArgumentData2.ArgumentName = "Version";
+L1179:         mFormatArgumentData2.ArgumentValueType = 4;
+L1208:         mFormatArgumentData2.ArgumentValue = mFText3;
+L1244:         mFormatArgumentData2.ArgumentValueInt = 0;
+L1276:         mFormatArgumentData2.ArgumentValueFloat = 0;
+L1308:         mFormatArgumentData2.ArgumentValueGender = 0;
+L1337:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData2];
+L1357:         FText mFText4 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L1465:         local_versionString = mFText4;
+L1492:         goto L984;
+============ END FUNCTION UpdateVersionString ==============
+
+
+
+
+
+============ BEGIN FUNCTION CacheMostRecentSave ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController);
+L60:           bool mbool = mFGPlayerControllerBase;
+L89:           if (!mbool) goto L317;
+L103:          FGAdminInterface* mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L145:          bool mbool1 = KismetSystemLibrary->IsValid(mFGAdminInterface);
+L196:          if (!mbool1) goto L317;
+L210:          mFScriptDelegate->BindUFunction(this, OnSavesEnumerated);
+L233:          mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L275:          mFGAdminInterface->EnumerateSaveGames(true, mFScriptDelegate);
+============ END FUNCTION CacheMostRecentSave ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetVersionString ==============
+L0:            FString mFString = FGVersionFunctionLibrary->GetVersionString();
+L50:           FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L109:          FText ReturnValue = mFText;
+============ END FUNCTION GetVersionString ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEscape ==============
+L0:            this->ExecuteUbergraph_BP_MainMenuWidget(537);
+============ END FUNCTION OnEscape ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButtonQuit_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BP_MainMenuWidget(829);
+============ END FUNCTION BndEvt__mButtonQuit_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BP_MainMenuWidget(1062);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BP_MainMenuWidget(1745);
+============ END FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButtonMP_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BP_MainMenuWidget(3268);
+============ END FUNCTION BndEvt__mButtonMP_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnExit ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/MainMenu/BP_MainMenuWidget.BP_MainMenuWidget_C:ExecuteUbergraph_BP_MainMenuWidget.K2Node_CustomEvent_Bool) = bool;
+L18:           this->ExecuteUbergraph_BP_MainMenuWidget(3373);
+============ END FUNCTION OnExit ==============
+
+
+
+
+
+============ BEGIN FUNCTION NATTypeUpdated ==============
+L0:            PERSISTENT_FRAME(EnumProperty /Game/FactoryGame/Interface/UI/Menu/MainMenu/BP_MainMenuWidget.BP_MainMenuWidget_C:ExecuteUbergraph_BP_MainMenuWidget.K2Node_CustomEvent_natType) = natType;
+L18:           this->ExecuteUbergraph_BP_MainMenuWidget(3482);
+============ END FUNCTION NATTypeUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_BP_MainMenuWidget(3497);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMenuEnter ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/MainMenu/BP_MainMenuWidget.BP_MainMenuWidget_C:ExecuteUbergraph_BP_MainMenuWidget.K2Node_Event_prevMenu) = prevMenu;
+L18:           this->ExecuteUbergraph_BP_MainMenuWidget(3857);
+============ END FUNCTION OnMenuEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION LoginStateChanged ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/Menu/MainMenu/BP_MainMenuWidget.BP_MainMenuWidget_C:ExecuteUbergraph_BP_MainMenuWidget.K2Node_CustomEvent_oldState) = oldState;
+L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/Menu/MainMenu/BP_MainMenuWidget.BP_MainMenuWidget_C:ExecuteUbergraph_BP_MainMenuWidget.K2Node_CustomEvent_newState) = newState;
+L36:           this->ExecuteUbergraph_BP_MainMenuWidget(3881);
+============ END FUNCTION LoginStateChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_1_OnHovered__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BP_MainMenuWidget(3896);
+============ END FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_1_OnHovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_2_OnUnhovered__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BP_MainMenuWidget(4063);
+============ END FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_2_OnUnhovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClosedLoadPopup ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/MainMenu/BP_MainMenuWidget.BP_MainMenuWidget_C:ExecuteUbergraph_BP_MainMenuWidget.K2Node_CustomEvent_ConfirmClicked) = ConfirmClicked;
+L18:           this->ExecuteUbergraph_BP_MainMenuWidget(4212);
+============ END FUNCTION ClosedLoadPopup ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_MainMenuWidget ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->mButtonContinue->Widget_ButtonShine->PlayShineAnim();
+L73:           this->mButtonContinue->Widget_AutoScrollingContainer->StartAutoScroll();
+L131:          goto ExecutionFlow.Pop();
+L132:          int32 Temp_int_Array_Index_Variable = 0;
+L155:          TArray<BP_MenuBase*> mTArray<BP_MenuBase> = [this->Widget_LoadSession, this->Widget_ManageInvites, this->Widget_Options];
+L193:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<BP_MenuBase>);
+L252:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L290:          if (!mbool) goto ExecutionFlow.Pop();
+L300:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L327:          ExecutionFlow.Push(L463);
+L332:          mTArray<BP_MenuBase> = [this->Widget_LoadSession, this->Widget_ManageInvites, this->Widget_Options];
+L370:          KismetArrayLibrary->Array_Get([ref] mTArray<BP_MenuBase>, Temp_int_Array_Index_Variable, [ref] mBP_MenuBase);
+L429:          mBP_MenuBase->mOwningMenu = this;
+L462:          goto ExecutionFlow.Pop();
+L463:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L505:          int32 Temp_int_Loop_Counter_Variable = mint321;
+L532:          goto L155;
+L537:          this->OnEscape();
+L547:          int32 mint322 = this->mSwitcher->GetActiveWidgetIndex();
+L597:          bool mbool1 = NotEqual_IntInt(mint322, 0);
+L631:          if (!mbool1) goto ExecutionFlow.Pop();
+L641:          this->mSwitcher->SetActiveWidget(nullptr);
+L678:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L702:          this->mFocusWidget->SetUserFocus(mPlayerController);
+L743:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L767:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Back, mPlayerController1, true);
+L828:          goto ExecutionFlow.Pop();
+L829:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L853:          mFScriptDelegate->BindUFunction(this, OnExit);
+L876:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", "[object Object]", [ref] mFScriptDelegate, 1, nullptr, nullptr);
+L1061:         goto ExecutionFlow.Pop();
+L1062:         this->Construct();
+L1072:         this->mFocusWidget = this->mButtonContinue;
+L1091:         this->CacheMostRecentSave();
+L1105:         this->UpdateVersionString();
+L1119:         this->UpdateUsername();
+L1133:         this->GetExperimentalVisibility();
+L1147:         GameInstance* mGameInstance = GameplayStatics->GetGameInstance(this);
+L1190:         FGGameInstance* mFGGameInstance = Cast<Class /Script/FactoryGame.FGGameInstance>(mGameInstance);
+L1226:         bool mbool2 = mFGGameInstance;
+L1255:         if (!mbool2) goto L1333;
+L1269:         mFScriptDelegate1->BindUFunction(this, NATTypeUpdated);
+L1292:         mFGGameInstance->mOnNatTypeUpdated.AddUnique(mFScriptDelegate1);
+L1333:         LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L1357:         FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L1393:         bool mbool3 = mFGLocalPlayer;
+L1422:         if (!mbool3) goto ExecutionFlow.Pop();
+L1432:         mFScriptDelegate2->BindUFunction(this, LoginStateChanged);
+L1455:         mFGLocalPlayer->mOnLoginStateChanged.AddUnique(mFScriptDelegate2);
+L1496:         Temp_int_Loop_Counter_Variable = 0;
+L1519:         goto L132;
+L1524:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L1548:         this->mFocusWidget->SetUserFocus(mPlayerController3);
+L1589:         goto ExecutionFlow.Pop();
+L1590:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
+L1614:         KismetSystemLibrary->QuitGame(this, mPlayerController4, 0, false);
+L1659:         PlayerController* mPlayerController5 = this->GetOwningPlayer();
+L1683:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Back, mPlayerController5, true);
+L1744:         goto ExecutionFlow.Pop();
+L1745:         FGMusicManager* mFGMusicManager = FGMusicManager->Get(this);
+L1788:         mFGMusicManager->Stop();
+L1824:         PlayerController* mPlayerController6 = this->GetOwningPlayer();
+L1848:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_LaunchGame, mPlayerController6, true);
+L1909:         uint8 muint8 = FGSaveSystem->GetSaveState([ref] this->mRecentSave);
+L1968:         bool mbool4 = NotEqual_ByteByte(muint8, 0);
+L1999:         if (!mbool4) goto L2149;
+L2013:         mbool4 = NotEqual_ByteByte(muint8, 1);
+L2044:         if (!mbool4) goto L2414;
+L2058:         mbool4 = NotEqual_ByteByte(muint8, 2);
+L2089:         if (!mbool4) goto L2699;
+L2103:         mbool4 = NotEqual_ByteByte(muint8, 3);
+L2134:         if (!mbool4) goto L2986;
+L2148:         goto ExecutionFlow.Pop();
+L2149:         PlayerController* mPlayerController7 = this->GetOwningPlayer();
+L2173:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController7, STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), [ref] Temp_delegate_Variable, 0, nullptr, mPlayerController7);
+L2413:         goto ExecutionFlow.Pop();
+L2414:         mFScriptDelegate3->BindUFunction(this, ClosedLoadPopup);
+L2437:         mPlayerController7 = this->GetOwningPlayer();
+L2461:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController7, STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), [ref] mFScriptDelegate3, 1, nullptr, mPlayerController7);
+L2698:         goto ExecutionFlow.Pop();
+L2699:         mPlayerController7 = this->GetOwningPlayer();
+L2723:         FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController7);
+L2759:         bool mbool5 = mFGPlayerControllerBase;
+L2788:         if (!mbool5) goto ExecutionFlow.Pop();
+L2798:         FGAdminInterface* mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L2840:         bool mbool6 = KismetSystemLibrary->IsValid(mFGAdminInterface);
+L2891:         if (!mbool6) goto ExecutionFlow.Pop();
+L2901:         mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L2943:         mFGAdminInterface->LoadGame(false, [ref] this->mRecentSave);
+L2985:         goto ExecutionFlow.Pop();
+L2986:         mFScriptDelegate3->BindUFunction(this, ClosedLoadPopup);
+L3009:         mPlayerController7 = this->GetOwningPlayer();
+L3033:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController7, STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), [ref] mFScriptDelegate3, 1, nullptr, mPlayerController7);
+L3267:         goto ExecutionFlow.Pop();
+L3268:         this->mFocusWidget = this->mButtonCredits;
+L3287:         PlayerController* mPlayerController8 = this->GetOwningPlayer();
+L3311:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Forward, mPlayerController8, true);
+L3372:         goto ExecutionFlow.Pop();
+L3373:         if (!mbool7) goto L3466;
+L3387:         FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L3429:         mFGGameUserSettings->ApplyRestartRequiredChanges();
+L3461:         goto L1590;
+L3466:         this->RestoreFocusOnPopupClosed(false);
+L3481:         goto ExecutionFlow.Pop();
+L3482:         this->UpdateVersionString();
+L3496:         goto ExecutionFlow.Pop();
+L3497:         this->Destruct();
+L3507:         GameInstance* mGameInstance1 = GameplayStatics->GetGameInstance(this);
+L3550:         FGGameInstance* mFGGameInstance1 = Cast<Class /Script/FactoryGame.FGGameInstance>(mGameInstance1);
+L3586:         bool mbool8 = mFGGameInstance1;
+L3615:         if (!mbool8) goto L3693;
+L3629:         mFScriptDelegate4->BindUFunction(this, NATTypeUpdated);
+L3652:         mFGGameInstance1->mOnNatTypeUpdated.Remove(mFScriptDelegate4);
+L3693:         LocalPlayer* mLocalPlayer1 = this->GetOwningLocalPlayer();
+L3717:         FGLocalPlayer* mFGLocalPlayer1 = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer1);
+L3753:         bool mbool9 = mFGLocalPlayer1;
+L3782:         if (!mbool9) goto ExecutionFlow.Pop();
+L3792:         mFScriptDelegate5->BindUFunction(this, LoginStateChanged);
+L3815:         mFGLocalPlayer1->mOnLoginStateChanged.Remove(mFScriptDelegate5);
+L3856:         goto ExecutionFlow.Pop();
+L3857:         this->OnMenuEnter(mWidget);
+L3876:         goto L1524;
+L3881:         this->UpdateUsername();
+L3895:         goto ExecutionFlow.Pop();
+L3896:         UMGSequencePlayer* mUMGSequencePlayer = this->mButtonContinue->PlayAnimation(this->mButtonContinue->ani_ShowSaveName, 0, 1, 0, 1);
+L3986:         KismetSystemLibrary->Delay(this, 0.30000001192092896, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -727381504, ExecutionFunction = "ExecuteUbergraph_BP_MainMenuWidget", CallbackTarget = this));
+L4062:         goto ExecutionFlow.Pop();
+L4063:         UMGSequencePlayer* mUMGSequencePlayer1 = this->mButtonContinue->PlayAnimation(this->mButtonContinue->ani_HideSaveName, 0, 1, 0, 1);
+L4153:         this->mButtonContinue->Widget_AutoScrollingContainer->StopAutoScroll();
+L4211:         goto ExecutionFlow.Pop();
+L4212:         if (!mbool10) goto ExecutionFlow.Pop();
+L4222:         goto L2699;
+============ END FUNCTION ExecuteUbergraph_BP_MainMenuWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCreditsClicked__DelegateSignature ==============
+============ END FUNCTION OnCreditsClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnModsClicked__DelegateSignature ==============
+============ END FUNCTION OnModsClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnOptionsClicked__DelegateSignature ==============
+============ END FUNCTION OnOptionsClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnLoadClicked__DelegateSignature ==============
+============ END FUNCTION OnLoadClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnExitClicked__DelegateSignature ==============
+============ END FUNCTION OnExitClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnBrowseClicked__DelegateSignature ==============
+============ END FUNCTION OnBrowseClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPlayClicked__DelegateSignature ==============
+============ END FUNCTION OnPlayClicked__DelegateSignature ==============

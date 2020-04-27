@@ -1,0 +1,111 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/World/Benefit/NutBush/BP_NutBush.BP_NutBush_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetDestroyAudioEvent ==============
+L0:            AkAudioEvent* ReturnValue = Play_W_Pickup_Consumable_Nut;
+============ END FUNCTION GetDestroyAudioEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetDestroyEffect ==============
+L0:            ParticleSystem* ReturnValue = PickupFoliage;
+============ END FUNCTION GetDestroyEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetForceThreshold ==============
+L0:            float ReturnValue = 500;
+============ END FUNCTION GetForceThreshold ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorChainsawReturn ==============
+L0:            InventoryStack ReturnValue = ScriptStruct /Script/FactoryGame.InventoryStack(Item = ScriptStruct /Script/FactoryGame.InventoryItem(ItemClass = nullptr, ItemState = ScriptStruct /Script/FactoryGame.SharedInventoryStatePtr(ActorPtr = nullptr)), NumItems = 0);
+============ END FUNCTION GetActorChainsawReturn ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetMeshComponent ==============
+L0:            StaticMeshComponent* ReturnValue = this->BushMesh;
+============ END FUNCTION GetMeshComponent ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsChainsawable ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION IsChainsawable ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_NutBush(236);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateVisiblityState ==============
+L0:            this->ExecuteUbergraph_BP_NutBush(265);
+============ END FUNCTION UpdateVisiblityState ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupItem ==============
+L0:            this->ExecuteUbergraph_BP_NutBush(659);
+============ END FUNCTION SetupItem ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_NutBush ==============
+L10:           int32 mint32 = this->GetSavedNumItems();
+L38:           bool mbool = EqualEqual_IntInt(mint32, -1);
+L72:           if (!mbool) goto L664;
+L86:           InventoryStack mInventoryStack = this->GetPickupItems();
+L114:          FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint321, [ref] mInventoryItem);
+L173:          this->SetNumItems(mint321);
+L192:          <End of Inlined Event Graph Function>;
+L197:          bool mbool1 = this->HasAuthority();
+L217:          if (!mbool1) goto L664;
+L231:          goto L10;
+L236:          this->ReceiveBeginPlay();
+L246:          this->SetupItem();
+L260:          <End of Inlined Event Graph Function>;
+L265:          this->StaticMesh->SetMobility(2);
+L303:          this->BushMesh->SetMobility(2);
+L341:          StaticMesh* Temp_object_Variable = NutBush_02;
+L360:          uint8 muint8 = this->GetItemState();
+L388:          uint8 Temp_byte_Variable = muint8;
+L415:          bool mbool2 = this->BushMesh->SetStaticMesh(switch (Temp_byte_Variable) {
+case 0 -> this->mSeedMesh;
+case 1 -> Temp_object_Variable;
+default -> mStaticMesh;
+});
+L516:          bool mbool3 = this->IsPickedUp();
+L536:          this->StaticMesh->SetHiddenInGame(mbool3, false);
+L578:          this->StaticMesh->SetMobility(0);
+L616:          this->BushMesh->SetMobility(0);
+L654:          <End of Inlined Event Graph Function>;
+L659:          goto L197;
+============ END FUNCTION ExecuteUbergraph_BP_NutBush ==============

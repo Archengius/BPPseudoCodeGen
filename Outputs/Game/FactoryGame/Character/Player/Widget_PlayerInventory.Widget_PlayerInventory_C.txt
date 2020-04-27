@@ -1,0 +1,364 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/Widget_PlayerInventory.Widget_PlayerInventory_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyUp ==============
+L0:            bool mbool = this->mInventory->HasFocusedDescendants();
+L42:           bool mbool1 = Not_PreBool(mbool);
+L71:           if (!mbool1) goto L175;
+L85:           EventReply mEventReply = this->mInventory->OnNumKeyDown(InKeyEvent);
+L148:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnKeyUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupArmInventoryResize ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           if (!mbool) goto L401;
+L103:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L123:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L159:          bool mbool1 = mFGCharacterPlayer;
+L188:          if (!mbool1) goto L401;
+L202:          int32 mint32 = mFGCharacterPlayer->GetTotalPlayerArmEquipmentSlots();
+L252:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L303:          FGInventoryComponentEquipment* mFGInventoryComponentEquipment = mFGCharacterPlayer->GetEquipmentSlot(1);
+L347:          mBP_RemoteCallObject->Server_ResizeInventory(mint32, mFGInventoryComponentEquipment);
+============ END FUNCTION SetupArmInventoryResize ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsArmEquipmentInventoryOutdated ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L56:           bool mbool = mFGCharacterPlayer;
+L85:           if (!mbool) goto L300;
+L99:           FGInventoryComponentEquipment* mFGInventoryComponentEquipment = mFGCharacterPlayer->GetEquipmentSlot(1);
+L143:          int32 mint32 = mFGCharacterPlayer->GetTotalPlayerArmEquipmentSlots();
+L193:          int32 mint321 = mFGInventoryComponentEquipment->GetSizeLinear();
+L243:          bool mbool1 = NotEqual_IntInt(mint32, mint321);
+L281:          bool isOutdated = mbool1;
+============ END FUNCTION IsArmEquipmentInventoryOutdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPreviewKeyDown ==============
+L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Tab"));
+L137:          if (!mbool) goto L247;
+L151:          this->OnEscapePressed();
+L165:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L215:          EventReply ReturnValue = mEventReply;
+L242:          goto L324;
+L247:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L297:          ReturnValue = mEventReply1;
+============ END FUNCTION OnPreviewKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDrop ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION OnDrop ==============
+
+
+
+
+
+============ BEGIN FUNCTION TryGetCentralStorages ==============
+L0:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L43:           FGCentralStorageSubsystem* mFGCentralStorageSubsystem = FGCentralStorageSubsystem->Get(mGameStateBase);
+L94:           TArray<FGCentralStorageContainer*> mTArray<FGCentralStorageContainer> = mFGCentralStorageSubsystem->GetCentralStorageContainers();
+L144:          this->mCentralStorages = mTArray<FGCentralStorageContainer>;
+============ END FUNCTION TryGetCentralStorages ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyDown ==============
+L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "I"));
+L137:          bool mbool1 = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Tab"));
+L215:          bool mbool2 = BooleanOR(mbool1, mbool);
+L253:          if (!mbool2) goto L363;
+L267:          this->OnEscapePressed();
+L281:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L331:          EventReply ReturnValue = mEventReply;
+L358:          goto L440;
+L363:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L413:          ReturnValue = mEventReply1;
+============ END FUNCTION OnKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION Cleanup ==============
+L0:            this->mInventory->OnClose->Clear();
+L32:           this->mEquipmentWindowContainer->OnClose->Clear();
+L64:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L88:           HUD* mHUD = mPlayerController->GetHUD();
+L130:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L166:          bool mbool = mFGHUD;
+L195:          FGGameUI* mFGGameUI = mFGHUD->GetGameUI();
+L237:          mFGGameUI->SetWindowWantsInventoryAddon(false);
+L270:          mPlayerController = this->GetOwningPlayer();
+L294:          mHUD = mPlayerController->GetHUD();
+L336:          mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L372:          mbool = mFGHUD;
+L401:          mFGGameUI = mFGHUD->GetGameUI();
+L443:          mFGGameUI->SetShowInventory(false);
+============ END FUNCTION Cleanup ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetInventoryComponents ==============
+L0:            this->mInventoryComponent = inventoryComponent;
+L19:           this->mEquipmentArmsInventoryComponent = arms;
+L38:           this->mEquipmentBackInventoryComponent = Back;
+L57:           this->mBeltIntentoryComponent = head;
+L76:           this->mTrashInventoryComponent = trash;
+============ END FUNCTION SetInventoryComponents ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerInventory(2751);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION CloseInventory ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerInventory(3274);
+============ END FUNCTION CloseInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerInventory(3289);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerInventory(3314);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION CentralStorageButtonClicked ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/Widget_PlayerInventory.Widget_PlayerInventory_C:ExecuteUbergraph_Widget_PlayerInventory.K2Node_CustomEvent_ClickedButton) = ClickedButton;
+L18:           this->ExecuteUbergraph_Widget_PlayerInventory(3329);
+============ END FUNCTION CentralStorageButtonClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCentralStorageAddedOrRemoved ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerInventory(3880);
+============ END FUNCTION OnCentralStorageAddedOrRemoved ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerInventory(3932);
+============ END FUNCTION BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Character/Player/Widget_PlayerInventory.Widget_PlayerInventory_C:ExecuteUbergraph_Widget_PlayerInventory.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_PlayerInventory(3937);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mInventory_K2Node_ComponentBoundEvent_0_OnRelevantShortcutPressed__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/Widget_PlayerInventory.Widget_PlayerInventory_C:ExecuteUbergraph_Widget_PlayerInventory.K2Node_ComponentBoundEvent_InventorySlot) = InventorySlot;
+L18:           this->ExecuteUbergraph_Widget_PlayerInventory(4350);
+============ END FUNCTION BndEvt__mInventory_K2Node_ComponentBoundEvent_0_OnRelevantShortcutPressed__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PlayerInventory ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool mbool = EqualEqual_IntInt(Temp_int_Array_Index_Variable, 0);
+L49:           if (!mbool) goto ExecutionFlow.Pop();
+L59:           KismetArrayLibrary->Array_Get([ref] this->mCentralStorages, Temp_int_Array_Index_Variable, [ref] mFGCentralStorageContainer);
+L118:          FGInventoryComponent* mFGInventoryComponent = mFGCentralStorageContainer->GetStorageInventory();
+L160:          this->mCentralStorageInventory->Init(mFGInventoryComponent);
+L205:          goto ExecutionFlow.Pop();
+L206:          Widget* mWidget = this->mInventory->InventorySlot->GetChildAt(0);
+L275:          Widget_PlayerInventoryAddon* mWidget_PlayerInventoryAddon = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Character/Player/Widget_PlayerInventoryAddon.Widget_PlayerInventoryAddon_C>(mWidget);
+L311:          bool mbool1 = mWidget_PlayerInventoryAddon;
+L340:          if (!mbool1) goto L391;
+L354:          mWidget_PlayerInventoryAddon->SetDividerVisibility(false);
+L391:          int32 Temp_int_Loop_Counter_Variable2 = 0;
+L414:          int32 Temp_int_Array_Index_Variable2 = 0;
+L437:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mExtraInputToPassThrough);
+L496:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable2, mint32);
+L534:          if (!mbool2) goto L708;
+L548:          Temp_int_Array_Index_Variable2 = Temp_int_Loop_Counter_Variable2;
+L575:          ExecutionFlow.Push(L1635);
+L580:          KismetArrayLibrary->Array_Get([ref] this->mExtraInputToPassThrough, Temp_int_Array_Index_Variable2, [ref] mFName);
+L639:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mInputToPassThrough, [ref] mFName);
+L707:          goto ExecutionFlow.Pop();
+L708:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->mCentralStorages);
+L767:          bool mbool3 = Greater_IntInt(mint322, 0);
+L801:          bool mbool4 = BooleanAND(this->mShowCentralStorageIfPossible, mbool3);
+L839:          if (!mbool4) goto L1596;
+L853:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L876:          int32 Temp_int_Array_Index_Variable = 0;
+L899:          int32 mint323 = KismetArrayLibrary->Array_Length([ref] this->mCentralStorages);
+L958:          bool mbool5 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint323);
+L996:          if (!mbool5) goto ExecutionFlow.Pop();
+L1006:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
+L1033:         ExecutionFlow.Push(L1522);
+L1038:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1062:         Widget_Button* mWidget_Button = WidgetBlueprintLibrary->Create(this, Widget_Button, mPlayerController);
+L1123:         mFScriptDelegate->BindUFunction(this, CentralStorageButtonClicked);
+L1146:         mWidget_Button->OnClickedWithRef.AddUnique(mFScriptDelegate);
+L1187:         PanelSlot* mPanelSlot = this->mSideMenuVerticalSlot->AddChild(mWidget_Button);
+L1238:         int32 mint324 = Add_IntInt(Temp_int_Array_Index_Variable, 1);
+L1280:         FString mFString = KismetStringLibrary->Conv_IntToString(mint324);
+L1339:         FString mFString1 = KismetStringLibrary->Concat_StrStr("Storage #", mFString);
+L1409:         FText mFText = KismetTextLibrary->Conv_StringToText(mFString1);
+L1468:         mWidget_Button->mText = mFText;
+L1517:         goto L15;
+L1522:         int32 mint325 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1564:         Temp_int_Loop_Counter_Variable1 = mint325;
+L1591:         goto L899;
+L1596:         this->mCentralStorageWindow->SetVisibility(1);
+L1634:         goto ExecutionFlow.Pop();
+L1635:         int32 mint326 = Add_IntInt(Temp_int_Loop_Counter_Variable2, 1);
+L1677:         Temp_int_Loop_Counter_Variable2 = mint326;
+L1704:         goto L437;
+L1709:         ExecutionFlow.Push(L1762);
+L1714:         bool mbool6 = this->mSideMenuVerticalSlot->RemoveChildAt(0);
+L1761:         goto ExecutionFlow.Pop();
+L1762:         int32 mint327 = this->mSideMenuVerticalSlot->GetChildrenCount();
+L1812:         bool mbool7 = Greater_IntInt(mint327, 0);
+L1846:         if (!mbool7) goto L708;
+L1860:         goto L1709;
+L1865:         int32 Temp_int_Loop_Counter_Variable = 0;
+L1888:         int32 Temp_int_Array_Index_Variable1 = 0;
+L1911:         int32 mint328 = KismetArrayLibrary->Array_Length([ref] this->mExtraInputToPassThrough);
+L1970:         bool mbool8 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint328);
+L2008:         if (!mbool8) goto L2256;
+L2022:         Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
+L2049:         ExecutionFlow.Push(L2182);
+L2054:         KismetArrayLibrary->Array_Get([ref] this->mExtraInputToPassThrough, Temp_int_Array_Index_Variable1, [ref] mFName1);
+L2113:         int32 mint329 = KismetArrayLibrary->Array_Add([ref] this->mInputToPassThrough, [ref] mFName1);
+L2181:         goto ExecutionFlow.Pop();
+L2182:         int32 mint3210 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2224:         Temp_int_Loop_Counter_Variable = mint3210;
+L2251:         goto L1911;
+L2256:         if (!this->mShowCentralStorageIfPossible) goto L2392;
+L2270:         this->TryGetCentralStorages();
+L2284:         int32 mint3211 = KismetArrayLibrary->Array_Length([ref] this->mCentralStorages);
+L2343:         bool mbool9 = Greater_IntInt(mint3211, 0);
+L2377:         if (!mbool9) goto L2392;
+L2391:         goto ExecutionFlow.Pop();
+L2392:         this->mCentralStorageWindow->SetVisibility(1);
+L2430:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L2454:         Vector2D mVector2D = WidgetLayoutLibrary->GetViewportSize(this);
+L2505:         BreakVector2D(mVector2D, [ref] mfloat, [ref] mfloat1);
+L2542:         float mfloat2 = Divide_FloatFloat(mfloat1, 2);
+L2584:         float mfloat3 = Divide_FloatFloat(mfloat, 2);
+L2626:         int32 mint3212 = FTrunc(mfloat2);
+L2663:         int32 mint3213 = FTrunc(mfloat3);
+L2700:         mPlayerController1->SetMouseLocation(mint3213, mint3212);
+L2750:         goto ExecutionFlow.Pop();
+L2751:         this->Init();
+L2761:         this->PlayerEquipment->mHandsSlot->Init(this->mEquipmentArmsInventoryComponent);
+L2828:         this->PlayerEquipment->mBackSlot->Init(this->mEquipmentBackInventoryComponent);
+L2895:         if (!this->mShowCentralStorageIfPossible) goto L3067;
+L2909:         GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L2952:         FGCentralStorageSubsystem* mFGCentralStorageSubsystem = FGCentralStorageSubsystem->Get(mGameStateBase);
+L3003:         mFScriptDelegate1->BindUFunction(this, OnCentralStorageAddedOrRemoved);
+L3026:         mFGCentralStorageSubsystem->CentralStorageAddedOrRemoved.AddUnique(mFScriptDelegate1);
+L3067:         mFScriptDelegate2->BindUFunction(this, OnEscapePressed);
+L3090:         this->mInventory->OnClose.AddUnique(mFScriptDelegate2);
+L3131:         mFScriptDelegate3->BindUFunction(this, OnEscapePressed);
+L3154:         this->mEquipmentWindowContainer->OnClose.AddUnique(mFScriptDelegate3);
+L3195:         const TArray<TSubclassOf<FGItemDescriptor>> mconst TArray<TSubclassOf<FGItemDescriptor>> = [BP_HealthGainDescriptor, FGEquipmentDescriptor];
+L3224:         this->mInventory->SetupRelevantInventory([ref] mconst TArray<TSubclassOf<FGItemDescriptor>>);
+L3269:         goto L206;
+L3274:         this->OnEscapePressed();
+L3288:         goto ExecutionFlow.Pop();
+L3289:         this->Destruct();
+L3299:         this->Cleanup();
+L3313:         goto ExecutionFlow.Pop();
+L3314:         this->Construct();
+L3324:         goto L1865;
+L3329:         int32 mint3214 = KismetArrayLibrary->Array_Length([ref] this->mCentralStorages);
+L3388:         int32 mint3215 = this->mSideMenuVerticalSlot->GetChildIndex(mWidget_Button1);
+L3447:         bool mbool10 = Less_IntInt(mint3215, mint3214);
+L3485:         if (!mbool10) goto ExecutionFlow.Pop();
+L3495:         mint3215 = this->mSideMenuVerticalSlot->GetChildIndex(mWidget_Button1);
+L3554:         KismetArrayLibrary->Array_Get([ref] this->mCentralStorages, mint3215, [ref] mFGCentralStorageContainer1);
+L3613:         bool mbool11 = KismetSystemLibrary->IsValid(mFGCentralStorageContainer1);
+L3664:         if (!mbool11) goto ExecutionFlow.Pop();
+L3674:         mint3215 = this->mSideMenuVerticalSlot->GetChildIndex(mWidget_Button1);
+L3733:         KismetArrayLibrary->Array_Get([ref] this->mCentralStorages, mint3215, [ref] mFGCentralStorageContainer1);
+L3792:         FGInventoryComponent* mFGInventoryComponent1 = mFGCentralStorageContainer1->GetStorageInventory();
+L3834:         this->mCentralStorageInventory->Init(mFGInventoryComponent1);
+L3879:         goto ExecutionFlow.Pop();
+L3880:         this->TryGetCentralStorages();
+L3894:         goto L1762;
+L3899:         this->mInventoryComponent->SortInventory();
+L3931:         goto ExecutionFlow.Pop();
+L3932:         goto L3899;
+L3937:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L3961:         HUD* mHUD = mPlayerController2->GetHUD();
+L4003:         FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L4039:         bool mbool12 = mFGHUD;
+L4068:         FGGameUI* mFGGameUI = mFGHUD->GetGameUI();
+L4110:         mFGGameUI->SetWindowWantsInventoryAddon(true);
+L4143:         mPlayerController2 = this->GetOwningPlayer();
+L4167:         mHUD = mPlayerController2->GetHUD();
+L4209:         mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L4245:         mbool12 = mFGHUD;
+L4274:         mFGGameUI = mFGHUD->GetGameUI();
+L4316:         mFGGameUI->SetShowInventory(true);
+L4349:         goto ExecutionFlow.Pop();
+L4350:         mWidget_InventorySlot->QuickMoveInventory(false);
+L4387:         this->mInventory->bIsFocusable = true;
+L4420:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L4444:         this->mInventory->SetUserFocus(mPlayerController3);
+L4485:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_PlayerInventory ==============

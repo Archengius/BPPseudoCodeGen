@@ -1,0 +1,146 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SpawnProductionParticles ==============
+L0:            ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(P_SmelterSmoke_01, this->MainMesh_skl, "burnerVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L117:          this->mBurnerParticle = mParticleSystemComponent;
+L136:          ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAttached(Heatglow, this->MainMesh_skl, "barrelVfxSocket_01", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L253:          this->mHeatParticle = mParticleSystemComponent1;
+============ END FUNCTION SpawnProductionParticles ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Build_SmelterMk1(10);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Build_SmelterMk1(2204);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C:ExecuteUbergraph_Build_SmelterMk1.K2Node_Event_didStartProducing) = didStartProducing;
+L18:           this->ExecuteUbergraph_Build_SmelterMk1(2165);
+============ END FUNCTION StartProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartIdlingLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C:ExecuteUbergraph_Build_SmelterMk1.K2Node_Event_didGainPower) = didGainPower;
+L18:           this->ExecuteUbergraph_Build_SmelterMk1(2141);
+============ END FUNCTION StartIdlingLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopIdlingLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C:ExecuteUbergraph_Build_SmelterMk1.K2Node_Event_didLosePower) = didLosePower;
+L18:           this->ExecuteUbergraph_Build_SmelterMk1(992);
+============ END FUNCTION StopIdlingLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C:ExecuteUbergraph_Build_SmelterMk1.K2Node_Event_didStopProducing) = didStopProducing;
+L18:           this->ExecuteUbergraph_Build_SmelterMk1(1363);
+============ END FUNCTION StopProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_SmelterMk1 ==============
+L10:           this->GainedSignificance();
+L20:           bool mbool = this->HasPower();
+L44:           if (!mbool) goto L2209;
+L58:           this->TryStartIdlingLoopEffects(false);
+L69:           bool mbool1 = this->IsProducing();
+L93:           if (!mbool1) goto L2209;
+L107:          this->TryStartProductionLoopEffects(false);
+L118:          <End of Inlined Event Graph Function>;
+L123:          this->mBurnerParticle->K2_DestroyComponent(this);
+L156:          this->mHeatParticle->K2_DestroyComponent(this);
+L189:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(Stop_Smelter_Shared_Offline_Ticks, this->MainMesh_skl, "AudioSocket_Tubes", true);
+L263:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(Play_Smelter_Shared_ShutDown, this->MainMesh_skl, "AudioSocket_SmeltingPlate", true);
+L337:          <End of Inlined Event Graph Function>;
+L342:          this->mBurnerParticle->SetFloatParameter("SmokeShortRateScale", 1);
+L392:          this->mBurnerParticle->SetFloatParameter("SmokeLongRateScale", 1);
+L442:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAttached(Play_Smelter_Shared_EngineLoop, this->MainMesh_skl, "AudioSocket_Rotator", true);
+L516:          AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEventAttached(Play_Smelter_Shared_ExhaustLoop, this->MainMesh_skl, "SmeltingTop", true);
+L590:          AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEventAttached(Stop_Smelter_Shared_Offline_Ticks, this->MainMesh_skl, "AudioSocket_Tubes", true);
+L664:          <End of Inlined Event Graph Function>;
+L669:          bool mbool2 = KismetSystemLibrary->IsValid(this->mBurnerParticle);
+L720:          if (!mbool2) goto L2209;
+L734:          goto L123;
+L739:          this->mBurnerParticle->SetFloatParameter("SmokeShortRateScale", 1);
+L789:          this->mBurnerParticle->SetFloatParameter("SmokeLongRateScale", 0);
+L839:          AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEventAttached(Play_Smelter_Shared_StartUp, this->MainMesh_skl, "AudioSocket_SmeltingPlate", true);
+L913:          AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEventAttached(Play_Smelter_Shared_StartUp, this->MainMesh_skl, "Smeltingbase", true);
+L987:          <End of Inlined Event Graph Function>;
+L992:          this->StopIdlingLoopEffects(mbool3);
+L1011:         goto L669;
+L1016:         bool mbool4 = KismetSystemLibrary->IsValid(this->mBurnerParticle);
+L1067:         if (!mbool4) goto L1086;
+L1081:         <End of Inlined Event Graph Function>;
+L1086:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(P_SmelterSmoke_01, this->MainMesh_skl, "burnerVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1203:         this->mBurnerParticle = mParticleSystemComponent;
+L1222:         ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAttached(Heatglow, this->MainMesh_skl, "barrelVfxSocket_01", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1339:         this->mHeatParticle = mParticleSystemComponent1;
+L1358:         goto L739;
+L1363:         this->StopProductionLoopEffects(mbool5);
+L1382:         if (!this->mProductionEffectsRunning) goto L2209;
+L1396:         this->mProductionEffectsRunning = false;
+L1407:         bool mbool6 = KismetSystemLibrary->IsValid(this->mBurnerParticle);
+L1458:         if (!mbool6) goto L1572;
+L1472:         this->mBurnerParticle->SetFloatParameter("SmokeShortRateScale", 1);
+L1522:         this->mBurnerParticle->SetFloatParameter("SmokeLongRateScale", 0);
+L1572:         AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEventAttached(Stop_Smelter_Shared_EngineLoop, this->MainMesh_skl, "AudioSocket_Rotator", true);
+L1646:         AkComponent* mAkComponent8 = AkGameplayStatics->PostAkEventAttached(Stop_Smelter_Shared_ExhaustLoop, this->MainMesh_skl, "SmeltingTop", true);
+L1720:         AkComponent* mAkComponent9 = AkGameplayStatics->PostAkEventAttached(Stop_Smelter_Shared_Press_Steam, this->MainMesh_skl, "Press", true);
+L1794:         bool mbool7 = this->GetIsSignificant();
+L1814:         if (!mbool7) goto L2209;
+L1828:         AkComponent* mAkComponent10 = AkGameplayStatics->PostAkEventAttached(Play_Smelter_Shared_Offline_Ticks, this->MainMesh_skl, "AudioSocket_Tubes", true);
+L1902:         <End of Inlined Event Graph Function>;
+L1907:         bool mbool8 = this->HasPower();
+L1931:         if (!mbool8) goto L2209;
+L1945:         this->TryStopIdlingLoopEffects(false);
+L1956:         <End of Inlined Event Graph Function>;
+L1961:         bool mbool9 = this->HasPower();
+L1985:         bool mbool10 = this->IsProducing();
+L2009:         bool mbool11 = BooleanAND(mbool9, mbool10);
+L2047:         if (!mbool11) goto L1907;
+L2061:         this->TryStopProductionLoopEffects(false);
+L2072:         goto L1945;
+L2077:         this->mProductionEffectsRunning = true;
+L2088:         goto L342;
+L2093:         bool mbool12 = Not_PreBool(this->mProductionEffectsRunning);
+L2122:         if (!mbool12) goto L2209;
+L2136:         goto L2077;
+L2141:         this->StartIdlingLoopEffects(mbool13);
+L2160:         goto L1016;
+L2165:         this->StartProductionLoopEffects(mbool14);
+L2184:         goto L2093;
+L2189:         this->LostSignificance();
+L2199:         goto L1961;
+L2204:         goto L2189;
+============ END FUNCTION ExecuteUbergraph_Build_SmelterMk1 ==============

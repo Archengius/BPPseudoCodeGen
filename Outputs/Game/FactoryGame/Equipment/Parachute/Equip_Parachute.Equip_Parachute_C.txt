@@ -1,0 +1,59 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/Parachute/Equip_Parachute.Equip_Parachute_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnDeployed ==============
+L0:            this->ExecuteUbergraph_Equip_Parachute(10);
+============ END FUNCTION OnDeployed ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDeployStop ==============
+L0:            this->ExecuteUbergraph_Equip_Parachute(780);
+============ END FUNCTION OnDeployStop ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Equip_Parachute ==============
+L10:           Actor* mActor = this->GetOwner();
+L30:           Char_Player* mChar_Player = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C>(mActor);
+L66:           bool mbool = mChar_Player;
+L95:           if (!mbool) goto L1150;
+L109:          Controller* mController = mChar_Player->GetController();
+L151:          PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L187:          bool mbool1 = mPlayerController;
+L216:          if (!mbool1) goto L1150;
+L230:          Pawn* mPawn = mPlayerController->K2_GetPawn();
+L272:          Vector mVector = mPawn->GetVelocity();
+L326:          BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L372:          float mfloat3 = Multiply_FloatFloat(mfloat2, -0.0006000000284984708);
+L414:          float mfloat4 = FClamp(mfloat3, 0.10000000149011612, 1.5);
+L461:          mPlayerController->ClientPlayCameraShake(FGParachuteCameraShake, mfloat4, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L530:          this->ParachuteMesh->SetHiddenInGame(false, false);
+L564:          Actor* mActor1 = this->ParachuteMesh->GetOwner();
+L606:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_Parachute_Open, mActor1, true);
+L667:          <End of Inlined Event Graph Function>;
+L672:          Actor* mActor2 = this->ParachuteMesh->GetOwner();
+L714:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_Parachute, mActor2, true);
+L775:          <End of Inlined Event Graph Function>;
+L780:          this->ParachuteMesh->SetHiddenInGame(true, false);
+L814:          Actor* mActor3 = this->GetOwner();
+L834:          Char_Player* mChar_Player1 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C>(mActor3);
+L870:          bool mbool2 = mChar_Player1;
+L899:          if (!mbool2) goto L1150;
+L913:          Controller* mController1 = mChar_Player1->GetController();
+L955:          PlayerController* mPlayerController1 = Cast<Class /Script/Engine.PlayerController>(mController1);
+L991:          bool mbool3 = mPlayerController1;
+L1020:         if (!mbool3) goto L1150;
+L1034:         mPlayerController1->ClientStopCameraShake(FGParachuteCameraShake, true);
+L1080:         mPlayerController1->ClientPlayCameraShake(LandingShake_Parachute, 1, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L1145:         goto L672;
+============ END FUNCTION ExecuteUbergraph_Equip_Parachute ==============

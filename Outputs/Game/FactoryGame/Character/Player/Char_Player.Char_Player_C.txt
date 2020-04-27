@@ -1,0 +1,1982 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetActorCompassViewDistance ==============
+L0:            uint8 ReturnValue = 4;
+============ END FUNCTION GetActorCompassViewDistance ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorCompassViewDistance ==============
+L0:            uint8 ReturnValue = 0;
+============ END FUNCTION SetActorCompassViewDistance ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorRepresentationText ==============
+L0:            this->mMapText = newText;
+L27:           FText ReturnValue = this->mMapText;
+============ END FUNCTION SetActorRepresentationText ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L145;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->UpdateRepresentation(this, false);
+L121:          bool ReturnValue = mbool1;
+L140:          goto L156;
+L145:          ReturnValue = false;
+============ END FUNCTION UpdateRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationColor ==============
+L0:            FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(this->PlayerState);
+L36:           bool mbool = mFGPlayerState;
+L65:           if (!mbool) goto L161;
+L79:           LinearColor mLinearColor = mFGPlayerState->GetNametagColor();
+L129:          LinearColor ReturnValue = mLinearColor;
+L156:          goto L243;
+L161:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor1);
+L216:          ReturnValue = mLinearColor1;
+============ END FUNCTION GetActorRepresentationColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationText ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->PlayerState);
+L51:           if (!mbool) goto L285;
+L65:           FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(this->PlayerState);
+L101:          bool mbool1 = mFGPlayerState;
+L130:          if (!mbool1) goto L285;
+L144:          FString mFString = mFGPlayerState->GetPlayerName();
+L194:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L253:          FText ReturnValue = mFText;
+L280:          goto L305;
+L285:          ReturnValue = ;
+============ END FUNCTION GetActorRepresentationText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationTexture ==============
+L0:            Texture2D* Temp_object_Variable = MapCompass_Icon_playerdead;
+L19:           Texture2D* Temp_object_Variable1 = MapCompass_Icon_player;
+L38:           FGHealthComponent* mFGHealthComponent = this->GetHealthComponent();
+L58:           bool mbool = mFGHealthComponent->IsDead();
+L100:          bool Temp_bool_Variable = mbool;
+L119:          Texture2D* ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_object_Variable1;
+case true -> Temp_object_Variable;
+default -> mTexture2D;
+};
+============ END FUNCTION GetActorRepresentationTexture ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationType ==============
+L0:            uint8 ReturnValue = 5;
+============ END FUNCTION GetActorRepresentationType ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorShouldShowInCompass ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION GetActorShouldShowInCompass ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorFogOfWarRevealRadius ==============
+L0:            float ReturnValue = 20000;
+============ END FUNCTION GetActorFogOfWarRevealRadius ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorFogOfWarRevealType ==============
+L0:            uint8 Temp_byte_Variable = 3;
+L20:           uint8 Temp_byte_Variable1 = 0;
+L40:           bool Temp_bool_Variable = this->mPossessed;
+L59:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetActorFogOfWarRevealType ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveAsRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L244;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = KismetSystemLibrary->IsValid(mFGActorRepresentationManager);
+L128:          if (!mbool1) goto L244;
+L142:          mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L185:          bool mbool2 = mFGActorRepresentationManager->RemoveRepresentationOfActor(this);
+L228:          bool ReturnValue = false;
+L239:          goto L255;
+L244:          ReturnValue = false;
+============ END FUNCTION RemoveAsRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRealActorRotation ==============
+L0:            Rotator mRotator = this->K2_GetActorRotation();
+L28:           Rotator ReturnValue = mRotator;
+============ END FUNCTION GetRealActorRotation ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddAsRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L145;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->CreateAndAddNewRepresentation(this, false);
+L121:          bool ReturnValue = mbool1;
+L140:          goto L156;
+L145:          ReturnValue = false;
+============ END FUNCTION AddAsRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorShouldShowOnMap ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION GetActorShouldShowOnMap ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRealActorLocation ==============
+L0:            Vector mVector = this->K2_GetActorLocation();
+L28:           Vector mVector1 = MakeVector(0, 0, this->CapsuleComponent->CapsuleHalfHeight);
+L97:           Vector mVector2 = Add_VectorVector(mVector, mVector1);
+L143:          Vector ReturnValue = mVector2;
+============ END FUNCTION GetRealActorLocation ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsActorStatic ==============
+L0:            bool ReturnValue = false;
+============ END FUNCTION IsActorStatic ==============
+
+
+
+
+
+============ BEGIN FUNCTION TubeTravelHardCorners ==============
+L0:            bool mbool = Greater_FloatFloat(CurveFloatValue, 3);
+L34:           if (!mbool) goto L239;
+L48:           bool mbool1 = KismetSystemLibrary->IsValid(this->mSFXFastJUnction);
+L99:           if (!mbool1) goto L118;
+L113:          <End of Inlined Event Graph Function>;
+L118:          Vector mVector = this->K2_GetActorLocation();
+L146:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAtLocation(this, Play_HitTube, mVector, Rotator::FromPitchYawRoll(0, 0, 0));
+L220:          this->mSFXFastJUnction = mAkComponent;
+============ END FUNCTION TubeTravelHardCorners ==============
+
+
+
+
+
+============ BEGIN FUNCTION AudioWindDirectionSpeedUpdate ==============
+============ END FUNCTION AudioWindDirectionSpeedUpdate ==============
+
+
+
+
+
+============ BEGIN FUNCTION SlideVFX ==============
+L0:            uint8 muint8 = GameplayStatics->GetSurfaceType([ref] this->CharacterMovement->CurrentFloor.HitResult);
+L90:           bool mbool = NotEqual_ByteByte(muint8, 1);
+L121:          if (!mbool) goto L545;
+L135:          mbool = NotEqual_ByteByte(muint8, 2);
+L166:          if (!mbool) goto L1141;
+L180:          mbool = NotEqual_ByteByte(muint8, 3);
+L211:          if (!mbool) goto L1141;
+L225:          mbool = NotEqual_ByteByte(muint8, 4);
+L256:          if (!mbool) goto L1326;
+L270:          mbool = NotEqual_ByteByte(muint8, 5);
+L301:          if (!mbool) goto L1922;
+L315:          mbool = NotEqual_ByteByte(muint8, 6);
+L346:          if (!mbool) goto L2375;
+L360:          mbool = NotEqual_ByteByte(muint8, 7);
+L391:          if (!mbool) goto L1326;
+L405:          mbool = NotEqual_ByteByte(muint8, 8);
+L436:          if (!mbool) goto L2375;
+L450:          mbool = NotEqual_ByteByte(muint8, 9);
+L481:          if (!mbool) goto L956;
+L495:          mbool = NotEqual_ByteByte(muint8, 10);
+L526:          if (!mbool) goto L545;
+L540:          <End of Inlined Event Graph Function>;
+L545:          BreakRotator(this->CapsuleComponent->RelativeRotation, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L613:          BreakVector(this->CapsuleComponent->RelativeLocation, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L681:          float mfloat6 = Subtract_FloatFloat(mfloat5, 45);
+L723:          Vector mVector = MakeVector(mfloat3, mfloat4, mfloat6);
+L778:          Rotator mRotator = MakeRotator(0, -90, mfloat2);
+L825:          DecalComponent* mDecalComponent = GameplayStatics->SpawnDecalAtLocation(this, MI_SlideDecal_Sand, Vector(15, 75, 125), mVector, mRotator, 6);
+L913:          mDecalComponent->SetFadeOut(5, 1, true);
+L956:          Vector mVector1 = this->Mesh->GetSocketLocation("Slide_VFX_Socket");
+L1023:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(P_PlayerSliding_Sand, this->Mesh, "None", mVector1, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 1, true, 0);
+L1136:         <End of Inlined Event Graph Function>;
+L1141:         Vector mVector2 = this->Mesh->GetSocketLocation("Slide_VFX_Socket");
+L1208:         ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAttached(P_PlayerSliding_Rock, this->Mesh, "None", mVector2, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 1, true, 0);
+L1321:         <End of Inlined Event Graph Function>;
+L1326:         BreakRotator(this->CapsuleComponent->RelativeRotation, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L1394:         BreakVector(this->CapsuleComponent->RelativeLocation, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L1462:         mfloat6 = Subtract_FloatFloat(mfloat5, 45);
+L1504:         Rotator mRotator1 = MakeRotator(0, -90, mfloat2);
+L1551:         mVector = MakeVector(mfloat3, mfloat4, mfloat6);
+L1606:         DecalComponent* mDecalComponent1 = GameplayStatics->SpawnDecalAtLocation(this, MI_SlideDecal_Sand, Vector(55, 75, 125), mVector, mRotator1, 5);
+L1694:         mDecalComponent1->SetFadeOut(2, 2, true);
+L1737:         mVector1 = this->Mesh->GetSocketLocation("Slide_VFX_Socket");
+L1804:         ParticleSystemComponent* mParticleSystemComponent2 = GameplayStatics->SpawnEmitterAttached(P_PlayerSliding_Grass, this->Mesh, "None", mVector1, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 1, true, 0);
+L1917:         <End of Inlined Event Graph Function>;
+L1922:         BreakRotator(this->CapsuleComponent->RelativeRotation, [ref] mfloat7, [ref] mfloat8, [ref] mfloat9);
+L1990:         Rotator mRotator2 = MakeRotator(0, -90, mfloat9);
+L2037:         DecalComponent* mDecalComponent2 = GameplayStatics->SpawnDecalAtLocation(this, MI_SlideDecal_Sand, Vector(55, 75, 125), this->CapsuleComponent->RelativeLocation, mRotator2, 6);
+L2147:         mDecalComponent2->SetFadeOut(5, 1, true);
+L2190:         mVector2 = this->Mesh->GetSocketLocation("Slide_VFX_Socket");
+L2257:         ParticleSystemComponent* mParticleSystemComponent3 = GameplayStatics->SpawnEmitterAttached(P_PlayerSliding_Moist, this->Mesh, "None", mVector2, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 1, true, 0);
+L2370:         <End of Inlined Event Graph Function>;
+L2375:         BreakRotator(this->CapsuleComponent->RelativeRotation, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L2443:         BreakVector(this->CapsuleComponent->RelativeLocation, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L2511:         Rotator mRotator3 = MakeRotator(0, -90, mfloat2);
+L2558:         mfloat6 = Subtract_FloatFloat(mfloat5, 45);
+L2600:         mVector = MakeVector(mfloat3, mfloat4, mfloat6);
+L2655:         DecalComponent* mDecalComponent3 = GameplayStatics->SpawnDecalAtLocation(this, MI_SlideDecal_Sand, Vector(55, 75, 125), mVector, mRotator3, 5);
+L2743:         mDecalComponent3->SetFadeOut(2, 2, true);
+L2786:         mVector1 = this->Mesh->GetSocketLocation("Slide_VFX_Socket");
+L2853:         ParticleSystemComponent* mParticleSystemComponent4 = GameplayStatics->SpawnEmitterAttached(P_PlayerSliding_Gravel, this->Mesh, "None", mVector1, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 1, true, 0);
+============ END FUNCTION SlideVFX ==============
+
+
+
+
+
+============ BEGIN FUNCTION TubeTravelSpeedUpdate ==============
+L0:            Vector mVector = this->GetVelocity();
+L32:           float mfloat = VSize(mVector);
+L69:           float mfloat1 = MapRangeClamped(mfloat, 700, 2200, 0, 0.25);
+L126:          this->mVFX_Capsule_Opacity = mfloat1;
+L153:          this->mHypertube_VfxCap->SetScalarParameterValueOnMaterials("Opacity", this->mVFX_Capsule_Opacity);
+L207:          mVector = this->GetVelocity();
+L239:          mfloat = VSize(mVector);
+L276:          float mfloat2 = MapRangeClamped(mfloat, 700, 2200, 0, 100);
+L333:          AkGameplayStatics->SetActorRTPCValue("RTPC_TubeVelocity", mfloat2, 0, this);
+L393:          PlayerPipeHyperData mPlayerPipeHyperData = this->mFGCharacterMovementCompRef->GetPipeHyperDataRef();
+L443:          float mfloat3 = Multiply_FloatFloat(mPlayerPipeHyperData.mMaxCurveDiffThisFrame, 100);
+L494:          this->TubeTravelHardCorners(mfloat3);
+L517:          mPlayerPipeHyperData = this->mFGCharacterMovementCompRef->GetPipeHyperDataRef();
+L567:          bool mbool = EqualEqual_FloatFloat(mPlayerPipeHyperData.mCombinedLengthTillEndOfPipesINcludingCurrent, this->mSwitchingPipes);
+L614:          bool mbool1 = Not_PreBool(mbool);
+L643:          if (!mbool1) goto L989;
+L657:          mPlayerPipeHyperData = this->mFGCharacterMovementCompRef->GetPipeHyperDataRef();
+L707:          this->mSwitchingPipes = mPlayerPipeHyperData.mCombinedLengthTillEndOfPipesINcludingCurrent;
+L743:          Vector mVector1 = this->GetVelocity();
+L775:          float mfloat4 = VSize(mVector1);
+L812:          bool mbool2 = GreaterEqual_FloatFloat(mfloat4, 1800);
+L846:          if (!mbool2) goto L1445;
+L860:          Vector mVector2 = this->HelmetMesh->K2_GetComponentLocation();
+L910:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAtLocation(this, Play_FastJunctionsTube, mVector2, Rotator::FromPitchYawRoll(0, 0, 0));
+L984:          <End of Inlined Event Graph Function>;
+L989:          mPlayerPipeHyperData = this->mFGCharacterMovementCompRef->GetPipeHyperDataRef();
+L1039:         bool mbool3 = LessEqual_FloatFloat(mPlayerPipeHyperData.mDistanceToEndOfPipe, 1000);
+L1082:         if (!mbool3) goto L1445;
+L1096:         mPlayerPipeHyperData = this->mFGCharacterMovementCompRef->GetPipeHyperDataRef();
+L1146:         bool mbool4 = EqualExactly_VectorVector(this->mLastFrameEndPosTube, mPlayerPipeHyperData.mFulPipeEndPoint);
+L1193:         bool mbool5 = Not_PreBool(mbool4);
+L1222:         if (!mbool5) goto L1445;
+L1236:         mPlayerPipeHyperData = this->mFGCharacterMovementCompRef->GetPipeHyperDataRef();
+L1286:         this->mLastFrameEndPosTube = mPlayerPipeHyperData.mFulPipeEndPoint;
+L1322:         mPlayerPipeHyperData = this->mFGCharacterMovementCompRef->GetPipeHyperDataRef();
+L1372:         Rotator mRotator = MakeRotFromX([ref] mPlayerPipeHyperData.mFulPipeEndDir);
+L1418:         this->mLastFrameEndRotTube = mRotator;
+============ END FUNCTION TubeTravelSpeedUpdate ==============
+
+
+
+
+
+============ BEGIN FUNCTION SlideSpeedWindUpdate ==============
+L0:            Vector mVector = this->GetVelocity();
+L32:           float mfloat = VSize(mVector);
+L69:           bool mbool = GreaterEqual_FloatFloat(mfloat, 850);
+L103:          if (!mbool) goto L292;
+L117:          float mfloat1 = Add_FloatFloat(this->mCurrentSpeedWindTimer, 1);
+L159:          this->mCurrentSpeedWindTimer = mfloat1;
+L186:          bool mbool1 = EqualEqual_FloatFloat(this->mCurrentSpeedWindTimer, 7);
+L220:          if (!mbool1) goto L416;
+L234:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_P_SlideSpeedwind, this, true);
+L287:          <End of Inlined Event Graph Function>;
+L292:          bool mbool2 = GreaterEqual_FloatFloat(this->mCurrentSpeedWindTimer, 7);
+L326:          if (!mbool2) goto L416;
+L340:          this->mCurrentSpeedWindTimer = 0;
+L363:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_P_SlideSpeedWind, this, true);
+============ END FUNCTION SlideSpeedWindUpdate ==============
+
+
+
+
+
+============ BEGIN FUNCTION SlideVelocityUpdate ==============
+L0:            Vector mVector = this->GetVelocity();
+L32:           float mfloat = VSize(mVector);
+L69:           float mfloat1 = MapRangeClamped(mfloat, 240, 900, 0, 100);
+L126:          AkGameplayStatics->SetActorRTPCValue("RTPC_C_Slide", mfloat1, 0, this);
+L186:          float Temp_float_Variable = 100;
+L209:          float Temp_float_Variable1 = 0;
+L232:          mVector = this->GetVelocity();
+L264:          mfloat = VSize(mVector);
+L301:          bool mbool = Less_FloatFloat(mfloat, 241);
+L335:          bool Temp_bool_Variable = mbool;
+L354:          AkGameplayStatics->SetActorRTPCValue("RTPC_C_SlideVolume", switch (Temp_bool_Variable) {
+case false -> Temp_float_Variable;
+case true -> Temp_float_Variable1;
+default -> mfloat2;
+}, 0, this);
+L458:          uint8 muint8 = GameplayStatics->GetSurfaceType([ref] this->CharacterMovement->CurrentFloor.HitResult);
+L548:          int32 mint32 = Conv_ByteToInt(muint8);
+L585:          bool mbool1 = EqualEqual_IntInt(this->mLastSlideSurfaceType, mint32);
+L623:          if (!mbool1) goto L642;
+L637:          <End of Inlined Event Graph Function>;
+L642:          muint8 = GameplayStatics->GetSurfaceType([ref] this->CharacterMovement->CurrentFloor.HitResult);
+L732:          mint32 = Conv_ByteToInt(muint8);
+L769:          this->mLastSlideSurfaceType = mint32;
+L796:          FString Temp_string_Variable = "";
+L816:          FString Temp_string_Variable1 = "Panel";
+L841:          FString Temp_string_Variable2 = "Coral";
+L866:          FString Temp_string_Variable3 = "Grate";
+L891:          FString Temp_string_Variable4 = "Cement";
+L917:          FString Temp_string_Variable5 = "Soil";
+L941:          FString Temp_string_Variable6 = "SandCracked";
+L972:          FString Temp_string_Variable7 = "RockGravel";
+L1002:         FString Temp_string_Variable8 = "GrassHigh";
+L1031:         FString Temp_string_Variable9 = "Gravel";
+L1057:         FString Temp_string_Variable10 = "Moist";
+L1082:         FString Temp_string_Variable11 = "Grass";
+L1107:         FString Temp_string_Variable12 = "Rock";
+L1131:         FString Temp_string_Variable13 = "Metal";
+L1156:         FString Temp_string_Variable14 = "Sand";
+L1180:         FString Temp_string_Variable15 = "Default";
+L1207:         muint8 = GameplayStatics->GetSurfaceType([ref] this->CharacterMovement->CurrentFloor.HitResult);
+L1297:         uint8 Temp_byte_Variable = muint8;
+L1324:         FName mFName = KismetStringLibrary->Conv_StringToName(switch (Temp_byte_Variable) {
+case 0 -> Temp_string_Variable15;
+case 1 -> Temp_string_Variable14;
+case 2 -> Temp_string_Variable13;
+case 3 -> Temp_string_Variable12;
+case 4 -> Temp_string_Variable11;
+case 5 -> Temp_string_Variable10;
+case 6 -> Temp_string_Variable9;
+case 7 -> Temp_string_Variable8;
+case 8 -> Temp_string_Variable7;
+case 9 -> Temp_string_Variable6;
+case 10 -> Temp_string_Variable5;
+case 11 -> Temp_string_Variable4;
+case 12 -> Temp_string_Variable3;
+case 13 -> Temp_string_Variable2;
+case 14 -> Temp_string_Variable1;
+case 15 -> Temp_string_Variable;
+default -> mFString;
+});
+L1639:         this->mCurrentSlidingSurfaceType = mFName;
+L1666:         AkGameplayStatics->SetSwitch("Slide_Surface", this->mCurrentSlidingSurfaceType, this);
+============ END FUNCTION SlideVelocityUpdate ==============
+
+
+
+
+
+============ BEGIN FUNCTION ToggleCodex ==============
+L0:            Controller* mController = this->GetController();
+L20:           BPFL_HudHelperBadRef->GetBPHUD(mController, this, [ref] mBP_HUD);
+L75:           FGBuildGun* mFGBuildGun = this->GetBuildGun();
+L95:           bool mbool = KismetSystemLibrary->IsValid(mFGBuildGun);
+L146:          if (!mbool) goto L505;
+L160:          mFGBuildGun = this->GetBuildGun();
+L180:          bool mbool1 = mFGBuildGun->IsEquipped();
+L222:          if (!mbool1) goto L246;
+L236:          this->ToggleBuildGun();
+L246:          Controller* mController1 = this->GetController();
+L266:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mController1);
+L302:          bool mbool2 = mFGPlayerController;
+L331:          if (!mbool2) goto L505;
+L345:          DisabledInputGate mDisabledInputGate = mFGPlayerController->GetDisabledInputGate();
+L395:          if (!mDisabledInputGate.mOpenCodex) goto L459;
+L418:          mBP_HUD->CloseInteractUIIfOpen();
+L454:          <End of Inlined Event Graph Function>;
+L459:          mBP_HUD->OpenInteractUI(Widget_Codex_Container, nullptr);
+============ END FUNCTION ToggleCodex ==============
+
+
+
+
+
+============ BEGIN FUNCTION ToggleInventory ==============
+L0:            Controller* mController = this->GetController();
+L20:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mController);
+L56:           bool mbool = mFGPlayerController;
+L85:           if (!mbool) goto L769;
+L99:           HUD* mHUD = mFGPlayerController->GetHUD();
+L141:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L177:          bool mbool1 = mFGHUD;
+L206:          if (!mbool1) goto L769;
+L220:          mHUD = mFGPlayerController->GetHUD();
+L262:          BP_HUD* mBP_HUD = Cast<BlueprintGeneratedClass /Game/FactoryGame/-Shared/Blueprint/BP_HUD.BP_HUD_C>(mHUD);
+L298:          bool mbool2 = mBP_HUD;
+L327:          if (!mbool2) goto L769;
+L341:          DisabledInputGate mDisabledInputGate = mFGPlayerController->GetDisabledInputGate();
+L391:          bool mbool3 = Not_PreBool(mDisabledInputGate.mInventory);
+L429:          FGGameUI* mFGGameUI = mFGHUD->GetGameUI();
+L471:          BPHUDHelpers->FindWidgetOfClass(Widget_PlayerInventory, mFGGameUI, this, [ref] mFGInteractWidget);
+L535:          bool mbool4 = KismetSystemLibrary->IsValid(mFGInteractWidget);
+L586:          bool mbool5 = BooleanOR(mbool4, mbool3);
+L624:          if (!mbool5) goto L674;
+L638:          mBP_HUD->ToggleInventoryUI();
+L674:          mBP_HUD->IsInventoryOpen([ref] mbool6);
+L719:          mFGPlayerController->OnToggleInventory->ProcessMulticastDelegate(mbool6);
+============ END FUNCTION ToggleInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION ToggleFlashlight ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L97;
+L34:           this->FlushNetDormancy();
+L44:           bool mbool1 = Not_PreBool(this->mFlashlightOn);
+L73:           this->mFlashlightOn = mbool1;
+L92:           <End of Inlined Event Graph Function>;
+L97:           bool mbool2 = Not_PreBool(this->mFlashlightOn);
+L126:          this->Server_SetFlashlightOn(mbool2);
+L163:          goto L34;
+============ END FUNCTION ToggleFlashlight ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemovePlayerHUD ==============
+L0:            BPFL_HudHelperBadRef->GetBPHUD(OldController, this, [ref] mBP_HUD);
+L55:           mBP_HUD->RemovePawnHUD();
+============ END FUNCTION RemovePlayerHUD ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupPlayerHUD ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mPlayerHUDClass);
+L51:           if (!mbool) goto L228;
+L65:           HUD* mHUD = PlayerController->GetHUD();
+L107:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L143:          bool mbool1 = mFGHUD;
+L172:          if (!mbool1) goto L228;
+L186:          mFGHUD->AddPawnHUD(this->mPlayerHUDClass, this);
+============ END FUNCTION SetupPlayerHUD ==============
+
+
+
+
+
+============ BEGIN FUNCTION HandleFlashlight ==============
+L0:            bool mbool = this->IsLocallyControlled();
+L24:           if (!mbool) goto L384;
+L38:           SpringArmComponent* mSpringArmComponent = this->GetSpringArmComponent();
+L58:           bool mbool1 = Less_FloatFloat(mSpringArmComponent->TargetArmLength, 50);
+L114:          bool mbool2 = BooleanAND(mbool1, this->mFlashlightOn);
+L152:          this->FlashLight1P->SetVisibility(mbool2, false);
+L194:          mSpringArmComponent = this->GetSpringArmComponent();
+L214:          mbool1 = Less_FloatFloat(mSpringArmComponent->TargetArmLength, 50);
+L270:          bool mbool3 = Not_PreBool(mbool1);
+L299:          bool mbool4 = BooleanAND(mbool3, this->mFlashlightOn);
+L337:          this->FlashLight3P->SetVisibility(mbool4, true);
+L379:          <End of Inlined Event Graph Function>;
+L384:          this->FlashLight3P->SetVisibility(this->mFlashlightOn, true);
+L426:          this->FlashLight1P->SetVisibility(false, false);
+============ END FUNCTION HandleFlashlight ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdatePlayerTextVisibility ==============
+L0:            PlayerController* mPlayerController = GameplayStatics->GetPlayerController(this, 0);
+L48:           bool mbool = KismetSystemLibrary->IsValid(mPlayerController);
+L99:           if (!mbool) goto L395;
+L113:          mPlayerController = GameplayStatics->GetPlayerController(this, 0);
+L161:          HUD* mHUD = mPlayerController->GetHUD();
+L203:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L239:          bool mbool1 = mFGHUD;
+L268:          if (!mbool1) goto L395;
+L282:          bool mbool2 = mFGHUD->GetPumpiMode();
+L324:          bool mbool3 = Not_PreBool(mbool2);
+L353:          this->PlayerText->SetVisibility(mbool3, false);
+============ END FUNCTION UpdatePlayerTextVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetHealthPct ==============
+L0:            FGHealthComponent* mFGHealthComponent = this->GetHealthComponent();
+L20:           float mfloat = mFGHealthComponent->GetMaxHealth();
+L70:           float mfloat1 = mFGHealthComponent->GetCurrentHealth();
+L120:          float mfloat2 = Divide_FloatFloat(mfloat1, mfloat);
+L166:          float healthPct = mfloat2;
+============ END FUNCTION GetHealthPct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateDamageIndicator ==============
+L0:            this->GetHealthPct([ref] mfloat);
+L23:           float mfloat1 = Multiply_FloatFloat(mfloat, 100);
+L65:           float mfloat2 = FClamp(mfloat1, 0, 100);
+L112:          float mfloat3 = MapRangeUnclamped(mfloat2, 0, 60, 3, 0);
+L169:          float mfloat4 = FClamp(mfloat3, 0, 3);
+L216:          float mfloat5 = FInterpTo(this->mLowHealthIndicatorPower, mfloat4, this->mDeltaTime, 2);
+L276:          this->mLowHealthIndicatorPower = mfloat5;
+L303:          float mfloat6 = Multiply_FloatFloat(this->mLowHealthIndicatorPower, this->PPTakeDamage->BlendWeight);
+L371:          KismetMaterialLibrary->SetScalarParameterValue(this, deathBloodFX, "Power", mfloat6);
+L435:          float mfloat7 = FInterpTo(this->mCurrentDamageIndicator, this->mDesiredDamageIndicator, this->mDeltaTime, this->mDamageIndicatorSpeed);
+L499:          this->mCurrentDamageIndicator = mfloat7;
+L526:          KismetMaterialLibrary->SetScalarParameterValue(this, deathBloodFX, "Blood2Power", this->mCurrentDamageIndicator);
+L590:          mfloat7 = FInterpTo(this->mCurrentDamageIndicator, this->mDesiredDamageIndicator, this->mDeltaTime, this->mDamageIndicatorSpeed);
+L654:          bool mbool = NearlyEqual_FloatFloat(this->mCurrentDamageIndicator, mfloat7, 0.009999999776482582);
+L697:          if (!mbool) goto L757;
+L711:          this->mDesiredDamageIndicator = 0;
+L734:          this->mDamageIndicatorSpeed = 3;
+============ END FUNCTION UpdateDamageIndicator ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayDamageVO ==============
+L0:            const BP_DamageType* mconst BP_DamageType = Cast<BlueprintGeneratedClass /Game/FactoryGame/-Shared/Blueprint/BP_DamageType.BP_DamageType_C>(Damage Type);
+L36:           bool mbool = mconst BP_DamageType;
+L65:           if (!mbool) goto L256;
+L79:           this->GetHealthPct([ref] mfloat);
+L102:          AkGameplayStatics->SetActorRTPCValue("RTPC_C_Health", mfloat, 0, this);
+L162:          if (!mconst BP_DamageType->mFromRadiation) goto L203;
+L198:          <End of Inlined Event Graph Function>;
+L203:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_P_Suit_Damage_Warning, this, true);
+============ END FUNCTION PlayDamageVO ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayDamageCameraShake ==============
+============ END FUNCTION PlayDamageCameraShake ==============
+
+
+
+
+
+============ BEGIN FUNCTION ApplyDamagePP ==============
+L0:            bool mbool = this->IsLocallyControlled();
+L24:           if (!mbool) goto L253;
+L38:           this->CalculateOnscreenEffectBlendWeight([ref] mfloat);
+L61:           this->PPTakeDamage->BlendWeight = mfloat;
+L110:          this->mDamageIndicatorSpeed = 30;
+L133:          float mfloat1 = Add_FloatFloat(this->mCurrentDamageIndicator, 1);
+L175:          float mfloat2 = FClamp(mfloat1, 0, this->mMaxDamageIndicator);
+L226:          this->mDesiredDamageIndicator = mfloat2;
+============ END FUNCTION ApplyDamagePP ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayImpactEffectSound ==============
+L0:            const FGDamageType* mconst FGDamageType = Cast<Class /Script/FactoryGame.FGDamageType>(DamageType);
+L36:           bool mbool = mconst FGDamageType;
+L65:           bool mbool1 = KismetSystemLibrary->IsValid(mconst FGDamageType->mImpactAudioEvent);
+L138:          if (!mbool1) goto L292;
+L152:          mconst FGDamageType = Cast<Class /Script/FactoryGame.FGDamageType>(DamageType);
+L188:          mbool = mconst FGDamageType;
+L217:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(mconst FGDamageType->mImpactAudioEvent, this, true);
+============ END FUNCTION PlayImpactEffectSound ==============
+
+
+
+
+
+============ BEGIN FUNCTION CalculateOnscreenEffectBlendWeight ==============
+L0:            float BlendWeight = 1;
+============ END FUNCTION CalculateOnscreenEffectBlendWeight ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateWindParticle ==============
+============ END FUNCTION UpdateWindParticle ==============
+
+
+
+
+
+============ BEGIN FUNCTION TickSprintNoise ==============
+L0:            FGCharacterMovementComponent* mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->CharacterMovement);
+L36:           bool mbool = mFGCharacterMovementComponent;
+L65:           if (!mbool) goto L382;
+L79:           bool mbool1 = mFGCharacterMovementComponent->GetIsSprinting();
+L121:          if (!mbool1) goto L359;
+L135:          float mfloat = Add_FloatFloat(this->mTimeSprinting, this->mDeltaTime);
+L181:          this->mTimeSprinting = mfloat;
+L208:          bool mbool2 = GreaterEqual_FloatFloat(this->mTimeSprinting, this->mSprintNoiseInterval);
+L246:          if (!mbool2) goto L382;
+L260:          this->mTimeSprinting = 0;
+L283:          Vector mVector = this->K2_GetActorLocation();
+L311:          this->MakeNoise(0.5, this, mVector, 0, "PlayerSprinting");
+L354:          <End of Inlined Event Graph Function>;
+L359:          this->mTimeSprinting = 0;
+============ END FUNCTION TickSprintNoise ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPlayerCameraManager ==============
+L0:            Controller* mController = this->GetController();
+L20:           PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L56:           bool mbool = mPlayerController;
+L85:           PlayerCameraManager* cameraManager = mPlayerController->PlayerCameraManager;
+============ END FUNCTION GetPlayerCameraManager ==============
+
+
+
+
+
+============ BEGIN FUNCTION FadeDamageIndicator ==============
+L0:            bool mbool = Less_FloatFloat(this->mLastDamageTime, 0);
+L34:           if (!mbool) goto L53;
+L48:           <End of Inlined Event Graph Function>;
+L53:           float mfloat = Multiply_FloatFloat(this->PPTakeDamage->BlendWeight, 2);
+L117:          float mfloat1 = Multiply_FloatFloat(this->mDeltaTime, mfloat);
+L163:          float mfloat2 = Subtract_FloatFloat(this->PPTakeDamage->BlendWeight, mfloat1);
+L231:          float mfloat3 = FClamp(mfloat2, 0, 1);
+L278:          this->PPTakeDamage->BlendWeight = mfloat3;
+============ END FUNCTION FadeDamageIndicator ==============
+
+
+
+
+
+============ BEGIN FUNCTION TickPlayerNameText ==============
+L0:            PlayerController* mPlayerController = GameplayStatics->GetPlayerController(this, 0);
+L48:           mPlayerController->GetActorEyesViewPoint([ref] mVector, [ref] mRotator);
+L102:          Vector local_viewLocation = mVector;
+L129:          bool mbool = this->IsLocallyControlled();
+L153:          if (!mbool) goto L172;
+L167:          <End of Inlined Event Graph Function>;
+L172:          bool mbool1 = KismetSystemLibrary->IsValid(this->PlayerState);
+L223:          if (!mbool1) goto L167;
+L237:          FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(this->PlayerState);
+L273:          bool mbool2 = mFGPlayerState;
+L302:          if (!mbool2) goto L1282;
+L316:          FString mFString = mFGPlayerState->GetPlayerName();
+L366:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L425:          this->PlayerText->K2_SetText([ref] mFText);
+L466:          LinearColor mLinearColor = mFGPlayerState->GetNametagColor();
+L516:          Color mColor = Conv_LinearColorToColor(mLinearColor, true);
+L554:          this->PlayerText->SetTextRenderColor(mColor);
+L595:          Vector mVector1 = this->K2_GetActorLocation();
+L623:          Vector mVector2 = Subtract_VectorVector(local_viewLocation, mVector1);
+L669:          float mfloat = VSize(mVector2);
+L706:          float mfloat1 = Divide_FloatFloat(mfloat, 500);
+L748:          float mfloat2 = FClamp(mfloat1, 0, 3);
+L795:          this->PlayerText->SetYScale(mfloat2);
+L836:          mVector1 = this->K2_GetActorLocation();
+L864:          mVector2 = Subtract_VectorVector(local_viewLocation, mVector1);
+L910:          mfloat = VSize(mVector2);
+L947:          mfloat1 = Divide_FloatFloat(mfloat, 500);
+L989:          mfloat2 = FClamp(mfloat1, 0, 3);
+L1036:         this->PlayerText->SetXScale(mfloat2);
+L1077:         mVector1 = this->K2_GetActorLocation();
+L1105:         mVector2 = Subtract_VectorVector(local_viewLocation, mVector1);
+L1151:         Vector mVector3 = Normal(mVector2, 0.00009999999747378752);
+L1193:         Rotator mRotator1 = Conv_VectorToRotator(mVector3);
+L1230:         this->PlayerText->K2_SetWorldRotation(mRotator1, false, [ref] mHitResult, false);
+============ END FUNCTION TickPlayerNameText ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_OpenCodex_K2Node_InputActionEvent_6 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_InputActionEvent_Key6) = Key;
+L18:           this->ExecuteUbergraph_Char_Player(17139);
+============ END FUNCTION InpActEvt_OpenCodex_K2Node_InputActionEvent_6 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Flashlight_K2Node_InputActionEvent_5 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_InputActionEvent_Key5) = Key;
+L18:           this->ExecuteUbergraph_Char_Player(13687);
+============ END FUNCTION InpActEvt_Flashlight_K2Node_InputActionEvent_5 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_PrimaryFire_K2Node_InputActionEvent_4 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_InputActionEvent_Key4) = Key;
+L18:           this->ExecuteUbergraph_Char_Player(12591);
+============ END FUNCTION InpActEvt_PrimaryFire_K2Node_InputActionEvent_4 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Inventory_K2Node_InputActionEvent_3 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_InputActionEvent_Key3) = Key;
+L18:           this->ExecuteUbergraph_Char_Player(12586);
+============ END FUNCTION InpActEvt_Inventory_K2Node_InputActionEvent_3 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_EmoteWheel_K2Node_InputActionEvent_2 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_InputActionEvent_Key2) = Key;
+L18:           this->ExecuteUbergraph_Char_Player(19503);
+============ END FUNCTION InpActEvt_EmoteWheel_K2Node_InputActionEvent_2 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_EmoteWheel_K2Node_InputActionEvent_1 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_InputActionEvent_Key1) = Key;
+L18:           this->ExecuteUbergraph_Char_Player(19410);
+============ END FUNCTION InpActEvt_EmoteWheel_K2Node_InputActionEvent_1 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_QuickSearch_K2Node_InputActionEvent_0 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_InputActionEvent_Key) = Key;
+L18:           this->ExecuteUbergraph_Char_Player(14552);
+============ END FUNCTION InpActEvt_QuickSearch_K2Node_InputActionEvent_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetFirstPersonMode ==============
+L0:            this->ExecuteUbergraph_Char_Player(3207);
+============ END FUNCTION SetFirstPersonMode ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetThirdPersonMode ==============
+L0:            this->ExecuteUbergraph_Char_Player(1935);
+============ END FUNCTION SetThirdPersonMode ==============
+
+
+
+
+
+============ BEGIN FUNCTION CameraTick ==============
+L0:            this->ExecuteUbergraph_Char_Player(775);
+============ END FUNCTION CameraTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartFocusAim ==============
+L0:            this->ExecuteUbergraph_Char_Player(2056);
+============ END FUNCTION StartFocusAim ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopFocusAim ==============
+L0:            this->ExecuteUbergraph_Char_Player(2337);
+============ END FUNCTION StopFocusAim ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartFreeRotate3P ==============
+L0:            this->ExecuteUbergraph_Char_Player(2421);
+============ END FUNCTION StartFreeRotate3P ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopFreeRotate3P ==============
+L0:            this->ExecuteUbergraph_Char_Player(2436);
+============ END FUNCTION StopFreeRotate3P ==============
+
+
+
+
+
+============ BEGIN FUNCTION CameraZoomOut ==============
+L0:            this->ExecuteUbergraph_Char_Player(2451);
+============ END FUNCTION CameraZoomOut ==============
+
+
+
+
+
+============ BEGIN FUNCTION CameraZoomIn ==============
+L0:            this->ExecuteUbergraph_Char_Player(2619);
+============ END FUNCTION CameraZoomIn ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveDied ==============
+L0:            this->ExecuteUbergraph_Char_Player(2873);
+============ END FUNCTION ReceiveDied ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayPickupEffects ==============
+L0:            this->ExecuteUbergraph_Char_Player(3945);
+============ END FUNCTION PlayPickupEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnLanded ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_Hit) = Hit;
+L18:           this->ExecuteUbergraph_Char_Player(6588);
+============ END FUNCTION OnLanded ==============
+
+
+
+
+
+============ BEGIN FUNCTION SnapSpringArmToDesiredLocation ==============
+L0:            this->ExecuteUbergraph_Char_Player(6608);
+============ END FUNCTION SnapSpringArmToDesiredLocation ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnReviveComplete ==============
+L0:            this->ExecuteUbergraph_Char_Player(6678);
+============ END FUNCTION OnReviveComplete ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClientSetupPlayerHUD ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_CustomEvent_inController) = InController;
+L18:           this->ExecuteUbergraph_Char_Player(6703);
+============ END FUNCTION ClientSetupPlayerHUD ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveUnpossessed ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_OldController) = OldController;
+L18:           this->ExecuteUbergraph_Char_Player(6802);
+============ END FUNCTION ReceiveUnpossessed ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceivePossessed ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_NewController) = NewController;
+L18:           this->ExecuteUbergraph_Char_Player(6826);
+============ END FUNCTION ReceivePossessed ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnReceiveRadiationStart ==============
+L0:            this->ExecuteUbergraph_Char_Player(6850);
+============ END FUNCTION OnReceiveRadiationStart ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnReceiveRadiationStop ==============
+L0:            this->ExecuteUbergraph_Char_Player(6937);
+============ END FUNCTION OnReceiveRadiationStop ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveDestroyed ==============
+L0:            this->ExecuteUbergraph_Char_Player(8102);
+============ END FUNCTION ReceiveDestroyed ==============
+
+
+
+
+
+============ BEGIN FUNCTION TakeDamageEvent ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_CustomEvent_damagedActor) = DamagedActor;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_CustomEvent_damageAmount) = damageAmount;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_CustomEvent_damageType) = DamageType;
+L54:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_CustomEvent_instigatedBy) = InstigatedBy;
+L72:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_CustomEvent_damageCauser) = DamageCauser;
+L90:           this->ExecuteUbergraph_Char_Player(8107);
+============ END FUNCTION TakeDamageEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Char_Player(8655);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION Server_PlayClap ==============
+L0:            this->ExecuteUbergraph_Char_Player(8680);
+============ END FUNCTION Server_PlayClap ==============
+
+
+
+
+
+============ BEGIN FUNCTION Multicast_PlayClap ==============
+L0:            this->ExecuteUbergraph_Char_Player(8695);
+============ END FUNCTION Multicast_PlayClap ==============
+
+
+
+
+
+============ BEGIN FUNCTION Server_SetFlashlightOn ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_CustomEvent_FlashlightOn) = FlashlightOn;
+L18:           this->ExecuteUbergraph_Char_Player(9173);
+============ END FUNCTION Server_SetFlashlightOn ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDisabledInputGateChanged ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_newValue) = NewValue;
+L18:           this->ExecuteUbergraph_Char_Player(9193);
+============ END FUNCTION OnDisabledInputGateChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION LimitLook ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_CustomEvent_doLimit) = doLimit;
+L18:           this->ExecuteUbergraph_Char_Player(10143);
+============ END FUNCTION LimitLook ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartCinematic ==============
+L0:            this->ExecuteUbergraph_Char_Player(11235);
+============ END FUNCTION StartCinematic ==============
+
+
+
+
+
+============ BEGIN FUNCTION EndCinematic ==============
+L0:            this->ExecuteUbergraph_Char_Player(11448);
+============ END FUNCTION EndCinematic ==============
+
+
+
+
+
+============ BEGIN FUNCTION DisableGravity ==============
+L0:            this->ExecuteUbergraph_Char_Player(11748);
+============ END FUNCTION DisableGravity ==============
+
+
+
+
+
+============ BEGIN FUNCTION Server_PlaySpinEmote ==============
+L0:            this->ExecuteUbergraph_Char_Player(11789);
+============ END FUNCTION Server_PlaySpinEmote ==============
+
+
+
+
+
+============ BEGIN FUNCTION Multicast_PlatSpinEmote ==============
+L0:            this->ExecuteUbergraph_Char_Player(12186);
+============ END FUNCTION Multicast_PlatSpinEmote ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearEmoteMesh ==============
+L0:            this->ExecuteUbergraph_Char_Player(12529);
+============ END FUNCTION ClearEmoteMesh ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSpawnDeathMarker ==============
+L0:            this->ExecuteUbergraph_Char_Player(12581);
+============ END FUNCTION OnSpawnDeathMarker ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowEmote ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_CustomEvent_EmoteIndex) = EmoteIndex;
+L18:           this->ExecuteUbergraph_Char_Player(12905);
+============ END FUNCTION ShowEmote ==============
+
+
+
+
+
+============ BEGIN FUNCTION SkipIntro ==============
+L0:            this->ExecuteUbergraph_Char_Player(13456);
+============ END FUNCTION SkipIntro ==============
+
+
+
+
+
+============ BEGIN FUNCTION Server_playSignsEmote ==============
+L0:            this->ExecuteUbergraph_Char_Player(13667);
+============ END FUNCTION Server_playSignsEmote ==============
+
+
+
+
+
+============ BEGIN FUNCTION Multicast_PlaySignsEmote ==============
+L0:            this->ExecuteUbergraph_Char_Player(13682);
+============ END FUNCTION Multicast_PlaySignsEmote ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartIsLookedAt ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_byCharacter1) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_state1) = State;
+L36:           this->ExecuteUbergraph_Char_Player(13707);
+============ END FUNCTION StartIsLookedAt ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopIsLookedAt ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_byCharacter) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_state) = State;
+L36:           this->ExecuteUbergraph_Char_Player(13821);
+============ END FUNCTION StopIsLookedAt ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRadiationIntensityUpdated ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_radiationIntensity) = radiationIntensity;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_radiationImmunity) = radiationImmunity;
+L36:           this->ExecuteUbergraph_Char_Player(13873);
+============ END FUNCTION OnRadiationIntensityUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION TickVisuals ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_dt) = dt;
+L18:           this->ExecuteUbergraph_Char_Player(14834);
+============ END FUNCTION TickVisuals ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSlideStartLocal ==============
+L0:            this->ExecuteUbergraph_Char_Player(16165);
+============ END FUNCTION OnSlideStartLocal ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSlideEndLocal ==============
+L0:            this->ExecuteUbergraph_Char_Player(16235);
+============ END FUNCTION OnSlideEndLocal ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSlideEndSimulated ==============
+L0:            this->ExecuteUbergraph_Char_Player(16453);
+============ END FUNCTION OnSlideEndSimulated ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSlideStartSimulated ==============
+L0:            this->ExecuteUbergraph_Char_Player(16591);
+============ END FUNCTION OnSlideStartSimulated ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayJumpEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_boostJump) = boostJump;
+L18:           this->ExecuteUbergraph_Char_Player(16750);
+============ END FUNCTION PlayJumpEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpeedWindEvent ==============
+L0:            this->ExecuteUbergraph_Char_Player(16829);
+============ END FUNCTION SpeedWindEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION K2_OnMovementModeChanged ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_PrevMovementMode) = PrevMovementMode;
+L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_NewMovementMode) = NewMovementMode;
+L36:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_PrevCustomMode) = PrevCustomMode;
+L54:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_NewCustomMode) = NewCustomMode;
+L72:           this->ExecuteUbergraph_Char_Player(17144);
+============ END FUNCTION K2_OnMovementModeChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION AudioTickEvent ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_CustomEvent_AudioTick) = AudioTick;
+L18:           this->ExecuteUbergraph_Char_Player(19404);
+============ END FUNCTION AudioTickEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorRepresentationColor ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C:ExecuteUbergraph_Char_Player.K2Node_Event_newColor) = NewColor;
+L18:           this->ExecuteUbergraph_Char_Player(19409);
+============ END FUNCTION SetActorRepresentationColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Char_Player ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           uint8 muint8 = this->GetCameraMode();
+L43:           bool mbool = EqualEqual_ByteByte(muint8, 1);
+L74:           this->SetMeshVisibility(mbool);
+L93:           muint8 = this->GetCameraMode();
+L121:          mbool = EqualEqual_ByteByte(muint8, 1);
+L152:          this->HelmetMesh->SetOwnerNoSee(mbool);
+L193:          FGBlueprintFunctionLibrary->OccludeOutlineByComponent(this->HelmetMesh, false);
+L235:          goto ExecutionFlow.Pop();
+L236:          Controller* mController = this->GetController();
+L256:          BPHUDHelpers->GetFGHud(mController, this, [ref] mFGHUD);
+L311:          FGGameUI* mFGGameUI = mFGHUD->GetGameUI();
+L353:          mFGGameUI->PopAllWidgets();
+L389:          mFGGameUI = mFGHUD->GetGameUI();
+L431:          mFGGameUI->ShowQuickSearch();
+L467:          goto ExecutionFlow.Pop();
+L468:          this->FlushNetDormancy();
+L478:          this->mFlashlightOn = mbool1;
+L497:          goto ExecutionFlow.Pop();
+L498:          this->FlushNetDormancy();
+L508:          this->mPossessed = true;
+L519:          bool mbool2 = this->AddAsRepresentation();
+L543:          this->ClientSetupPlayerHUD(mController1);
+L566:          goto ExecutionFlow.Pop();
+L567:          this->FlushNetDormancy();
+L577:          this->mPossessed = false;
+L588:          bool mbool3 = this->RemoveAsRepresentation();
+L612:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mController2);
+L648:          bool mbool4 = mFGPlayerController;
+L677:          if (!mbool4) goto ExecutionFlow.Pop();
+L687:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L738:          mBP_RemoteCallObject->Client_RemovePawnHUD();
+L774:          goto ExecutionFlow.Pop();
+L775:          SpringArmComponent* mSpringArmComponent = this->GetSpringArmComponent();
+L795:          SpringArmComponent* mSpringArmComponent1 = this->GetSpringArmComponent();
+L815:          float mfloat = FInterpTo(mSpringArmComponent->TargetArmLength, this->mTargetCameraDistance, this->mDeltaTime, this->mDistanceInterpolationSpeed);
+L901:          mSpringArmComponent1->TargetArmLength = mfloat;
+L950:          mSpringArmComponent1 = this->GetSpringArmComponent();
+L970:          Vector mVector = VInterpTo(mSpringArmComponent1->SocketOffset, this->mTargetCameraOffset, this->mDeltaTime, this->mDistanceInterpolationSpeed);
+L1056:         mSpringArmComponent1->SocketOffset = mVector;
+L1105:         CameraComponent* mCameraComponent = this->GetCameraComponent();
+L1125:         CameraComponent* mCameraComponent1 = this->GetCameraComponent();
+L1145:         float mfloat1 = FInterpTo(mCameraComponent1->FieldOfView, this->mTargetCameraFOV, this->mDeltaTime, this->mFocusInterpolationSpeed);
+L1231:         mCameraComponent->FieldOfView = mfloat1;
+L1280:         goto ExecutionFlow.Pop();
+L1281:         this->mTargetCameraDistance = this->mCameraDistanceDefault3P;
+L1308:         this->mTargetCameraOffset = this->mCameraOffset3P;
+L1335:         this->mDistanceInterpolationSpeed = this->mDefaultCameraInterpolationSpeed;
+L1362:         this->mCameraDistanceMin = this->mCameraDistanceMin3P;
+L1389:         this->mCameraDistanceMax = this->mCameraDistanceMax3P;
+L1416:         this->SetMeshVisibility(false);
+L1427:         this->HelmetMesh->SetOwnerNoSee(false);
+L1460:         FGBlueprintFunctionLibrary->OccludeOutlineByComponent(this->HelmetMesh, true);
+L1502:         goto ExecutionFlow.Pop();
+L1503:         this->mDistanceInterpolationSpeed = this->mDefaultCameraInterpolationSpeed;
+L1530:         this->mCameraDistanceMin = 0;
+L1553:         this->mCameraDistanceMax = 0;
+L1576:         this->mTargetCameraFOV = this->mDefaultFOV;
+L1603:         KismetSystemLibrary->Delay(this, this->mTransitionDelay, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -384970618, ExecutionFunction = "ExecuteUbergraph_Char_Player", CallbackTarget = this));
+L1683:         goto ExecutionFlow.Pop();
+L1684:         this->mTargetCameraFOV = this->mDefaultFOV;
+L1711:         goto ExecutionFlow.Pop();
+L1712:         this->mTargetCameraDistance = this->mCameraDistanceFocus3P;
+L1739:         this->mTargetCameraFOV = this->mFocusFOV;
+L1766:         goto ExecutionFlow.Pop();
+L1767:         this->mDistanceInterpolationSpeed = this->mFocusInterpolationSpeed;
+L1794:         this->mIsFocusing = true;
+L1805:         this->mSavedCameraDistance = this->mTargetCameraDistance;
+L1832:         goto L1712;
+L1837:         this->mDistanceInterpolationSpeed = this->mFocusInterpolationSpeed;
+L1864:         this->mIsFocusing = false;
+L1875:         this->mTargetCameraDistance = this->mSavedCameraDistance;
+L1902:         goto L1684;
+L1907:         this->mTargetCameraOffset = this->mCameraOffset3P;
+L1934:         goto ExecutionFlow.Pop();
+L1935:         this->SetThirdPersonMode();
+L1945:         SpringArmComponent* mSpringArmComponent2 = this->GetSpringArmComponent();
+L1965:         mSpringArmComponent2->bDoCollisionTest = true;
+L1998:         mSpringArmComponent2 = this->GetSpringArmComponent();
+L2018:         mSpringArmComponent2->bEnableCameraLag = true;
+L2051:         goto L1281;
+L2056:         this->StartFocusAim();
+L2066:         uint8 muint81 = this->GetCameraMode();
+L2094:         bool mbool5 = EqualEqual_ByteByte(muint81, 2);
+L2125:         if (!mbool5) goto ExecutionFlow.Pop();
+L2135:         goto L1767;
+L2140:         uint8 muint82 = this->GetCameraMode();
+L2168:         bool mbool6 = EqualEqual_ByteByte(muint82, 2);
+L2199:         if (!mbool6) goto ExecutionFlow.Pop();
+L2209:         this->bUseControllerRotationYaw = false;
+L2220:         this->mTargetCameraOffset = Vector(0, 0, 0);
+L2251:         goto ExecutionFlow.Pop();
+L2252:         muint82 = this->GetCameraMode();
+L2280:         mbool6 = EqualEqual_ByteByte(muint82, 2);
+L2311:         if (!mbool6) goto ExecutionFlow.Pop();
+L2321:         this->bUseControllerRotationYaw = true;
+L2332:         goto L1907;
+L2337:         this->StopFocusAim();
+L2347:         muint81 = this->GetCameraMode();
+L2375:         mbool5 = EqualEqual_ByteByte(muint81, 2);
+L2406:         if (!mbool5) goto ExecutionFlow.Pop();
+L2416:         goto L1837;
+L2421:         this->StartFreeRotate3P();
+L2431:         goto L2140;
+L2436:         this->StopFreeRotate3P();
+L2446:         goto L2252;
+L2451:         this->CameraZoomOut();
+L2461:         SpringArmComponent* mSpringArmComponent3 = this->GetSpringArmComponent();
+L2481:         float mfloat2 = Add_FloatFloat(mSpringArmComponent3->TargetArmLength, 50);
+L2545:         float mfloat3 = FMin(mfloat2, this->mCameraDistanceMax);
+L2591:         this->mTargetCameraDistance = mfloat3;
+L2618:         goto ExecutionFlow.Pop();
+L2619:         this->CameraZoomIn();
+L2629:         mSpringArmComponent3 = this->GetSpringArmComponent();
+L2649:         float mfloat4 = Subtract_FloatFloat(mSpringArmComponent3->TargetArmLength, 50);
+L2713:         float mfloat5 = FMax(mfloat4, this->mCameraDistanceMin);
+L2759:         this->mTargetCameraDistance = mfloat5;
+L2786:         goto ExecutionFlow.Pop();
+L2787:         this->ApplyDamagePP();
+L2801:         bool mbool7 = this->IsLocallyControlled();
+L2825:         if (!mbool7) goto ExecutionFlow.Pop();
+L2835:         this->PlayDamageCameraShake();
+L2849:         this->PlayDamageVO(mconst DamageType);
+L2872:         goto ExecutionFlow.Pop();
+L2873:         this->ReceiveDied();
+L2883:         ExecutionFlow.Push(L2913);
+L2888:         bool mbool8 = this->UpdateRepresentation();
+L2912:         goto ExecutionFlow.Pop();
+L2913:         bool mbool9 = this->IsLocallyControlled();
+L2937:         if (!mbool9) goto ExecutionFlow.Pop();
+L2947:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_P_Suit_Damage_Warning_Flatline, this, true);
+L3000:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_C_Damage_Radiation, this, true);
+L3053:         Controller* mController3 = this->GetController();
+L3073:         BPHUDHelpers->GetFGHud(mController3, this, [ref] mFGHUD1);
+L3128:         FGGameUI* mFGGameUI1 = mFGHUD1->GetGameUI();
+L3170:         mFGGameUI1->PopAllWidgets();
+L3206:         goto ExecutionFlow.Pop();
+L3207:         this->SetFirstPersonMode();
+L3217:         mSpringArmComponent2 = this->GetSpringArmComponent();
+L3237:         mSpringArmComponent2->bDoCollisionTest = false;
+L3270:         mSpringArmComponent2 = this->GetSpringArmComponent();
+L3290:         mSpringArmComponent2->bEnableCameraLag = false;
+L3323:         this->mSavedCameraDistance = this->mTargetCameraDistance;
+L3350:         this->mTargetCameraDistance = 0;
+L3373:         this->mTargetCameraOffset = Vector(0, 0, 0);
+L3404:         goto L1503;
+L3409:         Transform mTransform = this->GetTransform();
+L3437:         Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_DeathMarker, [ref] mTransform, 1, nullptr);
+L3501:         mTransform = this->GetTransform();
+L3529:         BP_DeathMarker* mBP_DeathMarker = GameplayStatics->FinishSpawningActor(mActor, [ref] mTransform);
+L3589:         goto ExecutionFlow.Pop();
+L3590:         bool mbool10 = KismetSystemLibrary->IsValid(this->mEmoteMenu);
+L3641:         if (!mbool10) goto ExecutionFlow.Pop();
+L3651:         Controller* mController4 = this->GetController();
+L3685:         BPHUDHelpers->PopStackWidget(mController4, this->mEmoteMenu, this);
+L3740:         this->mEmoteMenu->ShowEmote->Clear();
+L3772:         this->mEmoteMenu = nullptr;
+L3783:         goto ExecutionFlow.Pop();
+L3784:         bool mbool11 = this->IsLocallyControlled();
+L3808:         if (!mbool11) goto L3916;
+L3822:         this->UpdateDamageIndicator();
+L3836:         this->FadeDamageIndicator();
+L3850:         this->CameraTick();
+L3864:         this->TickSprintNoise();
+L3878:         this->UpdateWindParticle();
+L3892:         this->AudioTickEvent(this->mDeltaTime);
+L3915:         goto ExecutionFlow.Pop();
+L3916:         this->TickPlayerNameText();
+L3930:         this->UpdatePlayerTextVisibility();
+L3944:         goto ExecutionFlow.Pop();
+L3945:         this->PlayPickupEffects();
+L3955:         bool mbool12 = this->IsLocallyControlled();
+L3979:         if (!mbool12) goto L4416;
+L3993:         SkeletalMeshComponent* mSkeletalMeshComponent = this->GetMesh1P();
+L4013:         AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L4055:         Anim_1p* mAnim_1p = Cast<AnimBlueprintGeneratedClass /Game/FactoryGame/Character/Player/Anim_1p.Anim_1p_C>(mAnimInstance);
+L4091:         bool mbool13 = mAnim_1p;
+L4120:         if (!mbool13) goto ExecutionFlow.Pop();
+L4130:         bool mbool14 = EqualEqual_ByteByte(mAnim_1p->mArmSlotType, 1);
+L4183:         bool mbool15 = EqualEqual_ByteByte(mAnim_1p->mArmSlotType, 4);
+L4236:         bool mbool16 = BooleanOR(mbool14, mbool15);
+L4274:         if (!mbool16) goto L5118;
+L4288:         mSkeletalMeshComponent = this->GetMesh1P();
+L4308:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L4350:         bool mbool17 = mAnimInstance->Montage_IsPlaying(Pickup_02_Montage);
+L4401:         if (!mbool17) goto L6314;
+L4415:         goto ExecutionFlow.Pop();
+L4416:         SkeletalMeshComponent* mSkeletalMeshComponent1 = this->GetMesh3P();
+L4440:         AnimInstance* mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L4482:         Anim_3p* mAnim_3p = Cast<AnimBlueprintGeneratedClass /Game/FactoryGame/Character/Player/Anim_3p.Anim_3p_C>(mAnimInstance1);
+L4518:         bool mbool18 = mAnim_3p;
+L4547:         if (!mbool18) goto ExecutionFlow.Pop();
+L4557:         bool mbool19 = EqualEqual_ByteByte(mAnim_3p->mArmSlotType, 1);
+L4610:         bool mbool20 = EqualEqual_ByteByte(mAnim_3p->mArmSlotType, 4);
+L4663:         bool mbool21 = BooleanOR(mbool19, mbool20);
+L4701:         if (!mbool21) goto L4847;
+L4715:         mSkeletalMeshComponent1 = this->GetMesh3P();
+L4739:         mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L4781:         bool mbool22 = mAnimInstance1->Montage_IsPlaying(Pickup_02_Montage);
+L4832:         if (!mbool22) goto L6449;
+L4846:         goto ExecutionFlow.Pop();
+L4847:         mSkeletalMeshComponent1 = this->GetMesh3P();
+L4871:         mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L4913:         bool mbool23 = mAnimInstance1->Montage_IsPlaying(Pickup_01_Montage);
+L4964:         if (!mbool23) goto L4979;
+L4978:         goto ExecutionFlow.Pop();
+L4979:         mSkeletalMeshComponent1 = this->GetMesh3P();
+L5003:         mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L5045:         float mfloat6 = mAnimInstance1->Montage_Play(Pickup_01_Montage, 1, 0, 0, true);
+L5117:         goto ExecutionFlow.Pop();
+L5118:         bool mbool24 = EqualEqual_ByteByte(mAnim_1p->mArmSlotType, 0);
+L5171:         if (!mbool24) goto L6051;
+L5185:         mSkeletalMeshComponent = this->GetMesh1P();
+L5205:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L5247:         bool mbool25 = mAnimInstance->Montage_IsPlaying(Pickup_Montage);
+L5298:         if (!mbool25) goto L5313;
+L5312:         goto ExecutionFlow.Pop();
+L5313:         bool mbool26 = EqualEqual_NameName(this->mPickupMontageSectionName, "Left");
+L5355:         if (!mbool26) goto L5768;
+L5369:         mSkeletalMeshComponent = this->GetMesh1P();
+L5389:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L5431:         float mfloat7 = mAnimInstance->Montage_Play(Pickup_Montage, 1, 0, 0, true);
+L5503:         mSkeletalMeshComponent = this->GetMesh1P();
+L5523:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L5565:         mAnimInstance->Montage_JumpToSection("Right", Pickup_Montage);
+L5619:         mSkeletalMeshComponent = this->GetMesh1P();
+L5639:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L5681:         FName mFName = mAnimInstance->Montage_GetCurrentSection(Pickup_Montage);
+L5740:         this->mPickupMontageSectionName = mFName;
+L5767:         goto ExecutionFlow.Pop();
+L5768:         mSkeletalMeshComponent = this->GetMesh1P();
+L5788:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L5830:         float mfloat8 = mAnimInstance->Montage_Play(Pickup_Montage, 1, 0, 0, true);
+L5902:         mSkeletalMeshComponent = this->GetMesh1P();
+L5922:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L5964:         FName mFName1 = mAnimInstance->Montage_GetCurrentSection(Pickup_Montage);
+L6023:         this->mPickupMontageSectionName = mFName1;
+L6050:         goto ExecutionFlow.Pop();
+L6051:         mSkeletalMeshComponent = this->GetMesh1P();
+L6071:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L6113:         bool mbool27 = mAnimInstance->Montage_IsPlaying(Pickup_01_Montage);
+L6164:         if (!mbool27) goto L6179;
+L6178:         goto ExecutionFlow.Pop();
+L6179:         mSkeletalMeshComponent = this->GetMesh1P();
+L6199:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L6241:         float mfloat9 = mAnimInstance->Montage_Play(Pickup_01_Montage, 1, 0, 0, true);
+L6313:         goto ExecutionFlow.Pop();
+L6314:         mSkeletalMeshComponent = this->GetMesh1P();
+L6334:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L6376:         float mfloat10 = mAnimInstance->Montage_Play(Pickup_02_Montage, 1, 0, 0, true);
+L6448:         goto ExecutionFlow.Pop();
+L6449:         mSkeletalMeshComponent1 = this->GetMesh3P();
+L6473:         mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L6515:         float mfloat11 = mAnimInstance1->Montage_Play(Pickup_02_Montage, 1, 0, 0, true);
+L6587:         goto ExecutionFlow.Pop();
+L6588:         this->OnLanded([ref] mconst HitResult);
+L6607:         goto ExecutionFlow.Pop();
+L6608:         SpringArmComponent* mSpringArmComponent4 = this->GetSpringArmComponent();
+L6628:         mSpringArmComponent4->TargetArmLength = this->mTargetCameraDistance;
+L6677:         goto ExecutionFlow.Pop();
+L6678:         bool mbool28 = this->UpdateRepresentation();
+L6702:         goto ExecutionFlow.Pop();
+L6703:         FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController5);
+L6739:         bool mbool29 = mFGPlayerController1;
+L6768:         if (!mbool29) goto ExecutionFlow.Pop();
+L6778:         this->SetupPlayerHUD(mFGPlayerController1);
+L6801:         goto ExecutionFlow.Pop();
+L6802:         this->ReceiveUnpossessed(mController2);
+L6821:         goto L567;
+L6826:         this->ReceivePossessed(mController1);
+L6845:         goto L498;
+L6850:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_C_Damage_Radiation, this, true);
+L6903:         this->PPRadiationDamage->bEnabled = true;
+L6936:         goto ExecutionFlow.Pop();
+L6937:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Stop_C_Damage_Radiation, this, true);
+L6990:         this->PPRadiationDamage->bEnabled = false;
+L7023:         this->mRadiationNoise->SetScalarParameterValue("amount", 0);
+L7073:         this->mRadiationNoise->SetScalarParameterValue("Vignette", 0);
+L7123:         goto ExecutionFlow.Pop();
+L7124:         this->ReceiveDestroyed();
+L7134:         FGHealthComponent* mFGHealthComponent = this->GetHealthComponent();
+L7154:         mFScriptDelegate->BindUFunction(this, TakeDamageEvent);
+L7177:         mFGHealthComponent->OnTakeAnyDamageDelegate.Remove(mFScriptDelegate);
+L7218:         bool mbool30 = this->RemoveAsRepresentation();
+L7242:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mWarningPopupTimer);
+L7284:         goto ExecutionFlow.Pop();
+L7285:         bool mbool31 = this->IsLocallyControlled();
+L7309:         if (!mbool31) goto L7324;
+L7323:         goto ExecutionFlow.Pop();
+L7324:         SkeletalMeshComponent* mSkeletalMeshComponent2 = this->GetMesh3P();
+L7348:         AnimInstance* mAnimInstance2 = mSkeletalMeshComponent2->GetAnimInstance();
+L7390:         float mfloat12 = mAnimInstance2->Montage_Play(EmoteSigns_01_Montage, 1, 0, 0, true);
+L7462:         goto ExecutionFlow.Pop();
+L7463:         bool mbool32 = this->IsLocallyControlled();
+L7487:         if (!mbool32) goto L7502;
+L7501:         goto ExecutionFlow.Pop();
+L7502:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mEmoteTimer);
+L7544:         this->EmoteBuildGun->SetSkeletalMesh(BuildGun_Skl_01, true);
+L7590:         this->EmoteBuildGun->K2_SetAnimInstanceClass(Anim_BuildGun);
+L7635:         SkeletalMeshComponent* mSkeletalMeshComponent3 = this->GetMesh3P();
+L7659:         bool mbool33 = this->EmoteBuildGun->K2_AttachToComponent(mSkeletalMeshComponent3, "buildgun_Socket", 2, 0, 0, true);
+L7730:         SkeletalMeshComponent* mSkeletalMeshComponent4 = this->GetMesh3P();
+L7754:         AnimInstance* mAnimInstance3 = mSkeletalMeshComponent4->GetAnimInstance();
+L7796:         float mfloat13 = mAnimInstance3->Montage_Play(BuildgunSpinEmote_01_Montage, 1, 0, 0, true);
+L7868:         AnimInstance* mAnimInstance4 = this->EmoteBuildGun->GetAnimInstance();
+L7910:         float mfloat14 = mAnimInstance4->Montage_Play(BuildgunSpinEmote_01_Montage, 1, 1, 0, true);
+L7982:         mFScriptDelegate1->BindUFunction(this, ClearEmoteMesh);
+L8005:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate1, mfloat13, false);
+L8074:         this->mEmoteTimer = mTimerHandle;
+L8101:         goto ExecutionFlow.Pop();
+L8102:         goto L7124;
+L8107:         float mfloat15 = GameplayStatics->GetRealTimeSeconds(this);
+L8158:         this->mLastDamageTime = mfloat15;
+L8185:         this->PlayImpactEffectSound(mconst DamageType);
+L8208:         goto L2787;
+L8213:         this->ReceiveBeginPlay();
+L8223:         this->Mesh->AddTickPrerequisiteActor(this);
+L8260:         FGHealthComponent* mFGHealthComponent1 = this->GetHealthComponent();
+L8280:         mFScriptDelegate->BindUFunction(this, TakeDamageEvent);
+L8303:         mFGHealthComponent1->OnTakeAnyDamageDelegate.AddUnique(mFScriptDelegate);
+L8344:         MaterialInstanceDynamic* mMaterialInstanceDynamic = KismetMaterialLibrary->CreateDynamicMaterialInstance(this, Material_RadiationNoise, "None");
+L8409:         this->mRadiationNoise = mMaterialInstanceDynamic;
+L8428:         TScriptInterface<BlendableInterface> mTScriptInterface<BlendableInterface> = QueryInterface<Class /Script/Engine.BlendableInterface>(this->mRadiationNoise);
+L8464:         this->PPRadiationDamage->AddOrUpdateBlendable(mTScriptInterface<BlendableInterface>, 1);
+L8510:         this->mRadiationNoise->SetScalarParameterValue("Blend", 1);
+L8560:         FGCharacterMovementComponent* mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->CharacterMovement);
+L8596:         bool mbool34 = mFGCharacterMovementComponent;
+L8625:         if (!mbool34) goto ExecutionFlow.Pop();
+L8635:         this->mFGCharacterMovementCompRef = mFGCharacterMovementComponent;
+L8654:         goto ExecutionFlow.Pop();
+L8655:         goto L8213;
+L8660:         this->EventFire->ProcessMulticastDelegate();
+L8679:         goto ExecutionFlow.Pop();
+L8680:         this->Multicast_PlayClap();
+L8694:         goto ExecutionFlow.Pop();
+L8695:         bool mbool35 = this->IsLocallyControlled();
+L8719:         if (!mbool35) goto L8734;
+L8733:         goto ExecutionFlow.Pop();
+L8734:         SkeletalMeshComponent* mSkeletalMeshComponent5 = this->GetMesh3P();
+L8758:         AnimInstance* mAnimInstance5 = mSkeletalMeshComponent5->GetAnimInstance();
+L8800:         float mfloat16 = mAnimInstance5->Montage_Play(Clap_01_Montage, 1, 0, 0, true);
+L8872:         goto ExecutionFlow.Pop();
+L8873:         SkeletalMeshComponent* mSkeletalMeshComponent6 = this->GetMesh1P();
+L8893:         AnimInstance* mAnimInstance6 = mSkeletalMeshComponent6->GetAnimInstance();
+L8935:         float mfloat17 = mAnimInstance6->Montage_Play(Clap_01_Montage, 1, 0, 0, true);
+L9007:         this->Server_PlayClap();
+L9021:         goto ExecutionFlow.Pop();
+L9022:         this->ToggleFlashlight();
+L9036:         if (!this->mFlashlightOn) goto L9104;
+L9050:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Play_FlashLight_On, this, true);
+L9103:         goto ExecutionFlow.Pop();
+L9104:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEvent(Play_FlashLight_Off, this, true);
+L9157:         goto ExecutionFlow.Pop();
+L9158:         this->ToggleInventory();
+L9172:         goto ExecutionFlow.Pop();
+L9173:         goto L468;
+L9178:         this->ToggleCodex();
+L9192:         goto ExecutionFlow.Pop();
+L9193:         this->OnDisabledInputGateChanged(mDisabledInputGate);
+L9212:         Controller* mController6 = this->GetController();
+L9232:         FGPlayerController* mFGPlayerController2 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController6);
+L9268:         bool mbool36 = mFGPlayerController2;
+L9297:         if (!mbool36) goto ExecutionFlow.Pop();
+L9307:         ExecutionFlow.Push(L9489);
+L9312:         ExecutionFlow.Push(L9523);
+L9317:         BPFL_HudHelperBadRef->GetBPHUD(mFGPlayerController2, this, [ref] mBP_HUD);
+L9372:         mBP_HUD->IsInventoryOpen([ref] mbool37);
+L9417:         bool mbool38 = BooleanAND(mbool37, mDisabledInputGate.mInventory);
+L9464:         if (!mbool38) goto ExecutionFlow.Pop();
+L9474:         this->ToggleInventory();
+L9488:         goto ExecutionFlow.Pop();
+L9489:         if (!mDisabledInputGate.mOpenCodex) goto ExecutionFlow.Pop();
+L9508:         this->ToggleCodex();
+L9522:         goto ExecutionFlow.Pop();
+L9523:         bool mbool39 = BooleanAND(mDisabledInputGate.mFlashLight, this->mFlashlightOn);
+L9570:         if (!mbool39) goto ExecutionFlow.Pop();
+L9580:         this->Server_SetFlashlightOn(false);
+L9595:         goto ExecutionFlow.Pop();
+L9596:         if (!this->mFlashlightOn) goto L9615;
+L9610:         goto L9022;
+L9615:         Controller* mController7 = this->GetController();
+L9635:         FGPlayerController* mFGPlayerController3 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController7);
+L9671:         bool mbool40 = mFGPlayerController3;
+L9700:         if (!mbool40) goto ExecutionFlow.Pop();
+L9710:         DisabledInputGate mDisabledInputGate1 = mFGPlayerController3->GetDisabledInputGate();
+L9760:         bool mbool41 = Not_PreBool(mDisabledInputGate1.mFlashLight);
+L9798:         if (!mbool41) goto ExecutionFlow.Pop();
+L9808:         goto L9022;
+L9813:         Vector mVector1 = this->GetVelocity();
+L9845:         BreakVector(mVector1, [ref] mfloat18, [ref] mfloat19, [ref] mfloat20);
+L9891:         float mfloat21 = Abs(mfloat20);
+L9928:         float mfloat22 = Multiply_FloatFloat(mfloat21, 1.5);
+L9970:         float mfloat23 = FClamp(mfloat22, 0, 3500);
+L10017:        AkGameplayStatics->SetActorRTPCValue("MoveWindSpeed", mfloat23, 0, this);
+L10077:        goto ExecutionFlow.Pop();
+L10078:        AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEvent(Stop_Player_SpeedWind, this, true);
+L10131:        this->mPlaySpeedWind = false;
+L10142:        goto ExecutionFlow.Pop();
+L10143:        bool mbool42 = Not_PreBool(mbool43);
+L10172:        this->bUseControllerRotationYaw = mbool42;
+L10191:        Controller* mController8 = this->GetController();
+L10211:        mController8->SetIgnoreLookInput(false);
+L10248:        mController8 = this->GetController();
+L10268:        mController8->SetIgnoreMoveInput(mbool43);
+L10313:        mController8 = this->GetController();
+L10333:        FGPlayerController* mFGPlayerController4 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController8);
+L10369:        bool mbool44 = mFGPlayerController4;
+L10398:        if (!mbool44) goto ExecutionFlow.Pop();
+L10408:        mDisabledInputGate2.mBuildGun = mbool43;
+L10436:        mDisabledInputGate2.mDismantle = mbool43;
+L10464:        mDisabledInputGate2.mFlashLight = mbool43;
+L10492:        mDisabledInputGate2.mResourceScanner = mbool43;
+L10520:        mDisabledInputGate2.mOpenCodex = mbool43;
+L10548:        mDisabledInputGate2.mInventory = mbool43;
+L10576:        mDisabledInputGate2.mToggleMap = mbool43;
+L10604:        mDisabledInputGate2.mHotbar = mbool43;
+L10632:        mDisabledInputGate2.mJump = mbool43;
+L10660:        mDisabledInputGate2.mChat = mbool43;
+L10688:        mDisabledInputGate2.mUse = mbool43;
+L10716:        mDisabledInputGate2.mVehicleRecording = mbool43;
+L10744:        mFGPlayerController4->SetDisabledInputGate(mDisabledInputGate2);
+L10785:        if (!mbool43) goto L11070;
+L10799:        PlayerCameraManager* mPlayerCameraManager = GameplayStatics->GetPlayerCameraManager(this, 0);
+L10847:        CameraModifier* mCameraModifier = mPlayerCameraManager->AddNewCameraModifier(CM_RestrictedLook);
+L10902:        FGCameraModifierLimitLook* mFGCameraModifierLimitLook = Cast<Class /Script/FactoryGame.FGCameraModifierLimitLook>(mCameraModifier);
+L10938:        bool mbool45 = mFGCameraModifierLimitLook;
+L10967:        if (!mbool45) goto ExecutionFlow.Pop();
+L10977:        this->mLookModifier = mFGCameraModifierLimitLook;
+L10996:        this->GetActorEyesViewPoint([ref] mVector2, [ref] mRotator);
+L11028:        this->mLookModifier->SetDefaultLookRotator(mRotator);
+L11069:        goto ExecutionFlow.Pop();
+L11070:        bool mbool46 = KismetSystemLibrary->IsValid(this->mLookModifier);
+L11121:        if (!mbool46) goto ExecutionFlow.Pop();
+L11131:        PlayerCameraManager* mPlayerCameraManager1 = GameplayStatics->GetPlayerCameraManager(this, 0);
+L11179:        bool mbool47 = mPlayerCameraManager1->RemoveCameraModifier(this->mLookModifier);
+L11234:        goto ExecutionFlow.Pop();
+L11235:        Controller* mController9 = this->GetController();
+L11255:        mController9->SetIgnoreLookInput(true);
+L11292:        mController9 = this->GetController();
+L11312:        Rotator mRotator1 = this->mLookModifier->GetDefaultLookRotator();
+L11362:        mController9->SetControlRotation([ref] mRotator1);
+L11407:        this->CharacterMovement->SetMovementMode(1, 0);
+L11447:        goto ExecutionFlow.Pop();
+L11448:        this->LimitLook(false);
+L11463:        Controller* mController10 = this->GetController();
+L11483:        BPFL_HudHelperBadRef->GetBPHUD(mController10, this, [ref] mBP_HUD1);
+L11538:        mBP_HUD1->SetPartialPumpiMode(false);
+L11571:        this->CharacterMovement->SetMovementMode(3, 0);
+L11611:        mController10 = this->GetController();
+L11631:        FGPlayerController* mFGPlayerController5 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController10);
+L11667:        bool mbool48 = mFGPlayerController5;
+L11696:        if (!mbool48) goto ExecutionFlow.Pop();
+L11706:        mFGPlayerController5->SetDisabledInputGate(this->mLandingInputGate);
+L11747:        goto ExecutionFlow.Pop();
+L11748:        this->CharacterMovement->SetMovementMode(0, 0);
+L11788:        goto ExecutionFlow.Pop();
+L11789:        this->Multicast_PlatSpinEmote();
+L11803:        goto ExecutionFlow.Pop();
+L11804:        SkeletalMeshComponent* mSkeletalMeshComponent7 = this->GetMesh1P();
+L11824:        AnimInstance* mAnimInstance7 = mSkeletalMeshComponent7->GetAnimInstance();
+L11866:        float mfloat24 = mAnimInstance7->Montage_Play(BuildgunSpinEmote_01_Montage, 1, 1, 0, true);
+L11938:        AnimInstance* mAnimInstance8 = this->EmoteBuildGun->GetAnimInstance();
+L11980:        float mfloat25 = mAnimInstance8->Montage_Play(BuildgunSpinEmote_01_Montage, 1, 1, 0, true);
+L12052:        this->Server_PlaySpinEmote();
+L12066:        mFScriptDelegate2->BindUFunction(this, ClearEmoteMesh);
+L12089:        TimerHandle mTimerHandle1 = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate2, mfloat24, false);
+L12158:        this->mEmoteTimer = mTimerHandle1;
+L12185:        goto ExecutionFlow.Pop();
+L12186:        goto L7463;
+L12191:        AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEvent(Play_Player_SpeedWind, this, true);
+L12244:        this->mPlaySpeedWind = true;
+L12255:        goto ExecutionFlow.Pop();
+L12256:        this->EmoteBuildGun->K2_SetAnimInstanceClass(Anim_BuildGun);
+L12301:        SkeletalMeshComponent* mSkeletalMeshComponent8 = this->GetMesh1P();
+L12321:        bool mbool49 = this->EmoteBuildGun->K2_AttachToComponent(mSkeletalMeshComponent8, "buildgun_Socket", 2, 0, 0, true);
+L12392:        goto L11804;
+L12397:        this->EmoteBuildGun->SetSkeletalMesh(BuildGun_Skl_01, true);
+L12443:        goto L12256;
+L12448:        this->EmoteBuildGun->K2_SetAnimInstanceClass(nullptr);
+L12485:        goto ExecutionFlow.Pop();
+L12486:        this->EmoteBuildGun->SetSkeletalMesh(nullptr, true);
+L12524:        goto L12448;
+L12529:        goto L12486;
+L12534:        KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mEmoteTimer);
+L12576:        goto L12397;
+L12581:        goto L3409;
+L12586:        goto L9158;
+L12591:        goto L8660;
+L12596:        Controller* mController11 = this->GetController();
+L12630:        PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController11);
+L12666:        bool mbool50 = mPlayerController;
+L12695:        if (!mbool50) goto ExecutionFlow.Pop();
+L12705:        Widget_EmoteMenu* mWidget_EmoteMenu = WidgetBlueprintLibrary->Create(this, Widget_EmoteMenu, mPlayerController);
+L12766:        this->mEmoteMenu = mWidget_EmoteMenu;
+L12785:        BPHUDHelpers->PushStackWidget(mPlayerController, this->mEmoteMenu, this);
+L12840:        mFScriptDelegate3->BindUFunction(this, ShowEmote);
+L12863:        this->mEmoteMenu->ShowEmote.AddUnique(mFScriptDelegate3);
+L12904:        goto ExecutionFlow.Pop();
+L12905:        bool mbool51 = NotEqual_IntInt(mint32, 1);
+L12939:        if (!mbool51) goto L13002;
+L12953:        mbool51 = NotEqual_IntInt(mint32, 2);
+L12987:        if (!mbool51) goto L12534;
+L13001:        goto ExecutionFlow.Pop();
+L13002:        int32 mint321 = RandomIntegerInRange(0, 1000);
+L13040:        bool mbool52 = EqualEqual_IntInt(mint321, 332);
+L13074:        if (!mbool52) goto L8873;
+L13088:        SkeletalMeshComponent* mSkeletalMeshComponent9 = this->GetMesh1P();
+L13108:        AnimInstance* mAnimInstance9 = mSkeletalMeshComponent9->GetAnimInstance();
+L13150:        float mfloat26 = mAnimInstance9->Montage_Play(EmoteSigns_01_Montage, 1, 0, 0, true);
+L13222:        Pawn* mPawn = this->GetInstigator();
+L13242:        Controller* mController12 = mPawn->GetController();
+L13284:        FGPlayerController* mFGPlayerController6 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController12);
+L13320:        bool mbool53 = mFGPlayerController6;
+L13349:        if (!mbool53) goto ExecutionFlow.Pop();
+L13359:        mFGPlayerController6->ClientPlayCameraAnim(EmoteSignCameraANim, 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L13441:        this->Server_playSignsEmote();
+L13455:        goto ExecutionFlow.Pop();
+L13456:        Vector mVector3 = this->K2_GetActorLocation();
+L13484:        Vector mVector4 = this->GetActorForwardVector();
+L13512:        Rotator mRotator2 = this->K2_GetActorRotation();
+L13540:        Vector mVector5 = Multiply_VectorFloat(mVector4, 250);
+L13582:        Vector mVector6 = Add_VectorVector(mVector3, mVector5);
+L13628:        bool mbool54 = this->K2_TeleportTo(mVector6, mRotator2);
+L13666:        goto ExecutionFlow.Pop();
+L13667:        this->Multicast_PlaySignsEmote();
+L13681:        goto ExecutionFlow.Pop();
+L13682:        goto L7285;
+L13687:        goto L9596;
+L13692:        if (!this->mPlaySpeedWind) goto ExecutionFlow.Pop();
+L13702:        goto L10078;
+L13707:        this->StartIsLookedAt(mFGCharacterPlayer, [ref] mconst UseState);
+L13735:        FGBlueprintFunctionLibrary->ShowOutline(this->HelmetMesh, 252);
+L13778:        goto ExecutionFlow.Pop();
+L13779:        FGBlueprintFunctionLibrary->HideOutline(this->HelmetMesh);
+L13820:        goto ExecutionFlow.Pop();
+L13821:        this->StopIsLookedAt(mFGCharacterPlayer1, [ref] mconst UseState1);
+L13849:        goto L13779;
+L13854:        if (!this->mPlaySpeedWind) goto L12191;
+L13868:        goto L9813;
+L13873:        bool mbool55 = Greater_FloatFloat(mfloat27, 0);
+L13907:        float mfloat28 = FMin(mfloat29, 0.009999999776482582);
+L13949:        float mfloat30 = SelectFloat(mfloat28, mfloat29, mbool55);
+L14004:        AkGameplayStatics->SetGlobalRTPCValue("RTPC_Hazard_Radiation", mfloat30, 0);
+L14063:        bool mbool56 = Greater_FloatFloat(mfloat27, 0);
+L14097:        float mfloat31 = Ease(0.05000000074505806, 1, mfloat29, 6, 100, 2);
+L14156:        float mfloat32 = FMin(mfloat31, 0.15000000596046448);
+L14198:        float mfloat33 = SelectFloat(mfloat32, mfloat31, mbool56);
+L14253:        this->mRadiationNoise->SetScalarParameterValue("amount", mfloat33);
+L14307:        mbool56 = Greater_FloatFloat(mfloat27, 0);
+L14341:        mfloat31 = Ease(0.05000000074505806, 1, mfloat29, 6, 100, 2);
+L14400:        mfloat32 = FMin(mfloat31, 0.15000000596046448);
+L14442:        mfloat33 = SelectFloat(mfloat32, mfloat31, mbool56);
+L14497:        this->mRadiationNoise->SetScalarParameterValue("Vignette", mfloat33);
+L14551:        goto ExecutionFlow.Pop();
+L14552:        goto L236;
+L14557:        const Transform Temp_struct_Variable = Transform(Rotator(0, 0, 0, 1), Vector(0, 0, 0), Vector(1, 1, 1));
+L14616:        ParticleSystemComponent* mParticleSystemComponent = this->AddComponent("NODE_AddParticleSystemComponent-1", false, [ref] Temp_struct_Variable, this);
+L14660:        this->Hypertube_Vfx_Particle_02 = mParticleSystemComponent;
+L14679:        SkeletalMeshComponent* mSkeletalMeshComponent10 = this->GetMesh3P();
+L14703:        FName mFName2 = mSkeletalMeshComponent10->GetSocketBoneName("Hand_Socket_L");
+L14766:        bool mbool57 = this->Hypertube_Vfx_Particle_02->K2_AttachToComponent(mSkeletalMeshComponent10, mFName2, 0, 0, 0, true);
+L14833:        goto ExecutionFlow.Pop();
+L14834:        this->mDeltaTime = mfloat34;
+L14861:        this->HandleFlashlight();
+L14875:        goto L3784;
+L14880:        PlayerCameraManager* mPlayerCameraManager2 = GameplayStatics->GetPlayerCameraManager(this, 0);
+L14928:        CameraModifier* mCameraModifier1 = mPlayerCameraManager2->AddNewCameraModifier(CM_Slide);
+L14983:        CM_Slide* mCM_Slide = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/CM_Slide.CM_Slide_C>(mCameraModifier1);
+L15019:        bool mbool58 = mCM_Slide;
+L15048:        if (!mbool58) goto ExecutionFlow.Pop();
+L15058:        this->mSlideCameraModifier = mCM_Slide;
+L15077:        Vector mVector7 = this->GetActorRightVector();
+L15105:        GameplayStatics->BreakHitResult([ref] this->CharacterMovement->CurrentFloor.HitResult, [ref] mbool59, [ref] mbool60, [ref] mfloat35, [ref] mfloat36, [ref] mVector8, [ref] mVector9, [ref] mVector10, [ref] mVector11, [ref] mPhysicalMaterial, [ref] mActor1, [ref] mPrimitiveComponent, [ref] mFName3, [ref] mint322, [ref] mint323, [ref] mVector12, [ref] mVector13);
+L15321:        Vector mVector14 = RotateAngleAxis(mVector11, 90, mVector7);
+L15372:        Rotator mRotator3 = Conv_VectorToRotator(mVector14);
+L15409:        this->mSlideCameraModifier->SetDefaultLookRotator(mRotator3);
+L15450:        TimerHandle mTimerHandle2 = KismetSystemLibrary->K2_SetTimer(this, "SlideVelocityUpdate", 0.10000000149011612, true);
+L15528:        this->mClearSlideVelocityTimer = mTimerHandle2;
+L15555:        TimerHandle mTimerHandle3 = KismetSystemLibrary->K2_SetTimer(this, "SlideSpeedWindUpdate", 0.25, true);
+L15634:        this->mClearSlideSpeedWindTimer = mTimerHandle3;
+L15661:        AkComponent* mAkComponent8 = AkGameplayStatics->PostAkEvent(Play_P_LoopSlide, this, true);
+L15714:        Vector mVector15 = this->Mesh->GetSocketLocation("Slide_VFX_Socket");
+L15781:        ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAttached(P_PlayerSliding_Sand, this->Mesh, "None", mVector15, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 1, true, 0);
+L15894:        this->Sliding_Particle = mParticleSystemComponent1;
+L15913:        TimerHandle mTimerHandle4 = KismetSystemLibrary->K2_SetTimer(this, "SlideVFX", 0.03999999910593033, true);
+L15980:        this->mClearSlideVFXTimer = mTimerHandle4;
+L16007:        goto ExecutionFlow.Pop();
+L16008:        mPlayerCameraManager2 = GameplayStatics->GetPlayerCameraManager(this, 0);
+L16056:        bool mbool61 = mPlayerCameraManager2->RemoveCameraModifier(this->mSlideCameraModifier);
+L16111:        this->mSlideCameraModifier = nullptr;
+L16122:        KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mClearSlideVFXTimer);
+L16164:        goto ExecutionFlow.Pop();
+L16165:        bool mbool62 = KismetSystemLibrary->IsValid(this->mSlideCameraModifier);
+L16216:        if (!mbool62) goto L14880;
+L16230:        goto L15450;
+L16235:        KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mClearSlideVelocityTimer);
+L16277:        KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mClearSlideSpeedWindTimer);
+L16319:        this->mCurrentSpeedWindTimer = 0;
+L16342:        AkComponent* mAkComponent9 = AkGameplayStatics->PostAkEvent(Stop_P_SlideSpeedWind, this, true);
+L16395:        AkComponent* mAkComponent10 = AkGameplayStatics->PostAkEvent(Stop_P_Slide, this, true);
+L16448:        goto L16008;
+L16453:        KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mClearSlideVelocityTimer);
+L16495:        AkComponent* mAkComponent11 = AkGameplayStatics->PostAkEvent(Stop_P_Slide, this, true);
+L16548:        KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mClearSlideVFXTimer);
+L16590:        goto ExecutionFlow.Pop();
+L16591:        TimerHandle mTimerHandle5 = KismetSystemLibrary->K2_SetTimer(this, "SlideVelocityUpdate", 0.10000000149011612, true);
+L16669:        this->mClearSlideVelocityTimer = mTimerHandle5;
+L16696:        AkComponent* mAkComponent12 = AkGameplayStatics->PostAkEvent(Play_P_StartSlide, this, true);
+L16749:        goto ExecutionFlow.Pop();
+L16750:        if (!mbool63) goto ExecutionFlow.Pop();
+L16760:        AkComponent* mAkComponent13 = AkGameplayStatics->PostAkEvent(Play_P_JumpSlide, this, true);
+L16813:        goto ExecutionFlow.Pop();
+L16814:        this->SpeedWindEvent();
+L16828:        goto ExecutionFlow.Pop();
+L16829:        bool mbool64 = this->IsAliveAndWell();
+L16849:        bool mbool65 = this->CharacterMovement->IsFalling();
+L16895:        Vector mVector16 = this->GetVelocity();
+L16927:        BreakVector(mVector16, [ref] mfloat37, [ref] mfloat38, [ref] mfloat39);
+L16973:        float mfloat40 = Abs(mfloat39);
+L17010:        bool mbool66 = Greater_FloatFloat(mfloat40, 1000);
+L17044:        bool mbool67 = BooleanAND(mbool65, mbool66);
+L17082:        bool mbool68 = BooleanAND(mbool67, mbool64);
+L17120:        if (!mbool68) goto L13692;
+L17134:        goto L13854;
+L17139:        goto L9178;
+L17144:        bool mbool69 = NotEqual_ByteByte(muint83, 0);
+L17175:        if (!mbool69) goto L17574;
+L17189:        mbool69 = NotEqual_ByteByte(muint83, 1);
+L17220:        if (!mbool69) goto L17574;
+L17234:        mbool69 = NotEqual_ByteByte(muint83, 2);
+L17265:        if (!mbool69) goto L17574;
+L17279:        mbool69 = NotEqual_ByteByte(muint83, 3);
+L17310:        if (!mbool69) goto L17574;
+L17324:        mbool69 = NotEqual_ByteByte(muint83, 4);
+L17355:        if (!mbool69) goto L17574;
+L17369:        mbool69 = NotEqual_ByteByte(muint83, 5);
+L17400:        if (!mbool69) goto L17574;
+L17414:        mbool69 = NotEqual_ByteByte(muint83, 6);
+L17445:        if (!mbool69) goto L17460;
+L17459:        goto ExecutionFlow.Pop();
+L17460:        uint8 muint84 = KismetNodeHelperLibrary->GetValidValue(ECustomMovementMode, muint85);
+L17528:        bool mbool70 = NotEqual_ByteByte(muint84, 0);
+L17559:        if (!mbool70) goto L17574;
+L17573:        goto ExecutionFlow.Pop();
+L17574:        bool mbool71 = NotEqual_ByteByte(muint86, 0);
+L17605:        if (!mbool71) goto L18976;
+L17619:        mbool71 = NotEqual_ByteByte(muint86, 1);
+L17650:        if (!mbool71) goto L18976;
+L17664:        mbool71 = NotEqual_ByteByte(muint86, 2);
+L17695:        if (!mbool71) goto L18976;
+L17709:        mbool71 = NotEqual_ByteByte(muint86, 3);
+L17740:        if (!mbool71) goto L18976;
+L17754:        mbool71 = NotEqual_ByteByte(muint86, 4);
+L17785:        if (!mbool71) goto L18976;
+L17799:        mbool71 = NotEqual_ByteByte(muint86, 5);
+L17830:        if (!mbool71) goto L18976;
+L17844:        mbool71 = NotEqual_ByteByte(muint86, 6);
+L17875:        if (!mbool71) goto L17890;
+L17889:        goto ExecutionFlow.Pop();
+L17890:        uint8 muint87 = KismetNodeHelperLibrary->GetValidValue(ECustomMovementMode, muint88);
+L17958:        bool mbool72 = NotEqual_ByteByte(muint87, 2);
+L17989:        if (!mbool72) goto L18004;
+L18003:        goto ExecutionFlow.Pop();
+L18004:        const Transform Temp_struct_Variable2 = Transform(Rotator(0, 0, 0, 1), Vector(0, 0, 0), Vector(1, 1, 1));
+L18063:        StaticMeshComponent* mStaticMeshComponent = this->AddComponent("NODE_AddStaticMeshComponent-0", false, [ref] Temp_struct_Variable2, this);
+L18107:        this->mHypertube_VfxCap = mStaticMeshComponent;
+L18126:        mSkeletalMeshComponent10 = this->GetMesh3P();
+L18150:        FName mFName4 = mSkeletalMeshComponent10->GetSocketBoneName("PelvisCenterSocket");
+L18213:        bool mbool73 = this->mHypertube_VfxCap->K2_AttachToComponent(mSkeletalMeshComponent10, mFName4, 0, 0, 0, true);
+L18280:        this->mHypertube_VfxCap->K2_SetRelativeRotation(Rotator::FromPitchYawRoll(0, 0, -90), false, [ref] mHitResult, false);
+L18336:        ExecutionFlow.Push(L14557);
+L18341:        const Transform Temp_struct_Variable1 = Transform(Rotator(0, 0, 0, 1), Vector(0, 0, 0), Vector(1, 1, 1));
+L18400:        ParticleSystemComponent* mParticleSystemComponent2 = this->AddComponent("NODE_AddParticleSystemComponent-0", false, [ref] Temp_struct_Variable1, this);
+L18444:        this->Hypertube_Vfx_Particle_01 = mParticleSystemComponent2;
+L18463:        mSkeletalMeshComponent10 = this->GetMesh3P();
+L18487:        FName mFName5 = mSkeletalMeshComponent10->GetSocketBoneName("Hand_Socket_R");
+L18550:        bool mbool74 = this->Hypertube_Vfx_Particle_01->K2_AttachToComponent(mSkeletalMeshComponent10, mFName5, 0, 0, 0, true);
+L18617:        Vector mVector17 = this->K2_GetActorLocation();
+L18645:        AkComponent* mAkComponent14 = AkGameplayStatics->PostAkEventAtLocation(this, Play_EnterTube, mVector17, Rotator::FromPitchYawRoll(0, 0, 0));
+L18719:        bool mbool75 = this->IsLocallyControlled();
+L18743:        if (!mbool75) goto L18918;
+L18757:        AkComponent* mAkComponent15 = AkGameplayStatics->PostAkEvent(Play_AmbienceTube, this, true);
+L18810:        TimerHandle mTimerHandle6 = KismetSystemLibrary->K2_SetTimer(this, "TubeTravelSpeedUpdate", 0.05000000074505806, true);
+L18890:        this->mClearTubeTravelUpdateTimer = mTimerHandle6;
+L18917:        goto ExecutionFlow.Pop();
+L18918:        AkComponent* mAkComponent16 = AkGameplayStatics->PostAkEvent(Play_AmbienceTube_Client, this, true);
+L18971:        goto L18810;
+L18976:        bool mbool76 = KismetSystemLibrary->IsValid(this->mHypertube_VfxCap);
+L19027:        if (!mbool76) goto ExecutionFlow.Pop();
+L19037:        this->Hypertube_Vfx_Particle_01->K2_DestroyComponent(this);
+L19070:        this->Hypertube_Vfx_Particle_02->K2_DestroyComponent(this);
+L19103:        this->mHypertube_VfxCap->K2_DestroyComponent(this);
+L19136:        KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mClearTubeTravelUpdateTimer);
+L19178:        AkComponent* mAkComponent17 = AkGameplayStatics->PostAkEvent(Stop_AllSoundsInsideTube, this, true);
+L19231:        Vector mVector18 = this->K2_GetActorLocation();
+L19259:        AkComponent* mAkComponent18 = AkGameplayStatics->PostAkEventAtLocation(this, Play_ExitTube, mVector18, Rotator::FromPitchYawRoll(0, 0, 0));
+L19333:        AkComponent* mAkComponent19 = AkGameplayStatics->PostAkEventAtLocation(this, Play_TurbineWindTube, this->mLastFrameEndPosTube, this->mLastFrameEndRotTube);
+L19403:        goto ExecutionFlow.Pop();
+L19404:        goto L16814;
+L19409:        goto ExecutionFlow.Pop();
+L19410:        Key Temp_struct_Variable3 = mKey;
+L19437:        bool mbool77 = KismetSystemLibrary->IsValid(this->mEmoteMenu);
+L19488:        if (!mbool77) goto L12596;
+L19502:        goto ExecutionFlow.Pop();
+L19503:        Temp_struct_Variable3 = mKey1;
+L19530:        goto L3590;
+============ END FUNCTION ExecuteUbergraph_Char_Player ==============
+
+
+
+
+
+============ BEGIN FUNCTION EventFire__DelegateSignature ==============
+============ END FUNCTION EventFire__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION EventScroll__DelegateSignature ==============
+============ END FUNCTION EventScroll__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION EventScrollDown__DelegateSignature ==============
+============ END FUNCTION EventScrollDown__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION EventScrollUp__DelegateSignature ==============
+============ END FUNCTION EventScrollUp__DelegateSignature ==============

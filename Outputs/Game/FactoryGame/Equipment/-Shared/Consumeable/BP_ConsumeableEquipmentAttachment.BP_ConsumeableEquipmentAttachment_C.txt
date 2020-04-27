@@ -1,0 +1,99 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/-Shared/Consumeable/BP_ConsumeableEquipmentAttachment.BP_ConsumeableEquipmentAttachment_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetHandsItem ==============
+L0:            FGCharacterPlayer* mFGCharacterPlayer = this->GetAttachedTo();
+L20:           bool mbool = KismetSystemLibrary->IsValid(mFGCharacterPlayer);
+L71:           if (!mbool) goto L480;
+L85:           mFGCharacterPlayer = this->GetAttachedTo();
+L105:          FGInventoryComponentEquipment* mFGInventoryComponentEquipment = mFGCharacterPlayer->GetEquipmentSlot(1);
+L149:          int32 mint32 = mFGInventoryComponentEquipment->GetActiveIndex();
+L199:          bool mbool1 = mFGInventoryComponentEquipment->GetStackFromIndex(mint32, [ref] mInventoryStack);
+L259:          FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint321, [ref] mInventoryItem);
+L318:          FGInventoryLibrary->BreakInventoryItem([ref] mInventoryItem, [ref] mTSubclassOf<FGItemDescriptor>, [ref] mActor);
+L377:          TSubclassOf<FGConsumableDescriptor> mTSubclassOf<FGConsumableDescriptor> = ClassCast<Class /Script/FactoryGame.FGConsumableDescriptor>(mTSubclassOf<FGItemDescriptor>);
+L413:          bool mbool2 = mTSubclassOf<FGConsumableDescriptor>;
+L442:          if (!mbool2) goto L480;
+L456:          TSubclassOf<FGConsumableDescriptor> Item = mTSubclassOf<FGConsumableDescriptor>;
+L475:          <End of Inlined Event Graph Function>;
+L480:          Item = nullptr;
+============ END FUNCTION GetHandsItem ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/-Shared/Consumeable/BP_ConsumeableEquipmentAttachment.BP_ConsumeableEquipmentAttachment_C:ExecuteUbergraph_BP_ConsumeableEquipmentAttachment.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_BP_ConsumeableEquipmentAttachment(10);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayUseEffect ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/-Shared/Consumeable/BP_ConsumeableEquipmentAttachment.BP_ConsumeableEquipmentAttachment_C:ExecuteUbergraph_BP_ConsumeableEquipmentAttachment.K2Node_Event_useLocation) = UseLocation;
+L18:           this->ExecuteUbergraph_BP_ConsumeableEquipmentAttachment(421);
+============ END FUNCTION PlayUseEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnAttach ==============
+L0:            this->ExecuteUbergraph_BP_ConsumeableEquipmentAttachment(884);
+============ END FUNCTION OnAttach ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_ConsumeableEquipmentAttachment ==============
+L10:           this->GetHandsItem([ref] mTSubclassOf<FGConsumableDescriptor>);
+L33:           bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGConsumableDescriptor>);
+L84:           if (!mbool) goto L1333;
+L98:           this->GetHandsItem([ref] mTSubclassOf<FGConsumableDescriptor>);
+L121:          StaticMesh* mStaticMesh = FGConsumableDescriptor->GetTPOverrideMesh(mTSubclassOf<FGConsumableDescriptor>);
+L172:          bool mbool1 = this->StaticMesh->SetStaticMesh(mStaticMesh);
+L227:          this->GetHandsItem([ref] mTSubclassOf<FGConsumableDescriptor>);
+L250:          Vector mVector = MakeVector(mTSubclassOf<FGConsumableDescriptor>->ClassDefaultObject->mCustomHandsMeshScale, mTSubclassOf<FGConsumableDescriptor>->ClassDefaultObject->mCustomHandsMeshScale, mTSubclassOf<FGConsumableDescriptor>->ClassDefaultObject->mCustomHandsMeshScale);
+L371:          this->StaticMesh->SetRelativeScale3D(mVector);
+L416:          <End of Inlined Event Graph Function>;
+L421:          this->PlayUseEffect(mVector1);
+L440:          FGCharacterPlayer* mFGCharacterPlayer = this->GetAttachedTo();
+L460:          bool mbool2 = mFGCharacterPlayer->IsFirstPerson();
+L502:          if (!mbool2) goto L521;
+L516:          <End of Inlined Event Graph Function>;
+L521:          mFGCharacterPlayer = this->GetAttachedTo();
+L541:          SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
+L587:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L629:          bool mbool3 = mAnimInstance->Montage_IsPlaying(Eat_01_Montage);
+L680:          if (!mbool3) goto L699;
+L694:          <End of Inlined Event Graph Function>;
+L699:          mFGCharacterPlayer = this->GetAttachedTo();
+L719:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
+L765:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L807:          float mfloat = mAnimInstance->Montage_Play(Eat_01_Montage, 1, 0, 0, true);
+L879:          <End of Inlined Event Graph Function>;
+L884:          this->OnAttach();
+L894:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetAttachedTo();
+L914:          bool mbool4 = mFGCharacterPlayer1->IsFirstPerson();
+L956:          if (!mbool4) goto L975;
+L970:          <End of Inlined Event Graph Function>;
+L975:          mFGCharacterPlayer1 = this->GetAttachedTo();
+L995:          SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh3P();
+L1041:         AnimInstance* mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L1083:         bool mbool5 = mAnimInstance1->Montage_IsPlaying(ConsumablesEquip_01_Montage);
+L1134:         if (!mbool5) goto L1153;
+L1148:         <End of Inlined Event Graph Function>;
+L1153:         mFGCharacterPlayer1 = this->GetAttachedTo();
+L1173:         mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh3P();
+L1219:         mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L1261:         float mfloat1 = mAnimInstance1->Montage_Play(ConsumablesEquip_01_Montage, 1, 0, 0, true);
+============ END FUNCTION ExecuteUbergraph_BP_ConsumeableEquipmentAttachment ==============

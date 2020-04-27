@@ -1,0 +1,53 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_StopVehicle.BTT_StopVehicle_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveExecuteAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_StopVehicle.BTT_StopVehicle_C:ExecuteUbergraph_BTT_StopVehicle.K2Node_Event_OwnerController1) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_StopVehicle.BTT_StopVehicle_C:ExecuteUbergraph_BTT_StopVehicle.K2Node_Event_ControlledPawn1) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTT_StopVehicle(418);
+============ END FUNCTION ReceiveExecuteAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTickAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_StopVehicle.BTT_StopVehicle_C:ExecuteUbergraph_BTT_StopVehicle.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_StopVehicle.BTT_StopVehicle_C:ExecuteUbergraph_BTT_StopVehicle.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_StopVehicle.BTT_StopVehicle_C:ExecuteUbergraph_BTT_StopVehicle.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L54:           this->ExecuteUbergraph_BTT_StopVehicle(557);
+============ END FUNCTION ReceiveTickAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTT_StopVehicle ==============
+L10:           WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = this->mVehicle->GetVehicleMovementComponent();
+L52:           mWheeledVehicleMovementComponent->SetThrottleInput(0);
+L89:           this->FinishExecute(true);
+L100:          <End of Inlined Event Graph Function>;
+L105:          mWheeledVehicleMovementComponent = this->mVehicle->GetVehicleMovementComponent();
+L147:          mWheeledVehicleMovementComponent->SetHandbrakeInput(true);
+L180:          <End of Inlined Event Graph Function>;
+L185:          bool mbool = Greater_IntInt(this->mVehicle->mSpeedInKMH, 0);
+L241:          if (!mbool) goto L10;
+L255:          mWheeledVehicleMovementComponent = this->mVehicle->GetVehicleMovementComponent();
+L297:          mWheeledVehicleMovementComponent->SetThrottleInput(-1);
+L334:          mWheeledVehicleMovementComponent = this->mVehicle->GetVehicleMovementComponent();
+L376:          mWheeledVehicleMovementComponent->SetBrakeInput(1);
+L413:          goto L105;
+L418:          BP_WheeledVehicle* mBP_WheeledVehicle = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C>(mPawn);
+L454:          bool mbool1 = mBP_WheeledVehicle;
+L483:          if (!mbool1) goto L599;
+L497:          this->mVehicle = mBP_WheeledVehicle;
+L516:          mBP_WheeledVehicle->StopVehicle();
+L552:          <End of Inlined Event Graph Function>;
+L557:          this->ReceiveTickAI(mAIController, mPawn1, mfloat);
+L594:          goto L185;
+============ END FUNCTION ExecuteUbergraph_BTT_StopVehicle ==============

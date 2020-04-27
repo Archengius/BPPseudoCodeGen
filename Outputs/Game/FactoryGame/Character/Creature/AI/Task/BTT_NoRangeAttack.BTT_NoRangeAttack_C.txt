@@ -1,0 +1,88 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Task/BTT_NoRangeAttack.BTT_NoRangeAttack_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION mOnAttackFailed_116612B142195CF8862D28AC809559CE ==============
+L0:            this->ExecuteUbergraph_BTT_NoRangeAttack(1425);
+============ END FUNCTION mOnAttackFailed_116612B142195CF8862D28AC809559CE ==============
+
+
+
+
+
+============ BEGIN FUNCTION mOnAttackFinished_116612B142195CF8862D28AC809559CE ==============
+L0:            this->ExecuteUbergraph_BTT_NoRangeAttack(27);
+============ END FUNCTION mOnAttackFinished_116612B142195CF8862D28AC809559CE ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveExecuteAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_NoRangeAttack.BTT_NoRangeAttack_C:ExecuteUbergraph_BTT_NoRangeAttack.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_NoRangeAttack.BTT_NoRangeAttack_C:ExecuteUbergraph_BTT_NoRangeAttack.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTT_NoRangeAttack(39);
+============ END FUNCTION ReceiveExecuteAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTT_NoRangeAttack ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->FinishExecute(true);
+L26:           goto ExecutionFlow.Pop();
+L27:           this->FinishExecute(true);
+L38:           goto ExecutionFlow.Pop();
+L39:           this->ReceiveExecuteAI(mAIController, mPawn);
+L67:           FGEnemyController* mFGEnemyController = Cast<Class /Script/FactoryGame.FGEnemyController>(mAIController);
+L103:          bool mbool = mFGEnemyController;
+L132:          if (!mbool) goto ExecutionFlow.Pop();
+L142:          ExecutionFlow.Push(L590);
+L147:          Pawn* mPawn1 = mFGEnemyController->K2_GetPawn();
+L189:          FGEnemy* mFGEnemy = Cast<Class /Script/FactoryGame.FGEnemy>(mPawn1);
+L225:          bool mbool1 = mFGEnemy;
+L254:          FGGameplayTask_AttackMelee* mFGGameplayTask_AttackMelee = FGGameplayTask_AttackMelee->Attack(mFGEnemy, mFGEnemyController->mCurrentAggroTarget, this->mAttackClass);
+L345:          bool mbool2 = KismetSystemLibrary->IsValid(mFGGameplayTask_AttackMelee);
+L396:          if (!mbool2) goto L570;
+L410:          mFScriptDelegate->BindUFunction(this, mOnAttackFinished_116612B142195CF8862D28AC809559CE);
+L433:          mFGGameplayTask_AttackMelee->mOnAttackFinished.AddUnique(mFScriptDelegate);
+L474:          mFScriptDelegate1->BindUFunction(this, mOnAttackFailed_116612B142195CF8862D28AC809559CE);
+L497:          mFGGameplayTask_AttackMelee->mOnAttackFailed.AddUnique(mFScriptDelegate1);
+L538:          mFGGameplayTask_AttackMelee->ReadyForActivation();
+L570:          this->mGameplayTask = mFGGameplayTask_AttackMelee;
+L589:          goto ExecutionFlow.Pop();
+L590:          mPawn1 = mFGEnemyController->K2_GetPawn();
+L632:          mFGEnemy = Cast<Class /Script/FactoryGame.FGEnemy>(mPawn1);
+L668:          mbool1 = mFGEnemy;
+L697:          Char_AlphaHog* mChar_AlphaHog = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Enemy/Hog/AlphaHog/Char_AlphaHog.Char_AlphaHog_C>(mFGEnemy);
+L733:          bool mbool3 = mChar_AlphaHog;
+L762:          if (!mbool3) goto L956;
+L776:          Vector mVector = mChar_AlphaHog->Mesh->GetSocketLocation("vfxjawSocket");
+L865:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, HogShockWave, mVector, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L955:          goto ExecutionFlow.Pop();
+L956:          mPawn1 = mFGEnemyController->K2_GetPawn();
+L998:          mFGEnemy = Cast<Class /Script/FactoryGame.FGEnemy>(mPawn1);
+L1034:         mbool1 = mFGEnemy;
+L1063:         Char_EliteCaveStinger* mChar_EliteCaveStinger = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Enemy/Stinger/BigStinger/Char_EliteCaveStinger.Char_EliteCaveStinger_C>(mFGEnemy);
+L1099:         bool mbool4 = mChar_EliteCaveStinger;
+L1128:         if (!mbool4) goto L1190;
+L1142:         mChar_EliteCaveStinger->SpawnGas();
+L1178:         this->FinishExecute(true);
+L1189:         goto ExecutionFlow.Pop();
+L1190:         mPawn1 = mFGEnemyController->K2_GetPawn();
+L1232:         mFGEnemy = Cast<Class /Script/FactoryGame.FGEnemy>(mPawn1);
+L1268:         mbool1 = mFGEnemy;
+L1297:         Char_EliteStinger* mChar_EliteStinger = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Enemy/Stinger/BigStinger/Char_EliteStinger.Char_EliteStinger_C>(mFGEnemy);
+L1333:         bool mbool5 = mChar_EliteStinger;
+L1362:         if (!mbool5) goto ExecutionFlow.Pop();
+L1372:         mChar_EliteStinger->SpawnGas();
+L1408:         goto L15;
+L1413:         this->FinishExecute(false);
+L1424:         goto ExecutionFlow.Pop();
+L1425:         goto L1413;
+============ END FUNCTION ExecuteUbergraph_BTT_NoRangeAttack ==============

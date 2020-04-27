@@ -1,0 +1,639 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION DismantleGolfCart ==============
+L0:            FGWheeledVehicle* localGolfCart = GolfCart;
+L19:           Pawn* mPawn = this->K2_GetPawn();
+L39:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L75:           bool mbool = mFGCharacterPlayer;
+L104:          if (!mbool) goto L1947;
+L118:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
+L160:          FGInventoryComponent* localPlayerInventory = mFGInventoryComponent;
+L179:          FGInventoryComponent* mFGInventoryComponent1 = localGolfCart->GetStorageInventory();
+L221:          TArray<InventoryStack> mTArray<InventoryStack> = [];
+L232:          mFGInventoryComponent1->GetInventoryStacks([ref] mTArray<InventoryStack>);
+L273:          TArray<InventoryStack> localDismantleReturns = mTArray<InventoryStack>;
+L300:          InventoryItem mInventoryItem = FGInventoryLibrary->MakeInventoryItem(Desc_GolfCart);
+L359:          InventoryStack mInventoryStack = FGInventoryLibrary->MakeInventoryStack(1, mInventoryItem);
+L423:          int32 mint32 = KismetArrayLibrary->Array_Add([ref] localDismantleReturns, [ref] mInventoryStack);
+L491:          bool mbool1 = localPlayerInventory->HasEnoughSpaceForStacks([ref] localDismantleReturns);
+L542:          if (!mbool1) goto L638;
+L556:          localPlayerInventory->AddStacks([ref] localDismantleReturns);
+L597:          localGolfCart->K2_DestroyActor();
+L633:          <End of Inlined Event Graph Function>;
+L638:          InventoryItem mInventoryItem1 = FGInventoryLibrary->MakeInventoryItem(Desc_GolfCart);
+L697:          InventoryStack mInventoryStack1 = FGInventoryLibrary->MakeInventoryStack(1, mInventoryItem1);
+L761:          bool mbool2 = localPlayerInventory->HasEnoughSpaceForStack([ref] mInventoryStack1);
+L812:          if (!mbool2) goto L1134;
+L826:          InventoryItem mInventoryItem2 = FGInventoryLibrary->MakeInventoryItem(BP_ItemDescriptorPortableMiner);
+L885:          InventoryStack mInventoryStack2 = FGInventoryLibrary->MakeInventoryStack(1, mInventoryItem2);
+L949:          int32 mint321 = localPlayerInventory->AddStack([ref] mInventoryStack2, false);
+L1013:         FGInventoryComponent* mFGInventoryComponent2 = localGolfCart->GetStorageInventory();
+L1055:         TArray<InventoryStack> mTArray<InventoryStack>1 = [];
+L1066:         mFGInventoryComponent2->GetInventoryStacks([ref] mTArray<InventoryStack>1);
+L1107:         localDismantleReturns = mTArray<InventoryStack>1;
+L1134:         Transform mTransform = localGolfCart->GetTransform();
+L1184:         BreakTransform([ref] mTransform, [ref] mVector, [ref] mRotator, [ref] mVector1);
+L1230:         Vector mVector2 = Add_VectorVector(mVector, Vector(0, 0, 100));
+L1280:         Transform mTransform1 = MakeTransform(mVector2, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1));
+L1343:         Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_Crate, [ref] mTransform1, 2, this);
+L1407:         mTransform = localGolfCart->GetTransform();
+L1457:         BreakTransform([ref] mTransform, [ref] mVector, [ref] mRotator, [ref] mVector1);
+L1503:         mVector2 = Add_VectorVector(mVector, Vector(0, 0, 100));
+L1553:         mTransform1 = MakeTransform(mVector2, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1));
+L1616:         BP_Crate* mBP_Crate = GameplayStatics->FinishSpawningActor(mActor, [ref] mTransform1);
+L1676:         FGInventoryLibrary->ConsolidateInventoryItems([ref] localDismantleReturns);
+L1717:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] localDismantleReturns);
+L1776:         FGInventoryComponent* mFGInventoryComponent3 = mBP_Crate->GetInventory();
+L1818:         mFGInventoryComponent3->Resize(mint322);
+L1859:         mFGInventoryComponent3 = mBP_Crate->GetInventory();
+L1901:         mFGInventoryComponent3->AddStacks([ref] localDismantleReturns);
+L1942:         goto L597;
+============ END FUNCTION DismantleGolfCart ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSetupMovementWind ==============
+============ END FUNCTION OnSetupMovementWind ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDisabledInputChanged ==============
+L0:            if (!this->mMinimapWidget->IsMapOpen) goto L50;
+L36:           this->ToggleMiniMap();
+============ END FUNCTION OnDisabledInputChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION ToggleMiniMap ==============
+L0:            FGUnlockSubsystem* mFGUnlockSubsystem = FGUnlockSubsystem->Get(this);
+L43:           bool mbool = mFGUnlockSubsystem->GetIsMapUnlocked();
+L85:           if (!mbool) goto L308;
+L99:           if (!this->mMinimapWidget->IsMapOpen) goto L224;
+L135:          BPHUDHelpers->PopStackWidget(this, this->mMinimapWidget, this);
+L182:          this->mMinimapWidget->SetOpenMap(false);
+L219:          <End of Inlined Event Graph Function>;
+L224:          BPHUDHelpers->PushStackWidget(this, this->mMinimapWidget, this);
+L271:          this->mMinimapWidget->SetOpenMap(true);
+============ END FUNCTION ToggleMiniMap ==============
+
+
+
+
+
+============ BEGIN FUNCTION DismantlePortableMiner ==============
+L0:            FGPortableMiner* localMiner = PortableMiner;
+L19:           Pawn* mPawn = this->K2_GetPawn();
+L39:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L75:           bool mbool = mFGCharacterPlayer;
+L104:          if (!mbool) goto L1859;
+L118:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
+L160:          FGInventoryComponent* localPlayerInventory = mFGInventoryComponent;
+L179:          TArray<InventoryStack> mTArray<InventoryStack> = localMiner->GetDismantleInventoryReturns();
+L229:          TArray<InventoryStack> localDismantleReturns = mTArray<InventoryStack>;
+L256:          InventoryItem mInventoryItem = FGInventoryLibrary->MakeInventoryItem(BP_ItemDescriptorPortableMiner);
+L315:          InventoryStack mInventoryStack = FGInventoryLibrary->MakeInventoryStack(1, mInventoryItem);
+L379:          int32 mint32 = KismetArrayLibrary->Array_Add([ref] localDismantleReturns, [ref] mInventoryStack);
+L447:          bool mbool1 = localPlayerInventory->HasEnoughSpaceForStacks([ref] localDismantleReturns);
+L498:          if (!mbool1) goto L594;
+L512:          localPlayerInventory->AddStacks([ref] localDismantleReturns);
+L553:          localMiner->K2_DestroyActor();
+L589:          <End of Inlined Event Graph Function>;
+L594:          InventoryItem mInventoryItem1 = FGInventoryLibrary->MakeInventoryItem(BP_ItemDescriptorPortableMiner);
+L653:          InventoryStack mInventoryStack1 = FGInventoryLibrary->MakeInventoryStack(1, mInventoryItem1);
+L717:          bool mbool2 = localPlayerInventory->HasEnoughSpaceForStack([ref] mInventoryStack1);
+L768:          if (!mbool2) goto L1046;
+L782:          InventoryItem mInventoryItem2 = FGInventoryLibrary->MakeInventoryItem(BP_ItemDescriptorPortableMiner);
+L841:          InventoryStack mInventoryStack2 = FGInventoryLibrary->MakeInventoryStack(1, mInventoryItem2);
+L905:          int32 mint321 = localPlayerInventory->AddStack([ref] mInventoryStack2, false);
+L969:          TArray<InventoryStack> mTArray<InventoryStack>1 = localMiner->GetDismantleInventoryReturns();
+L1019:         localDismantleReturns = mTArray<InventoryStack>1;
+L1046:         Transform mTransform = localMiner->GetTransform();
+L1096:         BreakTransform([ref] mTransform, [ref] mVector, [ref] mRotator, [ref] mVector1);
+L1142:         Vector mVector2 = Add_VectorVector(mVector, Vector(0, 0, 100));
+L1192:         Transform mTransform1 = MakeTransform(mVector2, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1));
+L1255:         Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_Crate, [ref] mTransform1, 2, this);
+L1319:         mTransform = localMiner->GetTransform();
+L1369:         BreakTransform([ref] mTransform, [ref] mVector, [ref] mRotator, [ref] mVector1);
+L1415:         mVector2 = Add_VectorVector(mVector, Vector(0, 0, 100));
+L1465:         mTransform1 = MakeTransform(mVector2, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1));
+L1528:         BP_Crate* mBP_Crate = GameplayStatics->FinishSpawningActor(mActor, [ref] mTransform1);
+L1588:         FGInventoryLibrary->ConsolidateInventoryItems([ref] localDismantleReturns);
+L1629:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] localDismantleReturns);
+L1688:         FGInventoryComponent* mFGInventoryComponent1 = mBP_Crate->GetInventory();
+L1730:         mFGInventoryComponent1->Resize(mint322);
+L1771:         mFGInventoryComponent1 = mBP_Crate->GetInventory();
+L1813:         mFGInventoryComponent1->AddStacks([ref] localDismantleReturns);
+L1854:         goto L553;
+============ END FUNCTION DismantlePortableMiner ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Chat_K2Node_InputActionEvent_16 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key16) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(4563);
+============ END FUNCTION InpActEvt_Chat_K2Node_InputActionEvent_16 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Shortcut1_K2Node_InputActionEvent_15 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key15) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(4027);
+============ END FUNCTION InpActEvt_Shortcut1_K2Node_InputActionEvent_15 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Shortcut2_K2Node_InputActionEvent_14 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key14) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(4022);
+============ END FUNCTION InpActEvt_Shortcut2_K2Node_InputActionEvent_14 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Shortcut3_K2Node_InputActionEvent_13 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key13) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(4017);
+============ END FUNCTION InpActEvt_Shortcut3_K2Node_InputActionEvent_13 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Shortcut4_K2Node_InputActionEvent_12 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key12) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(4012);
+============ END FUNCTION InpActEvt_Shortcut4_K2Node_InputActionEvent_12 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Shortcut5_K2Node_InputActionEvent_11 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key11) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(3983);
+============ END FUNCTION InpActEvt_Shortcut5_K2Node_InputActionEvent_11 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Shortcut6_K2Node_InputActionEvent_10 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key10) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(3958);
+============ END FUNCTION InpActEvt_Shortcut6_K2Node_InputActionEvent_10 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Shortcut7_K2Node_InputActionEvent_9 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key9) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(3773);
+============ END FUNCTION InpActEvt_Shortcut7_K2Node_InputActionEvent_9 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Shortcut8_K2Node_InputActionEvent_8 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key8) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(3599);
+============ END FUNCTION InpActEvt_Shortcut8_K2Node_InputActionEvent_8 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Shortcut9_K2Node_InputActionEvent_7 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key7) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(2530);
+============ END FUNCTION InpActEvt_Shortcut9_K2Node_InputActionEvent_7 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Shortcut10_K2Node_InputActionEvent_6 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key6) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(2156);
+============ END FUNCTION InpActEvt_Shortcut10_K2Node_InputActionEvent_6 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_PhotoMode_K2Node_InputActionEvent_5 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key5) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(2145);
+============ END FUNCTION InpActEvt_PhotoMode_K2Node_InputActionEvent_5 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_ToggleMap_BuildGunNoSnapMode_K2Node_InputActionEvent_4 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key4) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(2130);
+============ END FUNCTION InpActEvt_ToggleMap_BuildGunNoSnapMode_K2Node_InputActionEvent_4 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Prototype_RagdollPlayer_K2Node_InputActionEvent_3 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key3) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(2009);
+============ END FUNCTION InpActEvt_Prototype_RagdollPlayer_K2Node_InputActionEvent_3 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_SecondaryFire_K2Node_InputActionEvent_2 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key2) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(1968);
+============ END FUNCTION InpActEvt_SecondaryFire_K2Node_InputActionEvent_2 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_TogglePhotoModeUIVisibility_K2Node_InputActionEvent_1 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key1) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(1870);
+============ END FUNCTION InpActEvt_TogglePhotoModeUIVisibility_K2Node_InputActionEvent_1 ==============
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_PauseGame_K2Node_InputActionEvent_0 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_InputActionEvent_Key) = Key;
+L18:           this->ExecuteUbergraph_BP_PlayerController(1010);
+============ END FUNCTION InpActEvt_PauseGame_K2Node_InputActionEvent_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_BP_PlayerController(4573);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnStartRespawn ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_Event_isJoining) = isJoining;
+L18:           this->ExecuteUbergraph_BP_PlayerController(4568);
+============ END FUNCTION OnStartRespawn ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFinishRespawn ==============
+L0:            this->ExecuteUbergraph_BP_PlayerController(4177);
+============ END FUNCTION OnFinishRespawn ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_PlayerController(4113);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckAndUpdateGamepad ==============
+L0:            this->ExecuteUbergraph_BP_PlayerController(424);
+============ END FUNCTION CheckAndUpdateGamepad ==============
+
+
+
+
+
+============ BEGIN FUNCTION Server_ForceRagdoll ==============
+L0:            this->ExecuteUbergraph_BP_PlayerController(787);
+============ END FUNCTION Server_ForceRagdoll ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDisabledInputGateChanged ==============
+L0:            this->ExecuteUbergraph_BP_PlayerController(2256);
+============ END FUNCTION OnDisabledInputGateChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreateSequenceList ==============
+L0:            this->ExecuteUbergraph_BP_PlayerController(2439);
+============ END FUNCTION CreateSequenceList ==============
+
+
+
+
+
+============ BEGIN FUNCTION TogglePhotoModeInstructionsWidget ==============
+L0:            this->ExecuteUbergraph_BP_PlayerController(3978);
+============ END FUNCTION TogglePhotoModeInstructionsWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayPhotoSound ==============
+L0:            this->ExecuteUbergraph_BP_PlayerController(4118);
+============ END FUNCTION PlayPhotoSound ==============
+
+
+
+
+
+============ BEGIN FUNCTION TakePhoto ==============
+L0:            this->ExecuteUbergraph_BP_PlayerController(4172);
+============ END FUNCTION TakePhoto ==============
+
+
+
+
+
+============ BEGIN FUNCTION DoPause ==============
+L0:            this->ExecuteUbergraph_BP_PlayerController(4558);
+============ END FUNCTION DoPause ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDismantlePortableMiner ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_Event_PortableMiner) = PortableMiner;
+L18:           this->ExecuteUbergraph_BP_PlayerController(4730);
+============ END FUNCTION OnDismantlePortableMiner ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDismantleGolfCart ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C:ExecuteUbergraph_BP_PlayerController.K2Node_Event_inGolfCart) = inGolfCart;
+L18:           this->ExecuteUbergraph_BP_PlayerController(15);
+============ END FUNCTION OnDismantleGolfCart ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_PlayerController ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->DismantleGolfCart(mFGWheeledVehicle);
+L38:           goto ExecutionFlow.Pop();
+L39:           bool mbool = this->GetHiResPhotoModeEnabled();
+L59:           FString mFString = this->GetScreenshotPath(mbool);
+L96:           KismetSystemLibrary->ExecuteConsoleCommand(this, mFString, this);
+L139:          this->PhotoModeInstructionsWidget->PhotoTaken();
+L175:          goto ExecutionFlow.Pop();
+L176:          KismetSystemLibrary->PrintString(this, "OnStartRespawn: Completed Fade", false, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L282:          this->Server_Respawn();
+L296:          HUD* mHUD = this->GetHUD();
+L316:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L352:          bool mbool1 = mFGHUD;
+L381:          if (!mbool1) goto ExecutionFlow.Pop();
+L391:          mFGHUD->ShowRespawnUI();
+L423:          goto ExecutionFlow.Pop();
+L424:          bool mbool2 = this->GetIsUsingGamepad();
+L444:          if (!mbool2) goto L614;
+L458:          this->GetInputMouseDelta([ref] mfloat, [ref] mfloat1);
+L486:          bool mbool3 = Greater_FloatFloat(mfloat1, 0);
+L520:          bool mbool4 = Greater_FloatFloat(mfloat, 0);
+L554:          bool mbool5 = BooleanOR(mbool4, mbool3);
+L592:          if (!mbool5) goto ExecutionFlow.Pop();
+L602:          this->SetIsUsingGamepad(false);
+L613:          goto ExecutionFlow.Pop();
+L614:          this->GetInputAnalogStickState(0, [ref] mfloat2, [ref] mfloat3);
+L644:          bool mbool6 = Greater_FloatFloat(mfloat3, 0.10000000149011612);
+L678:          bool mbool7 = Greater_FloatFloat(mfloat2, 0.10000000149011612);
+L712:          bool mbool8 = BooleanOR(mbool7, mbool6);
+L750:          if (!mbool8) goto ExecutionFlow.Pop();
+L760:          this->SetIsUsingGamepad(true);
+L771:          goto ExecutionFlow.Pop();
+L772:          this->CheckAndUpdateGamepad();
+L786:          goto ExecutionFlow.Pop();
+L787:          Pawn* mPawn = this->K2_GetPawn();
+L807:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L843:          bool mbool9 = mFGCharacterPlayer;
+L872:          if (!mbool9) goto ExecutionFlow.Pop();
+L882:          bool mbool10 = mFGCharacterPlayer->IsRagdolled();
+L924:          bool mbool11 = Not_PreBool(mbool10);
+L953:          mFGCharacterPlayer->RagdollCharacter(mbool11);
+L994:          goto ExecutionFlow.Pop();
+L995:          this->Server_ForceRagdoll();
+L1009:         goto ExecutionFlow.Pop();
+L1010:         bool mbool12 = this->GetIsPhotoMode();
+L1030:         if (!mbool12) goto L1056;
+L1044:         this->EnablePhotoMode(false);
+L1055:         goto ExecutionFlow.Pop();
+L1056:         BPHUDHelpers->GetFGHud(this, this, [ref] mFGHUD1);
+L1103:         bool mbool13 = KismetSystemLibrary->IsValid(mFGHUD1);
+L1154:         if (!mbool13) goto ExecutionFlow.Pop();
+L1164:         FGGameUI* mFGGameUI = mFGHUD1->GetGameUI();
+L1206:         FGAudioMessage* mFGAudioMessage = mFGGameUI->GetCurrentAudioMessage();
+L1248:         TArray<FGInteractWidget*> mTArray<FGInteractWidget> = mFGGameUI->GetInteractWidgetStack();
+L1298:         bool mbool14 = KismetSystemLibrary->IsValid(mFGAudioMessage);
+L1349:         int32 mint32 = KismetArrayLibrary->Array_LastIndex([ref] mTArray<FGInteractWidget>);
+L1408:         bool mbool15 = GreaterEqual_IntInt(mint32, 0);
+L1442:         bool mbool16 = BooleanOR(mbool15, mbool14);
+L1480:         if (!mbool16) goto L1569;
+L1494:         mFGGameUI = mFGHUD1->GetGameUI();
+L1536:         mFGGameUI->CancelPressed();
+L1568:         goto ExecutionFlow.Pop();
+L1569:         mFGGameUI = mFGHUD1->GetGameUI();
+L1611:         FGPopupWidget* mFGPopupWidget = mFGGameUI->GetPopup();
+L1653:         bool mbool17 = KismetSystemLibrary->IsValid(mFGPopupWidget);
+L1704:         if (!mbool17) goto L1839;
+L1718:         mFGGameUI = mFGHUD1->GetGameUI();
+L1760:         mFGPopupWidget = mFGGameUI->GetPopup();
+L1802:         mFGPopupWidget->OnEscapePressed();
+L1838:         goto ExecutionFlow.Pop();
+L1839:         this->DoPause();
+L1853:         goto ExecutionFlow.Pop();
+L1854:         this->ExecuteShortcut(0);
+L1869:         goto ExecutionFlow.Pop();
+L1870:         bool mbool18 = KismetSystemLibrary->IsValid(this->PhotoModeInstructionsWidget);
+L1921:         if (!mbool18) goto ExecutionFlow.Pop();
+L1931:         this->PhotoModeInstructionsWidget->ToggleVisibility();
+L1967:         goto ExecutionFlow.Pop();
+L1968:         bool mbool19 = this->GetIsPhotoMode();
+L1988:         if (!mbool19) goto ExecutionFlow.Pop();
+L1998:         this->ToggleHiResPhotoMode();
+L2008:         goto ExecutionFlow.Pop();
+L2009:         bool mbool20 = KismetSystemLibrary->IsPackagedForDistribution();
+L2051:         if (!mbool20) goto L995;
+L2065:         goto ExecutionFlow.Pop();
+L2066:         this->ExecuteShortcut(1);
+L2081:         goto ExecutionFlow.Pop();
+L2082:         this->ExecuteShortcut(2);
+L2097:         goto ExecutionFlow.Pop();
+L2098:         this->ExecuteShortcut(3);
+L2113:         goto ExecutionFlow.Pop();
+L2114:         this->ExecuteShortcut(4);
+L2129:         goto ExecutionFlow.Pop();
+L2130:         this->ToggleMiniMap();
+L2144:         goto ExecutionFlow.Pop();
+L2145:         this->TogglePhotoMode();
+L2155:         goto ExecutionFlow.Pop();
+L2156:         this->ExecuteShortcut(9);
+L2171:         goto ExecutionFlow.Pop();
+L2172:         this->ExecuteShortcut(5);
+L2187:         goto ExecutionFlow.Pop();
+L2188:         this->ExecuteShortcut(6);
+L2203:         goto ExecutionFlow.Pop();
+L2204:         this->ExecuteShortcut(7);
+L2219:         goto ExecutionFlow.Pop();
+L2220:         this->ExecuteShortcut(8);
+L2235:         goto ExecutionFlow.Pop();
+L2236:         this->OnBeginTypeChat->ProcessMulticastDelegate();
+L2255:         goto ExecutionFlow.Pop();
+L2256:         if (!this->mMinimapWidget->IsMapOpen) goto ExecutionFlow.Pop();
+L2288:         this->ToggleMiniMap();
+L2302:         goto ExecutionFlow.Pop();
+L2303:         WidgetBlueprintLibrary->SetInputMode_GameOnly(this);
+L2336:         bool mbool21 = this->IsLocalPlayerController();
+L2356:         if (!mbool21) goto ExecutionFlow.Pop();
+L2366:         Widget_MapContainer* mWidget_MapContainer = WidgetBlueprintLibrary->Create(this, Widget_MapContainer, this);
+L2419:         this->mMinimapWidget = mWidget_MapContainer;
+L2438:         goto ExecutionFlow.Pop();
+L2439:         Widget_SequenceHelper* mWidget_SequenceHelper = WidgetBlueprintLibrary->Create(this, Widget_SequenceHelper, this);
+L2492:         mWidget_SequenceHelper->AddToViewport(0);
+L2529:         goto ExecutionFlow.Pop();
+L2530:         goto L2220;
+L2535:         KismetSystemLibrary->PrintString(this, "OnStartRespawn", false, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L2625:         float mfloat4 = SelectFloat(0, this->mRespawnFadeOutTime, mbool22);
+L2676:         this->PlayerCameraManager->StartCameraFade(0, 1, mfloat4, ScriptStruct /Script/CoreUObject.LinearColor(R = 0.015208999626338482, G = 0.015208999626338482, B = 0.015208999626338482, A = 1), false, true);
+L2767:         HUDHelpers->GetFGGameUI(this, this, [ref] mFGGameUI1);
+L2814:         BP_GameUI* mBP_GameUI = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C>(mFGGameUI1);
+L2850:         bool mbool23 = mBP_GameUI;
+L2879:         if (!mbool23) goto L2983;
+L2893:         UMGSequencePlayer* mUMGSequencePlayer = mBP_GameUI->PlayAnimation(mBP_GameUI->FadeAnim, 0, 1, 1, 1);
+L2983:         if (!mbool22) goto L3002;
+L2997:         goto L176;
+L3002:         KismetSystemLibrary->Delay(this, this->mRespawnFadeOutTime, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 176, UUID = -185302138, ExecutionFunction = "ExecuteUbergraph_BP_PlayerController", CallbackTarget = this));
+L3082:         goto ExecutionFlow.Pop();
+L3083:         KismetSystemLibrary->PrintString(this, "OnFinishRespawn", false, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L3174:         this->PlayerCameraManager->StartCameraFade(1, 0, 2, ScriptStruct /Script/CoreUObject.LinearColor(R = 0.015208999626338482, G = 0.015208999626338482, B = 0.015208999626338482, A = 1), false, false);
+L3261:         HUD* mHUD1 = this->GetHUD();
+L3281:         FGHUD* mFGHUD2 = Cast<Class /Script/FactoryGame.FGHUD>(mHUD1);
+L3317:         bool mbool24 = mFGHUD2;
+L3346:         if (!mbool24) goto ExecutionFlow.Pop();
+L3356:         mFGHUD2->CloseRespawnUI();
+L3388:         HUDHelpers->GetFGGameUI(this, this, [ref] mFGGameUI2);
+L3435:         BP_GameUI* mBP_GameUI1 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C>(mFGGameUI2);
+L3471:         bool mbool25 = mBP_GameUI1;
+L3500:         if (!mbool25) goto ExecutionFlow.Pop();
+L3510:         mBP_GameUI1->ShowRespawnMessage();
+L3546:         mBP_GameUI1->ForceStopRadiationUI();
+L3582:         goto ExecutionFlow.Pop();
+L3583:         this->SetIsUsingGamepad(false);
+L3594:         goto L2303;
+L3599:         goto L2204;
+L3604:         bool mbool26 = this->GetIsPhotoMode();
+L3624:         if (!mbool26) goto ExecutionFlow.Pop();
+L3634:         this->PlayPhotoSound();
+L3648:         KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 39, UUID = -2073879089, ExecutionFunction = "ExecuteUbergraph_BP_PlayerController", CallbackTarget = this));
+L3724:         goto ExecutionFlow.Pop();
+L3725:         this->PhotoModeInstructionsWidget->RemoveFromParent();
+L3761:         this->PhotoModeInstructionsWidget = nullptr;
+L3772:         goto ExecutionFlow.Pop();
+L3773:         goto L2188;
+L3778:         bool mbool27 = KismetSystemLibrary->IsValid(this->PhotoModeInstructionsWidget);
+L3829:         if (!mbool27) goto L3848;
+L3843:         goto L3725;
+L3848:         Widget_PhotoMode* mWidget_PhotoMode = WidgetBlueprintLibrary->Create(this, Widget_PhotoMode, this);
+L3901:         mWidget_PhotoMode->AddToViewport(0);
+L3938:         this->PhotoModeInstructionsWidget = mWidget_PhotoMode;
+L3957:         goto ExecutionFlow.Pop();
+L3958:         goto L2172;
+L3963:         this->ReceiveBeginPlay();
+L3973:         goto L3583;
+L3978:         goto L3778;
+L3983:         goto L2114;
+L3988:         this->OnRespawnEnd->ProcessMulticastDelegate();
+L4007:         goto L3083;
+L4012:         goto L2098;
+L4017:         goto L2082;
+L4022:         goto L2066;
+L4027:         goto L1854;
+L4032:         DisabledInputGate mDisabledInputGate = this->GetDisabledInputGate();
+L4060:         bool mbool28 = Not_PreBool(mDisabledInputGate.mChat);
+L4098:         if (!mbool28) goto ExecutionFlow.Pop();
+L4108:         goto L2236;
+L4113:         goto L3963;
+L4118:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_Camera_SnapShot, this, true);
+L4171:         goto ExecutionFlow.Pop();
+L4172:         goto L3604;
+L4177:         goto L3988;
+L4182:         HUD* mHUD2 = this->GetHUD();
+L4202:         BP_HUD* mBP_HUD = Cast<BlueprintGeneratedClass /Game/FactoryGame/-Shared/Blueprint/BP_HUD.BP_HUD_C>(mHUD2);
+L4238:         bool mbool29 = mBP_HUD;
+L4267:         if (!mbool29) goto ExecutionFlow.Pop();
+L4277:         FGGameUI* mFGGameUI3 = mBP_HUD->GetGameUI();
+L4319:         BP_GameUI* mBP_GameUI2 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C>(mFGGameUI3);
+L4355:         bool mbool30 = mBP_GameUI2;
+L4384:         if (!mbool30) goto ExecutionFlow.Pop();
+L4394:         PanelSlot* mPanelSlot = mBP_GameUI2->mMenuSlot->AddChild(mBP_PauseWidget);
+L4467:         mBP_PauseWidget->OnMenuEnterDone();
+L4499:         goto ExecutionFlow.Pop();
+L4500:         BP_PauseWidget* mBP_PauseWidget = WidgetBlueprintLibrary->Create(this, BP_PauseWidget, this);
+L4553:         goto L4182;
+L4558:         goto L4500;
+L4563:         goto L4032;
+L4568:         goto L2535;
+L4573:         Rotator mRotator = this->GetControlRotation();
+L4605:         BreakRotator(mRotator, [ref] mfloat5, [ref] mfloat6, [ref] mfloat7);
+L4651:         Rotator mRotator1 = MakeRotator(0, mfloat6, mfloat7);
+L4702:         this->SetControlRotation([ref] mRotator1);
+L4725:         goto L772;
+L4730:         this->DismantlePortableMiner(mFGPortableMiner);
+L4753:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_BP_PlayerController ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRespawnEnd__DelegateSignature ==============
+============ END FUNCTION OnRespawnEnd__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnBeginTypeChat__DelegateSignature ==============
+============ END FUNCTION OnBeginTypeChat__DelegateSignature ==============

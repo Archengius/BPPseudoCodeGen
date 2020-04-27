@@ -1,0 +1,122 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/GeneratorFuel/Build_GeneratorFuel.Build_GeneratorFuel_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Build_GeneratorFuel(996);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/GeneratorFuel/Build_GeneratorFuel.Build_GeneratorFuel_C:ExecuteUbergraph_Build_GeneratorFuel.K2Node_Event_didStartProducing) = didStartProducing;
+L18:           this->ExecuteUbergraph_Build_GeneratorFuel(1056);
+============ END FUNCTION StartProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/GeneratorFuel/Build_GeneratorFuel.Build_GeneratorFuel_C:ExecuteUbergraph_Build_GeneratorFuel.K2Node_Event_didStopProducing) = didStopProducing;
+L18:           this->ExecuteUbergraph_Build_GeneratorFuel(2009);
+============ END FUNCTION StopProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Build_GeneratorFuel(2545);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveUpdateEffects ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/GeneratorFuel/Build_GeneratorFuel.Build_GeneratorFuel_C:ExecuteUbergraph_Build_GeneratorFuel.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_Build_GeneratorFuel(2594);
+============ END FUNCTION ReceiveUpdateEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_GeneratorFuel ==============
+L10:           this->TryStopProductionLoopEffects(false);
+L21:           <End of Inlined Event Graph Function>;
+L26:           this->mRTPCInterval = 0;
+L49:           bool mbool = KismetSystemLibrary->IsValid(this->mSmokeVfx01);
+L100:          if (!mbool) goto L2599;
+L114:          float mfloat = FClamp(this->mCachedLoadPercentage, 0.30000001192092896, 1);
+L161:          this->mSmokeVfx01->SetFloatParameter("SmokeShortSpawnRate", mfloat);
+L215:          this->mSmokeVfx02->SetFloatParameter("SmokeShortSpawnRate", mfloat);
+L269:          this->mSmokeVfx03->SetFloatParameter("SmokeShortSpawnRate", mfloat);
+L323:          this->mSmokeVfx04->SetFloatParameter("SmokeShortSpawnRate", mfloat);
+L377:          float mfloat1 = FClamp(this->mCachedLoadPercentage, 0, 1);
+L424:          this->mSmokeVfx01->SetFloatParameter("SmokeLongSpawnRate", mfloat1);
+L478:          this->mSmokeVfx02->SetFloatParameter("SmokeLongSpawnRate", mfloat1);
+L532:          this->mSmokeVfx03->SetFloatParameter("SmokeLongSpawnRate", mfloat1);
+L586:          this->mSmokeVfx04->SetFloatParameter("SmokeLongSpawnRate", mfloat1);
+L640:          <End of Inlined Event Graph Function>;
+L645:          AnimInstance* mAnimInstance = this->MainMesh->GetAnimInstance();
+L687:          FGFAnimInstanceFactory* mFGFAnimInstanceFactory = Cast<Class /Script/FactoryGame.FGFAnimInstanceFactory>(mAnimInstance);
+L723:          bool mbool1 = mFGFAnimInstanceFactory;
+L752:          this->mCachedLoadPercentage = mFGFAnimInstanceFactory->mProxy.mLoadPercentage;
+L810:          float mfloat2 = Add_FloatFloat(this->mRTPCInterval, mfloat3);
+L856:          this->mRTPCInterval = mfloat2;
+L883:          bool mbool2 = Greater_FloatFloat(this->mRTPCInterval, 10);
+L917:          if (!mbool2) goto L49;
+L931:          AkGameplayStatics->SetActorRTPCValue("RTPC_B_LoadPercentage", this->mCachedLoadPercentage, 0, this);
+L991:          goto L26;
+L996:          this->GainedSignificance();
+L1006:         bool mbool3 = this->HasFuel();
+L1026:         if (!mbool3) goto L2599;
+L1040:         this->TryStartProductionLoopEffects(false);
+L1051:         <End of Inlined Event Graph Function>;
+L1056:         this->StartProductionLoopEffects(mbool4);
+L1075:         bool mbool5 = KismetSystemLibrary->IsValid(this->mSmokeVfx01);
+L1126:         if (!mbool5) goto L1145;
+L1140:         <End of Inlined Event Graph Function>;
+L1145:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(P_Generator_Fuel, this->MainMesh, "smokeVfxSocket_01", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1262:         this->mSmokeVfx01 = mParticleSystemComponent;
+L1281:         ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAttached(P_Generator_Fuel, this->MainMesh, "smokeVfxSocket_02", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1398:         this->mSmokeVfx02 = mParticleSystemComponent1;
+L1417:         ParticleSystemComponent* mParticleSystemComponent2 = GameplayStatics->SpawnEmitterAttached(P_Generator_Fuel, this->MainMesh, "smokeVfxSocket_03", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1534:         this->mSmokeVfx03 = mParticleSystemComponent2;
+L1553:         ParticleSystemComponent* mParticleSystemComponent3 = GameplayStatics->SpawnEmitterAttached(P_Generator_Fuel, this->MainMesh, "smokeVfxSocket_04", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1670:         this->mSmokeVfx04 = mParticleSystemComponent3;
+L1689:         if (!mbool4) goto L1856;
+L1703:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(Play_F_Generator_Fuel_Exhaust, this->MainMesh, "AudioSocket_Exhaust", true);
+L1777:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(Play_F_Generator_Fuel_Start, this->MainMesh, "AudioSocket_Root", true);
+L1851:         <End of Inlined Event Graph Function>;
+L1856:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAttached(Play_F_Generator_Fuel_Exhaust, this->MainMesh, "AudioSocket_Exhaust", true);
+L1930:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEventAttached(Play_F_Generator_Fuel_Start_Quick, this->MainMesh, "AudioSocket_Root", true);
+L2004:         <End of Inlined Event Graph Function>;
+L2009:         this->StopProductionLoopEffects(mbool6);
+L2028:         bool mbool7 = KismetSystemLibrary->IsValid(this->mSmokeVfx01);
+L2079:         if (!mbool7) goto L2599;
+L2093:         this->mSmokeVfx01->K2_DestroyComponent(this);
+L2126:         this->mSmokeVfx02->K2_DestroyComponent(this);
+L2159:         this->mSmokeVfx03->K2_DestroyComponent(this);
+L2192:         this->mSmokeVfx04->K2_DestroyComponent(this);
+L2225:         if (!mbool6) goto L2392;
+L2239:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEventAttached(Stop_F_Generator_Fuel_Exhaust, this->MainMesh, "AudioSocket_Exhaust", true);
+L2313:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEventAttached(Stop_F_Generator_Fuel_Stop, this->MainMesh, "AudioSocket_Root", true);
+L2387:         <End of Inlined Event Graph Function>;
+L2392:         AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEventAttached(Stop_F_Generator_Fuel_Exhaust, this->MainMesh, "AudioSocket_Exhaust", true);
+L2466:         AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEventAttached(Stop_F_Generator_Fuel_Stop_Quick, this->MainMesh, "AudioSocket_Root", true);
+L2540:         <End of Inlined Event Graph Function>;
+L2545:         this->LostSignificance();
+L2555:         bool mbool8 = this->HasFuel();
+L2575:         if (!mbool8) goto L2599;
+L2589:         goto L10;
+L2594:         goto L645;
+============ END FUNCTION ExecuteUbergraph_Build_GeneratorFuel ==============

@@ -1,0 +1,289 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/ResourceSink/UI/BPW_ResourceSink.BPW_ResourceSink_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdatePowerWarning ==============
+L0:            uint8 Temp_byte_Variable2 = 1;
+L20:           uint8 Temp_byte_Variable3 = 3;
+L40:           bool mbool = this->mResourceSink->HasPower();
+L86:           bool Temp_bool_Variable1 = mbool;
+L105:          this->Widget_Manufacturing_Warning->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint8;
+});
+L194:          uint8 Temp_byte_Variable = 1;
+L214:          uint8 Temp_byte_Variable1 = 3;
+L234:          bool mbool1 = this->mResourceSink->IsProductionPaused();
+L276:          bool mbool2 = this->mResourceSink->HasPower();
+L322:          bool mbool3 = Not_PreBool(mbool2);
+L351:          bool mbool4 = BooleanOR(mbool3, mbool1);
+L389:          bool Temp_bool_Variable = mbool4;
+L408:          this->mScreenContent->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint81;
+});
+============ END FUNCTION UpdatePowerWarning ==============
+
+
+
+
+
+============ BEGIN FUNCTION DropInventorySlotStack ==============
+L0:            bool WasStackMoved = false;
+============ END FUNCTION DropInventorySlotStack ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTicketSoundCurve ==============
+L0:            float mfloat = Add_FloatFloat(this->mTicketTimerValue, 0.05000000074505806);
+L42:           this->mTicketTimerValue = mfloat;
+L69:           float Temp_float_Variable = 100;
+L92:           float Temp_float_Variable1 = 0;
+L115:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L139:          float mfloat1 = this->mCouponTicketCurve->GetFloatValue(this->mTicketTimerValue);
+L198:          bool mbool = EqualEqual_FloatFloat(this->mSetCurveValue, mfloat1);
+L236:          bool Temp_bool_Variable = mbool;
+L255:          AkGameplayStatics->SetActorRTPCValue("RTPC_ResourceSink_Ticket", switch (Temp_bool_Variable) {
+case false -> Temp_float_Variable;
+case true -> Temp_float_Variable1;
+default -> mfloat2;
+}, 0, mPlayerController);
+L367:          mfloat1 = this->mCouponTicketCurve->GetFloatValue(this->mTicketTimerValue);
+L426:          this->mSetCurveValue = mfloat1;
+============ END FUNCTION UpdateTicketSoundCurve ==============
+
+
+
+
+
+============ BEGIN FUNCTION IntArrayToFloatArray ==============
+L0:            ExecutionFlow.Push(L465);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] IntArray);
+L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L148:          if (!mbool) goto L359;
+L162:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L189:          ExecutionFlow.Push(L391);
+L194:          KismetArrayLibrary->Array_Get([ref] IntArray, Temp_int_Array_Index_Variable, [ref] mint321);
+L253:          float mfloat = Conv_IntToFloat(mint321);
+L290:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] LocalFloatArray, [ref] mfloat);
+L358:          goto ExecutionFlow.Pop();
+L359:          TArray<float> FloatArray = LocalFloatArray;
+L386:          <End of Inlined Event Graph Function>;
+L391:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L433:          Temp_int_Loop_Counter_Variable = mint323;
+L460:          goto L51;
+============ END FUNCTION IntArrayToFloatArray ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateStats ==============
+L0:            int32 mint32 = this->mResourceSinkSubsystem->GetNumCoupons();
+L50:           this->mAmountOfCoupons->UpdateCounter(mint32);
+L95:           int32 mint321 = this->mResourceSinkSubsystem->GetNumPointsToNextCoupon();
+L145:          this->mRemainingPoints->UpdateCounter(mint321);
+L190:          float mfloat = this->mResourceSinkSubsystem->GetProgressionTowardsNextCoupon();
+L240:          float mfloat1 = Multiply_FloatFloat(mfloat, 100);
+L282:          int32 mint322 = FFloor(mfloat1);
+L319:          this->mPercentToNextText->UpdateCounter(mint322);
+L364:          float mfloat2 = this->mResourceSinkSubsystem->GetProgressionTowardsNextCoupon();
+L414:          int32 mint323 = this->mResourceSinkSubsystem->GetNumCoupons();
+L464:          bool mbool = Greater_IntInt(mint323, this->mLastAmountOfCoupons);
+L502:          this->mPercentToNextBar->mSetPercent(mfloat2, mbool);
+L556:          int32 mint324 = this->mResourceSinkSubsystem->GetNumCoupons();
+L606:          bool mbool1 = Greater_IntInt(mint324, 0);
+L640:          this->mPrintButton->SetEnabled(mbool1);
+L685:          TArray<int32> mTArray<int32> = this->mResourceSinkSubsystem->GetGlobalPointHistory();
+L735:          this->IntArrayToFloatArray([ref] mTArray<int32>, [ref] mTArray<float>);
+L767:          this->BPW_ResourceSink_Graph->UpdateOrAddGraphLine("Global", "[object Object]", ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1), [ref] mTArray<float>);
+L899:          int32 mint325 = this->mResourceSinkSubsystem->GetNumCoupons();
+L949:          bool mbool2 = Greater_IntInt(mint325, this->mLastAmountOfCoupons);
+L987:          if (!mbool2) goto L1248;
+L1001:         int32 mint326 = this->mResourceSinkSubsystem->GetNumCoupons();
+L1051:         this->mLastAmountOfCoupons = mint326;
+L1078:         this->mProgressBarShine->PlayShineAnim();
+L1114:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ProgressBarPulse, 0, 1, 0, 1);
+L1160:         int32 mint327 = RandomIntegerInRange(25, 30);
+L1198:         this->Widget_GenericParticleSpawner->CreateParticles(mint327);
+L1243:         <End of Inlined Event Graph Function>;
+L1248:         mint326 = this->mResourceSinkSubsystem->GetNumCoupons();
+L1298:         this->mLastAmountOfCoupons = mint326;
+============ END FUNCTION UpdateStats ==============
+
+
+
+
+
+============ BEGIN FUNCTION Cleanup ==============
+L0:            this->Widget_Window_DarkMode->OnClose->Clear();
+L32:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L56:           BPHUDHelpers->GetDefaultRCO(mPlayerController, this, [ref] mBP_RemoteCallObject);
+L111:          mBP_RemoteCallObject->Server_ReturnUnclaimedCoupons(this->mResourceSink);
+============ END FUNCTION Cleanup ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSink(2130);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_GlowingFactoryButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSink(69);
+============ END FUNCTION BndEvt__Widget_GlowingFactoryButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__BPW_ResourceSinkCoupon_K2Node_ComponentBoundEvent_1_OnPrintCompleted__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSink(527);
+============ END FUNCTION BndEvt__BPW_ResourceSinkCoupon_K2Node_ComponentBoundEvent_1_OnPrintCompleted__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCustomTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/UI/BPW_ResourceSink.BPW_ResourceSink_C:ExecuteUbergraph_BPW_ResourceSink.K2Node_Event_UpdateTime) = UpdateTime;
+L18:           this->ExecuteUbergraph_BPW_ResourceSink(695);
+============ END FUNCTION OnCustomTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__BPW_ResourceSinkCoupon_K2Node_ComponentBoundEvent_2_OnPrintPaused__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSink(700);
+============ END FUNCTION BndEvt__BPW_ResourceSinkCoupon_K2Node_ComponentBoundEvent_2_OnPrintPaused__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnItemAddedToInventory ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/UI/BPW_ResourceSink.BPW_ResourceSink_C:ExecuteUbergraph_BPW_ResourceSink.K2Node_CustomEvent_itemClass) = ItemClass;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/UI/BPW_ResourceSink.BPW_ResourceSink_C:ExecuteUbergraph_BPW_ResourceSink.K2Node_CustomEvent_numAdded) = numAdded;
+L36:           this->ExecuteUbergraph_BPW_ResourceSink(1449);
+============ END FUNCTION OnItemAddedToInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSink(1718);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mResourceSink_K2Node_ComponentBoundEvent_3_BuildingStateChanged__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/UI/BPW_ResourceSink.BPW_ResourceSink_C:ExecuteUbergraph_BPW_ResourceSink.K2Node_ComponentBoundEvent_state) = State;
+L18:           this->ExecuteUbergraph_BPW_ResourceSink(1723);
+============ END FUNCTION BndEvt__mResourceSink_K2Node_ComponentBoundEvent_3_BuildingStateChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_4_OnStandbyClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSink(1738);
+============ END FUNCTION BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_4_OnStandbyClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_ResourceSink ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->mLed->SetVisibility(2);
+L53:           goto ExecutionFlow.Pop();
+L54:           this->UpdateStats();
+L68:           goto ExecutionFlow.Pop();
+L69:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L93:           BPHUDHelpers->GetDefaultRCO(mPlayerController, this, [ref] mBP_RemoteCallObject);
+L148:          int32 mint32 = this->mResourceSinkSubsystem->GetNumCoupons();
+L198:          mBP_RemoteCallObject->Server_ClaimCoupons(this->mResourceSink, mint32);
+L252:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L276:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_ResourceSink_Ticket, mPlayerController1, true);
+L337:          goto ExecutionFlow.Pop();
+L338:          this->mPrintedCoupon->PrintCoupon();
+L374:          this->mPrintButton->SetEnabled(false);
+L411:          this->mLed->SetVisibility(3);
+L449:          int32 mint321 = this->mResourceSinkSubsystem->GetNumCoupons();
+L499:          this->mLastAmountOfCoupons = mint321;
+L526:          goto ExecutionFlow.Pop();
+L527:          this->mLed->SetVisibility(2);
+L565:          int32 mint322 = this->mResourceSinkSubsystem->GetNumCoupons();
+L615:          bool mbool = Greater_IntInt(mint322, 0);
+L649:          this->mPrintButton->SetEnabled(mbool);
+L694:          goto ExecutionFlow.Pop();
+L695:          goto L54;
+L700:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L724:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_ResourceSink_Pling, mPlayerController2, true);
+L785:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 2001196783, ExecutionFunction = "ExecuteUbergraph_BPW_ResourceSink", CallbackTarget = this));
+L861:          goto ExecutionFlow.Pop();
+L862:          PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L886:          FGResourceSinkSubsystem* mFGResourceSinkSubsystem = FGResourceSinkSubsystem->Get(mPlayerController3);
+L937:          this->mResourceSinkSubsystem = mFGResourceSinkSubsystem;
+L956:          int32 mint323 = this->mResourceSinkSubsystem->GetNumCoupons();
+L1006:         this->mLastAmountOfCoupons = mint323;
+L1033:         FGInventoryComponent* mFGInventoryComponent = this->mResourceSink->GetCouponInventory();
+L1075:         this->mPrintedCoupon->InitInventorySlot(mFGInventoryComponent);
+L1120:         mFScriptDelegate->BindUFunction(this, OnInventorySlotStackMove);
+L1143:         this->mPrintedCoupon->mCouponSlot->OnMoveStack.AddUnique(mFScriptDelegate);
+L1206:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ProgressBarIdle, 0, 0, 0, 1);
+L1252:         int32 mint324 = this->mResourceSinkSubsystem->GetNumCoupons();
+L1302:         this->mAmountOfCoupons->UpdateCounter(mint324);
+L1347:         this->UpdatePowerWarning();
+L1361:         bool mbool1 = this->mResourceSink->IsProductionPaused();
+L1403:         this->Widget_StandbyButton->SetStandbyButtonBrush(mbool1);
+L1448:         goto ExecutionFlow.Pop();
+L1449:         goto L338;
+L1454:         mFScriptDelegate1->BindUFunction(this, OnItemAddedToInventory);
+L1477:         FGInventoryComponent* mFGInventoryComponent1 = this->mResourceSink->GetCouponInventory();
+L1519:         mFGInventoryComponent1->OnItemAddedDelegate.AddUnique(mFScriptDelegate1);
+L1560:         mFScriptDelegate2->BindUFunction(this, OnEscapePressed);
+L1583:         this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate2);
+L1624:         goto L862;
+L1629:         Build_ResourceSink* mBuild_ResourceSink = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/ResourceSink/Build_ResourceSink.Build_ResourceSink_C>(this->mInteractObject);
+L1665:         bool mbool2 = mBuild_ResourceSink;
+L1694:         this->mResourceSink = mBuild_ResourceSink;
+L1713:         goto L1454;
+L1718:         goto L1629;
+L1723:         this->UpdatePowerWarning();
+L1737:         goto ExecutionFlow.Pop();
+L1738:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
+L1762:         FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController4);
+L1798:         bool mbool3 = mFGPlayerController;
+L1827:         if (!mbool3) goto ExecutionFlow.Pop();
+L1837:         BP_RemoteCallObject* mBP_RemoteCallObject1 = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L1888:         bool mbool4 = this->mResourceSink->IsProductionPaused();
+L1930:         bool mbool5 = Not_PreBool(mbool4);
+L1959:         mBP_RemoteCallObject1->Server_SetIsProductionPausedOnFactory(this->mResourceSink, mbool5);
+L2013:         mbool4 = this->mResourceSink->IsProductionPaused();
+L2055:         this->Widget_StandbyButton->SetStandbyButtonBrush(mbool4);
+L2100:         this->UpdatePowerWarning();
+L2114:         goto ExecutionFlow.Pop();
+L2115:         this->Cleanup();
+L2129:         goto ExecutionFlow.Pop();
+L2130:         goto L2115;
+============ END FUNCTION ExecuteUbergraph_BPW_ResourceSink ==============

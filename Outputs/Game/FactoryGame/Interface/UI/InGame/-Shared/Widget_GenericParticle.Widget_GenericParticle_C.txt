@@ -1,0 +1,99 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_GenericParticle.Widget_GenericParticle_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_GenericParticle(10);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_GenericParticle.Widget_GenericParticle_C:ExecuteUbergraph_Widget_GenericParticle.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_GenericParticle.Widget_GenericParticle_C:ExecuteUbergraph_Widget_GenericParticle.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_GenericParticle(1817);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_GenericParticle ==============
+L10:           mSlateBrush.ImageSize = this->mParticle->Brush.ImageSize;
+L77:           mSlateBrush.Margin = this->mParticle->Brush.Margin;
+L144:          mSlateBrush.TintColor = this->mParticle->Brush.TintColor;
+L211:          mSlateBrush.ResourceObject = this->mParticleTexture;
+L239:          mSlateBrush.DrawAs = this->mParticle->Brush.DrawAs;
+L306:          mSlateBrush.Tiling = this->mParticle->Brush.Tiling;
+L373:          mSlateBrush.Mirroring = this->mParticle->Brush.Mirroring;
+L440:          this->mParticle->SetBrush([ref] mSlateBrush);
+L485:          this->mParticle->SetBrushSize(this->mParticleSize);
+L526:          int32 mint32 = RandomIntegerInRange(0, 1);
+L564:          int32 mint321 = RandomIntegerInRange(0, 1);
+L602:          float mfloat = Conv_IntToFloat(mint32);
+L639:          float mfloat1 = Conv_IntToFloat(mint321);
+L676:          BreakVector2D(this->mMaxDistance, [ref] mfloat2, [ref] mfloat3);
+L713:          float mfloat4 = RandomFloatInRange(0, mfloat3);
+L755:          float mfloat5 = Multiply_FloatFloat(Subtract_FloatFloat(Multiply_FloatFloat(mfloat1, 2), 1), mfloat4);
+L831:          float mfloat6 = RandomFloatInRange(0, mfloat2);
+L873:          float mfloat7 = Multiply_FloatFloat(Subtract_FloatFloat(Multiply_FloatFloat(mfloat, 2), 1), mfloat6);
+L949:          Vector2D mVector2D = MakeVector2D(mfloat7, mfloat5);
+L995:          this->mTargetPosition = mVector2D;
+L1022:         float mfloat8 = RandomFloatInRange(0.800000011920929, 1.2000000476837158);
+L1060:         Vector2D mVector2D1 = MakeVector2D(mfloat8, mfloat8);
+L1106:         this->mParticleScale = mVector2D1;
+L1133:         this->mParticle->SetRenderScale(this->mParticleScale);
+L1174:         float mfloat9 = RandomFloatInRange(0.10000000149011612, this->mRotation);
+L1216:         float mfloat10 = Multiply_FloatFloat(mfloat9, -1);
+L1258:         int32 mint322 = RandomIntegerInRange(0, 1);
+L1296:         int32 Temp_int_Variable = mint322;
+L1323:         float mfloat11 = Divide_FloatFloat(switch (Temp_int_Variable) {
+case 0 -> mfloat9;
+case 1 -> mfloat10;
+default -> mfloat12;
+}, 2);
+L1417:         this->mMinRot = mfloat11;
+L1444:         mfloat9 = RandomFloatInRange(0.10000000149011612, this->mRotation);
+L1486:         mfloat10 = Multiply_FloatFloat(mfloat9, -1);
+L1528:         mint322 = RandomIntegerInRange(0, 1);
+L1566:         Temp_int_Variable = mint322;
+L1593:         mfloat11 = Divide_FloatFloat(switch (Temp_int_Variable) {
+case 0 -> mfloat9;
+case 1 -> mfloat10;
+default -> mfloat12;
+}, 2);
+L1687:         float mfloat13 = Add_FloatFloat(switch (Temp_int_Variable) {
+case 0 -> mfloat9;
+case 1 -> mfloat10;
+default -> mfloat12;
+}, mfloat11);
+L1785:         this->mMaxRot = mfloat13;
+L1812:         <End of Inlined Event Graph Function>;
+L1817:         float mfloat14 = Divide_FloatFloat(mfloat15, this->mSpeed);
+L1863:         float mfloat16 = Add_FloatFloat(mfloat14, this->T);
+L1909:         this->T = mfloat16;
+L1936:         BreakVector2D(this->mTargetPosition, [ref] mfloat17, [ref] mfloat18);
+L1973:         float mfloat19 = Ease(0, mfloat17, this->T, 6, 5, 2);
+L2036:         float mfloat20 = Ease(0, mfloat18, this->T, 6, 5, 2);
+L2099:         Vector2D mVector2D2 = MakeVector2D(mfloat19, mfloat20);
+L2145:         this->CurrentPosition = mVector2D2;
+L2172:         float mfloat21 = Ease(this->mMinRot, this->mMaxRot, this->T, 6, 3, 2);
+L2239:         this->mParticle->SetRenderAngle(mfloat21);
+L2280:         this->mParticle->SetRenderTranslation(this->CurrentPosition);
+L2321:         float mfloat22 = Ease(0, 1, this->T, 6, 3, 2);
+L2380:         LinearColor mLinearColor = LinearColorLerp(this->mStartTint, this->mEndTint, mfloat22);
+L2435:         mSlateColor.SpecifiedColor = mLinearColor;
+L2471:         mSlateColor.ColorUseRule = 0;
+L2500:         this->mParticle->SetBrushTintColor(mSlateColor);
+L2541:         float mfloat23 = Ease(1, 0, this->T, 6, 1, 2);
+L2600:         this->SetRenderOpacity(mfloat23);
+L2619:         bool mbool = Greater_FloatFloat(this->T, 1);
+L2653:         if (!mbool) goto L2681;
+L2667:         this->RemoveFromParent();
+============ END FUNCTION ExecuteUbergraph_Widget_GenericParticle ==============

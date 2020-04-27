@@ -1,0 +1,309 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_NewsFeed.Widget_NewsFeed_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetStringFromTag ==============
+L0:            FString mFString = KismetStringLibrary->Concat_StrStr("</", TagName);
+L63:           FString mFString1 = KismetStringLibrary->Concat_StrStr("<", TagName);
+L125:          FString mFString2 = KismetStringLibrary->Concat_StrStr(mFString, ">");
+L187:          FString mFString3 = KismetStringLibrary->Concat_StrStr(mFString1, ">");
+L249:          bool mbool = KismetStringLibrary->Split(SourceString, mFString3, [ref] mFString4, [ref] mFString5, 1, 0);
+L331:          bool mbool1 = KismetStringLibrary->Split(mFString5, mFString2, [ref] mFString6, [ref] mFString7, 1, 0);
+L413:          FString mFString8 = KismetStringLibrary->Concat_StrStr(mFString4, mFString7);
+L481:          bool mbool2 = BooleanAND(mbool1, mbool);
+L519:          bool Temp_bool_Variable = mbool2;
+L538:          FString OutString = mFString6;
+L565:          FString OutSource = switch (Temp_bool_Variable) {
+case false -> SourceString;
+case true -> mFString8;
+default -> mFString9;
+};
+L636:          bool success = mbool2;
+============ END FUNCTION GetStringFromTag ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNewsHeaderText ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mNewsFeedActor);
+L51:           if (!mbool) goto L308;
+L65:           FText mFText = KismetSystemLibrary->MakeLiteralText();
+L117:          bool mbool1 = KismetTextLibrary->NotEqual_IgnoreCase_TextText([ref] this->mNewsFeedActor->mNewFeedText, [ref] mFText);
+L199:          if (!mbool1) goto L333;
+L213:          this->GetHeaderAndBody(this->mNewsFeedActor->mNewFeedText, [ref] mFText1, [ref] mFText2);
+L276:          FText ReturnValue = mFText1;
+L303:          goto L360;
+L308:          ReturnValue = ;
+L328:          goto L360;
+L333:          ReturnValue = this->mNewsTextHeader;
+============ END FUNCTION GetNewsHeaderText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetHeaderAndBody ==============
+L0:            FString mFString = KismetTextLibrary->Conv_TextToString([ref] InText);
+L59:           bool mbool = KismetStringLibrary->Split(mFString, "<title>", [ref] mFString1, [ref] mFString2, 1, 0);
+L141:          bool mbool1 = KismetStringLibrary->Split(mFString2, "</title>", [ref] mFString3, [ref] mFString4, 1, 0);
+L224:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString3);
+L283:          FString mFString5 = KismetStringLibrary->Concat_StrStr(mFString1, mFString4);
+L351:          FText mFText1 = KismetTextLibrary->TextToUpper([ref] mFText);
+L410:          bool mbool2 = KismetStringLibrary->Split(mFString5, "<body>", [ref] mFString6, [ref] mFString7, 1, 0);
+L491:          FText mFText2 = KismetTextLibrary->Conv_StringToText(mFString7);
+L550:          FText Header = mFText1;
+L577:          FText Body = mFText2;
+============ END FUNCTION GetHeaderAndBody ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNewsBodyText ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mNewsFeedActor);
+L51:           if (!mbool) goto L308;
+L65:           FText mFText = KismetSystemLibrary->MakeLiteralText();
+L117:          bool mbool1 = KismetTextLibrary->NotEqual_IgnoreCase_TextText([ref] this->mNewsFeedActor->mNewFeedText, [ref] mFText);
+L199:          if (!mbool1) goto L333;
+L213:          this->GetHeaderAndBody(this->mNewsFeedActor->mNewFeedText, [ref] mFText1, [ref] mFText2);
+L276:          FText ReturnValue = mFText2;
+L303:          goto L360;
+L308:          ReturnValue = ;
+L328:          goto L360;
+L333:          ReturnValue = this->mNewsTextBody;
+============ END FUNCTION GetNewsBodyText ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFail_74A37E23495D65D8B1428F9D6302EA77 ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_NewsFeed.Widget_NewsFeed_C:ExecuteUbergraph_Widget_NewsFeed.K2Node_CustomEvent_Texture1) = Texture;
+L18:           this->ExecuteUbergraph_Widget_NewsFeed(4054);
+============ END FUNCTION OnFail_74A37E23495D65D8B1428F9D6302EA77 ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSuccess_74A37E23495D65D8B1428F9D6302EA77 ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_NewsFeed.Widget_NewsFeed_C:ExecuteUbergraph_Widget_NewsFeed.K2Node_CustomEvent_Texture) = Texture;
+L18:           this->ExecuteUbergraph_Widget_NewsFeed(1357);
+============ END FUNCTION OnSuccess_74A37E23495D65D8B1428F9D6302EA77 ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_NewsFeed(874);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION FindNewsFeedActor ==============
+L0:            this->ExecuteUbergraph_Widget_NewsFeed(1233);
+============ END FUNCTION FindNewsFeedActor ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnNewsTextReceived ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/Menu/Widget_NewsFeed.Widget_NewsFeed_C:ExecuteUbergraph_Widget_NewsFeed.K2Node_CustomEvent_NewsText1) = NewsText;
+L18:           this->ExecuteUbergraph_Widget_NewsFeed(1238);
+============ END FUNCTION OnNewsTextReceived ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_NewsFeed.Widget_NewsFeed_C:ExecuteUbergraph_Widget_NewsFeed.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_NewsFeed(1352);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_NewsFeed(1423);
+============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_NewsFeed(1470);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_NewsFeed(1517);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ParseText ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/Menu/Widget_NewsFeed.Widget_NewsFeed_C:ExecuteUbergraph_Widget_NewsFeed.K2Node_CustomEvent_NewsText) = NewsText;
+L18:           this->ExecuteUbergraph_Widget_NewsFeed(1522);
+============ END FUNCTION ParseText ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_NewsFeed(4012);
+============ END FUNCTION BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_NewsFeed ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->FindNewsFeedActor();
+L29:           goto ExecutionFlow.Pop();
+L30:           KismetSystemLibrary->LaunchURL(this->mHeaderURL);
+L71:           goto ExecutionFlow.Pop();
+L72:           ExecutionFlow.Push(L167);
+L77:           KismetArrayLibrary->Array_Get([ref] mTArray<FGNewsFeedActor>, Temp_int_Array_Index_Variable, [ref] mFGNewsFeedActor);
+L136:          this->mNewsFeedActor = mFGNewsFeedActor;
+L155:          bool Temp_bool_True_if_break_was_hit_Variable = true;
+L166:          goto ExecutionFlow.Pop();
+L167:          int32 mint32 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L209:          int32 Temp_int_Loop_Counter_Variable = mint32;
+L236:          bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L265:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<FGNewsFeedActor>);
+L324:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L362:          bool mbool2 = BooleanAND(mbool, mbool1);
+L400:          if (!mbool2) goto L446;
+L414:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L441:          goto L72;
+L446:          bool mbool3 = KismetSystemLibrary->IsValid(this->mNewsFeedActor);
+L497:          if (!mbool3) goto L674;
+L511:          this->FoundNewsActor = true;
+L522:          bool mbool4 = KismetTextLibrary->TextIsEmpty([ref] this->mNewsFeedActor->mNewFeedText);
+L595:          if (!mbool4) goto L766;
+L609:          mFScriptDelegate->BindUFunction(this, ParseText);
+L632:          this->mNewsFeedActor->mOnNewsReceived.AddUnique(mFScriptDelegate);
+L673:          goto ExecutionFlow.Pop();
+L674:          if (!this->FoundNewsActor) goto L689;
+L688:          goto ExecutionFlow.Pop();
+L689:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 310361445, ExecutionFunction = "ExecuteUbergraph_Widget_NewsFeed", CallbackTarget = this));
+L765:          goto ExecutionFlow.Pop();
+L766:          this->ParseText(this->mNewsFeedActor->mNewFeedText);
+L811:          goto ExecutionFlow.Pop();
+L812:          Temp_bool_True_if_break_was_hit_Variable = false;
+L823:          Temp_int_Loop_Counter_Variable = 0;
+L846:          Temp_int_Array_Index_Variable = 0;
+L869:          goto L236;
+L874:          Transform mTransform = MakeTransform(Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1));
+L941:          Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, FGNewsFeedActor, [ref] mTransform, 0, nullptr);
+L1005:         mTransform = MakeTransform(Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1));
+L1072:         FGNewsFeedActor* mFGNewsFeedActor1 = GameplayStatics->FinishSpawningActor(mActor, [ref] mTransform);
+L1132:         this->mNewsFeedActor = mFGNewsFeedActor1;
+L1151:         this->FindNewsFeedActor();
+L1165:         goto ExecutionFlow.Pop();
+L1166:         TArray<FGNewsFeedActor*> mTArray<FGNewsFeedActor> = [];
+L1177:         GameplayStatics->GetAllActorsOfClass(this, FGNewsFeedActor, [ref] mTArray<FGNewsFeedActor>);
+L1228:         goto L812;
+L1233:         goto L1166;
+L1238:         this->mNewsTextHeader = ;
+L1258:         this->mNewsTextBody = ;
+L1278:         FText mFText = this->GetNewsBodyText();
+L1310:         this->RichTextBlock_0->SetText([ref] mFText);
+L1351:         goto ExecutionFlow.Pop();
+L1352:         goto L874;
+L1357:         Texture2DDynamic* Temp_object_Variable = mTexture2DDynamic;
+L1376:         this->mNewsImage->SetBrushFromTextureDynamic(Temp_object_Variable, true);
+L1422:         goto ExecutionFlow.Pop();
+L1423:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->OnHover, 0, 1, 0, 1);
+L1469:         goto ExecutionFlow.Pop();
+L1470:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->OnHover, 0, 1, 1, 1);
+L1516:         goto ExecutionFlow.Pop();
+L1517:         goto L30;
+L1522:         FString Temp_string_Variable1 = "https://www.satisfactorygame.com/";
+L1575:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText1);
+L1634:         this->GetStringFromTag("img", mFString, [ref] mFString1, [ref] mFString2, [ref] mbool5);
+L1689:         this->GetStringFromTag("headerURL", mFString2, [ref] mFString3, [ref] mFString4, [ref] mbool6);
+L1750:         bool Temp_bool_Variable3 = mbool6;
+L1769:         this->mHeaderURL = switch (Temp_bool_Variable3) {
+case false -> Temp_string_Variable1;
+case true -> mFString3;
+default -> mFString5;
+};
+L1840:         FText Temp_text_Variable = "[object Object]";
+L1907:         mFString = KismetTextLibrary->Conv_TextToString([ref] mFText1);
+L1966:         this->GetStringFromTag("img", mFString, [ref] mFString1, [ref] mFString2, [ref] mbool5);
+L2021:         this->GetStringFromTag("linkName", mFString2, [ref] mFString6, [ref] mFString7, [ref] mbool7);
+L2081:         bool Temp_bool_Variable1 = mbool7;
+L2100:         FText mFText2 = KismetTextLibrary->Conv_StringToText(mFString6);
+L2159:         this->mLinkButton->SetTitle(switch (Temp_bool_Variable1) {
+case false -> Temp_text_Variable;
+case true -> mFText2;
+default -> mFText3;
+});
+L2248:         FString Temp_string_Variable = "https://www.satisfactorygame.com/";
+L2301:         mFString = KismetTextLibrary->Conv_TextToString([ref] mFText1);
+L2360:         this->GetStringFromTag("img", mFString, [ref] mFString1, [ref] mFString2, [ref] mbool5);
+L2415:         this->GetStringFromTag("linkName", mFString2, [ref] mFString6, [ref] mFString7, [ref] mbool7);
+L2475:         this->GetStringFromTag("linkURL", mFString7, [ref] mFString8, [ref] mFString9, [ref] mbool8);
+L2534:         bool Temp_bool_Variable2 = mbool8;
+L2553:         this->mLinkURL = switch (Temp_bool_Variable2) {
+case false -> Temp_string_Variable;
+case true -> mFString8;
+default -> mFString10;
+};
+L2624:         mFString = KismetTextLibrary->Conv_TextToString([ref] mFText1);
+L2683:         this->GetStringFromTag("img", mFString, [ref] mFString1, [ref] mFString2, [ref] mbool5);
+L2738:         bool mbool9 = KismetStringLibrary->Contains(mFString1, "http", false, false);
+L2797:         bool Temp_bool_Variable = mbool9;
+L2816:         FString mFString11 = KismetStringLibrary->Concat_StrStr("http://ingamenews.satisfactorygame.com/SatisfactoryImages/", mFString1);
+L2935:         AsyncTaskDownloadImage* mAsyncTaskDownloadImage = AsyncTaskDownloadImage->DownloadImage(switch (Temp_bool_Variable) {
+case false -> mFString11;
+case true -> mFString1;
+default -> mFString12;
+});
+L3030:         bool mbool10 = KismetSystemLibrary->IsValid(mAsyncTaskDownloadImage);
+L3081:         if (!mbool10) goto L3259;
+L3095:         mFScriptDelegate1->BindUFunction(this, OnSuccess_74A37E23495D65D8B1428F9D6302EA77);
+L3118:         mAsyncTaskDownloadImage->OnSuccess.AddUnique(mFScriptDelegate1);
+L3159:         mFScriptDelegate2->BindUFunction(this, OnFail_74A37E23495D65D8B1428F9D6302EA77);
+L3182:         mAsyncTaskDownloadImage->OnFail.AddUnique(mFScriptDelegate2);
+L3223:         mAsyncTaskDownloadImage->Activate();
+L3259:         mFString = KismetTextLibrary->Conv_TextToString([ref] mFText1);
+L3318:         this->GetStringFromTag("img", mFString, [ref] mFString1, [ref] mFString2, [ref] mbool5);
+L3373:         this->GetStringFromTag("linkName", mFString2, [ref] mFString6, [ref] mFString7, [ref] mbool7);
+L3433:         this->GetStringFromTag("linkURL", mFString7, [ref] mFString8, [ref] mFString9, [ref] mbool8);
+L3492:         FText mFText4 = KismetTextLibrary->Conv_StringToText(mFString9);
+L3551:         this->GetHeaderAndBody(mFText4, [ref] mFText5, [ref] mFText6);
+L3592:         this->mHeadline->SetText(mFText5);
+L3637:         mFString = KismetTextLibrary->Conv_TextToString([ref] mFText1);
+L3696:         this->GetStringFromTag("img", mFString, [ref] mFString1, [ref] mFString2, [ref] mbool5);
+L3751:         this->GetStringFromTag("linkName", mFString2, [ref] mFString6, [ref] mFString7, [ref] mbool7);
+L3811:         this->GetStringFromTag("linkURL", mFString7, [ref] mFString8, [ref] mFString9, [ref] mbool8);
+L3870:         mFText4 = KismetTextLibrary->Conv_StringToText(mFString9);
+L3929:         this->GetHeaderAndBody(mFText4, [ref] mFText5, [ref] mFText6);
+L3970:         this->RichTextBlock_0->SetText([ref] mFText6);
+L4011:         goto ExecutionFlow.Pop();
+L4012:         KismetSystemLibrary->LaunchURL(this->mLinkURL);
+L4053:         goto ExecutionFlow.Pop();
+L4054:         Temp_object_Variable = mTexture2DDynamic1;
+L4073:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_NewsFeed ==============

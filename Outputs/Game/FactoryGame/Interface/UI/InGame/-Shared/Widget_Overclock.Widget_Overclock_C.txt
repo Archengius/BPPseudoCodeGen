@@ -1,0 +1,916 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetUnlockedOverclockSlots ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGUnlockSubsystem* mFGUnlockSubsystem = FGUnlockSubsystem->Get(mPlayerController);
+L75:           bool mbool = mFGUnlockSubsystem->GetIsBuildingOverclockUnlocked();
+L117:          bool Temp_bool_Variable = mbool;
+L136:          TArray<Widget_InventorySlot*> mTArray<Widget_InventorySlot> = [this->CostSlot_0->Widget_InventorySlot, this->CostSlot_1->Widget_InventorySlot, this->CostSlot_2->Widget_InventorySlot];
+L240:          TArray<Widget_InventorySlot*> Slots = switch (Temp_bool_Variable) {
+case false -> Temp_object_Variable;
+case true -> mTArray<Widget_InventorySlot>;
+default -> mTArray<Widget_InventorySlot>1;
+};
+============ END FUNCTION GetUnlockedOverclockSlots ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSuffix ==============
+L0:            this->mTargetProductionSpeedText_Suffix = suffix;
+L27:           mFormatArgumentData.ArgumentName = "suffix";
+L62:           mFormatArgumentData.ArgumentValueType = 4;
+L91:           mFormatArgumentData.ArgumentValue = this->mTargetProductionSpeedText_Suffix;
+L127:          mFormatArgumentData.ArgumentValueInt = 0;
+L159:          mFormatArgumentData.ArgumentValueFloat = 0;
+L191:          mFormatArgumentData.ArgumentValueGender = 0;
+L220:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L240:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L348:          this->mPartsPerMinuteText->SetText(mFText);
+============ END FUNCTION SetSuffix ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTargetProductionSpeed ==============
+L0:            float mfloat = FGInventoryLibrary->GetConversionScalarByForm(this->mResourceForm);
+L59:           this->ScaleToOverclock(this->mOverclockAmount, [ref] mfloat1);
+L91:           float mfloat2 = Multiply_FloatFloat(mfloat1, this->mDefaultProductionSpeed);
+L137:          float mfloat3 = Multiply_FloatFloat(mfloat2, mfloat);
+L183:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat3, 0, false, true, 1, 324, 0, 2);
+L266:          this->mPartsPerMinutesInput->SetText(mFText);
+============ END FUNCTION UpdateTargetProductionSpeed ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetDefaultProductionSpeed ==============
+L0:            FGBuildableManufacturer* mFGBuildableManufacturer = Cast<Class /Script/FactoryGame.FGBuildableManufacturer>(this->mBuildableFactory);
+L36:           bool mbool = mFGBuildableManufacturer;
+L65:           if (!mbool) goto L834;
+L79:           TSubclassOf<FGRecipe> mTSubclassOf<FGRecipe> = mFGBuildableManufacturer->GetCurrentRecipe();
+L121:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGRecipe>);
+L172:          if (!mbool1) goto L1676;
+L186:          mTSubclassOf<FGRecipe> = mFGBuildableManufacturer->GetCurrentRecipe();
+L228:          float mfloat = FGRecipe->GetManufacturingDuration(mTSubclassOf<FGRecipe>);
+L287:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(mTSubclassOf<FGRecipe>, false);
+L347:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L402:          float mfloat1 = Conv_IntToFloat(mItemAmount.amount);
+L448:          float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L494:          float mfloat3 = Divide_FloatFloat(60, mfloat2);
+L536:          this->mDefaultProductionSpeed = mfloat3;
+L563:          mTSubclassOf<FGRecipe> = mFGBuildableManufacturer->GetCurrentRecipe();
+L605:          mTArray<ItemAmount> = FGRecipe->GetProducts(mTSubclassOf<FGRecipe>, false);
+L665:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L720:          uint8 muint8 = FGItemDescriptor->GetForm(mItemAmount.ItemClass);
+L788:          this->mResourceForm = muint8;
+L815:          this->UpdateTargetProductionSpeed();
+L829:          <End of Inlined Event Graph Function>;
+L834:          FGBuildableGeneratorFuel* mFGBuildableGeneratorFuel = Cast<Class /Script/FactoryGame.FGBuildableGeneratorFuel>(this->mBuildableFactory);
+L870:          bool mbool2 = mFGBuildableGeneratorFuel;
+L899:          if (!mbool2) goto L1029;
+L913:          float mfloat4 = mFGBuildableGeneratorFuel->GetDefaultPowerProductionCapacity();
+L963:          this->mDefaultProductionSpeed = mfloat4;
+L990:          this->mResourceForm = 0;
+L1010:         this->UpdateTargetProductionSpeed();
+L1024:         <End of Inlined Event Graph Function>;
+L1029:         FGBuildableResourceExtractor* mFGBuildableResourceExtractor = Cast<Class /Script/FactoryGame.FGBuildableResourceExtractor>(this->mBuildableFactory);
+L1065:         bool mbool3 = mFGBuildableResourceExtractor;
+L1094:         if (!mbool3) goto L1534;
+L1108:         int32 mint32 = mFGBuildableResourceExtractor->GetNumExtractedItemsPerCycle();
+L1158:         float mfloat5 = mFGBuildableResourceExtractor->CalcProductionCycleTimeForPotential(1);
+L1217:         float mfloat6 = Divide_FloatFloat(60, mfloat5);
+L1259:         float mfloat7 = Multiply_IntFloat(mint32, mfloat6);
+L1305:         this->mDefaultProductionSpeed = mfloat7;
+L1332:         TScriptInterface<FGExtractableResourceInterface> mTScriptInterface<FGExtractableResourceInterface> = mFGBuildableResourceExtractor->GetExtractableResource();
+L1382:         TSubclassOf<FGResourceDescriptor> mTSubclassOf<FGResourceDescriptor> = GetInterfaceUObject(mTScriptInterface<FGExtractableResourceInterface>)->GetResourceClass();
+L1429:         uint8 muint81 = FGItemDescriptor->GetForm(mTSubclassOf<FGResourceDescriptor>);
+L1488:         this->mResourceForm = muint81;
+L1515:         this->UpdateTargetProductionSpeed();
+L1529:         <End of Inlined Event Graph Function>;
+L1534:         float mfloat8 = this->mBuildableFactory->CalcProductionCycleTimeForPotential(1);
+L1593:         float mfloat9 = Multiply_FloatFloat(mfloat8, 60);
+L1635:         this->mDefaultProductionSpeed = mfloat9;
+L1662:         this->UpdateTargetProductionSpeed();
+============ END FUNCTION SetDefaultProductionSpeed ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonDown ==============
+L0:            this->Widget_UI_ParticleManager->CreateParticle();
+L36:           EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L86:           EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnMouseButtonDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateDropArea ==============
+L0:            KismetArrayLibrary->Array_Clear([ref] this->Widget_InventorySlot_DropArea->mInventorySlots);
+L63:           int32 mint32 = KismetArrayLibrary->Array_Add([ref] this->Widget_InventorySlot_DropArea->mInventorySlots, [ref] NewActiveCostslot->Widget_InventorySlot);
+============ END FUNCTION UpdateDropArea ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetPercentText ==============
+L0:            this->ScaleToOverclock(this->mOverclockAmount, [ref] mfloat);
+L32:           FText mFText = KismetTextLibrary->AsPercent_Float(mfloat, 0, false, true, 1, 324, 0, 0);
+L115:          this->PercentText->SetText(mFText);
+L156:          this->UpdateTargetProductionSpeed();
+============ END FUNCTION SetPercentText ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckIsOverclockUnlocked ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGUnlockSubsystem* mFGUnlockSubsystem = FGUnlockSubsystem->Get(mPlayerController);
+L75:           bool mbool = mFGUnlockSubsystem->GetIsBuildingOverclockUnlocked();
+L117:          if (!mbool) goto L250;
+L131:          this->mOverClockPanel->SetVisibility(0);
+L169:          this->mOverClockPanelLocked->SetVisibility(1);
+L207:          this->Widget_Label->SetVisibility(3);
+L245:          <End of Inlined Event Graph Function>;
+L250:          this->mOverClockPanel->SetVisibility(1);
+L288:          this->mOverClockPanelLocked->SetVisibility(3);
+L326:          this->Widget_Label->SetVisibility(2);
+============ END FUNCTION CheckIsOverclockUnlocked ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetCrystalSlotUsable ==============
+L0:            Widget_CostSlotWrapper* LocalCostSlot = CostSlot;
+L19:           bool mbool = KismetSystemLibrary->IsValid(this->mBuildableFactory);
+L70:           if (!mbool) goto L1219;
+L84:           FGInventoryComponent* mFGInventoryComponent = this->mBuildableFactory->GetPotentialInventory();
+L126:          bool mbool1 = KismetSystemLibrary->IsValid(mFGInventoryComponent);
+L177:          if (!mbool1) goto L1219;
+L191:          LocalCostSlot->mForceEmptyAnim = false;
+L224:          this->IsCrystalSlotEnabled(SlotIndex, [ref] mbool2);
+L256:          if (!mbool2) goto L680;
+L270:          mFGInventoryComponent = this->mBuildableFactory->GetPotentialInventory();
+L312:          bool mbool3 = mFGInventoryComponent->IsSomethingOnIndex(SlotIndex);
+L363:          if (!mbool3) goto L1158;
+L377:          LocalCostSlot->StackSizeOverlay->SetVisibility(3);
+L437:          LocalCostSlot->Widget_InventorySlot->mStackSizeOverlay->SetVisibility(3);
+L519:          LocalCostSlot->SetVisibility(0);
+L557:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L612:          LocalCostSlot->Widget_InventorySlot->SetColorAndOpacity(mLinearColor);
+L675:          <End of Inlined Event Graph Function>;
+L680:          mFGInventoryComponent = this->mBuildableFactory->GetPotentialInventory();
+L722:          mbool3 = mFGInventoryComponent->IsSomethingOnIndex(SlotIndex);
+L773:          if (!mbool3) goto L978;
+L787:          LocalCostSlot->StackSizeOverlay->SetVisibility(3);
+L847:          LocalCostSlot->SetVisibility(3);
+L885:          LocalCostSlot->Widget_InventorySlot->SetColorAndOpacity(ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 0.3499999940395355));
+L973:          <End of Inlined Event Graph Function>;
+L978:          LocalCostSlot->mForceEmptyAnim = true;
+L1011:         LocalCostSlot->Widget_InventorySlot->mStackSizeOverlay->SetVisibility(2);
+L1093:         LocalCostSlot->StackSizeOverlay->SetVisibility(2);
+L1153:         goto L847;
+L1158:         LocalCostSlot->mForceEmptyAnim = true;
+L1191:         this->UpdateDropArea(LocalCostSlot);
+L1214:         goto L377;
+============ END FUNCTION SetCrystalSlotUsable ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsCrystalSlotEnabled ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mBuildableFactory);
+L51:           if (!mbool) goto L726;
+L65:           FGInventoryComponent* mFGInventoryComponent = this->mBuildableFactory->GetPotentialInventory();
+L107:          bool mbool1 = KismetSystemLibrary->IsValid(mFGInventoryComponent);
+L158:          if (!mbool1) goto L726;
+L172:          int32 index = SlotIndex;
+L199:          bool mbool2 = EqualEqual_IntInt(index, 0);
+L233:          if (!mbool2) goto L408;
+L247:          bool previousHasCrystal = true;
+L258:          bool mbool3 = EqualEqual_IntInt(index, 2);
+L292:          if (!mbool3) goto L567;
+L306:          bool nextHasCrystal = false;
+L317:          bool mbool4 = Not_PreBool(nextHasCrystal);
+L346:          bool mbool5 = BooleanAND(previousHasCrystal, mbool4);
+L384:          bool IsEnabled = mbool5;
+L403:          <End of Inlined Event Graph Function>;
+L408:          int32 mint32 = Subtract_IntInt(index, 1);
+L450:          mFGInventoryComponent = this->mBuildableFactory->GetPotentialInventory();
+L492:          bool mbool6 = mFGInventoryComponent->IsSomethingOnIndex(mint32);
+L543:          previousHasCrystal = mbool6;
+L562:          goto L258;
+L567:          int32 mint321 = Add_IntInt(index, 1);
+L609:          FGInventoryComponent* mFGInventoryComponent1 = this->mBuildableFactory->GetPotentialInventory();
+L651:          bool mbool7 = mFGInventoryComponent1->IsSomethingOnIndex(mint321);
+L702:          nextHasCrystal = mbool7;
+L721:          goto L317;
+============ END FUNCTION IsCrystalSlotEnabled ==============
+
+
+
+
+
+============ BEGIN FUNCTION InitCostSlots ==============
+L0:            FGInventoryComponent* mFGInventoryComponent = this->mBuildableFactory->GetPotentialInventory();
+L42:           TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = mFGInventoryComponent->GetAllowedItemOnIndex(idx);
+L93:           bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGItemDescriptor>);
+L144:          if (!mbool) goto L458;
+L158:          mFGInventoryComponent = this->mBuildableFactory->GetPotentialInventory();
+L200:          mTSubclassOf<FGItemDescriptor> = mFGInventoryComponent->GetAllowedItemOnIndex(idx);
+L251:          mItemAmount.ItemClass = mTSubclassOf<FGItemDescriptor>;
+L279:          mItemAmount.amount = 1;
+L311:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mTSubclassOf<FGItemDescriptor>);
+L362:          CostSlot->Setup CostIcon(mTexture2D, mItemAmount, mFGInventoryComponent, idx, 0, false, false, false);
+L442:          bool IsValid = true;
+L453:          <End of Inlined Event Graph Function>;
+L458:          IsValid = false;
+============ END FUNCTION InitCostSlots ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActiveProgressbars ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mBuildableFactory);
+L51:           if (!mbool) goto L5008;
+L65:           float mfloat = this->mBuildableFactory->GetCurrentMaxPotential();
+L115:          this->NormalizeOverclock(mfloat, [ref] mfloat1);
+L147:          bool mbool1 = Greater_FloatFloat(mfloat1, 0.4000000059604645);
+L181:          if (!mbool1) goto L2734;
+L195:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L250:          mSlateBrush.ImageSize = this->ProgressBar_1->WidgetStyle.BackgroundImage.ImageSize;
+L326:          mSlateBrush.Margin = this->ProgressBar_1->WidgetStyle.BackgroundImage.Margin;
+L402:          mSlateBrush.TintColor = mSlateColor;
+L438:          mSlateBrush.ResourceObject = this->ProgressBar_1->WidgetStyle.BackgroundImage.ResourceObject;
+L506:          mSlateBrush.DrawAs = this->ProgressBar_1->WidgetStyle.BackgroundImage.DrawAs;
+L582:          mSlateBrush.Tiling = this->ProgressBar_1->WidgetStyle.BackgroundImage.Tiling;
+L658:          mSlateBrush.Mirroring = this->ProgressBar_1->WidgetStyle.BackgroundImage.Mirroring;
+L734:          mProgressBarStyle.BackgroundImage = mSlateBrush;
+L770:          mProgressBarStyle.FillImage = this->ProgressBar_1->WidgetStyle.FillImage;
+L837:          mProgressBarStyle.MarqueeImage = this->ProgressBar_1->WidgetStyle.MarqueeImage;
+L904:          this->ProgressBar_1->WidgetStyle = mProgressBarStyle;
+L953:          mfloat = this->mBuildableFactory->GetCurrentMaxPotential();
+L1003:         this->NormalizeOverclock(mfloat, [ref] mfloat1);
+L1035:         bool mbool2 = Greater_FloatFloat(mfloat1, 0.6000000238418579);
+L1069:         if (!mbool2) goto L3492;
+L1083:         HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L1138:         mSlateBrush1.ImageSize = this->ProgressBar_2->WidgetStyle.BackgroundImage.ImageSize;
+L1214:         mSlateBrush1.Margin = this->ProgressBar_2->WidgetStyle.BackgroundImage.Margin;
+L1290:         mSlateBrush1.TintColor = mSlateColor1;
+L1326:         mSlateBrush1.ResourceObject = this->ProgressBar_2->WidgetStyle.BackgroundImage.ResourceObject;
+L1394:         mSlateBrush1.DrawAs = this->ProgressBar_2->WidgetStyle.BackgroundImage.DrawAs;
+L1470:         mSlateBrush1.Tiling = this->ProgressBar_2->WidgetStyle.BackgroundImage.Tiling;
+L1546:         mSlateBrush1.Mirroring = this->ProgressBar_2->WidgetStyle.BackgroundImage.Mirroring;
+L1622:         mProgressBarStyle1.BackgroundImage = mSlateBrush1;
+L1658:         mProgressBarStyle1.FillImage = this->ProgressBar_2->WidgetStyle.FillImage;
+L1725:         mProgressBarStyle1.MarqueeImage = this->ProgressBar_2->WidgetStyle.MarqueeImage;
+L1792:         this->ProgressBar_2->WidgetStyle = mProgressBarStyle1;
+L1841:         mfloat = this->mBuildableFactory->GetCurrentMaxPotential();
+L1891:         this->NormalizeOverclock(mfloat, [ref] mfloat1);
+L1923:         bool mbool3 = Greater_FloatFloat(mfloat1, 0.800000011920929);
+L1957:         if (!mbool3) goto L4250;
+L1971:         HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor2, [ref] mLinearColor2);
+L2026:         mSlateBrush2.ImageSize = this->ProgressBar_3->WidgetStyle.BackgroundImage.ImageSize;
+L2102:         mSlateBrush2.Margin = this->ProgressBar_3->WidgetStyle.BackgroundImage.Margin;
+L2178:         mSlateBrush2.TintColor = mSlateColor2;
+L2214:         mSlateBrush2.ResourceObject = this->ProgressBar_3->WidgetStyle.BackgroundImage.ResourceObject;
+L2282:         mSlateBrush2.DrawAs = this->ProgressBar_3->WidgetStyle.BackgroundImage.DrawAs;
+L2358:         mSlateBrush2.Tiling = this->ProgressBar_3->WidgetStyle.BackgroundImage.Tiling;
+L2434:         mSlateBrush2.Mirroring = this->ProgressBar_3->WidgetStyle.BackgroundImage.Mirroring;
+L2510:         mProgressBarStyle2.BackgroundImage = mSlateBrush2;
+L2546:         mProgressBarStyle2.FillImage = this->ProgressBar_3->WidgetStyle.FillImage;
+L2613:         mProgressBarStyle2.MarqueeImage = this->ProgressBar_3->WidgetStyle.MarqueeImage;
+L2680:         this->ProgressBar_3->WidgetStyle = mProgressBarStyle2;
+L2729:         <End of Inlined Event Graph Function>;
+L2734:         HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor3, [ref] mLinearColor3);
+L2789:         mSlateBrush3.ImageSize = this->ProgressBar_1->WidgetStyle.BackgroundImage.ImageSize;
+L2865:         mSlateBrush3.Margin = this->ProgressBar_1->WidgetStyle.BackgroundImage.Margin;
+L2941:         mSlateBrush3.TintColor = mSlateColor3;
+L2977:         mSlateBrush3.ResourceObject = this->ProgressBar_1->WidgetStyle.BackgroundImage.ResourceObject;
+L3045:         mSlateBrush3.DrawAs = this->ProgressBar_1->WidgetStyle.BackgroundImage.DrawAs;
+L3121:         mSlateBrush3.Tiling = this->ProgressBar_1->WidgetStyle.BackgroundImage.Tiling;
+L3197:         mSlateBrush3.Mirroring = this->ProgressBar_1->WidgetStyle.BackgroundImage.Mirroring;
+L3273:         mProgressBarStyle3.BackgroundImage = mSlateBrush3;
+L3309:         mProgressBarStyle3.FillImage = this->ProgressBar_1->WidgetStyle.FillImage;
+L3376:         mProgressBarStyle3.MarqueeImage = this->ProgressBar_1->WidgetStyle.MarqueeImage;
+L3443:         this->ProgressBar_1->WidgetStyle = mProgressBarStyle3;
+L3492:         HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor4, [ref] mLinearColor4);
+L3547:         mSlateBrush4.ImageSize = this->ProgressBar_2->WidgetStyle.BackgroundImage.ImageSize;
+L3623:         mSlateBrush4.Margin = this->ProgressBar_2->WidgetStyle.BackgroundImage.Margin;
+L3699:         mSlateBrush4.TintColor = mSlateColor4;
+L3735:         mSlateBrush4.ResourceObject = this->ProgressBar_2->WidgetStyle.BackgroundImage.ResourceObject;
+L3803:         mSlateBrush4.DrawAs = this->ProgressBar_2->WidgetStyle.BackgroundImage.DrawAs;
+L3879:         mSlateBrush4.Tiling = this->ProgressBar_2->WidgetStyle.BackgroundImage.Tiling;
+L3955:         mSlateBrush4.Mirroring = this->ProgressBar_2->WidgetStyle.BackgroundImage.Mirroring;
+L4031:         mProgressBarStyle4.BackgroundImage = mSlateBrush4;
+L4067:         mProgressBarStyle4.FillImage = this->ProgressBar_2->WidgetStyle.FillImage;
+L4134:         mProgressBarStyle4.MarqueeImage = this->ProgressBar_2->WidgetStyle.MarqueeImage;
+L4201:         this->ProgressBar_2->WidgetStyle = mProgressBarStyle4;
+L4250:         HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor5, [ref] mLinearColor5);
+L4305:         mSlateBrush5.ImageSize = this->ProgressBar_3->WidgetStyle.BackgroundImage.ImageSize;
+L4381:         mSlateBrush5.Margin = this->ProgressBar_3->WidgetStyle.BackgroundImage.Margin;
+L4457:         mSlateBrush5.TintColor = mSlateColor5;
+L4493:         mSlateBrush5.ResourceObject = this->ProgressBar_3->WidgetStyle.BackgroundImage.ResourceObject;
+L4561:         mSlateBrush5.DrawAs = this->ProgressBar_3->WidgetStyle.BackgroundImage.DrawAs;
+L4637:         mSlateBrush5.Tiling = this->ProgressBar_3->WidgetStyle.BackgroundImage.Tiling;
+L4713:         mSlateBrush5.Mirroring = this->ProgressBar_3->WidgetStyle.BackgroundImage.Mirroring;
+L4789:         mProgressBarStyle5.BackgroundImage = mSlateBrush5;
+L4825:         mProgressBarStyle5.FillImage = this->ProgressBar_3->WidgetStyle.FillImage;
+L4892:         mProgressBarStyle5.MarqueeImage = this->ProgressBar_3->WidgetStyle.MarqueeImage;
+L4959:         this->ProgressBar_3->WidgetStyle = mProgressBarStyle5;
+============ END FUNCTION SetActiveProgressbars ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetClampedSliderValue ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mBuildableFactory);
+L51:           if (!mbool) goto L533;
+L65:           this->ScaleToOverclock(this->mOverclockAmount, [ref] mfloat);
+L97:           float mfloat1 = Multiply_FloatFloat(mfloat, 100);
+L139:          float mfloat2 = this->mBuildableFactory->GetMinPotential();
+L189:          int32 mint32 = Round(mfloat1);
+L226:          this->NormalizeOverclock(mfloat2, [ref] mfloat3);
+L258:          float mfloat4 = Conv_IntToFloat(mint32);
+L295:          float mfloat5 = this->mBuildableFactory->GetCurrentMaxPotential();
+L345:          float mfloat6 = Divide_FloatFloat(mfloat4, 100);
+L387:          this->NormalizeOverclock(mfloat5, [ref] mfloat7);
+L419:          this->NormalizeOverclock(mfloat6, [ref] mfloat8);
+L451:          float mfloat9 = FClamp(mfloat8, mfloat3, mfloat7);
+L506:          float ClampedOvercklock = mfloat9;
+============ END FUNCTION GetClampedSliderValue ==============
+
+
+
+
+
+============ BEGIN FUNCTION ScaleToOverclock ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mBuildableFactory);
+L51:           if (!mbool) goto L272;
+L65:           float mfloat = this->mBuildableFactory->GetMaxPossiblePotential();
+L115:          float mfloat1 = Subtract_FloatFloat(mfloat, 0);
+L157:          float mfloat2 = Multiply_FloatFloat(Normalized Overclock, mfloat1);
+L203:          float mfloat3 = Add_FloatFloat(mfloat2, 0);
+L245:          float Scaled Overclock = mfloat3;
+============ END FUNCTION ScaleToOverclock ==============
+
+
+
+
+
+============ BEGIN FUNCTION NormalizeOverclock ==============
+L0:            float mfloat = Subtract_FloatFloat(ScaledOverclock, 0);
+L42:           float mfloat1 = this->mBuildableFactory->GetMaxPossiblePotential();
+L92:           float mfloat2 = Subtract_FloatFloat(mfloat1, 0);
+L134:          float mfloat3 = Divide_FloatFloat(mfloat, mfloat2);
+L180:          float NormalizedOverclock = mfloat3;
+============ END FUNCTION NormalizeOverclock ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPercentText ==============
+L0:            this->ScaleToOverclock(this->mOverclockAmount, [ref] mfloat);
+L32:           FText mFText = KismetTextLibrary->AsPercent_Float(mfloat, 0, false, true, 1, 324, 0, 0);
+L115:          FText ReturnValue = mFText;
+============ END FUNCTION GetPercentText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetMAXColor ==============
+L0:            bool mbool = EqualEqual_FloatFloat(this->mOverclockAmount, 1);
+L34:           if (!mbool) goto L170;
+L48:           mSlateColor.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.982250988483429, G = 0.5199300050735474, B = 0, A = 1);
+L109:          mSlateColor.ColorUseRule = 0;
+L138:          SlateColor ReturnValue = mSlateColor;
+L165:          goto L252;
+L170:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor);
+L225:          ReturnValue = mSlateColor1;
+============ END FUNCTION GetMAXColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION Get200%Color ==============
+L0:            bool mbool = GreaterEqual_FloatFloat(this->mOverclockAmount, 0.800000011920929);
+L34:           if (!mbool) goto L170;
+L48:           mSlateColor.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0.4347600042819977, B = 0, A = 1);
+L109:          mSlateColor.ColorUseRule = 0;
+L138:          SlateColor ReturnValue = mSlateColor;
+L165:          goto L252;
+L170:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor);
+L225:          ReturnValue = mSlateColor1;
+============ END FUNCTION Get200%Color ==============
+
+
+
+
+
+============ BEGIN FUNCTION Get150%Color ==============
+L0:            bool mbool = GreaterEqual_FloatFloat(this->mOverclockAmount, 0.6000000238418579);
+L34:           if (!mbool) goto L170;
+L48:           mSlateColor.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.8549929857254028, G = 0.46207699179649353, B = 0.03954600170254707, A = 1);
+L109:          mSlateColor.ColorUseRule = 0;
+L138:          SlateColor ReturnValue = mSlateColor;
+L165:          goto L252;
+L170:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor);
+L225:          ReturnValue = mSlateColor1;
+============ END FUNCTION Get150%Color ==============
+
+
+
+
+
+============ BEGIN FUNCTION Get100%Color ==============
+L0:            bool mbool = GreaterEqual_FloatFloat(this->mOverclockAmount, 0.4000000059604645);
+L34:           if (!mbool) goto L135;
+L48:           HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor, [ref] mSlateColor);
+L103:          SlateColor ReturnValue = mSlateColor;
+L130:          goto L217;
+L135:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L190:          ReturnValue = mSlateColor1;
+============ END FUNCTION Get100%Color ==============
+
+
+
+
+
+============ BEGIN FUNCTION Get0%Color ==============
+L0:            bool mbool = Greater_FloatFloat(this->mOverclockAmount, 0);
+L34:           if (!mbool) goto L135;
+L48:           HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor, [ref] mSlateColor);
+L103:          SlateColor ReturnValue = mSlateColor;
+L130:          goto L217;
+L135:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L190:          ReturnValue = mSlateColor1;
+============ END FUNCTION Get0%Color ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetBarValue ==============
+L0:            ExecutionFlow.Push(L2066);
+L5:            int32 Temp_int_Variable = 0;
+L28:           int32 mint32 = this->BarContainer->GetChildrenCount();
+L78:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L116:          if (!mbool) goto L1079;
+L130:          ExecutionFlow.Push(L1084);
+L135:          bool mbool1 = EqualEqual_IntInt(Temp_int_Variable, 0);
+L169:          if (!mbool1) goto L1158;
+L183:          Widget* mWidget = this->Progressbar_0Container->GetChildAt(0);
+L230:          Overlay* mOverlay = Cast<Class /Script/UMG.Overlay>(mWidget);
+L266:          bool mbool2 = mOverlay;
+L295:          if (!mbool2) goto ExecutionFlow.Pop();
+L305:          Widget* mWidget1 = mOverlay->GetChildAt(0);
+L352:          ProgressBar* mProgressBar = Cast<Class /Script/UMG.ProgressBar>(mWidget1);
+L388:          bool mbool3 = mProgressBar;
+L417:          if (!mbool3) goto ExecutionFlow.Pop();
+L427:          int32 mint321 = this->BarContainer->GetChildrenCount();
+L477:          int32 mint322 = Add_IntInt(mint321, 1);
+L519:          float mfloat = Conv_IntToFloat(mint322);
+L556:          int32 mint323 = this->BarContainer->GetChildrenCount();
+L606:          int32 mint324 = Add_IntInt(mint323, 1);
+L648:          float mfloat1 = Conv_IntToFloat(mint324);
+L685:          int32 mint325 = Add_IntInt(Temp_int_Variable, 1);
+L727:          float mfloat2 = Divide_FloatFloat(1, mfloat1);
+L769:          float mfloat3 = Conv_IntToFloat(mint325);
+L806:          float mfloat4 = Multiply_FloatFloat(mfloat2, mfloat3);
+L852:          float mfloat5 = Add_FloatFloat(mfloat4, mfloat2);
+L898:          float mfloat6 = FClamp(this->mOverclockAmount, 0, mfloat5);
+L949:          float mfloat7 = Multiply_FloatFloat(mfloat6, mfloat);
+L995:          float mfloat8 = Multiply_FloatFloat(mfloat7, 0.5);
+L1037:         mProgressBar->SetPercent(mfloat8);
+L1078:         goto ExecutionFlow.Pop();
+L1079:         <End of Inlined Event Graph Function>;
+L1084:         int32 mint326 = Add_IntInt(Temp_int_Variable, 1);
+L1126:         Temp_int_Variable = mint326;
+L1153:         goto L28;
+L1158:         Widget* mWidget2 = this->BarContainer->GetChildAt(Temp_int_Variable);
+L1209:         Overlay* mOverlay1 = Cast<Class /Script/UMG.Overlay>(mWidget2);
+L1245:         bool mbool4 = mOverlay1;
+L1274:         if (!mbool4) goto ExecutionFlow.Pop();
+L1284:         Widget* mWidget3 = mOverlay1->GetChildAt(0);
+L1331:         ProgressBar* mProgressBar1 = Cast<Class /Script/UMG.ProgressBar>(mWidget3);
+L1367:         bool mbool5 = mProgressBar1;
+L1396:         if (!mbool5) goto ExecutionFlow.Pop();
+L1406:         int32 mint327 = this->BarContainer->GetChildrenCount();
+L1456:         int32 mint328 = Add_IntInt(mint327, 1);
+L1498:         float mfloat9 = Conv_IntToFloat(mint328);
+L1535:         mint323 = this->BarContainer->GetChildrenCount();
+L1585:         mint324 = Add_IntInt(mint323, 1);
+L1627:         mfloat1 = Conv_IntToFloat(mint324);
+L1664:         mint325 = Add_IntInt(Temp_int_Variable, 1);
+L1706:         mfloat2 = Divide_FloatFloat(1, mfloat1);
+L1748:         mfloat3 = Conv_IntToFloat(mint325);
+L1785:         mfloat4 = Multiply_FloatFloat(mfloat2, mfloat3);
+L1831:         mfloat5 = Add_FloatFloat(mfloat4, mfloat2);
+L1877:         float mfloat10 = FClamp(this->mOverclockAmount, mfloat4, mfloat5);
+L1932:         float mfloat11 = Subtract_FloatFloat(mfloat10, mfloat4);
+L1978:         float mfloat12 = Multiply_FloatFloat(mfloat11, mfloat9);
+L2024:         mProgressBar1->SetPercent(mfloat12);
+L2065:         goto ExecutionFlow.Pop();
+============ END FUNCTION SetBarValue ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetOvercklockAmountWithKnob ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_CustomEvent_Value1) = Value;
+L18:           this->ExecuteUbergraph_Widget_Overclock(410);
+============ END FUNCTION SetOvercklockAmountWithKnob ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetOverclockOnServer ==============
+L0:            this->ExecuteUbergraph_Widget_Overclock(1342);
+============ END FUNCTION SetOverclockOnServer ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_Event_MyGeometry1) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_Overclock(1446);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupCostslots ==============
+L0:            this->ExecuteUbergraph_Widget_Overclock(1451);
+============ END FUNCTION SetupCostslots ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_1_OnFloatValueChangedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_ComponentBoundEvent_Value) = Value;
+L18:           this->ExecuteUbergraph_Widget_Overclock(1957);
+============ END FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_1_OnFloatValueChangedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_2_OnMouseCaptureEndEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Overclock(2771);
+============ END FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_2_OnMouseCaptureEndEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_3_OnControllerCaptureEndEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Overclock(2906);
+============ END FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_3_OnControllerCaptureEndEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__PercentText_K2Node_ComponentBoundEvent_5_OnEditableTextCommittedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_ComponentBoundEvent_Text1) = text;
+L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_ComponentBoundEvent_CommitMethod1) = CommitMethod;
+L36:           this->ExecuteUbergraph_Widget_Overclock(2981);
+============ END FUNCTION BndEvt__PercentText_K2Node_ComponentBoundEvent_5_OnEditableTextCommittedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPercentageTextConfirmed ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_CustomEvent_Value) = Value;
+L18:           this->ExecuteUbergraph_Widget_Overclock(3817);
+============ END FUNCTION OnPercentageTextConfirmed ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseEnter ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_Event_MouseEvent1) = MouseEvent;
+L36:           this->ExecuteUbergraph_Widget_Overclock(4138);
+============ END FUNCTION OnMouseEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseLeave ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_Event_MouseEvent) = MouseEvent;
+L18:           this->ExecuteUbergraph_Widget_Overclock(4224);
+============ END FUNCTION OnMouseLeave ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__MainSlider_K2Node_ComponentBoundEvent_0_OnMouseCaptureBeginEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Overclock(4310);
+============ END FUNCTION BndEvt__MainSlider_K2Node_ComponentBoundEvent_0_OnMouseCaptureBeginEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mPartsPerMinutes_K2Node_ComponentBoundEvent_6_OnEditableTextCommittedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_ComponentBoundEvent_Text) = text;
+L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
+L36:           this->ExecuteUbergraph_Widget_Overclock(4322);
+============ END FUNCTION BndEvt__mPartsPerMinutes_K2Node_ComponentBoundEvent_6_OnEditableTextCommittedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_Overclock(5340);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Overclock(5409);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupOverclock ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_CustomEvent_OvecklockAmount) = OvecklockAmount;
+L18:           this->ExecuteUbergraph_Widget_Overclock(5414);
+============ END FUNCTION SetupOverclock ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupOverclockWidget ==============
+L0:            this->ExecuteUbergraph_Widget_Overclock(5491);
+============ END FUNCTION SetupOverclockWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION RetriggerConstruct ==============
+L0:            this->ExecuteUbergraph_Widget_Overclock(5629);
+============ END FUNCTION RetriggerConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateOverlclockWidget ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_CustomEvent_itemClass) = ItemClass;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Overclock.Widget_Overclock_C:ExecuteUbergraph_Widget_Overclock.K2Node_CustomEvent_numRemoved) = numRemoved;
+L36:           this->ExecuteUbergraph_Widget_Overclock(5634);
+============ END FUNCTION UpdateOverlclockWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Overclock ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->InitCostSlots(0, this->CostSlot_0, [ref] mbool);
+L52:           if (!mbool) goto L169;
+L66:           this->InitCostSlots(1, this->CostSlot_1, [ref] mbool1);
+L103:          if (!mbool1) goto L246;
+L117:          this->InitCostSlots(2, this->CostSlot_2, [ref] mbool2);
+L154:          if (!mbool2) goto L328;
+L168:          goto ExecutionFlow.Pop();
+L169:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1498251231, ExecutionFunction = "ExecuteUbergraph_Widget_Overclock", CallbackTarget = this));
+L245:          goto ExecutionFlow.Pop();
+L246:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 323, UUID = 1085575777, ExecutionFunction = "ExecuteUbergraph_Widget_Overclock", CallbackTarget = this));
+L322:          goto ExecutionFlow.Pop();
+L323:          goto L66;
+L328:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 405, UUID = -1645895326, ExecutionFunction = "ExecuteUbergraph_Widget_Overclock", CallbackTarget = this));
+L404:          goto ExecutionFlow.Pop();
+L405:          goto L117;
+L410:          float mfloat = this->mBuildableFactory->GetCurrentMaxPotential();
+L460:          this->NormalizeOverclock(mfloat, [ref] mfloat1);
+L492:          float mfloat2 = FClamp(this->Widget_Knob->mValue, 0, mfloat1);
+L565:          this->SetupOverclock(mfloat2);
+L588:          mfloat = this->mBuildableFactory->GetCurrentMaxPotential();
+L638:          this->NormalizeOverclock(mfloat, [ref] mfloat1);
+L670:          mfloat2 = FClamp(this->Widget_Knob->mValue, 0, mfloat1);
+L743:          this->mCurrentSoundValue = mfloat2;
+L770:          float mfloat3 = Add_FloatFloat(this->mLastSoundValue, 0.009999999776482582);
+L812:          bool mbool3 = GreaterEqual_FloatFloat(this->mCurrentSoundValue, mfloat3);
+L850:          if (!mbool3) goto L987;
+L864:          this->mLastSoundValue = this->mCurrentSoundValue;
+L891:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L911:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_OverClock_Tick, mPawn, true);
+L972:          this->SetPercentText();
+L986:          goto ExecutionFlow.Pop();
+L987:          float mfloat4 = Subtract_FloatFloat(this->mLastSoundValue, 0.009999999776482582);
+L1029:         bool mbool4 = LessEqual_FloatFloat(this->mCurrentSoundValue, mfloat4);
+L1067:         if (!mbool4) goto ExecutionFlow.Pop();
+L1077:         goto L864;
+L1082:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1106:         BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
+L1142:         bool mbool5 = mBP_PlayerController;
+L1171:         if (!mbool5) goto ExecutionFlow.Pop();
+L1181:         this->GetClampedSliderValue([ref] mfloat5);
+L1204:         BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L1255:         this->ScaleToOverclock(mfloat5, [ref] mfloat6);
+L1287:         mBP_RemoteCallObject->ServerSetPendingPotentialOnFactory(this->mBuildableFactory, mfloat6);
+L1341:         goto ExecutionFlow.Pop();
+L1342:         goto L1082;
+L1347:         this->SetActiveProgressbars();
+L1361:         this->SetCrystalSlotUsable(0, this->CostSlot_0);
+L1389:         this->SetCrystalSlotUsable(1, this->CostSlot_1);
+L1417:         this->SetCrystalSlotUsable(2, this->CostSlot_2);
+L1445:         goto ExecutionFlow.Pop();
+L1446:         goto L1347;
+L1451:         goto L15;
+L1456:         this->SetupCostslots();
+L1470:         this->SetDefaultProductionSpeed();
+L1484:         goto ExecutionFlow.Pop();
+L1485:         this->CheckIsOverclockUnlocked();
+L1499:         bool mbool6 = KismetSystemLibrary->IsValid(this->mBuildableFactory);
+L1550:         if (!mbool6) goto L1853;
+L1564:         bool mbool7 = this->mBuildableFactory->HasAuthority();
+L1606:         if (!mbool7) goto L1741;
+L1620:         this->SetupOverclockWidget();
+L1634:         mFScriptDelegate->BindUFunction(this, UpdateOverlclockWidget);
+L1657:         FGInventoryComponent* mFGInventoryComponent = this->mBuildableFactory->GetPotentialInventory();
+L1699:         mFGInventoryComponent->OnItemRemovedDelegate.AddUnique(mFScriptDelegate);
+L1740:         goto ExecutionFlow.Pop();
+L1741:         FGInventoryComponent* mFGInventoryComponent1 = this->mBuildableFactory->GetPotentialInventory();
+L1783:         bool mbool8 = KismetSystemLibrary->IsValid(mFGInventoryComponent1);
+L1834:         if (!mbool8) goto L1853;
+L1848:         goto L1620;
+L1853:         mFScriptDelegate1->BindUFunction(this, RetriggerConstruct);
+L1876:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate1, 0.10000000149011612, false);
+L1941:         goto ExecutionFlow.Pop();
+L1942:         this->Construct();
+L1952:         goto L1485;
+L1957:         float mfloat7 = Multiply_FloatFloat(mfloat8, 250);
+L1999:         float mfloat9 = this->mBuildableFactory->GetCurrentMaxPotential();
+L2049:         int32 mint32 = Round(mfloat7);
+L2086:         this->NormalizeOverclock(mfloat9, [ref] mfloat10);
+L2118:         float mfloat11 = Conv_IntToFloat(mint32);
+L2155:         float mfloat12 = Divide_FloatFloat(mfloat11, 250);
+L2197:         float mfloat13 = FClamp(mfloat12, 0, mfloat10);
+L2248:         this->SetupOverclock(mfloat13);
+L2271:         mfloat7 = Multiply_FloatFloat(mfloat8, 250);
+L2313:         mfloat9 = this->mBuildableFactory->GetCurrentMaxPotential();
+L2363:         mint32 = Round(mfloat7);
+L2400:         this->NormalizeOverclock(mfloat9, [ref] mfloat10);
+L2432:         mfloat11 = Conv_IntToFloat(mint32);
+L2469:         mfloat12 = Divide_FloatFloat(mfloat11, 250);
+L2511:         mfloat13 = FClamp(mfloat12, 0, mfloat10);
+L2562:         this->mCurrentSoundValue = mfloat13;
+L2589:         goto L770;
+L2594:         mFScriptDelegate2->BindUFunction(this, SetOvercklockAmountWithKnob);
+L2617:         this->Widget_Knob->mValueSlider->OnValueChanged.AddUnique(mFScriptDelegate2);
+L2680:         mFScriptDelegate3->BindUFunction(this, SetOverclockOnServer);
+L2703:         this->Widget_Knob->mValueSlider->OnMouseCaptureEnd.AddUnique(mFScriptDelegate3);
+L2766:         goto L1456;
+L2771:         this->SetOverclockOnServer();
+L2785:         this->MouseCaptureActive = false;
+L2796:         bool mbool9 = this->IsHovered();
+L2820:         bool mbool10 = Not_PreBool(mbool9);
+L2849:         if (!mbool10) goto ExecutionFlow.Pop();
+L2859:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->SliderHandle, 0, 1, 1, 1);
+L2905:         goto ExecutionFlow.Pop();
+L2906:         goto L2771;
+L2911:         this->MainSlider->SetValue(this->mOverclockAmount);
+L2952:         this->SetBarValue();
+L2966:         this->SetPercentText();
+L2980:         goto ExecutionFlow.Pop();
+L2981:         this->PercentageInputText = mconst FText;
+L3008:         bool mbool11 = NotEqual_ByteByte(muint8, 0);
+L3039:         if (!mbool11) goto L3204;
+L3053:         mbool11 = NotEqual_ByteByte(muint8, 1);
+L3084:         if (!mbool11) goto L3204;
+L3098:         mbool11 = NotEqual_ByteByte(muint8, 2);
+L3129:         if (!mbool11) goto L3189;
+L3143:         mbool11 = NotEqual_ByteByte(muint8, 3);
+L3174:         if (!mbool11) goto L3189;
+L3188:         goto ExecutionFlow.Pop();
+L3189:         this->SetPercentText();
+L3203:         goto ExecutionFlow.Pop();
+L3204:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] this->PercentageInputText);
+L3263:         FString mFString1 = KismetStringLibrary->Replace(mFString, "%", "", 1);
+L3329:         FText mFText = KismetTextLibrary->Conv_StringToText(mFString1);
+L3388:         this->PercentageInputText = mFText;
+L3415:         mFString = KismetTextLibrary->Conv_TextToString([ref] this->PercentageInputText);
+L3474:         mFString1 = KismetStringLibrary->Replace(mFString, "%", "", 1);
+L3540:         bool mbool12 = KismetStringLibrary->IsNumeric(mFString1);
+L3591:         if (!mbool12) goto L3189;
+L3605:         FString mFString2 = KismetTextLibrary->Conv_TextToString([ref] this->PercentageInputText);
+L3664:         float mfloat14 = KismetStringLibrary->Conv_StringToFloat(mFString2);
+L3723:         float mfloat15 = Divide_FloatFloat(mfloat14, 250);
+L3765:         this->OnPercentageTextConfirmed(mfloat15);
+L3788:         this->SetOverclockOnServer();
+L3802:         this->UpdateTargetProductionSpeed();
+L3816:         goto ExecutionFlow.Pop();
+L3817:         float mfloat16 = this->mBuildableFactory->GetCurrentMaxPotential();
+L3867:         this->NormalizeOverclock(mfloat16, [ref] mfloat17);
+L3899:         float mfloat18 = FClamp(mfloat19, 0, mfloat17);
+L3950:         this->SetupOverclock(mfloat18);
+L3973:         mfloat16 = this->mBuildableFactory->GetCurrentMaxPotential();
+L4023:         this->NormalizeOverclock(mfloat16, [ref] mfloat17);
+L4055:         mfloat18 = FClamp(mfloat19, 0, mfloat17);
+L4106:         this->mCurrentSoundValue = mfloat18;
+L4133:         goto L770;
+L4138:         bool mbool13 = Not_PreBool(this->MouseCaptureActive);
+L4167:         if (!mbool13) goto ExecutionFlow.Pop();
+L4177:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->SliderHandle, 0, 1, 0, 1);
+L4223:         goto ExecutionFlow.Pop();
+L4224:         bool mbool14 = Not_PreBool(this->MouseCaptureActive);
+L4253:         if (!mbool14) goto ExecutionFlow.Pop();
+L4263:         UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->SliderHandle, 0, 1, 1, 1);
+L4309:         goto ExecutionFlow.Pop();
+L4310:         this->MouseCaptureActive = true;
+L4321:         goto ExecutionFlow.Pop();
+L4322:         bool mbool15 = NotEqual_ByteByte(muint81, 0);
+L4353:         if (!mbool15) goto L4518;
+L4367:         mbool15 = NotEqual_ByteByte(muint81, 1);
+L4398:         if (!mbool15) goto L4518;
+L4412:         mbool15 = NotEqual_ByteByte(muint81, 2);
+L4443:         if (!mbool15) goto L4503;
+L4457:         mbool15 = NotEqual_ByteByte(muint81, 3);
+L4488:         if (!mbool15) goto L4503;
+L4502:         goto ExecutionFlow.Pop();
+L4503:         this->UpdateTargetProductionSpeed();
+L4517:         goto ExecutionFlow.Pop();
+L4518:         FString mFString3 = KismetTextLibrary->Conv_TextToString([ref] mconst FText1);
+L4577:         FString mFString4 = KismetStringLibrary->Replace(mFString3, ",", ".", 1);
+L4644:         bool mbool16 = KismetStringLibrary->IsNumeric(mFString4);
+L4695:         if (!mbool16) goto L4503;
+L4709:         mFString3 = KismetTextLibrary->Conv_TextToString([ref] mconst FText1);
+L4768:         mFString4 = KismetStringLibrary->Replace(mFString3, ",", ".", 1);
+L4835:         float mfloat20 = KismetStringLibrary->Conv_StringToFloat(mFString4);
+L4894:         FText mFText1 = KismetTextLibrary->Conv_FloatToText(mfloat20, 0, false, true, 1, 324, 0, 2);
+L4977:         FString mFString5 = KismetTextLibrary->Conv_TextToString([ref] mFText1);
+L5036:         float mfloat21 = KismetStringLibrary->Conv_StringToFloat(mFString5);
+L5095:         float mfloat22 = FGInventoryLibrary->GetConversionScalarByForm(this->mResourceForm);
+L5154:         float mfloat23 = Divide_FloatFloat(mfloat21, mfloat22);
+L5200:         float mfloat24 = Divide_FloatFloat(mfloat23, this->mDefaultProductionSpeed);
+L5246:         float mfloat25 = Divide_FloatFloat(mfloat24, 2.5);
+L5288:         this->OnPercentageTextConfirmed(mfloat25);
+L5311:         this->SetOverclockOnServer();
+L5325:         this->UpdateTargetProductionSpeed();
+L5339:         goto ExecutionFlow.Pop();
+L5340:         this->mTargetProductionRateText->SetText(this->mTargetProductionSpeedText_Description);
+L5385:         this->SetSuffix(this->mTargetProductionSpeedText_Suffix);
+L5408:         goto ExecutionFlow.Pop();
+L5409:         goto L1942;
+L5414:         this->mOverclockAmount = mfloat26;
+L5441:         this->Widget_Knob->SetupValue(this->mOverclockAmount);
+L5486:         goto L2911;
+L5491:         ExecutionFlow.Push(L2594);
+L5496:         float mfloat27 = this->mBuildableFactory->GetPendingPotential();
+L5546:         this->NormalizeOverclock(mfloat27, [ref] mfloat28);
+L5578:         this->mOverclockAmount = mfloat28;
+L5605:         this->SetupOverclock(this->mOverclockAmount);
+L5628:         goto ExecutionFlow.Pop();
+L5629:         goto L1499;
+L5634:         goto L5496;
+============ END FUNCTION ExecuteUbergraph_Widget_Overclock ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateBarFill__DelegateSignature ==============
+============ END FUNCTION UpdateBarFill__DelegateSignature ==============

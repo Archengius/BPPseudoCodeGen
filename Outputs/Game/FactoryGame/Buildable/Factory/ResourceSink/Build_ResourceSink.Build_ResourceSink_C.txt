@@ -1,0 +1,281 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/ResourceSink/Build_ResourceSink.Build_ResourceSink_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION VFX/SFX_Timeline__FinishedFunc ==============
+L0:            this->ExecuteUbergraph_Build_ResourceSink(3526);
+============ END FUNCTION VFX/SFX_Timeline__FinishedFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION VFX/SFX_Timeline__UpdateFunc ==============
+L0:            this->ExecuteUbergraph_Build_ResourceSink(3521);
+============ END FUNCTION VFX/SFX_Timeline__UpdateFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION SFXEngineTimeline__FinishedFunc ==============
+L0:            this->ExecuteUbergraph_Build_ResourceSink(1110);
+============ END FUNCTION SFXEngineTimeline__FinishedFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION SFXEngineTimeline__UpdateFunc ==============
+L0:            this->ExecuteUbergraph_Build_ResourceSink(10);
+============ END FUNCTION SFXEngineTimeline__UpdateFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Build_ResourceSink(75);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Build_ResourceSink(188);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHasPowerChanged ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/Build_ResourceSink.Build_ResourceSink_C:ExecuteUbergraph_Build_ResourceSink.K2Node_Event_newHasPower) = newHasPower;
+L18:           this->ExecuteUbergraph_Build_ResourceSink(1314);
+============ END FUNCTION OnHasPowerChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Build_ResourceSink(1413);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/Build_ResourceSink.Build_ResourceSink_C:ExecuteUbergraph_Build_ResourceSink.K2Node_Event_didStartProducing) = didStartProducing;
+L18:           this->ExecuteUbergraph_Build_ResourceSink(1836);
+============ END FUNCTION StartProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/Build_ResourceSink.Build_ResourceSink_C:ExecuteUbergraph_Build_ResourceSink.K2Node_Event_didStopProducing) = didStopProducing;
+L18:           this->ExecuteUbergraph_Build_ResourceSink(2109);
+============ END FUNCTION StopProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveDestroyed ==============
+L0:            this->ExecuteUbergraph_Build_ResourceSink(2650);
+============ END FUNCTION ReceiveDestroyed ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartSFXEngineOnPower ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/Build_ResourceSink.Build_ResourceSink_C:ExecuteUbergraph_Build_ResourceSink.K2Node_CustomEvent_didGainPower) = didGainPower;
+L18:           this->ExecuteUbergraph_Build_ResourceSink(3345);
+============ END FUNCTION StartSFXEngineOnPower ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopSFXEngineOnPower ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/Build_ResourceSink.Build_ResourceSink_C:ExecuteUbergraph_Build_ResourceSink.K2Node_CustomEvent_didLosePower) = didLosePower;
+L18:           this->ExecuteUbergraph_Build_ResourceSink(3350);
+============ END FUNCTION StopSFXEngineOnPower ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartIdlingLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/Build_ResourceSink.Build_ResourceSink_C:ExecuteUbergraph_Build_ResourceSink.K2Node_Event_didGainPower) = didGainPower;
+L18:           this->ExecuteUbergraph_Build_ResourceSink(3427);
+============ END FUNCTION StartIdlingLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopIdlingLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ResourceSink/Build_ResourceSink.Build_ResourceSink_C:ExecuteUbergraph_Build_ResourceSink.K2Node_Event_didLosePower) = didLosePower;
+L18:           this->ExecuteUbergraph_Build_ResourceSink(3474);
+============ END FUNCTION StopIdlingLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_ResourceSink ==============
+L10:           AkGameplayStatics->SetActorRTPCValue("RTPC_ResourceSink_Engine", this->SFXEngineTimeline_EngineAlpha_073E1D2A4BAD246B3958E183E210FAAE, 0, this);
+L70:           <End of Inlined Event Graph Function>;
+L75:           this->GainedSignificance();
+L85:           bool mbool = this->HasPower();
+L109:          if (!mbool) goto L3531;
+L123:          this->TryStartIdlingLoopEffects(false);
+L134:          bool mbool1 = this->IsProducing();
+L158:          if (!mbool1) goto L3531;
+L172:          this->TryStartProductionLoopEffects(false);
+L183:          <End of Inlined Event Graph Function>;
+L188:          this->LostSignificance();
+L198:          bool mbool2 = this->HasPower();
+L222:          bool mbool3 = this->IsProducing();
+L246:          bool mbool4 = BooleanAND(mbool3, mbool2);
+L284:          if (!mbool4) goto L325;
+L298:          this->TryStopProductionLoopEffects(false);
+L309:          this->TryStopIdlingLoopEffects(false);
+L320:          <End of Inlined Event Graph Function>;
+L325:          mbool2 = this->HasPower();
+L349:          if (!mbool2) goto L3531;
+L363:          goto L309;
+L368:          bool mbool5 = KismetSystemLibrary->IsValid(this->mP_Production_VFX);
+L419:          if (!mbool5) goto L3531;
+L433:          float mfloat = Divide_FloatFloat(1, 5);
+L471:          this->VFX/SFX_Timeline->SetPlayRate(mfloat);
+L512:          this->VFX/SFX_Timeline->Reverse();
+L544:          <End of Inlined Event Graph Function>;
+L549:          bool mbool6 = KismetSystemLibrary->IsValid(this->mP_Production_VFX);
+L600:          if (!mbool6) goto L843;
+L614:          bool Temp_bool_Variable = this->HastLostSignificance;
+L633:          float Temp_float_Variable2 = 5;
+L656:          float Temp_float_Variable3 = 0.10000000149011612;
+L679:          float mfloat1 = Divide_FloatFloat(1, switch (Temp_bool_Variable) {
+case false -> Temp_float_Variable2;
+case true -> Temp_float_Variable3;
+default -> mfloat2;
+});
+L765:          this->VFX/SFX_Timeline->SetPlayRate(mfloat1);
+L806:          this->VFX/SFX_Timeline->PlayFromStart();
+L838:          <End of Inlined Event Graph Function>;
+L843:          Rotator mRotator = this->MainMesh->GetSocketRotation("VFX_Socket_Grinder");
+L910:          Vector mVector = this->MainMesh->GetSocketLocation("VFX_Socket_Grinder");
+L977:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(P_ResourceSink_Producing_01, this->MainMesh, "VFX_Socket_Grinder", mVector, mRotator, Vector(1, 1, 1), 1, true, 0);
+L1086:         this->mP_Production_VFX = mParticleSystemComponent;
+L1105:         goto L614;
+L1110:         bool mbool7 = EqualEqual_FloatFloat(this->SFXEngineTimeline_EngineAlpha_073E1D2A4BAD246B3958E183E210FAAE, 0);
+L1144:         if (!mbool7) goto L3531;
+L1158:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Stop_ResourceSink_Engine, this, true);
+L1211:         bool mbool8 = KismetSystemLibrary->IsValid(this->mP_Production_VFX);
+L1262:         if (!mbool8) goto L3531;
+L1276:         this->mP_Production_VFX->K2_DestroyComponent(this);
+L1309:         <End of Inlined Event Graph Function>;
+L1314:         this->OnHasPowerChanged(mbool9);
+L1333:         bool mbool10 = this->GetIsSignificant();
+L1353:         if (!mbool10) goto L3531;
+L1367:         if (!mbool9) goto L1397;
+L1381:         this->TryStartIdlingLoopEffects(true);
+L1392:         <End of Inlined Event Graph Function>;
+L1397:         this->TryStopIdlingLoopEffects(true);
+L1408:         <End of Inlined Event Graph Function>;
+L1413:         this->ReceiveBeginPlay();
+L1423:         this->VFX/SFX_Timeline->SetComponentTickInterval(0.10000000149011612);
+L1460:         <End of Inlined Event Graph Function>;
+L1465:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_ResourceSink_Engine, this, true);
+L1518:         this->SFX_ResourceSinkEngine = mAkComponent1;
+L1537:         float Temp_float_Variable = 6;
+L1560:         float Temp_float_Variable1 = 0.10000000149011612;
+L1583:         bool Temp_bool_Variable1 = this->HastLostSignificance;
+L1602:         float mfloat3 = Divide_FloatFloat(1, switch (Temp_bool_Variable1) {
+case false -> Temp_float_Variable;
+case true -> Temp_float_Variable1;
+default -> mfloat4;
+});
+L1688:         this->SFXEngineTimeline->SetPlayRate(mfloat3);
+L1729:         this->SFXEngineTimeline->Play();
+L1761:         <End of Inlined Event Graph Function>;
+L1766:         bool mbool11 = KismetSystemLibrary->IsValid(this->SFX_ResourceSinkEngine);
+L1817:         if (!mbool11) goto L1465;
+L1831:         goto L1537;
+L1836:         this->StartProductionLoopEffects(mbool12);
+L1855:         bool mbool13 = Not_PreBool(mbool12);
+L1884:         this->HastLostSignificance = mbool13;
+L1903:         bool mbool14 = this->HasPower();
+L1927:         if (!mbool14) goto L3531;
+L1941:         bool mbool15 = KismetSystemLibrary->IsValid(this->SFX_ResourceSinkGrinder);
+L1992:         if (!mbool15) goto L2011;
+L2006:         goto L549;
+L2011:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAttached(Play_ResourceSink_Grinder, this->GrinderSFXRef, "None", true);
+L2085:         this->SFX_ResourceSinkGrinder = mAkComponent2;
+L2104:         goto L549;
+L2109:         this->StopProductionLoopEffects(mbool16);
+L2128:         bool mbool17 = Not_PreBool(mbool16);
+L2157:         this->HastLostSignificance = mbool17;
+L2176:         if (!mbool16) goto L2334;
+L2190:         bool mbool18 = KismetSystemLibrary->IsValid(this->SFX_ResourceSinkGrinder);
+L2241:         if (!mbool18) goto L368;
+L2255:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEventAttached(Stop_ResourceSink_Debris, this->GrinderSFXRef, "None", true);
+L2329:         goto L368;
+L2334:         bool mbool19 = KismetSystemLibrary->IsValid(this->SFX_ResourceSinkGrinder);
+L2385:         if (!mbool19) goto L2547;
+L2399:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEventAttached(Stop_ResourceSink_Debris, this->GrinderSFXRef, "None", true);
+L2473:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEventAttached(Stop_ResourceSink_Grinder, this->GrinderSFXRef, "None", true);
+L2547:         bool mbool20 = KismetSystemLibrary->IsValid(this->mP_Production_VFX);
+L2598:         if (!mbool20) goto L3531;
+L2612:         this->mP_Production_VFX->K2_DestroyComponent(this);
+L2645:         <End of Inlined Event Graph Function>;
+L2650:         this->ReceiveDestroyed();
+L2660:         bool mbool21 = KismetSystemLibrary->IsValid(this->mP_Production_VFX);
+L2711:         if (!mbool21) goto L3531;
+L2725:         this->mP_Production_VFX->K2_DestroyComponent(this);
+L2758:         <End of Inlined Event Graph Function>;
+L2763:         this->SFXEngineTimeline->Reverse();
+L2795:         <End of Inlined Event Graph Function>;
+L2800:         AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEventAttached(Play_ResourceSink_Debris, this->GrinderSFXRef, "None", true);
+L2874:         <End of Inlined Event Graph Function>;
+L2879:         bool mbool22 = KismetSystemLibrary->IsValid(this->SFX_ResourceSinkDebris);
+L2930:         if (!mbool22) goto L2800;
+L2944:         <End of Inlined Event Graph Function>;
+L2949:         bool mbool23 = EqualEqual_FloatFloat(this->VFX_SFX_Timeline_EngineAlpha_A2CB706E440839665A39888572D206AA, 100);
+L2983:         if (!mbool23) goto L3531;
+L2997:         goto L2879;
+L3002:         float mfloat5 = MapRangeClamped(this->VFX_SFX_Timeline_EngineAlpha_A2CB706E440839665A39888572D206AA, 0, 100, 0, 1);
+L3059:         this->mP_Production_VFX->SetFloatParameter("Opacity_Fade", mfloat5);
+L3113:         <End of Inlined Event Graph Function>;
+L3118:         this->SFX_ResourceSinkGrinder->SetRTPCValue("RTPC_ResourceSink_Grinder", this->VFX_SFX_Timeline_EngineAlpha_A2CB706E440839665A39888572D206AA, 0);
+L3191:         goto L3002;
+L3196:         bool mbool24 = KismetSystemLibrary->IsValid(this->SFX_ResourceSinkEngine);
+L3247:         if (!mbool24) goto L3531;
+L3261:         float mfloat6 = Divide_FloatFloat(1, 6);
+L3299:         this->SFXEngineTimeline->SetPlayRate(mfloat6);
+L3340:         goto L2763;
+L3345:         goto L1766;
+L3350:         if (!mbool25) goto L3369;
+L3364:         goto L3196;
+L3369:         AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEvent(Stop_ResourceSink_Engine, this, true);
+L3422:         <End of Inlined Event Graph Function>;
+L3427:         this->StartIdlingLoopEffects(mbool26);
+L3446:         this->StartSFXEngineOnPower(mbool26);
+L3469:         <End of Inlined Event Graph Function>;
+L3474:         this->StopIdlingLoopEffects(mbool27);
+L3493:         this->StopSFXEngineOnPower(mbool27);
+L3516:         <End of Inlined Event Graph Function>;
+L3521:         goto L3118;
+L3526:         goto L2949;
+============ END FUNCTION ExecuteUbergraph_Build_ResourceSink ==============

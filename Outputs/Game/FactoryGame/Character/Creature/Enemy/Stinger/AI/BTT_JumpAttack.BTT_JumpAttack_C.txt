@@ -1,0 +1,64 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Stinger/AI/BTT_JumpAttack.BTT_JumpAttack_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION mOnJumpAttackFailed_2B6962824822751FCAD482A8789ABE88 ==============
+L0:            this->ExecuteUbergraph_BTT_JumpAttack(10);
+============ END FUNCTION mOnJumpAttackFailed_2B6962824822751FCAD482A8789ABE88 ==============
+
+
+
+
+
+============ BEGIN FUNCTION mOnJumpAttackFinished_2B6962824822751FCAD482A8789ABE88 ==============
+L0:            this->ExecuteUbergraph_BTT_JumpAttack(120);
+============ END FUNCTION mOnJumpAttackFinished_2B6962824822751FCAD482A8789ABE88 ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveExecuteAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Stinger/AI/BTT_JumpAttack.BTT_JumpAttack_C:ExecuteUbergraph_BTT_JumpAttack.K2Node_Event_OwnerController1) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Stinger/AI/BTT_JumpAttack.BTT_JumpAttack_C:ExecuteUbergraph_BTT_JumpAttack.K2Node_Event_ControlledPawn1) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTT_JumpAttack(136);
+============ END FUNCTION ReceiveExecuteAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveAbortAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Stinger/AI/BTT_JumpAttack.BTT_JumpAttack_C:ExecuteUbergraph_BTT_JumpAttack.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Stinger/AI/BTT_JumpAttack.BTT_JumpAttack_C:ExecuteUbergraph_BTT_JumpAttack.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTT_JumpAttack(492);
+============ END FUNCTION ReceiveAbortAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTT_JumpAttack ==============
+L10:           KismetSystemLibrary->PrintString(this, "jump attack failed", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L104:          this->FinishExecute(true);
+L115:          <End of Inlined Event Graph Function>;
+L120:          this->FinishExecute(true);
+L131:          <End of Inlined Event Graph Function>;
+L136:          FGEnemy* mFGEnemy = Cast<Class /Script/FactoryGame.FGEnemy>(mPawn);
+L172:          bool mbool = mFGEnemy;
+L201:          FGGameplayTask_AttackJump* mFGGameplayTask_AttackJump = FGGameplayTask_AttackJump->StartJump(mFGEnemy, this->mAttackClass, false);
+L262:          bool mbool1 = KismetSystemLibrary->IsValid(mFGGameplayTask_AttackJump);
+L313:          if (!mbool1) goto L602;
+L327:          mFScriptDelegate->BindUFunction(this, mOnJumpAttackFinished_2B6962824822751FCAD482A8789ABE88);
+L350:          mFGGameplayTask_AttackJump->mOnJumpAttackFinished.AddUnique(mFScriptDelegate);
+L391:          mFScriptDelegate1->BindUFunction(this, mOnJumpAttackFailed_2B6962824822751FCAD482A8789ABE88);
+L414:          mFGGameplayTask_AttackJump->mOnJumpAttackFailed.AddUnique(mFScriptDelegate1);
+L455:          mFGGameplayTask_AttackJump->ReadyForActivation();
+L487:          <End of Inlined Event Graph Function>;
+L492:          KismetSystemLibrary->PrintString(this, "Jump attack was aborted", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L591:          this->FinishExecute(true);
+============ END FUNCTION ExecuteUbergraph_BTT_JumpAttack ==============

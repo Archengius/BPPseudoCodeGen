@@ -1,0 +1,65 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/ObjectScanner/Attach_ObjectScanner.Attach_ObjectScanner_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Attach_ObjectScanner(383);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/ObjectScanner/Attach_ObjectScanner.Attach_ObjectScanner_C:ExecuteUbergraph_Attach_ObjectScanner.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_Attach_ObjectScanner(388);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateScannerVisuals ==============
+L0:            this->ExecuteUbergraph_Attach_ObjectScanner(412);
+============ END FUNCTION UpdateScannerVisuals ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayAttachEffects3P ==============
+L0:            this->ExecuteUbergraph_Attach_ObjectScanner(586);
+============ END FUNCTION PlayAttachEffects3P ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Attach_ObjectScanner ==============
+L10:           this->PlayAttachEffects3P();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = this->GetAttachedTo();
+L40:           SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
+L86:           AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L128:          bool mbool = mAnimInstance->Montage_IsPlaying(ObjectScannerEquip_01_Montage);
+L179:          if (!mbool) goto L198;
+L193:          <End of Inlined Event Graph Function>;
+L198:          mFGCharacterPlayer = this->GetAttachedTo();
+L218:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
+L264:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L306:          float mfloat = mAnimInstance->Montage_Play(ObjectScannerEquip_01_Montage, 1, 0, 0, true);
+L378:          <End of Inlined Event Graph Function>;
+L383:          <End of Inlined Event Graph Function>;
+L388:          this->ReceiveTick(mfloat1);
+L407:          <End of Inlined Event Graph Function>;
+L412:          bool mbool1 = this->IsBeeping();
+L432:          this->PointLight->SetVisibility(mbool1, false);
+L474:          Color mColor = this->GetScannerLightColor();
+L502:          LinearColor mLinearColor = Conv_ColorToLinearColor(mColor);
+L539:          this->PointLight->SetLightColor(mLinearColor, true);
+L581:          <End of Inlined Event Graph Function>;
+L586:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Attach_ObjectScanner ==============

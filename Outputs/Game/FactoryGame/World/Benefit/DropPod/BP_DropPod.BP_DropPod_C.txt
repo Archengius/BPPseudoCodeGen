@@ -1,0 +1,183 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/World/Benefit/DropPod/BP_DropPod.BP_DropPod_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION RequiresPowerToOpen ==============
+L0:            bool mbool = Greater_FloatFloat(this->mPowerConsumption, 0);
+L34:           bool ReturnValue = mbool;
+============ END FUNCTION RequiresPowerToOpen ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPowerConnection ==============
+L0:            FGPowerConnectionComponent* ReturnValue = this->PowerInput;
+============ END FUNCTION GetPowerConnection ==============
+
+
+
+
+
+============ BEGIN FUNCTION Repair ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L394;
+L34:           FGInventoryComponent* mFGInventoryComponent = byCharacter->GetInventory();
+L76:           bool mbool1 = mFGInventoryComponent->HasItems(this->mRepairAmount.ItemClass, this->mRepairAmount.amount);
+L154:          if (!mbool1) goto L394;
+L168:          mFGInventoryComponent = byCharacter->GetInventory();
+L210:          mFGInventoryComponent->Remove(this->mRepairAmount.ItemClass, this->mRepairAmount.amount);
+L278:          this->FlushNetDormancy();
+L288:          mItemAmount.ItemClass = this->mRepairAmount.ItemClass;
+L325:          mItemAmount.amount = 0;
+L357:          this->mRepairAmount = mItemAmount;
+L384:          this->Open();
+============ END FUNCTION Repair ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRepairAmount ==============
+L0:            ItemAmount amount = this->mRepairAmount;
+============ END FUNCTION GetRepairAmount ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPowerConsumption ==============
+L0:            float Power = this->mPowerConsumption;
+============ END FUNCTION GetPowerConsumption ==============
+
+
+
+
+
+============ BEGIN FUNCTION NeedsPower ==============
+L0:            float mfloat = this->mPowerInfo->GetTargetConsumption();
+L50:           bool mbool = Greater_FloatFloat(mfloat, 0);
+L84:           bool NeedsPower = mbool;
+============ END FUNCTION NeedsPower ==============
+
+
+
+
+
+============ BEGIN FUNCTION NeedsRepair ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mRepairAmount.ItemClass);
+L60:           bool mbool1 = Greater_IntInt(this->mRepairAmount.amount, 0);
+L103:          bool mbool2 = BooleanAND(mbool, mbool1);
+L141:          bool NeedsRepair = mbool2;
+============ END FUNCTION NeedsRepair ==============
+
+
+
+
+
+============ BEGIN FUNCTION RollLoot ==============
+L0:            this->ExecuteUbergraph_BP_DropPod(10);
+============ END FUNCTION RollLoot ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnOpened ==============
+L0:            this->ExecuteUbergraph_BP_DropPod(389);
+============ END FUNCTION OnOpened ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopIsLookedAt ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/World/Benefit/DropPod/BP_DropPod.BP_DropPod_C:ExecuteUbergraph_BP_DropPod.K2Node_Event_byCharacter2) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/World/Benefit/DropPod/BP_DropPod.BP_DropPod_C:ExecuteUbergraph_BP_DropPod.K2Node_Event_state2) = State;
+L36:           this->ExecuteUbergraph_BP_DropPod(394);
+============ END FUNCTION StopIsLookedAt ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartIsLookedAt ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/World/Benefit/DropPod/BP_DropPod.BP_DropPod_C:ExecuteUbergraph_BP_DropPod.K2Node_Event_byCharacter1) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/World/Benefit/DropPod/BP_DropPod.BP_DropPod_C:ExecuteUbergraph_BP_DropPod.K2Node_Event_state1) = State;
+L36:           this->ExecuteUbergraph_BP_DropPod(427);
+============ END FUNCTION StartIsLookedAt ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_DropPod(460);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUse ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/World/Benefit/DropPod/BP_DropPod.BP_DropPod_C:ExecuteUbergraph_BP_DropPod.K2Node_Event_byCharacter) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/World/Benefit/DropPod/BP_DropPod.BP_DropPod_C:ExecuteUbergraph_BP_DropPod.K2Node_Event_state) = State;
+L36:           this->ExecuteUbergraph_BP_DropPod(557);
+============ END FUNCTION OnUse ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRepair ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/World/Benefit/DropPod/BP_DropPod.BP_DropPod_C:ExecuteUbergraph_BP_DropPod.K2Node_Event_InteractingCharacter) = InteractingCharacter;
+L18:           this->ExecuteUbergraph_BP_DropPod(938);
+============ END FUNCTION OnRepair ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_DropPod ==============
+L10:           KismetArrayLibrary->Array_Clear([ref] this->LootItems);
+L51:           if (!this->mContainsServerRack) goto L152;
+L65:           const TSubclassOf<FGItemDescriptor> Temp_class_Variable1 = Desc_ServerRack;
+L84:           int32 mint32 = KismetArrayLibrary->Array_Add([ref] this->LootItems, [ref] Temp_class_Variable1);
+L152:          if (!this->mContainsHardDrive) goto L253;
+L166:          const TSubclassOf<FGItemDescriptor> Temp_class_Variable = Desc_HardDrive;
+L185:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->LootItems, [ref] Temp_class_Variable);
+L253:          DropPackage mDropPackage = this->RollDropPackage(this->LootItems);
+L290:          <End of Inlined Event Graph Function>;
+L295:          FGBlueprintFunctionLibrary->HideOutline(this->StaticMesh);
+L336:          <End of Inlined Event Graph Function>;
+L341:          FGBlueprintFunctionLibrary->ShowOutline(this->StaticMesh, 252);
+L384:          <End of Inlined Event Graph Function>;
+L389:          <End of Inlined Event Graph Function>;
+L394:          this->StopIsLookedAt(mFGCharacterPlayer, [ref] mconst UseState);
+L422:          goto L295;
+L427:          this->StartIsLookedAt(mFGCharacterPlayer1, [ref] mconst UseState1);
+L455:          goto L341;
+L460:          this->ReceiveBeginPlay();
+L470:          this->PowerInput->SetPowerInfo(this->mPowerInfo);
+L511:          this->mPowerInfo->SetTargetConsumption(this->mPowerConsumption);
+L552:          <End of Inlined Event Graph Function>;
+L557:          this->OnUse(mFGCharacterPlayer2, [ref] mconst UseState2);
+L585:          bool mbool = mFGCharacterPlayer2->IsLocallyControlled();
+L631:          if (!mbool) goto L980;
+L645:          Controller* mController = mFGCharacterPlayer2->GetController();
+L687:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mController);
+L723:          bool mbool1 = mFGPlayerController;
+L752:          if (!mbool1) goto L980;
+L766:          HUD* mHUD = mFGPlayerController->GetHUD();
+L808:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L844:          bool mbool2 = mFGHUD;
+L873:          if (!mbool2) goto L980;
+L887:          mFGHUD->OpenInteractUI(Widget_DropPod_Repair, this);
+L933:          <End of Inlined Event Graph Function>;
+L938:          this->OnRepair(mFGCharacterPlayer3);
+L957:          this->Repair(mFGCharacterPlayer3);
+============ END FUNCTION ExecuteUbergraph_BP_DropPod ==============

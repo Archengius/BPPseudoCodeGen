@@ -1,0 +1,443 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable.Widget_Train_TimeTable_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetCurrentStop ==============
+L0:            bool mbool = this->Widget_Splitter_OutputList->mOutputContainer->HasChild(RuleWidget);
+L73:           if (!mbool) goto L301;
+L87:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L111:          BPHUDHelpers->GetDefaultRCO(mPlayerController, this, [ref] mBP_RemoteCallObject);
+L166:          int32 mint32 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildIndex(RuleWidget);
+L247:          mBP_RemoteCallObject->Server_SetTimeTableCurrentStop(this->mTimeTable, mint32);
+============ END FUNCTION SetCurrentStop ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowApplyChangesPrompt ==============
+L0:            this->mApplyChangesPrompt->SetVisibility(0);
+============ END FUNCTION ShowApplyChangesPrompt ==============
+
+
+
+
+
+============ BEGIN FUNCTION CloseAvailableStationsWidget ==============
+L0:            this->mAvailableStationsWidget->SetIsVisible(false);
+L37:           this->SelectedRule->SetIsSelected(false);
+L74:           this->SelectedRule = nullptr;
+L85:           this->mAvailableStationsSelectedIndex = -1;
+============ END FUNCTION CloseAvailableStationsWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION MoveRule ==============
+L0:            int32 LocalRuleIndex = 0;
+L23:           Widget_Train_TimeTable_Rule* LocalRule = RuleWidget;
+L42:           bool LocalMoveDown = MoveDown;
+L61:           FGTrainStationIdentifier* LocalStation = LocalRule->mStation;
+L102:          int32 mint32 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildIndex(LocalRule);
+L183:          LocalRuleIndex = mint32;
+L210:          int32 mint321 = Subtract_IntInt(LocalRuleIndex, 1);
+L252:          int32 mint322 = Add_IntInt(LocalRuleIndex, 1);
+L294:          bool Temp_bool_Variable1 = LocalMoveDown;
+L313:          int32 LocalTargetIndex = switch (Temp_bool_Variable1) {
+case false -> mint321;
+case true -> mint322;
+default -> mint323;
+};
+L384:          bool Temp_bool_Variable = LocalMoveDown;
+L403:          int32 mint324 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildrenCount();
+L475:          bool mbool = Less_IntInt(LocalRuleIndex, mint324);
+L513:          bool mbool1 = GreaterEqual_IntInt(LocalRuleIndex, 0);
+L547:          if (!switch (Temp_bool_Variable) {
+case false -> mbool;
+case true -> mbool1;
+default -> mbool2;
+}) goto L960;
+L605:          Widget* mWidget = this->Widget_Splitter_OutputList->mOutputContainer->GetChildAt(LocalTargetIndex);
+L678:          Widget_Train_TimeTable_Rule* mWidget_Train_TimeTable_Rule = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable_Rule.Widget_Train_TimeTable_Rule_C>(mWidget);
+L714:          bool mbool3 = mWidget_Train_TimeTable_Rule;
+L743:          if (!mbool3) goto L960;
+L757:          Widget_Train_TimeTable_Rule* LocalTargetRule = mWidget_Train_TimeTable_Rule;
+L776:          LocalRule->UpdateRule(LocalTargetRule->mStation);
+L843:          LocalTargetRule->UpdateRule(LocalStation);
+L888:          LocalTargetRule->PlayNewNameAnim();
+L924:          LocalRule->PlayNewNameAnim();
+============ END FUNCTION MoveRule ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSelectedRule ==============
+L0:            ExecutionFlow.Push(L478);
+L5:            this->SelectedRule = SelectedRule;
+L24:           int32 Temp_int_Variable = 0;
+L47:           int32 mint32 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildrenCount();
+L119:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L157:          if (!mbool) goto ExecutionFlow.Pop();
+L167:          ExecutionFlow.Push(L404);
+L172:          Widget* mWidget = this->Widget_Splitter_OutputList->mOutputContainer->GetChildAt(Temp_int_Variable);
+L245:          Widget_Train_TimeTable_Rule* mWidget_Train_TimeTable_Rule = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable_Rule.Widget_Train_TimeTable_Rule_C>(mWidget);
+L281:          bool mbool1 = mWidget_Train_TimeTable_Rule;
+L310:          if (!mbool1) goto ExecutionFlow.Pop();
+L320:          bool mbool2 = EqualEqual_ObjectObject(mWidget_Train_TimeTable_Rule, this->SelectedRule);
+L358:          mWidget_Train_TimeTable_Rule->SetIsSelected(mbool2);
+L403:          goto ExecutionFlow.Pop();
+L404:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L446:          Temp_int_Variable = mint321;
+L473:          goto L47;
+============ END FUNCTION SetSelectedRule ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddRule ==============
+L0:            int32 mint32 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildrenCount();
+L72:           bool mbool = EqualEqual_IntInt(mint32, 1);
+L106:          if (!mbool) goto L306;
+L120:          Widget* mWidget = this->Widget_Splitter_OutputList->mOutputContainer->GetChildAt(0);
+L189:          Widget_Train_TimeTable_Rule* mWidget_Train_TimeTable_Rule = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable_Rule.Widget_Train_TimeTable_Rule_C>(mWidget);
+L225:          bool mbool1 = mWidget_Train_TimeTable_Rule;
+L254:          if (!mbool1) goto L306;
+L268:          mWidget_Train_TimeTable_Rule->SetOrderButtonsVisibility(false, true);
+L306:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L330:          Widget_Train_TimeTable_Rule* mWidget_Train_TimeTable_Rule1 = WidgetBlueprintLibrary->Create(this, Widget_Train_TimeTable_Rule, mPlayerController);
+L391:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Train_TimeTable_Rule1, "mStation", mStation);
+L454:          PanelSlot* mPanelSlot = this->Widget_Splitter_OutputList->mOutputContainer->AddChild(mWidget_Train_TimeTable_Rule1);
+L527:          mFScriptDelegate->BindUFunction(this, OnRuleClicked);
+L550:          mWidget_Train_TimeTable_Rule1->OnClicked.AddUnique(mFScriptDelegate);
+L591:          mFScriptDelegate1->BindUFunction(this, OnRuleDeleted);
+L614:          mWidget_Train_TimeTable_Rule1->OnDeleted.AddUnique(mFScriptDelegate1);
+L655:          mFScriptDelegate2->BindUFunction(this, OnRuleMoveUp);
+L678:          mWidget_Train_TimeTable_Rule1->OnMoveUpClicked.AddUnique(mFScriptDelegate2);
+L719:          mFScriptDelegate3->BindUFunction(this, OnRuleMoveDown);
+L742:          mWidget_Train_TimeTable_Rule1->OnMoveDownClicked.AddUnique(mFScriptDelegate3);
+L783:          mFScriptDelegate4->BindUFunction(this, SetCurrentStop);
+L806:          mWidget_Train_TimeTable_Rule1->OnSetCurrentStopClicked.AddUnique(mFScriptDelegate4);
+L847:          int32 mint321 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildrenCount();
+L919:          bool mbool2 = LessEqual_IntInt(mint321, 1);
+L953:          if (!mbool2) goto L1010;
+L967:          mWidget_Train_TimeTable_Rule1->SetOrderButtonsVisibility(false, false);
+L1005:         <End of Inlined Event Graph Function>;
+L1010:         int32 mint322 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildrenCount();
+L1082:         int32 mint323 = Subtract_IntInt(mint322, 2);
+L1124:         Widget* mWidget1 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildAt(mint323);
+L1197:         Widget_Train_TimeTable_Rule* mWidget_Train_TimeTable_Rule2 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable_Rule.Widget_Train_TimeTable_Rule_C>(mWidget1);
+L1233:         bool mbool3 = mWidget_Train_TimeTable_Rule2;
+L1262:         if (!mbool3) goto L1466;
+L1276:         int32 mint324 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildrenCount();
+L1348:         bool mbool4 = Greater_IntInt(mint324, 2);
+L1382:         mWidget_Train_TimeTable_Rule2->SetOrderButtonsVisibility(mbool4, true);
+L1428:         mWidget_Train_TimeTable_Rule1->SetOrderButtonsVisibility(true, false);
+============ END FUNCTION AddRule ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateStopsOnServer ==============
+L0:            this->GenerateNewStopArray();
+L14:           bool mbool = KismetSystemLibrary->IsValid(this->mTimeTable);
+L65:           if (!mbool) goto L217;
+L79:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L103:          BPHUDHelpers->GetDefaultRCO(mPlayerController, this, [ref] mBP_RemoteCallObject);
+L158:          mBP_RemoteCallObject->Server_SetTimeTableStops(this->mTimeTable, [ref] this->mNewStops);
+L212:          <End of Inlined Event Graph Function>;
+L217:          FGRailroadTimeTable* mFGRailroadTimeTable = this->mTrain->NewTimeTable();
+L259:          this->mTimeTable = mFGRailroadTimeTable;
+L278:          goto L79;
+============ END FUNCTION UpdateStopsOnServer ==============
+
+
+
+
+
+============ BEGIN FUNCTION GenerateNewStopArray ==============
+L0:            ExecutionFlow.Push(L567);
+L5:            KismetArrayLibrary->Array_Clear([ref] this->mNewStops);
+L46:           int32 Temp_int_Variable = 0;
+L69:           int32 mint32 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildrenCount();
+L141:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L179:          if (!mbool) goto ExecutionFlow.Pop();
+L189:          ExecutionFlow.Push(L493);
+L194:          Widget* mWidget = this->Widget_Splitter_OutputList->mOutputContainer->GetChildAt(Temp_int_Variable);
+L267:          Widget_Train_TimeTable_Rule* mWidget_Train_TimeTable_Rule = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable_Rule.Widget_Train_TimeTable_Rule_C>(mWidget);
+L303:          bool mbool1 = mWidget_Train_TimeTable_Rule;
+L332:          if (!mbool1) goto ExecutionFlow.Pop();
+L342:          mTimeTableStop.Station = mWidget_Train_TimeTable_Rule->mStation;
+L392:          mTimeTableStop.Duration = 1;
+L424:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mNewStops, [ref] mTimeTableStop);
+L492:          goto ExecutionFlow.Pop();
+L493:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L535:          Temp_int_Variable = mint322;
+L562:          goto L69;
+============ END FUNCTION GenerateNewStopArray ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateAvailableStations ==============
+L0:            ExecutionFlow.Push(L1177);
+L5:            bool mbool = KismetSystemLibrary->IsValid(this->mAvailableStationsWidget);
+L56:           if (!mbool) goto ExecutionFlow.Pop();
+L66:           this->mAvailableStationsWidget->mList->ClearChildren();
+L124:          this->mAvailableStationsWidget->SetIsVisible(true);
+L161:          this->UpdateTrainStations();
+L175:          int32 Temp_int_Loop_Counter_Variable = 0;
+L198:          int32 Temp_int_Array_Index_Variable = 0;
+L221:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mTrainStations);
+L280:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L318:          if (!mbool1) goto ExecutionFlow.Pop();
+L328:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L355:          ExecutionFlow.Push(L1103);
+L360:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L384:          Widget_ListButton* mWidget_ListButton = WidgetBlueprintLibrary->Create(this, Widget_ListButton, mPlayerController);
+L445:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton, "mIcon", MapCompass_Circle_Border);
+L508:          KismetArrayLibrary->Array_Get([ref] this->mTrainStations, Temp_int_Array_Index_Variable, [ref] mFGTrainStationIdentifier);
+L567:          FText mFText = mFGTrainStationIdentifier->GetStationName();
+L617:          KismetSystemLibrary->SetTextPropertyByName(mWidget_ListButton, "mTitle", [ref] mFText);
+L680:          uint8 Temp_byte_Variable = 2;
+L700:          KismetArrayLibrary->Array_Get([ref] this->mTrainStations, Temp_int_Array_Index_Variable, [ref] mFGTrainStationIdentifier);
+L759:          bool mbool2 = EqualEqual_ObjectObject(mFGTrainStationIdentifier, this->SelectedRule->mStation);
+L819:          bool Temp_bool_Variable = mbool2;
+L838:          uint8 Temp_byte_Variable1 = 3;
+L858:          KismetSystemLibrary->SetBytePropertyByName(mWidget_ListButton, "iconVisibility", switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L965:          PanelSlot* mPanelSlot = this->mAvailableStationsWidget->mList->AddChild(mWidget_ListButton);
+L1038:         mFScriptDelegate->BindUFunction(this, UpdateAvailableStationsSelectedIndex);
+L1061:         mWidget_ListButton->OnClicked.AddUnique(mFScriptDelegate);
+L1102:         goto ExecutionFlow.Pop();
+L1103:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1145:         Temp_int_Loop_Counter_Variable = mint321;
+L1172:         goto L221;
+============ END FUNCTION PopulateAvailableStations ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateTimeTable ==============
+L0:            ExecutionFlow.Push(L530);
+L5:            FGRailroadTimeTable* mFGRailroadTimeTable = this->mTrain->GetTimeTable();
+L47:           bool mbool = KismetSystemLibrary->IsValid(mFGRailroadTimeTable);
+L98:           if (!mbool) goto ExecutionFlow.Pop();
+L108:          this->mTimeTable = mFGRailroadTimeTable;
+L127:          TArray<TimeTableStop> mTArray<TimeTableStop> = [];
+L138:          this->mTimeTable->GetStops([ref] mTArray<TimeTableStop>);
+L179:          int32 Temp_int_Loop_Counter_Variable = 0;
+L202:          int32 Temp_int_Array_Index_Variable = 0;
+L225:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TimeTableStop>);
+L284:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L322:          if (!mbool1) goto ExecutionFlow.Pop();
+L332:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L359:          ExecutionFlow.Push(L456);
+L364:          KismetArrayLibrary->Array_Get([ref] mTArray<TimeTableStop>, Temp_int_Array_Index_Variable, [ref] mTimeTableStop);
+L423:          this->AddRule([ref] mTimeTableStop.Station);
+L455:          goto ExecutionFlow.Pop();
+L456:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L498:          Temp_int_Loop_Counter_Variable = mint321;
+L525:          goto L225;
+============ END FUNCTION PopulateTimeTable ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTrainStations ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           int32 mint32 = this->mTrain->GetTrackGraphID();
+L74:           FGRailroadSubsystem* mFGRailroadSubsystem = FGRailroadSubsystem->Get(mPlayerController);
+L125:          TArray<FGTrainStationIdentifier*> mTArray<FGTrainStationIdentifier> = [];
+L136:          mFGRailroadSubsystem->GetTrainStations(mint32, [ref] mTArray<FGTrainStationIdentifier>);
+L186:          this->mTrainStations = mTArray<FGTrainStationIdentifier>;
+============ END FUNCTION UpdateTrainStations ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable.Widget_Train_TimeTable_C:ExecuteUbergraph_Widget_Train_TimeTable.K2Node_CustomEvent_Train) = Train;
+L18:           this->ExecuteUbergraph_Widget_Train_TimeTable(828);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Splitter_OutputList_K2Node_ComponentBoundEvent_0_OnAddClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable(852);
+============ END FUNCTION BndEvt__Widget_Splitter_OutputList_K2Node_ComponentBoundEvent_0_OnAddClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRuleClicked ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable.Widget_Train_TimeTable_C:ExecuteUbergraph_Widget_Train_TimeTable.K2Node_CustomEvent_RuleWidget3) = RuleWidget;
+L18:           this->ExecuteUbergraph_Widget_Train_TimeTable(949);
+============ END FUNCTION OnRuleClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateStation ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable(1075);
+============ END FUNCTION UpdateStation ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateAvailableStationsSelectedIndex ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable.Widget_Train_TimeTable_C:ExecuteUbergraph_Widget_Train_TimeTable.K2Node_CustomEvent_Index) = index;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable.Widget_Train_TimeTable_C:ExecuteUbergraph_Widget_Train_TimeTable.K2Node_CustomEvent_ListButton) = ListButton;
+L36:           this->ExecuteUbergraph_Widget_Train_TimeTable(1462);
+============ END FUNCTION UpdateAvailableStationsSelectedIndex ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRuleDeleted ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable.Widget_Train_TimeTable_C:ExecuteUbergraph_Widget_Train_TimeTable.K2Node_CustomEvent_RuleWidget2) = RuleWidget;
+L18:           this->ExecuteUbergraph_Widget_Train_TimeTable(1508);
+============ END FUNCTION OnRuleDeleted ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable(1930);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRuleMoveUp ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable.Widget_Train_TimeTable_C:ExecuteUbergraph_Widget_Train_TimeTable.K2Node_CustomEvent_RuleWidget1) = RuleWidget;
+L18:           this->ExecuteUbergraph_Widget_Train_TimeTable(1945);
+============ END FUNCTION OnRuleMoveUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRuleMoveDown ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable.Widget_Train_TimeTable_C:ExecuteUbergraph_Widget_Train_TimeTable.K2Node_CustomEvent_RuleWidget) = RuleWidget;
+L18:           this->ExecuteUbergraph_Widget_Train_TimeTable(2067);
+============ END FUNCTION OnRuleMoveDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckCurrentStop ==============
+L0:            this->ExecuteUbergraph_Widget_Train_TimeTable(2189);
+============ END FUNCTION CheckCurrentStop ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Train_TimeTable ==============
+L10:           bool mbool = KismetSystemLibrary->IsValid(this->mTimeTable);
+L61:           if (!mbool) goto L2194;
+L75:           int32 mint32 = this->mTimeTable->GetCurrentStop();
+L125:          int32 mint321 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildrenCount();
+L197:          bool mbool1 = Less_IntInt(mint32, mint321);
+L235:          if (!mbool1) goto L2194;
+L249:          mint32 = this->mTimeTable->GetCurrentStop();
+L299:          Widget* mWidget = this->Widget_Splitter_OutputList->mOutputContainer->GetChildAt(mint32);
+L372:          Widget_Train_TimeTable_Rule* mWidget_Train_TimeTable_Rule = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable_Rule.Widget_Train_TimeTable_Rule_C>(mWidget);
+L408:          bool mbool2 = mWidget_Train_TimeTable_Rule;
+L437:          if (!mbool2) goto L2194;
+L451:          bool mbool3 = NotEqual_ObjectObject(mWidget_Train_TimeTable_Rule, this->mCurrentStopRule);
+L489:          if (!mbool3) goto L2194;
+L503:          bool mbool4 = KismetSystemLibrary->IsValid(this->mCurrentStopRule);
+L554:          if (!mbool4) goto L605;
+L568:          this->mCurrentStopRule->SetIsNextStop(false);
+L605:          this->mCurrentStopRule = mWidget_Train_TimeTable_Rule;
+L624:          this->mCurrentStopRule->SetIsNextStop(true);
+L661:          <End of Inlined Event Graph Function>;
+L666:          this->UpdateTrainStations();
+L680:          this->PopulateTimeTable();
+L694:          this->CheckCurrentStop();
+L708:          mFScriptDelegate->BindUFunction(this, CheckCurrentStop);
+L731:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 1, true);
+L796:          this->mCheckCurrentStopTimer = mTimerHandle;
+L823:          <End of Inlined Event Graph Function>;
+L828:          this->mTrain = mFGTrain;
+L847:          goto L666;
+L852:          KismetArrayLibrary->Array_Get([ref] this->mTrainStations, 0, [ref] mFGTrainStationIdentifier);
+L907:          this->AddRule([ref] mFGTrainStationIdentifier);
+L930:          this->ShowApplyChangesPrompt();
+L944:          <End of Inlined Event Graph Function>;
+L949:          bool mbool5 = Not_PreBool(mWidget_Train_TimeTable_Rule1->mIsSelected);
+L1000:         if (!mbool5) goto L1056;
+L1014:         this->SetSelectedRule(mWidget_Train_TimeTable_Rule1);
+L1037:         this->PopulateAvailableStations();
+L1051:         <End of Inlined Event Graph Function>;
+L1056:         this->CloseAvailableStationsWidget();
+L1070:         <End of Inlined Event Graph Function>;
+L1075:         bool mbool6 = Greater_IntInt(this->mAvailableStationsSelectedIndex, -1);
+L1109:         int32 mint322 = KismetArrayLibrary->Array_Find([ref] this->mTrainStations, [ref] this->SelectedRule->mStation);
+L1199:         bool mbool7 = NotEqual_IntInt(mint322, this->mAvailableStationsSelectedIndex);
+L1237:         bool mbool8 = BooleanAND(mbool6, mbool7);
+L1275:         if (!mbool8) goto L1443;
+L1289:         KismetArrayLibrary->Array_Get([ref] this->mTrainStations, this->mAvailableStationsSelectedIndex, [ref] mFGTrainStationIdentifier1);
+L1348:         this->SelectedRule->UpdateRule(mFGTrainStationIdentifier1);
+L1393:         this->SelectedRule->PlayNewNameAnim();
+L1429:         this->ShowApplyChangesPrompt();
+L1443:         this->CloseAvailableStationsWidget();
+L1457:         <End of Inlined Event Graph Function>;
+L1462:         this->mAvailableStationsSelectedIndex = mint323;
+L1489:         this->UpdateStation();
+L1503:         <End of Inlined Event Graph Function>;
+L1508:         mWidget_Train_TimeTable_Rule2->RemoveFromParent();
+L1544:         this->ShowApplyChangesPrompt();
+L1558:         int32 mint324 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildrenCount();
+L1630:         bool mbool9 = EqualEqual_IntInt(mint324, 1);
+L1664:         if (!mbool9) goto L2194;
+L1678:         Widget* mWidget1 = this->Widget_Splitter_OutputList->mOutputContainer->GetChildAt(0);
+L1747:         Widget_Train_TimeTable_Rule* mWidget_Train_TimeTable_Rule3 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Train_TimeTable_Rule.Widget_Train_TimeTable_Rule_C>(mWidget1);
+L1783:         bool mbool10 = mWidget_Train_TimeTable_Rule3;
+L1812:         if (!mbool10) goto L2194;
+L1826:         mWidget_Train_TimeTable_Rule3->SetOrderButtonsVisibility(false, false);
+L1864:         <End of Inlined Event Graph Function>;
+L1869:         this->UpdateStopsOnServer();
+L1883:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mCheckCurrentStopTimer);
+L1925:         <End of Inlined Event Graph Function>;
+L1930:         this->Destruct();
+L1940:         goto L1869;
+L1945:         this->MoveRule(mWidget_Train_TimeTable_Rule4, false);
+L1969:         this->ShowApplyChangesPrompt();
+L1983:         bool mbool11 = KismetSystemLibrary->IsValid(this->SelectedRule);
+L2034:         if (!mbool11) goto L2194;
+L2048:         this->CloseAvailableStationsWidget();
+L2062:         <End of Inlined Event Graph Function>;
+L2067:         this->MoveRule(mWidget_Train_TimeTable_Rule5, true);
+L2091:         this->ShowApplyChangesPrompt();
+L2105:         bool mbool12 = KismetSystemLibrary->IsValid(this->SelectedRule);
+L2156:         if (!mbool12) goto L2194;
+L2170:         this->CloseAvailableStationsWidget();
+L2184:         <End of Inlined Event Graph Function>;
+L2189:         goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_Train_TimeTable ==============

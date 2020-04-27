@@ -1,0 +1,93 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/Pipeline/FlowIndicator/BP_PipeFlowIndicatorComponent.BP_PipeFlowIndicatorComponent_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ApplyFlowData ==============
+L0:            FGBuildablePipeline* mFGBuildablePipeline = this->GetPipeline();
+L20:           float mfloat = mFGBuildablePipeline->GetIndicatorFlowPct();
+L70:           this->Instance->SetScalarParameterValue("FlowDirection", mfloat);
+L124:          mFGBuildablePipeline = this->GetPipeline();
+L144:          float mfloat1 = mFGBuildablePipeline->GetIndicatorContentPct();
+L194:          this->Instance->SetScalarParameterValue("Content", mfloat1);
+============ END FUNCTION ApplyFlowData ==============
+
+
+
+
+
+============ BEGIN FUNCTION ApplyFluidDescriptorColor ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mCurrentFluidDescriptor);
+L51:           if (!mbool) goto L247;
+L65:           Color mColor = FGItemDescriptor->GetFluidColor(this->mCurrentFluidDescriptor);
+L124:          this->NewColor = mColor;
+L151:          LinearColor mLinearColor = Conv_ColorToLinearColor(this->NewColor);
+L188:          this->Instance->SetVectorParameterValue("LiquidColour", mLinearColor);
+L242:          <End of Inlined Event Graph Function>;
+L247:          this->NewColor = this->mEmptyColor;
+L274:          goto L151;
+============ END FUNCTION ApplyFluidDescriptorColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/Pipeline/FlowIndicator/BP_PipeFlowIndicatorComponent.BP_PipeFlowIndicatorComponent_C:ExecuteUbergraph_BP_PipeFlowIndicatorComponent.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_BP_PipeFlowIndicatorComponent(10);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_PipeFlowIndicatorComponent(43);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFluidDescriptorSet ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/Factory/Pipeline/FlowIndicator/BP_PipeFlowIndicatorComponent.BP_PipeFlowIndicatorComponent_C:ExecuteUbergraph_BP_PipeFlowIndicatorComponent.K2Node_Event_fluidDescriptor) = fluidDescriptor;
+L18:           this->ExecuteUbergraph_BP_PipeFlowIndicatorComponent(217);
+============ END FUNCTION OnFluidDescriptorSet ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMaterialInstanceUpdated ==============
+L0:            this->ExecuteUbergraph_BP_PipeFlowIndicatorComponent(255);
+============ END FUNCTION OnMaterialInstanceUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_PipeFlowIndicatorComponent ==============
+L10:           this->ApplyFlowData();
+L24:           this->ApplyFluidDescriptorColor();
+L38:           <End of Inlined Event Graph Function>;
+L43:           MaterialInterface* mMaterialInterface = this->GetMaterial(0);
+L72:           MaterialInstanceDynamic* mMaterialInstanceDynamic = Cast<Class /Script/Engine.MaterialInstanceDynamic>(mMaterialInterface);
+L108:          bool mbool = mMaterialInstanceDynamic;
+L137:          if (!mbool) goto L410;
+L151:          this->Instance = mMaterialInstanceDynamic;
+L170:          this->SetMaterial(0, this->Instance);
+L212:          <End of Inlined Event Graph Function>;
+L217:          this->mCurrentFluidDescriptor = mTSubclassOf<FGItemDescriptor>;
+L236:          this->ApplyFluidDescriptorColor();
+L250:          <End of Inlined Event Graph Function>;
+L255:          MaterialInterface* mMaterialInterface1 = this->GetMaterial(0);
+L284:          MaterialInstanceDynamic* mMaterialInstanceDynamic1 = Cast<Class /Script/Engine.MaterialInstanceDynamic>(mMaterialInterface1);
+L320:          bool mbool1 = mMaterialInstanceDynamic1;
+L349:          if (!mbool1) goto L410;
+L363:          this->Instance = mMaterialInstanceDynamic1;
+L382:          this->ApplyFlowData();
+L396:          this->ApplyFluidDescriptorColor();
+============ END FUNCTION ExecuteUbergraph_BP_PipeFlowIndicatorComponent ==============

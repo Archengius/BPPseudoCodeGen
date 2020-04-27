@@ -1,0 +1,122 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/JetPack/Widget_JetPack.Widget_JetPack_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetFuelText ==============
+L0:            this->GetJetPack([ref] mEquip_JetPack);
+L23:           bool mbool = KismetSystemLibrary->IsValid(mEquip_JetPack);
+L74:           if (!mbool) goto L942;
+L88:           FText mFText = KismetSystemLibrary->MakeLiteralText("[object Object]");
+L179:          mFormatArgumentData.ArgumentName = "%";
+L209:          mFormatArgumentData.ArgumentValueType = 4;
+L238:          mFormatArgumentData.ArgumentValue = mFText;
+L274:          mFormatArgumentData.ArgumentValueInt = 0;
+L306:          mFormatArgumentData.ArgumentValueFloat = 0;
+L338:          mFormatArgumentData.ArgumentValueGender = 0;
+L367:          float mfloat = MapRangeUnclamped(mEquip_JetPack->mCurrentFuel, 0, mEquip_JetPack->mMaxFuel, 0, 100);
+L472:          int32 mint32 = FFloor(mfloat);
+L509:          FText mFText1 = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
+L580:          mFormatArgumentData1.ArgumentName = "Range";
+L614:          mFormatArgumentData1.ArgumentValueType = 4;
+L643:          mFormatArgumentData1.ArgumentValue = mFText1;
+L679:          mFormatArgumentData1.ArgumentValueInt = 0;
+L711:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L743:          mFormatArgumentData1.ArgumentValueGender = 0;
+L772:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
+L801:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L910:          FText ReturnValue = mFText2;
+L937:          goto L962;
+L942:          ReturnValue = ;
+============ END FUNCTION GetFuelText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetJetPack ==============
+L0:            ExecutionFlow.Push(L637);
+L5:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L25:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L61:           bool mbool = mFGCharacterPlayer;
+L90:           if (!mbool) goto ExecutionFlow.Pop();
+L100:          int32 Temp_int_Loop_Counter_Variable = 0;
+L123:          int32 Temp_int_Array_Index_Variable = 0;
+L146:          TArray<FGEquipment*> mTArray<FGEquipment> = mFGCharacterPlayer->GetActiveEquipments();
+L196:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGEquipment>);
+L255:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L293:          if (!mbool1) goto L547;
+L307:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L334:          ExecutionFlow.Push(L563);
+L339:          mTArray<FGEquipment> = mFGCharacterPlayer->GetActiveEquipments();
+L389:          KismetArrayLibrary->Array_Get([ref] mTArray<FGEquipment>, Temp_int_Array_Index_Variable, [ref] mFGEquipment);
+L448:          Equip_JetPack* mEquip_JetPack = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/JetPack/Equip_JetPack.Equip_JetPack_C>(mFGEquipment);
+L484:          bool mbool2 = mEquip_JetPack;
+L513:          if (!mbool2) goto ExecutionFlow.Pop();
+L523:          Equip_JetPack* Jetpack = mEquip_JetPack;
+L542:          <End of Inlined Event Graph Function>;
+L547:          Jetpack = nullptr;
+L558:          <End of Inlined Event Graph Function>;
+L563:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L605:          Temp_int_Loop_Counter_Variable = mint321;
+L632:          goto L146;
+============ END FUNCTION GetJetPack ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetFuelColor ==============
+L0:            this->GetJetPack([ref] mEquip_JetPack);
+L23:           bool mbool = KismetSystemLibrary->IsValid(mEquip_JetPack);
+L74:           if (!mbool) goto L294;
+L88:           float mfloat = FClamp(mEquip_JetPack->mCurrentFuel, 0, 1);
+L157:          LinearColor mLinearColor = LinearColorLerp(ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.02881699986755848, B = 0.06770800054073334, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 0.838798999786377, G = 0.8713669776916504, B = 0.887923002243042, A = 1), mfloat);
+L262:          LinearColor ReturnValue = mLinearColor;
+L289:          goto L346;
+L294:          ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+============ END FUNCTION GetFuelColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetFuelPct ==============
+L0:            this->GetJetPack([ref] mEquip_JetPack);
+L23:           bool mbool = KismetSystemLibrary->IsValid(mEquip_JetPack);
+L74:           if (!mbool) goto L142;
+L88:           float ReturnValue = mEquip_JetPack->mCurrentFuel;
+L137:          goto L165;
+L142:          ReturnValue = 0;
+============ END FUNCTION GetFuelPct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/JetPack/Widget_JetPack.Widget_JetPack_C:ExecuteUbergraph_Widget_JetPack.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/JetPack/Widget_JetPack.Widget_JetPack_C:ExecuteUbergraph_Widget_JetPack.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_JetPack(240);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_JetPack ==============
+L10:           this->GetJetPack([ref] mEquip_JetPack);
+L33:           bool mbool = KismetSystemLibrary->IsValid(mEquip_JetPack);
+L84:           if (!mbool) goto L197;
+L98:           bool mbool1 = mEquip_JetPack->IsEquipped();
+L140:          if (!mbool1) goto L197;
+L154:          this->Border1->SetVisibility(0);
+L192:          <End of Inlined Event Graph Function>;
+L197:          this->Border1->SetVisibility(2);
+L235:          <End of Inlined Event Graph Function>;
+L240:          this->Tick(mGeometry, mfloat);
+L268:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_JetPack ==============

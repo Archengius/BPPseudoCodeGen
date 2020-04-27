@@ -1,0 +1,354 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Minimap/MapFilters/Widget_BeaconViewdistanceSlider.Widget_BeaconViewdistanceSlider_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetTextFromIndex ==============
+L0:            ExecutionFlow.Push(L523);
+L5:            Widget* mWidget = this->mContainer->GetChildAt(index);
+L56:           Overlay* mOverlay = Cast<Class /Script/UMG.Overlay>(mWidget);
+L92:           bool mbool = mOverlay;
+L121:          if (!mbool) goto ExecutionFlow.Pop();
+L131:          int32 Temp_int_Variable = 0;
+L154:          int32 mint32 = mOverlay->GetChildrenCount();
+L204:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint32);
+L242:          if (!mbool1) goto L422;
+L256:          ExecutionFlow.Push(L449);
+L261:          Widget* mWidget1 = mOverlay->GetChildAt(Temp_int_Variable);
+L312:          TextBlock* mTextBlock = Cast<Class /Script/UMG.TextBlock>(mWidget1);
+L348:          bool mbool2 = mTextBlock;
+L377:          if (!mbool2) goto ExecutionFlow.Pop();
+L387:          TextBlock* text = mTextBlock;
+L406:          bool success = true;
+L417:          <End of Inlined Event Graph Function>;
+L422:          text = nullptr;
+L433:          success = false;
+L444:          <End of Inlined Event Graph Function>;
+L449:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L491:          Temp_int_Variable = mint321;
+L518:          goto L154;
+============ END FUNCTION GetTextFromIndex ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseMove ==============
+L0:            ExecutionFlow.Push(L1415);
+L5:            this->mHoveredLevel = -1;
+L28:           bool mbool = this->mContainer->IsHovered();
+L74:           if (!mbool) goto L602;
+L88:           int32 Temp_int_Variable = 0;
+L111:          int32 mint32 = this->mContainer->GetChildrenCount();
+L161:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint32);
+L199:          if (!mbool1) goto L623;
+L213:          ExecutionFlow.Push(L839);
+L218:          Widget* mWidget = this->mContainer->GetChildAt(Temp_int_Variable);
+L269:          bool mbool2 = KismetSystemLibrary->IsValid(mWidget);
+L320:          if (!mbool2) goto ExecutionFlow.Pop();
+L330:          ExecutionFlow.Push(L1192);
+L335:          ExecutionFlow.Push(L913);
+L340:          mWidget = this->mContainer->GetChildAt(Temp_int_Variable);
+L391:          bool mbool3 = mWidget->IsHovered();
+L437:          if (!mbool3) goto ExecutionFlow.Pop();
+L447:          this->mHoveredLevel = Temp_int_Variable;
+L474:          bool mbool4 = NotEqual_IntInt(this->mHoveredLevel, this->mLastHoveredLevel);
+L512:          if (!mbool4) goto ExecutionFlow.Pop();
+L522:          this->mLastHoveredLevel = this->mHoveredLevel;
+L549:          this->MyMemesWillGoOn();
+L563:          this->mWhereever->SetVisibility(1);
+L601:          goto ExecutionFlow.Pop();
+L602:          this->OnViewDistanceUnhovered->ProcessMulticastDelegate(this);
+L622:          goto ExecutionFlow.Pop();
+L623:          uint8 muint8 = Conv_IntToByte(this->mHoveredLevel);
+L660:          uint8 muint81 = KismetNodeHelperLibrary->GetValidValue(ECompassViewDistance, muint8);
+L728:          this->OnViewDistanceHovered->ProcessMulticastDelegate(this, muint81);
+L757:          EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L807:          EventReply ReturnValue = mEventReply;
+L834:          goto L1415;
+L839:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L881:          Temp_int_Variable = mint321;
+L908:          goto L111;
+L913:          this->GetTextFromIndex(Temp_int_Variable, [ref] mTextBlock, [ref] mbool5);
+L954:          if (!mbool5) goto ExecutionFlow.Pop();
+L964:          bool mbool6 = EqualEqual_IntInt(Temp_int_Variable, this->mHoveredLevel);
+L1002:         this->GetTextFromIndex(Temp_int_Variable, [ref] mTextBlock, [ref] mbool5);
+L1043:         uint8 Temp_byte_Variable = 2;
+L1063:         uint8 Temp_byte_Variable1 = 3;
+L1083:         bool Temp_bool_Variable = mbool6;
+L1102:         mTextBlock->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint82;
+});
+L1191:         goto ExecutionFlow.Pop();
+L1192:         this->GetButtonFromIndex(Temp_int_Variable, [ref] mButton, [ref] mbool7);
+L1233:         bool mbool8 = GreaterEqual_IntInt(this->mHoveredLevel, Temp_int_Variable);
+L1271:         bool mbool9 = Less_IntInt(this->mHoveredLevel, 0);
+L1305:         bool mbool10 = BooleanOR(mbool9, mbool8);
+L1343:         bool mbool11 = BooleanAND(mbool10, mbool7);
+L1381:         this->SetButtonStyle(mButton, mbool11, true);
+L1414:         goto ExecutionFlow.Pop();
+============ END FUNCTION OnMouseMove ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonFromIndex ==============
+L0:            ExecutionFlow.Push(L523);
+L5:            Widget* mWidget = this->mContainer->GetChildAt(index);
+L56:           Overlay* mOverlay = Cast<Class /Script/UMG.Overlay>(mWidget);
+L92:           bool mbool = mOverlay;
+L121:          if (!mbool) goto ExecutionFlow.Pop();
+L131:          int32 Temp_int_Variable = 0;
+L154:          int32 mint32 = mOverlay->GetChildrenCount();
+L204:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint32);
+L242:          if (!mbool1) goto L422;
+L256:          ExecutionFlow.Push(L449);
+L261:          Widget* mWidget1 = mOverlay->GetChildAt(Temp_int_Variable);
+L312:          Button* mButton = Cast<Class /Script/UMG.Button>(mWidget1);
+L348:          bool mbool2 = mButton;
+L377:          if (!mbool2) goto ExecutionFlow.Pop();
+L387:          Button* Button = mButton;
+L406:          bool success = true;
+L417:          <End of Inlined Event Graph Function>;
+L422:          Button = nullptr;
+L433:          success = false;
+L444:          <End of Inlined Event Graph Function>;
+L449:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L491:          Temp_int_Variable = mint321;
+L518:          goto L154;
+============ END FUNCTION GetButtonFromIndex ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetButtonStyle ==============
+L0:            LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.05951099842786789, A = 1);
+L52:           LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 1);
+L104:          LinearColor Temp_struct_Variable2 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L156:          bool Temp_bool_Variable = Hovered;
+L175:          bool Temp_bool_Variable1 = Selected;
+L194:          mSlateColor.SpecifiedColor = switch (Temp_bool_Variable1) {
+case false -> Temp_struct_Variable2;
+case true -> switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mLinearColor1;
+};
+default -> mLinearColor;
+};
+L318:          mSlateColor.ColorUseRule = 0;
+L347:          mSlateBrush.ImageSize = Button->WidgetStyle.Normal.ImageSize;
+L423:          mSlateBrush.Margin = Button->WidgetStyle.Normal.Margin;
+L499:          mSlateBrush.TintColor = mSlateColor;
+L535:          mSlateBrush.ResourceObject = Button->WidgetStyle.Normal.ResourceObject;
+L603:          mSlateBrush.DrawAs = Button->WidgetStyle.Normal.DrawAs;
+L679:          mSlateBrush.Tiling = Button->WidgetStyle.Normal.Tiling;
+L755:          mSlateBrush.Mirroring = Button->WidgetStyle.Normal.Mirroring;
+L831:          mSlateBrush1.ImageSize = Button->WidgetStyle.Hovered.ImageSize;
+L907:          mSlateBrush1.Margin = Button->WidgetStyle.Hovered.Margin;
+L983:          mSlateBrush1.TintColor = Button->WidgetStyle.Hovered.TintColor;
+L1059:         mSlateBrush1.ResourceObject = Button->WidgetStyle.Hovered.ResourceObject;
+L1127:         mSlateBrush1.DrawAs = Button->WidgetStyle.Hovered.DrawAs;
+L1203:         mSlateBrush1.Tiling = Button->WidgetStyle.Hovered.Tiling;
+L1279:         mSlateBrush1.Mirroring = Button->WidgetStyle.Hovered.Mirroring;
+L1355:         mButtonStyle.Normal = mSlateBrush;
+L1391:         mButtonStyle.Hovered = mSlateBrush1;
+L1427:         mButtonStyle.Pressed = Button->WidgetStyle.Pressed;
+L1494:         mButtonStyle.Disabled = Button->WidgetStyle.Disabled;
+L1561:         mButtonStyle.NormalPadding = Button->WidgetStyle.NormalPadding;
+L1628:         mButtonStyle.PressedPadding = Button->WidgetStyle.PressedPadding;
+L1695:         mButtonStyle.PressedSlateSound = Button->WidgetStyle.PressedSlateSound;
+L1762:         mButtonStyle.HoveredSlateSound = Button->WidgetStyle.HoveredSlateSound;
+L1829:         Button->SetStyle([ref] mButtonStyle);
+============ END FUNCTION SetButtonStyle ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseLeave ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Minimap/MapFilters/Widget_BeaconViewdistanceSlider.Widget_BeaconViewdistanceSlider_C:ExecuteUbergraph_Widget_BeaconViewdistanceSlider.K2Node_Event_MouseEvent) = MouseEvent;
+L18:           this->ExecuteUbergraph_Widget_BeaconViewdistanceSlider(1005);
+============ END FUNCTION OnMouseLeave ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_BeaconViewdistanceSlider(1020);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnButtonClicked ==============
+L0:            this->ExecuteUbergraph_Widget_BeaconViewdistanceSlider(1446);
+============ END FUNCTION OnButtonClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION MyMemesWillGoOn ==============
+L0:            this->ExecuteUbergraph_Widget_BeaconViewdistanceSlider(1636);
+============ END FUNCTION MyMemesWillGoOn ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Minimap/MapFilters/Widget_BeaconViewdistanceSlider.Widget_BeaconViewdistanceSlider_C:ExecuteUbergraph_Widget_BeaconViewdistanceSlider.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_BeaconViewdistanceSlider(1713);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateSelectedLevel ==============
+L0:            this->ExecuteUbergraph_Widget_BeaconViewdistanceSlider(1759);
+============ END FUNCTION UpdateSelectedLevel ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_FilterButton_Row_K2Node_ComponentBoundEvent_0_OnHovered__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_BeaconViewdistanceSlider(1764);
+============ END FUNCTION BndEvt__Widget_FilterButton_Row_K2Node_ComponentBoundEvent_0_OnHovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_FilterButton_Row_K2Node_ComponentBoundEvent_1_OnUnhovered__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_BeaconViewdistanceSlider(1785);
+============ END FUNCTION BndEvt__Widget_FilterButton_Row_K2Node_ComponentBoundEvent_1_OnUnhovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_BeaconViewdistanceSlider ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool mbool = this->IsHovered();
+L39:           if (!mbool) goto L113;
+L53:           bool mbool1 = EqualEqual_IntInt(this->mLastHoveredLevel, 1);
+L87:           if (!mbool1) goto L125;
+L101:          this->mCeline1 = true;
+L112:          goto ExecutionFlow.Pop();
+L113:          this->mCeline1 = false;
+L124:          goto ExecutionFlow.Pop();
+L125:          if (!this->mCeline1) goto L309;
+L139:          bool mbool2 = EqualEqual_IntInt(this->mLastHoveredLevel, 3);
+L173:          if (!mbool2) goto L309;
+L187:          this->mWhereever->SetVisibility(0);
+L225:          int32 mint32 = RandomIntegerInRange(8, 10);
+L263:          this->Widget_GenericParticleSpawner->CreateParticles(mint32);
+L308:          goto ExecutionFlow.Pop();
+L309:          this->mCeline1 = false;
+L320:          this->mWhereever->SetVisibility(1);
+L358:          goto ExecutionFlow.Pop();
+L359:          this->OnViewDistanceUnhovered->ProcessMulticastDelegate(this);
+L379:          goto ExecutionFlow.Pop();
+L380:          ExecutionFlow.Push(L833);
+L385:          Widget* mWidget = this->mContainer->GetChildAt(Temp_int_Variable1);
+L436:          bool mbool3 = KismetSystemLibrary->IsValid(mWidget);
+L487:          if (!mbool3) goto ExecutionFlow.Pop();
+L497:          this->GetButtonFromIndex(Temp_int_Variable1, [ref] mButton, [ref] mbool4);
+L538:          if (!mbool4) goto ExecutionFlow.Pop();
+L548:          this->GetTextFromIndex(Temp_int_Variable1, [ref] mTextBlock, [ref] mbool5);
+L589:          if (!mbool5) goto L682;
+L603:          this->GetTextFromIndex(Temp_int_Variable1, [ref] mTextBlock, [ref] mbool5);
+L644:          mTextBlock->SetVisibility(2);
+L682:          bool mbool6 = LessEqual_IntInt(Temp_int_Variable1, this->mSelectedLevel);
+L720:          this->GetButtonFromIndex(Temp_int_Variable1, [ref] mButton, [ref] mbool4);
+L761:          this->SetButtonStyle(mButton, mbool6, false);
+L794:          this->mWhereever->SetVisibility(1);
+L832:          goto ExecutionFlow.Pop();
+L833:          int32 mint321 = Add_IntInt(Temp_int_Variable1, 1);
+L875:          int32 Temp_int_Variable1 = mint321;
+L902:          int32 mint322 = this->mContainer->GetChildrenCount();
+L952:          bool mbool7 = LessEqual_IntInt(Temp_int_Variable1, mint322);
+L990:          if (!mbool7) goto ExecutionFlow.Pop();
+L1000:         goto L380;
+L1005:         this->UpdateSelectedLevel();
+L1019:         goto ExecutionFlow.Pop();
+L1020:         int32 mint323 = Conv_ByteToInt(this->mCompassViewDistance);
+L1057:         this->mSelectedLevel = mint323;
+L1084:         this->UpdateSelectedLevel();
+L1098:         int32 Temp_int_Variable = 0;
+L1121:         int32 mint324 = this->mContainer->GetChildrenCount();
+L1171:         int32 mint325 = Subtract_IntInt(mint324, 1);
+L1213:         bool mbool8 = LessEqual_IntInt(Temp_int_Variable, mint325);
+L1251:         if (!mbool8) goto ExecutionFlow.Pop();
+L1261:         ExecutionFlow.Push(L1372);
+L1266:         mFScriptDelegate->BindUFunction(this, OnButtonClicked);
+L1289:         this->GetButtonFromIndex(Temp_int_Variable, [ref] mButton1, [ref] mbool9);
+L1330:         mButton1->OnClicked.AddUnique(mFScriptDelegate);
+L1371:         goto ExecutionFlow.Pop();
+L1372:         int32 mint326 = Add_IntInt(Temp_int_Variable, 1);
+L1414:         Temp_int_Variable = mint326;
+L1441:         goto L1121;
+L1446:         this->mSelectedLevel = this->mHoveredLevel;
+L1473:         uint8 muint8 = Conv_IntToByte(this->mSelectedLevel);
+L1510:         uint8 muint81 = KismetNodeHelperLibrary->GetValidValue(ECompassViewDistance, muint8);
+L1578:         this->OnViewDistanceChanged->ProcessMulticastDelegate(this, muint81);
+L1607:         goto ExecutionFlow.Pop();
+L1608:         Temp_int_Variable1 = 0;
+L1631:         goto L902;
+L1636:         KismetSystemLibrary->RetriggerableDelay(this, 2, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 202746167, ExecutionFunction = "ExecuteUbergraph_Widget_BeaconViewdistanceSlider", CallbackTarget = this));
+L1712:         goto ExecutionFlow.Pop();
+L1713:         this->Widget_FilterButton_Row->SetTitle(this->mName);
+L1758:         goto ExecutionFlow.Pop();
+L1759:         goto L1608;
+L1764:         this->OnHovered->ProcessMulticastDelegate(this);
+L1784:         goto ExecutionFlow.Pop();
+L1785:         this->OnUnhovered->ProcessMulticastDelegate(this);
+L1805:         goto L359;
+============ END FUNCTION ExecuteUbergraph_Widget_BeaconViewdistanceSlider ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnViewDistanceUnhovered__DelegateSignature ==============
+============ END FUNCTION OnViewDistanceUnhovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnViewDistanceHovered__DelegateSignature ==============
+============ END FUNCTION OnViewDistanceHovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUnhovered__DelegateSignature ==============
+============ END FUNCTION OnUnhovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHovered__DelegateSignature ==============
+============ END FUNCTION OnHovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnViewDistanceChanged__DelegateSignature ==============
+============ END FUNCTION OnViewDistanceChanged__DelegateSignature ==============

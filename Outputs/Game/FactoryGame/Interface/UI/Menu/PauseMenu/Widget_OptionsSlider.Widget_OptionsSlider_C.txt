@@ -1,0 +1,225 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_OptionsSlider.Widget_OptionsSlider_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateSliderValue ==============
+L0:            FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L42:           float mfloat = mFGGameUserSettings->GetFloatOptionValue(this->mOptionRowData.ConsoleVariable);
+L110:          this->SetNormalizedValue(mfloat);
+============ END FUNCTION UpdateSliderValue ==============
+
+
+
+
+
+============ BEGIN FUNCTION HandleSlider ==============
+L0:            if (!this->mIsDynamicOption) goto L174;
+L14:           FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L56:           this->GetAdjustedValue([ref] mfloat);
+L79:           mFGGameUserSettings->SetFloatOptionValue(this->mOptionRowData.ConsoleVariable, mfloat, this->mOptionRowData.UpdateInstantly, this->mOptionRowData.RequireRestart);
+============ END FUNCTION HandleSlider ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupSlider ==============
+L0:            ExecutionFlow.Push(L264);
+L5:            ExecutionFlow.Push(L249);
+L10:           ExecutionFlow.Push(L220);
+L15:           ExecutionFlow.Push(L183);
+L20:           ExecutionFlow.Push(L146);
+L25:           ExecutionFlow.Push(L109);
+L30:           ExecutionFlow.Push(L72);
+L35:           this->mMinVal = this->mOptionRowData.MinValue;
+L71:           goto ExecutionFlow.Pop();
+L72:           this->mMaxVal = this->mOptionRowData.MaxValue;
+L108:          goto ExecutionFlow.Pop();
+L109:          this->mMinDisplayVal = this->mOptionRowData.MinDisplayValue;
+L145:          goto ExecutionFlow.Pop();
+L146:          this->mMaxDisplayVal = this->mOptionRowData.MaxDisplayValue;
+L182:          goto ExecutionFlow.Pop();
+L183:          this->MaxFractionalDigitsToDisplay = this->mOptionRowData.MaxFractionalDigits;
+L219:          goto ExecutionFlow.Pop();
+L220:          this->mShowZeroAsOff = this->mOptionRowData.ShowZeroAsOff;
+L248:          goto ExecutionFlow.Pop();
+L249:          this->UpdateSliderValue();
+L263:          goto ExecutionFlow.Pop();
+============ END FUNCTION SetupSlider ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetDisplayValue ==============
+L0:            float mfloat = this->OptionSlider->GetValue();
+L50:           float mfloat1 = MapRangeClamped(mfloat, 0, 1, this->mMinDisplayVal, this->mMaxDisplayVal);
+L115:          float mfloat2 = FGBlueprintFunctionLibrary->RoundFloatWithPrecision(mfloat1, this->MaxFractionalDigitsToDisplay);
+L183:          float DisplayValue = mfloat2;
+============ END FUNCTION GetDisplayValue ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetNormalizedValue ==============
+L0:            float mfloat = NormalizeToRange(CurrentUnadjustedValue, this->mMinVal, this->mMaxVal);
+L55:           this->OptionSlider->SetValue(mfloat);
+L96:           FText mFText = this->GetValueText();
+L128:          this->mValueTextInput->SetText(mFText);
+============ END FUNCTION SetNormalizedValue ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetAdjustedValue ==============
+L0:            this->GetDisplayValue([ref] mfloat);
+L23:           float mfloat1 = MapRangeClamped(mfloat, this->mMinDisplayVal, this->mMaxDisplayVal, this->mMinVal, this->mMaxVal);
+L96:           float AdjustedValue = mfloat1;
+============ END FUNCTION GetAdjustedValue ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetProgressBarPercentage ==============
+L0:            this->OptionSlider->SetValue(Percent);
+L41:           FText mFText = this->GetValueText();
+L73:           this->mValueTextInput->SetText(mFText);
+============ END FUNCTION SetProgressBarPercentage ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetProgressBarPercentage ==============
+L0:            float mfloat = this->OptionSlider->GetValue();
+L50:           float ReturnValue = mfloat;
+============ END FUNCTION GetProgressBarPercentage ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetValueText ==============
+L0:            FText Temp_text_Variable = "[object Object]";
+L61:           this->GetDisplayValue([ref] mfloat);
+L84:           bool mbool = EqualEqual_FloatFloat(mfloat, 0);
+L118:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, false, 1, 324, 0, this->MaxFractionalDigitsToDisplay);
+L205:          bool mbool1 = BooleanAND(mbool, this->mShowZeroAsOff);
+L243:          bool Temp_bool_Variable = mbool1;
+L262:          FText ReturnValue = switch (Temp_bool_Variable) {
+case false -> mFText;
+case true -> Temp_text_Variable;
+default -> mFText1;
+};
+============ END FUNCTION GetValueText ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnInitValueController ==============
+L0:            this->ExecuteUbergraph_Widget_OptionsSlider(208);
+============ END FUNCTION OnInitValueController ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRowUnhovered ==============
+L0:            this->ExecuteUbergraph_Widget_OptionsSlider(370);
+============ END FUNCTION OnRowUnhovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRowHovered ==============
+L0:            this->ExecuteUbergraph_Widget_OptionsSlider(375);
+============ END FUNCTION OnRowHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__EditableTextBox_0_K2Node_ComponentBoundEvent_0_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_OptionsSlider.Widget_OptionsSlider_C:ExecuteUbergraph_Widget_OptionsSlider.K2Node_ComponentBoundEvent_Text) = text;
+L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_OptionsSlider.Widget_OptionsSlider_C:ExecuteUbergraph_Widget_OptionsSlider.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
+L36:           this->ExecuteUbergraph_Widget_OptionsSlider(503);
+============ END FUNCTION BndEvt__EditableTextBox_0_K2Node_ComponentBoundEvent_0_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__OptionSlider_K2Node_ComponentBoundEvent_104_OnFloatValueChangedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_OptionsSlider.Widget_OptionsSlider_C:ExecuteUbergraph_Widget_OptionsSlider.K2Node_ComponentBoundEvent_Value) = Value;
+L18:           this->ExecuteUbergraph_Widget_OptionsSlider(999);
+============ END FUNCTION BndEvt__OptionSlider_K2Node_ComponentBoundEvent_104_OnFloatValueChangedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnOptionValueUpdated ==============
+L0:            this->ExecuteUbergraph_Widget_OptionsSlider(1004);
+============ END FUNCTION OnOptionValueUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_OptionsSlider ==============
+L10:           this->HandleSlider();
+L24:           this->GetAdjustedValue([ref] mfloat);
+L47:           this->GetNewValue->ProcessMulticastDelegate(mfloat);
+L75:           <End of Inlined Event Graph Function>;
+L80:           this->mBorder->SetColorAndOpacity(this->mUnhoveredColor);
+L121:          this->mTextBackground->SetColorAndOpacity(this->mUnhoveredColor);
+L162:          this->mProgressBar->SetFillColorAndOpacity(this->mUnhoveredColor);
+L203:          <End of Inlined Event Graph Function>;
+L208:          this->SetupSlider();
+L222:          <End of Inlined Event Graph Function>;
+L227:          this->GetAdjustedValue([ref] mfloat1);
+L250:          this->GetNewValue->ProcessMulticastDelegate(mfloat1);
+L278:          this->HandleSlider();
+L292:          FText mFText = this->GetValueText();
+L324:          this->mValueTextInput->SetText(mFText);
+L365:          <End of Inlined Event Graph Function>;
+L370:          goto L80;
+L375:          this->mBorder->SetColorAndOpacity(this->mHoveredColor);
+L416:          this->mTextBackground->SetColorAndOpacity(this->mHoveredColor);
+L457:          this->mProgressBar->SetFillColorAndOpacity(this->mHoveredColor);
+L498:          <End of Inlined Event Graph Function>;
+L503:          bool mbool = NotEqual_ByteByte(muint8, 1);
+L534:          if (!mbool) goto L643;
+L548:          mbool = NotEqual_ByteByte(muint8, 2);
+L579:          if (!mbool) goto L921;
+L593:          mbool = NotEqual_ByteByte(muint8, 3);
+L624:          if (!mbool) goto L921;
+L638:          <End of Inlined Event Graph Function>;
+L643:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mconst FText);
+L702:          FString mFString1 = KismetStringLibrary->Replace(mFString, ",", ".", 1);
+L769:          float mfloat2 = KismetStringLibrary->Conv_StringToFloat(mFString1);
+L828:          float mfloat3 = MapRangeClamped(mfloat2, this->mMinDisplayVal, this->mMaxDisplayVal, 0, 1);
+L893:          this->SetProgressBarPercentage(mfloat3);
+L916:          goto L10;
+L921:          FText mFText1 = this->GetValueText();
+L953:          this->mValueTextInput->SetText(mFText1);
+L994:          <End of Inlined Event Graph Function>;
+L999:          goto L227;
+L1004:         this->UpdateSliderValue();
+============ END FUNCTION ExecuteUbergraph_Widget_OptionsSlider ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNewValue__DelegateSignature ==============
+============ END FUNCTION GetNewValue__DelegateSignature ==============

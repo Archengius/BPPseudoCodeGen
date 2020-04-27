@@ -1,0 +1,87 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/-Shared/BP_BuildEffect_TrainTrackSegment.BP_BuildEffect_TrainTrackSegment_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION Materialize__FinishedFunc ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrackSegment(1082);
+============ END FUNCTION Materialize__FinishedFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION Materialize__UpdateFunc ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrackSegment(1077);
+============ END FUNCTION Materialize__UpdateFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION Finalize__FinishedFunc ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrackSegment(1072);
+============ END FUNCTION Finalize__FinishedFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION Finalize__UpdateFunc ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrackSegment(949);
+============ END FUNCTION Finalize__UpdateFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddMesh ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrackSegment(117);
+============ END FUNCTION AddMesh ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayFinishEffect ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrackSegment(1067);
+============ END FUNCTION PlayFinishEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_BuildEffect_TrainTrackSegment ==============
+L10:           KismetSystemLibrary->PrintString(this, "Failed setting static mesh", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0.071772001683712, A = 1), 5);
+L112:          <End of Inlined Event Graph Function>;
+L117:          const Transform Temp_struct_Variable = Transform(Rotator(0, 0, 0, 1), Vector(0, 0, 0), Vector(1, 1, 1));
+L176:          SplineMeshComponent* mSplineMeshComponent = this->AddComponent("NODE_AddSplineMeshComponent-0", false, [ref] Temp_struct_Variable, this);
+L220:          this->MeshComponent = mSplineMeshComponent;
+L239:          bool mbool = this->MeshComponent->SetStaticMesh(this->mMesh);
+L294:          this->MeshComponent->SetMaterial(0, this->mTrainMaterial);
+L344:          if (!mbool) goto L10;
+L358:          this->MeshComponent->SetScalarParameterValueOnMaterials("Width_Lower", 100);
+L408:          this->MeshComponent->SetScalarParameterValueOnMaterials("Glow Power", 2);
+L458:          Vector mVector = this->Spline->GetLocationAtSplinePoint(1, 0);
+L515:          Vector mVector1 = this->Spline->GetLocationAtSplinePoint(0, 0);
+L572:          Rotator mRotator = this->K2_GetActorRotation();
+L600:          Vector mVector2 = LessLess_VectorRotator(this->mEndTangent, mRotator);
+L646:          Vector mVector3 = LessLess_VectorRotator(this->mStartTangent, mRotator);
+L692:          this->MeshComponent->SetStartAndEnd(mVector1, mVector3, mVector, mVector2, true);
+L761:          this->MeshComponent->SetStartScale(ScriptStruct /Script/CoreUObject.Vector2D(X = 1, Y = 1), true);
+L818:          this->MeshComponent->SetEndScale(ScriptStruct /Script/CoreUObject.Vector2D(X = 1, Y = 1), true);
+L875:          this->Materialize->PlayFromStart();
+L907:          <End of Inlined Event Graph Function>;
+L912:          this->Finalize->PlayFromStart();
+L944:          <End of Inlined Event Graph Function>;
+L949:          this->MeshComponent->SetScalarParameterValueOnMaterials("Glow Power", this->Finalize_Glow_Power_203B77884CB8C9E943CEEDB36CF2D9A8);
+L1003:         <End of Inlined Event Graph Function>;
+L1008:         this->MeshComponent->SetScalarParameterValueOnMaterials("MaterializeAmount", this->Materialize_MaterializeAmount_B295E1ED488D475654D6A791EDE08DC5);
+L1062:         <End of Inlined Event Graph Function>;
+L1067:         goto L912;
+L1072:         <End of Inlined Event Graph Function>;
+L1077:         goto L1008;
+============ END FUNCTION ExecuteUbergraph_BP_BuildEffect_TrainTrackSegment ==============

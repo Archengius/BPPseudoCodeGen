@@ -1,0 +1,79 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Codex/BPW_Interactable_Recipe.BPW_Interactable_Recipe_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetToDoListMenu ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           Widget_BuildMenu_RightClickMenu* mWidget_BuildMenu_RightClickMenu = WidgetBlueprintLibrary->Create(this, Widget_BuildMenu_RightClickMenu, mPlayerController);
+L85:           KismetSystemLibrary->SetClassPropertyByName(mWidget_BuildMenu_RightClickMenu, "mRecipe", this->mRecipe);
+L148:          Widget* ReturnValue = mWidget_BuildMenu_RightClickMenu;
+============ END FUNCTION GetToDoListMenu ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonUp ==============
+L0:            Key mKey = KismetInputLibrary->PointerEvent_GetEffectingButton([ref] MouseEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "RightMouseButton"));
+L137:          if (!mbool) goto L640;
+L151:          KismetSystemLibrary->PrintString(this, "RMB down", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L235:          Vector2D mVector2D = WidgetLayoutLibrary->GetMousePositionOnViewport(this);
+L286:          SlateBlueprintLibrary->LocalToViewport(this, [ref] MyGeometry, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D1, [ref] mVector2D2);
+L370:          Vector2D mVector2D3 = Subtract_Vector2DVector2D(mVector2D, mVector2D2);
+L416:          FString mFString = KismetStringLibrary->Conv_Vector2dToString(mVector2D3);
+L475:          KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L558:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L608:          EventReply ReturnValue = mEventReply;
+L635:          goto L717;
+L640:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L690:          ReturnValue = mEventReply1;
+============ END FUNCTION OnMouseButtonUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BPW_Interactable_Recipe(61);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_Interactable_Recipe(432);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_Interactable_Recipe(483);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_Interactable_Recipe ==============
+L10:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->HoverFade, 0, 1, 1, 1);
+L56:           <End of Inlined Event Graph Function>;
+L61:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L85:           Widget_TooltipRecipe* mWidget_TooltipRecipe = WidgetBlueprintLibrary->Create(this, Widget_TooltipRecipe, mPlayerController);
+L146:          KismetSystemLibrary->SetClassPropertyByName(mWidget_TooltipRecipe, "mRecipe", this->mRecipe);
+L209:          KismetSystemLibrary->SetTextPropertyByName(mWidget_TooltipRecipe, "mRecipeNameText", [ref] this->mRecipeNameText);
+L272:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_TooltipRecipe, "HideProductionInfo", this->mHideProductionInfo);
+L335:          PanelSlot* mPanelSlot = this->mContainer->AddChild(mWidget_TooltipRecipe);
+L386:          this->Widget_BuildMenu_RightClickMenu->mRecipe = this->mRecipe;
+L427:          <End of Inlined Event Graph Function>;
+L432:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->HoverFade, 0, 1, 0, 1);
+L478:          <End of Inlined Event Graph Function>;
+L483:          goto L10;
+============ END FUNCTION ExecuteUbergraph_BPW_Interactable_Recipe ==============

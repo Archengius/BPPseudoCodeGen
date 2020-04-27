@@ -1,0 +1,195 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_Storage.Widget_Storage_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetInventoryComp ==============
+L0:            this->mInventoryComponent = InventoryComp;
+L19:           this->mInventory->Init(this->mInventoryComponent);
+L64:           this->InitInventoryWidgetCallbacks(this->mInventory);
+============ END FUNCTION SetInventoryComp ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSortClicked ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           if (!mbool) goto L253;
+L103:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L154:          mBP_RemoteCallObject->Server_SortInventory(this->mInventoryComponent);
+L199:          this->Widget_Scrollbox->mScrollBox->ScrollToStart();
+============ END FUNCTION OnSortClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDumpAllClicked ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           if (!mbool) goto L372;
+L103:          Pawn* mPawn = mFGPlayerController->K2_GetPawn();
+L145:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L181:          bool mbool1 = mFGCharacterPlayer;
+L210:          if (!mbool1) goto L372;
+L224:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L275:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
+L317:          mBP_RemoteCallObject->Server_GrabAllItemsFromInventory(mFGInventoryComponent, this->mInventoryComponent, nullptr);
+============ END FUNCTION OnDumpAllClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnGrabAllClicked ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           if (!mbool) goto L372;
+L103:          Pawn* mPawn = mFGPlayerController->K2_GetPawn();
+L145:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L181:          bool mbool1 = mFGCharacterPlayer;
+L210:          if (!mbool1) goto L372;
+L224:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L275:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
+L317:          mBP_RemoteCallObject->Server_GrabAllItemsFromInventory(this->mInventoryComponent, mFGInventoryComponent, nullptr);
+============ END FUNCTION OnGrabAllClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION BindStorageButtons ==============
+L0:            mFScriptDelegate->BindUFunction(this, DumpAllInStorage);
+L23:           this->mDumpAllButton->mButton->OnClicked.AddUnique(mFScriptDelegate);
+L86:           mFScriptDelegate1->BindUFunction(this, GrabAllFromStorage);
+L109:          this->mGrabAllButton->mButton->OnClicked.AddUnique(mFScriptDelegate1);
+============ END FUNCTION BindStorageButtons ==============
+
+
+
+
+
+============ BEGIN FUNCTION DropInventorySlotStack ==============
+L0:            this->DropInventoryStackOnInventoryWidget(InventorySlot, this->mInventory, [ref] mbool);
+L41:           bool WasStackMoved = mbool;
+============ END FUNCTION DropInventorySlotStack ==============
+
+
+
+
+
+============ BEGIN FUNCTION Cleanup ==============
+L0:            this->mGrabAllButton->mButton->OnClicked->Clear();
+L54:           this->Widget_Window_DarkMode->OnClose->Clear();
+============ END FUNCTION Cleanup ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_Storage(10);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_Storage(541);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Storage(570);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION DumpAllInStorage ==============
+L0:            this->ExecuteUbergraph_Widget_Storage(663);
+============ END FUNCTION DumpAllInStorage ==============
+
+
+
+
+
+============ BEGIN FUNCTION GrabAllFromStorage ==============
+L0:            this->ExecuteUbergraph_Widget_Storage(763);
+============ END FUNCTION GrabAllFromStorage ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSortButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Storage(782);
+============ END FUNCTION BndEvt__mSortButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnInventoryComponentReplicated ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_Storage.Widget_Storage_C:ExecuteUbergraph_Widget_Storage.K2Node_CustomEvent_replicationDetailActorOwner) = replicationDetailActorOwner;
+L18:           this->ExecuteUbergraph_Widget_Storage(801);
+============ END FUNCTION OnInventoryComponentReplicated ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Storage ==============
+L10:           this->Init();
+L20:           FGBuildableStorage* mFGBuildableStorage = Cast<Class /Script/FactoryGame.FGBuildableStorage>(this->mInteractObject);
+L56:           bool mbool = mFGBuildableStorage;
+L85:           if (!mbool) goto L295;
+L99:           this->mStorageActor = mFGBuildableStorage;
+L118:          FGInventoryComponent* mFGInventoryComponent = this->mStorageActor->GetStorageInventory();
+L160:          bool mbool1 = KismetSystemLibrary->IsValid(mFGInventoryComponent);
+L211:          if (!mbool1) goto L402;
+L225:          mFGInventoryComponent = this->mStorageActor->GetStorageInventory();
+L267:          this->SetInventoryComp(mFGInventoryComponent);
+L290:          <End of Inlined Event Graph Function>;
+L295:          FGInventoryComponent* mFGInventoryComponent1 = Cast<Class /Script/FactoryGame.FGInventoryComponent>(this->mInteractObject);
+L331:          bool mbool2 = mFGInventoryComponent1;
+L360:          if (!mbool2) goto L806;
+L374:          this->SetInventoryComp(mFGInventoryComponent1);
+L397:          <End of Inlined Event Graph Function>;
+L402:          mFScriptDelegate->BindUFunction(this, OnInventoryComponentReplicated);
+L425:          this->mStorageActor->OnReplicationDetailActorCreatedEvent.AddUnique(mFScriptDelegate);
+L466:          <End of Inlined Event Graph Function>;
+L471:          FGInventoryComponent* mFGInventoryComponent2 = this->mStorageActor->GetStorageInventory();
+L513:          this->SetInventoryComp(mFGInventoryComponent2);
+L536:          <End of Inlined Event Graph Function>;
+L541:          this->Destruct();
+L551:          this->Cleanup();
+L565:          <End of Inlined Event Graph Function>;
+L570:          this->Construct();
+L580:          mFScriptDelegate1->BindUFunction(this, OnEscapePressed);
+L603:          this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate1);
+L644:          this->BindStorageButtons();
+L658:          <End of Inlined Event Graph Function>;
+L663:          this->OnDumpAllClicked();
+L677:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L697:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_GrabAllDumpAll, mPawn, true);
+L758:          <End of Inlined Event Graph Function>;
+L763:          this->OnGrabAllClicked();
+L777:          goto L677;
+L782:          this->OnSortClicked();
+L796:          <End of Inlined Event Graph Function>;
+L801:          goto L471;
+============ END FUNCTION ExecuteUbergraph_Widget_Storage ==============

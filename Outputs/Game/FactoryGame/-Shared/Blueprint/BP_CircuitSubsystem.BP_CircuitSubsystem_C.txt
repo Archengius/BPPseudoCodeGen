@@ -1,0 +1,36 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/-Shared/Blueprint/BP_CircuitSubsystem.BP_CircuitSubsystem_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION PowerCircuit_OnFuseSet ==============
+L0:            this->ExecuteUbergraph_BP_CircuitSubsystem(68);
+============ END FUNCTION PowerCircuit_OnFuseSet ==============
+
+
+
+
+
+============ BEGIN FUNCTION Multicast_PlayFuseSetSound ==============
+L0:            this->ExecuteUbergraph_BP_CircuitSubsystem(250);
+============ END FUNCTION Multicast_PlayFuseSetSound ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_CircuitSubsystem ==============
+L10:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_PowerLossWarning_PowerLoss, this, true);
+L63:           <End of Inlined Event Graph Function>;
+L68:           GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L111:          FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
+L147:          bool mbool = mFGGameState;
+L176:          if (!mbool) goto L255;
+L190:          mFGGameState->SendMessageToAllPlayers(PowerCircuitFuseTriggered);
+L231:          this->Multicast_PlayFuseSetSound();
+L245:          <End of Inlined Event Graph Function>;
+L250:          goto L10;
+============ END FUNCTION ExecuteUbergraph_BP_CircuitSubsystem ==============

@@ -1,0 +1,110 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatMessageRow.Widget_ChatMessageRow_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetTextMessage ==============
+L0:            FText mFText = this->GetChatText();
+L32:           this->mChatRichText->SetText([ref] mFText);
+============ END FUNCTION SetTextMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetPlayerNameColor ==============
+L0:            SlateColor mSlateColor = this->GetPlayerNameColor();
+L32:           mSlateColor1.SpecifiedColor = mSlateColor.SpecifiedColor;
+L77:           mSlateColor1.ColorUseRule = 0;
+L106:          this->mPlayerNameText->SetColorAndOpacity(mSlateColor1);
+============ END FUNCTION SetPlayerNameColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetPlayerIconColor ==============
+L0:            SlateColor mSlateColor = this->GetPlayerNameColor();
+L32:           this->mPlayerIcon->SetColorAndOpacity(mSlateColor.SpecifiedColor);
+============ END FUNCTION SetPlayerIconColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetPlayerName ==============
+L0:            FText mFText = this->GetPlayerName();
+L32:           this->mPlayerNameText->SetText(mFText);
+============ END FUNCTION SetPlayerName ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPlayerNameColor ==============
+L0:            LinearColor mLinearColor = FGChatManager->GetChatMessageColor([ref] this->mChatMessage);
+L59:           mSlateColor.SpecifiedColor = mLinearColor;
+L95:           mSlateColor.ColorUseRule = 0;
+L124:          SlateColor ReturnValue = mSlateColor;
+============ END FUNCTION GetPlayerNameColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPlayerName ==============
+L0:            FString mFString = FGChatManager->GetChatMessageName([ref] this->mChatMessage);
+L59:           FString mFString1 = KismetStringLibrary->Concat_StrStr(mFString, ": ");
+L122:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString1);
+L181:          FText ReturnValue = mFText;
+============ END FUNCTION GetPlayerName ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetChatText ==============
+L0:            FText mFText = KismetTextLibrary->Conv_StringToText(this->mChatMessage.MessageString);
+L68:           FText ReturnValue = mFText;
+============ END FUNCTION GetChatText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ChatMessageRow(172);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveWidgetAfterDelay ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatMessageRow.Widget_ChatMessageRow_C:ExecuteUbergraph_Widget_ChatMessageRow.K2Node_CustomEvent_Delay) = Delay;
+L18:           this->ExecuteUbergraph_Widget_ChatMessageRow(187);
+============ END FUNCTION RemoveWidgetAfterDelay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ChatMessageRow ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->SetPlayerName();
+L29:           this->SetPlayerIconColor();
+L43:           this->SetPlayerNameColor();
+L57:           this->SetTextMessage();
+L71:           goto ExecutionFlow.Pop();
+L72:           PanelWidget* mPanelWidget = this->GetParent();
+L92:           bool mbool = mPanelWidget->RemoveChild(this);
+L135:          this->mChatWindow->UpdateVisibility();
+L171:          goto ExecutionFlow.Pop();
+L172:          this->Construct();
+L182:          goto L15;
+L187:          KismetSystemLibrary->Delay(this, mfloat, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 72, UUID = 1290808301, ExecutionFunction = "ExecuteUbergraph_Widget_ChatMessageRow", CallbackTarget = this));
+L267:          goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_ChatMessageRow ==============

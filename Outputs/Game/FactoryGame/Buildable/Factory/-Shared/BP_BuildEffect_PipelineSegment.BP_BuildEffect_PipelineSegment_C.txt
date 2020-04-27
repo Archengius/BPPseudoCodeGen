@@ -1,0 +1,89 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/-Shared/BP_BuildEffect_PipelineSegment.BP_BuildEffect_PipelineSegment_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION Materialize__FinishedFunc ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_PipelineSegment(10);
+============ END FUNCTION Materialize__FinishedFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION Materialize__UpdateFunc ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_PipelineSegment(1132);
+============ END FUNCTION Materialize__UpdateFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION Finalize__FinishedFunc ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_PipelineSegment(1127);
+============ END FUNCTION Finalize__FinishedFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION Finalize__UpdateFunc ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_PipelineSegment(1122);
+============ END FUNCTION Finalize__UpdateFunc ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddMesh ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_PipelineSegment(122);
+============ END FUNCTION AddMesh ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayFinishEffect ==============
+L0:            this->ExecuteUbergraph_BP_BuildEffect_PipelineSegment(1026);
+============ END FUNCTION PlayFinishEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_BuildEffect_PipelineSegment ==============
+L10:           <End of Inlined Event Graph Function>;
+L15:           KismetSystemLibrary->PrintString(this, "Failed setting static mesh", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0.071772001683712, A = 1), 5);
+L117:          <End of Inlined Event Graph Function>;
+L122:          const Transform Temp_struct_Variable = Transform(Rotator(0, 0, 0, 1), Vector(0, 0, 0), Vector(1, 1, 1));
+L181:          SplineMeshComponent* mSplineMeshComponent = this->AddComponent("NODE_AddSplineMeshComponent-0", false, [ref] Temp_struct_Variable, this);
+L225:          this->MeshComponent = mSplineMeshComponent;
+L244:          bool mbool = this->MeshComponent->SetStaticMesh(this->mMesh);
+L299:          this->MeshComponent->SetMaterial(0, this->mPipeMaterial);
+L349:          this->MeshComponent->SetMaterial(1, this->mPipeMaterial);
+L399:          if (!mbool) goto L15;
+L413:          this->MeshComponent->SetScalarParameterValueOnMaterials("Width_Lower", 100);
+L463:          this->MeshComponent->SetScalarParameterValueOnMaterials("Glow Power", 2);
+L513:          Vector mVector = this->Spline->GetLocationAtSplinePoint(1, 0);
+L570:          Vector mVector1 = this->Spline->GetLocationAtSplinePoint(0, 0);
+L627:          Rotator mRotator = this->K2_GetActorRotation();
+L655:          Vector mVector2 = LessLess_VectorRotator(this->mEndTangent, mRotator);
+L701:          Vector mVector3 = LessLess_VectorRotator(this->mStartTangent, mRotator);
+L747:          this->MeshComponent->SetStartAndEnd(mVector1, mVector3, mVector, mVector2, true);
+L816:          this->MeshComponent->SetStartScale(ScriptStruct /Script/CoreUObject.Vector2D(X = 1, Y = 1), true);
+L873:          this->MeshComponent->SetEndScale(ScriptStruct /Script/CoreUObject.Vector2D(X = 1, Y = 1), true);
+L930:          this->Materialize->PlayFromStart();
+L962:          <End of Inlined Event Graph Function>;
+L967:          this->MeshComponent->SetScalarParameterValueOnMaterials("MaterializeAmount", this->Materialize_MaterializeAmount_FEA0B9D541A0830F53AC54B70A9C2612);
+L1021:         <End of Inlined Event Graph Function>;
+L1026:         this->Finalize->PlayFromStart();
+L1058:         <End of Inlined Event Graph Function>;
+L1063:         this->MeshComponent->SetScalarParameterValueOnMaterials("Glow Power", this->Finalize_Glow_Power_402F7B5743D35B44BEF02CB897B8A7D1);
+L1117:         <End of Inlined Event Graph Function>;
+L1122:         goto L1063;
+L1127:         <End of Inlined Event Graph Function>;
+L1132:         goto L967;
+============ END FUNCTION ExecuteUbergraph_BP_BuildEffect_PipelineSegment ==============

@@ -1,0 +1,125 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBOX_Jetpack.Widget_HUDBox_Jetpack_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION StopPulse ==============
+L0:            KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->PulseTimer);
+L42:           this->Widget_ProgressBar->mProgressBar->SetRenderOpacity(1);
+============ END FUNCTION StopPulse ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartPulse ==============
+L0:            this->PulseT = 0;
+L23:           mFScriptDelegate->BindUFunction(this, BarPulse);
+L46:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->PulseUpdate, true);
+L115:          this->PulseTimer = mTimerHandle;
+============ END FUNCTION StartPulse ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_HUDBox_Jetpack(1238);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBOX_Jetpack.Widget_HUDBox_Jetpack_C:ExecuteUbergraph_Widget_HUDBox_Jetpack.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBOX_Jetpack.Widget_HUDBox_Jetpack_C:ExecuteUbergraph_Widget_HUDBox_Jetpack.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_HUDBox_Jetpack(1411);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION BarPulse ==============
+L0:            this->ExecuteUbergraph_Widget_HUDBox_Jetpack(1416);
+============ END FUNCTION BarPulse ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_HUDBox_Jetpack ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool Temp_bool_Variable = false;
+L26:           this->StartPulse();
+L40:           this->mHudBoxParent->StartWarningSign();
+L76:           goto ExecutionFlow.Pop();
+L77:           bool mbool = KismetSystemLibrary->IsValid(this->mFGJetPack);
+L128:          if (!mbool) goto ExecutionFlow.Pop();
+L138:          float mfloat = this->mFGJetPack->GetMaxFuel();
+L192:          float mfloat1 = this->mFGJetPack->GetCurrentFuel();
+L246:          float mfloat2 = Divide_FloatFloat(mfloat1, mfloat);
+L292:          this->CurrentPercent = mfloat2;
+L319:          ExecutionFlow.Push(L435);
+L324:          bool mbool1 = Less_FloatFloat(this->CurrentPercent, this->Widget_ProgressBar->mProgressBar->Percent);
+L406:          if (!mbool1) goto L903;
+L420:          if (!Temp_bool_Variable1) goto L1070;
+L434:          goto ExecutionFlow.Pop();
+L435:          this->Widget_ProgressBar->mProgressBar->SetPercent(this->CurrentPercent);
+L498:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L518:          HUDHelpers->GetNumItemsFromPlayerInventory(mPawn, this->mFuelClass, this, [ref] mint32);
+L582:          bool mbool2 = Greater_IntInt(mint32, 0);
+L616:          mItemAmount.ItemClass = this->mFuelClass;
+L644:          mItemAmount.amount = mint32;
+L680:          this->FuelSlot->Setup CostIcon(nullptr, mItemAmount, nullptr, 0, 0, false, false, mbool2);
+L748:          bool mbool3 = Less_FloatFloat(this->CurrentPercent, this->LowFuelThreshold);
+L786:          if (!mbool3) goto L815;
+L800:          if (!Temp_bool_Variable2) goto L1222;
+L814:          goto ExecutionFlow.Pop();
+L815:          bool Temp_bool_Variable2 = false;
+L826:          if (!Temp_bool_Variable) goto L841;
+L840:          goto ExecutionFlow.Pop();
+L841:          Temp_bool_Variable = true;
+L852:          this->StopPulse();
+L866:          this->mHudBoxParent->StopWarningSign();
+L902:          goto ExecutionFlow.Pop();
+L903:          bool Temp_bool_Variable1 = false;
+L914:          if (!Temp_bool_Variable3) goto L929;
+L928:          goto ExecutionFlow.Pop();
+L929:          bool Temp_bool_Variable3 = true;
+L940:          this->IsFlying = false;
+L951:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L1006:         this->Widget_ProgressBar->mProgressBar->SetFillColorAndOpacity(mLinearColor);
+L1069:         goto ExecutionFlow.Pop();
+L1070:         Temp_bool_Variable1 = true;
+L1081:         Temp_bool_Variable3 = false;
+L1092:         this->IsFlying = true;
+L1103:         HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor1, [ref] mSlateColor1);
+L1158:         this->Widget_ProgressBar->mProgressBar->SetFillColorAndOpacity(mLinearColor1);
+L1221:         goto ExecutionFlow.Pop();
+L1222:         Temp_bool_Variable2 = true;
+L1233:         goto L15;
+L1238:         FGJetPack* mFGJetPack = Cast<Class /Script/FactoryGame.FGJetPack>(this->mEquipment);
+L1274:         bool mbool4 = mFGJetPack;
+L1303:         if (!mbool4) goto ExecutionFlow.Pop();
+L1313:         this->mFGJetPack = mFGJetPack;
+L1332:         this->Widget_ProgressBar->mProgressBar->SetPercent(1);
+L1391:         this->mFuelClass = Desc_Fuel;
+L1410:         goto ExecutionFlow.Pop();
+L1411:         goto L77;
+L1416:         float mfloat3 = Divide_FloatFloat(this->PulseUpdate, this->PulseDuration);
+L1462:         float mfloat4 = Add_FloatFloat(mfloat3, this->PulseT);
+L1508:         this->PulseT = mfloat4;
+L1535:         float mfloat5 = this->SineCurve->GetFloatValue(this->PulseT);
+L1594:         float mfloat6 = Subtract_FloatFloat(1, mfloat5);
+L1636:         float mfloat7 = Add_FloatFloat(Multiply_FloatFloat(mfloat6, Subtract_FloatFloat(1, 0.5)), 0.5);
+L1708:         this->Widget_ProgressBar->mProgressBar->SetRenderOpacity(mfloat7);
+L1771:         bool mbool5 = GreaterEqual_FloatFloat(this->PulseT, 1);
+L1805:         if (!mbool5) goto ExecutionFlow.Pop();
+L1815:         this->PulseT = 0;
+L1838:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_HUDBox_Jetpack ==============

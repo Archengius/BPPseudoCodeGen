@@ -1,0 +1,603 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_Generator.Widget_Generator_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateFluidStats ==============
+L0:            bool mbool = this->mFuelGenerator->GetRequiresSupplementalResource();
+L42:           if (!mbool) goto L447;
+L56:           int32 mint32 = this->mFuelGenerator->GetScaledFluidStackSize();
+L106:          FGInventoryComponent* mFGInventoryComponent = this->mFuelGenerator->GetFuelInventory();
+L148:          float mfloat = FGInventoryLibrary->GetAmountConvertedByForm(mint32, 2);
+L209:          HUDHelpers->GetNumItemsFromInventory(mFGInventoryComponent, this->mFluidClass, this, [ref] mint321);
+L273:          float mfloat1 = this->mFuelGenerator->GetSupplementalConsumptionRateMaximum();
+L323:          float mfloat2 = FGInventoryLibrary->GetAmountConvertedByForm(mint321, 2);
+L384:          this->BPW_FluidModule->UpdateValues(mfloat, mfloat2, mfloat1);
+============ END FUNCTION UpdateFluidStats ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupInputs ==============
+L0:            FGInventoryComponent* mFGInventoryComponent = this->mFuelGenerator->GetFuelInventory();
+L42:           mOutputSlotData_Struct.Title_3_16865392480E04744923368E818FDF9E = "[object Object]";
+L113:          mOutputSlotData_Struct.InventoryComponent_6_670B318B4DE9249E98B040BFD46013A9 = mFGInventoryComponent;
+L141:          mOutputSlotData_Struct.InventorySlotIndex_10_ECF91A0C4E759F6F2FC3768CE0512AB9 = 0;
+L173:          int32 mint32 = KismetArrayLibrary->Array_Add([ref] LocalInputs, [ref] mOutputSlotData_Struct);
+L241:          bool mbool = KismetSystemLibrary->IsValid(this->mNuclearGenerator);
+L292:          if (!mbool) goto L548;
+L306:          FGInventoryComponent* mFGInventoryComponent1 = this->mNuclearGenerator->GetWasteInventory();
+L348:          mOutputSlotData_Struct1.Title_3_16865392480E04744923368E818FDF9E = "[object Object]";
+L420:          mOutputSlotData_Struct1.InventoryComponent_6_670B318B4DE9249E98B040BFD46013A9 = mFGInventoryComponent1;
+L448:          mOutputSlotData_Struct1.InventorySlotIndex_10_ECF91A0C4E759F6F2FC3768CE0512AB9 = 0;
+L480:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalInputs, [ref] mOutputSlotData_Struct1);
+L548:          this->Widget_Output_Slot->GenerateOutputSlots([ref] LocalInputs);
+L593:          this->Widget_Output_Slot->GetSlot(0, [ref] mWidget_InventorySlot, [ref] mbool1);
+L652:          this->InputSlot = mWidget_InventorySlot;
+L671:          bool mbool2 = KismetSystemLibrary->IsValid(this->mNuclearGenerator);
+L722:          if (!mbool2) goto L814;
+L736:          this->Widget_Output_Slot->GetSlot(1, [ref] mWidget_InventorySlot1, [ref] mbool3);
+L795:          this->mWasteSlot = mWidget_InventorySlot1;
+============ END FUNCTION SetupInputs ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnReplicationDetailActorCreated ==============
+L0:            this->SetupInputs();
+============ END FUNCTION OnReplicationDetailActorCreated ==============
+
+
+
+
+
+============ BEGIN FUNCTION InitModule ==============
+L0:            uint8 Temp_byte_Variable2 = 1;
+L20:           uint8 Temp_byte_Variable3 = 3;
+L40:           bool mbool = KismetSystemLibrary->IsValid(this->mNuclearGenerator);
+L91:           bool Temp_bool_Variable1 = mbool;
+L110:          this->mModuleFuel->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint8;
+});
+L199:          uint8 Temp_byte_Variable = 3;
+L219:          uint8 Temp_byte_Variable1 = 1;
+L239:          bool mbool1 = KismetSystemLibrary->IsValid(this->mNuclearGenerator);
+L290:          bool Temp_bool_Variable = mbool1;
+L309:          this->mModuleNuclear->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint81;
+});
+L398:          bool mbool2 = this->mGenerator->IsProducing();
+L444:          bool mbool3 = KismetSystemLibrary->IsValid(this->mNuclearGenerator);
+L495:          bool mbool4 = BooleanAND(mbool3, mbool2);
+L533:          if (!mbool4) goto L593;
+L547:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->NuclearGlow, 0, 0, 0, 1);
+============ END FUNCTION InitModule ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateHeaderText ==============
+L0:            FGBuildable* mFGBuildable = Cast<Class /Script/FactoryGame.FGBuildable>(this->mInteractObject);
+L36:           bool mbool = mFGBuildable;
+L65:           if (!mbool) goto L146;
+L79:           this->Widget_Window_DarkMode->SetTitle(mFGBuildable->mDisplayName);
+============ END FUNCTION UpdateHeaderText ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateWarningWidget ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mFuelGenerator);
+L51:           if (!mbool) goto L1705;
+L65:           FGBuildableGeneratorFuel* mLocalGenerator = this->mFuelGenerator;
+L84:           this->IsConnected([ref] mbool1);
+L107:          if (!mbool1) goto L1281;
+L121:          this->mConnectionWarning->HideWarning();
+L157:          bool mbool2 = mLocalGenerator->HasPower();
+L203:          bool mbool3 = mLocalGenerator->IsProductionPaused();
+L245:          bool mbool4 = Not_PreBool(mbool2);
+L274:          bool mbool5 = BooleanOR(mbool3, mbool4);
+L312:          if (!mbool5) goto L1375;
+L326:          this->mConnectionWarning->UpdateWarning("[object Object]");
+L410:          bool mbool6 = KismetSystemLibrary->IsValid(this->mWasteSlot);
+L461:          if (!mbool6) goto L657;
+L475:          InventoryItem mInventoryItem = FGInventoryLibrary->MakeInventoryItem(Desc_NuclearWaste);
+L534:          bool mbool7 = this->mWasteSlot->mCachedInventoryComponent->HasEnoughSpaceForItem([ref] mInventoryItem);
+L607:          if (!mbool7) goto L1416;
+L621:          this->mFuelWarning->HideWarning();
+L657:          this->InputSlot->CheckSlotHasItems([ref] mbool8);
+L702:          if (!mbool8) goto L1515;
+L716:          this->mFuelWarning->HideWarning();
+L752:          this->InputSlot->GetItemClass([ref] mTSubclassOf<FGItemDescriptor>);
+L797:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGItemDescriptor>);
+L856:          this->Widget_Output_Slot->mRecipeName->SetText(mFText);
+L923:          bool mbool9 = KismetSystemLibrary->IsValidClass(this->mFluidClass);
+L974:          if (!mbool9) goto L1667;
+L988:          uint8 Temp_byte_Variable = 3;
+L1008:         FGInventoryComponent* mFGInventoryComponent = this->mFuelGenerator->GetFuelInventory();
+L1050:         HUDHelpers->GetNumItemsFromInventory(mFGInventoryComponent, this->mFluidClass, this, [ref] mint32);
+L1114:         bool mbool10 = Greater_IntInt(mint32, 0);
+L1148:         uint8 Temp_byte_Variable1 = 2;
+L1168:         bool Temp_bool_Variable = mbool10;
+L1187:         this->mWaterWarning->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L1276:         <End of Inlined Event Graph Function>;
+L1281:         this->mConnectionWarning->UpdateWarning("[object Object]");
+L1370:         <End of Inlined Event Graph Function>;
+L1375:         this->mConnectionWarning->HideWarning();
+L1411:         goto L410;
+L1416:         this->mFuelWarning->UpdateWarning("[object Object]");
+L1510:         <End of Inlined Event Graph Function>;
+L1515:         this->mFuelWarning->UpdateWarning("[object Object]");
+L1602:         this->Widget_Output_Slot->mRecipeName->SetText();
+L1662:         goto L923;
+L1667:         this->mWaterWarning->SetVisibility(0);
+============ END FUNCTION UpdateWarningWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION DropInventorySlotStack ==============
+L0:            ExecutionFlow.Push(L854);
+L5:            this->InputSlot->DropOntoInventorySlot(InventorySlot, [ref] mbool);
+L59:           if (!mbool) goto L89;
+L73:           bool WasStackMoved = true;
+L84:           <End of Inlined Event Graph Function>;
+L89:           this->Widget_Overclock->GetUnlockedOverclockSlots([ref] mTArray<Widget_InventorySlot>);
+L134:          bool Temp_bool_True_if_break_was_hit_Variable = false;
+L145:          int32 Temp_int_Loop_Counter_Variable = 0;
+L168:          int32 Temp_int_Array_Index_Variable = 0;
+L191:          bool mbool1 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L220:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<Widget_InventorySlot>);
+L279:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L317:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L355:          if (!mbool3) goto L756;
+L369:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L396:          ExecutionFlow.Push(L780);
+L401:          bool Temp_bool_Variable1 = true;
+L412:          bool Temp_bool_Variable2 = true;
+L423:          KismetArrayLibrary->Array_Get([ref] mTArray<Widget_InventorySlot>, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L482:          mWidget_InventorySlot->CheckSlotHasItems([ref] mbool4);
+L527:          bool mbool5 = Not_PreBool(mbool4);
+L556:          if (!switch (Temp_bool_Variable2) {
+case false -> Temp_bool_Variable1;
+case true -> mbool5;
+default -> mbool6;
+}) goto ExecutionFlow.Pop();
+L610:          KismetArrayLibrary->Array_Get([ref] mTArray<Widget_InventorySlot>, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L669:          mWidget_InventorySlot->DropOntoInventorySlot(InventorySlot, [ref] mbool7);
+L723:          if (!mbool7) goto ExecutionFlow.Pop();
+L733:          bool Temp_bool_Variable = true;
+L744:          Temp_bool_True_if_break_was_hit_Variable = true;
+L755:          goto ExecutionFlow.Pop();
+L756:          WasStackMoved = Temp_bool_Variable;
+L775:          <End of Inlined Event Graph Function>;
+L780:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L822:          Temp_int_Loop_Counter_Variable = mint321;
+L849:          goto L191;
+============ END FUNCTION DropInventorySlotStack ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateSlotStats ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mFuelGenerator);
+L51:           if (!mbool) goto L2709;
+L65:           this->UpdateFluidStats();
+L79:           float mfloat = this->GetBurnProgressPercent();
+L111:          bool mbool1 = Greater_FloatFloat(mfloat, 0);
+L145:          TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->mFuelGenerator->GetCurrentFuelClass();
+L187:          bool mbool2 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGItemDescriptor>);
+L238:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L276:          if (!mbool3) goto L2008;
+L290:          this->Widget_Output_Slot->mProgressBar->SetShowIcon(true);
+L349:          TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor>1 = this->mFuelGenerator->GetCurrentFuelClass();
+L391:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mTSubclassOf<FGItemDescriptor>1);
+L442:          this->Widget_Output_Slot->mProgressBar->SetIcon(mTexture2D);
+L509:          this->InputSlot->CheckSlotHasItems([ref] mbool4);
+L554:          if (!mbool4) goto L2709;
+L568:          float mfloat1 = this->mFuelGenerator->GetPowerProductionCapacity();
+L618:          this->Widget_Output_Slot->mPowerConsumption->mManufacturingStat = mfloat1;
+L689:          if (!this->mIsFluidGenerator) goto L2072;
+L703:          mfloat1 = this->mFuelGenerator->GetPowerProductionCapacity();
+L753:          this->InputSlot->GetItemClass([ref] mTSubclassOf<FGItemDescriptor>2);
+L798:          float mfloat2 = FGItemDescriptor->GetEnergyValue(mTSubclassOf<FGItemDescriptor>2);
+L857:          float mfloat3 = Divide_FloatFloat(mfloat2, mfloat1);
+L903:          float mfloat4 = Divide_FloatFloat(60, mfloat3);
+L945:          float mfloat5 = Divide_FloatFloat(mfloat4, 1000);
+L987:          this->Widget_Output_Slot->mCycleTime->mManufacturingStat = mfloat5;
+L1058:         this->Widget_Output_Slot->mCycleTime->mCustomSuffix = STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]");
+L1190:         float mfloat6 = this->mFuelGenerator->GetLoadPercentage();
+L1240:         this->Widget_Output_Slot->mEfficiency->mManufacturingStat = mfloat6;
+L1311:         bool mbool5 = this->mFuelGenerator->IsProductionPaused();
+L1353:         float mfloat7 = this->mFuelGenerator->GetCurrentPotential();
+L1403:         mfloat6 = this->mFuelGenerator->GetLoadPercentage();
+L1453:         float mfloat8 = Multiply_FloatFloat(mfloat6, mfloat7);
+L1499:         bool Temp_bool_Variable = mbool5;
+L1518:         float Temp_float_Variable = 0;
+L1541:         bool mbool6 = NotEqual_FloatFloat(this->PreviousEffiency, switch (Temp_bool_Variable) {
+case false -> mfloat8;
+case true -> Temp_float_Variable;
+default -> mfloat9;
+});
+L1623:         if (!mbool6) goto L2709;
+L1637:         mbool5 = this->mFuelGenerator->IsProductionPaused();
+L1679:         mfloat7 = this->mFuelGenerator->GetCurrentPotential();
+L1729:         mfloat6 = this->mFuelGenerator->GetLoadPercentage();
+L1779:         mfloat8 = Multiply_FloatFloat(mfloat6, mfloat7);
+L1825:         Temp_bool_Variable = mbool5;
+L1844:         Temp_float_Variable = 0;
+L1867:         this->PreviousEffiency = switch (Temp_bool_Variable) {
+case false -> mfloat8;
+case true -> Temp_float_Variable;
+default -> mfloat9;
+};
+L1938:         bool mbool7 = KismetSystemLibrary->IsValid(this->mNuclearGenerator);
+L1989:         if (!mbool7) goto L2348;
+L2003:         <End of Inlined Event Graph Function>;
+L2008:         this->Widget_Output_Slot->mProgressBar->SetShowIcon(false);
+L2067:         goto L509;
+L2072:         mfloat1 = this->mFuelGenerator->GetPowerProductionCapacity();
+L2122:         this->InputSlot->GetItemClass([ref] mTSubclassOf<FGItemDescriptor>2);
+L2167:         mfloat2 = FGItemDescriptor->GetEnergyValue(mTSubclassOf<FGItemDescriptor>2);
+L2226:         mfloat3 = Divide_FloatFloat(mfloat2, mfloat1);
+L2272:         this->Widget_Output_Slot->mCycleTime->mManufacturingStat = mfloat3;
+L2343:         goto L1190;
+L2348:         mbool5 = this->mFuelGenerator->IsProductionPaused();
+L2390:         mfloat7 = this->mFuelGenerator->GetCurrentPotential();
+L2440:         mfloat6 = this->mFuelGenerator->GetLoadPercentage();
+L2490:         mfloat8 = Multiply_FloatFloat(mfloat6, mfloat7);
+L2536:         Temp_bool_Variable = mbool5;
+L2555:         Temp_float_Variable = 0;
+L2578:         float mfloat10 = Divide_FloatFloat(switch (Temp_bool_Variable) {
+case false -> mfloat8;
+case true -> Temp_float_Variable;
+default -> mfloat9;
+}, 2.5);
+L2664:         this->mModuleFuel_Meter->SetValue(mfloat10);
+============ END FUNCTION UpdateSlotStats ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetFuseVisibility ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mPowerCircuitGraph);
+L51:           if (!mbool) goto L295;
+L65:           FGPowerCircuit* mFGPowerCircuit = this->mPowerCircuitGraph->GetPowerCircuit();
+L107:          bool mbool1 = KismetSystemLibrary->IsValid(mFGPowerCircuit);
+L158:          if (!mbool1) goto L295;
+L172:          mFGPowerCircuit = this->mPowerCircuitGraph->GetPowerCircuit();
+L214:          bool mbool2 = mFGPowerCircuit->IsFuseTriggered();
+L256:          if (!mbool2) goto L295;
+L270:          uint8 ReturnValue = 4;
+L290:          goto L315;
+L295:          ReturnValue = 1;
+============ END FUNCTION GetFuseVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateSlotInfo ==============
+L0:            float mfloat = this->GetBurnProgressPercent();
+L32:           this->Widget_Output_Slot->mProgressBar->mProgressBar->SetPercent(mfloat);
+L117:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L172:          this->Widget_Output_Slot->mProgressBar->mProgressBar->SetFillColorAndOpacity(mLinearColor);
+============ END FUNCTION UpdateSlotInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnGetPowerCircuit ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mFuelGenerator);
+L51:           if (!mbool) goto L280;
+L65:           FGPowerInfoComponent* mFGPowerInfoComponent = this->mFuelGenerator->GetPowerInfo();
+L107:          bool mbool1 = KismetSystemLibrary->IsValid(mFGPowerInfoComponent);
+L158:          if (!mbool1) goto L280;
+L172:          mFGPowerInfoComponent = this->mFuelGenerator->GetPowerInfo();
+L214:          FGPowerCircuit* mFGPowerCircuit = mFGPowerInfoComponent->GetPowerCircuit();
+L256:          FGPowerCircuit* ReturnValue = mFGPowerCircuit;
+L275:          goto L291;
+L280:          ReturnValue = nullptr;
+============ END FUNCTION OnGetPowerCircuit ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsConnected ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mFuelGenerator);
+L51:           if (!mbool) goto L173;
+L65:           FGPowerInfoComponent* mFGPowerInfoComponent = this->mFuelGenerator->GetPowerInfo();
+L107:          bool mbool1 = mFGPowerInfoComponent->IsConnected();
+L149:          bool IsConnected = mbool1;
+L168:          <End of Inlined Event Graph Function>;
+L173:          IsConnected = false;
+============ END FUNCTION IsConnected ==============
+
+
+
+
+
+============ BEGIN FUNCTION Cleanup ==============
+L0:            ExecutionFlow.Push(L665);
+L5:            this->Widget_Window_DarkMode->OnClose->Clear();
+L37:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->UpdateSlotStatsTimer);
+L79:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->SmokeTimer);
+L121:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mWarningMessageTimerHandle);
+L163:          bool mbool = KismetSystemLibrary->IsValid(this->InputSlot);
+L214:          if (!mbool) goto L260;
+L228:          this->InputSlot->OnMoveStack->Clear();
+L260:          this->Widget_Overclock->GetUnlockedOverclockSlots([ref] mTArray<Widget_InventorySlot>);
+L305:          int32 Temp_int_Loop_Counter_Variable = 0;
+L328:          int32 Temp_int_Array_Index_Variable = 0;
+L351:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<Widget_InventorySlot>);
+L410:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L448:          if (!mbool1) goto L586;
+L462:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L489:          ExecutionFlow.Push(L591);
+L494:          KismetArrayLibrary->Array_Get([ref] mTArray<Widget_InventorySlot>, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L553:          mWidget_InventorySlot->OnMoveStack->Clear();
+L585:          goto ExecutionFlow.Pop();
+L586:          <End of Inlined Event Graph Function>;
+L591:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L633:          Temp_int_Loop_Counter_Variable = mint321;
+L660:          goto L351;
+============ END FUNCTION Cleanup ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetBurnProgressPercent ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mFuelGenerator);
+L51:           if (!mbool) goto L142;
+L65:           float mfloat = this->mFuelGenerator->GetFuelAmount();
+L115:          float ReturnValue = mfloat;
+============ END FUNCTION GetBurnProgressPercent ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_Generator(955);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Generator(2280);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_Generator(2389);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_1_OnStandbyClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Generator(2777);
+============ END FUNCTION BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_1_OnStandbyClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResetFuse ==============
+L0:            this->ExecuteUbergraph_Widget_Generator(3393);
+============ END FUNCTION ResetFuse ==============
+
+
+
+
+
+============ BEGIN FUNCTION WarningMessageCheck ==============
+L0:            this->ExecuteUbergraph_Widget_Generator(3398);
+============ END FUNCTION WarningMessageCheck ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnSmoke ==============
+L0:            this->ExecuteUbergraph_Widget_Generator(3477);
+============ END FUNCTION SpawnSmoke ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnProductionChanged ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_Generator.Widget_Generator_C:ExecuteUbergraph_Widget_Generator.K2Node_CustomEvent_state) = State;
+L18:           this->ExecuteUbergraph_Widget_Generator(3614);
+============ END FUNCTION OnProductionChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCustomTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_Generator.Widget_Generator_C:ExecuteUbergraph_Widget_Generator.K2Node_Event_UpdateTime) = UpdateTime;
+L18:           this->ExecuteUbergraph_Widget_Generator(4029);
+============ END FUNCTION OnCustomTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Generator ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           FGBuildableGeneratorFuel* mFGBuildableGeneratorFuel = Cast<Class /Script/FactoryGame.FGBuildableGeneratorFuel>(this->mGenerator);
+L51:           bool mbool = mFGBuildableGeneratorFuel;
+L80:           if (!mbool) goto L192;
+L94:           FGBuildableGeneratorNuclear* mFGBuildableGeneratorNuclear = Cast<Class /Script/FactoryGame.FGBuildableGeneratorNuclear>(mFGBuildableGeneratorFuel);
+L130:          bool mbool1 = mFGBuildableGeneratorNuclear;
+L159:          if (!mbool1) goto L192;
+L173:          this->mNuclearGenerator = mFGBuildableGeneratorNuclear;
+L192:          this->UpdateHeaderText();
+L206:          mFScriptDelegate->BindUFunction(this, OnProductionChanged);
+L229:          this->mGenerator->mOnHasProductionChanged.AddUnique(mFScriptDelegate);
+L270:          mFScriptDelegate1->BindUFunction(this, OnEscapePressed);
+L293:          this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate1);
+L334:          mFScriptDelegate2->BindUFunction(this, ResetFuse);
+L357:          this->Widget_Fusebox->ResetFuse.AddUnique(mFScriptDelegate2);
+L398:          bool mbool2 = KismetSystemLibrary->IsValid(this->InputSlot);
+L449:          if (!mbool2) goto L527;
+L463:          mFScriptDelegate3->BindUFunction(this, OnInventorySlotStackMove);
+L486:          this->InputSlot->OnMoveStack.AddUnique(mFScriptDelegate3);
+L527:          this->Widget_Overclock->GetUnlockedOverclockSlots([ref] mTArray<Widget_InventorySlot>);
+L572:          int32 Temp_int_Loop_Counter_Variable = 0;
+L595:          int32 Temp_int_Array_Index_Variable = 0;
+L618:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<Widget_InventorySlot>);
+L677:          bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L715:          if (!mbool3) goto ExecutionFlow.Pop();
+L725:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L752:          ExecutionFlow.Push(L881);
+L757:          KismetArrayLibrary->Array_Get([ref] mTArray<Widget_InventorySlot>, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L816:          mFScriptDelegate4->BindUFunction(this, OnInventorySlotStackMove);
+L839:          mWidget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate4);
+L880:          goto ExecutionFlow.Pop();
+L881:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L923:          Temp_int_Loop_Counter_Variable = mint321;
+L950:          goto L618;
+L955:          this->Init();
+L965:          FGBuildableGeneratorFuel* mFGBuildableGeneratorFuel1 = Cast<Class /Script/FactoryGame.FGBuildableGeneratorFuel>(this->mInteractObject);
+L1001:         bool mbool4 = mFGBuildableGeneratorFuel1;
+L1030:         if (!mbool4) goto ExecutionFlow.Pop();
+L1040:         this->mFuelGenerator = mFGBuildableGeneratorFuel1;
+L1059:         bool mbool5 = this->mFuelGenerator->HasAuthority();
+L1101:         if (!mbool5) goto L2211;
+L1115:         Build_GeneratorFuel* mBuild_GeneratorFuel = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/GeneratorFuel/Build_GeneratorFuel.Build_GeneratorFuel_C>(this->mFuelGenerator);
+L1151:         bool mbool6 = mBuild_GeneratorFuel;
+L1180:         this->mIsFluidGenerator = mbool6;
+L1199:         this->Widget_Overclock->mBuildableFactory = this->mFuelGenerator;
+L1240:         bool mbool7 = this->mFuelGenerator->IsProductionPaused();
+L1282:         this->Widget_StandbyButton->SetStandbyButtonBrush(mbool7);
+L1327:         this->SetupInputs();
+L1341:         mFScriptDelegate5->BindUFunction(this, WarningMessageCheck);
+L1364:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate5, 0.30000001192092896, true);
+L1429:         this->mWarningMessageTimerHandle = mTimerHandle;
+L1456:         this->InitModule();
+L1470:         int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->Widget_InventorySlot_DropArea->mInventorySlots, [ref] this->InputSlot);
+L1560:         this->UpdateSlotStats();
+L1574:         mFScriptDelegate6->BindUFunction(this, UpdateSlotStats);
+L1597:         TimerHandle mTimerHandle1 = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate6, 0.05000000074505806, true);
+L1662:         this->UpdateSlotStatsTimer = mTimerHandle1;
+L1689:         bool mbool8 = this->mFuelGenerator->GetRequiresSupplementalResource();
+L1731:         if (!mbool8) goto L1870;
+L1745:         this->mFluidModuleContainer->SetVisibility(4);
+L1783:         TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->mFuelGenerator->GetSupplementalResourceClass();
+L1825:         this->BPW_FluidModule->SetFluidType(mTSubclassOf<FGItemDescriptor>);
+L1870:         TArray<TSubclassOf<FGItemDescriptor>> mTArray<TSubclassOf<FGItemDescriptor>> = this->mFuelGenerator->GetAvailableFuelClasses();
+L1920:         this->mRelevantItems = mTArray<TSubclassOf<FGItemDescriptor>>;
+L1947:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1971:         FGUnlockSubsystem* mFGUnlockSubsystem = FGUnlockSubsystem->Get(mPlayerController);
+L2022:         bool mbool9 = mFGUnlockSubsystem->GetIsBuildingOverclockUnlocked();
+L2064:         if (!mbool9) goto L2165;
+L2078:         const TSubclassOf<FGItemDescriptor> Temp_class_Variable = Desc_CrystalShard;
+L2097:         int32 mint323 = KismetArrayLibrary->Array_Add([ref] this->mRelevantItems, [ref] Temp_class_Variable);
+L2165:         this->Widget_Window_DarkMode->SetupRelevantInventory([ref] this->mRelevantItems);
+L2210:         goto ExecutionFlow.Pop();
+L2211:         mFScriptDelegate7->BindUFunction(this, OnReplicationDetailActorCreated);
+L2234:         this->mFuelGenerator->OnReplicationDetailActorCreatedEvent.AddUnique(mFScriptDelegate7);
+L2275:         goto L1115;
+L2280:         this->Construct();
+L2290:         FGBuildableGenerator* mFGBuildableGenerator = Cast<Class /Script/FactoryGame.FGBuildableGenerator>(this->mInteractObject);
+L2326:         bool mbool10 = mFGBuildableGenerator;
+L2355:         if (!mbool10) goto ExecutionFlow.Pop();
+L2365:         this->mGenerator = mFGBuildableGenerator;
+L2384:         goto L15;
+L2389:         this->Destruct();
+L2399:         this->Cleanup();
+L2413:         goto ExecutionFlow.Pop();
+L2414:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L2438:         BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController1);
+L2474:         bool mbool11 = mBP_PlayerController;
+L2503:         if (!mbool11) goto ExecutionFlow.Pop();
+L2513:         BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L2564:         bool mbool12 = this->mFuelGenerator->IsProductionPaused();
+L2606:         bool mbool13 = Not_PreBool(mbool12);
+L2635:         mBP_RemoteCallObject->Server_SetIsProductionPausedOnFactory(this->mFuelGenerator, mbool13);
+L2689:         mbool12 = this->mFuelGenerator->IsProductionPaused();
+L2731:         this->Widget_StandbyButton->SetStandbyButtonBrush(mbool12);
+L2776:         goto ExecutionFlow.Pop();
+L2777:         goto L2414;
+L2782:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L2806:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_PowerLossWarning_ResetFuse, mPlayerController2, true);
+L2867:         goto ExecutionFlow.Pop();
+L2868:         mPlayerController2 = this->GetOwningPlayer();
+L2892:         FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController2);
+L2928:         bool mbool14 = mFGPlayerController;
+L2957:         if (!mbool14) goto ExecutionFlow.Pop();
+L2967:         BP_RemoteCallObject* mBP_RemoteCallObject1 = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L3018:         FGPowerCircuit* mFGPowerCircuit = this->mPowerCircuitGraph->GetPowerCircuit();
+L3060:         int32 mint324 = mFGPowerCircuit->GetCircuitID();
+L3110:         mBP_RemoteCallObject1->Server_ResetFuse(mint324);
+L3155:         goto L2782;
+L3160:         bool Temp_bool_Variable = false;
+L3171:         if (!Temp_bool_Variable1) goto L3186;
+L3185:         goto ExecutionFlow.Pop();
+L3186:         bool Temp_bool_Variable1 = true;
+L3197:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->SmokeTimer);
+L3239:         goto ExecutionFlow.Pop();
+L3240:         if (!Temp_bool_Variable) goto L3255;
+L3254:         goto ExecutionFlow.Pop();
+L3255:         Temp_bool_Variable = true;
+L3266:         Temp_bool_Variable1 = false;
+L3277:         mFScriptDelegate8->BindUFunction(this, SpawnSmoke);
+L3300:         TimerHandle mTimerHandle2 = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate8, 1, true);
+L3365:         this->SmokeTimer = mTimerHandle2;
+L3392:         goto ExecutionFlow.Pop();
+L3393:         goto L2868;
+L3398:         this->UpdateWarningWidget();
+L3412:         bool mbool15 = this->mGenerator->IsProducing();
+L3458:         if (!mbool15) goto L3160;
+L3472:         goto L3240;
+L3477:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L3501:         Widget_Smoke* mWidget_Smoke = WidgetBlueprintLibrary->Create(this, Widget_Smoke, mPlayerController3);
+L3562:         PanelSlot* mPanelSlot = this->mSmokeContainers->AddChild(mWidget_Smoke);
+L3613:         goto ExecutionFlow.Pop();
+L3614:         bool mbool16 = KismetSystemLibrary->IsValid(this->mNuclearGenerator);
+L3665:         bool mbool17 = this->mGenerator->IsProducing();
+L3711:         bool mbool18 = this->IsAnimationPlaying(this->NuclearGlow);
+L3740:         bool mbool19 = BooleanAND(mbool16, mbool17);
+L3778:         bool mbool20 = Not_PreBool(mbool18);
+L3807:         bool mbool21 = BooleanAND(mbool19, mbool20);
+L3845:         if (!mbool21) goto L3906;
+L3859:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->NuclearGlow, 0, 0, 0, 1);
+L3905:         goto ExecutionFlow.Pop();
+L3906:         bool mbool22 = this->IsAnimationPlaying(this->NuclearGlow);
+L3935:         if (!mbool22) goto ExecutionFlow.Pop();
+L3945:         float mfloat = this->PauseAnimation(this->NuclearGlow);
+L3982:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->NuclearGlowStop, 0, 1, 0, 1);
+L4028:         goto ExecutionFlow.Pop();
+L4029:         this->UpdateSlotInfo();
+L4043:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_Generator ==============

@@ -1,0 +1,120 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_NetworkErrorPopup.Widget_NetworkErrorPopup_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CreatePopup ==============
+L0:            bool mbool = KismetStringLibrary->NotEqual_StrStr(FGGameNetworkErrorMsg.errorMsg, this->LatestMessage.errorMsg);
+L78:           bool mbool1 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, this->LatestMessage.errorType);
+L134:          bool mbool2 = BooleanAND(mbool1, mbool);
+L172:          if (!mbool2) goto L945;
+L186:          mFGGameNetworkErrorMsg.errorType = FGGameNetworkErrorMsg.errorType;
+L231:          mFGGameNetworkErrorMsg.errorMsg = FGGameNetworkErrorMsg.errorMsg;
+L276:          this->LatestMessage = mFGGameNetworkErrorMsg;
+L303:          bool mbool3 = Not_PreBool(this->mHasPopupOpen);
+L332:          if (!mbool3) goto L1207;
+L346:          bool mbool4 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, 0);
+L386:          if (!mbool4) goto L965;
+L400:          mbool4 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, 1);
+L440:          if (!mbool4) goto L965;
+L454:          mbool4 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, 2);
+L494:          if (!mbool4) goto L965;
+L508:          mbool4 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, 3);
+L548:          if (!mbool4) goto L965;
+L562:          mbool4 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, 4);
+L602:          if (!mbool4) goto L965;
+L616:          mbool4 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, 5);
+L656:          if (!mbool4) goto L965;
+L670:          mbool4 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, 6);
+L710:          if (!mbool4) goto L965;
+L724:          mbool4 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, 7);
+L764:          if (!mbool4) goto L965;
+L778:          mbool4 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, 8);
+L818:          if (!mbool4) goto L965;
+L832:          mbool4 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, 9);
+L872:          if (!mbool4) goto L965;
+L886:          mbool4 = NotEqual_ByteByte(FGGameNetworkErrorMsg.errorType, 10);
+L926:          if (!mbool4) goto L965;
+L940:          <End of Inlined Event Graph Function>;
+L945:          this->OnPopupClosed(false);
+L960:          <End of Inlined Event Graph Function>;
+L965:          FText mFText = KismetTextLibrary->Conv_StringToText(FGGameNetworkErrorMsg.errorMsg);
+L1033:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1057:         mFScriptDelegate->BindUFunction(this, OnPopupClosed);
+L1080:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController, "[object Object]", mFText, [ref] mFScriptDelegate, 0, nullptr, nullptr);
+L1196:         this->mHasPopupOpen = true;
+============ END FUNCTION CreatePopup ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_NetworkErrorPopup(372);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION mOnNetworkErrorRecieved_Event_0 ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/Widget_NetworkErrorPopup.Widget_NetworkErrorPopup_C:ExecuteUbergraph_Widget_NetworkErrorPopup.K2Node_CustomEvent_errorType) = errorType;
+L18:           PERSISTENT_FRAME(StrProperty /Game/FactoryGame/Interface/UI/InGame/Widget_NetworkErrorPopup.Widget_NetworkErrorPopup_C:ExecuteUbergraph_Widget_NetworkErrorPopup.K2Node_CustomEvent_errorMsg) = errorMsg;
+L36:           this->ExecuteUbergraph_Widget_NetworkErrorPopup(449);
+============ END FUNCTION mOnNetworkErrorRecieved_Event_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckErrors ==============
+L0:            this->ExecuteUbergraph_Widget_NetworkErrorPopup(454);
+============ END FUNCTION CheckErrors ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPopupClosed ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Widget_NetworkErrorPopup.Widget_NetworkErrorPopup_C:ExecuteUbergraph_Widget_NetworkErrorPopup.K2Node_CustomEvent_NewParam) = NewParam;
+L18:           this->ExecuteUbergraph_Widget_NetworkErrorPopup(590);
+============ END FUNCTION OnPopupClosed ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_NetworkErrorPopup ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->LatestMessage = ScriptStruct /Script/FactoryGame.FGGameNetworkErrorMsg(errorType = 255, errorMsg = "No errors");
+L60:           mFGGameNetworkErrorMsg.errorType = muint8;
+L96:           mFGGameNetworkErrorMsg.errorMsg = mFString;
+L132:          this->CreatePopup([ref] mFGGameNetworkErrorMsg);
+L155:          goto ExecutionFlow.Pop();
+L156:          GameInstance* mGameInstance = GameplayStatics->GetGameInstance(this);
+L199:          FGGameInstance* mFGGameInstance = Cast<Class /Script/FactoryGame.FGGameInstance>(mGameInstance);
+L235:          bool mbool = mFGGameInstance;
+L264:          if (!mbool) goto ExecutionFlow.Pop();
+L274:          this->FGGameInstance = mFGGameInstance;
+L293:          mFScriptDelegate->BindUFunction(this, mOnNetworkErrorRecieved_Event_0);
+L316:          this->FGGameInstance->mOnNetworkErrorRecieved.AddUnique(mFScriptDelegate);
+L357:          this->CheckErrors();
+L371:          goto ExecutionFlow.Pop();
+L372:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 156, UUID = 1893485943, ExecutionFunction = "ExecuteUbergraph_Widget_NetworkErrorPopup", CallbackTarget = this));
+L448:          goto ExecutionFlow.Pop();
+L449:          goto L15;
+L454:          bool mbool1 = this->FGGameInstance->GetLatestNetworkError([ref] mFGGameNetworkErrorMsg1);
+L505:          if (!mbool1) goto ExecutionFlow.Pop();
+L515:          mbool1 = this->FGGameInstance->GetLatestNetworkError([ref] mFGGameNetworkErrorMsg1);
+L566:          this->CreatePopup([ref] mFGGameNetworkErrorMsg1);
+L589:          goto ExecutionFlow.Pop();
+L590:          bool mbool2 = this->FGGameInstance->GetLatestNetworkError([ref] mFGGameNetworkErrorMsg2);
+L641:          if (!mbool2) goto ExecutionFlow.Pop();
+L651:          bool mbool3 = this->FGGameInstance->PopLatestNetworkError();
+L693:          this->mHasPopupOpen = false;
+L704:          this->CheckErrors();
+L718:          goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_NetworkErrorPopup ==============

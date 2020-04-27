@@ -1,0 +1,163 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_CodexButton.Widget_CodexButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetTextHoverColor ==============
+L0:            bool mbool = this->IsHovered();
+L24:           if (!mbool) goto L125;
+L38:           HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L93:           SlateColor ReturnValue = mSlateColor;
+L120:          goto L207;
+L125:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L180:          ReturnValue = mSlateColor1;
+============ END FUNCTION GetTextHoverColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetMessageNotificationVisibility ==============
+L0:            uint8 Temp_byte_Variable = 2;
+L20:           uint8 Temp_byte_Variable1 = 4;
+L40:           bool mbool = KismetTextLibrary->TextIsEmpty([ref] this->mMessageNotification->mText);
+L113:          bool Temp_bool_Variable = mbool;
+L132:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetMessageNotificationVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_26_K2Node_ComponentBoundEvent_100_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_CodexButton(1551);
+============ END FUNCTION BndEvt__Button_26_K2Node_ComponentBoundEvent_100_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_CodexButton(1566);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_CodexButton(1690);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_CodexButton(1772);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Clicked ==============
+L0:            this->ExecuteUbergraph_Widget_CodexButton(1811);
+============ END FUNCTION Clicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_CodexButton ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L222);
+L20:           PanelWidget* mPanelWidget = this->GetParent();
+L40:           Widget* mWidget = mPanelWidget->GetChildAt(Temp_int_Variable);
+L91:           Widget_CodexButton* mWidget_CodexButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_CodexButton.Widget_CodexButton_C>(mWidget);
+L127:          bool mbool = mWidget_CodexButton;
+L156:          if (!mbool) goto ExecutionFlow.Pop();
+L166:          mWidget_CodexButton->Widget_ImageTabButton->mForceActiveButton = false;
+L221:          goto ExecutionFlow.Pop();
+L222:          int32 mint32 = Add_IntInt(Temp_int_Variable, 1);
+L264:          int32 Temp_int_Variable = mint32;
+L291:          PanelWidget* mPanelWidget1 = this->GetParent();
+L311:          int32 mint321 = mPanelWidget1->GetChildrenCount();
+L361:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint321);
+L399:          if (!mbool1) goto L418;
+L413:          goto L15;
+L418:          this->Widget_ImageTabButton->mForceActiveButton = true;
+L451:          this->OnClicked->ProcessMulticastDelegate(this);
+L471:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L491:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_Select, mPawn, true);
+L552:          goto ExecutionFlow.Pop();
+L553:          this->Widget_ImageTabButton->mForceActiveButton = true;
+L586:          this->SetButton(this->mButton);
+L605:          this->Widget_ImageTabButton->mButtonText = this->mText;
+L654:          bool mbool2 = NotEqual_ByteByte(this->mType, 0);
+L685:          if (!mbool2) goto L790;
+L699:          mbool2 = NotEqual_ByteByte(this->mType, 1);
+L730:          if (!mbool2) goto L1503;
+L744:          mbool2 = NotEqual_ByteByte(this->mType, 2);
+L775:          if (!mbool2) goto L1527;
+L789:          goto ExecutionFlow.Pop();
+L790:          this->ButtonTexture = Inbox_Icon;
+L809:          mSlateBrush.ImageSize = this->Widget_ImageTabButton->mIcon->Brush.ImageSize;
+L898:          mSlateBrush.Margin = this->Widget_ImageTabButton->mIcon->Brush.Margin;
+L987:          mSlateBrush.TintColor = this->Widget_ImageTabButton->mIcon->Brush.TintColor;
+L1076:         mSlateBrush.ResourceObject = this->ButtonTexture;
+L1104:         mSlateBrush.DrawAs = this->Widget_ImageTabButton->mIcon->Brush.DrawAs;
+L1193:         mSlateBrush.Tiling = this->Widget_ImageTabButton->mIcon->Brush.Tiling;
+L1282:         mSlateBrush.Mirroring = this->Widget_ImageTabButton->mIcon->Brush.Mirroring;
+L1371:         this->Widget_ImageTabButton->mIcon->SetBrush([ref] mSlateBrush);
+L1438:         mFScriptDelegate->BindUFunction(this, Clicked);
+L1461:         this->Widget_ImageTabButton->TabButtonClicked.AddUnique(mFScriptDelegate);
+L1502:         goto ExecutionFlow.Pop();
+L1503:         this->ButtonTexture = Tutorial_Icon;
+L1522:         goto L809;
+L1527:         this->ButtonTexture = Cross;
+L1546:         goto L809;
+L1551:         this->Clicked();
+L1565:         goto ExecutionFlow.Pop();
+L1566:         PanelWidget* mPanelWidget2 = this->GetParent();
+L1586:         int32 mint322 = mPanelWidget2->GetChildIndex(this);
+L1637:         bool mbool3 = EqualEqual_IntInt(mint322, 0);
+L1671:         if (!mbool3) goto L586;
+L1685:         goto L553;
+L1690:         Pawn* mPawn1 = this->GetOwningPlayerPawn();
+L1710:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_MouseOver, mPawn1, true);
+L1771:         goto ExecutionFlow.Pop();
+L1772:         this->Destruct();
+L1782:         goto ExecutionFlow.Pop();
+L1783:         Temp_int_Variable = 0;
+L1806:         goto L291;
+L1811:         goto L1783;
+============ END FUNCTION ExecuteUbergraph_Widget_CodexButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnReleased__DelegateSignature ==============
+============ END FUNCTION OnReleased__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPressed__DelegateSignature ==============
+============ END FUNCTION OnPressed__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============

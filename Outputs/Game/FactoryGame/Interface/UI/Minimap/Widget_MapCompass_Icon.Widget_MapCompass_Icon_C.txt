@@ -1,0 +1,539 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Minimap/Widget_MapCompass_Icon.Widget_MapCompass_Icon_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRadarTowerTime ==============
+L0:            Actor* mActor = this->mActorRepresentation->GetRealActor();
+L42:           FGBuildableRadarTower* mFGBuildableRadarTower = Cast<Class /Script/FactoryGame.FGBuildableRadarTower>(mActor);
+L78:           bool mbool = mFGBuildableRadarTower;
+L107:          if (!mbool) goto L2442;
+L121:          mFormatArgumentData.ArgumentName = "Description";
+L161:          mFormatArgumentData.ArgumentValueType = 4;
+L190:          mFormatArgumentData.ArgumentValue = this->mDescriptionText;
+L226:          mFormatArgumentData.ArgumentValueInt = 0;
+L258:          mFormatArgumentData.ArgumentValueFloat = 0;
+L290:          mFormatArgumentData.ArgumentValueGender = 0;
+L319:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L339:          mFormatArgumentData1.ArgumentName = "Description";
+L379:          mFormatArgumentData1.ArgumentValueType = 4;
+L408:          mFormatArgumentData1.ArgumentValue = this->mDescriptionText;
+L444:          mFormatArgumentData1.ArgumentValueInt = 0;
+L476:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L508:          mFormatArgumentData1.ArgumentValueGender = 0;
+L537:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L667:          TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
+L687:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L811:          mFormatArgumentData2.ArgumentName = "Description";
+L851:          mFormatArgumentData2.ArgumentValueType = 4;
+L880:          mFormatArgumentData2.ArgumentValue = this->mDescriptionText;
+L916:          mFormatArgumentData2.ArgumentValueInt = 0;
+L948:          mFormatArgumentData2.ArgumentValueFloat = 0;
+L980:          mFormatArgumentData2.ArgumentValueGender = 0;
+L1009:         float mfloat = mFGBuildableRadarTower->GetTimeToNextExpansion();
+L1059:         bool mbool1 = mFGBuildableRadarTower->HasPower();
+L1105:         Timespan mTimespan = FromSeconds(mfloat);
+L1142:         bool Temp_bool_Variable = mbool1;
+L1161:         BreakTimespan(mTimespan, [ref] mint32, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324);
+L1225:         int32 mint325 = mFGBuildableRadarTower->GetNumRadarExpansionSteps();
+L1275:         FText mFText2 = KismetTextLibrary->Conv_IntToText(mint323, false, true, 2, 324);
+L1346:         int32 mint326 = Multiply_IntInt(mint32, 24);
+L1388:         mFormatArgumentData3.ArgumentName = "Sec";
+L1420:         mFormatArgumentData3.ArgumentValueType = 4;
+L1449:         mFormatArgumentData3.ArgumentValue = mFText2;
+L1485:         mFormatArgumentData3.ArgumentValueInt = 0;
+L1517:         mFormatArgumentData3.ArgumentValueFloat = 0;
+L1549:         mFormatArgumentData3.ArgumentValueGender = 0;
+L1578:         int32 mint327 = Add_IntInt(mint326, mint321);
+L1624:         int32 mint328 = mFGBuildableRadarTower->GetCurrentExpansionStep();
+L1674:         int32 mint329 = Multiply_IntInt(mint327, 60);
+L1716:         int32 mint3210 = Add_IntInt(mint328, 1);
+L1758:         int32 mint3211 = Add_IntInt(mint329, mint322);
+L1804:         bool mbool2 = GreaterEqual_IntInt(mint3210, mint325);
+L1842:         FText mFText3 = KismetTextLibrary->Conv_IntToText(mint3211, false, true, 2, 324);
+L1913:         bool Temp_bool_Variable1 = mbool2;
+L1932:         mFormatArgumentData4.ArgumentName = "Min";
+L1964:         mFormatArgumentData4.ArgumentValueType = 4;
+L1993:         mFormatArgumentData4.ArgumentValue = mFText3;
+L2029:         mFormatArgumentData4.ArgumentValueInt = 0;
+L2061:         mFormatArgumentData4.ArgumentValueFloat = 0;
+L2093:         mFormatArgumentData4.ArgumentValueGender = 0;
+L2122:         TArray<FormatArgumentData> mTArray<FormatArgumentData>2 = [mFormatArgumentData2, mFormatArgumentData4, mFormatArgumentData3];
+L2160:         FText mFText4 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>2);
+L2309:         this->mMapDescription->SetText(switch (Temp_bool_Variable1) {
+case false -> switch (Temp_bool_Variable) {
+case false -> mFText1;
+case true -> mFText4;
+default -> mFText6;
+};
+case true -> mFText;
+default -> mFText5;
+});
+============ END FUNCTION UpdateRadarTowerTime ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetScale ==============
+L0:            this->mScale = Scale;
+L27:           this->mIconScaleBox->SetUserSpecifiedScale(this->mScale);
+============ END FUNCTION SetScale ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateActor ==============
+L0:            this->mActorRepresentation = actorRepresentation;
+L19:           this->mIsCompassObject = mIsCompassObject;
+L38:           uint8 muint8 = this->mActorRepresentation->GetRepresentationType();
+L88:           this->SetRepresentatoinType(muint8);
+L111:          Texture2D* mTexture2D = this->mActorRepresentation->GetRepresentationTexture();
+L153:          this->SetIcon(mTexture2D);
+L176:          LinearColor mLinearColor = this->mActorRepresentation->GetRepresentationColor();
+L226:          this->SetColor(mLinearColor);
+L249:          FText mFText = this->mActorRepresentation->GetRepresentationText();
+L299:          this->SetDescription(mFText);
+L322:          uint8 Temp_byte_Variable2 = 1;
+L342:          uint8 Temp_byte_Variable3 = 3;
+L362:          bool Temp_bool_Variable = this->mIsCompassObject;
+L381:          this->mShadow->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint81;
+});
+L470:          this->mDiamondShadow->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint81;
+});
+L559:          this->mPingShadow->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint81;
+});
+L648:          this->mDescContainer->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint81;
+});
+L737:          uint8 Temp_byte_Variable = 1;
+L757:          uint8 Temp_byte_Variable1 = 3;
+L777:          bool mbool = Not_PreBool(this->mIsCompassObject);
+L806:          bool Temp_bool_Variable1 = mbool;
+L825:          this->mCompassDescContainer->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint82;
+});
+============ END FUNCTION UpdateActor ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetIconType ==============
+L0:            ExecutionFlow.Push(L1269);
+L5:            uint8 LocalRepresentationType = 0;
+L25:           LocalRepresentationType = mRepresentationType;
+L52:           Widget* Temp_object_Variable = nullptr;
+L63:           Widget* Temp_object_Variable1 = nullptr;
+L74:           Widget* Temp_object_Variable2 = nullptr;
+L85:           Widget* Temp_object_Variable3 = nullptr;
+L96:           Widget* Temp_object_Variable4 = nullptr;
+L107:          uint8 Temp_byte_Variable2 = LocalRepresentationType;
+L134:          bool mbool = KismetSystemLibrary->IsValid(switch (Temp_byte_Variable2) {
+case 0 -> Temp_object_Variable4;
+case 1 -> this->mDiamondIconContainer;
+case 2 -> this->mDiamondIconContainer;
+case 3 -> this->mDiamondIconContainer;
+case 4 -> this->mPingIconContainer;
+case 5 -> Temp_object_Variable3;
+case 6 -> this->mDiamondIconContainer;
+case 7 -> Temp_object_Variable2;
+case 8 -> this->mDiamondIconContainer;
+case 9 -> this->mDiamondIconContainer;
+case 10 -> Temp_object_Variable1;
+case 11 -> this->mDiamondIconContainer;
+case 12 -> Temp_object_Variable;
+case 13 -> this->mDiamondIconContainer;
+default -> mWidget;
+});
+L411:          bool Temp_bool_Variable = mbool;
+L430:          Widget* LocalWidget = switch (Temp_bool_Variable) {
+case false -> this->mCircleIconContainer;
+case true -> switch (Temp_byte_Variable2) {
+case 0 -> Temp_object_Variable4;
+case 1 -> this->mDiamondIconContainer;
+case 2 -> this->mDiamondIconContainer;
+case 3 -> this->mDiamondIconContainer;
+case 4 -> this->mPingIconContainer;
+case 5 -> Temp_object_Variable3;
+case 6 -> this->mDiamondIconContainer;
+case 7 -> Temp_object_Variable2;
+case 8 -> this->mDiamondIconContainer;
+case 9 -> this->mDiamondIconContainer;
+case 10 -> Temp_object_Variable1;
+case 11 -> this->mDiamondIconContainer;
+case 12 -> Temp_object_Variable;
+case 13 -> this->mDiamondIconContainer;
+default -> mWidget;
+};
+default -> mWidget1;
+};
+L719:          int32 Temp_int_Variable = 0;
+L742:          int32 mint32 = this->mIconContainers->GetChildrenCount();
+L792:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint32);
+L830:          if (!mbool1) goto ExecutionFlow.Pop();
+L840:          ExecutionFlow.Push(L1195);
+L845:          Widget* mWidget2 = this->mIconContainers->GetChildAt(Temp_int_Variable);
+L896:          bool mbool2 = KismetSystemLibrary->IsValid(mWidget2);
+L947:          if (!mbool2) goto ExecutionFlow.Pop();
+L957:          uint8 Temp_byte_Variable = 0;
+L977:          uint8 Temp_byte_Variable1 = 1;
+L997:          mWidget2 = this->mIconContainers->GetChildAt(Temp_int_Variable);
+L1048:         bool mbool3 = EqualEqual_ObjectObject(mWidget2, LocalWidget);
+L1086:         bool Temp_bool_Variable1 = mbool3;
+L1105:         mWidget2->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L1194:         goto ExecutionFlow.Pop();
+L1195:         int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L1237:         Temp_int_Variable = mint321;
+L1264:         goto L742;
+============ END FUNCTION SetIconType ==============
+
+
+
+
+
+============ BEGIN FUNCTION TestFunction ==============
+L0:            this->SetRepresentatoinType(mRepresentationType);
+L23:           this->SetColor(Color);
+L46:           this->SetIcon(Icon);
+============ END FUNCTION TestFunction ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetDescription ==============
+L0:            this->mDescriptionText = mDescriptionText;
+L27:           this->mMapDescription->SetText(this->mDescriptionText);
+L72:           this->mCompassDescription->SetText(this->mDescriptionText);
+============ END FUNCTION SetDescription ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetRepresentatoinType ==============
+L0:            this->mRepresentationType = mRepresentationType;
+L27:           this->SetIconType(this->mRepresentationType);
+L50:           Texture2D* Temp_object_Variable = MapCompass_Circle_Border;
+L69:           Texture2D* Temp_object_Variable16 = MapCompass_Circle_Border;
+L88:           Texture2D* Temp_object_Variable17 = nullptr;
+L99:           Texture2D* Temp_object_Variable18 = TrainStation;
+L118:          Texture2D* Temp_object_Variable19 = nullptr;
+L129:          Texture2D* Temp_object_Variable20 = nullptr;
+L140:          Texture2D* Temp_object_Variable21 = MapCompass_StaticActor_Background;
+L159:          Texture2D* Temp_object_Variable22 = nullptr;
+L170:          Texture2D* Temp_object_Variable23 = MapCompass_StaticActor_Border;
+L189:          Texture2D* Temp_object_Variable24 = nullptr;
+L200:          Texture2D* Temp_object_Variable25 = MapCompass_StaticActor_Border;
+L219:          Texture2D* Temp_object_Variable26 = MapCompass_StaticActor_Border;
+L238:          Texture2D* Temp_object_Variable27 = MapCompass_StaticActor_Border;
+L257:          Texture2D* Temp_object_Variable28 = nullptr;
+L268:          bool mbool = Not_PreBool(this->mIsCompassObject);
+L297:          Texture2D* Temp_object_Variable29 = MapCompass_DirectionalActor_Border;
+L316:          uint8 Temp_byte_Variable1 = this->mRepresentationType;
+L343:          bool Temp_bool_Variable2 = mbool;
+L362:          bool mbool1 = KismetSystemLibrary->IsValid(switch (Temp_byte_Variable1) {
+case 0 -> Temp_object_Variable28;
+case 1 -> Temp_object_Variable27;
+case 2 -> Temp_object_Variable26;
+case 3 -> Temp_object_Variable25;
+case 4 -> Temp_object_Variable24;
+case 5 -> switch (Temp_bool_Variable2) {
+case false -> Temp_object_Variable;
+case true -> Temp_object_Variable29;
+default -> mTexture2D1;
+};
+case 6 -> Temp_object_Variable23;
+case 7 -> Temp_object_Variable22;
+case 8 -> Temp_object_Variable21;
+case 9 -> Temp_object_Variable20;
+case 10 -> Temp_object_Variable19;
+case 11 -> Temp_object_Variable18;
+case 12 -> switch (Temp_bool_Variable2) {
+case false -> Temp_object_Variable;
+case true -> Temp_object_Variable29;
+default -> mTexture2D1;
+};
+case 13 -> Temp_object_Variable17;
+default -> mTexture2D;
+});
+L727:          bool Temp_bool_Variable1 = mbool1;
+L746:          this->mBorder->SetBrushFromTexture(switch (Temp_bool_Variable1) {
+case false -> Temp_object_Variable16;
+case true -> switch (Temp_byte_Variable1) {
+case 0 -> Temp_object_Variable28;
+case 1 -> Temp_object_Variable27;
+case 2 -> Temp_object_Variable26;
+case 3 -> Temp_object_Variable25;
+case 4 -> Temp_object_Variable24;
+case 5 -> switch (Temp_bool_Variable2) {
+case false -> Temp_object_Variable;
+case true -> Temp_object_Variable29;
+default -> mTexture2D1;
+};
+case 6 -> Temp_object_Variable23;
+case 7 -> Temp_object_Variable22;
+case 8 -> Temp_object_Variable21;
+case 9 -> Temp_object_Variable20;
+case 10 -> Temp_object_Variable19;
+case 11 -> Temp_object_Variable18;
+case 12 -> switch (Temp_bool_Variable2) {
+case false -> Temp_object_Variable;
+case true -> Temp_object_Variable29;
+default -> mTexture2D1;
+};
+case 13 -> Temp_object_Variable17;
+default -> mTexture2D;
+};
+default -> mTexture2D2;
+}, false);
+L1150:         this->mShadow->SetBrushFromTexture(switch (Temp_bool_Variable1) {
+case false -> Temp_object_Variable16;
+case true -> switch (Temp_byte_Variable1) {
+case 0 -> Temp_object_Variable28;
+case 1 -> Temp_object_Variable27;
+case 2 -> Temp_object_Variable26;
+case 3 -> Temp_object_Variable25;
+case 4 -> Temp_object_Variable24;
+case 5 -> switch (Temp_bool_Variable2) {
+case false -> Temp_object_Variable;
+case true -> Temp_object_Variable29;
+default -> mTexture2D1;
+};
+case 6 -> Temp_object_Variable23;
+case 7 -> Temp_object_Variable22;
+case 8 -> Temp_object_Variable21;
+case 9 -> Temp_object_Variable20;
+case 10 -> Temp_object_Variable19;
+case 11 -> Temp_object_Variable18;
+case 12 -> switch (Temp_bool_Variable2) {
+case false -> Temp_object_Variable;
+case true -> Temp_object_Variable29;
+default -> mTexture2D1;
+};
+case 13 -> Temp_object_Variable17;
+default -> mTexture2D;
+};
+default -> mTexture2D2;
+}, false);
+L1554:         Texture2D* Temp_object_Variable1 = Circle_Background;
+L1573:         Texture2D* Temp_object_Variable2 = nullptr;
+L1584:         Texture2D* Temp_object_Variable3 = nullptr;
+L1595:         Texture2D* Temp_object_Variable4 = nullptr;
+L1606:         Texture2D* Temp_object_Variable5 = nullptr;
+L1617:         Texture2D* Temp_object_Variable6 = nullptr;
+L1628:         Texture2D* Temp_object_Variable7 = MapCompass_StaticActor_Background;
+L1647:         Texture2D* Temp_object_Variable8 = nullptr;
+L1658:         Texture2D* Temp_object_Variable9 = MapCompass_StaticActor_Background;
+L1677:         Texture2D* Temp_object_Variable10 = nullptr;
+L1688:         Texture2D* Temp_object_Variable11 = nullptr;
+L1699:         Texture2D* Temp_object_Variable12 = MapCompass_StaticActor_Background;
+L1718:         Texture2D* Temp_object_Variable13 = MapCompass_StaticActor_Background;
+L1737:         Texture2D* Temp_object_Variable14 = MapCompass_StaticActor_Background;
+L1756:         Texture2D* Temp_object_Variable15 = nullptr;
+L1767:         uint8 Temp_byte_Variable = this->mRepresentationType;
+L1794:         bool mbool2 = KismetSystemLibrary->IsValid(switch (Temp_byte_Variable) {
+case 0 -> Temp_object_Variable15;
+case 1 -> Temp_object_Variable14;
+case 2 -> Temp_object_Variable13;
+case 3 -> Temp_object_Variable12;
+case 4 -> Temp_object_Variable11;
+case 5 -> Temp_object_Variable10;
+case 6 -> Temp_object_Variable9;
+case 7 -> Temp_object_Variable8;
+case 8 -> Temp_object_Variable7;
+case 9 -> Temp_object_Variable6;
+case 10 -> Temp_object_Variable5;
+case 11 -> Temp_object_Variable4;
+case 12 -> Temp_object_Variable3;
+case 13 -> Temp_object_Variable2;
+default -> mTexture2D3;
+});
+L2071:         bool Temp_bool_Variable = mbool2;
+L2090:         this->mBackground->SetBrushFromTexture(switch (Temp_bool_Variable) {
+case false -> Temp_object_Variable1;
+case true -> switch (Temp_byte_Variable) {
+case 0 -> Temp_object_Variable15;
+case 1 -> Temp_object_Variable14;
+case 2 -> Temp_object_Variable13;
+case 3 -> Temp_object_Variable12;
+case 4 -> Temp_object_Variable11;
+case 5 -> Temp_object_Variable10;
+case 6 -> Temp_object_Variable9;
+case 7 -> Temp_object_Variable8;
+case 8 -> Temp_object_Variable7;
+case 9 -> Temp_object_Variable6;
+case 10 -> Temp_object_Variable5;
+case 11 -> Temp_object_Variable4;
+case 12 -> Temp_object_Variable3;
+case 13 -> Temp_object_Variable2;
+default -> mTexture2D3;
+};
+default -> mTexture2D4;
+}, false);
+L2406:         bool mbool3 = EqualEqual_ByteByte(this->mRepresentationType, 4);
+L2437:         if (!mbool3) goto L2502;
+L2451:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->BlinkAnim, 0, 0, 0, 1);
+L2497:         <End of Inlined Event Graph Function>;
+L2502:         this->StopAnimation(this->BlinkAnim);
+============ END FUNCTION SetRepresentatoinType ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetRotation ==============
+L0:            float mfloat = Add_FloatFloat(Angle, 90);
+L42:           this->mBorder->SetRenderAngle(mfloat);
+L83:           this->mShadow->SetRenderAngle(mfloat);
+============ END FUNCTION SetRotation ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetIcon ==============
+L0:            this->mIcon->SetBrushFromTexture(Texture, false);
+L46:           this->mDiamondIcon->SetBrushFromTexture(Texture, false);
+============ END FUNCTION SetIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetColor ==============
+L0:            this->mColor = InColorAndOpacity;
+L27:           bool mbool = EqualEqual_ByteByte(this->mRepresentationType, 1);
+L58:           bool Temp_bool_Variable1 = mbool;
+L77:           switch (Temp_bool_Variable1) {
+case false -> this->mDiamondIcon;
+case true -> this->mDiamondBackground;
+default -> mImage;
+}->SetColorAndOpacity(this->mColor);
+L162:          this->mBackground->SetColorAndOpacity(this->mColor);
+L203:          this->mPingBorder->SetColorAndOpacity(this->mColor);
+L244:          bool mbool1 = EqualEqual_ByteByte(this->mRepresentationType, 1);
+L275:          bool Temp_bool_Variable = mbool1;
+L294:          switch (Temp_bool_Variable) {
+case false -> this->mDiamondBackground;
+case true -> this->mDiamondIcon;
+default -> mImage1;
+}->SetColorAndOpacity(ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1));
+============ END FUNCTION SetColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_MapCompass_Icon(10);
+============ END FUNCTION BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_MapCompass_Icon.Widget_MapCompass_Icon_C:ExecuteUbergraph_Widget_MapCompass_Icon.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_MapCompass_Icon(454);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION DynamicDescriptionUpdate ==============
+L0:            this->ExecuteUbergraph_Widget_MapCompass_Icon(541);
+============ END FUNCTION DynamicDescriptionUpdate ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_MapCompass_Icon(610);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_1_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_MapCompass_Icon(763);
+============ END FUNCTION BndEvt__Button_1_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_MapCompass_Icon ==============
+L10:           this->OnUnhovered->ProcessMulticastDelegate();
+L29:           FText mFText = KismetTextLibrary->Conv_StringToText("");
+L81:           bool mbool = KismetTextLibrary->NotEqual_TextText([ref] this->mDescriptionText, [ref] mFText);
+L141:          if (!mbool) goto L768;
+L155:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ShowDescription, 0, 1, 1, 1);
+L201:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mDynamicDescriptionTimerEvent);
+L243:          <End of Inlined Event Graph Function>;
+L248:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->ShowDescription, 0, 1, 0, 1);
+L294:          <End of Inlined Event Graph Function>;
+L299:          FText mFText1 = KismetTextLibrary->Conv_StringToText("");
+L351:          bool mbool1 = KismetTextLibrary->NotEqual_TextText([ref] this->mDescriptionText, [ref] mFText1);
+L411:          if (!mbool1) goto L768;
+L425:          goto L248;
+L430:          this->OnHovered->ProcessMulticastDelegate();
+L449:          goto L299;
+L454:          this->TestFunction(ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.05951099842786789, A = 1), 1, MapCompass_Icon_beacon);
+L513:          this->SetScale(this->mScale);
+L536:          <End of Inlined Event Graph Function>;
+L541:          bool mbool2 = NotEqual_ByteByte(this->mRepresentationType, 6);
+L572:          if (!mbool2) goto L591;
+L586:          <End of Inlined Event Graph Function>;
+L591:          this->UpdateRadarTowerTime();
+L605:          <End of Inlined Event Graph Function>;
+L610:          uint8 Temp_byte_Variable = 3;
+L630:          uint8 Temp_byte_Variable1 = 0;
+L650:          bool Temp_bool_Variable = this->mIsCompassObject;
+L669:          this->mButton->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L758:          <End of Inlined Event Graph Function>;
+L763:          goto L430;
+============ END FUNCTION ExecuteUbergraph_Widget_MapCompass_Icon ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUnhovered__DelegateSignature ==============
+============ END FUNCTION OnUnhovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHovered__DelegateSignature ==============
+============ END FUNCTION OnHovered__DelegateSignature ==============

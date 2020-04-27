@@ -1,0 +1,232 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/NobeliskDetonator/Equip_NobeliskDetonator.Equip_NobeliskDetonator_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION PlayFireEffect ==============
+L0:            this->ExecuteUbergraph_Equip_NobeliskDetonator(2642);
+============ END FUNCTION PlayFireEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayReloadEffects ==============
+L0:            this->ExecuteUbergraph_Equip_NobeliskDetonator(1882);
+============ END FUNCTION PlayReloadEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasUnEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_NobeliskDetonator(2647);
+============ END FUNCTION WasUnEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_NobeliskDetonator(2648);
+============ END FUNCTION WasEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSecondaryFirePressed ==============
+L0:            this->ExecuteUbergraph_Equip_NobeliskDetonator(4001);
+============ END FUNCTION OnSecondaryFirePressed ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayFireReleasedEffects ==============
+L0:            this->ExecuteUbergraph_Equip_NobeliskDetonator(4756);
+============ END FUNCTION PlayFireReleasedEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Equip_NobeliskDetonator ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L190);
+L20:           FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
+L40:           SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L82:           AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L124:          bool mbool = mAnimInstance->Montage_IsPlaying(NobeliskDetonatorEquipExplosive_01_Montage);
+L175:          if (!mbool) goto L413;
+L189:          goto ExecutionFlow.Pop();
+L190:          AnimInstance* mAnimInstance1 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L232:          bool mbool1 = mAnimInstance1->Montage_IsPlaying(NobeliskDetonatorEquipExplosive_01_Montage);
+L283:          if (!mbool1) goto L298;
+L297:          goto ExecutionFlow.Pop();
+L298:          mAnimInstance1 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L340:          float mfloat = mAnimInstance1->Montage_Play(NobeliskDetonatorEquipExplosive_01_Montage, 1, 0, 0, true);
+L412:          goto ExecutionFlow.Pop();
+L413:          mFGCharacterPlayer = this->GetInstigatorCharacter();
+L433:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L475:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L517:          float mfloat1 = mAnimInstance->Montage_Play(NobeliskDetonatorEquipExplosive_01_Montage, 1, 1, 0, true);
+L589:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_E_Nobelisk_Equip_With_Bomb, this, true);
+L642:          goto ExecutionFlow.Pop();
+L643:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_E_Nobelisk_Explosion_Beep_With_Bomb, this, true);
+L696:          goto ExecutionFlow.Pop();
+L697:          AnimInstance* mAnimInstance2 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L739:          float mfloat2 = mAnimInstance2->Montage_Play(NobeliskDetonatorEquip_01_Montage, 1, 0, 0, true);
+L811:          goto ExecutionFlow.Pop();
+L812:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L832:          SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L874:          AnimInstance* mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L916:          float mfloat3 = mAnimInstance3->Montage_Play(NobeliskDetonatorEquip_01_Montage, 1, 1, 0, true);
+L988:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_E_Nobelisk_Equip, this, true);
+L1041:         goto ExecutionFlow.Pop();
+L1042:         mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L1062:         mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L1104:         mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L1146:         bool mbool2 = KismetSystemLibrary->IsValid(mAnimInstance3);
+L1197:         if (!mbool2) goto ExecutionFlow.Pop();
+L1207:         mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L1227:         mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L1269:         mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L1311:         bool mbool3 = mAnimInstance3->Montage_IsPlaying(NobeliskDetonatorEquip_01_Montage);
+L1362:         if (!mbool3) goto L812;
+L1376:         goto ExecutionFlow.Pop();
+L1377:         ExecutionFlow.Push(L1387);
+L1382:         goto L1042;
+L1387:         mAnimInstance2 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L1429:         bool mbool4 = mAnimInstance2->Montage_IsPlaying(NobeliskDetonatorEquip_01_Montage);
+L1480:         if (!mbool4) goto L697;
+L1494:         goto ExecutionFlow.Pop();
+L1495:         this->PlayFireEffect();
+L1505:         bool mbool5 = this->IsLocalInstigator();
+L1525:         if (!mbool5) goto ExecutionFlow.Pop();
+L1535:         FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L1555:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
+L1597:         AnimInstance* mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L1639:         bool mbool6 = mAnimInstance4->Montage_IsPlaying(NobeliskDetonatorMiddleThrow_01_Montage);
+L1690:         if (!mbool6) goto L1705;
+L1704:         goto ExecutionFlow.Pop();
+L1705:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L1725:         mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
+L1767:         mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L1809:         float mfloat4 = mAnimInstance4->Montage_Play(NobeliskDetonatorLongThrow_01_Montage, 1, 1, 0, true);
+L1881:         goto ExecutionFlow.Pop();
+L1882:         this->PlayReloadEffects();
+L1892:         bool mbool7 = this->IsLocalInstigator();
+L1912:         if (!mbool7) goto ExecutionFlow.Pop();
+L1922:         ExecutionFlow.Push(L2380);
+L1927:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L1947:         SkeletalMeshComponent* mSkeletalMeshComponent3 = mFGCharacterPlayer3->GetMesh1P();
+L1989:         AnimInstance* mAnimInstance5 = mSkeletalMeshComponent3->GetAnimInstance();
+L2031:         bool mbool8 = mAnimInstance5->Montage_IsPlaying(NobeliskDetonatorReload_01_Montage);
+L2082:         if (!mbool8) goto L2097;
+L2096:         goto ExecutionFlow.Pop();
+L2097:         mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L2117:         mSkeletalMeshComponent3 = mFGCharacterPlayer3->GetMesh1P();
+L2159:         mAnimInstance5 = mSkeletalMeshComponent3->GetAnimInstance();
+L2201:         float mfloat5 = mAnimInstance5->Montage_Play(NobeliskDetonatorReload_01_Montage, 1, 1, 0, true);
+L2273:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_E_Nobelisk_Reload, this, true);
+L2326:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Stop_E_Nobelisk_StopEquips, this, true);
+L2379:         goto ExecutionFlow.Pop();
+L2380:         AnimInstance* mAnimInstance6 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L2422:         bool mbool9 = mAnimInstance6->Montage_IsPlaying(NobeliskDetonatorReload_01_Montage);
+L2473:         if (!mbool9) goto L2488;
+L2487:         goto ExecutionFlow.Pop();
+L2488:         mAnimInstance6 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L2530:         float mfloat6 = mAnimInstance6->Montage_Play(NobeliskDetonatorReload_01_Montage, 1, 0, 0, true);
+L2602:         goto ExecutionFlow.Pop();
+L2603:         bool mbool10 = this->HasAmmunition();
+L2623:         if (!mbool10) goto L1377;
+L2637:         goto L15;
+L2642:         goto L1495;
+L2647:         goto ExecutionFlow.Pop();
+L2648:         this->WasEquipped();
+L2658:         bool mbool11 = this->IsLocalInstigator();
+L2678:         if (!mbool11) goto ExecutionFlow.Pop();
+L2688:         bool mbool12 = this->ShouldShowStinger();
+L2708:         if (!mbool12) goto L2603;
+L2722:         ExecutionFlow.Push(L3127);
+L2727:         FGCharacterPlayer* mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L2747:         SkeletalMeshComponent* mSkeletalMeshComponent4 = mFGCharacterPlayer4->GetMesh1P();
+L2789:         AnimInstance* mAnimInstance7 = mSkeletalMeshComponent4->GetAnimInstance();
+L2831:         bool mbool13 = mAnimInstance7->Montage_IsPlaying(NobeliskDetonatorStinger_01_Montage);
+L2882:         if (!mbool13) goto L2897;
+L2896:         goto ExecutionFlow.Pop();
+L2897:         mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L2917:         mSkeletalMeshComponent4 = mFGCharacterPlayer4->GetMesh1P();
+L2959:         mAnimInstance7 = mSkeletalMeshComponent4->GetAnimInstance();
+L3001:         float mfloat7 = mAnimInstance7->Montage_Play(NobeliskDetonatorStinger_01_Montage, 1, 1, 0, true);
+L3073:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEvent(Play_E_Nobelisk_Equip_Stinger, this, true);
+L3126:         goto ExecutionFlow.Pop();
+L3127:         AnimInstance* mAnimInstance8 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L3169:         bool mbool14 = mAnimInstance8->Montage_IsPlaying(NobeliskDetonatorStinger_01_Montage);
+L3220:         if (!mbool14) goto L3235;
+L3234:         goto ExecutionFlow.Pop();
+L3235:         mAnimInstance8 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L3277:         float mfloat8 = mAnimInstance8->Montage_Play(NobeliskDetonatorStinger_01_Montage, 1, 0, 0, true);
+L3349:         goto ExecutionFlow.Pop();
+L3350:         ExecutionFlow.Push(L3778);
+L3355:         FGCharacterPlayer* mFGCharacterPlayer5 = this->GetInstigatorCharacter();
+L3375:         SkeletalMeshComponent* mSkeletalMeshComponent5 = mFGCharacterPlayer5->GetMesh1P();
+L3417:         AnimInstance* mAnimInstance9 = mSkeletalMeshComponent5->GetAnimInstance();
+L3459:         bool mbool15 = mAnimInstance9->Montage_IsPlaying(NobeliskDetonatorDetonate_02_Montage);
+L3510:         if (!mbool15) goto L3525;
+L3524:         goto ExecutionFlow.Pop();
+L3525:         mFGCharacterPlayer5 = this->GetInstigatorCharacter();
+L3545:         mSkeletalMeshComponent5 = mFGCharacterPlayer5->GetMesh1P();
+L3587:         mAnimInstance9 = mSkeletalMeshComponent5->GetAnimInstance();
+L3629:         float mfloat9 = mAnimInstance9->Montage_Play(NobeliskDetonatorDetonate_02_Montage, 1, 1, 0, true);
+L3701:         KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 643, UUID = -800153213, ExecutionFunction = "ExecuteUbergraph_Equip_NobeliskDetonator", CallbackTarget = this));
+L3777:         goto ExecutionFlow.Pop();
+L3778:         AnimInstance* mAnimInstance10 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L3820:         bool mbool16 = mAnimInstance10->Montage_IsPlaying(NobeliskDetonatorDetonate_02_Montage);
+L3871:         if (!mbool16) goto L3886;
+L3885:         goto ExecutionFlow.Pop();
+L3886:         mAnimInstance10 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L3928:         float mfloat10 = mAnimInstance10->Montage_Play(NobeliskDetonatorDetonate_02_Montage, 1, 0, 0, true);
+L4000:         goto ExecutionFlow.Pop();
+L4001:         bool mbool17 = this->IsLocalInstigator();
+L4021:         if (!mbool17) goto ExecutionFlow.Pop();
+L4031:         bool mbool18 = this->HasAmmunition();
+L4051:         bool mbool19 = this->GetIsReloading();
+L4071:         bool mbool20 = BooleanOR(mbool18, mbool19);
+L4109:         if (!mbool20) goto L4128;
+L4123:         goto L3350;
+L4128:         ExecutionFlow.Push(L4533);
+L4133:         FGCharacterPlayer* mFGCharacterPlayer6 = this->GetInstigatorCharacter();
+L4153:         SkeletalMeshComponent* mSkeletalMeshComponent6 = mFGCharacterPlayer6->GetMesh1P();
+L4195:         AnimInstance* mAnimInstance11 = mSkeletalMeshComponent6->GetAnimInstance();
+L4237:         bool mbool21 = mAnimInstance11->Montage_IsPlaying(NobeliskDetonatorDetonate_noexpl_02_Montage);
+L4288:         if (!mbool21) goto L4303;
+L4302:         goto ExecutionFlow.Pop();
+L4303:         mFGCharacterPlayer6 = this->GetInstigatorCharacter();
+L4323:         mSkeletalMeshComponent6 = mFGCharacterPlayer6->GetMesh1P();
+L4365:         mAnimInstance11 = mSkeletalMeshComponent6->GetAnimInstance();
+L4407:         float mfloat11 = mAnimInstance11->Montage_Play(NobeliskDetonatorDetonate_noexpl_02_Montage, 1, 1, 0.10000000149011612, true);
+L4479:         AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEvent(Play_E_Nobelisk_Explosion_Beep, this, true);
+L4532:         goto ExecutionFlow.Pop();
+L4533:         AnimInstance* mAnimInstance12 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L4575:         bool mbool22 = mAnimInstance12->Montage_IsPlaying(NobeliskDetonatorDetonate_noexpl_01_Montage);
+L4626:         if (!mbool22) goto L4641;
+L4640:         goto ExecutionFlow.Pop();
+L4641:         mAnimInstance12 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L4683:         float mfloat12 = mAnimInstance12->Montage_Play(NobeliskDetonatorDetonate_noexpl_01_Montage, 1, 0, 0.10000000149011612, true);
+L4755:         goto ExecutionFlow.Pop();
+L4756:         this->PlayFireReleasedEffects();
+L4766:         bool mbool23 = this->IsLocalInstigator();
+L4786:         if (!mbool23) goto ExecutionFlow.Pop();
+L4796:         AnimInstance* mAnimInstance13 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L4838:         bool mbool24 = mAnimInstance13->Montage_IsPlaying(NobeliskDetonatorThrow_01_Montage);
+L4889:         if (!mbool24) goto L4904;
+L4903:         goto ExecutionFlow.Pop();
+L4904:         mAnimInstance13 = this->NobeliskDetonator_Skl_01->GetAnimInstance();
+L4946:         float mfloat13 = mAnimInstance13->Montage_Play(NobeliskDetonatorThrow_01_Montage, 1, 0, 0, true);
+L5018:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Equip_NobeliskDetonator ==============

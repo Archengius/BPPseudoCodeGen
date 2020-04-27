@@ -1,0 +1,282 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/World/Benefit/DropPod/Widget_DropPod_Repair.Widget_DropPod_Repair_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetHasAllRepairParts ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L56:           bool mbool = mFGCharacterPlayer;
+L85:           if (!mbool) goto L288;
+L99:           this->mDropPod->GetRepairAmount([ref] mItemAmount);
+L144:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
+L186:          bool mbool1 = mFGInventoryComponent->HasItems(mItemAmount.ItemClass, mItemAmount.amount);
+L264:          bool Has All Parts = mbool1;
+L283:          <End of Inlined Event Graph Function>;
+L288:          Has All Parts = false;
+============ END FUNCTION GetHasAllRepairParts ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetHasDoorBeenOpened ==============
+L0:            bool mbool = this->mDropPod->HasBeenOpened();
+L42:           this->Widget_DropPod_Door->SetHasBeenOpened(mbool);
+L87:           mbool = this->mDropPod->HasBeenOpened();
+L129:          if (!mbool) goto L199;
+L143:          this->Widget_DropPod_Door->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = -306, Y = 0));
+============ END FUNCTION SetHasDoorBeenOpened ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupScreenText ==============
+L0:            this->PartText->SetText(this->mPartText);
+L45:           this->PowerText->SetText(this->mPowerText);
+L90:           bool mbool = this->GetHasPartsAndPower();
+L114:          if (!mbool) goto L296;
+L128:          this->RepairInfo->SetVisibility(1);
+L166:          this->OpenDoorText->SetVisibility(0);
+L204:          this->StatusText->SetText("[object Object]");
+L291:          <End of Inlined Event Graph Function>;
+L296:          this->mDropPod->NeedsRepair([ref] mbool1);
+L341:          if (!mbool1) goto L1567;
+L355:          this->PartInfo->SetVisibility(0);
+L393:          this->GetHasAllRepairParts([ref] mbool2);
+L416:          if (!mbool2) goto L1610;
+L430:          this->mDropPod->GetRepairAmount([ref] mItemAmount);
+L475:          FText mFText = FGItemDescriptor->GetItemName(mItemAmount.ItemClass);
+L543:          mFormatArgumentData.ArgumentName = "Item";
+L576:          mFormatArgumentData.ArgumentValueType = 4;
+L605:          mFormatArgumentData.ArgumentValue = mFText;
+L641:          mFormatArgumentData.ArgumentValueInt = 0;
+L673:          mFormatArgumentData.ArgumentValueFloat = 0;
+L705:          mFormatArgumentData.ArgumentValueGender = 0;
+L734:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L754:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L868:          this->PartValue->SetText(mFText1);
+L913:          this->mDropPod->NeedsPower([ref] mbool3);
+L958:          if (!mbool3) goto L2358;
+L972:          this->powerInfo->SetVisibility(0);
+L1010:         this->mDropPod->GetPowerConsumption([ref] mfloat);
+L1055:         mFormatArgumentData1.ArgumentName = "Amount";
+L1090:         mFormatArgumentData1.ArgumentValueType = 2;
+L1119:         mFormatArgumentData1.ArgumentValue = ;
+L1148:         mFormatArgumentData1.ArgumentValueInt = 0;
+L1180:         mFormatArgumentData1.ArgumentValueFloat = mfloat;
+L1216:         mFormatArgumentData1.ArgumentValueGender = 0;
+L1245:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
+L1265:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L1381:         this->PowerValue->SetText(mFText2);
+L1426:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->PowerPulse, 0, 0, 0, 1);
+L1472:         this->StatusText->SetText("[object Object]");
+L1562:         <End of Inlined Event Graph Function>;
+L1567:         this->PartInfo->SetVisibility(1);
+L1605:         goto L913;
+L1610:         this->mDropPod->GetRepairAmount([ref] mItemAmount1);
+L1655:         mFormatArgumentData2.ArgumentName = "Amount";
+L1690:         mFormatArgumentData2.ArgumentValueType = 0;
+L1719:         mFormatArgumentData2.ArgumentValue = ;
+L1748:         mFormatArgumentData2.ArgumentValueInt = mItemAmount1.amount;
+L1793:         mFormatArgumentData2.ArgumentValueFloat = 0;
+L1825:         mFormatArgumentData2.ArgumentValueGender = 0;
+L1854:         FText mFText3 = FGItemDescriptor->GetItemName(mItemAmount1.ItemClass);
+L1922:         mFormatArgumentData3.ArgumentName = "Item";
+L1955:         mFormatArgumentData3.ArgumentValueType = 4;
+L1984:         mFormatArgumentData3.ArgumentValue = mFText3;
+L2020:         mFormatArgumentData3.ArgumentValueInt = 0;
+L2052:         mFormatArgumentData3.ArgumentValueFloat = 0;
+L2084:         mFormatArgumentData3.ArgumentValueGender = 0;
+L2113:         TArray<FormatArgumentData> mTArray<FormatArgumentData>2 = [mFormatArgumentData2, mFormatArgumentData3];
+L2142:         FText mFText4 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>2);
+L2262:         this->PartValue->SetText(mFText4);
+L2307:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->PartPulse, 0, 0, 0, 1);
+L2353:         goto L913;
+L2358:         this->powerInfo->SetVisibility(1);
+L2396:         goto L1472;
+============ END FUNCTION SetupScreenText ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupCostSlot ==============
+L0:            this->mDropPod->NeedsRepair([ref] mbool);
+L45:           if (!mbool) goto L453;
+L59:           this->FanCover->SetVisibility(2);
+L97:           Pawn* mPawn = this->GetOwningPlayerPawn();
+L117:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L153:          bool mbool1 = mFGCharacterPlayer;
+L182:          if (!mbool1) goto L453;
+L196:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
+L238:          this->mDropPod->GetRepairAmount([ref] mItemAmount);
+L283:          HUDHelpers->GetNumItemsFromInventory(mFGInventoryComponent, mItemAmount.ItemClass, this, [ref] mint32);
+L356:          this->Widget_CostSlotWrapper->Setup CostIcon(nullptr, mItemAmount, nullptr, 0, mint32, false, false, false);
+L420:          this->Widget_CostSlotWrapper->mForceEmptyAnim = true;
+============ END FUNCTION SetupCostSlot ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetHasPartsAndPower ==============
+L0:            this->GetHasAllRepairParts([ref] mbool);
+L23:           this->mDropPod->NeedsPower([ref] mbool1);
+L68:           if (!mbool1) goto L186;
+L82:           bool mbool2 = this->mDropPod->GetHasPower();
+L124:          bool mbool3 = BooleanAND(mbool, mbool2);
+L162:          bool ReturnValue = mbool3;
+L181:          goto L205;
+L186:          ReturnValue = mbool;
+============ END FUNCTION GetHasPartsAndPower ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRepairButtonVisibility ==============
+L0:            uint8 Temp_byte_Variable = 0;
+L20:           uint8 Temp_byte_Variable1 = 1;
+L40:           this->mDropPod->NeedsRepair([ref] mbool);
+L85:           bool Temp_bool_Variable = mbool;
+L104:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetRepairButtonVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRepairConditionText ==============
+L0:            this->mDropPod->NeedsRepair([ref] mbool);
+L45:           if (!mbool) goto L770;
+L59:           this->mDropPod->GetRepairAmount([ref] mItemAmount);
+L104:          mFormatArgumentData.ArgumentName = "NUM";
+L136:          mFormatArgumentData.ArgumentValueType = 0;
+L165:          mFormatArgumentData.ArgumentValue = ;
+L194:          mFormatArgumentData.ArgumentValueInt = mItemAmount.amount;
+L239:          mFormatArgumentData.ArgumentValueFloat = 0;
+L271:          mFormatArgumentData.ArgumentValueGender = 0;
+L300:          FText mFText = FGItemDescriptor->GetItemName(mItemAmount.ItemClass);
+L368:          mFormatArgumentData1.ArgumentName = "ITEM";
+L401:          mFormatArgumentData1.ArgumentValueType = 4;
+L430:          mFormatArgumentData1.ArgumentValue = mFText;
+L466:          mFormatArgumentData1.ArgumentValueInt = 0;
+L498:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L530:          mFormatArgumentData1.ArgumentValueGender = 0;
+L559:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
+L588:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L738:          FText ReturnValue = mFText1;
+L765:          goto L1254;
+L770:          this->mDropPod->NeedsPower([ref] mbool1);
+L815:          if (!mbool1) goto L1254;
+L829:          this->mDropPod->GetPowerConsumption([ref] mfloat);
+L874:          mFormatArgumentData2.ArgumentName = "MW";
+L905:          mFormatArgumentData2.ArgumentValueType = 2;
+L934:          mFormatArgumentData2.ArgumentValue = ;
+L963:          mFormatArgumentData2.ArgumentValueInt = 0;
+L995:          mFormatArgumentData2.ArgumentValueFloat = mfloat;
+L1031:         mFormatArgumentData2.ArgumentValueGender = 0;
+L1060:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData2];
+L1080:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L1227:         ReturnValue = mFText2;
+============ END FUNCTION GetRepairConditionText ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mGrabAllButton_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_DropPod_Repair(1048);
+============ END FUNCTION BndEvt__mGrabAllButton_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_DropPod_Repair(35);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDoorOpen ==============
+L0:            this->ExecuteUbergraph_Widget_DropPod_Repair(814);
+============ END FUNCTION OnDoorOpen ==============
+
+
+
+
+
+============ BEGIN FUNCTION PodUnlocked ==============
+L0:            this->ExecuteUbergraph_Widget_DropPod_Repair(1043);
+============ END FUNCTION PodUnlocked ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnSmoke ==============
+L0:            this->ExecuteUbergraph_Widget_DropPod_Repair(1053);
+============ END FUNCTION SpawnSmoke ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_DropPod_Repair ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->StopAnimation(this->ShakeAnim);
+L34:           goto ExecutionFlow.Pop();
+L35:           this->Init();
+L45:           BP_DropPod* mBP_DropPod = Cast<BlueprintGeneratedClass /Game/FactoryGame/World/Benefit/DropPod/BP_DropPod.BP_DropPod_C>(this->mInteractObject);
+L81:           bool mbool = mBP_DropPod;
+L110:          this->mDropPod = mBP_DropPod;
+L129:          mFScriptDelegate->BindUFunction(this, OnEscapePressed);
+L152:          this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate);
+L193:          mFScriptDelegate1->BindUFunction(this, OnEscapePressed);
+L216:          this->Widget_StandardButton->OnClicked.AddUnique(mFScriptDelegate1);
+L257:          mFScriptDelegate2->BindUFunction(this, OnDoorOpen);
+L280:          this->Widget_DropPod_Door->OnDoorOpen.AddUnique(mFScriptDelegate2);
+L321:          bool mbool1 = this->GetHasPartsAndPower();
+L345:          bool mbool2 = Not_PreBool(mbool1);
+L374:          this->Widget_DropPod_Door->IsLocked = mbool2;
+L415:          this->Widget_DropPod_Door->SetLEDVisibility();
+L451:          this->SetupCostSlot();
+L465:          this->SetupScreenText();
+L479:          FGInventoryComponent* mFGInventoryComponent = this->mDropPod->GetLootInventory();
+L521:          this->Widget_InventorySlot->mCachedInventoryComponent = mFGInventoryComponent;
+L562:          mFScriptDelegate3->BindUFunction(this, OnInventorySlotStackMove);
+L585:          this->Widget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate3);
+L626:          this->SetHasDoorBeenOpened();
+L640:          goto ExecutionFlow.Pop();
+L641:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L661:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L697:          bool mbool3 = mFGCharacterPlayer;
+L726:          if (!mbool3) goto ExecutionFlow.Pop();
+L736:          this->GetDefaultRCO([ref] mBP_RemoteCallObject);
+L759:          mBP_RemoteCallObject->Server_RepairDropPod(this->mDropPod, mFGCharacterPlayer);
+L813:          goto ExecutionFlow.Pop();
+L814:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ShakeAnim, 0, 0, 0, 1);
+L860:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->OpenDoorAnim, 0, 1, 0, 1);
+L906:          UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->LampPulseAnim, 0, 0, 0, 1);
+L952:          this->PodUnlocked();
+L966:          KismetSystemLibrary->Delay(this, 3, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -166940195, ExecutionFunction = "ExecuteUbergraph_Widget_DropPod_Repair", CallbackTarget = this));
+L1042:         goto ExecutionFlow.Pop();
+L1043:         goto L641;
+L1048:         goto L641;
+L1053:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1077:         Widget_Smoke* mWidget_Smoke = WidgetBlueprintLibrary->Create(this, Widget_Smoke, mPlayerController);
+L1138:         PanelSlot* mPanelSlot = this->SmokeContainer->AddChild(mWidget_Smoke);
+L1189:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_DropPod_Repair ==============

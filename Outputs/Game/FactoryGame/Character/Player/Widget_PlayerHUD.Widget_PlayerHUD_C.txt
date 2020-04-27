@@ -1,0 +1,387 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/Widget_PlayerHUD.Widget_PlayerHUD_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetNobeliskBarVisibility ==============
+L0:            uint8 Temp_byte_Variable = 0;
+L20:           uint8 Temp_byte_Variable1 = 2;
+L40:           float mfloat = this->GetNobeliskBarPercent();
+L72:           bool mbool = Greater_FloatFloat(mfloat, 0.10000000149011612);
+L106:          bool Temp_bool_Variable = mbool;
+L125:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetNobeliskBarVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNobeliskBarPercent ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           Char_Player* mChar_Player = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C>(mPawn);
+L56:           bool mbool = mChar_Player;
+L85:           if (!mbool) goto L417;
+L99:           FGEquipment* mFGEquipment = mChar_Player->GetEquipmentInSlot(1);
+L143:          FGNobeliskDetonator* mFGNobeliskDetonator = Cast<Class /Script/FactoryGame.FGNobeliskDetonator>(mFGEquipment);
+L179:          bool mbool1 = mFGNobeliskDetonator;
+L208:          if (!mbool1) goto L499;
+L222:          float mfloat = mFGNobeliskDetonator->GetChargePct();
+L272:          this->mNobeliskProgressbar->mProgressBar->SetPercent(mfloat);
+L335:          mfloat = mFGNobeliskDetonator->GetChargePct();
+L385:          float ReturnValue = mfloat;
+L412:          goto L499;
+L417:          this->mNobeliskProgressbar->mProgressBar->SetPercent(0);
+L476:          ReturnValue = 0;
+============ END FUNCTION GetNobeliskBarPercent ==============
+
+
+
+
+
+============ BEGIN FUNCTION Get_mCollectBar_Percent ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           bool mbool = KismetSystemLibrary->IsValid(mPlayerController);
+L75:           if (!mbool) goto L570;
+L89:           mPlayerController = this->GetOwningPlayer();
+L113:          Pawn* mPawn = mPlayerController->K2_GetPawn();
+L155:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L191:          bool mbool1 = mFGCharacterPlayer;
+L220:          if (!mbool1) goto L570;
+L234:          bool mbool2 = KismetSystemLibrary->IsValid(mFGCharacterPlayer->mPickupToCollect);
+L307:          if (!mbool2) goto L488;
+L321:          float mfloat = mFGCharacterPlayer->mPickupToCollect->GetNormalizedCollectionProgress();
+L393:          this->mPickupBar->mProgressBar->SetPercent(mfloat);
+L456:          float ReturnValue = mfloat;
+L483:          goto L570;
+L488:          this->mPickupBar->mProgressBar->SetPercent(0);
+L547:          ReturnValue = 0;
+============ END FUNCTION Get_mCollectBar_Percent ==============
+
+
+
+
+
+============ BEGIN FUNCTION Get_CollectBarContainer_Visibility ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           bool mbool = KismetSystemLibrary->IsValid(mPlayerController);
+L75:           if (!mbool) goto L346;
+L89:           mPlayerController = this->GetOwningPlayer();
+L113:          Pawn* mPawn = mPlayerController->K2_GetPawn();
+L155:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L191:          bool mbool1 = mFGCharacterPlayer;
+L220:          if (!mbool1) goto L346;
+L234:          bool mbool2 = KismetSystemLibrary->IsValid(mFGCharacterPlayer->mPickupToCollect);
+L307:          if (!mbool2) goto L346;
+L321:          uint8 ReturnValue = 3;
+L341:          goto L366;
+L346:          ReturnValue = 2;
+============ END FUNCTION Get_CollectBarContainer_Visibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnToggleInteractUI ==============
+L0:            TSubclassOf<Widget_BuildMenu> mTSubclassOf<Widget_BuildMenu> = ClassCast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C>(InteractWidgetClass);
+L36:           bool mbool = mTSubclassOf<Widget_BuildMenu>;
+L65:           if (!mbool) goto L79;
+L79:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L103:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L139:          bool mbool1 = mFGPlayerController;
+L168:          if (!mbool1) goto L530;
+L182:          bool mbool2 = KismetSystemLibrary->IsValidClass(mTSubclassOf<Widget_BuildMenu>);
+L233:          bool mbool3 = Not_PreBool(mbool2);
+L262:          bool mbool4 = BooleanAND(IsOpen, mbool3);
+L300:          DisabledInputGate mDisabledInputGate = mFGPlayerController->GetDisabledInputGate();
+L350:          bool mbool5 = BooleanOR(IsOpen, mDisabledInputGate.mHotbar);
+L397:          bool mbool6 = BooleanOR(mbool5, mbool4);
+L435:          if (!mbool6) goto L492;
+L449:          this->Widget_HotbarContainer->SetVisibility(2);
+L487:          <End of Inlined Event Graph Function>;
+L492:          this->Widget_HotbarContainer->SetVisibility(0);
+============ END FUNCTION OnToggleInteractUI ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnToggleInventory ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           if (!mbool) goto L295;
+L103:          DisabledInputGate mDisabledInputGate = mFGPlayerController->GetDisabledInputGate();
+L153:          bool mbool1 = BooleanOR(IsOpen, mDisabledInputGate.mHotbar);
+L200:          if (!mbool1) goto L257;
+L214:          this->Widget_HotbarContainer->SetVisibility(2);
+L252:          <End of Inlined Event Graph Function>;
+L257:          this->Widget_HotbarContainer->SetVisibility(0);
+============ END FUNCTION OnToggleInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetImageVisibility ==============
+L0:            if (!Value) goto L57;
+L14:           Image->SetVisibility(0);
+L52:           <End of Inlined Event Graph Function>;
+L57:           Image->SetVisibility(2);
+============ END FUNCTION SetImageVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDisabledInputGateChanged ==============
+L0:            ExecutionFlow.Push(L821);
+L5:            ExecutionFlow.Push(L691);
+L10:           ExecutionFlow.Push(L598);
+L15:           ExecutionFlow.Push(L505);
+L20:           ExecutionFlow.Push(L412);
+L25:           ExecutionFlow.Push(L319);
+L30:           ExecutionFlow.Push(L226);
+L35:           ExecutionFlow.Push(L133);
+L40:           bool mbool = Not_PreBool(NewValue.mBuildGun);
+L78:           this->SetImageVisibility(mbool, this->Widget_KeyShortcuts->mBuildGun);
+L132:          goto ExecutionFlow.Pop();
+L133:          bool mbool1 = Not_PreBool(NewValue.mDismantle);
+L171:          this->SetImageVisibility(mbool1, this->Widget_KeyShortcuts->mDismantle);
+L225:          goto ExecutionFlow.Pop();
+L226:          bool mbool2 = Not_PreBool(NewValue.mFlashLight);
+L264:          this->SetImageVisibility(mbool2, this->Widget_KeyShortcuts->mFlashLight);
+L318:          goto ExecutionFlow.Pop();
+L319:          bool mbool3 = Not_PreBool(NewValue.mResourceScanner);
+L357:          this->SetImageVisibility(mbool3, this->Widget_KeyShortcuts->mResourceScanner);
+L411:          goto ExecutionFlow.Pop();
+L412:          bool mbool4 = Not_PreBool(NewValue.mOpenCodex);
+L450:          this->SetImageVisibility(mbool4, this->Widget_KeyShortcuts->mCodex);
+L504:          goto ExecutionFlow.Pop();
+L505:          bool mbool5 = Not_PreBool(NewValue.mInventory);
+L543:          this->SetImageVisibility(mbool5, this->Widget_KeyShortcuts->mInventory);
+L597:          goto ExecutionFlow.Pop();
+L598:          bool mbool6 = Not_PreBool(NewValue.mToggleMap);
+L636:          this->SetImageVisibility(mbool6, this->Widget_KeyShortcuts->mMinimap);
+L690:          goto ExecutionFlow.Pop();
+L691:          bool mbool7 = Not_PreBool(NewValue.mHotbar);
+L729:          if (!mbool7) goto L782;
+L743:          this->Widget_HotbarContainer->SetVisibility(0);
+L781:          goto ExecutionFlow.Pop();
+L782:          this->Widget_HotbarContainer->SetVisibility(2);
+L820:          goto ExecutionFlow.Pop();
+============ END FUNCTION OnDisabledInputGateChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetVisibility_0 ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           if (!mbool) goto L280;
+L103:          uint8 Temp_byte_Variable = 2;
+L123:          uint8 Temp_byte_Variable1 = 4;
+L143:          bool mbool1 = mFGPlayerController->GetIsUsingGamepad();
+L185:          bool Temp_bool_Variable = mbool1;
+L204:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+L275:          goto L300;
+L280:          ReturnValue = 4;
+============ END FUNCTION GetVisibility_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION Get_mInputLockedTExt_Visibility ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           Char_Player* mChar_Player = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C>(mPawn);
+L56:           bool mbool = mChar_Player;
+L85:           if (!mbool) goto L256;
+L99:           uint8 Temp_byte_Variable = 0;
+L119:          uint8 Temp_byte_Variable1 = 2;
+L139:          bool Temp_bool_Variable = mChar_Player->mWaitingForPlayerState;
+L180:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+L251:          goto L276;
+L256:          ReturnValue = 2;
+============ END FUNCTION Get_mInputLockedTExt_Visibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetScannerDetailsVisibility ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           HUDHelpers->GetScanningObjectName(mPawn, this, [ref] mFText);
+L75:           uint8 Temp_byte_Variable = 1;
+L95:           uint8 Temp_byte_Variable1 = 4;
+L115:          FText mFText1 = KismetSystemLibrary->MakeLiteralText();
+L167:          bool mbool = KismetTextLibrary->EqualEqual_TextText([ref] mFText, [ref] mFText1);
+L227:          bool Temp_bool_Variable = mbool;
+L246:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetScannerDetailsVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION Get_mReviveProgressBar_Visibility ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           bool mbool = KismetSystemLibrary->IsValid(mPlayerController);
+L75:           if (!mbool) goto L389;
+L89:           mPlayerController = this->GetOwningPlayer();
+L113:          Pawn* mPawn = mPlayerController->K2_GetPawn();
+L155:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L191:          bool mbool1 = mFGCharacterPlayer;
+L220:          if (!mbool1) goto L389;
+L234:          bool mbool2 = KismetSystemLibrary->IsValid(mFGCharacterPlayer->mPlayerToRevive);
+L307:          if (!mbool2) goto L389;
+L321:          bool mbool3 = this->IsAnimationPlaying(this->ReveiveBeat);
+L350:          if (!mbool3) goto L433;
+L364:          uint8 ReturnValue = 3;
+L384:          goto L484;
+L389:          this->StopAnimation(this->ReveiveBeat);
+L408:          ReturnValue = 2;
+L428:          goto L484;
+L433:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ReveiveBeat, 0, 1, 0, 1);
+L479:          goto L364;
+============ END FUNCTION Get_mReviveProgressBar_Visibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION Get_mReviveProgressBar_Percent ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           bool mbool = KismetSystemLibrary->IsValid(mPlayerController);
+L75:           if (!mbool) goto L701;
+L89:           mPlayerController = this->GetOwningPlayer();
+L113:          Pawn* mPawn = mPlayerController->K2_GetPawn();
+L155:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L191:          bool mbool1 = mFGCharacterPlayer;
+L220:          if (!mbool1) goto L701;
+L234:          bool mbool2 = KismetSystemLibrary->IsValid(mFGCharacterPlayer->mPlayerToRevive);
+L307:          if (!mbool2) goto L619;
+L321:          float mfloat = mFGCharacterPlayer->mPlayerToRevive->GetReviveProgress();
+L393:          float mfloat1 = this->mReviveCruve->GetFloatValue(mfloat);
+L452:          this->mReviveBar->mProgressBar->SetPercent(mfloat1);
+L515:          mfloat = mFGCharacterPlayer->mPlayerToRevive->GetReviveProgress();
+L587:          float ReturnValue = mfloat;
+L614:          goto L701;
+L619:          this->mReviveBar->mProgressBar->SetPercent(0);
+L678:          ReturnValue = 0;
+============ END FUNCTION Get_mReviveProgressBar_Percent ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerHUD(957);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayRadiationAnimation ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerHUD(30);
+============ END FUNCTION PlayRadiationAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopRadiationAnimation ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerHUD(91);
+============ END FUNCTION StopRadiationAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION EventUpdateQuickslotBackgroundOpacity ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerHUD(1099);
+============ END FUNCTION EventUpdateQuickslotBackgroundOpacity ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerHUD(1254);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PlayerHUD ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->EventUpdateQuickslotBackgroundOpacity();
+L29:           goto ExecutionFlow.Pop();
+L30:           this->Widget_PlayerHealthBar->mRadiationDamageBox->SetVisibility(0);
+L90:           goto ExecutionFlow.Pop();
+L91:           this->Widget_PlayerHealthBar->mRadiationDamageBox->SetVisibility(1);
+L151:          goto ExecutionFlow.Pop();
+L152:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->PulseText, 0, 0, 0, 1);
+L198:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L222:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L258:          bool mbool = mFGPlayerController;
+L287:          if (!mbool) goto ExecutionFlow.Pop();
+L297:          mFScriptDelegate->BindUFunction(this, OnDisabledInputGateChanged);
+L320:          mFGPlayerController->mDisabledInputGateChanged.AddUnique(mFScriptDelegate);
+L361:          goto ExecutionFlow.Pop();
+L362:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L386:          Widget_DefaultCursor* mWidget_DefaultCursor = WidgetBlueprintLibrary->Create(this, Widget_DefaultCursor, mPlayerController1);
+L447:          mPlayerController1 = this->GetOwningPlayer();
+L471:          mPlayerController1->SetMouseCursorWidget(1, mWidget_DefaultCursor);
+L514:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L538:          FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController2);
+L574:          bool mbool1 = mFGPlayerController1;
+L603:          if (!mbool1) goto ExecutionFlow.Pop();
+L613:          mFScriptDelegate1->BindUFunction(this, OnToggleInventory);
+L636:          mFGPlayerController1->OnToggleInventory.AddUnique(mFScriptDelegate1);
+L677:          mFScriptDelegate2->BindUFunction(this, OnToggleInteractUI);
+L700:          mFGPlayerController1->OnToggleInteractionUI.AddUnique(mFScriptDelegate2);
+L741:          HUD* mHUD = mFGPlayerController1->GetHUD();
+L783:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L819:          bool mbool2 = mFGHUD;
+L848:          if (!mbool2) goto ExecutionFlow.Pop();
+L858:          bool mbool3 = KismetSystemLibrary->IsValid(mFGHUD);
+L909:          if (!mbool3) goto ExecutionFlow.Pop();
+L919:          mFGHUD->SetShowCrossHair(true);
+L952:          goto L152;
+L957:          ExecutionFlow.Push(L967);
+L962:          goto L362;
+L967:          FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L1009:         mFScriptDelegate3->BindUFunction(this, EventUpdateQuickslotBackgroundOpacity);
+L1032:         mFGGameUserSettings->SubscribeToDynamicOptionUpdate("FG.CompassBGOpacity", [ref] mFScriptDelegate3);
+L1094:         goto L15;
+L1099:         FGGameUserSettings* mFGGameUserSettings1 = FGGameUserSettings->GetFGGameUserSettings();
+L1141:         float mfloat = mFGGameUserSettings1->GetFloatOptionValue("FG.CompassBGOpacity");
+L1212:         this->mVisorBackground->SetRenderOpacity(mfloat);
+L1253:         goto ExecutionFlow.Pop();
+L1254:         FGGameUserSettings* mFGGameUserSettings2 = FGGameUserSettings->GetFGGameUserSettings();
+L1296:         mFGGameUserSettings2->UnsubscribeToAllDynamicOptionUpdate(this);
+L1329:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_PlayerHUD ==============

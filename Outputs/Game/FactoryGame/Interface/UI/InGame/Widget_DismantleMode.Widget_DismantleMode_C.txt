@@ -1,0 +1,216 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_DismantleMode.Widget_DismantleMode_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateMassDismantleFeedback ==============
+L0:            int32 mint32 = this->mOwningState->GetNumPendingDismantleActors(false);
+L51:           int32 mint321 = this->mOwningState->GetMaxNumPendingDismantleActors();
+L101:          mFormatArgumentData.ArgumentName = "CurrentNumDismantle";
+L149:          mFormatArgumentData.ArgumentValueType = 0;
+L178:          mFormatArgumentData.ArgumentValue = ;
+L207:          mFormatArgumentData.ArgumentValueInt = mint32;
+L243:          mFormatArgumentData.ArgumentValueFloat = 0;
+L275:          mFormatArgumentData.ArgumentValueGender = 0;
+L304:          mFormatArgumentData1.ArgumentName = "MaxNumDismantle";
+L348:          mFormatArgumentData1.ArgumentValueType = 0;
+L377:          mFormatArgumentData1.ArgumentValue = ;
+L406:          mFormatArgumentData1.ArgumentValueInt = mint321;
+L442:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L474:          mFormatArgumentData1.ArgumentValueGender = 0;
+L503:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
+L532:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L672:          this->mDismantleNumberText->SetText(mFText);
+L717:          bool mbool = this->mOwningState->HasReachedMaxNumPendingDismantleActors();
+L759:          if (!mbool) goto L824;
+L773:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->MaxNumDismantleReached, 0, 0, 0, 1);
+L819:          <End of Inlined Event Graph Function>;
+L824:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->NumDismantleChanged, 0, 1, 0, 1);
+============ END FUNCTION UpdateMassDismantleFeedback ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetDismantleFeedbackVisibility ==============
+L0:            if (!Condition) goto L57;
+L14:           this->mMassDismantleFeedback->SetVisibility(3);
+L52:           <End of Inlined Event Graph Function>;
+L57:           this->mMassDismantleFeedback->SetVisibility(2);
+============ END FUNCTION SetDismantleFeedbackVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetReticleVisibility ==============
+L0:            uint8 Temp_byte_Variable = 2;
+L20:           uint8 Temp_byte_Variable1 = 3;
+L40:           FGBuildGun* mFGBuildGun = this->mOwningState->GetBuildGun();
+L82:           float mfloat = mFGBuildGun->GetCurrentBuildGunDelayPercentage();
+L132:          bool mbool = Greater_FloatFloat(mfloat, 0);
+L166:          bool Temp_bool_Variable = mbool;
+L185:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetReticleVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetDismantleRefunds ==============
+L0:            ExecutionFlow.Push(L1547);
+L5:            bool mbool = KismetSystemLibrary->IsValid(this->mOwningState);
+L56:           if (!mbool) goto ExecutionFlow.Pop();
+L66:           this->Widget_DismantleRefunds->mCostSlotsGrid->ClearChildren();
+L124:          int32 Temp_int_Loop_Counter_Variable = 0;
+L147:          int32 Temp_int_Array_Index_Variable = 0;
+L170:          TArray<InventoryStack> mTArray<InventoryStack> = this->mOwningState->GetPeekDismantleRefund();
+L220:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<InventoryStack>);
+L279:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L317:          if (!mbool1) goto L1068;
+L331:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L358:          ExecutionFlow.Push(L1473);
+L363:          mTArray<InventoryStack> = this->mOwningState->GetPeekDismantleRefund();
+L413:          KismetArrayLibrary->Array_Get([ref] mTArray<InventoryStack>, Temp_int_Array_Index_Variable, [ref] mInventoryStack);
+L472:          FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint321, [ref] mInventoryItem);
+L531:          this->mCachedDismantleRefunds = mInventoryItem;
+L558:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L582:          Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, Widget_CostSlotWrapper, mPlayerController);
+L643:          WrapBoxSlot* mWrapBoxSlot = this->Widget_DismantleRefunds->mCostSlotsGrid->AddChildToWrapBox(mWidget_CostSlotWrapper);
+L716:          mTArray<InventoryStack> = this->mOwningState->GetPeekDismantleRefund();
+L766:          FGInventoryLibrary->BreakInventoryItem([ref] this->mCachedDismantleRefunds, [ref] mTSubclassOf<FGItemDescriptor>, [ref] mActor);
+L825:          KismetArrayLibrary->Array_Get([ref] mTArray<InventoryStack>, Temp_int_Array_Index_Variable, [ref] mInventoryStack);
+L884:          FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint321, [ref] mInventoryItem);
+L943:          mItemAmount.ItemClass = mTSubclassOf<FGItemDescriptor>;
+L971:          mItemAmount.amount = mint321;
+L1007:         mWidget_CostSlotWrapper->Setup CostIcon(nullptr, mItemAmount, nullptr, 0, 0, false, false, true);
+L1067:         goto ExecutionFlow.Pop();
+L1068:         Actor* mActor1 = this->mOwningState->GetSelectedActor();
+L1110:         this->mDisplayingCostsForActor = mActor1;
+L1129:         Actor* mActor2 = this->mOwningState->GetSelectedActor();
+L1171:         FGBuildable* mFGBuildable = Cast<Class /Script/FactoryGame.FGBuildable>(mActor2);
+L1207:         bool mbool2 = mFGBuildable;
+L1236:         if (!mbool2) goto L1376;
+L1250:         this->Widget_DismantleRefunds->mBuildingName->SetText(mFGBuildable->mDisplayName);
+L1339:         this->Widget_DismantleRefunds->PlayDismantleAnimation();
+L1375:         goto ExecutionFlow.Pop();
+L1376:         this->Widget_DismantleRefunds->mBuildingName->SetText();
+L1436:         this->Widget_DismantleRefunds->StopDismantleAnimation();
+L1472:         goto ExecutionFlow.Pop();
+L1473:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1515:         Temp_int_Loop_Counter_Variable = mint322;
+L1542:         goto L170;
+============ END FUNCTION SetDismantleRefunds ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEscapePressed ==============
+L0:            this->ExecuteUbergraph_Widget_DismantleMode(951);
+============ END FUNCTION OnEscapePressed ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_DismantleMode(29);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_DismantleMode(334);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDismantleRefundChanged ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Widget_DismantleMode.Widget_DismantleMode_C:ExecuteUbergraph_Widget_DismantleMode.K2Node_CustomEvent_dismantleGun) = dismantleGun;
+L18:           this->ExecuteUbergraph_Widget_DismantleMode(487);
+============ END FUNCTION OnDismantleRefundChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION Event OnMultiDismantleStateChanged ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Widget_DismantleMode.Widget_DismantleMode_C:ExecuteUbergraph_Widget_DismantleMode.K2Node_CustomEvent_newState) = newState;
+L18:           this->ExecuteUbergraph_Widget_DismantleMode(642);
+============ END FUNCTION Event OnMultiDismantleStateChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION Event OnPendingDismantleActorsChanged ==============
+L0:            this->ExecuteUbergraph_Widget_DismantleMode(670);
+============ END FUNCTION Event OnPendingDismantleActorsChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_DismantleMode(689);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_DismantleMode ==============
+L10:           this->SetDismantleRefunds();
+L24:           <End of Inlined Event Graph Function>;
+L29:           this->Init();
+L39:           FGBuildGunStateDismantle* mFGBuildGunStateDismantle = Cast<Class /Script/FactoryGame.FGBuildGunStateDismantle>(this->mInteractObject);
+L75:           bool mbool = mFGBuildGunStateDismantle;
+L104:          if (!mbool) goto L137;
+L118:          this->mOwningState = mFGBuildGunStateDismantle;
+L137:          mFScriptDelegate->BindUFunction(this, OnDismantleRefundChanged);
+L160:          this->mOwningState->OnPeekRefundsChanged.AddUnique(mFScriptDelegate);
+L201:          mFScriptDelegate1->BindUFunction(this, Event OnMultiDismantleStateChanged);
+L224:          this->mOwningState->OnMultiDismantleStateChanged.AddUnique(mFScriptDelegate1);
+L265:          mFScriptDelegate2->BindUFunction(this, Event OnPendingDismantleActorsChanged);
+L288:          this->mOwningState->OnPendingDismantleActorsChanged.AddUnique(mFScriptDelegate2);
+L329:          goto L10;
+L334:          this->Construct();
+L344:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->DismantleMode, 0, 0, 0, 1);
+L390:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->DismantleModeStaticBorder, 0, 0, 0, 1);
+L436:          UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->circle, 0, 0, 0, 1);
+L482:          <End of Inlined Event Graph Function>;
+L487:          this->SetDismantleRefunds();
+L501:          <End of Inlined Event Graph Function>;
+L506:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L526:          Char_Player* mChar_Player = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C>(mPawn);
+L562:          bool mbool1 = mChar_Player;
+L591:          if (!mbool1) goto L956;
+L605:          mChar_Player->ToggleBuildGun();
+L637:          <End of Inlined Event Graph Function>;
+L642:          this->SetDismantleFeedbackVisibility(mbool2);
+L665:          <End of Inlined Event Graph Function>;
+L670:          this->UpdateMassDismantleFeedback();
+L684:          <End of Inlined Event Graph Function>;
+L689:          bool mbool3 = KismetSystemLibrary->IsValid(this->mOwningState);
+L740:          if (!mbool3) goto L956;
+L754:          mFScriptDelegate3->BindUFunction(this, OnDismantleRefundChanged);
+L777:          this->mOwningState->OnPeekRefundsChanged.Remove(mFScriptDelegate3);
+L818:          mFScriptDelegate4->BindUFunction(this, Event OnMultiDismantleStateChanged);
+L841:          this->mOwningState->OnMultiDismantleStateChanged.Remove(mFScriptDelegate4);
+L882:          mFScriptDelegate5->BindUFunction(this, Event OnPendingDismantleActorsChanged);
+L905:          this->mOwningState->OnPendingDismantleActorsChanged.Remove(mFScriptDelegate5);
+L946:          <End of Inlined Event Graph Function>;
+L951:          goto L506;
+============ END FUNCTION ExecuteUbergraph_Widget_DismantleMode ==============

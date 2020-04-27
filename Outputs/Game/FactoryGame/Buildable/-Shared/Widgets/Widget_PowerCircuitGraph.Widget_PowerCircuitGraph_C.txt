@@ -1,0 +1,574 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_PowerCircuitGraph.Widget_PowerCircuitGraph_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ZeroGraphStats ==============
+L0:            FText DefaultValue = "[object Object]";
+L59:           mFormatArgumentData.ArgumentName = "Value";
+L93:           mFormatArgumentData.ArgumentValueType = 4;
+L122:          mFormatArgumentData.ArgumentValue = DefaultValue;
+L158:          mFormatArgumentData.ArgumentValueInt = 0;
+L190:          mFormatArgumentData.ArgumentValueFloat = 0;
+L222:          mFormatArgumentData.ArgumentValueGender = 0;
+L251:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L271:          FText mFText = KismetTextLibrary->Format(STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]"), mTArray<FormatArgumentData>);
+L400:          this->mConsumptionHover->SetText(mFText);
+L445:          mFormatArgumentData1.ArgumentName = "Value";
+L479:          mFormatArgumentData1.ArgumentValueType = 4;
+L508:          mFormatArgumentData1.ArgumentValue = DefaultValue;
+L544:          mFormatArgumentData1.ArgumentValueInt = 0;
+L576:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L608:          mFormatArgumentData1.ArgumentValueGender = 0;
+L637:          TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
+L657:          FText mFText1 = KismetTextLibrary->Format(STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]"), mTArray<FormatArgumentData>1);
+L786:          this->mProductionHover->SetText(mFText1);
+L831:          mFormatArgumentData2.ArgumentName = "Value";
+L865:          mFormatArgumentData2.ArgumentValueType = 4;
+L894:          mFormatArgumentData2.ArgumentValue = DefaultValue;
+L930:          mFormatArgumentData2.ArgumentValueInt = 0;
+L962:          mFormatArgumentData2.ArgumentValueFloat = 0;
+L994:          mFormatArgumentData2.ArgumentValueGender = 0;
+L1023:         TArray<FormatArgumentData> mTArray<FormatArgumentData>2 = [mFormatArgumentData2];
+L1043:         FText mFText2 = KismetTextLibrary->Format(STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]"), mTArray<FormatArgumentData>2);
+L1172:         this->mCapacityHover->SetText(mFText2);
+============ END FUNCTION ZeroGraphStats ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateStats ==============
+L0:            bool mbool = this->mGraph->IsHovered();
+L46:           bool mbool1 = Not_PreBool(mbool);
+L75:           if (!mbool1) goto L1810;
+L89:           FGPowerCircuit* mFGPowerCircuit = this->GetPowerCircuit();
+L109:          bool mbool2 = KismetSystemLibrary->IsValid(mFGPowerCircuit);
+L160:          if (!mbool2) goto L1796;
+L174:          mFGPowerCircuit = this->GetPowerCircuit();
+L194:          mFGPowerCircuit->GetStats([ref] mPowerCircuitStats);
+L235:          FText mFText = KismetTextLibrary->Conv_FloatToText(mPowerCircuitStats.PowerConsumed, 0, false, true, 1, 324, 0, 1);
+L327:          mFormatArgumentData.ArgumentName = "Value";
+L361:          mFormatArgumentData.ArgumentValueType = 4;
+L390:          mFormatArgumentData.ArgumentValue = mFText;
+L426:          mFormatArgumentData.ArgumentValueInt = 0;
+L458:          mFormatArgumentData.ArgumentValueFloat = 0;
+L490:          mFormatArgumentData.ArgumentValueGender = 0;
+L519:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L539:          FText mFText1 = KismetTextLibrary->Format(STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]"), mTArray<FormatArgumentData>);
+L668:          this->mConsumptionHover->SetText(mFText1);
+L713:          mFGPowerCircuit = this->GetPowerCircuit();
+L733:          mFGPowerCircuit->GetStats([ref] mPowerCircuitStats);
+L774:          FText mFText2 = KismetTextLibrary->Conv_FloatToText(mPowerCircuitStats.PowerProduced, 0, false, true, 1, 324, 0, 1);
+L866:          mFormatArgumentData1.ArgumentName = "Value";
+L900:          mFormatArgumentData1.ArgumentValueType = 4;
+L929:          mFormatArgumentData1.ArgumentValue = mFText2;
+L965:          mFormatArgumentData1.ArgumentValueInt = 0;
+L997:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L1029:         mFormatArgumentData1.ArgumentValueGender = 0;
+L1058:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
+L1078:         FText mFText3 = KismetTextLibrary->Format(STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]"), mTArray<FormatArgumentData>1);
+L1207:         this->mProductionHover->SetText(mFText3);
+L1252:         mFGPowerCircuit = this->GetPowerCircuit();
+L1272:         mFGPowerCircuit->GetStats([ref] mPowerCircuitStats);
+L1313:         FText mFText4 = KismetTextLibrary->Conv_FloatToText(mPowerCircuitStats.PowerProductionCapacity, 0, false, true, 1, 324, 0, 1);
+L1405:         mFormatArgumentData2.ArgumentName = "Value";
+L1439:         mFormatArgumentData2.ArgumentValueType = 4;
+L1468:         mFormatArgumentData2.ArgumentValue = mFText4;
+L1504:         mFormatArgumentData2.ArgumentValueInt = 0;
+L1536:         mFormatArgumentData2.ArgumentValueFloat = 0;
+L1568:         mFormatArgumentData2.ArgumentValueGender = 0;
+L1597:         TArray<FormatArgumentData> mTArray<FormatArgumentData>2 = [mFormatArgumentData2];
+L1617:         FText mFText5 = KismetTextLibrary->Format(STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]"), mTArray<FormatArgumentData>2);
+L1746:         this->mCapacityHover->SetText(mFText5);
+L1791:         <End of Inlined Event Graph Function>;
+L1796:         this->ZeroGraphStats();
+============ END FUNCTION UpdateStats ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseMove ==============
+L0:            bool mbool = this->mGraph->IsHovered();
+L46:           if (!mbool) goto L4446;
+L60:           const Geometry mconst Geometry = this->GetCachedGeometry();
+L88:           Vector2D mVector2D = SlateBlueprintLibrary->GetLocalSize([ref] mconst Geometry);
+L147:          Vector2D mGraphSize = mVector2D;
+L174:          FGPowerCircuit* mFGPowerCircuit = this->GetPowerCircuit();
+L194:          bool mbool1 = KismetSystemLibrary->IsValid(mFGPowerCircuit);
+L245:          if (!mbool1) goto L4369;
+L259:          Vector2D mVector2D1 = WidgetLayoutLibrary->GetMousePositionOnViewport(this);
+L310:          SlateBlueprintLibrary->LocalToViewport(this, [ref] MyGeometry, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D2, [ref] mVector2D3);
+L394:          Vector2D mVector2D4 = Subtract_Vector2DVector2D(mVector2D1, mVector2D3);
+L440:          FGPowerCircuit* mFGPowerCircuit1 = this->GetPowerCircuit();
+L460:          Vector2D mVector2D5 = Divide_Vector2DVector2D(mVector2D4, mGraphSize);
+L506:          mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L547:          BreakVector2D(mVector2D5, [ref] mfloat, [ref] mfloat1);
+L584:          int32 mint32 = FGPowerCircuit->GetNumGraphPoint([ref] mPowerCircuitStats);
+L643:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L685:          float mfloat2 = Conv_IntToFloat(mint321);
+L722:          float mfloat3 = Multiply_FloatFloat(mfloat, mfloat2);
+L768:          int32 mint322 = Round(mfloat3);
+L805:          bool mbool2 = Less_IntInt(mint322, mint32);
+L843:          if (!mbool2) goto L4446;
+L857:          SlateBlueprintLibrary->LocalToViewport(this, [ref] MyGeometry, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D2, [ref] mVector2D3);
+L941:          CanvasPanelSlot* mCanvasPanelSlot = WidgetLayoutLibrary->SlotAsCanvasSlot(this->mPointer);
+L992:          mVector2D4 = Subtract_Vector2DVector2D(mVector2D1, mVector2D3);
+L1038:         BreakVector2D(mVector2D4, [ref] mfloat4, [ref] mfloat5);
+L1075:         Vector2D mVector2D6 = MakeVector2D(mfloat4, 0);
+L1117:         mCanvasPanelSlot->SetPosition(mVector2D6);
+L1158:         SlateBlueprintLibrary->LocalToViewport(this, [ref] MyGeometry, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D2, [ref] mVector2D3);
+L1242:         mVector2D4 = Subtract_Vector2DVector2D(mVector2D1, mVector2D3);
+L1288:         mFGPowerCircuit1 = this->GetPowerCircuit();
+L1308:         mVector2D5 = Divide_Vector2DVector2D(mVector2D4, mGraphSize);
+L1354:         mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L1395:         BreakVector2D(mVector2D5, [ref] mfloat, [ref] mfloat1);
+L1432:         mint32 = FGPowerCircuit->GetNumGraphPoint([ref] mPowerCircuitStats);
+L1491:         mint321 = Subtract_IntInt(mint32, 1);
+L1533:         mfloat2 = Conv_IntToFloat(mint321);
+L1570:         mfloat3 = Multiply_FloatFloat(mfloat, mfloat2);
+L1616:         mint322 = Round(mfloat3);
+L1653:         bool mbool3 = FGPowerCircuit->GetGraphPointAtIndex([ref] mPowerCircuitStats, mint322, [ref] mPowerGraphPoint);
+L1722:         FText mFText = KismetTextLibrary->Conv_FloatToText(mPowerGraphPoint.Consumed, 0, false, true, 1, 324, 0, 1);
+L1814:         mFormatArgumentData.ArgumentName = "Value";
+L1848:         mFormatArgumentData.ArgumentValueType = 4;
+L1877:         mFormatArgumentData.ArgumentValue = mFText;
+L1913:         mFormatArgumentData.ArgumentValueInt = 0;
+L1945:         mFormatArgumentData.ArgumentValueFloat = 0;
+L1977:         mFormatArgumentData.ArgumentValueGender = 0;
+L2006:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L2026:         FText mFText1 = KismetTextLibrary->Format(STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]"), mTArray<FormatArgumentData>);
+L2156:         this->mConsumptionHover->SetText(mFText1);
+L2201:         SlateBlueprintLibrary->LocalToViewport(this, [ref] MyGeometry, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D2, [ref] mVector2D3);
+L2285:         mVector2D4 = Subtract_Vector2DVector2D(mVector2D1, mVector2D3);
+L2331:         mFGPowerCircuit1 = this->GetPowerCircuit();
+L2351:         mVector2D5 = Divide_Vector2DVector2D(mVector2D4, mGraphSize);
+L2397:         mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L2438:         BreakVector2D(mVector2D5, [ref] mfloat, [ref] mfloat1);
+L2475:         mint32 = FGPowerCircuit->GetNumGraphPoint([ref] mPowerCircuitStats);
+L2534:         mint321 = Subtract_IntInt(mint32, 1);
+L2576:         mfloat2 = Conv_IntToFloat(mint321);
+L2613:         mfloat3 = Multiply_FloatFloat(mfloat, mfloat2);
+L2659:         mint322 = Round(mfloat3);
+L2696:         mbool3 = FGPowerCircuit->GetGraphPointAtIndex([ref] mPowerCircuitStats, mint322, [ref] mPowerGraphPoint);
+L2765:         FText mFText2 = KismetTextLibrary->Conv_FloatToText(mPowerGraphPoint.Produced, 0, false, true, 1, 324, 0, 1);
+L2857:         mFormatArgumentData1.ArgumentName = "Value";
+L2891:         mFormatArgumentData1.ArgumentValueType = 4;
+L2920:         mFormatArgumentData1.ArgumentValue = mFText2;
+L2956:         mFormatArgumentData1.ArgumentValueInt = 0;
+L2988:         mFormatArgumentData1.ArgumentValueFloat = 0;
+L3020:         mFormatArgumentData1.ArgumentValueGender = 0;
+L3049:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
+L3069:         FText mFText3 = KismetTextLibrary->Format(STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]"), mTArray<FormatArgumentData>1);
+L3199:         this->mProductionHover->SetText(mFText3);
+L3244:         SlateBlueprintLibrary->LocalToViewport(this, [ref] MyGeometry, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D2, [ref] mVector2D3);
+L3328:         mVector2D4 = Subtract_Vector2DVector2D(mVector2D1, mVector2D3);
+L3374:         mFGPowerCircuit1 = this->GetPowerCircuit();
+L3394:         mVector2D5 = Divide_Vector2DVector2D(mVector2D4, mGraphSize);
+L3440:         mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L3481:         BreakVector2D(mVector2D5, [ref] mfloat, [ref] mfloat1);
+L3518:         mint32 = FGPowerCircuit->GetNumGraphPoint([ref] mPowerCircuitStats);
+L3577:         mint321 = Subtract_IntInt(mint32, 1);
+L3619:         mfloat2 = Conv_IntToFloat(mint321);
+L3656:         mfloat3 = Multiply_FloatFloat(mfloat, mfloat2);
+L3702:         mint322 = Round(mfloat3);
+L3739:         mbool3 = FGPowerCircuit->GetGraphPointAtIndex([ref] mPowerCircuitStats, mint322, [ref] mPowerGraphPoint);
+L3808:         FText mFText4 = KismetTextLibrary->Conv_FloatToText(mPowerGraphPoint.ProductionCapacity, 0, false, true, 1, 324, 0, 1);
+L3900:         mFormatArgumentData2.ArgumentName = "Value";
+L3934:         mFormatArgumentData2.ArgumentValueType = 4;
+L3963:         mFormatArgumentData2.ArgumentValue = mFText4;
+L3999:         mFormatArgumentData2.ArgumentValueInt = 0;
+L4031:         mFormatArgumentData2.ArgumentValueFloat = 0;
+L4063:         mFormatArgumentData2.ArgumentValueGender = 0;
+L4092:         TArray<FormatArgumentData> mTArray<FormatArgumentData>2 = [mFormatArgumentData2];
+L4112:         FText mFText5 = KismetTextLibrary->Format(STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]"), mTArray<FormatArgumentData>2);
+L4242:         this->mCapacityHover->SetText(mFText5);
+L4287:         EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L4337:         EventReply ReturnValue = mEventReply;
+L4364:         goto L4446;
+L4369:         EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L4419:         ReturnValue = mEventReply1;
+============ END FUNCTION OnMouseMove ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetHoverStyle ==============
+L0:            mSlateColor.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L61:           mSlateColor.ColorUseRule = 0;
+L90:           bool Temp_bool_Variable1 = IsHovered;
+L109:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor);
+L164:          TextObject->SetColorAndOpacity(switch (Temp_bool_Variable1) {
+case false -> mSlateColor1;
+case true -> mSlateColor;
+default -> mSlateColor2;
+});
+L249:          LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.05951099842786789, A = 1);
+L301:          LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 0);
+L353:          bool Temp_bool_Variable = IsHovered;
+L372:          BackgroundObject->SetColorAndOpacity(switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mLinearColor1;
+});
+============ END FUNCTION SetHoverStyle ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCurrentlyUsingText ==============
+L0:            FGPowerCircuit* mFGPowerCircuit = this->GetPowerCircuit();
+L20:           bool mbool = KismetSystemLibrary->IsValid(mFGPowerCircuit);
+L71:           if (!mbool) goto L618;
+L85:           FGPowerCircuit* mFGPowerCircuit1 = this->GetPowerCircuit();
+L105:          mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L146:          int32 mint32 = Round(mPowerCircuitStats.PowerConsumed);
+L192:          FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
+L263:          mFormatArgumentData.ArgumentName = "0";
+L293:          mFormatArgumentData.ArgumentValueType = 4;
+L322:          mFormatArgumentData.ArgumentValue = mFText;
+L358:          mFormatArgumentData.ArgumentValueInt = 0;
+L390:          mFormatArgumentData.ArgumentValueFloat = 0;
+L422:          mFormatArgumentData.ArgumentValueGender = 0;
+L451:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L471:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L586:          FText ReturnValue = mFText1;
+L613:          goto L638;
+L618:          ReturnValue = ;
+============ END FUNCTION GetCurrentlyUsingText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetResetFuseButtonEnabled ==============
+L0:            FGPowerCircuit* mFGPowerCircuit = this->GetPowerCircuit();
+L20:           bool mbool = KismetSystemLibrary->IsValid(mFGPowerCircuit);
+L71:           if (!mbool) goto L171;
+L85:           mFGPowerCircuit = this->GetPowerCircuit();
+L105:          bool mbool1 = mFGPowerCircuit->IsFuseTriggered();
+L147:          bool ReturnValue = mbool1;
+L166:          goto L182;
+L171:          ReturnValue = false;
+============ END FUNCTION GetResetFuseButtonEnabled ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCapacityText ==============
+L0:            FGPowerCircuit* mFGPowerCircuit = this->GetPowerCircuit();
+L20:           bool mbool = KismetSystemLibrary->IsValid(mFGPowerCircuit);
+L71:           if (!mbool) goto L617;
+L85:           FGPowerCircuit* mFGPowerCircuit1 = this->GetPowerCircuit();
+L105:          mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L146:          int32 mint32 = Round(mPowerCircuitStats.PowerProductionCapacity);
+L192:          FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
+L263:          mFormatArgumentData.ArgumentName = "0";
+L293:          mFormatArgumentData.ArgumentValueType = 4;
+L322:          mFormatArgumentData.ArgumentValue = mFText;
+L358:          mFormatArgumentData.ArgumentValueInt = 0;
+L390:          mFormatArgumentData.ArgumentValueFloat = 0;
+L422:          mFormatArgumentData.ArgumentValueGender = 0;
+L451:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L471:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L585:          FText ReturnValue = mFText1;
+L612:          goto L637;
+L617:          ReturnValue = ;
+============ END FUNCTION GetCapacityText ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdatePoints ==============
+L0:            ExecutionFlow.Push(L4396);
+L5:            FGPowerCircuit* mFGPowerCircuit = this->GetPowerCircuit();
+L25:           bool mbool = KismetSystemLibrary->IsValid(mFGPowerCircuit);
+L76:           if (!mbool) goto L1610;
+L90:           int32 Temp_int_Variable4 = 0;
+L113:          FGPowerCircuit* mFGPowerCircuit1 = this->GetPowerCircuit();
+L133:          mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L174:          int32 mint32 = FGPowerCircuit->GetNumGraphPoint([ref] mPowerCircuitStats);
+L233:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L275:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable4, mint321);
+L313:          if (!mbool1) goto L1615;
+L327:          ExecutionFlow.Push(L4322);
+L332:          mFGPowerCircuit1 = this->GetPowerCircuit();
+L352:          mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L393:          float mfloat = Multiply_IntFloat(Temp_int_Variable4, mPowerCircuitStats.StatIntervalTime);
+L448:          bool mbool2 = FGPowerCircuit->GetGraphPointAtIndex([ref] mPowerCircuitStats, Temp_int_Variable4, [ref] mPowerGraphPoint);
+L517:          Vector2D mVector2D = MakeVector2D(mfloat, mPowerGraphPoint.Consumed);
+L572:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] consumptionPoints, [ref] mVector2D);
+L640:          mFGPowerCircuit1 = this->GetPowerCircuit();
+L660:          mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L701:          mfloat = Multiply_IntFloat(Temp_int_Variable4, mPowerCircuitStats.StatIntervalTime);
+L756:          mbool2 = FGPowerCircuit->GetGraphPointAtIndex([ref] mPowerCircuitStats, Temp_int_Variable4, [ref] mPowerGraphPoint);
+L825:          Vector2D mVector2D1 = MakeVector2D(mfloat, mPowerGraphPoint.Produced);
+L880:          int32 mint323 = KismetArrayLibrary->Array_Add([ref] productionPoints, [ref] mVector2D1);
+L948:          mFGPowerCircuit1 = this->GetPowerCircuit();
+L968:          mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L1009:         mfloat = Multiply_IntFloat(Temp_int_Variable4, mPowerCircuitStats.StatIntervalTime);
+L1064:         mbool2 = FGPowerCircuit->GetGraphPointAtIndex([ref] mPowerCircuitStats, Temp_int_Variable4, [ref] mPowerGraphPoint);
+L1133:         Vector2D mVector2D2 = MakeVector2D(mfloat, mPowerGraphPoint.ProductionCapacity);
+L1188:         int32 mint324 = KismetArrayLibrary->Array_Add([ref] capacityPoints, [ref] mVector2D2);
+L1256:         mFGPowerCircuit1 = this->GetPowerCircuit();
+L1276:         mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L1317:         mbool2 = FGPowerCircuit->GetGraphPointAtIndex([ref] mPowerCircuitStats, Temp_int_Variable4, [ref] mPowerGraphPoint);
+L1386:         bool mbool3 = Greater_FloatFloat(mPowerGraphPoint.ProductionCapacity, capacityMax);
+L1433:         if (!mbool3) goto ExecutionFlow.Pop();
+L1443:         mFGPowerCircuit1 = this->GetPowerCircuit();
+L1463:         mFGPowerCircuit1->GetStats([ref] mPowerCircuitStats);
+L1504:         mbool2 = FGPowerCircuit->GetGraphPointAtIndex([ref] mPowerCircuitStats, Temp_int_Variable4, [ref] mPowerGraphPoint);
+L1573:         float capacityMax = mPowerGraphPoint.ProductionCapacity;
+L1609:         goto ExecutionFlow.Pop();
+L1610:         <End of Inlined Event Graph Function>;
+L1615:         int32 Temp_int_Variable3 = 0;
+L1638:         bool mbool4 = LessEqual_IntInt(Temp_int_Variable3, 2);
+L1672:         if (!mbool4) goto L3854;
+L1686:         ExecutionFlow.Push(L3780);
+L1691:         SlateColor mSlateColor = this->GetCapacityColorAndOpacity();
+L1723:         mGraphCurve.Color_10_60E36C364D08C282508165B980658169 = mSlateColor.SpecifiedColor;
+L1768:         mGraphCurve.Points_11_7F825CE44C5C364A4E1F71B0D820C91E = capacityPoints;
+L1804:         mGraphCurve.OffsetY_14_0BB8215B4F827D9DCB6242B85AC85100 = 0;
+L1836:         SlateColor mSlateColor1 = this->GetProductionColorAndOpacity();
+L1868:         SlateColor mSlateColor2 = this->GetConsumptionColorAndOpacity();
+L1900:         mGraphCurve1.Color_10_60E36C364D08C282508165B980658169 = mSlateColor1.SpecifiedColor;
+L1945:         mGraphCurve1.Points_11_7F825CE44C5C364A4E1F71B0D820C91E = productionPoints;
+L1981:         mGraphCurve1.OffsetY_14_0BB8215B4F827D9DCB6242B85AC85100 = -2;
+L2013:         mGraphCurve2.Color_10_60E36C364D08C282508165B980658169 = mSlateColor2.SpecifiedColor;
+L2058:         mGraphCurve2.Points_11_7F825CE44C5C364A4E1F71B0D820C91E = consumptionPoints;
+L2094:         mGraphCurve2.OffsetY_14_0BB8215B4F827D9DCB6242B85AC85100 = -4;
+L2126:         bool mbool5 = this->mCapacityButton->IsHovered();
+L2172:         bool mbool6 = this->mConsumptionButton->IsHovered();
+L2218:         bool mbool7 = this->mProductionButton->IsHovered();
+L2264:         bool mbool8 = BooleanOR(mbool5, mbool7);
+L2302:         bool mbool9 = BooleanOR(mbool8, mbool6);
+L2340:         int32 Temp_int_Variable2 = 2;
+L2363:         int32 Temp_int_Variable1 = Temp_int_Variable3;
+L2390:         mLinearColor.R = switch (Temp_int_Variable1) {
+case 0 -> mGraphCurve;
+case 1 -> mGraphCurve1;
+case 2 -> mGraphCurve2;
+default -> mGraphCurve3;
+}.Color_10_60E36C364D08C282508165B980658169.R;
+L2514:         mLinearColor.G = switch (Temp_int_Variable1) {
+case 0 -> mGraphCurve;
+case 1 -> mGraphCurve1;
+case 2 -> mGraphCurve2;
+default -> mGraphCurve3;
+}.Color_10_60E36C364D08C282508165B980658169.G;
+L2638:         mLinearColor.B = switch (Temp_int_Variable1) {
+case 0 -> mGraphCurve;
+case 1 -> mGraphCurve1;
+case 2 -> mGraphCurve2;
+default -> mGraphCurve3;
+}.Color_10_60E36C364D08C282508165B980658169.B;
+L2762:         mLinearColor.A = 0.10000000149011612;
+L2794:         int32 Temp_int_Variable = Temp_int_Variable3;
+L2821:         int32 mint325 = Add_IntInt(Temp_int_Variable3, HoverIndexOffset);
+L2867:         bool mbool10 = switch (Temp_int_Variable) {
+case 0 -> this->mCapacityButton;
+case 1 -> this->mProductionButton;
+case 2 -> this->mConsumptionButton;
+default -> mButton;
+}->IsHovered();
+L2983:         bool mbool11 = Not_PreBool(mbool10);
+L3012:         bool mbool12 = BooleanAND(mbool11, mbool9);
+L3050:         bool Temp_bool_Variable = mbool12;
+L3069:         mGraphCurve4.Color_10_60E36C364D08C282508165B980658169 = switch (Temp_bool_Variable) {
+case false -> switch (Temp_int_Variable1) {
+case 0 -> mGraphCurve;
+case 1 -> mGraphCurve1;
+case 2 -> mGraphCurve2;
+default -> mGraphCurve3;
+}.Color_10_60E36C364D08C282508165B980658169;
+case true -> mLinearColor;
+default -> mLinearColor1;
+};
+L3228:         mGraphCurve4.Points_11_7F825CE44C5C364A4E1F71B0D820C91E = switch (Temp_int_Variable1) {
+case 0 -> mGraphCurve;
+case 1 -> mGraphCurve1;
+case 2 -> mGraphCurve2;
+default -> mGraphCurve3;
+}.Points_11_7F825CE44C5C364A4E1F71B0D820C91E;
+L3343:         mGraphCurve4.OffsetY_14_0BB8215B4F827D9DCB6242B85AC85100 = switch (Temp_int_Variable1) {
+case 0 -> mGraphCurve;
+case 1 -> mGraphCurve1;
+case 2 -> mGraphCurve2;
+default -> mGraphCurve3;
+}.OffsetY_14_0BB8215B4F827D9DCB6242B85AC85100;
+L3458:         bool Temp_bool_Variable1 = mbool10;
+L3477:         KismetArrayLibrary->Array_Set([ref] this->mGraph->mCurves, switch (Temp_bool_Variable1) {
+case false -> mint325;
+case true -> Temp_int_Variable2;
+default -> mint326;
+}, [ref] mGraphCurve4, true);
+L3603:         Temp_int_Variable = Temp_int_Variable3;
+L3630:         mbool10 = switch (Temp_int_Variable) {
+case 0 -> this->mCapacityButton;
+case 1 -> this->mProductionButton;
+case 2 -> this->mConsumptionButton;
+default -> mButton;
+}->IsHovered();
+L3746:         if (!mbool10) goto ExecutionFlow.Pop();
+L3756:         int32 HoverIndexOffset = -1;
+L3779:         goto ExecutionFlow.Pop();
+L3780:         int32 mint327 = Add_IntInt(Temp_int_Variable3, 1);
+L3822:         Temp_int_Variable3 = mint327;
+L3849:         goto L1638;
+L3854:         FGPowerCircuit* mFGPowerCircuit2 = this->GetPowerCircuit();
+L3874:         mFGPowerCircuit2->GetStats([ref] mPowerCircuitStats1);
+L3915:         float mfloat1 = Divide_FloatFloat(capacityMax, 100);
+L3957:         int32 mint328 = FCeil(mfloat1);
+L3994:         float mfloat2 = Multiply_IntFloat(mint328, 100);
+L4036:         float mfloat3 = Add_FloatFloat(mfloat2, 25);
+L4078:         float mfloat4 = Subtract_FloatFloat(mfloat2, capacityMax);
+L4124:         bool mbool13 = Greater_FloatFloat(mfloat4, 25);
+L4158:         float mfloat5 = SelectFloat(mfloat2, mfloat3, mbool13);
+L4213:         Vector2D mVector2D3 = MakeVector2D(mPowerCircuitStats1.StatHistoryTime, mfloat5);
+L4268:         this->mGraph->mAxisMax = mVector2D3;
+L4317:         <End of Inlined Event Graph Function>;
+L4322:         int32 mint329 = Add_IntInt(Temp_int_Variable4, 1);
+L4364:         Temp_int_Variable4 = mint329;
+L4391:         goto L113;
+============ END FUNCTION UpdatePoints ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCapacityColorAndOpacity ==============
+L0:            mSlateColor.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.421875, G = 0.417246013879776, B = 0.417246013879776, A = 1);
+L61:           mSlateColor.ColorUseRule = 0;
+L90:           SlateColor ReturnValue = mSlateColor;
+============ END FUNCTION GetCapacityColorAndOpacity ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetProductionColorAndOpacity ==============
+L0:            HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           SlateColor ReturnValue = mSlateColor;
+============ END FUNCTION GetProductionColorAndOpacity ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetConsumptionColorAndOpacity ==============
+L0:            HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor, [ref] mSlateColor);
+L55:           SlateColor ReturnValue = mSlateColor;
+============ END FUNCTION GetConsumptionColorAndOpacity ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_PowerCircuitGraph.Widget_PowerCircuitGraph_C:ExecuteUbergraph_Widget_PowerCircuitGraph.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_PowerCircuitGraph.Widget_PowerCircuitGraph_C:ExecuteUbergraph_Widget_PowerCircuitGraph.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_PowerCircuitGraph(29);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mConsumptionButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PowerCircuitGraph(270);
+============ END FUNCTION BndEvt__mConsumptionButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mProductionButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PowerCircuitGraph(308);
+============ END FUNCTION BndEvt__mProductionButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mCapacityButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PowerCircuitGraph(346);
+============ END FUNCTION BndEvt__mCapacityButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mCapacityButton_K2Node_ComponentBoundEvent_3_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PowerCircuitGraph(384);
+============ END FUNCTION BndEvt__mCapacityButton_K2Node_ComponentBoundEvent_3_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mProductionButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PowerCircuitGraph(422);
+============ END FUNCTION BndEvt__mProductionButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mConsumptionButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PowerCircuitGraph(460);
+============ END FUNCTION BndEvt__mConsumptionButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_PowerCircuitGraph(498);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PowerCircuitGraph ==============
+L10:           this->UpdateStats();
+L24:           <End of Inlined Event Graph Function>;
+L29:           this->Tick(mGeometry, mfloat);
+L57:           this->UpdatePoints();
+L71:           uint8 Temp_byte_Variable = 3;
+L91:           uint8 Temp_byte_Variable1 = 2;
+L111:          bool mbool = this->mGraph->IsHovered();
+L157:          bool Temp_bool_Variable = mbool;
+L176:          this->mPointer->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L265:          goto L10;
+L270:          this->SetHoverStyle(this->mConsumptionText, this->mConsumptionTextBG, true);
+L303:          <End of Inlined Event Graph Function>;
+L308:          this->SetHoverStyle(this->mProductionText, this->mProductionTextBG, true);
+L341:          <End of Inlined Event Graph Function>;
+L346:          this->SetHoverStyle(this->mCapacityText, this->mCapacityTextBG, true);
+L379:          <End of Inlined Event Graph Function>;
+L384:          this->SetHoverStyle(this->mCapacityText, this->mCapacityTextBG, false);
+L417:          <End of Inlined Event Graph Function>;
+L422:          this->SetHoverStyle(this->mProductionText, this->mProductionTextBG, false);
+L455:          <End of Inlined Event Graph Function>;
+L460:          this->SetHoverStyle(this->mConsumptionText, this->mConsumptionTextBG, false);
+L493:          <End of Inlined Event Graph Function>;
+L498:          SlateColor mSlateColor = this->GetConsumptionColorAndOpacity();
+L530:          this->mConsumptionHover->SetColorAndOpacity(mSlateColor);
+L571:          SlateColor mSlateColor1 = this->GetProductionColorAndOpacity();
+L603:          this->mProductionHover->SetColorAndOpacity(mSlateColor1);
+L644:          SlateColor mSlateColor2 = this->GetCapacityColorAndOpacity();
+L676:          this->mCapacityHover->SetColorAndOpacity(mSlateColor2);
+============ END FUNCTION ExecuteUbergraph_Widget_PowerCircuitGraph ==============

@@ -1,0 +1,73 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Controller_CrabHatcher.Controller_CrabHatcher_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateThreatNearby ==============
+L0:            Pawn* mPawn = this->K2_GetPawn();
+L20:           FGCrabHatcher* mFGCrabHatcher = Cast<Class /Script/FactoryGame.FGCrabHatcher>(mPawn);
+L56:           bool mbool = mFGCrabHatcher;
+L85:           if (!mbool) goto L233;
+L99:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mPlayersNearby);
+L158:          bool mbool1 = Greater_IntInt(mint32, 0);
+L192:          mFGCrabHatcher->SetThreatNearby(mbool1);
+============ END FUNCTION UpdateThreatNearby ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_1_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Controller_CrabHatcher.Controller_CrabHatcher_C:ExecuteUbergraph_Controller_CrabHatcher.K2Node_ComponentBoundEvent_Actor) = Actor;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Controller_CrabHatcher.Controller_CrabHatcher_C:ExecuteUbergraph_Controller_CrabHatcher.K2Node_ComponentBoundEvent_Stimulus) = Stimulus;
+L36:           this->ExecuteUbergraph_Controller_CrabHatcher(457);
+============ END FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_1_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION TryRemovePlayer ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Controller_CrabHatcher.Controller_CrabHatcher_C:ExecuteUbergraph_Controller_CrabHatcher.K2Node_CustomEvent_inPlayer1) = inPlayer;
+L18:           this->ExecuteUbergraph_Controller_CrabHatcher(29);
+============ END FUNCTION TryRemovePlayer ==============
+
+
+
+
+
+============ BEGIN FUNCTION TryAddPlayer ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/CrabHatcher/Controller_CrabHatcher.Controller_CrabHatcher_C:ExecuteUbergraph_Controller_CrabHatcher.K2Node_CustomEvent_inPlayer) = inPlayer;
+L18:           this->ExecuteUbergraph_Controller_CrabHatcher(268);
+============ END FUNCTION TryAddPlayer ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Controller_CrabHatcher ==============
+L10:           this->UpdateThreatNearby();
+L24:           <End of Inlined Event Graph Function>;
+L29:           int32 mint32 = KismetArrayLibrary->Array_Find([ref] this->mPlayersNearby, [ref] mFGCharacterPlayer);
+L97:           bool mbool = GreaterEqual_IntInt(mint32, 0);
+L131:          if (!mbool) goto L615;
+L145:          mint32 = KismetArrayLibrary->Array_Find([ref] this->mPlayersNearby, [ref] mFGCharacterPlayer);
+L213:          KismetArrayLibrary->Array_Remove([ref] this->mPlayersNearby, mint32);
+L263:          <End of Inlined Event Graph Function>;
+L268:          int32 mint321 = KismetArrayLibrary->Array_Find([ref] this->mPlayersNearby, [ref] mFGCharacterPlayer1);
+L336:          bool mbool1 = Less_IntInt(mint321, 0);
+L370:          if (!mbool1) goto L615;
+L384:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->mPlayersNearby, [ref] mFGCharacterPlayer1);
+L452:          <End of Inlined Event Graph Function>;
+L457:          FGCharacterPlayer* mFGCharacterPlayer2 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor);
+L493:          bool mbool2 = mFGCharacterPlayer2;
+L522:          if (!mbool2) goto L615;
+L536:          if (!mAIStimulus.bSuccessfullySensed) goto L587;
+L559:          this->TryAddPlayer(mFGCharacterPlayer2);
+L582:          goto L10;
+L587:          this->TryRemovePlayer(mFGCharacterPlayer2);
+L610:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Controller_CrabHatcher ==============

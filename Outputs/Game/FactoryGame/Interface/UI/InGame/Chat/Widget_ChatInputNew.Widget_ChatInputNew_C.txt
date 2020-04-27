@@ -1,0 +1,58 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatInputNew.Widget_ChatInputNew_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyUp ==============
+L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Escape"));
+L137:          if (!mbool) goto L247;
+L151:          this->ExitChat();
+L165:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L215:          EventReply ReturnValue = mEventReply;
+L242:          goto L324;
+L247:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L297:          ReturnValue = mEventReply1;
+============ END FUNCTION OnKeyUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mInputField_K2Node_ComponentBoundEvent_51_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatInputNew.Widget_ChatInputNew_C:ExecuteUbergraph_Widget_ChatInputNew.K2Node_ComponentBoundEvent_Text) = text;
+L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatInputNew.Widget_ChatInputNew_C:ExecuteUbergraph_Widget_ChatInputNew.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
+L36:           this->ExecuteUbergraph_Widget_ChatInputNew(10);
+============ END FUNCTION BndEvt__mInputField_K2Node_ComponentBoundEvent_51_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExitChat ==============
+L0:            this->ExecuteUbergraph_Widget_ChatInputNew(352);
+============ END FUNCTION ExitChat ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ChatInputNew ==============
+L10:           bool mbool = EqualEqual_ByteByte(muint8, 1);
+L41:           if (!mbool) goto L357;
+L55:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L79:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L115:          bool mbool1 = mFGPlayerController;
+L144:          if (!mbool1) goto L357;
+L158:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mconst FText);
+L217:          mFGPlayerController->EnterChatMessage(mFString);
+L258:          this->mInputField->SetText();
+L292:          this->ExitChat();
+L306:          <End of Inlined Event Graph Function>;
+L311:          this->mChatWindow->ExitChat();
+L347:          <End of Inlined Event Graph Function>;
+L352:          goto L311;
+============ END FUNCTION ExecuteUbergraph_Widget_ChatInputNew ==============

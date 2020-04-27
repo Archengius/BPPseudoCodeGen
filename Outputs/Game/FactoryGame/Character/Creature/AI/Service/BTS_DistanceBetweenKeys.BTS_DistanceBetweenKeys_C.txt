@@ -1,0 +1,45 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Service/BTS_DistanceBetweenKeys.BTS_DistanceBetweenKeys_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetKeyLocation ==============
+L0:            Actor* mActor = BTFunctionLibrary->GetBlackboardValueAsActor(this, [ref] Key);
+L52:           bool mbool = KismetSystemLibrary->IsValid(mActor);
+L103:          if (!mbool) goto L278;
+L117:          mActor = BTFunctionLibrary->GetBlackboardValueAsActor(this, [ref] Key);
+L169:          Vector mVector = mActor->K2_GetActorLocation();
+L219:          Vector Local_Location = mVector;
+L246:          Vector Location = Local_Location;
+L273:          <End of Inlined Event Graph Function>;
+L278:          Vector mVector1 = BTFunctionLibrary->GetBlackboardValueAsVector(this, [ref] Key);
+L338:          Local_Location = mVector1;
+L365:          goto L246;
+============ END FUNCTION GetKeyLocation ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTickAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_DistanceBetweenKeys.BTS_DistanceBetweenKeys_C:ExecuteUbergraph_BTS_DistanceBetweenKeys.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_DistanceBetweenKeys.BTS_DistanceBetweenKeys_C:ExecuteUbergraph_BTS_DistanceBetweenKeys.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_DistanceBetweenKeys.BTS_DistanceBetweenKeys_C:ExecuteUbergraph_BTS_DistanceBetweenKeys.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L54:           this->ExecuteUbergraph_BTS_DistanceBetweenKeys(10);
+============ END FUNCTION ReceiveTickAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTS_DistanceBetweenKeys ==============
+L10:           this->ReceiveTickAI(mAIController, mPawn, mfloat);
+L47:           this->GetKeyLocation(this->mBBKeyA, [ref] mVector);
+L79:           this->GetKeyLocation(this->mBBKeyB, [ref] mVector1);
+L111:          Vector mVector2 = Subtract_VectorVector(mVector, mVector1);
+L157:          float mfloat1 = VSize(mVector2);
+L194:          BTFunctionLibrary->SetBlackboardValueAsFloat(this, [ref] this->mDistanceBBKey, mfloat1);
+============ END FUNCTION ExecuteUbergraph_BTS_DistanceBetweenKeys ==============

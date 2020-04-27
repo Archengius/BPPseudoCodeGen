@@ -1,0 +1,94 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/ActorDetails/Widget_ActorDetails_TrainStation.Widget_ActorDetails_TrainStation_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetPowerConsumption ==============
+L0:            FGPowerInfoComponent* mFGPowerInfoComponent = TrainStation->GetPowerInfo();
+L42:           float mfloat = mFGPowerInfoComponent->GetActualConsumption();
+L92:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 1, 1);
+L175:          mFormatArgumentData.ArgumentName = "Value";
+L209:          mFormatArgumentData.ArgumentValueType = 4;
+L238:          mFormatArgumentData.ArgumentValue = mFText;
+L274:          mFormatArgumentData.ArgumentValueInt = 0;
+L306:          mFormatArgumentData.ArgumentValueFloat = 0;
+L338:          mFormatArgumentData.ArgumentValueGender = 0;
+L367:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L387:          FText mFText1 = KismetTextLibrary->Format(STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]"), mTArray<FormatArgumentData>);
+L517:          this->mPowerConsumptionText->SetText(mFText1);
+============ END FUNCTION GetPowerConsumption ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckIfPowerConnected ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mTrainStation);
+L51:           if (!mbool) goto L413;
+L65:           FGPowerInfoComponent* mFGPowerInfoComponent = this->mTrainStation->GetPowerInfo();
+L107:          bool mbool1 = mFGPowerInfoComponent->HasPower();
+L149:          bool Temp_bool_Variable = mbool1;
+L168:          FText Temp_text_Variable = "[object Object]";
+L235:          FText Temp_text_Variable1 = "[object Object]";
+L305:          this->mHasPowerText->SetText(switch (Temp_bool_Variable) {
+case false -> Temp_text_Variable1;
+case true -> Temp_text_Variable;
+default -> mFText;
+});
+L394:          FGBuildableRailroadStation* mTrainStation = this->mTrainStation;
+============ END FUNCTION CheckIfPowerConnected ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ActorDetails_TrainStation(61);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_ActorDetails_TrainStation(476);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTrainStationStats ==============
+L0:            this->ExecuteUbergraph_Widget_ActorDetails_TrainStation(533);
+============ END FUNCTION UpdateTrainStationStats ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ActorDetails_TrainStation ==============
+L10:           this->CheckIfPowerConnected([ref] mFGBuildableRailroadStation);
+L33:           this->GetPowerConsumption(mFGBuildableRailroadStation);
+L56:           <End of Inlined Event Graph Function>;
+L61:           this->Construct();
+L71:           this->Widget_ActorDetails_Container->SetShowPointer(this->ShowPointer);
+L116:          FGBuildableRailroadStation* mFGBuildableRailroadStation1 = Cast<Class /Script/FactoryGame.FGBuildableRailroadStation>(this->mActor);
+L152:          bool mbool = mFGBuildableRailroadStation1;
+L181:          if (!mbool) goto L538;
+L195:          this->mTrainStation = mFGBuildableRailroadStation1;
+L214:          this->Widget_ActorDetails_Container->SetTitle(this->mTrainStation->mDisplayName);
+L281:          FGPowerInfoComponent* mFGPowerInfoComponent = this->mTrainStation->GetPowerInfo();
+L323:          this->mPowerComponent = mFGPowerInfoComponent;
+L342:          this->UpdateTrainStationStats();
+L356:          mFScriptDelegate->BindUFunction(this, UpdateTrainStationStats);
+L379:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.30000001192092896, true);
+L444:          this->mActorDetailsUpdateTimer = mTimerHandle;
+L471:          <End of Inlined Event Graph Function>;
+L476:          this->Destruct();
+L486:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mActorDetailsUpdateTimer);
+L528:          <End of Inlined Event Graph Function>;
+L533:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_ActorDetails_TrainStation ==============

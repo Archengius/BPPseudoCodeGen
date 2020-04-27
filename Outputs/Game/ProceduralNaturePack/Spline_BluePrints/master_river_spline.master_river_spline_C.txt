@@ -1,0 +1,250 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/ProceduralNaturePack/Spline_BluePrints/master_river_spline.master_river_spline_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ModifyTerrain ==============
+L0:            ExecutionFlow.Push(L493);
+L5:            bool mbool = KismetSystemLibrary->IsValid(this->LandscapeProxy);
+L56:           if (!mbool) goto ExecutionFlow.Pop();
+L66:           ExecutionFlow.Push(L401);
+L71:           Vector mVector = MakeVector(0, 0, this->TerrainOffset);
+L118:          Vector mVector1 = Multiply_VectorFloat(mVector, -1);
+L160:          this->K2_AddActorWorldOffset(mVector1, false, [ref] mHitResult, false);
+L204:          LandscapeLayerInfoObject* Temp_object_Variable = nullptr;
+L215:          LandscapeLayerInfoObject* Temp_object_Variable1 = WetSand_LayerInfo;
+L234:          bool Temp_bool_Variable = this->bShouldPaintWetSand;
+L253:          this->LandscapeProxy->EditorApplySpline(this->Spline1, this->WidthStart, this->Width End, this->Falloff, this->Falloff, 0, 0, 20, true, true, switch (Temp_bool_Variable) {
+case false -> Temp_object_Variable;
+case true -> Temp_object_Variable1;
+default -> mLandscapeLayerInfoObject;
+});
+L400:          goto ExecutionFlow.Pop();
+L401:          mVector = MakeVector(0, 0, this->TerrainOffset);
+L448:          this->K2_AddActorWorldOffset(mVector, false, [ref] mHitResult1, false);
+L492:          goto ExecutionFlow.Pop();
+============ END FUNCTION ModifyTerrain ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckPointsHeight ==============
+L0:            ExecutionFlow.Push(L778);
+L5:            bool mbool = AkGameplayStatics->IsEditor();
+L47:           if (!mbool) goto ExecutionFlow.Pop();
+L57:           float LastHeight = 300000000;
+L80:           int32 Temp_int_Variable = 0;
+L103:          int32 mint32 = this->Spline1->GetNumberOfSplinePoints();
+L153:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L195:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint321);
+L233:          if (!mbool1) goto ExecutionFlow.Pop();
+L243:          ExecutionFlow.Push(L704);
+L248:          Vector mVector = this->Spline1->GetLocationAtSplinePoint(Temp_int_Variable, 1);
+L309:          BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L355:          bool mbool2 = LessEqual_FloatFloat(mfloat2, LastHeight);
+L393:          LinearColor mLinearColor = SelectColor(ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 1, B = 0, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), mbool2);
+L498:          KismetSystemLibrary->DrawDebugSphere(this, mVector, 50, 12, mLinearColor, 10, 5);
+L569:          mVector = this->Spline1->GetLocationAtSplinePoint(Temp_int_Variable, 1);
+L630:          BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L676:          LastHeight = mfloat2;
+L703:          goto ExecutionFlow.Pop();
+L704:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L746:          Temp_int_Variable = mint322;
+L773:          goto L103;
+============ END FUNCTION CheckPointsHeight ==============
+
+
+
+
+
+============ BEGIN FUNCTION SnapToTerrain ==============
+L0:            ExecutionFlow.Push(L1115);
+L5:            bool mbool = AkGameplayStatics->IsEditor();
+L47:           if (!mbool) goto ExecutionFlow.Pop();
+L57:           int32 Temp_int_Variable = 0;
+L80:           int32 mint32 = this->Spline1->GetNumberOfSplinePoints();
+L130:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L172:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint321);
+L210:          if (!mbool1) goto ExecutionFlow.Pop();
+L220:          ExecutionFlow.Push(L1041);
+L225:          const TArray<uint8> mconst TArray<uint8> = [0];
+L238:          Vector mVector = this->Spline1->GetLocationAtSplinePoint(Temp_int_Variable, 1);
+L299:          Vector mVector1 = Subtract_VectorVector(mVector, Vector(0, 0, 50000));
+L349:          bool mbool2 = KismetSystemLibrary->LineTraceSingleForObjects(this, mVector, mVector1, [ref] mconst TArray<uint8>, false, [ref] Temp_object_Variable, 2, [ref] mHitResult, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 1, B = 0, A = 1), 2);
+L514:          GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool3, [ref] mbool4, [ref] mfloat, [ref] mfloat1, [ref] mVector2, [ref] mVector3, [ref] mVector4, [ref] mVector5, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint322, [ref] mint323, [ref] mVector6, [ref] mVector7);
+L699:          if (!mbool3) goto ExecutionFlow.Pop();
+L709:          Vector mVector8 = MakeVector(0, 0, this->SnapOffset);
+L756:          GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool3, [ref] mbool4, [ref] mfloat, [ref] mfloat1, [ref] mVector2, [ref] mVector3, [ref] mVector4, [ref] mVector5, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint322, [ref] mint323, [ref] mVector6, [ref] mVector7);
+L941:          Vector mVector9 = Add_VectorVector(mVector2, mVector8);
+L987:          this->Spline1->SetLocationAtSplinePoint(Temp_int_Variable, [ref] mVector9, 1, true);
+L1040:         goto ExecutionFlow.Pop();
+L1041:         int32 mint324 = Add_IntInt(Temp_int_Variable, 1);
+L1083:         Temp_int_Variable = mint324;
+L1110:         goto L80;
+============ END FUNCTION SnapToTerrain ==============
+
+
+
+
+
+============ BEGIN FUNCTION UserConstructionScript ==============
+L0:            ExecutionFlow.Push(L4776);
+L5:            float Local_spline_start_scale = 1;
+L28:           float Local_Next_End_scale = 1;
+L51:           ExecutionFlow.Push(L544);
+L56:           int32 mint32 = this->Spline1->GetNumberOfSplinePoints();
+L106:          this->GetNumSplinePoints = mint32;
+L133:          mint32 = this->Spline1->GetNumberOfSplinePoints();
+L183:          int32 mint321 = Subtract_IntInt(mint32, 2);
+L225:          this->Last Index = mint321;
+L252:          int32 Temp_int_Variable = 0;
+L275:          bool mbool = LessEqual_IntInt(Temp_int_Variable, this->Last Index);
+L313:          if (!mbool) goto ExecutionFlow.Pop();
+L323:          ExecutionFlow.Push(L956);
+L328:          ExecutionFlow.Push(L1030);
+L333:          this->Index Number = Temp_int_Variable;
+L360:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->River_Scale_Spline_Points);
+L419:          bool mbool1 = Less_IntInt(mint322, this->GetNumSplinePoints);
+L457:          if (!mbool1) goto L1797;
+L471:          int32 mint323 = KismetArrayLibrary->Array_Add([ref] this->River_Scale_Spline_Points, [ref] Temp_struct_Variable2);
+L539:          goto L360;
+L544:          bool mbool2 = KismetSystemLibrary->IsValid(this->mAudioEvent);
+L595:          bool mbool3 = BooleanAND(this->mShouldHaveAudio, mbool2);
+L633:          if (!mbool3) goto ExecutionFlow.Pop();
+L643:          const Transform Temp_struct_Variable = Transform(Rotator(0, 0, 0, 1), Vector(0, 0, 0), Vector(1, 1, 1));
+L702:          FGSoundSplineComponent* mFGSoundSplineComponent = this->AddComponent("NODE_AddFGSoundSplineComponent-1", true, [ref] Temp_struct_Variable, this);
+L746:          bool mbool4 = mFGSoundSplineComponent->K2_AttachToComponent(this->Spline1, "None", 0, 0, 0, true);
+L817:          mFGSoundSplineComponent->SetAutoActivate(false);
+L854:          mFGSoundSplineComponent->SetEmitterInterval(this->mEmitterInterval);
+L895:          mFGSoundSplineComponent->AkAudioEvent = this->mAudioEvent;
+L936:          this->mAudioSpline = mFGSoundSplineComponent;
+L955:          goto ExecutionFlow.Pop();
+L956:          int32 mint324 = Add_IntInt(Temp_int_Variable, 1);
+L998:          Temp_int_Variable = mint324;
+L1025:         goto L275;
+L1030:         if (!this->Draw_Spline_Point_Numbers) goto ExecutionFlow.Pop();
+L1040:         FString mFString = KismetStringLibrary->Conv_IntToString(this->Index Number);
+L1099:         this->Spline_Point_Number = mFString;
+L1126:         int32 Temp_int_Variable1 = 0;
+L1149:         int32 mint325 = Subtract_IntInt(this->GetNumSplinePoints, 1);
+L1191:         bool mbool5 = LessEqual_IntInt(Temp_int_Variable1, mint325);
+L1229:         if (!mbool5) goto ExecutionFlow.Pop();
+L1239:         ExecutionFlow.Push(L1723);
+L1244:         this->Spline1->GetLocationAndTangentAtSplinePoint(this->Index Number, [ref] mVector, [ref] mVector1, 0);
+L1305:         Rotator mRotator = MakeRotFromX([ref] mVector1);
+L1342:         BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L1388:         float mfloat3 = Add_FloatFloat(mfloat2, 20);
+L1430:         Vector mVector2 = MakeVector(mfloat, mfloat1, mfloat3);
+L1485:         Transform mTransform = MakeTransform(mVector2, mRotator, Vector(1, 1, 1));
+L1544:         TextRenderComponent* mTextRenderComponent = this->AddComponent("NODE_AddTextRenderComponent-0", false, [ref] mTransform, this);
+L1588:         FText mFText = KismetTextLibrary->Conv_StringToText(this->Spline_Point_Number);
+L1647:         mTextRenderComponent->K2_SetText([ref] mFText);
+L1688:         mTextRenderComponent->SetHiddenInGame(true, false);
+L1722:         goto ExecutionFlow.Pop();
+L1723:         int32 mint326 = Add_IntInt(Temp_int_Variable1, 1);
+L1765:         Temp_int_Variable1 = mint326;
+L1792:         goto L1149;
+L1797:         mint322 = KismetArrayLibrary->Array_Length([ref] this->River_Scale_Spline_Points);
+L1856:         bool mbool6 = Greater_IntInt(mint322, this->GetNumSplinePoints);
+L1894:         if (!mbool6) goto L2022;
+L1908:         int32 mint327 = KismetArrayLibrary->Array_LastIndex([ref] this->River_Scale_Spline_Points);
+L1967:         KismetArrayLibrary->Array_Remove([ref] this->River_Scale_Spline_Points, mint327);
+L2017:         goto L360;
+L2022:         const Transform Temp_struct_Variable1 = Transform(Rotator(0, 0, 0, 1), Vector(0, 0, 0), Vector(1, 1, 1));
+L2081:         SplineMeshComponent* mSplineMeshComponent = this->AddComponent("NODE_AddSplineMeshComponent-0", false, [ref] Temp_struct_Variable1, this);
+L2125:         mSplineMeshComponent->SetCollisionResponseToChannel(6, 1);
+L2165:         int32 Local_Spline_Index = this->Index Number;
+L2192:         int32 mint328 = Add_IntInt(this->Index Number, 1);
+L2234:         int32 Local_Next_Index = mint328;
+L2261:         this->SplineMesh1 = mSplineMeshComponent;
+L2280:         this->SplineMesh1->SetTranslucentSortPriority(1);
+L2317:         KismetArrayLibrary->Array_Get([ref] this->River_Scale_Spline_Points, Local_Spline_Index, [ref] mRiver_Scale_Data);
+L2376:         Local_spline_start_scale = mRiver_Scale_Data.River_Scale_12_AE0379524F575EEEF2B664BD68F148B6;
+L2412:         KismetArrayLibrary->Array_Get([ref] this->River_Scale_Spline_Points, Local_Next_Index, [ref] mRiver_Scale_Data1);
+L2471:         Local_Next_End_scale = mRiver_Scale_Data1.River_Scale_12_AE0379524F575EEEF2B664BD68F148B6;
+L2507:         KismetArrayLibrary->Array_Get([ref] this->River_Scale_Spline_Points, Local_Spline_Index, [ref] mRiver_Scale_Data);
+L2566:         bool mbool7 = Less_FloatFloat(mRiver_Scale_Data.River_Scale_12_AE0379524F575EEEF2B664BD68F148B6, 0);
+L2609:         if (!mbool7) goto L4520;
+L2623:         Vector2D mVector2D = MakeVector2D(Local_spline_start_scale, Local_spline_start_scale);
+L2669:         this->SplineMesh1->SetStartScale(mVector2D, true);
+L2711:         KismetArrayLibrary->Array_Get([ref] this->River_Scale_Spline_Points, Local_Next_Index, [ref] mRiver_Scale_Data1);
+L2770:         bool mbool8 = Less_FloatFloat(mRiver_Scale_Data1.River_Scale_12_AE0379524F575EEEF2B664BD68F148B6, 0);
+L2813:         if (!mbool8) goto L4264;
+L2827:         Vector2D mVector2D1 = MakeVector2D(Local_Next_End_scale, Local_Next_End_scale);
+L2873:         this->SplineMesh1->SetEndScale(mVector2D1, true);
+L2915:         bool mbool9 = this->SplineMesh1->SetStaticMesh(this->SplineMesh);
+L2970:         float mfloat4 = this->Spline1->GetSplineLength();
+L3020:         float mfloat5 = this->Spline1->GetDistanceAlongSplineAtSplinePoint(this->Index Number);
+L3079:         float mfloat6 = Subtract_FloatFloat(mfloat4, mfloat5);
+L3125:         this->Spline_Start = mfloat6;
+L3152:         int32 mint329 = Add_IntInt(this->Index Number, 1);
+L3194:         mfloat4 = this->Spline1->GetSplineLength();
+L3244:         float mfloat7 = this->Spline1->GetDistanceAlongSplineAtSplinePoint(mint329);
+L3303:         float mfloat8 = Subtract_FloatFloat(mfloat4, mfloat7);
+L3349:         this->SplineEnd = mfloat8;
+L3376:         mfloat4 = this->Spline1->GetSplineLength();
+L3426:         this->SplineLength = mfloat4;
+L3453:         this->Spline1->GetLocationAndTangentAtSplinePoint(this->Index Number, [ref] mVector3, [ref] mVector4, 0);
+L3514:         BreakVector(mVector4, [ref] mfloat9, [ref] mfloat10, [ref] mfloat11);
+L3560:         this->Start_Foam = mfloat11;
+L3587:         int32 mint3210 = Add_IntInt(this->Index Number, 1);
+L3629:         this->Spline1->GetLocationAndTangentAtSplinePoint(mint3210, [ref] mVector5, [ref] mVector6, 0);
+L3690:         BreakVector(mVector6, [ref] mfloat12, [ref] mfloat13, [ref] mfloat14);
+L3736:         this->End_Foam = mfloat14;
+L3763:         bool mbool10 = this->SplineMesh1->K2_AttachTo(this->spline_mesh, "None", 0, true);
+L3830:         this->Spline1->GetLocationAndTangentAtSplinePoint(this->Index Number, [ref] mVector3, [ref] mVector4, 0);
+L3891:         mint3210 = Add_IntInt(this->Index Number, 1);
+L3933:         this->Spline1->GetLocationAndTangentAtSplinePoint(mint3210, [ref] mVector5, [ref] mVector6, 0);
+L3994:         this->SplineMesh1->SetStartAndEnd(mVector3, mVector4, mVector5, mVector6, true);
+L4063:         MaterialInstanceDynamic* mMaterialInstanceDynamic = this->SplineMesh1->CreateDynamicMaterialInstance(0, this->Choose Material, "None");
+L4136:         this->Dynamic Material = mMaterialInstanceDynamic;
+L4155:         mMaterialInstanceDynamic->SetScalarParameterValue("Start", this->Spline_Start);
+L4209:         mMaterialInstanceDynamic->SetScalarParameterValue("End", this->SplineEnd);
+L4263:         goto ExecutionFlow.Pop();
+L4264:         KismetArrayLibrary->Array_Get([ref] this->River_Scale_Spline_Points, Local_Next_Index, [ref] mRiver_Scale_Data1);
+L4323:         bool mbool11 = Greater_FloatFloat(mRiver_Scale_Data1.River_Scale_12_AE0379524F575EEEF2B664BD68F148B6, 0);
+L4366:         if (!mbool11) goto L4385;
+L4380:         goto L2827;
+L4385:         float mfloat15 = Add_FloatFloat(Local_Next_End_scale, 1);
+L4427:         Vector2D mVector2D2 = MakeVector2D(mfloat15, mfloat15);
+L4473:         this->SplineMesh1->SetEndScale(mVector2D2, true);
+L4515:         goto L2915;
+L4520:         KismetArrayLibrary->Array_Get([ref] this->River_Scale_Spline_Points, Local_Spline_Index, [ref] mRiver_Scale_Data);
+L4579:         bool mbool12 = Greater_FloatFloat(mRiver_Scale_Data.River_Scale_12_AE0379524F575EEEF2B664BD68F148B6, 0);
+L4622:         if (!mbool12) goto L4641;
+L4636:         goto L2623;
+L4641:         float mfloat16 = Add_FloatFloat(Local_spline_start_scale, 1);
+L4683:         Vector2D mVector2D3 = MakeVector2D(mfloat16, mfloat16);
+L4729:         this->SplineMesh1->SetStartScale(mVector2D3, true);
+L4771:         goto L2711;
+============ END FUNCTION UserConstructionScript ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_master_river_spline(107);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_master_river_spline ==============
+L10:           int32 mint32 = this->mAudioSpline->PostAssociatedAkEvent();
+L60:           <End of Inlined Event Graph Function>;
+L65:           this->mAudioSpline->Activate(false);
+L102:          goto L10;
+L107:          this->ReceiveBeginPlay();
+L117:          bool mbool = KismetSystemLibrary->IsValid(this->mAudioEvent);
+L168:          bool mbool1 = KismetSystemLibrary->IsValid(this->mAudioSpline);
+L219:          bool mbool2 = BooleanAND(this->mShouldHaveAudio, mbool);
+L257:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L295:          if (!mbool3) goto L314;
+L309:          goto L65;
+============ END FUNCTION ExecuteUbergraph_master_river_spline ==============

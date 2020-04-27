@@ -1,0 +1,273 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost_TierButton.Widget_TradingPost_TierButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetLockedText ==============
+L0:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L43:           FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
+L79:           bool mbool = mFGGameState;
+L108:          if (!mbool) goto L963;
+L122:          FGGamePhaseManager* mFGGamePhaseManager = FGGamePhaseManager->Get(mFGGameState);
+L173:          uint8 muint8 = mFGGamePhaseManager->GetGamePhaseForTechTier(this->mTierNum);
+L232:          bool mbool1 = NotEqual_ByteByte(muint8, 0);
+L263:          if (!mbool1) goto L462;
+L277:          mbool1 = NotEqual_ByteByte(muint8, 1);
+L308:          if (!mbool1) goto L587;
+L322:          mbool1 = NotEqual_ByteByte(muint8, 2);
+L353:          if (!mbool1) goto L681;
+L367:          mbool1 = NotEqual_ByteByte(muint8, 3);
+L398:          if (!mbool1) goto L775;
+L412:          mbool1 = NotEqual_ByteByte(muint8, 5);
+L443:          if (!mbool1) goto L869;
+L457:          <End of Inlined Event Graph Function>;
+L462:          FText LockedText = "[object Object]";
+L537:          this->LockText->SetText(LockedText);
+L582:          <End of Inlined Event Graph Function>;
+L587:          LockedText = "[object Object]";
+L676:          goto L537;
+L681:          LockedText = "[object Object]";
+L770:          goto L537;
+L775:          LockedText = "[object Object]";
+L864:          goto L537;
+L869:          LockedText = "[object Object]";
+L958:          goto L537;
+============ END FUNCTION SetLockedText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTierNumVisibility ==============
+L0:            if (!this->IsFullyResearched) goto L39;
+L14:           uint8 ReturnValue = 2;
+L34:           goto L59;
+L39:           ReturnValue = 0;
+============ END FUNCTION GetTierNumVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCheckVisibility ==============
+L0:            if (!this->IsFullyResearched) goto L39;
+L14:           uint8 ReturnValue = 0;
+L34:           goto L59;
+L39:           ReturnValue = 2;
+============ END FUNCTION GetCheckVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION isSelectable ==============
+L0:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L43:           FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
+L79:           bool mbool = mFGGameState;
+L108:          if (!mbool) goto L587;
+L122:          FGGamePhaseManager* mFGGamePhaseManager = FGGamePhaseManager->Get(mFGGameState);
+L173:          uint8 muint8 = mFGGamePhaseManager->GetGamePhase();
+L223:          uint8 muint81 = mFGGamePhaseManager->GetGamePhaseForTechTier(this->mTierNum);
+L282:          bool mbool1 = GreaterEqual_ByteByte(muint8, muint81);
+L320:          if (!mbool1) goto L603;
+L334:          bool mbool2 = Greater_IntInt(this->mTierNum, 0);
+L368:          FGTutorialIntroManager* mFGTutorialIntroManager = FGTutorialIntroManager->Get(mFGGameState);
+L419:          bool mbool3 = mFGTutorialIntroManager->GetIsTutorialCompleted();
+L461:          bool mbool4 = Not_PreBool(mbool3);
+L490:          bool mbool5 = BooleanAND(mbool4, mbool2);
+L528:          bool mbool6 = Not_PreBool(mbool5);
+L557:          if (!mbool6) goto L603;
+L571:          bool isSelectable = true;
+L582:          <End of Inlined Event Graph Function>;
+L587:          isSelectable = false;
+L598:          <End of Inlined Event Graph Function>;
+L603:          isSelectable = false;
+============ END FUNCTION isSelectable ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetWidgetClickable ==============
+L0:            this->isSelectable([ref] mbool);
+L23:           if (!mbool) goto L62;
+L37:           uint8 ReturnValue = 0;
+L57:           goto L82;
+L62:           ReturnValue = 3;
+============ END FUNCTION GetWidgetClickable ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTextHoverColor ==============
+L0:            bool mbool = EqualEqual_IntInt(this->mTierNum, this->mTradingPost->mActiveTier);
+L60:           if (!mbool) goto L161;
+L74:           HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L129:          SlateColor ReturnValue = mSlateColor;
+L156:          goto L347;
+L161:          this->isSelectable([ref] mbool1);
+L184:          bool mbool2 = Not_PreBool(mbool1);
+L213:          bool mbool3 = BooleanOR(mbool2, this->IsFullyResearched);
+L251:          if (!mbool3) goto L74;
+L265:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L320:          ReturnValue = mSlateColor1;
+============ END FUNCTION GetTextHoverColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonColor ==============
+L0:            this->isSelectable([ref] mbool);
+L23:           if (!mbool) goto L302;
+L37:           bool mbool1 = EqualEqual_IntInt(this->mTierNum, this->mTradingPost->mActiveTier);
+L97:           if (!mbool1) goto L462;
+L111:          this->isSelectable([ref] mbool2);
+L134:          bool mbool3 = Not_PreBool(mbool2);
+L163:          bool mbool4 = BooleanOR(mbool3, this->IsFullyResearched);
+L201:          if (!mbool4) goto L938;
+L215:          HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L270:          LinearColor ReturnValue = mLinearColor;
+L297:          goto L1020;
+L302:          mLinearColor1.R = 1;
+L334:          mLinearColor1.G = 1;
+L366:          mLinearColor1.B = 1;
+L398:          mLinearColor1.A = 0;
+L430:          ReturnValue = mLinearColor1;
+L457:          goto L1020;
+L462:          bool mbool5 = this->IsHovered();
+L486:          if (!mbool5) goto L778;
+L500:          this->isSelectable([ref] mbool6);
+L523:          bool mbool7 = Not_PreBool(mbool6);
+L552:          bool mbool8 = BooleanOR(mbool7, this->IsFullyResearched);
+L590:          if (!mbool8) goto L691;
+L604:          HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor1, [ref] mLinearColor2);
+L659:          ReturnValue = mLinearColor2;
+L686:          goto L1020;
+L691:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor2, [ref] mLinearColor3);
+L746:          ReturnValue = mLinearColor3;
+L773:          goto L1020;
+L778:          mLinearColor4.R = 1;
+L810:          mLinearColor4.G = 1;
+L842:          mLinearColor4.B = 1;
+L874:          mLinearColor4.A = 0;
+L906:          ReturnValue = mLinearColor4;
+L933:          goto L1020;
+L938:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor5, [ref] mSlateColor3);
+L993:          ReturnValue = mLinearColor5;
+============ END FUNCTION GetButtonColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTier ==============
+L0:            this->mTradingPost->SetTierAndDeafultSchematic(this->mTierNum);
+============ END FUNCTION UpdateTier ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_2_K2Node_ComponentBoundEvent_70_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_TradingPost_TierButton(909);
+============ END FUNCTION BndEvt__Button_2_K2Node_ComponentBoundEvent_70_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_TradingPost_TierButton(947);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseEnter ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost_TierButton.Widget_TradingPost_TierButton_C:ExecuteUbergraph_Widget_TradingPost_TierButton.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost_TierButton.Widget_TradingPost_TierButton_C:ExecuteUbergraph_Widget_TradingPost_TierButton.K2Node_Event_MouseEvent1) = MouseEvent;
+L36:           this->ExecuteUbergraph_Widget_TradingPost_TierButton(1072);
+============ END FUNCTION OnMouseEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseLeave ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost_TierButton.Widget_TradingPost_TierButton_C:ExecuteUbergraph_Widget_TradingPost_TierButton.K2Node_Event_MouseEvent) = MouseEvent;
+L18:           this->ExecuteUbergraph_Widget_TradingPost_TierButton(1139);
+============ END FUNCTION OnMouseLeave ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetTierNumber ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost_TierButton.Widget_TradingPost_TierButton_C:ExecuteUbergraph_Widget_TradingPost_TierButton.K2Node_CustomEvent_TierNumber) = TierNumber;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost_TierButton.Widget_TradingPost_TierButton_C:ExecuteUbergraph_Widget_TradingPost_TierButton.K2Node_CustomEvent_tradingPost) = Tradingpost;
+L36:           this->ExecuteUbergraph_Widget_TradingPost_TierButton(15);
+============ END FUNCTION SetTierNumber ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_TradingPost_TierButton ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->mTierNum = mint32;
+L42:           FText mFText = KismetTextLibrary->Conv_IntToText(this->mTierNum, false, true, 1, 324);
+L113:          this->TierNumber->SetText(mFText);
+L158:          this->mTradingPost = mWidget_TradingPost;
+L177:          this->mSchematicList = this->mTradingPost->mSchematicList;
+L218:          this->mRecipePreview = this->mTradingPost->Widget_TradingPost_RecipePreview;
+L259:          bool mbool = KismetSystemLibrary->IsValid(this->mTradingPost->mCachedSchematicManager);
+L332:          if (!mbool) goto L776;
+L346:          this->mTradingPost->CheckIfTierIsFullyResearched(this->mTierNum, [ref] mbool1);
+L400:          this->IsFullyResearched = mbool1;
+L419:          this->SetLockedText();
+L433:          uint8 Temp_byte_Variable = 2;
+L453:          uint8 Temp_byte_Variable1 = 0;
+L473:          this->isSelectable([ref] mbool2);
+L496:          bool Temp_bool_Variable = mbool2;
+L515:          this->mLockedMessage->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L604:          uint8 Temp_byte_Variable2 = 0;
+L624:          uint8 Temp_byte_Variable3 = 2;
+L644:          this->isSelectable([ref] mbool3);
+L667:          bool Temp_bool_Variable1 = mbool3;
+L686:          this->TierButton->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint81;
+});
+L775:          goto ExecutionFlow.Pop();
+L776:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 853, UUID = 476447631, ExecutionFunction = "ExecuteUbergraph_Widget_TradingPost_TierButton", CallbackTarget = this));
+L852:          goto ExecutionFlow.Pop();
+L853:          goto L259;
+L858:          this->UpdateTier();
+L872:          this->Widget_ButtonShine->PlayShineAnim();
+L908:          goto ExecutionFlow.Pop();
+L909:          this->isSelectable([ref] mbool4);
+L932:          if (!mbool4) goto ExecutionFlow.Pop();
+L942:          goto L858;
+L947:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->anim_Locked, 0, 0, 0, 1);
+L993:          goto ExecutionFlow.Pop();
+L994:          this->LockText->SetVisibility(1);
+L1032:         goto ExecutionFlow.Pop();
+L1033:         this->LockText->SetVisibility(0);
+L1071:         goto ExecutionFlow.Pop();
+L1072:         this->isSelectable([ref] mbool5);
+L1095:         bool mbool6 = Not_PreBool(mbool5);
+L1124:         if (!mbool6) goto ExecutionFlow.Pop();
+L1134:         goto L1033;
+L1139:         goto L994;
+============ END FUNCTION ExecuteUbergraph_Widget_TradingPost_TierButton ==============

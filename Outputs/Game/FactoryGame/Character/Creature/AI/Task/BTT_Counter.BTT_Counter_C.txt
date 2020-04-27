@@ -1,0 +1,30 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Task/BTT_Counter.BTT_Counter_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveExecute ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_Counter.BTT_Counter_C:ExecuteUbergraph_BTT_Counter.K2Node_Event_OwnerActor) = OwnerActor;
+L18:           this->ExecuteUbergraph_BTT_Counter(10);
+============ END FUNCTION ReceiveExecute ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTT_Counter ==============
+L10:           int32 mint32 = Add_IntInt(this->mCurrent, 1);
+L52:           int32 Temp_int_Variable = mint32;
+L79:           this->mCurrent = Temp_int_Variable;
+L106:          BTFunctionLibrary->SetBlackboardValueAsInt(this, [ref] this->mCounterKey, Temp_int_Variable);
+L157:          bool mbool = Greater_IntInt(this->mCurrent, this->mMaxValue);
+L195:          bool mbool1 = Greater_IntInt(this->mMaxValue, 0);
+L229:          bool mbool2 = BooleanAND(mbool, mbool1);
+L267:          if (!mbool2) goto L355;
+L281:          this->mCurrent = 0;
+L304:          BTFunctionLibrary->SetBlackboardValueAsInt(this, [ref] this->mCounterKey, this->mCurrent);
+L355:          this->FinishExecute(true);
+============ END FUNCTION ExecuteUbergraph_BTT_Counter ==============

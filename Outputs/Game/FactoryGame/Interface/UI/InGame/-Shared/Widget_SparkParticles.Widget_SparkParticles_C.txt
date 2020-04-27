@@ -1,0 +1,52 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SparkParticles.Widget_SparkParticles_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CreateSparks ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SparkParticles.Widget_SparkParticles_C:ExecuteUbergraph_Widget_SparkParticles.K2Node_CustomEvent_NumberOfSparks) = NumberOfSparks;
+L18:           this->ExecuteUbergraph_Widget_SparkParticles(15);
+============ END FUNCTION CreateSparks ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSparkBounce ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SparkParticles.Widget_SparkParticles_C:ExecuteUbergraph_Widget_SparkParticles.K2Node_CustomEvent_Position) = Position;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SparkParticles.Widget_SparkParticles_C:ExecuteUbergraph_Widget_SparkParticles.K2Node_CustomEvent_Scale) = Scale;
+L36:           this->ExecuteUbergraph_Widget_SparkParticles(597);
+============ END FUNCTION OnSparkBounce ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SparkParticles ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           int32 Temp_int_Variable = 0;
+L38:           int32 mint32 = Subtract_IntInt(mint321, 1);
+L80:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L118:          if (!mbool) goto ExecutionFlow.Pop();
+L128:          ExecutionFlow.Push(L523);
+L133:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L157:          Widget_Sparks* mWidget_Sparks = WidgetBlueprintLibrary->Create(this, Widget_Sparks, mPlayerController);
+L218:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_Sparks, "mBounceOn", this->mBounceOn);
+L281:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_Sparks, "mMaxDistance", [ref] this->mMaxDistance);
+L344:          KismetSystemLibrary->SetFloatPropertyByName(mWidget_Sparks, "mSpeed", this->Speed);
+L407:          OverlaySlot* mOverlaySlot = this->Container->AddChildToOverlay(mWidget_Sparks);
+L458:          mFScriptDelegate->BindUFunction(this, OnSparkBounce);
+L481:          mWidget_Sparks->OnParticleBounce.AddUnique(mFScriptDelegate);
+L522:          goto ExecutionFlow.Pop();
+L523:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L565:          Temp_int_Variable = mint322;
+L592:          goto L38;
+L597:          Widget_SparkBounce* mWidget_SparkBounce = WidgetBlueprintLibrary->Create(this, Widget_SparkBounce, nullptr);
+L650:          OverlaySlot* mOverlaySlot1 = this->Container->AddChildToOverlay(mWidget_SparkBounce);
+L701:          mWidget_SparkBounce->SetRenderTranslation(mVector2D);
+L742:          mWidget_SparkBounce->SetRenderScale(mVector2D1);
+L783:          goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_SparkParticles ==============

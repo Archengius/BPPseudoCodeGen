@@ -1,0 +1,201 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Widget_Window.Widget_Window_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetDividerButtonSlotVisibility ==============
+L0:            bool mbool = this->ButtonSlot->HasAnyChildren();
+L42:           if (!mbool) goto L81;
+L56:           uint8 ReturnValue = 3;
+L76:           goto L101;
+L81:           ReturnValue = 1;
+============ END FUNCTION GetDividerButtonSlotVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNavigationVisibiliy ==============
+L0:            uint8 Temp_byte_Variable = 1;
+L20:           uint8 Temp_byte_Variable1 = 4;
+L40:           bool mbool = KismetTextLibrary->TextIsEmpty([ref] this->mNavigationWidget->mNavigationText);
+L113:          bool Temp_bool_Variable = mbool;
+L132:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetNavigationVisibiliy ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCloseButtonVisibility ==============
+L0:            uint8 Temp_byte_Variable = 4;
+L20:           uint8 Temp_byte_Variable1 = 1;
+L40:           bool Temp_bool_Variable = this->mShowCloseButton;
+L59:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetCloseButtonVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetInventoryBodyVisibility ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
+L79:           bool mbool = KismetSystemLibrary->IsValid(mFGGameUI);
+L130:          if (!mbool) goto L522;
+L144:          uint8 Temp_byte_Variable = 4;
+L164:          uint8 Temp_byte_Variable1 = 1;
+L184:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L208:          HUDHelpers->GetFGGameUI(mPlayerController1, this, [ref] mFGGameUI1);
+L263:          bool mbool1 = mFGGameUI1->GetShowInventory();
+L305:          int32 mint32 = this->InventorySlot->GetChildrenCount();
+L355:          bool mbool2 = Greater_IntInt(mint32, 0);
+L389:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L427:          bool Temp_bool_Variable = mbool3;
+L446:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+L517:          goto L542;
+L522:          ReturnValue = 1;
+============ END FUNCTION GetInventoryBodyVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTopButtonSlotVisibility ==============
+L0:            bool mbool = this->ButtonSlot->HasAnyChildren();
+L42:           if (!mbool) goto L81;
+L56:           uint8 ReturnValue = 0;
+L76:           goto L101;
+L81:           ReturnValue = 1;
+============ END FUNCTION GetTopButtonSlotVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDrop ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION OnDrop ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetTitle ==============
+L0:            this->mTitleText = Title;
+L27:           this->mTitleLabel->SetTitle(this->mTitleText);
+============ END FUNCTION SetTitle ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Window(10);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEscapePressed ==============
+L0:            this->ExecuteUbergraph_Widget_Window(121);
+============ END FUNCTION OnEscapePressed ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_Window(162);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mCloseButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Window(177);
+============ END FUNCTION BndEvt__mCloseButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Widget_Window.Widget_Window_C:ExecuteUbergraph_Widget_Window.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Widget_Window.Widget_Window_C:ExecuteUbergraph_Widget_Window.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_Window(182);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnConstructAnimFinished ==============
+L0:            this->ExecuteUbergraph_Widget_Window(939);
+============ END FUNCTION OnConstructAnimFinished ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Window ==============
+L10:           this->Construct();
+L20:           this->SetTitle(this->mTitleText);
+L43:           mFScriptDelegate->BindUFunction(this, OnConstructAnimFinished);
+L66:           this->BindToAnimationFinished(this->Widget_Anim_Up_Slide->EnableAnim, mFScriptDelegate);
+L116:          <End of Inlined Event Graph Function>;
+L121:          this->Widget_Anim_Up_Slide->CloseAnim();
+L157:          <End of Inlined Event Graph Function>;
+L162:          this->Destruct();
+L172:          <End of Inlined Event Graph Function>;
+L177:          goto L121;
+L182:          uint8 muint8 = this->GetInventoryBodyVisibility();
+L214:          this->InventorySlot->SetVisibility(muint8);
+L259:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L283:          HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
+L338:          bool mbool = KismetSystemLibrary->IsValid(mFGGameUI);
+L389:          if (!mbool) goto L980;
+L403:          int32 mint32 = this->InventorySlot->GetChildrenCount();
+L453:          bool mbool1 = EqualEqual_IntInt(mint32, 0);
+L487:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L511:          HUDHelpers->GetFGGameUI(mPlayerController1, this, [ref] mFGGameUI1);
+L566:          bool mbool2 = mFGGameUI1->GetWindowWantsInventoryAddon();
+L608:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L646:          bool mbool4 = BooleanAND(mbool3, this->mCanShowInventory);
+L684:          if (!mbool4) goto L980;
+L698:          mPlayerController1 = this->GetOwningPlayer();
+L722:          HUDHelpers->GetFGGameUI(mPlayerController1, this, [ref] mFGGameUI1);
+L777:          BP_GameUI* mBP_GameUI = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C>(mFGGameUI1);
+L813:          bool mbool5 = mBP_GameUI;
+L842:          if (!mbool5) goto L980;
+L856:          mBP_GameUI->CreateAddOnPlayerInventory(this->InventorySlot, [ref] mWidget_PlayerInventoryAddon);
+L910:          <End of Inlined Event Graph Function>;
+L915:          this->OnClose->ProcessMulticastDelegate();
+L934:          <End of Inlined Event Graph Function>;
+L939:          if (!this->Widget_Anim_Up_Slide->CloseAnimStarted) goto L980;
+L975:          goto L915;
+============ END FUNCTION ExecuteUbergraph_Widget_Window ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClose__DelegateSignature ==============
+============ END FUNCTION OnClose__DelegateSignature ==============

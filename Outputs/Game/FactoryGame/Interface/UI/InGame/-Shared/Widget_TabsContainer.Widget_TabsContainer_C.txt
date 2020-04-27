@@ -1,0 +1,258 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_TabsContainer.Widget_TabsContainer_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetActiveButton ==============
+L0:            ExecutionFlow.Push(L466);
+L5:            int32 Temp_int_Variable = 0;
+L28:           int32 mint32 = this->mContainer->GetChildrenCount();
+L78:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L116:          if (!mbool) goto ExecutionFlow.Pop();
+L126:          ExecutionFlow.Push(L392);
+L131:          Widget* mWidget = this->mContainer->GetChildAt(Temp_int_Variable);
+L182:          Widget_SlidingTabs_Button* mWidget_SlidingTabs_Button = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SlidingTabs_Button.Widget_SlidingTabs_Button_C>(mWidget);
+L218:          bool mbool1 = mWidget_SlidingTabs_Button;
+L247:          if (!mbool1) goto ExecutionFlow.Pop();
+L257:          mWidget = this->mContainer->GetChildAt(Temp_int_Variable);
+L308:          bool mbool2 = EqualEqual_ObjectObject(mWidget, ActiveButton);
+L346:          mWidget_SlidingTabs_Button->SetActive(mbool2);
+L391:          goto ExecutionFlow.Pop();
+L392:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L434:          Temp_int_Variable = mint321;
+L461:          goto L28;
+============ END FUNCTION SetActiveButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION IfButtonClicked ==============
+L0:            if (!this->mOverrideButtonFunctions) goto L37;
+L14:           this->SetActiveButton(Instigator);
+L37:           int32 mint32 = this->mContainer->GetChildIndex(Instigator);
+L96:           this->OnButtonClicked->ProcessMulticastDelegate(mint32);
+============ END FUNCTION IfButtonClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION IfButtonUnhovered ==============
+L0:            this->OnButtonUnhovered->ProcessMulticastDelegate(Insitagor->IsActive);
+============ END FUNCTION IfButtonUnhovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION IfButtonHovered ==============
+L0:            this->OnButtonHovered->ProcessMulticastDelegate(Instigator->IsActive);
+============ END FUNCTION IfButtonHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION GenerateButtons ==============
+L0:            ExecutionFlow.Push(L2735);
+L5:            int32 Temp_int_Variable = 0;
+L28:           bool mbool = KismetSystemLibrary->IsValid(this->mSlidingTabsWidget);
+L79:           bool mbool1 = BooleanOR(mbool, this->mOverrideButtonFunctions);
+L117:          bool Temp_bool_Variable1 = mbool1;
+L136:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mButtons);
+L195:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L237:          int32 LocalLastIndex = switch (Temp_bool_Variable1) {
+case false -> Temp_int_Variable;
+case true -> mint321;
+default -> mint322;
+};
+L308:          int32 Temp_int_Variable1 = 0;
+L331:          Temp_int_Variable = 0;
+L354:          mbool = KismetSystemLibrary->IsValid(this->mSlidingTabsWidget);
+L405:          mbool1 = BooleanOR(mbool, this->mOverrideButtonFunctions);
+L443:          Temp_bool_Variable1 = mbool1;
+L462:          mint32 = KismetArrayLibrary->Array_Length([ref] this->mButtons);
+L521:          mint321 = Subtract_IntInt(mint32, 1);
+L563:          bool mbool2 = LessEqual_IntInt(Temp_int_Variable1, switch (Temp_bool_Variable1) {
+case false -> Temp_int_Variable;
+case true -> mint321;
+default -> mint322;
+});
+L645:          if (!mbool2) goto L2573;
+L659:          ExecutionFlow.Push(L2661);
+L664:          int32 LocalIndex = Temp_int_Variable1;
+L691:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L715:          Widget_SlidingTabs_Button* mWidget_SlidingTabs_Button = WidgetBlueprintLibrary->Create(this, Widget_SlidingTabs_Button, mPlayerController);
+L776:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_SlidingTabs_Button, "mSlidingTabsWidget", this->mSlidingTabsWidget);
+L839:          Texture* Temp_object_Variable = default_tab_icon;
+L858:          KismetArrayLibrary->Array_Get([ref] this->mButtons, Temp_int_Variable1, [ref] mImageAndText);
+L917:          bool mbool3 = KismetSystemLibrary->IsValid(mImageAndText.Texture_4_7082C106445A08AB1E68E496718E5427);
+L977:          bool Temp_bool_Variable = mbool3;
+L996:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_SlidingTabs_Button, "mIcon", switch (Temp_bool_Variable) {
+case false -> Temp_object_Variable;
+case true -> mImageAndText.Texture_4_7082C106445A08AB1E68E496718E5427;
+default -> mTexture;
+});
+L1112:         KismetArrayLibrary->Array_Get([ref] this->mButtons, Temp_int_Variable1, [ref] mImageAndText);
+L1171:         KismetSystemLibrary->SetTextPropertyByName(mWidget_SlidingTabs_Button, "mTitle", [ref] mImageAndText.Text_5_FD671CE446AF05CA543E228C049AB0F9);
+L1243:         KismetSystemLibrary->SetIntPropertyByName(mWidget_SlidingTabs_Button, "mTargetIndex", LocalIndex);
+L1306:         KismetSystemLibrary->SetBoolPropertyByName(mWidget_SlidingTabs_Button, "mOverrideButtonFunction", this->mOverrideButtonFunctions);
+L1369:         CanvasPanelSlot* mCanvasPanelSlot = this->mContainer->AddChildToCanvas(mWidget_SlidingTabs_Button);
+L1420:         bool mbool4 = Greater_IntInt(LocalLastIndex, 0);
+L1454:         bool Temp_bool_Variable3 = mbool4;
+L1473:         BreakVector2D(this->mButtonSize, [ref] mfloat, [ref] mfloat1);
+L1510:         Vector2D mVector2D = MakeVector2D(0, mfloat1);
+L1552:         mCanvasPanelSlot->SetSize(switch (Temp_bool_Variable3) {
+case false -> mVector2D;
+case true -> this->mButtonSize;
+default -> mVector2D1;
+});
+L1637:         BreakVector2D(this->mButtonSize, [ref] mfloat2, [ref] mfloat3);
+L1674:         float mfloat4 = Conv_IntToFloat(LocalIndex);
+L1711:         float mfloat5 = Multiply_FloatFloat(mfloat2, mfloat4);
+L1757:         Vector2D mVector2D2 = MakeVector2D(mfloat5, 0);
+L1799:         mCanvasPanelSlot->SetPosition(mVector2D2);
+L1840:         int32 mint323 = Multiply_IntInt(LocalIndex, -1);
+L1882:         mCanvasPanelSlot->SetZOrder(mint323);
+L1923:         Vector2D Temp_struct_Variable = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0);
+L1965:         Vector2D Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.Vector2D(X = 1, Y = 0);
+L2007:         bool mbool5 = Greater_IntInt(LocalLastIndex, 0);
+L2041:         bool Temp_bool_Variable2 = mbool5;
+L2060:         mAnchors.Minimum = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0);
+L2111:         mAnchors.Maximum = switch (Temp_bool_Variable2) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mVector2D3;
+};
+L2191:         mCanvasPanelSlot->SetAnchors(mAnchors);
+L2232:         mFScriptDelegate->BindUFunction(this, IfButtonHovered);
+L2255:         mWidget_SlidingTabs_Button->OnHovered.AddUnique(mFScriptDelegate);
+L2296:         mFScriptDelegate1->BindUFunction(this, IfButtonUnhovered);
+L2319:         mWidget_SlidingTabs_Button->OnUnhovered.AddUnique(mFScriptDelegate1);
+L2360:         mFScriptDelegate2->BindUFunction(this, IfButtonClicked);
+L2383:         mWidget_SlidingTabs_Button->OnClicked.AddUnique(mFScriptDelegate2);
+L2424:         bool mbool6 = Greater_IntInt(LocalLastIndex, 0);
+L2458:         bool mbool7 = Not_PreBool(mbool6);
+L2487:         if (!mbool7) goto ExecutionFlow.Pop();
+L2497:         mWidget_SlidingTabs_Button->SetBackgroundVisibility(false);
+L2534:         mWidget_SlidingTabs_Button->SetVisibility(3);
+L2572:         goto ExecutionFlow.Pop();
+L2573:         bool mbool8 = Greater_IntInt(LocalLastIndex, 0);
+L2607:         if (!mbool8) goto L2641;
+L2621:         this->OnTabsGenerated->ProcessMulticastDelegate();
+L2640:         goto ExecutionFlow.Pop();
+L2641:         this->OnNoTabsGenerated->ProcessMulticastDelegate();
+L2660:         goto ExecutionFlow.Pop();
+L2661:         int32 mint324 = Add_IntInt(Temp_int_Variable1, 1);
+L2703:         Temp_int_Variable1 = mint324;
+L2730:         goto L331;
+============ END FUNCTION GenerateButtons ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_TabsContainer.Widget_TabsContainer_C:ExecuteUbergraph_Widget_TabsContainer.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_TabsContainer(589);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_TabsContainer(939);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_TabsContainer(944);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_TabsContainer ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L243);
+L20:           Widget* mWidget = this->mContainer->GetChildAt(Temp_int_Variable);
+L71:           Widget_SlidingTabs_Button* mWidget_SlidingTabs_Button = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SlidingTabs_Button.Widget_SlidingTabs_Button_C>(mWidget);
+L107:          bool mbool = mWidget_SlidingTabs_Button;
+L136:          if (!mbool) goto ExecutionFlow.Pop();
+L146:          mWidget_SlidingTabs_Button->OnHovered->Clear();
+L178:          mWidget_SlidingTabs_Button->OnUnhovered->Clear();
+L210:          mWidget_SlidingTabs_Button->OnClicked->Clear();
+L242:          goto ExecutionFlow.Pop();
+L243:          int32 mint32 = Add_IntInt(Temp_int_Variable, 1);
+L285:          int32 Temp_int_Variable = mint32;
+L312:          int32 mint321 = this->mContainer->GetChildrenCount();
+L362:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint321);
+L400:          if (!mbool1) goto ExecutionFlow.Pop();
+L410:          goto L15;
+L415:          Widget* mWidget1 = this->mContainer->GetChildAt(0);
+L462:          Widget_SlidingTabs_Button* mWidget_SlidingTabs_Button1 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SlidingTabs_Button.Widget_SlidingTabs_Button_C>(mWidget1);
+L498:          bool mbool2 = mWidget_SlidingTabs_Button1;
+L527:          if (!mbool2) goto ExecutionFlow.Pop();
+L537:          this->SetActiveButton(mWidget_SlidingTabs_Button1);
+L560:          goto ExecutionFlow.Pop();
+L561:          Temp_int_Variable = 0;
+L584:          goto L312;
+L589:          this->Init();
+L603:          goto ExecutionFlow.Pop();
+L604:          this->mContainer->ClearChildren();
+L640:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->mButtons);
+L699:          bool mbool3 = Greater_IntInt(mint322, 1);
+L733:          if (!mbool3) goto L766;
+L747:          this->GenerateButtons();
+L761:          goto L415;
+L766:          mImageAndText.Texture_4_7082C106445A08AB1E68E496718E5427 = 0_White;
+L794:          mImageAndText.Text_5_FD671CE446AF05CA543E228C049AB0F9 = "[object Object]";
+L866:          int32 mint323 = KismetArrayLibrary->Array_Add([ref] this->mButtons, [ref] mImageAndText);
+L934:          goto L747;
+L939:          goto L604;
+L944:          goto L561;
+============ END FUNCTION ExecuteUbergraph_Widget_TabsContainer ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnTabsGenerated__DelegateSignature ==============
+============ END FUNCTION OnTabsGenerated__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnNoTabsGenerated__DelegateSignature ==============
+============ END FUNCTION OnNoTabsGenerated__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnButtonClicked__DelegateSignature ==============
+============ END FUNCTION OnButtonClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnButtonUnhovered__DelegateSignature ==============
+============ END FUNCTION OnButtonUnhovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnButtonHovered__DelegateSignature ==============
+============ END FUNCTION OnButtonHovered__DelegateSignature ==============

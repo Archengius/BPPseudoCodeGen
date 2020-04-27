@@ -1,0 +1,451 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_RecipeButton.Widget_RecipeButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ClearButtonSelection ==============
+L0:            ExecutionFlow.Push(L436);
+L5:            int32 Temp_int_Variable = 0;
+L28:           PanelWidget* mPanelWidget = this->GetParent();
+L48:           int32 mint32 = mPanelWidget->GetChildrenCount();
+L98:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L136:          if (!mbool) goto L357;
+L150:          ExecutionFlow.Push(L362);
+L155:          PanelWidget* mPanelWidget1 = this->GetParent();
+L175:          Widget* mWidget = mPanelWidget1->GetChildAt(Temp_int_Variable);
+L226:          Widget_RecipeButton* mWidget_RecipeButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_RecipeButton.Widget_RecipeButton_C>(mWidget);
+L262:          bool mbool1 = mWidget_RecipeButton;
+L291:          if (!mbool1) goto ExecutionFlow.Pop();
+L301:          mWidget_RecipeButton->Widget_ListButton->mIsSelected = false;
+L356:          goto ExecutionFlow.Pop();
+L357:          <End of Inlined Event Graph Function>;
+L362:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L404:          Temp_int_Variable = mint321;
+L431:          goto L28;
+============ END FUNCTION ClearButtonSelection ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCustomTooltip ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController);
+L85:           TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(this->mRecipeClass, false);
+L145:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L200:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_Tooltip, "mItemDescriptor", [ref] mItemAmount);
+L263:          Widget* ReturnValue = mWidget_Tooltip;
+============ END FUNCTION GetCustomTooltip ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRightClickMenuVisibility ==============
+L0:            bool mbool = this->mRightClickMenu->IsOpen();
+L42:           if (!mbool) goto L81;
+L56:           uint8 ReturnValue = 0;
+L76:           goto L101;
+L81:           ReturnValue = 3;
+============ END FUNCTION GetRightClickMenuVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreateRightClickMenu ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           Widget_BuildMenu_RightClickMenu* mWidget_BuildMenu_RightClickMenu = WidgetBlueprintLibrary->Create(this, Widget_BuildMenu_RightClickMenu, mPlayerController);
+L85:           KismetSystemLibrary->SetClassPropertyByName(mWidget_BuildMenu_RightClickMenu, "mRecipe", this->mRecipeClass);
+L148:          mFScriptDelegate->BindUFunction(this, UpdateWindowWidgetOffset_Event);
+L171:          mWidget_BuildMenu_RightClickMenu->UpdateWindowWidgetOffset.AddUnique(mFScriptDelegate);
+L212:          Widget* ReturnValue = mWidget_BuildMenu_RightClickMenu;
+============ END FUNCTION CreateRightClickMenu ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonHoverColor ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->Workbench);
+L51:           if (!mbool) goto L433;
+L65:           bool mbool1 = this->IsHovered();
+L89:           if (!mbool1) goto L190;
+L103:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L158:          LinearColor ReturnValue = mLinearColor;
+L185:          goto L433;
+L190:          bool mbool2 = EqualEqual_ClassClass(this->Workbench->mCurrentRecipe, this->mRecipeClass);
+L250:          if (!mbool2) goto L351;
+L264:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor1, [ref] mSlateColor1);
+L319:          ReturnValue = mLinearColor1;
+L346:          goto L433;
+L351:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor2, [ref] mLinearColor2);
+L406:          ReturnValue = mLinearColor2;
+============ END FUNCTION GetButtonHoverColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTextHoverColor ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->Workbench);
+L51:           if (!mbool) goto L370;
+L65:           bool mbool1 = EqualEqual_ClassClass(this->Workbench->mCurrentRecipe, this->mRecipeClass);
+L125:          bool mbool2 = this->IsHovered();
+L149:          bool mbool3 = BooleanOR(mbool2, mbool1);
+L187:          if (!mbool3) goto L288;
+L201:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L256:          SlateColor ReturnValue = mSlateColor;
+L283:          goto L370;
+L288:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L343:          ReturnValue = mSlateColor1;
+============ END FUNCTION GetTextHoverColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsButtonEnabled ==============
+L0:            TSubclassOf<FGResearchRecipe> mTSubclassOf<FGResearchRecipe> = ClassCast<Class /Script/FactoryGame.FGResearchRecipe>(this->mRecipeClass);
+L36:           bool mbool = mTSubclassOf<FGResearchRecipe>;
+L65:           if (!mbool) goto L476;
+L79:           ResearchRecipeReward mResearchRecipeReward = FGResearchRecipe->GetResearcResults(mTSubclassOf<FGResearchRecipe>);
+L138:          bool mbool1 = FGResearchRecipe->IsValidResearchRecipeReward(mResearchRecipeReward);
+L189:          if (!mbool1) goto L465;
+L203:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L246:          FGRecipeManager* mFGRecipeManager = FGRecipeManager->Get(mGameStateBase);
+L297:          KismetArrayLibrary->Array_Get([ref] mResearchRecipeReward.ResearchRecipes, 0, [ref] mTSubclassOf<FGResearchRecipe>1);
+L361:          bool mbool2 = mFGRecipeManager->IsRecipeAvailable(mTSubclassOf<FGResearchRecipe>1);
+L412:          bool mbool3 = Not_PreBool(mbool2);
+L441:          bool ReturnValue = mbool3;
+L460:          goto L476;
+L465:          ReturnValue = true;
+============ END FUNCTION IsButtonEnabled ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNumCanProduce ==============
+L0:            ExecutionFlow.Push(L1706);
+L5:            int32 minRecipesThatCanBeProduced = 999999;
+L28:           int32 Temp_int_Loop_Counter_Variable = 0;
+L51:           int32 Temp_int_Array_Index_Variable = 0;
+L74:           TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mRecipeClass);
+L133:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L192:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L230:          if (!mbool) goto L1235;
+L244:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L271:          ExecutionFlow.Push(L1632);
+L276:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L296:          mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mRecipeClass);
+L355:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L414:          HUDHelpers->GetNumItemsFromPlayerInventory(mPawn, mItemAmount.ItemClass, this, [ref] mint321);
+L487:          int32 NumItems = mint321;
+L514:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L538:          FGCentralStorageSubsystem* mFGCentralStorageSubsystem = FGCentralStorageSubsystem->Get(mPlayerController);
+L589:          bool mbool1 = KismetSystemLibrary->IsValid(mFGCentralStorageSubsystem);
+L640:          if (!mbool1) goto L988;
+L654:          mPlayerController = this->GetOwningPlayer();
+L678:          mFGCentralStorageSubsystem = FGCentralStorageSubsystem->Get(mPlayerController);
+L729:          mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mRecipeClass);
+L788:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L847:          int32 mint322 = mFGCentralStorageSubsystem->GetNumItemsFromCentralStorage(mItemAmount.ItemClass);
+L915:          int32 mint323 = Add_IntInt(mint322, NumItems);
+L961:          NumItems = mint323;
+L988:          mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mRecipeClass);
+L1047:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L1106:         int32 mint324 = Divide_IntInt(NumItems, mItemAmount.amount);
+L1161:         int32 mint325 = Min(mint324, minRecipesThatCanBeProduced);
+L1207:         minRecipesThatCanBeProduced = mint325;
+L1234:         goto ExecutionFlow.Pop();
+L1235:         TArray<ItemAmount> mTArray<ItemAmount>1 = FGRecipe->GetProducts(this->mRecipeClass, false);
+L1295:         int32 mint326 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>1);
+L1354:         bool mbool2 = Greater_IntInt(mint326, 0);
+L1388:         if (!mbool2) goto L1604;
+L1402:         TArray<ItemAmount> mTArray<ItemAmount>2 = FGRecipe->GetProducts(this->mRecipeClass, false);
+L1462:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>2, 0, [ref] mItemAmount1);
+L1517:         int32 mint327 = Multiply_IntInt(mItemAmount1.amount, minRecipesThatCanBeProduced);
+L1572:         int32 Result = mint327;
+L1599:         <End of Inlined Event Graph Function>;
+L1604:         Result = 0;
+L1627:         <End of Inlined Event Graph Function>;
+L1632:         int32 mint328 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1674:         Temp_int_Loop_Counter_Variable = mint328;
+L1701:         goto L74;
+============ END FUNCTION GetNumCanProduce ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNumCanProduceVisibility ==============
+L0:            uint8 Temp_byte_Variable = 2;
+L20:           uint8 Temp_byte_Variable1 = 0;
+L40:           this->GetNumCanProduce([ref] mint32);
+L63:           bool mbool = EqualEqual_IntInt(mint32, 0);
+L97:           bool Temp_bool_Variable = mbool;
+L116:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetNumCanProduceVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNumCanProduceText ==============
+L0:            int32 minRecipesThatCanBeProduced = 0;
+L23:           this->GetNumCanProduce([ref] mint32);
+L46:           mFormatArgumentData.ArgumentName = "0";
+L76:           mFormatArgumentData.ArgumentValueType = 0;
+L105:          mFormatArgumentData.ArgumentValue = ;
+L134:          mFormatArgumentData.ArgumentValueInt = mint32;
+L170:          mFormatArgumentData.ArgumentValueFloat = 0;
+L202:          mFormatArgumentData.ArgumentValueGender = 0;
+L231:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L251:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L358:          FText ReturnValue = mFText;
+============ END FUNCTION GetNumCanProduceText ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckIngredients ==============
+L0:            ExecutionFlow.Push(L732);
+L5:            bool Temp_bool_True_if_break_was_hit_Variable = false;
+L16:           int32 Temp_int_Loop_Counter_Variable = 0;
+L39:           int32 Temp_int_Array_Index_Variable = 0;
+L62:           bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L91:           TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mRecipeClass);
+L150:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L209:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L247:          bool mbool2 = BooleanAND(mbool, mbool1);
+L285:          if (!mbool2) goto ExecutionFlow.Pop();
+L295:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L322:          ExecutionFlow.Push(L646);
+L327:          mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mRecipeClass);
+L386:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L445:          this->mItemAmount = mItemAmount;
+L472:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L492:          HUDHelpers->GetNumItemsFromPlayerInventory(mPawn, this->mItemAmount.ItemClass, this, [ref] mint321);
+L565:          bool mbool3 = GreaterEqual_IntInt(mint321, this->mItemAmount.amount);
+L612:          this->isAffordable = mbool3;
+L631:          if (!this->isAffordable) goto L720;
+L645:          goto ExecutionFlow.Pop();
+L646:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L688:          Temp_int_Loop_Counter_Variable = mint322;
+L715:          goto L62;
+L720:          Temp_bool_True_if_break_was_hit_Variable = true;
+L731:          goto ExecutionFlow.Pop();
+============ END FUNCTION CheckIngredients ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRecipeIcon ==============
+L0:            TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(this->mRecipeClass, true);
+L60:           KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L115:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mItemAmount.ItemClass);
+L175:          mSlateBrush.ImageSize = this->Widget_ListButton->mItemImageBrush->Brush.ImageSize;
+L264:          mSlateBrush.Margin = this->Widget_ListButton->mItemImageBrush->Brush.Margin;
+L353:          mSlateBrush.TintColor = this->Widget_ListButton->mItemImageBrush->Brush.TintColor;
+L442:          mSlateBrush.ResourceObject = mTexture2D;
+L470:          mSlateBrush.DrawAs = this->Widget_ListButton->mItemImageBrush->Brush.DrawAs;
+L559:          mSlateBrush.Tiling = this->Widget_ListButton->mItemImageBrush->Brush.Tiling;
+L648:          mSlateBrush.Mirroring = this->Widget_ListButton->mItemImageBrush->Brush.Mirroring;
+L737:          SlateBrush ReturnValue = mSlateBrush;
+============ END FUNCTION GetRecipeIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIconColor ==============
+L0:            if (!this->isAffordable) goto L71;
+L14:           LinearColor ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L66:           goto L123;
+L71:           ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 0.5);
+============ END FUNCTION GetIconColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonDown ==============
+L0:            PointerEvent localMouseEvent = MouseEvent;
+L27:           bool mbool = KismetInputLibrary->PointerEvent_IsMouseButtonDown([ref] localMouseEvent, ScriptStruct /Script/InputCore.Key(KeyName = "RightMouseButton"));
+L105:          if (!mbool) goto L234;
+L119:          this->mRightClickMenu->ToggleOpen(false);
+L152:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L202:          EventReply ReturnValue = mEventReply;
+L229:          goto L422;
+L234:          bool mbool1 = EqualEqual_ClassClass(this->Workbench->mCurrentRecipe, this->mRecipeClass);
+L294:          if (!mbool1) goto L313;
+L308:          goto L119;
+L313:          this->mRightClickMenu->Close();
+L345:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L395:          ReturnValue = mEventReply1;
+============ END FUNCTION OnMouseButtonDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRecipeDisplayName ==============
+L0:            FText mFText = FGRecipe->GetRecipeName(this->mRecipeClass);
+L59:           FText ReturnValue = mFText;
+============ END FUNCTION GetRecipeDisplayName ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_RecipeButton(53);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_RecipeButton.Widget_RecipeButton_C:ExecuteUbergraph_Widget_RecipeButton.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Widget_RecipeButton.Widget_RecipeButton_C:ExecuteUbergraph_Widget_RecipeButton.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_RecipeButton(367);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked ==============
+L0:            this->ExecuteUbergraph_Widget_RecipeButton(1423);
+============ END FUNCTION OnClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHovered ==============
+L0:            this->ExecuteUbergraph_Widget_RecipeButton(1475);
+============ END FUNCTION OnHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPressed ==============
+L0:            this->ExecuteUbergraph_Widget_RecipeButton(1480);
+============ END FUNCTION OnPressed ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseLeave ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_RecipeButton.Widget_RecipeButton_C:ExecuteUbergraph_Widget_RecipeButton.K2Node_Event_MouseEvent) = MouseEvent;
+L18:           this->ExecuteUbergraph_Widget_RecipeButton(1485);
+============ END FUNCTION OnMouseLeave ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateWindowWidgetOffset_Event ==============
+L0:            this->ExecuteUbergraph_Widget_RecipeButton(1522);
+============ END FUNCTION UpdateWindowWidgetOffset_Event ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_ListButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Widget_RecipeButton.Widget_RecipeButton_C:ExecuteUbergraph_Widget_RecipeButton.K2Node_ComponentBoundEvent_Index) = index;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Widget_RecipeButton.Widget_RecipeButton_C:ExecuteUbergraph_Widget_RecipeButton.K2Node_ComponentBoundEvent_ListButton) = ListButton;
+L36:           this->ExecuteUbergraph_Widget_RecipeButton(1672);
+============ END FUNCTION BndEvt__Widget_ListButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_RecipeButton ==============
+L10:           this->mContent->SetVisibility(0);
+L48:           <End of Inlined Event Graph Function>;
+L53:           this->Construct();
+L63:           this->SetButton(this->Widget_ListButton->mRecipeButton);
+L104:          mFScriptDelegate->BindUFunction(this, OnClicked);
+L127:          this->Widget_ListButton->mRecipeButton->OnClicked.AddUnique(mFScriptDelegate);
+L190:          mFScriptDelegate1->BindUFunction(this, OnHovered);
+L213:          this->Widget_ListButton->mRecipeButton->OnHovered.AddUnique(mFScriptDelegate1);
+L276:          mFScriptDelegate2->BindUFunction(this, OnPressed);
+L299:          this->Widget_ListButton->mRecipeButton->OnPressed.AddUnique(mFScriptDelegate2);
+L362:          <End of Inlined Event Graph Function>;
+L367:          this->Tick(mGeometry, mfloat);
+L395:          this->CheckIngredients();
+L409:          FText mFText = this->GetNumCanProduceText();
+L441:          FText mFText1 = FGRecipe->GetRecipeName(this->mRecipeClass);
+L500:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(this->mRecipeClass, true);
+L560:          uint8 muint8 = this->GetNumCanProduceVisibility();
+L592:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L647:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mItemAmount.ItemClass);
+L707:          this->Widget_ListButton->UpdateButton(mTexture2D, mFText1, mFText, muint8, 0, );
+L783:          if (!this->isAffordable) goto L890;
+L797:          this->Widget_ListButton->mItemImageBrush->SetColorAndOpacity(ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1));
+L885:          goto L10;
+L890:          this->Widget_ListButton->mItemImageBrush->SetColorAndOpacity(ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 0.3499999940395355));
+L978:          uint8 Temp_byte_Variable = 1;
+L998:          uint8 Temp_byte_Variable1 = 0;
+L1018:         bool Temp_bool_Variable = this->mHideIfUnaffordable;
+L1037:         this->mContent->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint81;
+});
+L1126:         <End of Inlined Event Graph Function>;
+L1131:         this->Workbench->SetSelectedRecipe(this->mRecipeClass);
+L1176:         <End of Inlined Event Graph Function>;
+L1181:         bool mbool = KismetSystemLibrary->IsValid(this->Workbench);
+L1232:         if (!mbool) goto L1692;
+L1246:         goto L1131;
+L1251:         Pawn* mPawn = this->GetOwningPlayerPawn();
+L1271:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_MouseOver, mPawn, true);
+L1332:         <End of Inlined Event Graph Function>;
+L1337:         Pawn* mPawn1 = this->GetOwningPlayerPawn();
+L1357:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_Select, mPawn1, true);
+L1418:         <End of Inlined Event Graph Function>;
+L1423:         this->ClearButtonSelection();
+L1437:         this->Widget_ListButton->mIsSelected = true;
+L1470:         goto L1181;
+L1475:         goto L1251;
+L1480:         goto L1337;
+L1485:         this->mRightClickMenu->Close();
+L1517:         <End of Inlined Event Graph Function>;
+L1522:         bool mbool1 = KismetSystemLibrary->IsValid(this->Workbench->Manufacturing Container);
+L1595:         if (!mbool1) goto L1692;
+L1609:         this->Workbench->Manufacturing Container->SetWindowAlignment();
+L1667:         <End of Inlined Event Graph Function>;
+L1672:         this->OnRecipeButtonClicked->ProcessMulticastDelegate(this);
+============ END FUNCTION ExecuteUbergraph_Widget_RecipeButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRecipeButtonClicked__DelegateSignature ==============
+============ END FUNCTION OnRecipeButtonClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateWindowWidgetOffset__DelegateSignature ==============
+============ END FUNCTION UpdateWindowWidgetOffset__DelegateSignature ==============

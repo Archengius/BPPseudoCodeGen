@@ -1,0 +1,300 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/Chainsaw/Equip_Chainsaw.Equip_Chainsaw_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CanStartSawing ==============
+L0:            bool mbool = EqualEqual_ByteByte(this->mCurrentState, 1);
+L31:           bool ReturnValue = mbool;
+============ END FUNCTION CanStartSawing ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateAttachmentState ==============
+L0:            bool mbool = NotEqual_ByteByte(ChainsawState, this->mCurrentState);
+L38:           bool mbool1 = BooleanOR(mbool, ForceUpdate);
+L76:           if (!mbool1) goto L177;
+L90:           int32 mint32 = Conv_ByteToInt(ChainsawState);
+L127:          this->Server_UpdateAttachmentUseState(mint32);
+L150:          this->mCurrentState = ChainsawState;
+============ END FUNCTION UpdateAttachmentState ==============
+
+
+
+
+
+============ BEGIN FUNCTION InterpSawProgress ==============
+L0:            float mfloat = this->SawProgress();
+L28:           bool mbool = Greater_FloatFloat(mfloat, this->mInterpSawProgress);
+L66:           if (!mbool) goto L182;
+L80:           float mfloat1 = this->SawProgress();
+L108:          float mfloat2 = FMin(mfloat1, 0.949999988079071);
+L150:          this->mInterpSawProgress = mfloat2;
+L177:          <End of Inlined Event Graph Function>;
+L182:          float mfloat3 = FInterpTo_Constant(this->mInterpSawProgress, 0, DeltaTime, 2);
+L238:          this->mInterpSawProgress = mfloat3;
+============ END FUNCTION InterpSawProgress ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/Chainsaw/Equip_Chainsaw.Equip_Chainsaw_C:ExecuteUbergraph_Equip_Chainsaw.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_Equip_Chainsaw(4917);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_Chainsaw(4912);
+============ END FUNCTION WasEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasUnEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_Chainsaw(4892);
+============ END FUNCTION WasUnEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Equip_Chainsaw ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_EngageToIdle, this, true);
+L68:           this->mPlayingSound = true;
+L79:           this->mPreviousAudioState = this->mCurrentAudioState;
+L106:          this->mCurrentAudioState = 1;
+L126:          goto ExecutionFlow.Pop();
+L127:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_EngageToIdleToggle, this, true);
+L180:          goto L68;
+L185:          ExecutionFlow.Push(L798);
+L190:          ExecutionFlow.Push(L562);
+L195:          FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
+L215:          SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L257:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L299:          this->mAnim1pInstance = mAnimInstance;
+L318:          bool mbool = this->IsSawEngaged();
+L338:          if (!mbool) goto L1148;
+L352:          bool mbool1 = Greater_FloatFloat(this->mInterpSawProgress, 0);
+L386:          if (!mbool1) goto L1456;
+L400:          bool mbool2 = this->mAnim1pInstance->Montage_IsPlaying(ChainsawSawingComplete_01_Montage);
+L451:          if (!mbool2) goto L1872;
+L465:          float mfloat = Multiply_FloatFloat(this->mInterpSawProgress, this->mMontageLength);
+L511:          this->mAnim1pInstance->Montage_SetPosition(ChainsawSawingComplete_01_Montage, mfloat);
+L561:          goto ExecutionFlow.Pop();
+L562:          bool mbool3 = this->IsSawEngaged();
+L582:          bool mbool4 = this->IsSawing();
+L602:          bool mbool5 = BooleanAND(mbool4, mbool3);
+L640:          if (!mbool5) goto L674;
+L654:          ExecutionFlow.Push(L2232);
+L659:          if (!Temp_bool_Has_Been_Initd_Variable1) goto L2412;
+L673:          goto ExecutionFlow.Pop();
+L674:          bool mbool6 = KismetSystemLibrary->IsValid(this->mSawingVfx);
+L725:          if (!mbool6) goto L775;
+L739:          this->mSawingVfx->Deactivate();
+L775:          bool Temp_bool_IsClosed_Variable1 = false;
+L786:          bool Temp_bool_Has_Been_Initd_Variable1 = true;
+L797:          goto ExecutionFlow.Pop();
+L798:          bool mbool7 = this->HasAnyFuel();
+L818:          if (!mbool7) goto L980;
+L832:          if (!this->mPlayingSound) goto L847;
+L846:          goto ExecutionFlow.Pop();
+L847:          ExecutionFlow.Push(L867);
+L852:          if (!Temp_bool_Has_Been_Initd_Variable2) goto L2437;
+L866:          goto ExecutionFlow.Pop();
+L867:          if (!Temp_bool_IsClosed_Variable2) goto L882;
+L881:          goto ExecutionFlow.Pop();
+L882:          bool Temp_bool_IsClosed_Variable2 = true;
+L893:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_Idle_loop, this, true);
+L946:          this->mPlayingSound = true;
+L957:          bool Temp_bool_IsClosed_Variable = false;
+L968:          bool Temp_bool_Has_Been_Initd_Variable = true;
+L979:          goto ExecutionFlow.Pop();
+L980:          if (!this->mPlayingSound) goto ExecutionFlow.Pop();
+L990:          ExecutionFlow.Push(L1035);
+L995:          if (!Temp_bool_Has_Been_Initd_Variable) goto L1010;
+L1009:         goto ExecutionFlow.Pop();
+L1010:         Temp_bool_Has_Been_Initd_Variable = true;
+L1021:         if (!false) goto ExecutionFlow.Pop();
+L1023:         Temp_bool_IsClosed_Variable = true;
+L1034:         goto ExecutionFlow.Pop();
+L1035:         if (!Temp_bool_IsClosed_Variable) goto L1050;
+L1049:         goto ExecutionFlow.Pop();
+L1050:         Temp_bool_IsClosed_Variable = true;
+L1061:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Stop_E_ChainSawRework_All, this, true);
+L1114:         this->mPlayingSound = false;
+L1125:         Temp_bool_IsClosed_Variable2 = false;
+L1136:         bool Temp_bool_Has_Been_Initd_Variable2 = true;
+L1147:         goto ExecutionFlow.Pop();
+L1148:         this->mAnim1pInstance->Montage_Stop(0.6000000238418579, ChainsawSawing_01_Montage);
+L1194:         this->mAnim1pInstance->Montage_Stop(0.6000000238418579, ChainsawSawingComplete_01_Montage);
+L1240:         this->UpdateAttachmentState(1, false);
+L1257:         bool mbool8 = EqualEqual_ByteByte(this->mCurrentAudioState, 1);
+L1288:         if (!mbool8) goto L1303;
+L1302:         goto ExecutionFlow.Pop();
+L1303:         bool mbool9 = EqualEqual_ByteByte(this->mCurrentAudioState, 3);
+L1334:         if (!mbool9) goto L1406;
+L1348:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_SawToIdle, this, true);
+L1401:         goto L68;
+L1406:         bool mbool10 = EqualEqual_ByteByte(this->mPreviousAudioState, 3);
+L1437:         if (!mbool10) goto L127;
+L1451:         goto L15;
+L1456:         bool mbool11 = this->mAnim1pInstance->Montage_IsPlaying(ChainsawSawing_01_Montage);
+L1507:         if (!mbool11) goto L1522;
+L1521:         goto ExecutionFlow.Pop();
+L1522:         float mfloat1 = this->mAnim1pInstance->Montage_Play(ChainsawSawing_01_Montage, 1, 0, 0, true);
+L1594:         this->UpdateAttachmentState(2, false);
+L1611:         bool mbool12 = EqualEqual_ByteByte(this->mCurrentAudioState, 2);
+L1642:         if (!mbool12) goto L1657;
+L1656:         goto ExecutionFlow.Pop();
+L1657:         bool mbool13 = EqualEqual_ByteByte(this->mCurrentAudioState, 3);
+L1688:         if (!mbool13) goto L1814;
+L1702:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_SawToEngage, this, true);
+L1755:         this->mPlayingSound = true;
+L1766:         this->mPreviousAudioState = this->mCurrentAudioState;
+L1793:         this->mCurrentAudioState = 2;
+L1813:         goto ExecutionFlow.Pop();
+L1814:         AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_IdleToEngage, this, true);
+L1867:         goto L1755;
+L1872:         float mfloat2 = this->mAnim1pInstance->Montage_Play(ChainsawSawingComplete_01_Montage, 1, 0, 0, true);
+L1944:         this->mMontageLength = mfloat2;
+L1971:         bool mbool14 = EqualEqual_ByteByte(this->mCurrentAudioState, 3);
+L2002:         if (!mbool14) goto L2017;
+L2016:         goto ExecutionFlow.Pop();
+L2017:         bool mbool15 = EqualEqual_ByteByte(this->mCurrentAudioState, 2);
+L2048:         if (!mbool15) goto L2174;
+L2062:         AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_EngageToSaw, this, true);
+L2115:         this->mPlayingSound = true;
+L2126:         this->mPreviousAudioState = this->mCurrentAudioState;
+L2153:         this->mCurrentAudioState = 3;
+L2173:         goto ExecutionFlow.Pop();
+L2174:         AkComponent* mAkComponent8 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_IdleToSaw, this, true);
+L2227:         goto L2115;
+L2232:         if (!Temp_bool_IsClosed_Variable1) goto L2247;
+L2246:         goto ExecutionFlow.Pop();
+L2247:         Temp_bool_IsClosed_Variable1 = true;
+L2258:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(SawingTree_01, this->Chainsaw_skl, "vfxSocket_01", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L2375:         this->mSawingVfx = mParticleSystemComponent;
+L2394:         this->UpdateAttachmentState(3, true);
+L2411:         goto ExecutionFlow.Pop();
+L2412:         Temp_bool_Has_Been_Initd_Variable1 = true;
+L2423:         if (!false) goto ExecutionFlow.Pop();
+L2425:         Temp_bool_IsClosed_Variable1 = true;
+L2436:         goto ExecutionFlow.Pop();
+L2437:         Temp_bool_Has_Been_Initd_Variable2 = true;
+L2448:         if (!false) goto ExecutionFlow.Pop();
+L2450:         Temp_bool_IsClosed_Variable2 = true;
+L2461:         goto ExecutionFlow.Pop();
+L2462:         bool mbool16 = this->IsEquipped();
+L2482:         if (!mbool16) goto ExecutionFlow.Pop();
+L2492:         this->InterpSawProgress(mfloat3);
+L2515:         bool mbool17 = EqualEqual_ByteByte(this->mCurrentState, 4);
+L2546:         if (!mbool17) goto L185;
+L2560:         AnimInstance* mAnimInstance1 = this->Chainsaw_skl->GetAnimInstance();
+L2602:         bool mbool18 = mAnimInstance1->Montage_IsPlaying(ChainsawEquip_01_Montage);
+L2653:         bool mbool19 = mAnimInstance1->Montage_IsPlaying(ChainsawStinger_01_Montage);
+L2704:         bool mbool20 = BooleanOR(mbool19, mbool18);
+L2742:         if (!mbool20) goto L2757;
+L2756:         goto ExecutionFlow.Pop();
+L2757:         this->UpdateAttachmentState(1, false);
+L2774:         this->mCurrentAudioState = 1;
+L2794:         goto ExecutionFlow.Pop();
+L2795:         ExecutionFlow.Push(L3147);
+L2800:         FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L2820:         SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L2862:         AnimInstance* mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
+L2904:         bool mbool21 = mAnimInstance2->Montage_IsPlaying(ChainsawEquip_01_Montage);
+L2955:         if (!mbool21) goto L2970;
+L2969:         goto ExecutionFlow.Pop();
+L2970:         mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L2990:         mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L3032:         mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
+L3074:         float mfloat4 = mAnimInstance2->Montage_Play(ChainsawEquip_01_Montage, 1, 0, 0, true);
+L3146:         goto ExecutionFlow.Pop();
+L3147:         AnimInstance* mAnimInstance3 = this->Chainsaw_skl->GetAnimInstance();
+L3189:         bool mbool22 = mAnimInstance3->Montage_IsPlaying(ChainsawEquip_01_Montage);
+L3240:         if (!mbool22) goto L3255;
+L3254:         goto ExecutionFlow.Pop();
+L3255:         mAnimInstance3 = this->Chainsaw_skl->GetAnimInstance();
+L3297:         float mfloat5 = mAnimInstance3->Montage_Play(ChainsawEquip_01_Montage, 1, 0, 0, true);
+L3369:         bool mbool23 = this->HasAnyFuel();
+L3389:         if (!mbool23) goto L3468;
+L3403:         AkComponent* mAkComponent9 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_Equip, this, true);
+L3456:         this->mPlayingSound = true;
+L3467:         goto ExecutionFlow.Pop();
+L3468:         AkComponent* mAkComponent10 = AkGameplayStatics->PostAkEvent(Play_E_Chainsaw_Add_Equip_NoFuel, this, true);
+L3521:         this->mPlayingSound = false;
+L3532:         goto ExecutionFlow.Pop();
+L3533:         ExecutionFlow.Push(L4310);
+L3538:         bool mbool24 = this->ShouldShowStinger();
+L3558:         if (!mbool24) goto L2795;
+L3572:         ExecutionFlow.Push(L3924);
+L3577:         FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L3597:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
+L3639:         AnimInstance* mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L3681:         bool mbool25 = mAnimInstance4->Montage_IsPlaying(ChainsawStinger_01_Montage);
+L3732:         if (!mbool25) goto L3747;
+L3746:         goto ExecutionFlow.Pop();
+L3747:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L3767:         mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
+L3809:         mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L3851:         float mfloat6 = mAnimInstance4->Montage_Play(ChainsawStinger_01_Montage, 1, 0, 0, true);
+L3923:         goto ExecutionFlow.Pop();
+L3924:         AnimInstance* mAnimInstance5 = this->Chainsaw_skl->GetAnimInstance();
+L3966:         bool mbool26 = mAnimInstance5->Montage_IsPlaying(ChainsawStinger_01_Montage);
+L4017:         if (!mbool26) goto L4032;
+L4031:         goto ExecutionFlow.Pop();
+L4032:         mAnimInstance5 = this->Chainsaw_skl->GetAnimInstance();
+L4074:         float mfloat7 = mAnimInstance5->Montage_Play(ChainsawStinger_01_Montage, 1, 0, 0, true);
+L4146:         bool mbool27 = this->HasAnyFuel();
+L4166:         if (!mbool27) goto L4245;
+L4180:         AkComponent* mAkComponent11 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_Stinger, this, true);
+L4233:         this->mPlayingSound = true;
+L4244:         goto ExecutionFlow.Pop();
+L4245:         AkComponent* mAkComponent12 = AkGameplayStatics->PostAkEvent(Play_E_Chainsaw_Add_Stinger_NoFuel, this, true);
+L4298:         this->mPlayingSound = false;
+L4309:         goto ExecutionFlow.Pop();
+L4310:         this->UpdateAttachmentState(4, false);
+L4327:         goto ExecutionFlow.Pop();
+L4328:         bool mbool28 = this->IsLocalInstigator();
+L4348:         if (!mbool28) goto ExecutionFlow.Pop();
+L4358:         goto L3533;
+L4363:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L4383:         SkeletalMeshComponent* mSkeletalMeshComponent3 = mFGCharacterPlayer3->GetMesh1P();
+L4425:         AnimInstance* mAnimInstance6 = mSkeletalMeshComponent3->GetAnimInstance();
+L4467:         AnimMontage* mAnimMontage = mAnimInstance6->GetCurrentActiveMontage();
+L4509:         mAnimInstance6->Montage_Stop(0, mAnimMontage);
+L4555:         AnimInstance* mAnimInstance7 = this->Chainsaw_skl->GetAnimInstance();
+L4597:         AnimMontage* mAnimMontage1 = mAnimInstance7->GetCurrentActiveMontage();
+L4639:         mAnimInstance7->Montage_Stop(0, mAnimMontage1);
+L4685:         if (!this->mPlayingSound) goto L4753;
+L4699:         AkComponent* mAkComponent13 = AkGameplayStatics->PostAkEvent(Stop_E_ChainSawRework_All, this, true);
+L4752:         goto ExecutionFlow.Pop();
+L4753:         AkComponent* mAkComponent14 = AkGameplayStatics->PostAkEvent(Stop_E_ChainSawRework_NoFuel, this, true);
+L4806:         goto ExecutionFlow.Pop();
+L4807:         bool mbool29 = this->IsLocalInstigator();
+L4827:         if (!mbool29) goto ExecutionFlow.Pop();
+L4837:         goto L4363;
+L4842:         bool mbool30 = this->IsLocalInstigator();
+L4862:         if (!mbool30) goto ExecutionFlow.Pop();
+L4872:         goto L2462;
+L4877:         this->WasUnEquipped();
+L4887:         goto L4807;
+L4892:         goto L4877;
+L4897:         this->WasEquipped();
+L4907:         goto L4328;
+L4912:         goto L4897;
+L4917:         this->ReceiveTick(mfloat3);
+L4936:         goto L4842;
+============ END FUNCTION ExecuteUbergraph_Equip_Chainsaw ==============

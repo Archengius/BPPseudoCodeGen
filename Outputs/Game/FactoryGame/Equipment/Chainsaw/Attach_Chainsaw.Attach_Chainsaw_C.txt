@@ -1,0 +1,190 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/Chainsaw/Attach_Chainsaw.Attach_Chainsaw_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnAttachmentUseStateUpdated ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Equipment/Chainsaw/Attach_Chainsaw.Attach_Chainsaw_C:ExecuteUbergraph_Attach_Chainsaw.K2Node_Event_newUseState) = newUseState;
+L18:           this->ExecuteUbergraph_Attach_Chainsaw(3708);
+============ END FUNCTION OnAttachmentUseStateUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayAttachEffects3P ==============
+L0:            this->ExecuteUbergraph_Attach_Chainsaw(3526);
+============ END FUNCTION PlayAttachEffects3P ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayDetachEffects3P ==============
+L0:            this->ExecuteUbergraph_Attach_Chainsaw(3617);
+============ END FUNCTION PlayDetachEffects3P ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Attach_Chainsaw ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool mbool = EqualEqual_ByteByte(this->mChainsawStates, 1);
+L46:           if (!mbool) goto L61;
+L60:           goto ExecutionFlow.Pop();
+L61:           bool mbool1 = EqualEqual_ByteByte(this->mChainsawStates, 3);
+L92:           if (!mbool1) goto L180;
+L106:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_SawToIdle, this, true);
+L159:          this->mChainsawStates = 1;
+L179:          goto ExecutionFlow.Pop();
+L180:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_EngageToIdle, this, true);
+L233:          goto L159;
+L238:          bool mbool2 = KismetSystemLibrary->IsValid(this->mSawingVfx);
+L289:          if (!mbool2) goto L304;
+L303:          goto ExecutionFlow.Pop();
+L304:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(SawingTree_01, this->Chainsaw_skl, "vfxSocket_01", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L421:          this->mSawingVfx = mParticleSystemComponent;
+L440:          Actor* mActor = this->GetOwner();
+L460:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor);
+L496:          bool mbool3 = mFGCharacterPlayer;
+L525:          if (!mbool3) goto ExecutionFlow.Pop();
+L535:          bool mbool4 = mFGCharacterPlayer->IsFirstPerson();
+L577:          if (!mbool4) goto L592;
+L591:          goto ExecutionFlow.Pop();
+L592:          bool mbool5 = EqualEqual_ByteByte(this->mChainsawStates, 3);
+L623:          if (!mbool5) goto L638;
+L637:          goto ExecutionFlow.Pop();
+L638:          bool mbool6 = EqualEqual_ByteByte(this->mChainsawStates, 2);
+L669:          if (!mbool6) goto L757;
+L683:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_EngageToSaw, this, true);
+L736:          this->mChainsawStates = 3;
+L756:          goto ExecutionFlow.Pop();
+L757:          AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_IdleToSaw, this, true);
+L810:          goto L736;
+L815:          this->mSawingVfx->Deactivate();
+L851:          this->mSawingVfx = nullptr;
+L862:          Actor* mActor1 = this->GetOwner();
+L882:          FGCharacterPlayer* mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor1);
+L918:          bool mbool7 = mFGCharacterPlayer1;
+L947:          if (!mbool7) goto ExecutionFlow.Pop();
+L957:          bool mbool8 = mFGCharacterPlayer1->IsFirstPerson();
+L999:          if (!mbool8) goto L1014;
+L1013:         goto ExecutionFlow.Pop();
+L1014:         if (!this->IsEquipedFirstTime) goto L15;
+L1028:         this->IsEquipedFirstTime = false;
+L1039:         goto ExecutionFlow.Pop();
+L1040:         this->mSawingVfx->Deactivate();
+L1076:         this->mSawingVfx = nullptr;
+L1087:         Actor* mActor2 = this->GetOwner();
+L1107:         FGCharacterPlayer* mFGCharacterPlayer2 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor2);
+L1143:         bool mbool9 = mFGCharacterPlayer2;
+L1172:         if (!mbool9) goto ExecutionFlow.Pop();
+L1182:         bool mbool10 = mFGCharacterPlayer2->IsFirstPerson();
+L1224:         if (!mbool10) goto L1239;
+L1238:         goto ExecutionFlow.Pop();
+L1239:         bool mbool11 = EqualEqual_ByteByte(this->mChainsawStates, 2);
+L1270:         if (!mbool11) goto L1285;
+L1284:         goto ExecutionFlow.Pop();
+L1285:         bool mbool12 = EqualEqual_ByteByte(this->mChainsawStates, 3);
+L1316:         if (!mbool12) goto L1404;
+L1330:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_SawToEngage, this, true);
+L1383:         this->mChainsawStates = 2;
+L1403:         goto ExecutionFlow.Pop();
+L1404:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_IdleToEngage, this, true);
+L1457:         goto L1383;
+L1462:         bool mbool13 = KismetSystemLibrary->IsValid(this->mSawingVfx);
+L1513:         if (!mbool13) goto L862;
+L1527:         goto L815;
+L1532:         bool mbool14 = KismetSystemLibrary->IsValid(this->mSawingVfx);
+L1583:         if (!mbool14) goto L1087;
+L1597:         goto L1040;
+L1602:         this->IsSawing = true;
+L1613:         float mfloat = this->mAnim3pInstance->Montage_Play(ChainsawSawing_01_Montage, 1, 0, 0, true);
+L1685:         goto L238;
+L1690:         this->IsSawing = true;
+L1701:         float mfloat1 = this->mAnim3pInstance->Montage_Play(ChainsawEngaged_01_Montage, 1, 0, 0, true);
+L1773:         goto L1532;
+L1778:         this->IsSawing = false;
+L1789:         this->mAnim3pInstance->Montage_Stop(0.20000000298023224, ChainsawSawing_01_Montage);
+L1835:         this->mAnim3pInstance->Montage_Stop(0.20000000298023224, ChainsawEngaged_01_Montage);
+L1881:         goto L1462;
+L1886:         ExecutionFlow.Push(L2065);
+L1891:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetAttachedTo();
+L1911:         SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer3->GetMesh3P();
+L1957:         AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L1999:         bool mbool15 = mAnimInstance->Montage_IsPlaying(ChainsawEquip_01_Montage);
+L2050:         if (!mbool15) goto L2280;
+L2064:         goto ExecutionFlow.Pop();
+L2065:         AnimInstance* mAnimInstance1 = this->Chainsaw_skl->GetAnimInstance();
+L2107:         bool mbool16 = mAnimInstance1->Montage_IsPlaying(nullptr);
+L2150:         if (!mbool16) goto L2165;
+L2164:         goto ExecutionFlow.Pop();
+L2165:         mAnimInstance1 = this->Chainsaw_skl->GetAnimInstance();
+L2207:         float mfloat2 = mAnimInstance1->Montage_Play(ChainsawEquip_01_Montage, 1, 0, 0, true);
+L2279:         goto ExecutionFlow.Pop();
+L2280:         mFGCharacterPlayer3 = this->GetAttachedTo();
+L2300:         mSkeletalMeshComponent = mFGCharacterPlayer3->GetMesh3P();
+L2346:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L2388:         float mfloat3 = mAnimInstance->Montage_Play(ChainsawEquip_01_Montage, 1, 0, 0, true);
+L2460:         Actor* mActor3 = this->GetOwner();
+L2480:         FGCharacterPlayer* mFGCharacterPlayer4 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor3);
+L2516:         bool mbool17 = mFGCharacterPlayer4;
+L2545:         if (!mbool17) goto ExecutionFlow.Pop();
+L2555:         bool mbool18 = mFGCharacterPlayer4->IsFirstPerson();
+L2597:         if (!mbool18) goto L2612;
+L2611:         goto ExecutionFlow.Pop();
+L2612:         AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEvent(Play_E_ChainsawRework_Equip, this, true);
+L2665:         this->IsEquipedFirstTime = true;
+L2676:         this->mChainsawStates = 1;
+L2696:         goto ExecutionFlow.Pop();
+L2697:         FGCharacterPlayer* mFGCharacterPlayer5 = this->GetAttachedTo();
+L2717:         bool mbool19 = KismetSystemLibrary->IsValid(mFGCharacterPlayer5);
+L2768:         if (!mbool19) goto ExecutionFlow.Pop();
+L2778:         mFGCharacterPlayer5 = this->GetAttachedTo();
+L2798:         SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer5->GetMesh3P();
+L2844:         bool mbool20 = KismetSystemLibrary->IsValid(mSkeletalMeshComponent1);
+L2895:         if (!mbool20) goto ExecutionFlow.Pop();
+L2905:         mFGCharacterPlayer5 = this->GetAttachedTo();
+L2925:         mSkeletalMeshComponent1 = mFGCharacterPlayer5->GetMesh3P();
+L2971:         AnimInstance* mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
+L3013:         this->mAnim3pInstance = mAnimInstance2;
+L3032:         uint8 muint8 = Conv_IntToByte(mint32);
+L3069:         uint8 muint81 = KismetNodeHelperLibrary->GetValidValue(EChainsawUseState, muint8);
+L3137:         bool mbool21 = NotEqual_ByteByte(muint81, 1);
+L3168:         if (!mbool21) goto L1778;
+L3182:         mbool21 = NotEqual_ByteByte(muint81, 2);
+L3213:         if (!mbool21) goto L1690;
+L3227:         mbool21 = NotEqual_ByteByte(muint81, 3);
+L3258:         if (!mbool21) goto L1602;
+L3272:         mbool21 = NotEqual_ByteByte(muint81, 4);
+L3303:         if (!mbool21) goto L1778;
+L3317:         goto ExecutionFlow.Pop();
+L3318:         AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEvent(Stop_E_ChainSawRework_All, this, true);
+L3371:         FGCharacterPlayer* mFGCharacterPlayer6 = this->GetAttachedTo();
+L3391:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer6->GetMesh3P();
+L3437:         AnimInstance* mAnimInstance3 = mSkeletalMeshComponent2->GetAnimInstance();
+L3479:         mAnimInstance3->Montage_Stop(0.10000000149011612, ChainsawEquip_01_Montage);
+L3525:         goto ExecutionFlow.Pop();
+L3526:         this->PlayAttachEffects3P();
+L3536:         FGCharacterPlayer* mFGCharacterPlayer7 = this->GetAttachedTo();
+L3556:         bool mbool22 = mFGCharacterPlayer7->IsLocallyControlled();
+L3602:         if (!mbool22) goto L1886;
+L3616:         goto ExecutionFlow.Pop();
+L3617:         this->PlayDetachEffects3P();
+L3627:         FGCharacterPlayer* mFGCharacterPlayer8 = this->GetAttachedTo();
+L3647:         bool mbool23 = mFGCharacterPlayer8->IsLocallyControlled();
+L3693:         if (!mbool23) goto L3318;
+L3707:         goto ExecutionFlow.Pop();
+L3708:         this->OnAttachmentUseStateUpdated(mint32);
+L3727:         FGCharacterPlayer* mFGCharacterPlayer9 = this->GetAttachedTo();
+L3747:         bool mbool24 = KismetSystemLibrary->IsValid(mFGCharacterPlayer9);
+L3798:         if (!mbool24) goto ExecutionFlow.Pop();
+L3808:         FGCharacterPlayer* mFGCharacterPlayer10 = this->GetAttachedTo();
+L3828:         bool mbool25 = mFGCharacterPlayer10->IsLocallyControlled();
+L3874:         if (!mbool25) goto L2697;
+L3888:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Attach_Chainsaw ==============

@@ -1,0 +1,150 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/Widget_PlayerEquipmentInventory.Widget_PlayerEquipmentInventory_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetActiveSlot ==============
+L0:            ExecutionFlow.Push(L777);
+L5:            this->mActiveSlotIndex = mActiveSlotIndex;
+L32:           int32 Temp_int_Variable = 0;
+L55:           int32 mint32 = this->mHandsSlot->mSlots->GetChildrenCount();
+L127:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L165:          if (!mbool) goto ExecutionFlow.Pop();
+L175:          ExecutionFlow.Push(L703);
+L180:          Widget* mWidget = this->mHandsSlot->mSlots->GetChildAt(Temp_int_Variable);
+L253:          Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mWidget);
+L289:          bool mbool1 = mWidget_InventorySlot;
+L318:          if (!mbool1) goto ExecutionFlow.Pop();
+L328:          uint8 Temp_byte_Variable = 3;
+L348:          uint8 Temp_byte_Variable1 = 1;
+L368:          bool mbool2 = EqualEqual_IntInt(Temp_int_Variable, this->mActiveSlotIndex);
+L406:          FGInventoryComponentEquipment* mFGInventoryComponentEquipment = this->mCharacterPlayer->GetEquipmentSlot(1);
+L450:          int32 mint321 = mFGInventoryComponentEquipment->GetSizeLinear();
+L500:          bool mbool3 = Greater_IntInt(mint321, 1);
+L534:          bool mbool4 = BooleanAND(mbool2, mbool3);
+L572:          bool Temp_bool_Variable = mbool4;
+L591:          mWidget_InventorySlot->mEquipmentFeedback->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L702:          goto ExecutionFlow.Pop();
+L703:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L745:          Temp_int_Variable = mint322;
+L772:          goto L55;
+============ END FUNCTION SetActiveSlot ==============
+
+
+
+
+
+============ BEGIN FUNCTION ArmSelectionVisibility ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L56:           bool mbool = mFGCharacterPlayer;
+L85:           if (!mbool) goto L362;
+L99:           uint8 Temp_byte_Variable = 3;
+L119:          uint8 Temp_byte_Variable1 = 1;
+L139:          FGInventoryComponentEquipment* mFGInventoryComponentEquipment = mFGCharacterPlayer->GetEquipmentSlot(1);
+L183:          int32 mint32 = mFGInventoryComponentEquipment->GetActiveIndex();
+L233:          bool mbool1 = GreaterEqual_IntInt(mint32, 0);
+L267:          bool Temp_bool_Variable = mbool1;
+L286:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+L357:          goto L382;
+L362:          ReturnValue = 1;
+============ END FUNCTION ArmSelectionVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerEquipmentInventory(1061);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Player/Widget_PlayerEquipmentInventory.Widget_PlayerEquipmentInventory_C:ExecuteUbergraph_Widget_PlayerEquipmentInventory.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Player/Widget_PlayerEquipmentInventory.Widget_PlayerEquipmentInventory_C:ExecuteUbergraph_Widget_PlayerEquipmentInventory.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_PlayerEquipmentInventory(1262);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerEquipmentInventory(1295);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PlayerEquipmentInventory ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->SetActiveSlot(-1);
+L34:           goto ExecutionFlow.Pop();
+L35:           this->mHandsSlot->GetAllInventorySlots([ref] mTArray<Widget_InventorySlot>);
+L80:           KismetArrayLibrary->Array_Append([ref] this->Widget_InventorySlot_DropArea->mInventorySlots, [ref] mTArray<Widget_InventorySlot>);
+L152:          this->mBackSlot->GetAllInventorySlots([ref] mTArray<Widget_InventorySlot>1);
+L197:          KismetArrayLibrary->Array_Append([ref] this->Widget_InventorySlot_DropArea->mInventorySlots, [ref] mTArray<Widget_InventorySlot>1);
+L269:          goto ExecutionFlow.Pop();
+L270:          int32 mint32 = this->mHandsSlot->mSlots->GetChildrenCount();
+L342:          bool mbool = Greater_IntInt(mint32, 0);
+L376:          if (!mbool) goto L508;
+L390:          FGInventoryComponentEquipment* mFGInventoryComponentEquipment = this->mCharacterPlayer->GetEquipmentSlot(1);
+L434:          int32 mint321 = mFGInventoryComponentEquipment->GetActiveIndex();
+L484:          this->SetActiveSlot(mint321);
+L507:          goto ExecutionFlow.Pop();
+L508:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 270, UUID = -1695573871, ExecutionFunction = "ExecuteUbergraph_Widget_PlayerEquipmentInventory", CallbackTarget = this));
+L584:          goto ExecutionFlow.Pop();
+L585:          bool Temp_bool_Variable = false;
+L596:          mFGInventoryComponentEquipment = this->mCharacterPlayer->GetEquipmentSlot(1);
+L640:          mint321 = mFGInventoryComponentEquipment->GetActiveIndex();
+L690:          bool mbool1 = NotEqual_IntInt(mint321, this->mActiveSlotIndex);
+L728:          if (!mbool1) goto L757;
+L742:          if (!Temp_bool_Variable1) goto L795;
+L756:          goto ExecutionFlow.Pop();
+L757:          bool Temp_bool_Variable1 = false;
+L768:          if (!Temp_bool_Variable2) goto L783;
+L782:          goto ExecutionFlow.Pop();
+L783:          bool Temp_bool_Variable2 = true;
+L794:          goto ExecutionFlow.Pop();
+L795:          Temp_bool_Variable1 = true;
+L806:          Temp_bool_Variable2 = false;
+L817:          goto L270;
+L822:          bool mbool2 = KismetSystemLibrary->IsValid(this->mCharacterPlayer);
+L873:          if (!mbool2) goto ExecutionFlow.Pop();
+L883:          mFGInventoryComponentEquipment = this->mCharacterPlayer->GetEquipmentSlot(1);
+L927:          mint321 = mFGInventoryComponentEquipment->GetActiveIndex();
+L977:          bool mbool3 = GreaterEqual_IntInt(mint321, 0);
+L1011:         if (!mbool3) goto L1030;
+L1025:         goto L585;
+L1030:         if (!Temp_bool_Variable) goto L1045;
+L1044:         goto ExecutionFlow.Pop();
+L1045:         Temp_bool_Variable = true;
+L1056:         goto L15;
+L1061:         this->Construct();
+L1071:         Pawn* mPawn = this->GetOwningPlayerPawn();
+L1091:         FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L1127:         bool mbool4 = mFGCharacterPlayer;
+L1156:         if (!mbool4) goto ExecutionFlow.Pop();
+L1166:         this->mCharacterPlayer = mFGCharacterPlayer;
+L1185:         KismetSystemLibrary->Delay(this, 1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 35, UUID = -795895032, ExecutionFunction = "ExecuteUbergraph_Widget_PlayerEquipmentInventory", CallbackTarget = this));
+L1261:         goto ExecutionFlow.Pop();
+L1262:         this->Tick(mGeometry, mfloat);
+L1290:         goto L822;
+L1295:         this->mActiveSlotIndex = -10;
+L1318:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_PlayerEquipmentInventory ==============

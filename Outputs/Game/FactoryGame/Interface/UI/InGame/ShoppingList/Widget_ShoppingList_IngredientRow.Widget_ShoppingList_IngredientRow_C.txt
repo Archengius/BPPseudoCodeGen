@@ -1,0 +1,243 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/ShoppingList/Widget_ShoppingList_IngredientRow.Widget_ShoppingList_IngredientRow_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetProgressBarBorderColor ==============
+L0:            HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L110:          LinearColor mLinearColor2 = SelectColor(mLinearColor, mLinearColor1, this->mShoppingListWidget->isShoppingListInteractive);
+L187:          LinearColor ReturnValue = mLinearColor2;
+============ END FUNCTION GetProgressBarBorderColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTextColor ==============
+L0:            HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L110:          bool Temp_bool_Variable = this->mShoppingListWidget->isShoppingListInteractive;
+L151:          SlateColor ReturnValue = switch (Temp_bool_Variable) {
+case false -> mSlateColor;
+case true -> mSlateColor1;
+default -> mSlateColor2;
+};
+============ END FUNCTION GetTextColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIconBGColor ==============
+L0:            this->GetNumIngredientsOwned([ref] mint32);
+L23:           this->GetIngredient([ref] mItemAmount);
+L46:           bool mbool = GreaterEqual_IntInt(mint32, mItemAmount.amount);
+L93:           LinearColor mLinearColor = SelectColor(ScriptStruct /Script/CoreUObject.LinearColor(R = 0.6038280129432678, G = 0.5972020030021667, B = 0.5972020030021667, A = 0.5), ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 1), mbool);
+L198:          LinearColor ReturnValue = mLinearColor;
+============ END FUNCTION GetIconBGColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetBorderVisibility ==============
+L0:            uint8 Temp_byte_Variable = 1;
+L20:           uint8 Temp_byte_Variable1 = 3;
+L40:           this->GetNumIngredientsOwned([ref] mint32);
+L63:           this->GetIngredient([ref] mItemAmount);
+L86:           bool mbool = GreaterEqual_IntInt(mint32, mItemAmount.amount);
+L133:          bool Temp_bool_Variable = mbool;
+L152:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetBorderVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetProgressBGColor ==============
+L0:            this->GetNumIngredientsOwned([ref] mint32);
+L23:           this->GetIngredient([ref] mItemAmount);
+L46:           bool mbool = GreaterEqual_IntInt(mint32, mItemAmount.amount);
+L93:           LinearColor mLinearColor = SelectColor(ScriptStruct /Script/CoreUObject.LinearColor(R = 0.6038280129432678, G = 0.5972020030021667, B = 0.5972020030021667, A = 0.5), ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 1), mbool);
+L198:          LinearColor ReturnValue = mLinearColor;
+============ END FUNCTION GetProgressBGColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIconVisibility ==============
+L0:            uint8 Temp_byte_Variable = 2;
+L20:           uint8 Temp_byte_Variable1 = 3;
+L40:           this->GetNumIngredientsOwned([ref] mint32);
+L63:           this->GetIngredient([ref] mItemAmount);
+L86:           bool mbool = GreaterEqual_IntInt(mint32, mItemAmount.amount);
+L133:          bool Temp_bool_Variable = mbool;
+L152:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetIconVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCheckboxVisibility ==============
+L0:            uint8 Temp_byte_Variable = 3;
+L20:           uint8 Temp_byte_Variable1 = 2;
+L40:           this->GetNumIngredientsOwned([ref] mint32);
+L63:           this->GetIngredient([ref] mItemAmount);
+L86:           bool mbool = GreaterEqual_IntInt(mint32, mItemAmount.amount);
+L133:          bool Temp_bool_Variable = mbool;
+L152:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetCheckboxVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetProgressBarColor ==============
+L0:            this->GetNumIngredientsOwned([ref] mint32);
+L23:           this->GetIngredient([ref] mItemAmount);
+L46:           bool mbool = GreaterEqual_IntInt(mint32, mItemAmount.amount);
+L93:           if (!mbool) goto L194;
+L107:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L162:          LinearColor ReturnValue = mLinearColor;
+L189:          goto L276;
+L194:          HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L249:          ReturnValue = mLinearColor1;
+============ END FUNCTION GetProgressBarColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetToDoListProgressBarPercentage ==============
+L0:            this->GetNumIngredientsOwned([ref] mint32);
+L23:           this->GetIngredient([ref] mItemAmount);
+L46:           float mfloat = Conv_IntToFloat(mint32);
+L83:           float mfloat1 = Conv_IntToFloat(mItemAmount.amount);
+L129:          float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L175:          float mfloat3 = FClamp(mfloat2, 0, 1);
+L222:          float ReturnValue = mfloat3;
+============ END FUNCTION GetToDoListProgressBarPercentage ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNumIngredientsOwned ==============
+L0:            this->GetIngredient([ref] mItemAmount);
+L23:           Pawn* mPawn = this->GetOwningPlayerPawn();
+L43:           HUDHelpers->GetNumItemsFromPlayerInventory(mPawn, mItemAmount.ItemClass, this, [ref] mint32);
+L116:          int32 totalItems = mint32;
+L143:          int32 NumItems = totalItems;
+============ END FUNCTION GetNumIngredientsOwned ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNumberIngredientsInInventoryText ==============
+L0:            this->GetNumIngredientsOwned([ref] mint32);
+L23:           FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
+L94:           mFormatArgumentData.ArgumentName = "A";
+L124:          mFormatArgumentData.ArgumentValueType = 4;
+L153:          mFormatArgumentData.ArgumentValue = mFText;
+L189:          mFormatArgumentData.ArgumentValueInt = 0;
+L221:          mFormatArgumentData.ArgumentValueFloat = 0;
+L253:          mFormatArgumentData.ArgumentValueGender = 0;
+L282:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L302:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L407:          FText ReturnValue = mFText1;
+============ END FUNCTION GetNumberIngredientsInInventoryText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIngredient ==============
+L0:            PanelWidget* mPanelWidget = this->GetParent();
+L20:           int32 mint32 = mPanelWidget->GetChildIndex(this);
+L71:           ItemAmount ingredient = this->mShoppingListWidget->mTotalCost[mint32];
+============ END FUNCTION GetIngredient ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIcon ==============
+L0:            this->GetIngredient([ref] mItemAmount);
+L23:           Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mItemAmount.ItemClass);
+L83:           mSlateBrush.ImageSize = this->mItemImageBrush->Brush.ImageSize;
+L150:          mSlateBrush.Margin = this->mItemImageBrush->Brush.Margin;
+L217:          mSlateBrush.TintColor = this->mItemImageBrush->Brush.TintColor;
+L284:          mSlateBrush.ResourceObject = mTexture2D;
+L312:          mSlateBrush.DrawAs = this->mItemImageBrush->Brush.DrawAs;
+L379:          mSlateBrush.Tiling = this->mItemImageBrush->Brush.Tiling;
+L446:          mSlateBrush.Mirroring = this->mItemImageBrush->Brush.Mirroring;
+L513:          SlateBrush ReturnValue = mSlateBrush;
+============ END FUNCTION GetIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIngredientTitleText ==============
+L0:            this->GetIngredient([ref] mItemAmount);
+L23:           FText mFText = FGItemDescriptor->GetItemName(mItemAmount.ItemClass);
+L91:           FText ReturnValue = mFText;
+============ END FUNCTION GetIngredientTitleText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIngredientNumberText ==============
+L0:            this->GetIngredient([ref] mItemAmount);
+L23:           FText mFText = KismetTextLibrary->Conv_IntToText(mItemAmount.amount, false, true, 1, 324);
+L103:          FText ReturnValue = mFText;
+============ END FUNCTION GetIngredientNumberText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ShoppingList_IngredientRow(25);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/ShoppingList/Widget_ShoppingList_IngredientRow.Widget_ShoppingList_IngredientRow_C:ExecuteUbergraph_Widget_ShoppingList_IngredientRow.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/ShoppingList/Widget_ShoppingList_IngredientRow.Widget_ShoppingList_IngredientRow_C:ExecuteUbergraph_Widget_ShoppingList_IngredientRow.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_ShoppingList_IngredientRow(30);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ShoppingList_IngredientRow ==============
+L10:           this->Construct();
+L20:           <End of Inlined Event Graph Function>;
+L25:           goto L10;
+L30:           this->Tick(mGeometry, mfloat);
+============ END FUNCTION ExecuteUbergraph_Widget_ShoppingList_IngredientRow ==============

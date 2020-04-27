@@ -1,0 +1,100 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/Hookshot/Equip_Hookshot.Equip_Hookshot_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/Hookshot/Equip_Hookshot.Equip_Hookshot_C:ExecuteUbergraph_Equip_Hookshot.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_Equip_Hookshot(681);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFire ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Equipment/Hookshot/Equip_Hookshot.Equip_Hookshot_C:ExecuteUbergraph_Equip_Hookshot.K2Node_Event_attachedToSomething) = attachedToSomething;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/Hookshot/Equip_Hookshot.Equip_Hookshot_C:ExecuteUbergraph_Equip_Hookshot.K2Node_Event_hitResult) = HitResult;
+L36:           this->ExecuteUbergraph_Equip_Hookshot(1003);
+============ END FUNCTION OnFire ==============
+
+
+
+
+
+============ BEGIN FUNCTION OwnerLanded ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/Hookshot/Equip_Hookshot.Equip_Hookshot_C:ExecuteUbergraph_Equip_Hookshot.K2Node_Event_Hit) = Hit;
+L18:           this->ExecuteUbergraph_Equip_Hookshot(1410);
+============ END FUNCTION OwnerLanded ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnWireDetach ==============
+L0:            this->ExecuteUbergraph_Equip_Hookshot(1499);
+============ END FUNCTION OnWireDetach ==============
+
+
+
+
+
+============ BEGIN FUNCTION DidNotAffordUse ==============
+L0:            this->ExecuteUbergraph_Equip_Hookshot(1581);
+============ END FUNCTION DidNotAffordUse ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Equip_Hookshot ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L290);
+L20:           KismetArrayLibrary->Array_Get([ref] this->mCostToUse, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L79:           FText mFText = FGItemDescriptor->GetItemName(mItemAmount.ItemClass);
+L147:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L206:          KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L289:          goto ExecutionFlow.Pop();
+L290:          int32 mint32 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L332:          int32 Temp_int_Loop_Counter_Variable = mint32;
+L359:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mCostToUse);
+L418:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L456:          if (!mbool) goto L502;
+L470:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L497:          goto L15;
+L502:          KismetSystemLibrary->PrintString(this, "You couldn't afford to use the hookshot.
+You need:", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L629:          goto ExecutionFlow.Pop();
+L630:          Temp_int_Loop_Counter_Variable = 0;
+L653:          Temp_int_Array_Index_Variable = 0;
+L676:          goto L359;
+L681:          this->ReceiveTick(mfloat);
+L700:          Pawn* mPawn = this->GetInstigator();
+L720:          bool mbool1 = KismetSystemLibrary->IsValid(mPawn);
+L771:          if (!mbool1) goto ExecutionFlow.Pop();
+L781:          mPawn = this->GetInstigator();
+L801:          Vector mVector = mPawn->GetVelocity();
+L855:          float mfloat1 = VSize(mVector);
+L892:          float mfloat2 = Divide_FloatFloat(mfloat1, 100);
+L934:          AkGameplayStatics->SetActorRTPCValue("RTPC_HookShotWind", mfloat2, 0, mPawn);
+L1002:         goto ExecutionFlow.Pop();
+L1003:         if (!mbool2) goto ExecutionFlow.Pop();
+L1013:         this->MoveAudioSourceInFrontOfPlayer();
+L1023:         GameplayStatics->BreakHitResult([ref] mconst HitResult, [ref] mbool3, [ref] mbool4, [ref] mfloat3, [ref] mfloat4, [ref] mVector1, [ref] mVector2, [ref] mVector3, [ref] mVector4, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint322, [ref] mint323, [ref] mVector5, [ref] mVector6);
+L1208:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_EQ_HookShot_Impact, mActor, true);
+L1269:         Pawn* mPawn1 = this->GetInstigator();
+L1289:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_EQ_HookShot_Fire, mPawn1, true);
+L1350:         int32 mint324 = this->mHookshotAudio->PostAkEvent(Play_EQ_HookShot_Wind);
+L1409:         goto ExecutionFlow.Pop();
+L1410:         this->OwnerLanded([ref] mconst HitResult1);
+L1429:         this->RestoreAudioSourceToOriginalLocation();
+L1439:         int32 mint325 = this->mHookshotAudio->PostAkEvent(Stop_EQ_HookShot_Wind);
+L1498:         goto ExecutionFlow.Pop();
+L1499:         mPawn1 = this->GetInstigator();
+L1519:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Stop_EQ_HookShot_Fire, mPawn1, true);
+L1580:         goto ExecutionFlow.Pop();
+L1581:         goto L630;
+============ END FUNCTION ExecuteUbergraph_Equip_Hookshot ==============

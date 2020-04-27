@@ -1,0 +1,49 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/WorkBench/BP_ManualManufacturingComponent.BP_ManualManufacturingComponent_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION AwardRewards ==============
+L0:            FGCharacterPlayer* mFGCharacterPlayer = this->GetPlayerWorkingAtBench();
+L20:           Controller* mController = mFGCharacterPlayer->GetController();
+L62:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mController);
+L98:           bool mbool = mFGPlayerController;
+L127:          if (!mbool) goto L287;
+L141:          FGInventoryComponent* mFGInventoryComponent = this->GetInventory();
+L161:          TSubclassOf<FGRecipe> mTSubclassOf<FGRecipe> = this->GetCurrentRecipe();
+L181:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L232:          mBP_RemoteCallObject->Server_RemoveIngredientsAndAwardRewards(this, mFGInventoryComponent, mTSubclassOf<FGRecipe>);
+============ END FUNCTION AwardRewards ==============
+
+
+
+
+
+============ BEGIN FUNCTION CraftComplete ==============
+L0:            this->ExecuteUbergraph_BP_ManualManufacturingComponent(10);
+============ END FUNCTION CraftComplete ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_ManualManufacturingComponent ==============
+L10:           this->AwardRewards();
+L24:           this->OnCraftCompleted->ProcessMulticastDelegate();
+L43:           FGCharacterPlayer* mFGCharacterPlayer = this->GetPlayerWorkingAtBench();
+L63:           BP_PlayerState* mBP_PlayerState = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C>(mFGCharacterPlayer->PlayerState);
+L121:          bool mbool = mBP_PlayerState;
+L150:          if (!mbool) goto L234;
+L164:          TSubclassOf<FGRecipe> mTSubclassOf<FGRecipe> = this->GetCurrentRecipe();
+L184:          mBP_PlayerState->RemoveRecipeFromShoppingList(mTSubclassOf<FGRecipe>, 1);
+============ END FUNCTION ExecuteUbergraph_BP_ManualManufacturingComponent ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCraftCompleted__DelegateSignature ==============
+============ END FUNCTION OnCraftCompleted__DelegateSignature ==============

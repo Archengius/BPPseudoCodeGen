@@ -1,0 +1,162 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Golfcart/BP_Golfcart.BP_Golfcart_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetLookAtDecription ==============
+L0:            Controller* mController = byCharacter->GetController();
+L42:           HUDHelpers->GetKeyNameForActionSimple(mController, "Use", this, [ref] mFText);
+L110:          mFormatArgumentData.ArgumentName = "BUTTON";
+L145:          mFormatArgumentData.ArgumentValueType = 4;
+L174:          mFormatArgumentData.ArgumentValue = mFText;
+L210:          mFormatArgumentData.ArgumentValueInt = 0;
+L242:          mFormatArgumentData.ArgumentValueFloat = 0;
+L274:          mFormatArgumentData.ArgumentValueGender = 0;
+L303:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L323:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L497:          FText ReturnValue = mFText1;
+============ END FUNCTION GetLookAtDecription ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetDismantleRefund ==============
+L0:            KismetArrayLibrary->Array_Clear([ref] out_refund);
+L41:           InventoryItem mInventoryItem = FGInventoryLibrary->MakeInventoryItem(Desc_GolfCart);
+L100:          InventoryStack mInventoryStack = FGInventoryLibrary->MakeInventoryStack(1, mInventoryItem);
+L164:          int32 mint32 = KismetArrayLibrary->Array_Add([ref] out_refund, [ref] mInventoryStack);
+L232:          FGInventoryComponent* mFGInventoryComponent = this->GetStorageInventory();
+L252:          TArray<InventoryStack> mTArray<InventoryStack> = [];
+L263:          mFGInventoryComponent->GetInventoryStacks([ref] mTArray<InventoryStack>);
+L304:          KismetArrayLibrary->Array_Append([ref] out_refund, [ref] mTArray<InventoryStack>);
+============ END FUNCTION GetDismantleRefund ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_Golfcart(1723);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ToggleFreeCamera ==============
+L0:            this->ExecuteUbergraph_BP_Golfcart(80);
+============ END FUNCTION ToggleFreeCamera ==============
+
+
+
+
+
+============ BEGIN FUNCTION Multicast_Honk ==============
+L0:            this->ExecuteUbergraph_BP_Golfcart(650);
+============ END FUNCTION Multicast_Honk ==============
+
+
+
+
+
+============ BEGIN FUNCTION DisablePhysics ==============
+L0:            this->ExecuteUbergraph_BP_Golfcart(1786);
+============ END FUNCTION DisablePhysics ==============
+
+
+
+
+
+============ BEGIN FUNCTION EnablePhysics ==============
+L0:            this->ExecuteUbergraph_BP_Golfcart(1843);
+============ END FUNCTION EnablePhysics ==============
+
+
+
+
+
+============ BEGIN FUNCTION DoFoldAnimation ==============
+L0:            this->ExecuteUbergraph_BP_Golfcart(2092);
+============ END FUNCTION DoFoldAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_Golfcart ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->mIsFoldAnimationDone = true;
+L26:           goto ExecutionFlow.Pop();
+L27:           this->mMesh->SetForcedLOD(0);
+L64:           goto ExecutionFlow.Pop();
+L65:           this->FlushNetDormancy();
+L75:           goto L15;
+L80:           this->ToggleFreeCamera();
+L90:           bool mbool = Not_PreBool(this->mIsFreeCamera);
+L119:          this->SpringArm->bEnableCameraLag = mbool;
+L160:          mbool = Not_PreBool(this->mIsFreeCamera);
+L189:          this->SpringArm->bEnableCameraRotationLag = mbool;
+L230:          goto ExecutionFlow.Pop();
+L231:          this->ReceiveBeginPlay();
+L241:          if (!this->mIsFoldAnimationDone) goto L256;
+L255:          goto ExecutionFlow.Pop();
+L256:          this->DoFoldAnimation();
+L270:          goto ExecutionFlow.Pop();
+L271:          this->mMesh->SetForcedLOD(1);
+L308:          AnimInstance* mAnimInstance = this->mMesh->GetAnimInstance();
+L350:          float mfloat = mAnimInstance->Montage_Play(Unfold_01_Montage, 1, 0, 0, true);
+L422:          KismetSystemLibrary->Delay(this, mfloat, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 27, UUID = -364596002, ExecutionFunction = "ExecuteUbergraph_BP_Golfcart", CallbackTarget = this));
+L502:          goto ExecutionFlow.Pop();
+L503:          BreakRotator(this->SpringArm->RelativeRotation, [ref] mfloat1, [ref] mfloat2, [ref] mfloat3);
+L571:          Rotator mRotator = MakeRotator(0, mfloat2, 0);
+L618:          this->mDefaultCameraRotation = mRotator;
+L645:          goto L271;
+L650:          this->Multicast_Honk();
+L660:          AnimInstance* mAnimInstance1 = this->mMesh->GetAnimInstance();
+L702:          bool mbool1 = mAnimInstance1->IsAnyMontagePlaying();
+L744:          if (!mbool1) goto L759;
+L758:          goto ExecutionFlow.Pop();
+L759:          if (!this->mIsHonking) goto L1108;
+L773:          AnimInstance* mAnimInstance2 = this->mMesh->GetAnimInstance();
+L815:          float mfloat4 = mAnimInstance2->Montage_Play(DeactivateHonk_01_Montage, 1, 0, 0, true);
+L887:          FGCharacterPlayer* mFGCharacterPlayer = this->GetDriver();
+L907:          SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->Get3PMesh();
+L949:          AnimInstance* mAnimInstance3 = mSkeletalMeshComponent->GetAnimInstance();
+L991:          float mfloat5 = mAnimInstance3->Montage_Play(CartDeactivateHonk_01_Montage, 1, 0, 0, true);
+L1063:         this->mIsHonking = false;
+L1074:         this->Particle_Honk->K2_DestroyComponent(this);
+L1107:         goto ExecutionFlow.Pop();
+L1108:         AnimInstance* mAnimInstance4 = this->mMesh->GetAnimInstance();
+L1150:         float mfloat6 = mAnimInstance4->Montage_Play(ActivateHonk_01_Montage, 1, 0, 0, true);
+L1222:         FGCharacterPlayer* mFGCharacterPlayer1 = this->GetDriver();
+L1242:         SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->Get3PMesh();
+L1284:         AnimInstance* mAnimInstance5 = mSkeletalMeshComponent1->GetAnimInstance();
+L1326:         float mfloat7 = mAnimInstance5->Montage_Play(CartActivateHonk_01_Montage, 1, 0, 0, true);
+L1398:         this->mIsHonking = true;
+L1409:         FName mFName = this->mMesh->GetSocketBoneName("siren_VFX_01");
+L1472:         Vector mVector = this->mMesh->GetSocketLocation(mFName);
+L1535:         Rotator mRotator1 = this->mMesh->GetSocketRotation(mFName);
+L1598:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(P_Golfcart_Light, this->mMesh, mFName, mVector, mRotator1, Vector(1, 1, 1), 1, true, 0);
+L1703:         this->Particle_Honk = mParticleSystemComponent;
+L1722:         goto ExecutionFlow.Pop();
+L1723:         goto L231;
+L1728:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_GolfCartUnfold, this, true);
+L1781:         goto L503;
+L1786:         this->mForceSimulationMode = true;
+L1797:         this->mMesh->UnHideBoneByName("window_r");
+L1842:         goto ExecutionFlow.Pop();
+L1843:         this->mForceSimulationMode = false;
+L1854:         goto L65;
+L1859:         mFScriptDelegate->BindUFunction(this, DisablePhysics);
+L1882:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.019999999552965164, false);
+L1947:         mFScriptDelegate1->BindUFunction(this, EnablePhysics);
+L1970:         TimerHandle mTimerHandle1 = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate1, 5, false);
+L2035:         goto L1728;
+L2040:         this->mMesh->HideBoneByName("window_r", 0);
+L2087:         goto L1859;
+L2092:         goto L2040;
+============ END FUNCTION ExecuteUbergraph_BP_Golfcart ==============

@@ -1,0 +1,212 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Widget_RecordMenu.Widget_RecordMenu_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetNameAtIndex ==============
+L0:            FString mFString = KismetTextLibrary->Conv_TextToString([ref] Name);
+L59:           FName mFName = KismetStringLibrary->Conv_StringToName(mFString);
+L118:          Widget* mWidget = this->Widget_RadialMenu->mContent->GetChildAt(int);
+L191:          Widget_RadialMenuButton* mWidget_RadialMenuButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/RadialMenu/Widget_RadialMenuButton.Widget_RadialMenuButton_C>(mWidget);
+L227:          bool mbool = mWidget_RadialMenuButton;
+L256:          mWidget_RadialMenuButton->Name = mFName;
+L305:          mWidget = this->Widget_RadialMenu->mContent->GetChildAt(int);
+L378:          mWidget_RadialMenuButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/RadialMenu/Widget_RadialMenuButton.Widget_RadialMenuButton_C>(mWidget);
+L414:          mbool = mWidget_RadialMenuButton;
+L443:          mWidget_RadialMenuButton->IconText->SetText(Name);
+============ END FUNCTION SetNameAtIndex ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateLabels ==============
+L0:            bool Temp_bool_Variable3 = this->mVehicle->mIsRecordSessionActive;
+L41:           this->SetNameAtIndex(switch (Temp_bool_Variable3) {
+case false -> this->mRecordText;
+case true -> this->mStopRecordText;
+default -> mFText;
+}, 0);
+L113:          bool Temp_bool_Variable1 = this->mVehicle->mIsAutoPilotEnabled;
+L154:          this->SetNameAtIndex(switch (Temp_bool_Variable1) {
+case false -> this->mEnableAutoPilotText;
+case true -> this->mDisableAutoPilotText;
+default -> mFText1;
+}, 2);
+L226:          bool mbool = this->mVehicle->GetPathVisibility();
+L268:          bool Temp_bool_Variable = mbool;
+L287:          this->SetNameAtIndex(switch (Temp_bool_Variable) {
+case false -> this->mShowPathText;
+case true -> this->mHidePathText;
+default -> mFText2;
+}, 3);
+L359:          bool mbool1 = this->GetPauseEnabled();
+L383:          if (!mbool1) goto L510;
+L397:          bool Temp_bool_Variable2 = this->mVehicle->mIsRecording;
+L438:          this->SetNameAtIndex(switch (Temp_bool_Variable2) {
+case false -> this->mResumeRecordingText;
+case true -> this->mPauseRecordingText;
+default -> mFText3;
+}, 5);
+============ END FUNCTION UpdateLabels ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPositionInCircle ==============
+L0:            float mfloat = GetTAU();
+L28:           float mfloat1 = Conv_IntToFloat(index);
+L65:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mAllButtons);
+L124:          float mfloat2 = Conv_IntToFloat(mint32);
+L161:          float mfloat3 = Divide_FloatFloat(mfloat2, 4);
+L203:          float mfloat4 = Add_FloatFloat(mfloat1, mfloat3);
+L249:          float mfloat5 = Divide_FloatFloat(mfloat4, mfloat2);
+L295:          float mfloat6 = Multiply_FloatFloat(mfloat5, mfloat);
+L341:          float mfloat7 = Cos(mfloat6);
+L378:          float mfloat8 = Sin(mfloat6);
+L415:          float mfloat9 = Multiply_FloatFloat(mfloat7, this->mCircleRadius);
+L461:          float mfloat10 = Multiply_FloatFloat(this->mCircleRadius, mfloat8);
+L507:          Vector2D mVector2D = MakeVector2D(mfloat9, mfloat10);
+L553:          Vector2D Translation = mVector2D;
+============ END FUNCTION GetPositionInCircle ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPauseEnabled ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mVehicle);
+L51:           if (!mbool) goto L111;
+L65:           bool ReturnValue = this->mVehicle->mIsRecordSessionActive;
+L106:          goto L122;
+L111:          ReturnValue = false;
+============ END FUNCTION GetPauseEnabled ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_RecordMenu(10);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ToggleRecording ==============
+L0:            this->ExecuteUbergraph_Widget_RecordMenu(329);
+============ END FUNCTION ToggleRecording ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_RecordMenu(370);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearPathRecording ==============
+L0:            this->ExecuteUbergraph_Widget_RecordMenu(961);
+============ END FUNCTION ClearPathRecording ==============
+
+
+
+
+
+============ BEGIN FUNCTION PauseClicked ==============
+L0:            this->ExecuteUbergraph_Widget_RecordMenu(1125);
+============ END FUNCTION PauseClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION AutoPilotClicked ==============
+L0:            this->ExecuteUbergraph_Widget_RecordMenu(1130);
+============ END FUNCTION AutoPilotClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION PathVisibilityClicked ==============
+L0:            this->ExecuteUbergraph_Widget_RecordMenu(1135);
+============ END FUNCTION PathVisibilityClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/Widget_RecordMenu.Widget_RecordMenu_C:ExecuteUbergraph_Widget_RecordMenu.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/Widget_RecordMenu.Widget_RecordMenu_C:ExecuteUbergraph_Widget_RecordMenu.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_RecordMenu(1159);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_RecordMenu ==============
+L10:           this->Construct();
+L20:           bool mbool = this->GetPauseEnabled();
+L44:           if (!mbool) goto L288;
+L58:           const FName Temp_name_Variable = "Resume recording";
+L89:           int32 mint32 = KismetArrayLibrary->Array_Add([ref] this->Widget_RadialMenu->Buttons, [ref] Temp_name_Variable);
+L179:          const Texture* Temp_object_Variable = Vehicle_Icon_PauseRecoring;
+L198:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->Widget_RadialMenu->mIconTextures, [ref] Temp_object_Variable);
+L288:          this->Widget_RadialMenu->Create Radial Menu();
+L324:          <End of Inlined Event Graph Function>;
+L329:          this->mVehicle->ServerToggleRecording();
+L365:          <End of Inlined Event Graph Function>;
+L370:          this->Destruct();
+L380:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L404:          mPlayerController->SetIgnoreLookInput(false);
+L441:          this->mVehicle->mIsMenuOpen = false;
+L474:          this->mVehicle->ServerSetMenuOpen(false);
+L511:          bool mbool1 = NotEqual_IntInt(this->Widget_RadialMenu->SelectedInt, 0);
+L567:          if (!mbool1) goto L866;
+L581:          mbool1 = NotEqual_IntInt(this->Widget_RadialMenu->SelectedInt, 2);
+L637:          if (!mbool1) goto L885;
+L651:          mbool1 = NotEqual_IntInt(this->Widget_RadialMenu->SelectedInt, 3);
+L707:          if (!mbool1) goto L904;
+L721:          mbool1 = NotEqual_IntInt(this->Widget_RadialMenu->SelectedInt, 4);
+L777:          if (!mbool1) goto L923;
+L791:          mbool1 = NotEqual_IntInt(this->Widget_RadialMenu->SelectedInt, 5);
+L847:          if (!mbool1) goto L942;
+L861:          <End of Inlined Event Graph Function>;
+L866:          this->ToggleRecording();
+L880:          <End of Inlined Event Graph Function>;
+L885:          this->AutoPilotClicked();
+L899:          <End of Inlined Event Graph Function>;
+L904:          this->PathVisibilityClicked();
+L918:          <End of Inlined Event Graph Function>;
+L923:          this->ClearPathRecording();
+L937:          <End of Inlined Event Graph Function>;
+L942:          this->PauseClicked();
+L956:          <End of Inlined Event Graph Function>;
+L961:          this->mVehicle->ServerClearPathRecording();
+L997:          <End of Inlined Event Graph Function>;
+L1002:         this->mVehicle->ServerTogglePauseRecording();
+L1038:         <End of Inlined Event Graph Function>;
+L1043:         this->mVehicle->ServerToggleAutoPilot();
+L1079:         <End of Inlined Event Graph Function>;
+L1084:         this->mVehicle->ServerTogglePathVisibility();
+L1120:         <End of Inlined Event Graph Function>;
+L1125:         goto L1002;
+L1130:         goto L1043;
+L1135:         goto L1084;
+L1140:         this->UpdateLabels();
+L1154:         <End of Inlined Event Graph Function>;
+L1159:         this->Tick(ScriptStruct /Script/SlateCore.Geometry(), 0);
+L1188:         goto L1140;
+============ END FUNCTION ExecuteUbergraph_Widget_RecordMenu ==============

@@ -1,0 +1,224 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Spitter/BP_SpitterProjectile.BP_SpitterProjectile_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetNewTarget ==============
+L0:            ExecutionFlow.Push(L1259);
+L5:            int32 Temp_int_Variable = 0;
+L28:           bool mbool = LessEqual_IntInt(Temp_int_Variable, 8);
+L62:           if (!mbool) goto ExecutionFlow.Pop();
+L72:           ExecutionFlow.Push(L1185);
+L77:           Pawn* mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
+L129:          bool mbool1 = KismetSystemLibrary->IsValid(mPawn);
+L180:          if (!mbool1) goto ExecutionFlow.Pop();
+L190:          mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
+L242:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L278:          bool mbool2 = mFGCharacterPlayer;
+L307:          if (!mbool2) goto ExecutionFlow.Pop();
+L317:          bool mbool3 = mFGCharacterPlayer->IsAliveAndWell();
+L359:          if (!mbool3) goto ExecutionFlow.Pop();
+L369:          mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
+L421:          Vector mVector = mPawn->K2_GetActorLocation();
+L471:          Vector mVector1 = this->K2_GetActorLocation();
+L499:          Vector mVector2 = Subtract_VectorVector(mVector, mVector1);
+L545:          float mfloat = VSize(mVector2);
+L582:          bool mbool4 = LessEqual_FloatFloat(mfloat, 9999);
+L616:          if (!mbool4) goto ExecutionFlow.Pop();
+L626:          bool mbool5 = KismetSystemLibrary->IsValid(this->mTargetPawn);
+L677:          if (!mbool5) goto L1113;
+L691:          Vector mVector3 = this->mTargetPawn->K2_GetActorLocation();
+L741:          Vector mVector4 = this->K2_GetActorLocation();
+L769:          mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
+L821:          Vector mVector5 = Subtract_VectorVector(mVector3, mVector4);
+L867:          float mfloat1 = VSize(mVector5);
+L904:          mVector = mPawn->K2_GetActorLocation();
+L954:          mVector1 = this->K2_GetActorLocation();
+L982:          mVector2 = Subtract_VectorVector(mVector, mVector1);
+L1028:         mfloat = VSize(mVector2);
+L1065:         bool mbool6 = Less_FloatFloat(mfloat, mfloat1);
+L1103:         if (!mbool6) goto ExecutionFlow.Pop();
+L1113:         mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
+L1165:         this->mTargetPawn = mPawn;
+L1184:         goto ExecutionFlow.Pop();
+L1185:         int32 mint32 = Add_IntInt(Temp_int_Variable, 1);
+L1227:         Temp_int_Variable = mint32;
+L1254:         goto L28;
+============ END FUNCTION GetNewTarget ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_SpitterProjectile(1774);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION SplitProjectile ==============
+L0:            this->ExecuteUbergraph_BP_SpitterProjectile(1914);
+============ END FUNCTION SplitProjectile ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/BP_SpitterProjectile.BP_SpitterProjectile_C:ExecuteUbergraph_BP_SpitterProjectile.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_BP_SpitterProjectile(1997);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mProjectileMovement_K2Node_ComponentBoundEvent_0_ActorComponentActivatedSignature__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/BP_SpitterProjectile.BP_SpitterProjectile_C:ExecuteUbergraph_BP_SpitterProjectile.K2Node_ComponentBoundEvent_Component) = component;
+L18:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/BP_SpitterProjectile.BP_SpitterProjectile_C:ExecuteUbergraph_BP_SpitterProjectile.K2Node_ComponentBoundEvent_bReset) = bReset;
+L36:           this->ExecuteUbergraph_BP_SpitterProjectile(2239);
+============ END FUNCTION BndEvt__mProjectileMovement_K2Node_ComponentBoundEvent_0_ActorComponentActivatedSignature__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayExplosionEffects ==============
+L0:            this->ExecuteUbergraph_BP_SpitterProjectile(3608);
+============ END FUNCTION PlayExplosionEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveDestroyed ==============
+L0:            this->ExecuteUbergraph_BP_SpitterProjectile(3866);
+============ END FUNCTION ReceiveDestroyed ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_SpitterProjectile ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->FlushNetDormancy();
+L25:           this->mDoSplit = false;
+L36:           int32 Temp_int_Variable = 0;
+L59:           int32 mint32 = Subtract_IntInt(this->mNumberofSplitProjectiles, 1);
+L101:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L139:          if (!mbool) goto L1418;
+L153:          ExecutionFlow.Push(L1551);
+L158:          bool mbool1 = EqualEqual_IntInt(Temp_int_Variable, 0);
+L192:          if (!mbool1) goto L1625;
+L206:          Transform mTransform = this->GetTransform();
+L234:          BreakTransform([ref] mTransform, [ref] mVector, [ref] mRotator, [ref] mVector1);
+L280:          Transform mTransform1 = MakeTransform(mVector, mRotator, mVector1);
+L335:          Actor* mActor = this->GetOwner();
+L355:          Actor* mActor1 = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_SpitterProjectileVolley, [ref] mTransform1, 0, mActor);
+L427:          KismetSystemLibrary->SetObjectPropertyByName(mActor1, "Instigator", this->Instigator);
+L490:          mTransform = this->GetTransform();
+L518:          BreakTransform([ref] mTransform, [ref] mVector, [ref] mRotator, [ref] mVector1);
+L564:          mTransform1 = MakeTransform(mVector, mRotator, mVector1);
+L619:          BP_SpitterProjectileVolley* mBP_SpitterProjectileVolley = GameplayStatics->FinishSpawningActor(mActor1, [ref] mTransform1);
+L679:          Vector mVector2 = this->K2_GetActorLocation();
+L707:          float mfloat = Divide_FloatFloat(10, this->mSplitConeHalfAngle);
+L749:          float mfloat1 = DegreesToRadians(this->mSplitConeHalfAngle);
+L786:          Vector mVector3 = MakeVector(1, 1, mfloat);
+L833:          Vector mVector4 = this->mTargetPawn->K2_GetActorLocation();
+L883:          Vector mVector5 = Subtract_VectorVector(mVector4, mVector2);
+L929:          Vector mVector6 = Normal(mVector5, 0.00009999999747378752);
+L971:          Vector mVector7 = RandomUnitVectorInConeInRadians(mVector6, mfloat1);
+L1017:         Vector mVector8 = Multiply_VectorVector(mVector7, mVector3);
+L1063:         float mfloat2 = this->CurveProjectileHeight->GetFloatValue(this->DistanceToTarget);
+L1122:         Vector mVector9 = MakeVector(0, 0, mfloat2);
+L1169:         Vector mVector10 = Add_VectorVector(mVector8, mVector9);
+L1215:         Vector mVector11 = Multiply_VectorFloat(mVector10, this->mSpeedAdjustment);
+L1261:         mBP_SpitterProjectileVolley->mProjectileMovement->Velocity = mVector11;
+L1332:         mBP_SpitterProjectileVolley->SetInitialVelocity(mBP_SpitterProjectileVolley->mProjectileMovement->Velocity);
+L1417:         goto ExecutionFlow.Pop();
+L1418:         Vector mVector12 = this->K2_GetActorLocation();
+L1446:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, P_SpitImpact_01, mVector12, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L1536:         this->K2_DestroyActor();
+L1550:         goto ExecutionFlow.Pop();
+L1551:         int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L1593:         Temp_int_Variable = mint321;
+L1620:         goto L59;
+L1625:         this->mSplitConeHalfAngle = this->mAdjusted Cone Angle;
+L1652:         goto L206;
+L1657:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mSubtitleTimer);
+L1699:         goto ExecutionFlow.Pop();
+L1700:         this->FlushNetDormancy();
+L1710:         this->mDoSplit = false;
+L1721:         goto ExecutionFlow.Pop();
+L1722:         this->mProjectileMovement->Activate(false);
+L1759:         this->GetNewTarget();
+L1773:         goto ExecutionFlow.Pop();
+L1774:         this->ReceiveBeginPlay();
+L1784:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_E_Spitter_Projectile_Loop, this, true);
+L1837:         KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 1722, UUID = -1595193506, ExecutionFunction = "ExecuteUbergraph_BP_SpitterProjectile", CallbackTarget = this));
+L1913:         goto ExecutionFlow.Pop();
+L1914:         goto L15;
+L1919:         this->SetLifeSpan(1);
+L1938:         SphereComponent* mSphereComponent = this->GetCollisionSphere();
+L1958:         mSphereComponent->SetCollisionEnabled(0);
+L1996:         goto ExecutionFlow.Pop();
+L1997:         this->ReceiveTick(mfloat3);
+L2016:         BreakVector(this->mProjectileMovement->Velocity, [ref] mfloat4, [ref] mfloat5, [ref] mfloat6);
+L2084:         bool mbool2 = Less_FloatFloat(mfloat6, 0);
+L2118:         bool mbool3 = BooleanAND(mbool2, this->mDoSplit);
+L2156:         bool mbool4 = this->HasAuthority();
+L2176:         bool mbool5 = BooleanAND(mbool3, mbool4);
+L2214:         if (!mbool5) goto ExecutionFlow.Pop();
+L2224:         this->SplitProjectile();
+L2238:         goto ExecutionFlow.Pop();
+L2239:         Vector mVector13 = this->GetProjectileTargetLocation();
+L2267:         Vector mVector14 = this->K2_GetActorLocation();
+L2295:         Vector mVector15 = Subtract_VectorVector(mVector13, mVector14);
+L2341:         float mfloat7 = VSize(mVector15);
+L2378:         this->DistanceToTarget = mfloat7;
+L2405:         mVector13 = this->GetProjectileTargetLocation();
+L2433:         mVector14 = this->K2_GetActorLocation();
+L2461:         mVector15 = Subtract_VectorVector(mVector13, mVector14);
+L2507:         mfloat7 = VSize(mVector15);
+L2544:         Vector mVector16 = this->GetProjectileTargetLocation();
+L2572:         Vector mVector17 = this->K2_GetActorLocation();
+L2600:         Vector mVector18 = Subtract_VectorVector(mVector16, mVector17);
+L2646:         Vector mVector19 = Normal(mVector18, 0.00009999999747378752);
+L2688:         float mfloat8 = this->CurveProjectileZ->GetFloatValue(mfloat7);
+L2747:         Vector mVector20 = MakeVector(0, 0, mfloat8);
+L2794:         Vector mVector21 = Add_VectorVector(mVector19, mVector20);
+L2840:         float mfloat9 = this->CurveProjectileSpeed->GetFloatValue(mfloat7);
+L2899:         Vector mVector22 = Multiply_VectorFloat(mVector21, mfloat9);
+L2945:         this->mProjectileMovement->Velocity = mVector22;
+L2994:         mVector13 = this->GetProjectileTargetLocation();
+L3022:         mVector14 = this->K2_GetActorLocation();
+L3050:         mVector15 = Subtract_VectorVector(mVector13, mVector14);
+L3096:         mfloat7 = VSize(mVector15);
+L3133:         float mfloat10 = this->CurveProjectileAngle->GetFloatValue(mfloat7);
+L3192:         this->mAdjusted Cone Angle = mfloat10;
+L3219:         mVector13 = this->GetProjectileTargetLocation();
+L3247:         mVector14 = this->K2_GetActorLocation();
+L3275:         mVector15 = Subtract_VectorVector(mVector13, mVector14);
+L3321:         mfloat7 = VSize(mVector15);
+L3358:         bool mbool6 = Less_FloatFloat(mfloat7, 1500);
+L3392:         if (!mbool6) goto ExecutionFlow.Pop();
+L3402:         goto L1700;
+L3407:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_E_Spitter_Projectile_Loop, this, true);
+L3460:         Vector mVector23 = this->K2_GetActorLocation();
+L3488:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAtLocation(this, Play_E_Spitter_Projectile_Land, mVector23, Rotator::FromPitchYawRoll(0, 0, 0));
+L3562:         goto L1919;
+L3567:         this->Projectile->Deactivate();
+L3603:         goto L3407;
+L3608:         Vector mVector24 = this->K2_GetActorLocation();
+L3636:         SphereComponent* mSphereComponent1 = this->GetCollisionSphere();
+L3656:         Vector mVector25 = MakeVector(0, 0, mSphereComponent1->SphereRadius);
+L3725:         Vector mVector26 = Subtract_VectorVector(mVector24, mVector25);
+L3771:         ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAtLocation(this, P_SpitImpact_01, mVector26, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1.25, 1.25, 1.25), true, 0);
+L3861:         goto L3567;
+L3866:         goto L1657;
+============ END FUNCTION ExecuteUbergraph_BP_SpitterProjectile ==============

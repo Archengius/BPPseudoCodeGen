@@ -1,0 +1,314 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/World/Environment/DayNight/BP_Sky_Sphere.BP_Sky_Sphere_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetLightAsDominant ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(Light);
+L51:           if (!mbool) goto L129;
+L65:           Light->LightComponent->SetVisibility(newDominant, false);
+============ END FUNCTION SetLightAsDominant ==============
+
+
+
+
+
+============ BEGIN FUNCTION NewDominantLight ==============
+L0:            ExecutionFlow.Push(L205);
+L5:            ExecutionFlow.Push(L65);
+L10:           ExecutionFlow.Push(L40);
+L15:           this->SetLightAsDominant(oldDominantLight, false);
+L39:           goto ExecutionFlow.Pop();
+L40:           this->SetLightAsDominant(NewDominantLight, true);
+L64:           goto ExecutionFlow.Pop();
+L65:           this->mDominantLight = NewDominantLight;
+L84:           bool mbool = EqualEqual_ObjectObject(this->mDominantLight, this->mSunLight);
+L122:          float mfloat = SelectFloat(this->mSunRadius, this->mMoonRadius, mbool);
+L177:          this->mDiscRadius = mfloat;
+L204:          goto ExecutionFlow.Pop();
+============ END FUNCTION NewDominantLight ==============
+
+
+
+
+
+============ BEGIN FUNCTION CalculateDominantLight ==============
+L0:            bool mbool = GreaterEqual_FloatFloat(this->mSunLight->LightComponent->Intensity, this->mMoonLight->LightComponent->Intensity);
+L126:          bool Temp_bool_Variable = mbool;
+L145:          DirectionalLight* local_newDominantLight = switch (Temp_bool_Variable) {
+case false -> this->mMoonLight;
+case true -> this->mSunLight;
+default -> mDirectionalLight;
+};
+L208:          bool mbool1 = NotEqual_ObjectObject(local_newDominantLight, this->mDominantLight);
+L246:          if (!mbool1) goto L292;
+L260:          this->NewDominantLight(this->mDominantLight, local_newDominantLight);
+============ END FUNCTION CalculateDominantLight ==============
+
+
+
+
+
+============ BEGIN FUNCTION CalculateDiscBrightness ==============
+L0:            bool mbool = Greater_FloatFloat(Light->LightComponent->Intensity, 0);
+L78:           if (!mbool) goto L265;
+L92:           float mfloat = Divide_FloatFloat(brightnessAdjustment.LightIntensity_5_7DFA36F84BCB1C040E5D69B250CB0137, Light->LightComponent->Intensity);
+L191:          float mfloat1 = FClamp(mfloat, 0, 1);
+L238:          float local_intensityPct = mfloat1;
+L265:          float mfloat2 = Multiply_FloatFloat(brightnessAdjustment.SkySphereDiscBrightness_6_E856AF074C7A0AFAA790FCA8730DAEF9, local_intensityPct);
+L320:          float discBrightness = mfloat2;
+============ END FUNCTION CalculateDiscBrightness ==============
+
+
+
+
+
+============ BEGIN FUNCTION CalculateBrightness ==============
+L0:            this->CalculateDiscBrightness(this->mMoonLight, this->mMoonBrightnessAdjust, [ref] mfloat);
+L41:           this->CalculateDiscBrightness(this->mSunLight, this->mSunBrightnessAdjust, [ref] mfloat1);
+L82:           bool mbool = EqualEqual_ObjectObject(this->mDominantLight, this->mSunLight);
+L120:          bool Temp_bool_Variable = mbool;
+L139:          float Brightness = switch (Temp_bool_Variable) {
+case false -> mfloat;
+case true -> mfloat1;
+default -> mfloat2;
+};
+============ END FUNCTION CalculateBrightness ==============
+
+
+
+
+
+============ BEGIN FUNCTION CalculateLightRotation ==============
+L0:            Vector mVector = GetForwardVector(RotationAxis);
+L37:           FGTimeOfDaySubsystem* mFGTimeOfDaySubsystem = FGTimeOfDaySubsystem->Get(this);
+L80:           Vector mVector1 = LessLess_VectorRotator(mVector, OriginalRotation);
+L126:          float mfloat = mFGTimeOfDaySubsystem->GetTimeOfDayHours();
+L176:          Rotator mRotator = MakeRotFromX([ref] mVector1);
+L213:          float mfloat1 = this->GetFloatCurveValue([ref] LightRotationCurve, mfloat);
+L259:          float mfloat2 = Multiply_FloatFloat(mfloat1, -1);
+L301:          Rotator mRotator1 = MakeRotator(0, mfloat2, 0);
+L348:          Rotator mRotator2 = ComposeRotators(mRotator, mRotator1);
+L394:          Vector mVector2 = GetForwardVector(mRotator2);
+L431:          Vector mVector3 = GreaterGreater_VectorRotator(mVector2, OriginalRotation);
+L477:          Rotator mRotator3 = MakeRotFromX([ref] mVector3);
+L514:          Rotator NewRotation = mRotator3;
+============ END FUNCTION CalculateLightRotation ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateGlobalParameters ==============
+L0:            FGTimeOfDaySubsystem* mFGTimeOfDaySubsystem = FGTimeOfDaySubsystem->Get(this);
+L43:           float mfloat = mFGTimeOfDaySubsystem->GetDayPct();
+L93:           KismetMaterialLibrary->SetScalarParameterValue(this, MPC_Globals, "DayPct", mfloat);
+L157:          mFGTimeOfDaySubsystem = FGTimeOfDaySubsystem->Get(this);
+L200:          float mfloat1 = mFGTimeOfDaySubsystem->GetNightPct();
+L250:          KismetMaterialLibrary->SetScalarParameterValue(this, MPC_Globals, "NightPct", mfloat1);
+L314:          Rotator mRotator = this->mDominantLight->K2_GetActorRotation();
+L364:          Vector mVector = Conv_RotatorToVector(mRotator);
+L401:          LinearColor mLinearColor = Conv_VectorToLinearColor(mVector);
+L438:          KismetMaterialLibrary->SetVectorParameterValue(this, MPC_Globals, "LightVector", [ref] mLinearColor);
+L502:          LinearColor mLinearColor1 = this->mDominantLight->LightComponent->GetLightColor();
+L574:          KismetMaterialLibrary->SetVectorParameterValue(this, MPC_Globals, "LightColor", [ref] mLinearColor1);
+============ END FUNCTION UpdateGlobalParameters ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateCurvesFromTime ==============
+L0:            ExecutionFlow.Push(L1920);
+L5:            float local_timeOfDay = 12;
+L28:           FGTimeOfDaySubsystem* mFGTimeOfDaySubsystem = FGTimeOfDaySubsystem->Get(this);
+L71:           float mfloat = mFGTimeOfDaySubsystem->GetTimeOfDayHours();
+L121:          local_timeOfDay = mfloat;
+L148:          ExecutionFlow.Push(L1641);
+L153:          ExecutionFlow.Push(L1470);
+L158:          ExecutionFlow.Push(L1224);
+L163:          ExecutionFlow.Push(L518);
+L168:          bool mbool = KismetSystemLibrary->IsValid(this->mSunLight);
+L219:          if (!mbool) goto ExecutionFlow.Pop();
+L229:          DirectionalLightComponent* mDirectionalLightComponent = Cast<Class /Script/Engine.DirectionalLightComponent>(this->mSunLight->LightComponent);
+L287:          bool mbool1 = mDirectionalLightComponent;
+L316:          if (!mbool1) goto L417;
+L330:          float mfloat1 = this->GetFloatCurveValue([ref] this->mSunLightShaftOcclusionCurve, local_timeOfDay);
+L376:          mDirectionalLightComponent->SetOcclusionMaskDarkness(mfloat1);
+L417:          float mfloat2 = this->GetFloatCurveValue([ref] this->mStarBrightness, local_timeOfDay);
+L463:          this->mSkyMaterial->SetScalarParameterValue("Stars brightness", mfloat2);
+L517:          goto ExecutionFlow.Pop();
+L518:          bool mbool2 = KismetSystemLibrary->IsValid(this->mSkyLight);
+L569:          if (!mbool2) goto ExecutionFlow.Pop();
+L579:          FGTimeOfDaySubsystem* mFGTimeOfDaySubsystem1 = FGTimeOfDaySubsystem->Get(this);
+L622:          float mfloat3 = mFGTimeOfDaySubsystem1->GetTimeOfDayHours();
+L672:          float mfloat4 = this->GetFloatCurveValue([ref] this->mSkyLightIntensity, mfloat3);
+L718:          this->mSkyLight->LightComponent->SetIntensity(mfloat4);
+L781:          mFGTimeOfDaySubsystem1 = FGTimeOfDaySubsystem->Get(this);
+L824:          mfloat3 = mFGTimeOfDaySubsystem1->GetTimeOfDayHours();
+L874:          LinearColor mLinearColor = this->GetColorCurveValue([ref] this->mSkyLightColor, mfloat3);
+L920:          this->mSkyLight->LightComponent->SetLightColor(mLinearColor);
+L983:          mFGTimeOfDaySubsystem1 = FGTimeOfDaySubsystem->Get(this);
+L1026:         mfloat3 = mFGTimeOfDaySubsystem1->GetTimeOfDayHours();
+L1076:         LinearColor mLinearColor1 = this->GetColorCurveValue([ref] this->mOcclusionTintColor, mfloat3);
+L1122:         Color mColor = Conv_LinearColorToColor(mLinearColor1, true);
+L1160:         this->mSkyLight->LightComponent->SetOcclusionTint([ref] mColor);
+L1223:         goto ExecutionFlow.Pop();
+L1224:         bool mbool3 = KismetSystemLibrary->IsValid(this->mMoonLight);
+L1275:         if (!mbool3) goto ExecutionFlow.Pop();
+L1285:         DirectionalLightComponent* mDirectionalLightComponent1 = Cast<Class /Script/Engine.DirectionalLightComponent>(this->mMoonLight->LightComponent);
+L1343:         bool mbool4 = mDirectionalLightComponent1;
+L1372:         if (!mbool4) goto ExecutionFlow.Pop();
+L1382:         float mfloat5 = this->GetFloatCurveValue([ref] this->mMoonLightShaftOcclusionCurve, local_timeOfDay);
+L1428:         mDirectionalLightComponent1->SetOcclusionMaskDarkness(mfloat5);
+L1469:         goto ExecutionFlow.Pop();
+L1470:         bool mbool5 = KismetSystemLibrary->IsValid(this->mAtmosphericFog);
+L1521:         if (!mbool5) goto ExecutionFlow.Pop();
+L1531:         float mfloat6 = this->GetFloatCurveValue([ref] this->mSunFogMultiplier, local_timeOfDay);
+L1577:         this->mAtmosphericFog->AtmosphericFogComponent->SetSunMultiplier(mfloat6);
+L1640:         goto ExecutionFlow.Pop();
+L1641:         bool mbool6 = KismetSystemLibrary->IsValid(this->mGlobalPostProcess);
+L1692:         if (!mbool6) goto ExecutionFlow.Pop();
+L1702:         float mfloat7 = this->GetFloatCurveValue([ref] this->Cubemap_Curve, local_timeOfDay);
+L1748:         this->mGlobalPostProcess->Settings.AmbientCubemapIntensity = mfloat7;
+L1806:         this->mGlobalPostProcess->Settings.bOverride_AmbientCubemapIntensity = true;
+L1848:         this->mGlobalPostProcess->Settings = this->mGlobalPostProcess->Settings;
+L1919:         goto ExecutionFlow.Pop();
+============ END FUNCTION UpdateCurvesFromTime ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateLightRotation ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mSunLight);
+L51:           if (!mbool) goto L334;
+L65:           this->CalculateLightRotation(this->mOriginSunRotation, this->mSunRotationAxis, this->mSunRotationPitch, [ref] mRotator);
+L115:          bool mbool1 = this->mSunLight->K2_SetActorRotation(mRotator, false);
+L167:          bool mbool2 = KismetSystemLibrary->IsValid(this->mMoonLight);
+L218:          if (!mbool2) goto L334;
+L232:          this->CalculateLightRotation(this->mOriginMoonRotation, this->mMoonRotationAxis, this->mMoonRotationPitch, [ref] mRotator1);
+L282:          bool mbool3 = this->mMoonLight->K2_SetActorRotation(mRotator1, false);
+============ END FUNCTION UpdateLightRotation ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateMaterialParameters ==============
+L0:            Rotator mRotator = this->mSunLight->K2_GetActorRotation();
+L50:           BreakRotator(mRotator, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L96:           float mfloat3 = MapRangeUnclamped(mfloat1, 0, -60, 0, 1);
+L153:          this->mSunHeight = mfloat3;
+L180:          this->CalculateBrightness([ref] mfloat4);
+L203:          this->mSkyMaterial->SetScalarParameterValue("SunAndMoonBrightness", mfloat4);
+L257:          this->mSkyMaterial->SetScalarParameterValue("SunAndMoonBrightness", mfloat4);
+L311:          this->mSkyMaterial->SetScalarParameterValue("SunAndMoonRadius", this->mDiscRadius);
+L365:          float mfloat5 = Abs(this->mSunHeight);
+L402:          float mfloat6 = Lerp(3, 8, mfloat5);
+L449:          this->mSkyMaterial->SetScalarParameterValue("Horizon Falloff", mfloat6);
+L503:          bool mbool = Less_FloatFloat(this->mSunHeight, 0.5);
+L537:          float mfloat7 = Abs(this->mSunHeight);
+L574:          float mfloat8 = SelectFloat(mfloat7, 0, mbool);
+L625:          this->mSkyMaterial->SetScalarParameterValue("Sun height", mfloat8);
+============ END FUNCTION UpdateMaterialParameters ==============
+
+
+
+
+
+============ BEGIN FUNCTION UserConstructionScript ==============
+L0:            MaterialInstanceDynamic* mMaterialInstanceDynamic = this->Sky Sphere mesh->CreateDynamicMaterialInstance(0, SkyScape_Inst, "None");
+L73:           this->mSkyMaterial = mMaterialInstanceDynamic;
+L92:           bool mbool = KismetSystemLibrary->IsValid(this->mSunLight);
+L143:          bool mbool1 = KismetSystemLibrary->IsValid(this->mMoonLight);
+L194:          bool mbool2 = BooleanAND(mbool, mbool1);
+L232:          FGTimeOfDaySubsystem* mFGTimeOfDaySubsystem = FGTimeOfDaySubsystem->Get(this);
+L275:          bool mbool3 = KismetSystemLibrary->IsValid(mFGTimeOfDaySubsystem);
+L326:          bool mbool4 = BooleanAND(mbool2, mbool3);
+L364:          if (!mbool4) goto L392;
+L378:          this->UpdatePreview();
+============ END FUNCTION UserConstructionScript ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/World/Environment/DayNight/BP_Sky_Sphere.BP_Sky_Sphere_C:ExecuteUbergraph_BP_Sky_Sphere.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_BP_Sky_Sphere(947);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_Sky_Sphere(210);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdatePreview ==============
+L0:            this->ExecuteUbergraph_BP_Sky_Sphere(139);
+============ END FUNCTION UpdatePreview ==============
+
+
+
+
+
+============ BEGIN FUNCTION ApplySkySphereSettings ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/World/Environment/DayNight/BP_Sky_Sphere.BP_Sky_Sphere_C:ExecuteUbergraph_BP_Sky_Sphere.K2Node_Event_settings) = Settings;
+L18:           this->ExecuteUbergraph_BP_Sky_Sphere(215);
+============ END FUNCTION ApplySkySphereSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_Sky_Sphere ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->ReceiveBeginPlay();
+L25:           bool mbool = KismetSystemLibrary->IsValid(this->mSunLight);
+L76:           if (!mbool) goto ExecutionFlow.Pop();
+L86:           bool mbool1 = this->mSunLight->K2_SetActorRotation(this->mOriginSunRotation, false);
+L138:          goto ExecutionFlow.Pop();
+L139:          this->UpdateLightRotation();
+L153:          this->UpdateCurvesFromTime();
+L167:          this->CalculateDominantLight();
+L181:          this->UpdateMaterialParameters();
+L195:          this->UpdateGlobalParameters();
+L209:          goto ExecutionFlow.Pop();
+L210:          goto L15;
+L215:          bool mbool2 = KismetSystemLibrary->IsValid(this->mSkyMaterial);
+L266:          if (!mbool2) goto ExecutionFlow.Pop();
+L276:          this->mSkyMaterial->SetVectorParameterValue("Horizon color", mconst SkySphereSettings.HorizonColor);
+L339:          this->mSkyMaterial->SetVectorParameterValue("Zenith Color", mconst SkySphereSettings.ZenithColor);
+L402:          this->mSkyMaterial->SetVectorParameterValue("Cloud_Color", mconst SkySphereSettings.CloudColor);
+L465:          this->mSkyMaterial->SetScalarParameterValue("Cloudiness", mconst SkySphereSettings.CloudOpacity);
+L528:          ExecutionFlow.Push(L740);
+L533:          bool mbool3 = KismetSystemLibrary->IsValid(this->mSunLight);
+L584:          if (!mbool3) goto ExecutionFlow.Pop();
+L594:          this->mSunLight->LightComponent->SetLightColor(mconst SkySphereSettings.SunLightColor, true);
+L667:          this->mSunLight->LightComponent->SetIntensity(mconst SkySphereSettings.SunIntensity);
+L739:          goto ExecutionFlow.Pop();
+L740:          bool mbool4 = KismetSystemLibrary->IsValid(this->mMoonLight);
+L791:          if (!mbool4) goto ExecutionFlow.Pop();
+L801:          this->mMoonLight->LightComponent->SetLightColor(mconst SkySphereSettings.MoonLightColor, true);
+L874:          this->mMoonLight->LightComponent->SetIntensity(mconst SkySphereSettings.MoonIntensity);
+L946:          goto ExecutionFlow.Pop();
+L947:          this->ReceiveTick(mfloat);
+L966:          bool mbool5 = KismetSystemLibrary->IsValid(this->mSunLight);
+L1017:         FGTimeOfDaySubsystem* mFGTimeOfDaySubsystem = FGTimeOfDaySubsystem->Get(this);
+L1060:         bool mbool6 = KismetSystemLibrary->IsValid(mFGTimeOfDaySubsystem);
+L1111:         bool mbool7 = KismetSystemLibrary->IsValid(this->mMoonLight);
+L1162:         bool mbool8 = BooleanAND(mbool5, mbool7);
+L1200:         bool mbool9 = BooleanAND(mbool8, mbool6);
+L1238:         if (!mbool9) goto ExecutionFlow.Pop();
+L1248:         goto L139;
+============ END FUNCTION ExecuteUbergraph_BP_Sky_Sphere ==============

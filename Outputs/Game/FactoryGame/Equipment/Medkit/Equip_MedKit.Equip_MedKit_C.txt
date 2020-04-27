@@ -1,0 +1,102 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/Medkit/Equip_MedKit.Equip_MedKit_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION WasEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_MedKit(1460);
+============ END FUNCTION WasEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayConsumeEffects ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/Medkit/Equip_MedKit.Equip_MedKit_C:ExecuteUbergraph_Equip_MedKit.K2Node_Event_consumable) = consumable;
+L18:           this->ExecuteUbergraph_Equip_MedKit(1808);
+============ END FUNCTION PlayConsumeEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasUnEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_MedKit(1853);
+============ END FUNCTION WasUnEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Equip_MedKit ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->OnPrimaryFire();
+L25:           this->mCanPress = true;
+L36:           FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
+L56:           SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L98:           AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L140:          float mfloat = mAnimInstance->Montage_Play(OneHandEquipmentEquip_01_Montage, 1, 0, 0, true);
+L212:          goto ExecutionFlow.Pop();
+L213:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L233:          FString mFString = KismetSystemLibrary->GetDisplayName(mFGCharacterPlayer1);
+L292:          KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L375:          this->mCanPress = true;
+L386:          FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L406:          SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L448:          AnimInstance* mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L490:          bool mbool = mAnimInstance1->Montage_IsPlaying(OneHandEquipmentEquip_01_Montage);
+L541:          if (!mbool) goto L556;
+L555:          goto ExecutionFlow.Pop();
+L556:          mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L576:          mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
+L618:          mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L660:          float mfloat1 = mAnimInstance1->Montage_Play(OneHandEquipmentEquip_01_Montage, 1, 0, 0, true);
+L732:          goto ExecutionFlow.Pop();
+L733:          Pawn* mPawn = this->GetInstigator();
+L753:          Controller* mController = mPawn->GetController();
+L795:          PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L831:          bool mbool1 = mPlayerController;
+L860:          if (!mbool1) goto ExecutionFlow.Pop();
+L870:          mPlayerController->ClientPlayCameraAnim(this->mCurrentAnimData.CameraAnim_8_AA01C2B248FF438D6C2816B2FA94F1BD, 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L961:          KismetSystemLibrary->Delay(this, mfloat2, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1892485871, ExecutionFunction = "ExecuteUbergraph_Equip_MedKit", CallbackTarget = this));
+L1041:         goto ExecutionFlow.Pop();
+L1042:         ExecutionFlow.Push(L1237);
+L1047:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L1067:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer3->GetMesh1P();
+L1109:         AnimInstance* mAnimInstance2 = mSkeletalMeshComponent2->GetAnimInstance();
+L1151:         float mfloat2 = mAnimInstance2->Montage_Play(this->mCurrentAnimData.Montage_7_2E66F6A948A8606E71185682EA2AC4EC, 1, 0, 0, true);
+L1232:         goto L733;
+L1237:         AnimInstance* mAnimInstance3 = this->Medkit_skl->GetAnimInstance();
+L1279:         bool mbool2 = mAnimInstance3->Montage_IsPlaying(MedkitUse_02_Montage);
+L1330:         if (!mbool2) goto L1345;
+L1344:         goto ExecutionFlow.Pop();
+L1345:         mAnimInstance3 = this->Medkit_skl->GetAnimInstance();
+L1387:         float mfloat3 = mAnimInstance3->Montage_Play(MedkitUse_02_Montage, 1, 0, 0, true);
+L1459:         goto ExecutionFlow.Pop();
+L1460:         this->WasEquipped();
+L1470:         bool mbool3 = this->IsLocalInstigator();
+L1490:         if (!mbool3) goto ExecutionFlow.Pop();
+L1500:         goto L213;
+L1505:         int32 mint32 = RandomIntegerInRange(0, 2);
+L1543:         this->mRandomAnim = mint32;
+L1570:         int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mAnimData);
+L1629:         int32 mint322 = Subtract_IntInt(mint321, 1);
+L1671:         int32 mint323 = Min(this->mRandomAnim, mint322);
+L1717:         KismetArrayLibrary->Array_Get([ref] this->mAnimData, mint323, [ref] mMedkitAnimationData);
+L1776:         this->mCurrentAnimData = mMedkitAnimationData;
+L1803:         goto L1042;
+L1808:         this->PlayConsumeEffects(mFGConsumableDescriptor);
+L1827:         if (!this->mCanPress) goto ExecutionFlow.Pop();
+L1837:         this->mCanPress = false;
+L1848:         goto L1505;
+L1853:         this->WasUnEquipped();
+L1863:         FGCharacterPlayer* mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L1883:         SkeletalMeshComponent* mSkeletalMeshComponent3 = mFGCharacterPlayer4->GetMesh1P();
+L1925:         AnimInstance* mAnimInstance4 = mSkeletalMeshComponent3->GetAnimInstance();
+L1967:         AnimMontage* mAnimMontage = mAnimInstance4->GetCurrentActiveMontage();
+L2009:         mAnimInstance4->Montage_Stop(0, mAnimMontage);
+L2055:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Equip_MedKit ==============

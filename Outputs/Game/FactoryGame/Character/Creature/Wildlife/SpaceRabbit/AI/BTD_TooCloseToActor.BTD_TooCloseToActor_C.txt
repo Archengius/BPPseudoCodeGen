@@ -1,0 +1,24 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/AI/BTD_TooCloseToActor.BTD_TooCloseToActor_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION PerformConditionCheckAI ==============
+L0:            bool mbool = this->PerformConditionCheckAI(OwnerController, ControlledPawn);
+L38:           Object* mObject = BTFunctionLibrary->GetBlackboardValueAsObject(this, [ref] this->mOtherActorBBKey);
+L90:           Actor* mActor = Cast<Class /Script/Engine.Actor>(mObject);
+L126:          bool mbool1 = mActor;
+L155:          if (!mbool1) goto L485;
+L169:          bool mbool2 = Greater_FloatFloat(this->mDistance, -1);
+L203:          float mfloat = BTFunctionLibrary->GetBlackboardValueAsFloat(this, [ref] this->mMinDistanceBBKey);
+L263:          float mfloat1 = SelectFloat(this->mDistance, mfloat, mbool2);
+L318:          float mfloat2 = Multiply_FloatFloat(mfloat1, this->mDistanceMultiplier);
+L364:          float mfloat3 = mActor->GetDistanceTo(ControlledPawn);
+L423:          bool mbool3 = LessEqual_FloatFloat(mfloat3, mfloat2);
+L461:          bool ReturnValue = mbool3;
+L480:          goto L496;
+L485:          ReturnValue = false;
+============ END FUNCTION PerformConditionCheckAI ==============

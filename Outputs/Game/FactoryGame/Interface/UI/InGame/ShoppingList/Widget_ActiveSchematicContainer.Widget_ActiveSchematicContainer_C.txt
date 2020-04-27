@@ -1,0 +1,224 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/ShoppingList/Widget_ActiveSchematicContainer.Widget_ActiveSchematicContainer_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetPodTimerText ==============
+L0:            LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L24:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mLocalPlayer);
+L75:           bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L126:          if (!mbool) goto L313;
+L140:          mLocalPlayer = this->GetOwningLocalPlayer();
+L164:          mFGSchematicManager = FGSchematicManager->Get(mLocalPlayer);
+L215:          float mfloat = mFGSchematicManager->GetTimeUntilShipReturn();
+L265:          bool mbool1 = LessEqual_FloatFloat(mfloat, 0);
+L299:          if (!mbool1) goto L338;
+L313:          FText ReturnValue = ;
+L333:          goto L944;
+L338:          mLocalPlayer = this->GetOwningLocalPlayer();
+L362:          mFGSchematicManager = FGSchematicManager->Get(mLocalPlayer);
+L413:          mfloat = mFGSchematicManager->GetTimeUntilShipReturn();
+L463:          FString mFString = KismetStringLibrary->TimeSecondsToString(mfloat);
+L522:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L581:          mFormatArgumentData.ArgumentName = "Time";
+L614:          mFormatArgumentData.ArgumentValueType = 4;
+L643:          mFormatArgumentData.ArgumentValue = mFText;
+L679:          mFormatArgumentData.ArgumentValueInt = 0;
+L711:          mFormatArgumentData.ArgumentValueFloat = 0;
+L743:          mFormatArgumentData.ArgumentValueGender = 0;
+L772:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L792:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L917:          ReturnValue = mFText1;
+============ END FUNCTION GetPodTimerText ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowPodTimerText ==============
+L0:            LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L24:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mLocalPlayer);
+L75:           bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L126:          if (!mbool) goto L392;
+L140:          uint8 Temp_byte_Variable = 1;
+L160:          uint8 Temp_byte_Variable1 = 3;
+L180:          mLocalPlayer = this->GetOwningLocalPlayer();
+L204:          mFGSchematicManager = FGSchematicManager->Get(mLocalPlayer);
+L255:          bool mbool1 = mFGSchematicManager->IsShipAtTradingPost();
+L297:          bool Temp_bool_Variable = mbool1;
+L316:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+L387:          goto L412;
+L392:          ReturnValue = 1;
+============ END FUNCTION ShowPodTimerText ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveSchematicCostWidget ==============
+L0:            int32 mint32 = this->mSchematicCostBox->GetChildrenCount();
+L50:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L92:           int32 mint322 = Min(mint321, 0);
+L134:          bool mbool = this->mSchematicCostBox->RemoveChildAt(mint322);
+============ END FUNCTION RemoveSchematicCostWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddSchematicCostWidget ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           BP_PlayerState* mBP_PlayerState = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C>(mPlayerController->PlayerState);
+L82:           bool mbool = mBP_PlayerState;
+L111:          if (!mbool) goto L413;
+L125:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L149:          Widget_ActiveSchematicCost* mWidget_ActiveSchematicCost = WidgetBlueprintLibrary->Create(this, Widget_ActiveSchematicCost, mPlayerController1);
+L210:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ActiveSchematicCost, "mPlayerState", mBP_PlayerState);
+L273:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ActiveSchematicCost, "mActiveSchematicContainer", this);
+L328:          HorizontalBoxSlot* mHorizontalBoxSlot = this->mSchematicCostBox->AddChildToHorizontalBox(mWidget_ActiveSchematicCost);
+L379:          mHorizontalBoxSlot->SetHorizontalAlignment(2);
+============ END FUNCTION AddSchematicCostWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION MatchWidgetWithSchematicCost ==============
+L0:            ExecutionFlow.Push(L716);
+L5:            this->mSchematicCostBox->ClearChildren();
+L41:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L65:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L116:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L158:          bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L209:          if (!mbool) goto L618;
+L223:          mPlayerController = this->GetOwningPlayer();
+L247:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L298:          mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L340:          TArray<ItemAmount> mTArray<ItemAmount> = FGSchematic->GetCost(mTSubclassOf<FGSchematic>);
+L399:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L458:          int32 costLength = mint32;
+L485:          int32 Temp_int_Variable = 0;
+L508:          int32 mint321 = Subtract_IntInt(costLength, 1);
+L550:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint321);
+L588:          if (!mbool1) goto ExecutionFlow.Pop();
+L598:          ExecutionFlow.Push(L642);
+L603:          this->AddSchematicCostWidget();
+L617:          goto ExecutionFlow.Pop();
+L618:          costLength = 0;
+L641:          goto ExecutionFlow.Pop();
+L642:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L684:          Temp_int_Variable = mint322;
+L711:          goto L508;
+============ END FUNCTION MatchWidgetWithSchematicCost ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowSchematicWidget ==============
+L0:            this->ShouldShowSchematic([ref] mbool);
+L23:           uint8 Temp_byte_Variable = 0;
+L43:           uint8 Temp_byte_Variable1 = 1;
+L63:           bool Temp_bool_Variable = mbool;
+L82:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION ShowSchematicWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShouldShowSchematic ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L75:           bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L126:          if (!mbool) goto L474;
+L140:          mPlayerController = this->GetOwningPlayer();
+L164:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L215:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L257:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L308:          if (!mbool1) goto L490;
+L322:          mPlayerController = this->GetOwningPlayer();
+L346:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L397:          mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L439:          this->mCachedActiveSchematic = mTSubclassOf<FGSchematic>;
+L458:          bool ShouldShow = true;
+L469:          <End of Inlined Event Graph Function>;
+L474:          ShouldShow = false;
+L485:          <End of Inlined Event Graph Function>;
+L490:          ShouldShow = false;
+============ END FUNCTION ShouldShowSchematic ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicName ==============
+L0:            this->ShouldShowSchematic([ref] mbool);
+L23:           if (!mbool) goto L211;
+L37:           bool mbool1 = KismetSystemLibrary->IsValidClass(this->mCachedActiveSchematic);
+L88:           if (!mbool1) goto L254;
+L102:          FText mFText = FGSchematic->GetSchematicDisplayName(this->mCachedActiveSchematic);
+L161:          this->mSchematicName->SetText(mFText);
+L206:          <End of Inlined Event Graph Function>;
+L211:          this->mSchematicName->SetText();
+L249:          <End of Inlined Event Graph Function>;
+L254:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L278:          FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L329:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L371:          FText mFText1 = FGSchematic->GetSchematicDisplayName(mTSubclassOf<FGSchematic>);
+L430:          this->mSchematicName->SetText(mFText1);
+============ END FUNCTION GetSchematicName ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ActiveSchematicContainer(405);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateSchematic ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Interface/UI/InGame/ShoppingList/Widget_ActiveSchematicContainer.Widget_ActiveSchematicContainer_C:ExecuteUbergraph_Widget_ActiveSchematicContainer.K2Node_CustomEvent_activeSchematic) = activeSchematic;
+L18:           this->ExecuteUbergraph_Widget_ActiveSchematicContainer(410);
+============ END FUNCTION UpdateSchematic ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ActiveSchematicContainer ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->GetSchematicName();
+L29:           goto ExecutionFlow.Pop();
+L30:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L54:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L105:          bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L156:          if (!mbool) goto L328;
+L170:          mFScriptDelegate->BindUFunction(this, UpdateSchematic);
+L193:          mPlayerController = this->GetOwningPlayer();
+L217:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L268:          mFGSchematicManager->mOnActiveSchematicChanged.AddUnique(mFScriptDelegate);
+L309:          this->MatchWidgetWithSchematicCost();
+L323:          goto L15;
+L328:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 30, UUID = -964581872, ExecutionFunction = "ExecuteUbergraph_Widget_ActiveSchematicContainer", CallbackTarget = this));
+L404:          goto ExecutionFlow.Pop();
+L405:          goto L30;
+L410:          this->MatchWidgetWithSchematicCost();
+L424:          this->GetSchematicName();
+L438:          goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_ActiveSchematicContainer ==============

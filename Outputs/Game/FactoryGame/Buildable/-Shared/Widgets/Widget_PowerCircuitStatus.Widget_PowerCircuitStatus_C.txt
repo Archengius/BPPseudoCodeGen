@@ -1,0 +1,48 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_PowerCircuitStatus.Widget_PowerCircuitStatus_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION IsConnectedVisibility ==============
+L0:            this->IsConnected([ref] mbool);
+L23:           if (!mbool) goto L62;
+L37:           uint8 ReturnValue = 3;
+L57:           goto L82;
+L62:           ReturnValue = 1;
+============ END FUNCTION IsConnectedVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsConnected ==============
+L0:            FGPowerCircuit* mFGPowerCircuit = this->GetPowerCircuit();
+L20:           bool mbool = KismetSystemLibrary->IsValid(mFGPowerCircuit);
+L71:           bool IsConnected = mbool;
+============ END FUNCTION IsConnected ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCircuitText ==============
+L0:            FText mNotConnectedText = "[object Object]";
+L71:           this->IsConnected([ref] mbool);
+L94:           if (!mbool) goto L526;
+L108:          FGPowerCircuit* mFGPowerCircuit = this->GetPowerCircuit();
+L128:          int32 mint32 = mFGPowerCircuit->GetCircuitID();
+L178:          mFormatArgumentData.ArgumentName = "A";
+L208:          mFormatArgumentData.ArgumentValueType = 0;
+L237:          mFormatArgumentData.ArgumentValue = ;
+L266:          mFormatArgumentData.ArgumentValueInt = mint32;
+L302:          mFormatArgumentData.ArgumentValueFloat = 0;
+L334:          mFormatArgumentData.ArgumentValueGender = 0;
+L363:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L383:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L494:          FText ReturnValue = mFText;
+L521:          goto L553;
+L526:          ReturnValue = mNotConnectedText;
+============ END FUNCTION GetCircuitText ==============

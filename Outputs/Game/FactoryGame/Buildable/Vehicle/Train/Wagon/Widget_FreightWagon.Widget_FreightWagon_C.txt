@@ -1,0 +1,344 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Train/Wagon/Widget_FreightWagon.Widget_FreightWagon_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetFluidInfo ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(fluidDescriptor);
+L51:           if (!mbool) goto L738;
+L65:           FText mFText = FGItemDescriptor->GetItemName(fluidDescriptor);
+L124:          this->mFluidName->SetText(mFText);
+L169:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(fluidDescriptor);
+L220:          mSlateBrush.ImageSize = this->mFluidIcon->Brush.ImageSize;
+L287:          mSlateBrush.Margin = this->mFluidIcon->Brush.Margin;
+L354:          mSlateBrush.TintColor = this->mFluidIcon->Brush.TintColor;
+L421:          mSlateBrush.ResourceObject = mTexture2D;
+L449:          mSlateBrush.DrawAs = this->mFluidIcon->Brush.DrawAs;
+L516:          mSlateBrush.Tiling = this->mFluidIcon->Brush.Tiling;
+L583:          mSlateBrush.Mirroring = this->mFluidIcon->Brush.Mirroring;
+L650:          this->mFluidIcon->SetBrush([ref] mSlateBrush);
+L695:          this->mFluidIcon->SetVisibility(0);
+L733:          <End of Inlined Event Graph Function>;
+L738:          this->mFluidName->SetText("[object Object]");
+L818:          this->mFluidIcon->SetVisibility(2);
+============ END FUNCTION SetFluidInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetFluidAmount ==============
+L0:            FText mFText = KismetTextLibrary->Conv_FloatToText(Value, 0, false, true, 1, 324, 0, 1);
+L83:           this->mCurrentAmountInPipeText->SetText(mFText);
+L128:          float mfloat = Divide_FloatFloat(Value, this->mMaxLiquidStorage);
+L174:          this->BPW_FluidTank->UpdateTankValue(mfloat);
+============ END FUNCTION SetFluidAmount ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetFluidStats ==============
+L0:            float localCurrentAmount = 0;
+L23:           bool mbool = Not_PreBool(this->mFlushing);
+L52:           if (!mbool) goto L739;
+L66:           bool mbool1 = this->mInventoryComponent->GetStackFromIndex(0, [ref] mInventoryStack);
+L122:          FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint32, [ref] mInventoryItem);
+L181:          FGInventoryLibrary->BreakInventoryItem([ref] mInventoryItem, [ref] mTSubclassOf<FGItemDescriptor>, [ref] mActor);
+L240:          bool mbool2 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGItemDescriptor>);
+L291:          if (!mbool2) goto L739;
+L305:          FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint32, [ref] mInventoryItem);
+L364:          FGInventoryLibrary->BreakInventoryItem([ref] mInventoryItem, [ref] mTSubclassOf<FGItemDescriptor>, [ref] mActor);
+L423:          TSubclassOf<FGItemDescriptor> localFluidDesc = mTSubclassOf<FGItemDescriptor>;
+L442:          FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint32, [ref] mInventoryItem);
+L501:          float mfloat = FGInventoryLibrary->GetAmountConvertedByForm(mint32, 2);
+L562:          localCurrentAmount = mfloat;
+L589:          LinearColor mLinearColor = FGItemDescriptor->GetFluidColorLinear(localFluidDesc);
+L648:          this->BPW_FluidTank->SetTint(mLinearColor);
+L693:          this->SetFluidAmount(localCurrentAmount);
+L716:          this->SetFluidInfo(localFluidDesc);
+============ END FUNCTION SetFluidStats ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDumpAllClicked ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           if (!mbool) goto L372;
+L103:          Pawn* mPawn = mFGPlayerController->K2_GetPawn();
+L145:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L181:          bool mbool1 = mFGCharacterPlayer;
+L210:          if (!mbool1) goto L372;
+L224:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L275:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
+L317:          mBP_RemoteCallObject->Server_GrabAllItemsFromInventory(mFGInventoryComponent, this->mInventoryComponent, nullptr);
+============ END FUNCTION OnDumpAllClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnGrabAllClicked ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           if (!mbool) goto L372;
+L103:          Pawn* mPawn = mFGPlayerController->K2_GetPawn();
+L145:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L181:          bool mbool1 = mFGCharacterPlayer;
+L210:          if (!mbool1) goto L372;
+L224:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L275:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
+L317:          mBP_RemoteCallObject->Server_GrabAllItemsFromInventory(this->mInventoryComponent, mFGInventoryComponent, nullptr);
+============ END FUNCTION OnGrabAllClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSortButtonClicked ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           if (!mbool) goto L253;
+L103:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L154:          mBP_RemoteCallObject->Server_SortInventory(this->mInventoryComponent);
+L199:          this->Widget_Scrollbox->mScrollBox->ScrollToStart();
+============ END FUNCTION OnSortButtonClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetFreightWagonInventoryComponent ==============
+L0:            FGInventoryComponent* mFGInventoryComponent = this->mFreightWagon->GetFreightInventory();
+L42:           this->mInventory->Init(mFGInventoryComponent);
+L87:           FGInventoryComponent* mFGInventoryComponent1 = this->mFreightWagon->GetFreightInventory();
+L129:          this->mInventoryComponent = mFGInventoryComponent1;
+============ END FUNCTION SetFreightWagonInventoryComponent ==============
+
+
+
+
+
+============ BEGIN FUNCTION BindStorageButtons ==============
+L0:            mFScriptDelegate->BindUFunction(this, DumpAllInStorage);
+L23:           this->mDumpAllButton->mButton->OnClicked.AddUnique(mFScriptDelegate);
+L86:           mFScriptDelegate1->BindUFunction(this, GrabAllFromStorage);
+L109:          this->mGrabAllButton->mButton->OnClicked.AddUnique(mFScriptDelegate1);
+============ END FUNCTION BindStorageButtons ==============
+
+
+
+
+
+============ BEGIN FUNCTION DropInventorySlotStack ==============
+L0:            this->DropInventoryStackOnInventoryWidget(InventorySlot, this->mInventory, [ref] mbool);
+L41:           bool WasStackMoved = mbool;
+============ END FUNCTION DropInventorySlotStack ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateHeaderText ==============
+L0:            FGFreightWagon* mFGFreightWagon = Cast<Class /Script/FactoryGame.FGFreightWagon>(this->mInteractObject);
+L36:           bool mbool = mFGFreightWagon;
+L65:           if (!mbool) goto L146;
+L79:           this->Widget_Window_DarkMode->SetTitle(mFGFreightWagon->mDisplayName);
+============ END FUNCTION UpdateHeaderText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_FreightWagon(1230);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION CloseStorage ==============
+L0:            this->ExecuteUbergraph_Widget_FreightWagon(1343);
+============ END FUNCTION CloseStorage ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_FreightWagon(1372);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION DumpAllInStorage ==============
+L0:            this->ExecuteUbergraph_Widget_FreightWagon(1486);
+============ END FUNCTION DumpAllInStorage ==============
+
+
+
+
+
+============ BEGIN FUNCTION GrabAllFromStorage ==============
+L0:            this->ExecuteUbergraph_Widget_FreightWagon(1582);
+============ END FUNCTION GrabAllFromStorage ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSortButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_FreightWagon(1601);
+============ END FUNCTION BndEvt__mSortButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/Train/Wagon/Widget_FreightWagon.Widget_FreightWagon_C:ExecuteUbergraph_Widget_FreightWagon.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/Train/Wagon/Widget_FreightWagon.Widget_FreightWagon_C:ExecuteUbergraph_Widget_FreightWagon.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_FreightWagon(1616);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCustomTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/Train/Wagon/Widget_FreightWagon.Widget_FreightWagon_C:ExecuteUbergraph_Widget_FreightWagon.K2Node_Event_UpdateTime) = UpdateTime;
+L18:           this->ExecuteUbergraph_Widget_FreightWagon(1617);
+============ END FUNCTION OnCustomTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_0_OnFluidLerp__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/Train/Wagon/Widget_FreightWagon.Widget_FreightWagon_C:ExecuteUbergraph_Widget_FreightWagon.K2Node_ComponentBoundEvent_Alpha) = Alpha;
+L18:           this->ExecuteUbergraph_Widget_FreightWagon(1789);
+============ END FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_0_OnFluidLerp__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_2_OnFlush__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/Train/Wagon/Widget_FreightWagon.Widget_FreightWagon_C:ExecuteUbergraph_Widget_FreightWagon.K2Node_ComponentBoundEvent_DrainDuration) = DrainDuration;
+L18:           this->ExecuteUbergraph_Widget_FreightWagon(2138);
+============ END FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_2_OnFlush__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_4_OnDrainCompleted__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_FreightWagon(2143);
+============ END FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_4_OnDrainCompleted__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_FreightWagon ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           KismetSystemLibrary->Delay(this, 0.5, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 92, UUID = -1865888106, ExecutionFunction = "ExecuteUbergraph_Widget_FreightWagon", CallbackTarget = this));
+L91:           goto ExecutionFlow.Pop();
+L92:           this->OnEscapePressed();
+L106:          goto ExecutionFlow.Pop();
+L107:          ExecutionFlow.Push(L258);
+L112:          mFScriptDelegate->BindUFunction(this, OnInventorySlotStackMove);
+L135:          KismetArrayLibrary->Array_Get([ref] this->mInventory->mInventorySlots, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L216:          mWidget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate);
+L257:          goto ExecutionFlow.Pop();
+L258:          int32 mint32 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L300:          int32 Temp_int_Loop_Counter_Variable = mint32;
+L327:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mInventory->mInventorySlots);
+L408:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L446:          if (!mbool) goto L492;
+L460:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L487:          goto L107;
+L492:          uint8 muint8 = this->mFreightWagon->GetFreightCargoType();
+L542:          bool mbool1 = NotEqual_ByteByte(muint8, 0);
+L573:          if (!mbool1) goto L678;
+L587:          mbool1 = NotEqual_ByteByte(muint8, 1);
+L618:          if (!mbool1) goto L678;
+L632:          mbool1 = NotEqual_ByteByte(muint8, 2);
+L663:          if (!mbool1) goto L793;
+L677:          goto ExecutionFlow.Pop();
+L678:          this->mSolidInventoryContainer->SetVisibility(0);
+L716:          this->mLiquidInventoryContainer->SetVisibility(1);
+L754:          this->Widget_Window_DarkMode->SetInventoryVisibility(true, false);
+L792:          goto ExecutionFlow.Pop();
+L793:          this->mSolidInventoryContainer->SetVisibility(1);
+L831:          this->mLiquidInventoryContainer->SetVisibility(0);
+L869:          this->Widget_Window_DarkMode->SetInventoryVisibility(false, false);
+L907:          int32 mint322 = this->mFreightWagon->GetScaledFluidStackSize();
+L957:          float mfloat = FGInventoryLibrary->GetAmountConvertedByForm(mint322, 2);
+L1018:         this->mMaxLiquidStorage = mfloat;
+L1045:         FText mFText = KismetTextLibrary->Conv_FloatToText(this->mMaxLiquidStorage, 0, false, true, 1, 324, 0, 3);
+L1128:         this->mMaxAmountInPipe->SetText(mFText);
+L1173:         goto ExecutionFlow.Pop();
+L1174:         Temp_int_Array_Index_Variable = 0;
+L1197:         goto L327;
+L1202:         Temp_int_Loop_Counter_Variable = 0;
+L1225:         goto L1174;
+L1230:         this->Init();
+L1240:         FGFreightWagon* mFGFreightWagon = Cast<Class /Script/FactoryGame.FGFreightWagon>(this->mInteractObject);
+L1276:         bool mbool2 = mFGFreightWagon;
+L1305:         this->mFreightWagon = mFGFreightWagon;
+L1324:         this->SetFreightWagonInventoryComponent();
+L1338:         goto L1202;
+L1343:         this->OnEscapePressed();
+L1371:         goto ExecutionFlow.Pop();
+L1372:         this->Construct();
+L1382:         this->UpdateHeaderText();
+L1396:         this->BindStorageButtons();
+L1410:         mFScriptDelegate1->BindUFunction(this, CloseStorage);
+L1433:         this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate1);
+L1474:         this->mShouldOpenInventory = true;
+L1485:         goto ExecutionFlow.Pop();
+L1486:         this->OnDumpAllClicked();
+L1500:         Pawn* mPawn = this->GetOwningPlayerPawn();
+L1520:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_GrabAllDumpAll, mPawn, true);
+L1581:         goto ExecutionFlow.Pop();
+L1582:         this->OnGrabAllClicked();
+L1596:         goto L1500;
+L1601:         this->OnSortButtonClicked();
+L1615:         goto ExecutionFlow.Pop();
+L1616:         goto ExecutionFlow.Pop();
+L1617:         bool mbool3 = KismetSystemLibrary->IsValid(this->mFreightWagon);
+L1668:         if (!mbool3) goto ExecutionFlow.Pop();
+L1678:         uint8 muint81 = this->mFreightWagon->GetFreightCargoType();
+L1728:         bool mbool4 = NotEqual_ByteByte(muint81, 2);
+L1759:         if (!mbool4) goto L1774;
+L1773:         goto ExecutionFlow.Pop();
+L1774:         this->SetFluidStats();
+L1788:         goto ExecutionFlow.Pop();
+L1789:         if (!this->mFlushing) goto ExecutionFlow.Pop();
+L1799:         float mfloat1 = Ease(this->mLastStorage, 0, mfloat2, 4, 2, 2);
+L1862:         this->SetFluidAmount(mfloat1);
+L1885:         goto ExecutionFlow.Pop();
+L1886:         this->mFlushing = true;
+L1897:         bool mbool5 = this->mInventoryComponent->GetStackFromIndex(0, [ref] mInventoryStack);
+L1953:         FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint323, [ref] mInventoryItem);
+L2012:         float mfloat3 = FGInventoryLibrary->GetAmountConvertedByForm(mint323, 2);
+L2073:         this->mLastStorage = mfloat3;
+L2100:         this->mInventoryComponent->RemoveAllFromIndex(0);
+L2137:         goto ExecutionFlow.Pop();
+L2138:         goto L1886;
+L2143:         this->mFlushing = false;
+L2154:         this->SetFluidInfo(nullptr);
+L2169:         goto L15;
+============ END FUNCTION ExecuteUbergraph_Widget_FreightWagon ==============

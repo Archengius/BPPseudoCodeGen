@@ -1,0 +1,468 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetTickStatus ==============
+L0:            ExecutionFlow.Push(L462);
+L5:            this->SetActorTickEnabled(doTick);
+L24:           int32 Temp_int_Loop_Counter_Variable = 0;
+L47:           int32 Temp_int_Array_Index_Variable = 0;
+L70:           TArray<ActorComponent*> mTArray<ActorComponent> = this->GetComponentsByClass(ActorComponent);
+L107:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ActorComponent>);
+L166:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L204:          if (!mbool) goto ExecutionFlow.Pop();
+L214:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L241:          ExecutionFlow.Push(L388);
+L246:          mTArray<ActorComponent> = this->GetComponentsByClass(ActorComponent);
+L283:          KismetArrayLibrary->Array_Get([ref] mTArray<ActorComponent>, Temp_int_Array_Index_Variable, [ref] mActorComponent);
+L342:          mActorComponent->SetComponentTickEnabled(doTick);
+L387:          goto ExecutionFlow.Pop();
+L388:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L430:          Temp_int_Loop_Counter_Variable = mint321;
+L457:          goto L70;
+============ END FUNCTION SetTickStatus ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRep_mReplicatedAnimPosition ==============
+L0:            bool mbool = NotEqual_ByteByte(this->mState, 1);
+L31:           if (!mbool) goto L95;
+L45:           mbool = NotEqual_ByteByte(this->mState, 2);
+L76:           if (!mbool) goto L95;
+L90:           <End of Inlined Event Graph Function>;
+L95:           this->GetStatePlayRate([ref] mfloat);
+L118:          this->SkeletalMesh->OverrideAnimationData(this->mGrowAnimation, false, true, this->mReplicatedAnimPosition, mfloat);
+============ END FUNCTION OnRep_mReplicatedAnimPosition ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRep_mState ==============
+L0:            ExecutionFlow.Push(L312);
+L5:            this->GetStatePlayRate([ref] mfloat);
+L28:           this->SkeletalMesh->SetPlayRate(mfloat);
+L69:           ExecutionFlow.Push(L195);
+L74:           bool mbool = this->HasAuthority();
+L94:           if (!mbool) goto ExecutionFlow.Pop();
+L104:          bool mbool1 = NotEqual_ByteByte(this->mState, 1);
+L135:          if (!mbool1) goto L210;
+L149:          mbool1 = NotEqual_ByteByte(this->mState, 2);
+L180:          if (!mbool1) goto L210;
+L194:          goto ExecutionFlow.Pop();
+L195:          this->UpdateAnimationFromState();
+L209:          goto ExecutionFlow.Pop();
+L210:          this->FlushNetDormancy();
+L220:          float mfloat1 = this->SkeletalMesh->GetPosition();
+L270:          this->mReplicatedAnimPosition = mfloat1;
+L297:          this->OnRep_mReplicatedAnimPosition();
+L311:          goto ExecutionFlow.Pop();
+============ END FUNCTION OnRep_mState ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRep_mGasState ==============
+L0:            bool mbool = NotEqual_ByteByte(this->mGasState, 0);
+L31:           if (!mbool) goto L140;
+L45:           mbool = NotEqual_ByteByte(this->mGasState, 1);
+L76:           if (!mbool) goto L257;
+L90:           mbool = NotEqual_ByteByte(this->mGasState, 2);
+L121:          if (!mbool) goto L140;
+L135:          <End of Inlined Event Graph Function>;
+L140:          bool mbool1 = KismetSystemLibrary->IsValid(this->mGasPSC);
+L191:          if (!mbool1) goto L341;
+L205:          this->mGasPSC->Deactivate();
+L241:          this->mGasPSC = nullptr;
+L252:          <End of Inlined Event Graph Function>;
+L257:          bool mbool2 = KismetSystemLibrary->IsValid(this->mGasPSC);
+L308:          if (!mbool2) goto L327;
+L322:          <End of Inlined Event Graph Function>;
+L327:          this->SpawnGasParticles();
+============ END FUNCTION OnRep_mGasState ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopSporeAnimation ==============
+L0:            this->FlushNetDormancy();
+L10:           this->mState = 2;
+L30:           this->OnRep_mState();
+L44:           float mfloat = this->mGrowAnimation->GetPlayLength();
+L98:           this->SkeletalMesh->SetAnimation(this->mGrowAnimation);
+L139:          float mfloat1 = Subtract_FloatFloat(mfloat, 0.4000000059604645);
+L181:          this->SkeletalMesh->SetPosition(mfloat1, false);
+L223:          this->GetStatePlayRate([ref] mfloat2);
+L246:          this->SkeletalMesh->SetPlayRate(mfloat2);
+L287:          this->SkeletalMesh->Play(false);
+L320:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Stop_SporeFlower_Gas, this, true);
+============ END FUNCTION StopSporeAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateAnimationFromState ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           bool mbool1 = BooleanOR(this->mIsSignificant, mbool);
+L58:           if (!mbool1) goto L1017;
+L72:           bool mbool2 = NotEqual_ByteByte(this->mState, 0);
+L103:          if (!mbool2) goto L257;
+L117:          mbool2 = NotEqual_ByteByte(this->mState, 1);
+L148:          if (!mbool2) goto L368;
+L162:          mbool2 = NotEqual_ByteByte(this->mState, 2);
+L193:          if (!mbool2) goto L688;
+L207:          mbool2 = NotEqual_ByteByte(this->mState, 3);
+L238:          if (!mbool2) goto L975;
+L252:          <End of Inlined Event Graph Function>;
+L257:          this->SkeletalMesh->SetAnimation(this->mGrowAnimation);
+L298:          this->SkeletalMesh->Play(false);
+L331:          this->SkeletalMesh->Stop();
+L363:          <End of Inlined Event Graph Function>;
+L368:          if (!this->mIsSignificant) goto L566;
+L382:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_SporeFlower_Bloom, this, true);
+L435:          bool mbool3 = KismetSystemLibrary->IsValid(mAkComponent);
+L486:          if (!mbool3) goto L566;
+L500:          bool mbool4 = mAkComponent->SeekOnEventBySeconds(Play_SporeFlower_Bloom, this->mReplicatedAnimPosition, false, 0);
+L566:          this->GetStatePlayRate([ref] mfloat);
+L589:          this->SkeletalMesh->OverrideAnimationData(this->mGrowAnimation, false, true, this->mReplicatedAnimPosition, mfloat);
+L650:          this->SkeletalMesh->Play(false);
+L683:          <End of Inlined Event Graph Function>;
+L688:          if (!this->mIsSignificant) goto L566;
+L702:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_SporeFlower_Retract, this, true);
+L755:          bool mbool5 = KismetSystemLibrary->IsValid(mAkComponent1);
+L806:          if (!mbool5) goto L566;
+L820:          float mfloat1 = Subtract_FloatFloat(9.970000267028809, this->mReplicatedAnimPosition);
+L862:          float mfloat2 = Multiply_FloatFloat(mfloat1, 2);
+L904:          bool mbool6 = mAkComponent1->SeekOnEventBySeconds(Play_SporeFlower_Retract, mfloat2, false, 0);
+L970:          goto L566;
+L975:          this->SkeletalMesh->PlayAnimation(this->mSporeAnimation, true);
+============ END FUNCTION UpdateAnimationFromState ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartSporeAnimation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L131;
+L34:           this->FlushNetDormancy();
+L44:           this->mState = 3;
+L64:           this->OnRep_mState();
+L78:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_SporeFlower_Gas, this, true);
+============ END FUNCTION StartSporeAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetStatePlayRate ==============
+L0:            float Temp_float_Variable = 0;
+L23:           float Temp_float_Variable1 = -0.5;
+L46:           float Temp_float_Variable2 = 1;
+L69:           float Temp_float_Variable3 = 0;
+L92:           uint8 Temp_byte_Variable = this->mState;
+L119:          float PlayRate = switch (Temp_byte_Variable) {
+case 0 -> Temp_float_Variable3;
+case 1 -> Temp_float_Variable2;
+case 2 -> Temp_float_Variable1;
+case 3 -> Temp_float_Variable;
+default -> mfloat;
+};
+============ END FUNCTION GetStatePlayRate ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetOffCooldown ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L78;
+L34:           this->FlushNetDormancy();
+L44:           this->mGasState = 0;
+L64:           this->OnRep_mGasState();
+============ END FUNCTION GetOffCooldown ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartReleasingGas ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L116;
+L34:           this->DotComponent->SetActive(true, false);
+L72:           this->FlushNetDormancy();
+L82:           this->mGasState = 1;
+L102:          this->OnRep_mGasState();
+============ END FUNCTION StartReleasingGas ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopExpanding ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L78;
+L34:           this->FlushNetDormancy();
+L44:           this->mState = 0;
+L64:           this->OnRep_mState();
+============ END FUNCTION StopExpanding ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopReleasingGas ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L116;
+L34:           this->DotComponent->SetActive(false, false);
+L72:           this->FlushNetDormancy();
+L82:           this->mGasState = 2;
+L102:          this->OnRep_mGasState();
+============ END FUNCTION StopReleasingGas ==============
+
+
+
+
+
+============ BEGIN FUNCTION CondintionallyReverseExpanding ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L123;
+L34:           bool mbool1 = EqualEqual_ByteByte(this->mState, 1);
+L65:           if (!mbool1) goto L123;
+L79:           this->FlushNetDormancy();
+L89:           this->mState = 2;
+L109:          this->OnRep_mState();
+============ END FUNCTION CondintionallyReverseExpanding ==============
+
+
+
+
+
+============ BEGIN FUNCTION ConditionallyStartExpanding ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L694;
+L34:           bool mbool1 = KismetArrayLibrary->Array_RemoveItem([ref] this->mTriggeredActors, [ref] Temp_object_Variable);
+L94:           uint8 muint8 = KismetSystemLibrary->MakeLiteralByte(1);
+L146:          bool mbool2 = EqualEqual_ByteByte(this->mGasState, 0);
+L177:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mTriggeredActors);
+L236:          bool mbool3 = Greater_IntInt(mint32, 0);
+L270:          bool mbool4 = NotEqual_ByteByte(this->mState, muint8);
+L308:          bool mbool5 = BooleanAND(mbool4, mbool3);
+L346:          bool mbool6 = BooleanAND(mbool5, mbool2);
+L384:          if (!mbool6) goto L694;
+L398:          this->FlushNetDormancy();
+L408:          this->mState = 1;
+L428:          this->OnRep_mState();
+L442:          bool mbool7 = KismetSystemLibrary->K2_TimerExistsHandle(this, this->mUpdateAnimPositionTimer);
+L494:          bool mbool8 = Not_PreBool(mbool7);
+L523:          if (!mbool8) goto L694;
+L537:          mFScriptDelegate->BindUFunction(this, UpdateAnimPosition);
+L560:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.30000001192092896, true);
+L625:          this->mUpdateAnimPositionTimer = mTimerHandle;
+L652:          this->SkeletalMesh->VisibilityBasedAnimTickOption = 1;
+============ END FUNCTION ConditionallyStartExpanding ==============
+
+
+
+
+
+============ BEGIN FUNCTION ActivateDamage ==============
+L0:            this->ExecuteUbergraph_BP_SporeFlower(1219);
+============ END FUNCTION ActivateDamage ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__TriggerSphere_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C:ExecuteUbergraph_BP_SporeFlower.K2Node_ComponentBoundEvent_OverlappedComponent1) = OverlappedComponent;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C:ExecuteUbergraph_BP_SporeFlower.K2Node_ComponentBoundEvent_OtherActor1) = OtherActor;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C:ExecuteUbergraph_BP_SporeFlower.K2Node_ComponentBoundEvent_OtherComp1) = OtherComp;
+L54:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C:ExecuteUbergraph_BP_SporeFlower.K2Node_ComponentBoundEvent_OtherBodyIndex1) = OtherBodyIndex;
+L72:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C:ExecuteUbergraph_BP_SporeFlower.K2Node_ComponentBoundEvent_bFromSweep) = bFromSweep;
+L90:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C:ExecuteUbergraph_BP_SporeFlower.K2Node_ComponentBoundEvent_SweepResult) = SweepResult;
+L108:          this->ExecuteUbergraph_BP_SporeFlower(648);
+============ END FUNCTION BndEvt__TriggerSphere_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__TriggerSphere_K2Node_ComponentBoundEvent_1_ComponentEndOverlapSignature__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C:ExecuteUbergraph_BP_SporeFlower.K2Node_ComponentBoundEvent_OverlappedComponent) = OverlappedComponent;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C:ExecuteUbergraph_BP_SporeFlower.K2Node_ComponentBoundEvent_OtherActor) = OtherActor;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C:ExecuteUbergraph_BP_SporeFlower.K2Node_ComponentBoundEvent_OtherComp) = OtherComp;
+L54:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C:ExecuteUbergraph_BP_SporeFlower.K2Node_ComponentBoundEvent_OtherBodyIndex) = OtherBodyIndex;
+L72:           this->ExecuteUbergraph_BP_SporeFlower(918);
+============ END FUNCTION BndEvt__TriggerSphere_K2Node_ComponentBoundEvent_1_ComponentEndOverlapSignature__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnGasParticles ==============
+L0:            this->ExecuteUbergraph_BP_SporeFlower(1527);
+============ END FUNCTION SpawnGasParticles ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_SporeFlower(1830);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateAnimPosition ==============
+L0:            this->ExecuteUbergraph_BP_SporeFlower(1894);
+============ END FUNCTION UpdateAnimPosition ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveEndPlay ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/World/Hazard/SporeCloudPlant/BP_SporeFlower.BP_SporeFlower_C:ExecuteUbergraph_BP_SporeFlower.K2Node_Event_EndPlayReason) = EndPlayReason;
+L18:           this->ExecuteUbergraph_BP_SporeFlower(2085);
+============ END FUNCTION ReceiveEndPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_BP_SporeFlower(2139);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_BP_SporeFlower(2169);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveDestroyed ==============
+L0:            this->ExecuteUbergraph_BP_SporeFlower(2185);
+============ END FUNCTION ReceiveDestroyed ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_SporeFlower ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->StopReleasingGas();
+L29:           this->StopSporeAnimation();
+L43:           KismetSystemLibrary->Delay(this, this->mReleaseGasCooldown, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 124, UUID = 2124541931, ExecutionFunction = "ExecuteUbergraph_BP_SporeFlower", CallbackTarget = this));
+L123:          goto ExecutionFlow.Pop();
+L124:          this->GetOffCooldown();
+L138:          this->ConditionallyStartExpanding();
+L152:          goto ExecutionFlow.Pop();
+L153:          Vector mVector = this->K2_GetActorLocation();
+L195:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAtLocation(this, Play_Nobelisk_WorldDestruction_GasFlower, mVector, Rotator::FromPitchYawRoll(0, 0, 0));
+L269:          goto ExecutionFlow.Pop();
+L270:          this->OnRep_mReplicatedAnimPosition();
+L284:          bool mbool = this->HasAuthority();
+L304:          if (!mbool) goto ExecutionFlow.Pop();
+L314:          bool mbool1 = EqualEqual_ByteByte(this->mState, 2);
+L345:          bool mbool2 = Less_FloatFloat(this->mReplicatedAnimPosition, 0.10000000149011612);
+L379:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L417:          if (!mbool3) goto ExecutionFlow.Pop();
+L427:          this->FlushNetDormancy();
+L437:          this->mState = 0;
+L457:          this->OnRep_mState();
+L471:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateAnimPositionTimer);
+L513:          this->SkeletalMesh->VisibilityBasedAnimTickOption = 3;
+L555:          goto ExecutionFlow.Pop();
+L556:          this->FlushNetDormancy();
+L566:          float mfloat = this->SkeletalMesh->GetPosition();
+L616:          this->mReplicatedAnimPosition = mfloat;
+L643:          goto L270;
+L648:          bool mbool4 = this->HasAuthority();
+L668:          if (!mbool4) goto ExecutionFlow.Pop();
+L678:          bool mbool5 = this->ActorShouldTriggerFlower(mActor);
+L707:          if (!mbool5) goto ExecutionFlow.Pop();
+L717:          int32 mint32 = KismetArrayLibrary->Array_AddUnique([ref] this->mTriggeredActors, [ref] mActor);
+L785:          this->ConditionallyStartExpanding();
+L799:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mTriggeredActors);
+L858:          bool mbool6 = EqualEqual_IntInt(mint321, 1);
+L892:          if (!mbool6) goto ExecutionFlow.Pop();
+L902:          this->SetTickStatus(true);
+L917:          goto ExecutionFlow.Pop();
+L918:          bool mbool7 = this->HasAuthority();
+L938:          if (!mbool7) goto ExecutionFlow.Pop();
+L948:          bool mbool8 = this->ActorShouldTriggerFlower(mActor1);
+L977:          if (!mbool8) goto ExecutionFlow.Pop();
+L987:          bool mbool9 = KismetArrayLibrary->Array_RemoveItem([ref] this->mTriggeredActors, [ref] mActor1);
+L1047:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->mTriggeredActors);
+L1106:         bool mbool10 = EqualEqual_IntInt(mint322, 0);
+L1140:         if (!mbool10) goto ExecutionFlow.Pop();
+L1150:         this->CondintionallyReverseExpanding();
+L1164:         bool mbool11 = Not_PreBool(this->mIsSignificant);
+L1193:         if (!mbool11) goto ExecutionFlow.Pop();
+L1203:         this->SetTickStatus(false);
+L1218:         goto ExecutionFlow.Pop();
+L1219:         bool mbool12 = this->HasAuthority();
+L1239:         if (!mbool12) goto ExecutionFlow.Pop();
+L1249:         this->StartSporeAnimation();
+L1263:         this->StartReleasingGas();
+L1277:         KismetSystemLibrary->Delay(this, this->mGasDuration, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1880554308, ExecutionFunction = "ExecuteUbergraph_BP_SporeFlower", CallbackTarget = this));
+L1357:         goto ExecutionFlow.Pop();
+L1358:         bool mbool13 = this->HasAuthority();
+L1378:         if (!mbool13) goto L1511;
+L1392:         int32 mint323 = KismetArrayLibrary->Array_Length([ref] this->mTriggeredActors);
+L1451:         bool mbool14 = EqualEqual_IntInt(mint323, 0);
+L1485:         if (!mbool14) goto ExecutionFlow.Pop();
+L1495:         this->SetTickStatus(false);
+L1510:         goto ExecutionFlow.Pop();
+L1511:         this->SetTickStatus(false);
+L1526:         goto ExecutionFlow.Pop();
+L1527:         bool mbool15 = KismetSystemLibrary->IsValid(this->mGasPSC);
+L1578:         if (!mbool15) goto L1593;
+L1592:         goto ExecutionFlow.Pop();
+L1593:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(this->mGasParticle, this->SkeletalMesh, "Root", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 2, true, 0);
+L1710:         this->mGasPSC = mParticleSystemComponent;
+L1729:         float mfloat1 = this->DamageSphere->GetScaledSphereRadius();
+L1779:         this->mGasPSC->SetFloatParameter(this->mParticleParameterName, mfloat1);
+L1829:         goto ExecutionFlow.Pop();
+L1830:         this->ReceiveBeginPlay();
+L1840:         this->UpdateAnimationFromState();
+L1854:         FGBlueprintFunctionLibrary->AddGainSignificanceObjectToSignificanceManager(this, this, 8000);
+L1893:         goto ExecutionFlow.Pop();
+L1894:         goto L556;
+L1899:         this->FireFlies_01->Deactivate();
+L1935:         this->FireFlies_02->Deactivate();
+L1971:         goto L1358;
+L1976:         this->FireFlies_01->Activate(false);
+L2013:         this->FireFlies_02->Activate(false);
+L2050:         this->SetTickStatus(true);
+L2065:         goto ExecutionFlow.Pop();
+L2066:         this->UpdateAnimationFromState();
+L2080:         goto L1899;
+L2085:         this->ReceiveEndPlay(muint8);
+L2104:         FGBlueprintFunctionLibrary->RemoveGainSignificanceObjectFromSignificanceManager(this, this);
+L2138:         goto ExecutionFlow.Pop();
+L2139:         this->mIsSignificant = true;
+L2150:         this->UpdateAnimationFromState();
+L2164:         goto L1976;
+L2169:         this->mIsSignificant = false;
+L2180:         goto L2066;
+L2185:         goto L153;
+============ END FUNCTION ExecuteUbergraph_BP_SporeFlower ==============

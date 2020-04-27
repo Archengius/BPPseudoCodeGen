@@ -1,0 +1,78 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/BPW_LerpingProgressBar.BPW_LerpingProgressBar_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION mSetPercent ==============
+L0:            this->mNewPercent = Percent;
+L27:           this->mForceProgressBarWrap = ForceProgressBarWrap;
+L46:           this->mLastPercent = this->mProgressBar->Percent;
+L95:           this->mLerpT = 0;
+L118:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpTimerHandle);
+L160:          this->LerpBar();
+L174:          mFScriptDelegate->BindUFunction(this, LerpBar);
+L197:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mLerpUpdateTime, true);
+L266:          this->mLerpTimerHandle = mTimerHandle;
+============ END FUNCTION mSetPercent ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/BPW_LerpingProgressBar.BPW_LerpingProgressBar_C:ExecuteUbergraph_BPW_LerpingProgressBar.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_BPW_LerpingProgressBar(10);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION LerpBar ==============
+L0:            this->ExecuteUbergraph_BPW_LerpingProgressBar(105);
+============ END FUNCTION LerpBar ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_BPW_LerpingProgressBar(727);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_LerpingProgressBar ==============
+L10:           this->mProgressBar->WidgetStyle = this->mStyle;
+L59:           this->mProgressBar->SetPercent(this->mStartPercentage);
+L100:          <End of Inlined Event Graph Function>;
+L105:          float mfloat = Divide_FloatFloat(this->mLerpUpdateTime, this->mLerpDuration);
+L151:          float mfloat1 = Add_FloatFloat(this->mLerpT, mfloat);
+L197:          this->mLerpT = mfloat1;
+L224:          bool Temp_bool_Variable = this->mForceProgressBarWrap;
+L243:          float mfloat2 = FGSkySphere->GetFloatCurveValue([ref] this->mCurve, this->mLerpT);
+L311:          float mfloat3 = Add_FloatFloat(this->mNewPercent, 1);
+L353:          float mfloat4 = Lerp(this->mLastPercent, switch (Temp_bool_Variable) {
+case false -> this->mNewPercent;
+case true -> mfloat3;
+default -> mfloat5;
+}, mfloat2);
+L452:          bool mbool = Greater_FloatFloat(mfloat4, 1);
+L486:          float mfloat6 = Subtract_FloatFloat(mfloat4, 1);
+L528:          bool Temp_bool_Variable1 = mbool;
+L547:          this->mProgressBar->SetPercent(switch (Temp_bool_Variable1) {
+case false -> mfloat4;
+case true -> mfloat6;
+default -> mfloat7;
+});
+L632:          bool mbool1 = GreaterEqual_FloatFloat(this->mLerpT, 1);
+L666:          if (!mbool1) goto L769;
+L680:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpTimerHandle);
+L722:          <End of Inlined Event Graph Function>;
+L727:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpTimerHandle);
+============ END FUNCTION ExecuteUbergraph_BPW_LerpingProgressBar ==============

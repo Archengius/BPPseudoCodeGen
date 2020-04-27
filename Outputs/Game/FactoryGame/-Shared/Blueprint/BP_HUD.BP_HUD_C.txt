@@ -1,0 +1,267 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/-Shared/Blueprint/BP_HUD.BP_HUD_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION IsInventoryOpen ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayerController();
+L20:           HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
+L75:           FGInteractWidget* mFGInteractWidget = mFGGameUI->FindWidgetByClass(Widget_PlayerInventory);
+L126:          bool mbool = KismetSystemLibrary->IsValid(mFGInteractWidget);
+L177:          bool IsOpen = mbool;
+============ END FUNCTION IsInventoryOpen ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetBP_GameUI ==============
+L0:            FGGameUI* mFGGameUI = this->GetGameUI();
+L20:           BP_GameUI* mBP_GameUI = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C>(mFGGameUI);
+L56:           bool mbool = mBP_GameUI;
+L85:           if (!mbool) goto L123;
+L99:           BP_GameUI* BPGameUI = mBP_GameUI;
+L118:          <End of Inlined Event Graph Function>;
+L123:          KismetSystemLibrary->PrintString(this, "Could not cast to BP_GameUI", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L226:          BPGameUI = nullptr;
+============ END FUNCTION GetBP_GameUI ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupFrontEnd ==============
+L0:            this->SetShowCrossHair(false);
+L11:           FGGameUI* mFGGameUI = this->GetGameUI();
+L31:           mFGGameUI->RemoveFromParent();
+============ END FUNCTION SetupFrontEnd ==============
+
+
+
+
+
+============ BEGIN FUNCTION ToggleInventoryUI ==============
+L0:            this->ExecuteUbergraph_BP_HUD(841);
+============ END FUNCTION ToggleInventoryUI ==============
+
+
+
+
+
+============ BEGIN FUNCTION OpenInventoryUI ==============
+L0:            this->ExecuteUbergraph_BP_HUD(2677);
+============ END FUNCTION OpenInventoryUI ==============
+
+
+
+
+
+============ BEGIN FUNCTION OpenInteractUI ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/-Shared/Blueprint/BP_HUD.BP_HUD_C:ExecuteUbergraph_BP_HUD.K2Node_Event_widgetClass1) = WidgetClass;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/-Shared/Blueprint/BP_HUD.BP_HUD_C:ExecuteUbergraph_BP_HUD.K2Node_Event_interactObject) = interactObject;
+L36:           this->ExecuteUbergraph_BP_HUD(3816);
+============ END FUNCTION OpenInteractUI ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemovePawnHUD ==============
+L0:            this->ExecuteUbergraph_BP_HUD(4364);
+============ END FUNCTION RemovePawnHUD ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddEquipmentHUD ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/-Shared/Blueprint/BP_HUD.BP_HUD_C:ExecuteUbergraph_BP_HUD.K2Node_Event_widgetClass) = WidgetClass;
+L18:           PERSISTENT_FRAME(EnumProperty /Game/FactoryGame/-Shared/Blueprint/BP_HUD.BP_HUD_C:ExecuteUbergraph_BP_HUD.K2Node_Event_slot1) = Slot;
+L36:           this->ExecuteUbergraph_BP_HUD(4502);
+============ END FUNCTION AddEquipmentHUD ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveEquipmentHUD ==============
+L0:            PERSISTENT_FRAME(EnumProperty /Game/FactoryGame/-Shared/Blueprint/BP_HUD.BP_HUD_C:ExecuteUbergraph_BP_HUD.K2Node_Event_slot) = Slot;
+L18:           this->ExecuteUbergraph_BP_HUD(4568);
+============ END FUNCTION RemoveEquipmentHUD ==============
+
+
+
+
+
+============ BEGIN FUNCTION CloseInteractUIIfOpen ==============
+L0:            this->ExecuteUbergraph_BP_HUD(4573);
+============ END FUNCTION CloseInteractUIIfOpen ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_HUD ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           FGGameUI* mFGGameUI = this->GetGameUI();
+L35:           bool mbool = KismetSystemLibrary->IsValid(mFGGameUI);
+L86:           if (!mbool) goto L455;
+L100:          PlayerController* mPlayerController = this->GetOwningPlayerController();
+L120:          UserWidget* mUserWidget = WidgetBlueprintLibrary->Create(this, mTSubclassOf<UserWidget>, mPlayerController);
+L181:          FGGameUI* mFGGameUI1 = this->GetGameUI();
+L201:          TScriptInterface<BPI_GameUI> mTScriptInterface<BPI_GameUI> = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Interface/UI/BPI_GameUI.BPI_GameUI_C>(mFGGameUI1);
+L237:          bool mbool1 = mTScriptInterface<BPI_GameUI>;
+L266:          if (!mbool1) goto L532;
+L280:          GetInterfaceUObject(mTScriptInterface<BPI_GameUI>)->GetEquipmentHUDParent(muint8, [ref] mOverlay);
+L335:          OverlaySlot* mOverlaySlot = mOverlay->AddChildToOverlay(mUserWidget);
+L386:          mOverlaySlot->SetVerticalAlignment(0);
+L420:          mOverlaySlot->SetHorizontalAlignment(0);
+L454:          goto ExecutionFlow.Pop();
+L455:          KismetSystemLibrary->RetriggerableDelay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1339538882, ExecutionFunction = "ExecuteUbergraph_BP_HUD", CallbackTarget = this));
+L531:          goto ExecutionFlow.Pop();
+L532:          Overlay* mOverlay = nullptr;
+L543:          goto L335;
+L548:          FGGameUI* mFGGameUI2 = this->GetGameUI();
+L568:          TScriptInterface<BPI_GameUI> mTScriptInterface<BPI_GameUI>1 = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Interface/UI/BPI_GameUI.BPI_GameUI_C>(mFGGameUI2);
+L604:          bool mbool2 = mTScriptInterface<BPI_GameUI>1;
+L633:          if (!mbool2) goto L739;
+L647:          GetInterfaceUObject(mTScriptInterface<BPI_GameUI>1)->GetEquipmentHUDParent(muint81, [ref] mOverlay1);
+L702:          mOverlay1->ClearChildren();
+L738:          goto ExecutionFlow.Pop();
+L739:          Overlay* mOverlay1 = nullptr;
+L750:          goto L702;
+L755:          mFGGameUI2 = this->GetGameUI();
+L775:          bool mbool3 = KismetSystemLibrary->IsValid(mFGGameUI2);
+L826:          if (!mbool3) goto ExecutionFlow.Pop();
+L836:          goto L548;
+L841:          this->IsInventoryOpen([ref] mbool4);
+L864:          if (!mbool4) goto L1161;
+L878:          FGGameUI* mFGGameUI3 = this->GetGameUI();
+L898:          PlayerController* mPlayerController1 = this->GetOwningPlayerController();
+L918:          HUDHelpers->GetFGGameUI(mPlayerController1, this, [ref] mFGGameUI4);
+L973:          FGInteractWidget* mFGInteractWidget = mFGGameUI4->FindWidgetByClass(Widget_PlayerInventory);
+L1024:         bool mbool5 = mFGGameUI3->PopWidget(mFGInteractWidget);
+L1079:         Pawn* mPawn = this->GetOwningPawn();
+L1099:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(this->mCloseInventorySound, mPawn, true);
+L1160:         goto ExecutionFlow.Pop();
+L1161:         Pawn* mPawn1 = this->GetOwningPawn();
+L1181:         FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn1);
+L1217:         bool mbool6 = mFGCharacterPlayer;
+L1246:         FGBuildGun* mFGBuildGun = mFGCharacterPlayer->GetBuildGun();
+L1288:         bool mbool7 = mFGBuildGun->IsEquipped();
+L1330:         if (!mbool7) goto L1461;
+L1344:         mPawn1 = this->GetOwningPawn();
+L1364:         mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn1);
+L1400:         mbool6 = mFGCharacterPlayer;
+L1429:         mFGCharacterPlayer->ToggleBuildGun();
+L1461:         Pawn* mPawn2 = this->GetOwningPawn();
+L1481:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(this->mOpenInventorySound, mPawn2, true);
+L1542:         PlayerController* mPlayerController2 = this->GetOwningPlayerController();
+L1562:         Widget_PlayerInventory* mWidget_PlayerInventory = WidgetBlueprintLibrary->Create(this, Widget_PlayerInventory, mPlayerController2);
+L1623:         Pawn* mPawn3 = this->GetOwningPawn();
+L1643:         FGCharacterPlayer* mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn3);
+L1679:         bool mbool8 = mFGCharacterPlayer1;
+L1708:         FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer1->GetInventory();
+L1750:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_PlayerInventory, "mInventoryComponent", mFGInventoryComponent);
+L1813:         mPawn3 = this->GetOwningPawn();
+L1833:         mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn3);
+L1869:         mbool8 = mFGCharacterPlayer1;
+L1898:         FGInventoryComponentEquipment* mFGInventoryComponentEquipment = mFGCharacterPlayer1->GetEquipmentSlot(1);
+L1942:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_PlayerInventory, "mEquipmentArmsInventoryComponent", mFGInventoryComponentEquipment);
+L2005:         mPawn3 = this->GetOwningPawn();
+L2025:         mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn3);
+L2061:         mbool8 = mFGCharacterPlayer1;
+L2090:         FGInventoryComponentEquipment* mFGInventoryComponentEquipment1 = mFGCharacterPlayer1->GetEquipmentSlot(2);
+L2134:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_PlayerInventory, "mEquipmentBackInventoryComponent", mFGInventoryComponentEquipment1);
+L2197:         mPawn3 = this->GetOwningPawn();
+L2217:         mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn3);
+L2253:         mbool8 = mFGCharacterPlayer1;
+L2282:         FGInventoryComponentBeltSlot* mFGInventoryComponentBeltSlot = mFGCharacterPlayer1->GetBeltSlot();
+L2324:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_PlayerInventory, "mBeltIntentoryComponent", mFGInventoryComponentBeltSlot);
+L2387:         mPawn3 = this->GetOwningPawn();
+L2407:         mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn3);
+L2443:         mbool8 = mFGCharacterPlayer1;
+L2472:         FGInventoryComponent* mFGInventoryComponent1 = mFGCharacterPlayer1->GetTrashSlot();
+L2514:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_PlayerInventory, "mTrashInventoryComponent", mFGInventoryComponent1);
+L2577:         mWidget_PlayerInventory->SetDesiredVerticalAlignment(2);
+L2611:         FGGameUI* mFGGameUI5 = this->GetGameUI();
+L2631:         mFGGameUI5->PushWidget(mWidget_PlayerInventory);
+L2676:         goto ExecutionFlow.Pop();
+L2677:         this->IsInventoryOpen([ref] mbool9);
+L2700:         if (!mbool9) goto L2715;
+L2714:         goto ExecutionFlow.Pop();
+L2715:         mPlayerController2 = this->GetOwningPlayerController();
+L2735:         Widget_PlayerInventory* mWidget_PlayerInventory1 = WidgetBlueprintLibrary->Create(this, Widget_PlayerInventory, mPlayerController2);
+L2796:         mPawn3 = this->GetOwningPawn();
+L2816:         mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn3);
+L2852:         mbool8 = mFGCharacterPlayer1;
+L2881:         mFGInventoryComponent = mFGCharacterPlayer1->GetInventory();
+L2923:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_PlayerInventory1, "mInventoryComponent", mFGInventoryComponent);
+L2986:         mPawn3 = this->GetOwningPawn();
+L3006:         mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn3);
+L3042:         mbool8 = mFGCharacterPlayer1;
+L3071:         mFGInventoryComponentEquipment = mFGCharacterPlayer1->GetEquipmentSlot(1);
+L3115:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_PlayerInventory1, "mEquipmentArmsInventoryComponent", mFGInventoryComponentEquipment);
+L3178:         mPawn3 = this->GetOwningPawn();
+L3198:         mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn3);
+L3234:         mbool8 = mFGCharacterPlayer1;
+L3263:         mFGInventoryComponentEquipment1 = mFGCharacterPlayer1->GetEquipmentSlot(2);
+L3307:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_PlayerInventory1, "mEquipmentBackInventoryComponent", mFGInventoryComponentEquipment1);
+L3370:         mPawn3 = this->GetOwningPawn();
+L3390:         mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn3);
+L3426:         mbool8 = mFGCharacterPlayer1;
+L3455:         FGInventoryComponentBeltSlot* mFGInventoryComponentBeltSlot1 = mFGCharacterPlayer1->GetBeltSlot();
+L3497:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_PlayerInventory1, "mBeltIntentoryComponent", mFGInventoryComponentBeltSlot1);
+L3560:         mPawn3 = this->GetOwningPawn();
+L3580:         mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn3);
+L3616:         mbool8 = mFGCharacterPlayer1;
+L3645:         mFGInventoryComponent1 = mFGCharacterPlayer1->GetTrashSlot();
+L3687:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_PlayerInventory1, "mTrashInventoryComponent", mFGInventoryComponent1);
+L3750:         FGGameUI* mFGGameUI6 = this->GetGameUI();
+L3770:         mFGGameUI6->PushWidget(mWidget_PlayerInventory1);
+L3815:         goto ExecutionFlow.Pop();
+L3816:         FGGameUI* mFGGameUI7 = this->GetGameUI();
+L3836:         TScriptInterface<BPI_GameUI> mTScriptInterface<BPI_GameUI>2 = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Interface/UI/BPI_GameUI.BPI_GameUI_C>(mFGGameUI7);
+L3872:         bool mbool10 = mTScriptInterface<BPI_GameUI>2;
+L3901:         if (!mbool10) goto L4348;
+L3915:         GetInterfaceUObject(mTScriptInterface<BPI_GameUI>2)->FindWidgetToPop([ref] mFGInteractWidget1);
+L3961:         bool mbool11 = KismetSystemLibrary->IsValid(mFGInteractWidget1);
+L4012:         if (!mbool11) goto L4083;
+L4026:         FGGameUI* mFGGameUI8 = this->GetGameUI();
+L4046:         mFGGameUI8->PopAllWidgets();
+L4082:         goto ExecutionFlow.Pop();
+L4083:         PlayerController* mPlayerController3 = this->GetOwningPlayerController();
+L4103:         FGInteractWidget* mFGInteractWidget2 = WidgetBlueprintLibrary->Create(this, mTSubclassOf<FGInteractWidget>, mPlayerController3);
+L4164:         KismetSystemLibrary->SetObjectPropertyByName(mFGInteractWidget2, "mInteractObject", mObject);
+L4227:         mPlayerController3 = this->GetOwningPlayerController();
+L4247:         HUDHelpers->GetFGGameUI(mPlayerController3, this, [ref] mFGGameUI9);
+L4302:         mFGGameUI9->PushWidget(mFGInteractWidget2);
+L4347:         goto ExecutionFlow.Pop();
+L4348:         FGInteractWidget* mFGInteractWidget1 = nullptr;
+L4359:         goto L3961;
+L4364:         FGGameUI* mFGGameUI10 = this->GetGameUI();
+L4384:         bool mbool12 = KismetSystemLibrary->IsValid(mFGGameUI10);
+L4435:         if (!mbool12) goto ExecutionFlow.Pop();
+L4445:         mFGGameUI10 = this->GetGameUI();
+L4465:         mFGGameUI10->RemovePawnHUD();
+L4501:         goto ExecutionFlow.Pop();
+L4502:         bool mbool13 = KismetSystemLibrary->IsValidClass(mTSubclassOf<UserWidget>);
+L4553:         if (!mbool13) goto ExecutionFlow.Pop();
+L4563:         goto L15;
+L4568:         goto L755;
+L4573:         FGGameUI* mFGGameUI11 = this->GetGameUI();
+L4593:         TScriptInterface<BPI_GameUI> mTScriptInterface<BPI_GameUI>3 = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Interface/UI/BPI_GameUI.BPI_GameUI_C>(mFGGameUI11);
+L4629:         bool mbool14 = mTScriptInterface<BPI_GameUI>3;
+L4658:         if (!mbool14) goto L4836;
+L4672:         GetInterfaceUObject(mTScriptInterface<BPI_GameUI>3)->FindWidgetToPop([ref] mFGInteractWidget3);
+L4718:         bool mbool15 = KismetSystemLibrary->IsValid(mFGInteractWidget3);
+L4769:         if (!mbool15) goto ExecutionFlow.Pop();
+L4779:         FGGameUI* mFGGameUI12 = this->GetGameUI();
+L4799:         mFGGameUI12->PopAllWidgets();
+L4835:         goto ExecutionFlow.Pop();
+L4836:         FGInteractWidget* mFGInteractWidget3 = nullptr;
+L4847:         goto L4718;
+============ END FUNCTION ExecuteUbergraph_BP_HUD ==============

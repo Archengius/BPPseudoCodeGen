@@ -1,0 +1,327 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION FormatNumbers ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->itemDescriptor);
+L51:           if (!mbool) goto L334;
+L65:           uint8 muint8 = FGItemDescriptor->GetForm(this->itemDescriptor);
+L124:          uint8 LocalForm = muint8;
+L151:          float mfloat = FGInventoryLibrary->GetAmountConvertedByForm(NumItems, LocalForm);
+L219:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 0, 1);
+L302:          FText Out Text = mFText;
+L329:          <End of Inlined Event Graph Function>;
+L334:          LocalForm = 1;
+L354:          goto L151;
+============ END FUNCTION FormatNumbers ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetIconBrush ==============
+L0:            this->mIconBrush = IconTexture;
+L19:           this->HasIconBrush = true;
+============ END FUNCTION SetIconBrush ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetProgressbarPercent ==============
+L0:            bool mbool = LessEqual_IntInt(this->mCost, 0);
+L34:           bool mbool1 = BooleanOR(this->mForceOrangeTextbox, mbool);
+L72:           if (!mbool1) goto L114;
+L86:           float ReturnValue = 1;
+L109:          goto L2730;
+L114:          bool mbool2 = Greater_IntInt(this->mCurrentNumInSlot, 0);
+L148:          if (!mbool2) goto L1309;
+L162:          float mfloat = GameplayStatics->GetWorldDeltaSeconds(this);
+L213:          float mfloat1 = Divide_FloatFloat(mfloat, this->LerpTime);
+L259:          float mfloat2 = Add_FloatFloat(mfloat1, this->T);
+L305:          this->T = mfloat2;
+L332:          float mfloat3 = FClamp(this->T, 0, 1);
+L379:          float mfloat4 = Conv_IntToFloat(this->mCost);
+L416:          float mfloat5 = Conv_IntToFloat(this->mCurrentNumInSlot);
+L453:          float mfloat6 = Divide_FloatFloat(mfloat5, mfloat4);
+L499:          float mfloat7 = FClamp(mfloat6, 0, 1);
+L546:          float mfloat8 = Ease(this->LastValue, mfloat7, mfloat3, 7, 2, 2);
+L613:          bool mbool3 = EqualEqual_FloatFloat(mfloat8, mfloat7);
+L651:          if (!mbool3) goto L996;
+L665:          mfloat3 = FClamp(this->T, 0, 1);
+L712:          mfloat4 = Conv_IntToFloat(this->mCost);
+L749:          mfloat5 = Conv_IntToFloat(this->mCurrentNumInSlot);
+L786:          mfloat6 = Divide_FloatFloat(mfloat5, mfloat4);
+L832:          mfloat7 = FClamp(mfloat6, 0, 1);
+L879:          mfloat8 = Ease(this->LastValue, mfloat7, mfloat3, 7, 2, 2);
+L946:          this->LastValue = mfloat8;
+L973:          this->T = 0;
+L996:          mfloat3 = FClamp(this->T, 0, 1);
+L1043:         mfloat4 = Conv_IntToFloat(this->mCost);
+L1080:         mfloat5 = Conv_IntToFloat(this->mCurrentNumInSlot);
+L1117:         mfloat6 = Divide_FloatFloat(mfloat5, mfloat4);
+L1163:         mfloat7 = FClamp(mfloat6, 0, 1);
+L1210:         mfloat8 = Ease(this->LastValue, mfloat7, mfloat3, 7, 2, 2);
+L1277:         ReturnValue = mfloat8;
+L1304:         goto L2730;
+L1309:         this->Widget_InventorySlot->GetNumItems([ref] mint32);
+L1354:         bool mbool4 = Greater_IntInt(mint32, 0);
+L1388:         if (!mbool4) goto L2684;
+L1402:         float mfloat9 = GameplayStatics->GetWorldDeltaSeconds(this);
+L1453:         float mfloat10 = Divide_FloatFloat(mfloat9, this->LerpTime);
+L1499:         float mfloat11 = Add_FloatFloat(mfloat10, this->T);
+L1545:         this->T = mfloat11;
+L1572:         float mfloat12 = FClamp(this->T, 0, 1);
+L1619:         this->Widget_InventorySlot->GetNumItems([ref] mint321);
+L1664:         float mfloat13 = Conv_IntToFloat(mint321);
+L1701:         float mfloat14 = Conv_IntToFloat(this->mCost);
+L1738:         float mfloat15 = Divide_FloatFloat(mfloat13, mfloat14);
+L1784:         float mfloat16 = FClamp(mfloat15, 0, 1);
+L1831:         float mfloat17 = Ease(this->LastValue, mfloat16, mfloat12, 7, 2, 2);
+L1898:         bool mbool5 = EqualEqual_FloatFloat(mfloat16, mfloat17);
+L1936:         if (!mbool5) goto L2326;
+L1950:         mfloat12 = FClamp(this->T, 0, 1);
+L1997:         this->Widget_InventorySlot->GetNumItems([ref] mint321);
+L2042:         mfloat13 = Conv_IntToFloat(mint321);
+L2079:         mfloat14 = Conv_IntToFloat(this->mCost);
+L2116:         mfloat15 = Divide_FloatFloat(mfloat13, mfloat14);
+L2162:         mfloat16 = FClamp(mfloat15, 0, 1);
+L2209:         mfloat17 = Ease(this->LastValue, mfloat16, mfloat12, 7, 2, 2);
+L2276:         this->LastValue = mfloat17;
+L2303:         this->T = 0;
+L2326:         mfloat12 = FClamp(this->T, 0, 1);
+L2373:         this->Widget_InventorySlot->GetNumItems([ref] mint321);
+L2418:         mfloat13 = Conv_IntToFloat(mint321);
+L2455:         mfloat14 = Conv_IntToFloat(this->mCost);
+L2492:         mfloat15 = Divide_FloatFloat(mfloat13, mfloat14);
+L2538:         mfloat16 = FClamp(mfloat15, 0, 1);
+L2585:         mfloat17 = Ease(this->LastValue, mfloat16, mfloat12, 7, 2, 2);
+L2652:         ReturnValue = mfloat17;
+L2679:         goto L2730;
+L2684:         this->LastValue = 0;
+L2707:         ReturnValue = 0;
+============ END FUNCTION GetProgressbarPercent ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetOrange ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->itemDescriptor);
+L51:           if (!mbool) goto L534;
+L65:           LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+L117:          LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+L169:          LinearColor Temp_struct_Variable2 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.10588199645280838, G = 0.3803919851779938, B = 0.556863009929657, A = 1);
+L221:          LinearColor Temp_struct_Variable3 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+L273:          LinearColor Temp_struct_Variable4 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+L325:          uint8 muint8 = FGItemDescriptor->GetForm(this->itemDescriptor);
+L384:          uint8 Temp_byte_Variable = muint8;
+L411:          LinearColor ReturnValue = switch (Temp_byte_Variable) {
+case 0 -> Temp_struct_Variable4;
+case 1 -> Temp_struct_Variable3;
+case 2 -> Temp_struct_Variable2;
+case 3 -> Temp_struct_Variable1;
+case 4 -> Temp_struct_Variable;
+default -> mLinearColor;
+};
+L529:          goto L616;
+L534:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor1, [ref] mSlateColor);
+L589:          ReturnValue = mLinearColor1;
+============ END FUNCTION GetOrange ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetTextboxFormating ==============
+L0:            if (!HasItems) goto L279;
+L14:           OverlaySlot* mOverlaySlot = WidgetLayoutLibrary->SlotAsOverlaySlot(this->TextboxContainer);
+L65:           mOverlaySlot->SetHorizontalAlignment(0);
+L99:           this->StackSizeOverlay->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 1));
+L155:          this->mStackSizeLbl->SetJustification(1);
+L189:          OverlaySlot* mOverlaySlot1 = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mStackSizeLbl);
+L240:          mOverlaySlot1->SetHorizontalAlignment(0);
+L274:          <End of Inlined Event Graph Function>;
+L279:          mOverlaySlot = WidgetLayoutLibrary->SlotAsOverlaySlot(this->TextboxContainer);
+L330:          mOverlaySlot->SetHorizontalAlignment(3);
+L364:          this->StackSizeOverlay->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 1, Y = 1));
+L420:          this->mStackSizeLbl->SetJustification(2);
+L454:          mOverlaySlot1 = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mStackSizeLbl);
+L505:          mOverlaySlot1->SetHorizontalAlignment(3);
+============ END FUNCTION SetTextboxFormating ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetDarkGray ==============
+L0:            HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           LinearColor ReturnValue = mLinearColor;
+============ END FUNCTION GetDarkGray ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetPartsNumbers ==============
+L0:            bool mbool = Greater_IntInt(this->mCurrentNumInSlot, 0);
+L34:           this->Widget_InventorySlot->GetNumItems([ref] mint32);
+L79:           bool mbool1 = Greater_IntInt(mint32, 0);
+L113:          bool mbool2 = BooleanOR(mbool1, mbool);
+L151:          if (!mbool2) goto L835;
+L165:          bool mbool3 = Greater_IntInt(this->mCurrentNumInSlot, 0);
+L199:          if (!mbool3) goto L914;
+L213:          this->SetTextboxFormating(true);
+L228:          this->FormatNumbers(this->mCost, [ref] mFText);
+L260:          mFormatArgumentData.ArgumentName = "1";
+L290:          mFormatArgumentData.ArgumentValueType = 4;
+L319:          mFormatArgumentData.ArgumentValue = mFText;
+L355:          mFormatArgumentData.ArgumentValueInt = 0;
+L387:          mFormatArgumentData.ArgumentValueFloat = 0;
+L419:          mFormatArgumentData.ArgumentValueGender = 0;
+L448:          this->FormatNumbers(this->mCurrentNumInSlot, [ref] mFText1);
+L480:          mFormatArgumentData1.ArgumentName = "0";
+L510:          mFormatArgumentData1.ArgumentValueType = 4;
+L539:          mFormatArgumentData1.ArgumentValue = mFText1;
+L575:          mFormatArgumentData1.ArgumentValueInt = 0;
+L607:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L639:          mFormatArgumentData1.ArgumentValueGender = 0;
+L668:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
+L697:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L803:          FText ReturnValue = mFText2;
+L830:          goto L1576;
+L835:          this->SetTextboxFormating(false);
+L850:          this->FormatNumbers(this->mCost, [ref] mFText3);
+L882:          ReturnValue = mFText3;
+L909:          goto L1576;
+L914:          this->SetTextboxFormating(true);
+L929:          this->Widget_InventorySlot->GetNumItems([ref] mint321);
+L974:          this->FormatNumbers(mint321, [ref] mFText4);
+L1006:         mFormatArgumentData2.ArgumentName = "0";
+L1036:         mFormatArgumentData2.ArgumentValueType = 4;
+L1065:         mFormatArgumentData2.ArgumentValue = mFText4;
+L1101:         mFormatArgumentData2.ArgumentValueInt = 0;
+L1133:         mFormatArgumentData2.ArgumentValueFloat = 0;
+L1165:         mFormatArgumentData2.ArgumentValueGender = 0;
+L1194:         this->FormatNumbers(this->mCost, [ref] mFText5);
+L1226:         mFormatArgumentData3.ArgumentName = "1";
+L1256:         mFormatArgumentData3.ArgumentValueType = 4;
+L1285:         mFormatArgumentData3.ArgumentValue = mFText5;
+L1321:         mFormatArgumentData3.ArgumentValueInt = 0;
+L1353:         mFormatArgumentData3.ArgumentValueFloat = 0;
+L1385:         mFormatArgumentData3.ArgumentValueGender = 0;
+L1414:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData2, mFormatArgumentData3];
+L1443:         FText mFText6 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L1549:         ReturnValue = mFText6;
+============ END FUNCTION SetPartsNumbers ==============
+
+
+
+
+
+============ BEGIN FUNCTION Setup CostIcon ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_CustomEvent_IconTexture) = IconTexture;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_CustomEvent_ItemAmount) = ItemAmount;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_CustomEvent_CachedInventoryComponent) = CachedInventoryComponent;
+L54:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_CustomEvent_SlotIdx) = slotIdx;
+L72:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_CustomEvent_CurrentNumInSlot) = CurrentNumInSlot;
+L90:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_CustomEvent_SmallSlot) = SmallSlot;
+L108:          PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_CustomEvent_BigSlot) = BigSlot;
+L126:          PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_CustomEvent_ForceOrangeTextbox) = ForceOrangeTextbox;
+L144:          this->ExecuteUbergraph_Widget_CostSlotWrapper(1529);
+============ END FUNCTION Setup CostIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_Event_MyGeometry1) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_CostSlotWrapper(10);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_CostSlotWrapper(1733);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseEnter ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C:ExecuteUbergraph_Widget_CostSlotWrapper.K2Node_Event_MouseEvent) = MouseEvent;
+L36:           this->ExecuteUbergraph_Widget_CostSlotWrapper(1784);
+============ END FUNCTION OnMouseEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_CostSlotWrapper ==============
+L10:           if (!this->mForceEmptyAnim) goto L164;
+L24:           bool mbool = EqualEqual_IntInt(this->mCurrentNumInSlot, 0);
+L58:           if (!mbool) goto L450;
+L72:           bool mbool1 = this->Widget_InventorySlot->IsAnimationPlaying(this->Widget_InventorySlot->EmptySlot);
+L145:          if (!mbool1) goto L606;
+L159:          <End of Inlined Event Graph Function>;
+L164:          bool mbool2 = KismetSystemLibrary->IsValid(this->Widget_InventorySlot->mCachedInventoryComponent);
+L237:          if (!mbool2) goto L450;
+L251:          bool mbool3 = KismetSystemLibrary->IsValidClass(this->itemDescriptor);
+L302:          if (!mbool3) goto L450;
+L316:          int32 mint32 = this->Widget_InventorySlot->mCachedInventoryComponent->GetNumItems(this->itemDescriptor);
+L397:          bool mbool4 = EqualEqual_IntInt(mint32, 0);
+L431:          if (!mbool4) goto L450;
+L445:          goto L72;
+L450:          this->Widget_InventorySlot->StopAnimation(this->Widget_InventorySlot->EmptySlot);
+L513:          this->Widget_InventorySlot->mItemImage->SetColorAndOpacity(ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1));
+L601:          <End of Inlined Event Graph Function>;
+L606:          UMGSequencePlayer* mUMGSequencePlayer = this->Widget_InventorySlot->PlayAnimation(this->Widget_InventorySlot->EmptySlot, 0, 0, 0, 1);
+L696:          <End of Inlined Event Graph Function>;
+L701:          this->Widget_InventorySlot->OnItemClassUpdated();
+L737:          <End of Inlined Event Graph Function>;
+L742:          Texture2D* mTexture2D = FGItemDescriptor->GetBigIcon(this->Widget_InventorySlot->mFilterItemDescriptor);
+L815:          this->mIconBrush = mTexture2D;
+L834:          this->Widget_InventorySlot->mCostSlotBrush = this->mIconBrush;
+L875:          this->Widget_InventorySlot->mIsCostSlot = true;
+L908:          this->mCost = mItemAmount.amount;
+L944:          bool mbool5 = KismetSystemLibrary->IsValid(mFGInventoryComponent);
+L995:          if (!mbool5) goto L1104;
+L1009:         this->Widget_InventorySlot->mCachedInventoryComponent = mFGInventoryComponent;
+L1050:         this->Widget_InventorySlot->mSlotIdx = mint321;
+L1099:         goto L701;
+L1104:         this->mCurrentNumInSlot = mint322;
+L1131:         goto L701;
+L1136:         Texture2D* mTexture2D1 = FGItemDescriptor->GetSmallIcon(this->Widget_InventorySlot->mFilterItemDescriptor);
+L1209:         this->mIconBrush = mTexture2D1;
+L1228:         this->Widget_InventorySlot->mCostSlotBrush = this->mIconBrush;
+L1269:         goto L875;
+L1274:         this->itemDescriptor = this->Widget_InventorySlot->mFilterItemDescriptor;
+L1315:         bool mbool6 = BooleanOR(this->mBigSlot, mbool7);
+L1353:         if (!mbool6) goto L1136;
+L1367:         goto L742;
+L1372:         bool mbool8 = KismetSystemLibrary->IsValidClass(this->Widget_InventorySlot->mFilterItemDescriptor);
+L1445:         if (!mbool8) goto L1464;
+L1459:         goto L1274;
+L1464:         this->mIconBrush = mTexture;
+L1483:         this->Widget_InventorySlot->mCostSlotBrush = this->mIconBrush;
+L1524:         goto L875;
+L1529:         this->mForceOrangeTextbox = mbool9;
+L1548:         mbool6 = BooleanOR(this->mBigSlot, mbool7);
+L1586:         bool mbool10 = BooleanOR(this->mSmallSlot, mbool11);
+L1624:         this->Widget_InventorySlot->SetSlotSize(mbool10, mbool6);
+L1678:         this->Widget_InventorySlot->mFilterItemDescriptor = mItemAmount.ItemClass;
+L1728:         goto L1372;
+L1733:         this->Widget_InventorySlot->SetSlotSize(this->mSmallSlot, false);
+L1779:         <End of Inlined Event Graph Function>;
+============ END FUNCTION ExecuteUbergraph_Widget_CostSlotWrapper ==============

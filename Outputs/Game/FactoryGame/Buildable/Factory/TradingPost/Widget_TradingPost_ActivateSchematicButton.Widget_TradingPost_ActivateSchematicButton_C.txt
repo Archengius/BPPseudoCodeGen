@@ -1,0 +1,143 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost_ActivateSchematicButton.Widget_TradingPost_ActivateSchematicButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetSelectedSchematic ==============
+L0:            this->mSelectedSchematicClass = SelectedSchematic;
+L19:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L43:           BP_SchematicHelper->IsSchematicLockedByTutorial(mPlayerController, this->mSelectedSchematicClass, this, [ref] mbool);
+L107:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L131:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L155:          BP_SchematicHelper->IsSchematicPhaseLocked(mPlayerController1, this->mSelectedSchematicClass, this, [ref] mbool1);
+L219:          bool mbool2 = BooleanOR(mbool1, mbool);
+L257:          BP_SchematicHelper->IsSchematicDependentLocked(mPlayerController2, this->mSelectedSchematicClass, this, [ref] mbool3);
+L321:          bool mbool4 = BooleanOR(mbool2, mbool3);
+L359:          this->IsSelectedSchematicLocked = mbool4;
+L378:          PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L402:          FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController3);
+L453:          bool mbool5 = mFGSchematicManager->IsSchematicPurchased(this->mSelectedSchematicClass);
+L504:          this->IsSelectedSchematicPurchased = mbool5;
+============ END FUNCTION SetSelectedSchematic ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetClickable ==============
+L0:            bool mbool = BooleanOR(this->IsSelectedSchematicLocked, this->IsSelectedSchematicPurchased);
+L38:           if (!mbool) goto L77;
+L52:           uint8 ReturnValue = 3;
+L72:           goto L97;
+L77:           ReturnValue = 0;
+============ END FUNCTION GetClickable ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetText ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L75:           bool mbool = mFGSchematicManager->IsSchematicPurchased(this->mSelectedSchematicClass);
+L126:          if (!mbool) goto L219;
+L140:          FText ReturnValue = "[object Object]";
+L214:          goto L376;
+L219:          if (!this->IsSelectedSchematicLocked) goto L302;
+L233:          ReturnValue = "[object Object]";
+L297:          goto L376;
+L302:          ReturnValue = "[object Object]";
+============ END FUNCTION GetText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetColor ==============
+L0:            bool mbool = BooleanOR(this->IsSelectedSchematicLocked, this->IsSelectedSchematicPurchased);
+L38:           if (!mbool) goto L139;
+L52:           HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L107:          LinearColor ReturnValue = mLinearColor;
+L134:          goto L1077;
+L139:          bool mbool1 = this->IsHovered();
+L163:          if (!mbool1) goto L264;
+L177:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor1, [ref] mSlateColor1);
+L232:          ReturnValue = mLinearColor1;
+L259:          goto L1077;
+L264:          if (!this->LerpGoingUp) goto L797;
+L278:          float mfloat = GameplayStatics->GetWorldDeltaSeconds(this);
+L329:          float mfloat1 = Divide_FloatFloat(mfloat, this->LerpSpeed);
+L375:          float mfloat2 = Add_FloatFloat(mfloat1, this->T);
+L421:          this->T = mfloat2;
+L448:          float mfloat3 = Add_FloatFloat(this->LerpHold, 1);
+L490:          bool mbool2 = Greater_FloatFloat(this->T, mfloat3);
+L528:          if (!mbool2) goto L553;
+L542:          this->LerpGoingUp = false;
+L553:          float mfloat4 = FClamp(this->T, 0, 1);
+L600:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor2, [ref] mSlateColor2);
+L655:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor3, [ref] mLinearColor3);
+L710:          LinearColor mLinearColor4 = LinearColorLerp(mLinearColor3, mLinearColor2, mfloat4);
+L765:          ReturnValue = mLinearColor4;
+L792:          goto L1077;
+L797:          float mfloat5 = GameplayStatics->GetWorldDeltaSeconds(this);
+L848:          float mfloat6 = Divide_FloatFloat(mfloat5, this->LerpSpeed);
+L894:          float mfloat7 = Subtract_FloatFloat(this->T, mfloat6);
+L940:          this->T = mfloat7;
+L967:          float mfloat8 = Subtract_FloatFloat(0, this->LerpHold);
+L1009:         bool mbool3 = Less_FloatFloat(this->T, mfloat8);
+L1047:         if (!mbool3) goto L553;
+L1061:         this->LerpGoingUp = true;
+L1072:         goto L553;
+============ END FUNCTION GetColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_26_K2Node_ComponentBoundEvent_100_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton(60);
+============ END FUNCTION BndEvt__Button_26_K2Node_ComponentBoundEvent_100_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton(166);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton(297);
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton ==============
+L10:           this->Widget_SwitchingImage->SwitchImage(Launch_Icon);
+L55:           <End of Inlined Event Graph Function>;
+L60:           bool mbool = KismetSystemLibrary->IsValid(this->mTradingPost);
+L111:          if (!mbool) goto L302;
+L125:          this->mTradingPost->ActivateSelectedSchematic();
+L161:          <End of Inlined Event Graph Function>;
+L166:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L186:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_MouseOver, mPawn, true);
+L247:          this->Widget_SwitchingImage->SwitchImage(ficsit_checkmark_64);
+L292:          <End of Inlined Event Graph Function>;
+L297:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION onSchematicActivateButtonClicked__DelegateSignature ==============
+============ END FUNCTION onSchematicActivateButtonClicked__DelegateSignature ==============

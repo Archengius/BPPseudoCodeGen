@@ -1,0 +1,152 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/MinerMK1/Build_MinerMk1.Build_MinerMk1_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetExtractedResource ==============
+L0:            TScriptInterface<FGExtractableResourceInterface> mTScriptInterface<FGExtractableResourceInterface> = this->GetExtractableResource();
+L28:           TSubclassOf<FGResourceDescriptor> mTSubclassOf<FGResourceDescriptor> = GetInterfaceUObject(mTScriptInterface<FGExtractableResourceInterface>)->GetResourceClass();
+L75:           TSubclassOf<FGItemDescriptor> Resource = mTSubclassOf<FGResourceDescriptor>;
+============ END FUNCTION GetExtractedResource ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetMiningParticles ==============
+L0:            ExecutionFlow.Push(L995);
+L5:            this->GetExtractedResource([ref] mTSubclassOf<FGItemDescriptor>);
+L28:           int32 mint32 = KismetArrayLibrary->Array_Add([ref] local_outputClasses, [ref] mTSubclassOf<FGItemDescriptor>);
+L96:           bool Temp_bool_True_if_break_was_hit_Variable = false;
+L107:          int32 Temp_int_Loop_Counter_Variable = 0;
+L130:          int32 Temp_int_Array_Index_Variable = 0;
+L153:          bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L182:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mParticleMap);
+L241:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L279:          bool mbool2 = BooleanAND(mbool, mbool1);
+L317:          if (!mbool2) goto L859;
+L331:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L358:          ExecutionFlow.Push(L921);
+L363:          KismetArrayLibrary->Array_Get([ref] this->mParticleMap, Temp_int_Array_Index_Variable, [ref] mParticleMap);
+L422:          ParticleMap local_ParticleMapInstance = mParticleMap;
+L449:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] local_outputClasses);
+L508:          bool mbool3 = Greater_IntInt(mint322, 0);
+L542:          if (!mbool3) goto ExecutionFlow.Pop();
+L552:          KismetArrayLibrary->Array_Get([ref] local_outputClasses, 0, [ref] mTSubclassOf<FGItemDescriptor>1);
+L607:          TSubclassOf<Object> mTSubclassOf<Object> = KismetSystemLibrary->Conv_SoftClassReferenceToClass([ref] local_ParticleMapInstance.ResourceNode_16_2100B5C34EE8DF7958D78A974512F3C3);
+L667:          TSubclassOf<FGResourceDescriptor> mTSubclassOf<FGResourceDescriptor> = ClassCast<Class /Script/FactoryGame.FGResourceDescriptor>(mTSubclassOf<Object>);
+L703:          bool mbool4 = mTSubclassOf<FGResourceDescriptor>;
+L732:          bool mbool5 = EqualEqual_ClassClass(mTSubclassOf<FGResourceDescriptor>, mTSubclassOf<FGItemDescriptor>1);
+L770:          if (!mbool5) goto ExecutionFlow.Pop();
+L780:          ParticleSystem* local_FirstParticle = local_ParticleMapInstance.ParticleSystem1_9_F0CF81514E1E1C5007AC99B0C59C63CD;
+L808:          ParticleSystem* local_SecondParticle = local_ParticleMapInstance.ParticleSystem2_12_9CB1B6054B443457EF842EA10A375BF2;
+L836:          bool local_FoundParticles = true;
+L847:          Temp_bool_True_if_break_was_hit_Variable = true;
+L858:          goto ExecutionFlow.Pop();
+L859:          ParticleSystem* FirstParticle = local_FirstParticle;
+L878:          ParticleSystem* SecondParticle = local_SecondParticle;
+L897:          bool foundParticle = local_FoundParticles;
+L916:          <End of Inlined Event Graph Function>;
+L921:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L963:          Temp_int_Loop_Counter_Variable = mint323;
+L990:          goto L153;
+============ END FUNCTION GetMiningParticles ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Build_MinerMk1(27);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/MinerMK1/Build_MinerMk1.Build_MinerMk1_C:ExecuteUbergraph_Build_MinerMk1.K2Node_Event_didStartProducing) = didStartProducing;
+L18:           this->ExecuteUbergraph_Build_MinerMk1(141);
+============ END FUNCTION StartProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/MinerMK1/Build_MinerMk1.Build_MinerMk1_C:ExecuteUbergraph_Build_MinerMk1.K2Node_Event_didStopProducing) = didStopProducing;
+L18:           this->ExecuteUbergraph_Build_MinerMk1(898);
+============ END FUNCTION StopProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Build_MinerMk1(1232);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveDestroyed ==============
+L0:            this->ExecuteUbergraph_Build_MinerMk1(1281);
+============ END FUNCTION ReceiveDestroyed ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_MinerMk1 ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->TryStopProductionLoopEffects(false);
+L26:           goto ExecutionFlow.Pop();
+L27:           this->GainedSignificance();
+L37:           bool mbool = this->IsProducing();
+L61:           bool mbool1 = this->IsStartupComplete();
+L81:           bool mbool2 = BooleanAND(mbool1, mbool);
+L119:          if (!mbool2) goto ExecutionFlow.Pop();
+L129:          this->TryStartProductionLoopEffects(false);
+L140:          goto ExecutionFlow.Pop();
+L141:          this->StartProductionLoopEffects(mbool3);
+L160:          bool mbool4 = this->IsStartupComplete();
+L180:          if (!mbool4) goto L342;
+L194:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(Resume_Miner_MK1_Engine, this->MainMesh_skl, "AudioSocket_Drill_StartStop", true);
+L268:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(Resume_Miner_MK1_Dirt, this->MainMesh_skl, "Root", true);
+L342:          bool mbool5 = KismetSystemLibrary->IsValid(this->mDrillingVfx01);
+L393:          if (!mbool5) goto L408;
+L407:          goto ExecutionFlow.Pop();
+L408:          this->GetMiningParticles([ref] mParticleSystem, [ref] mParticleSystem1, [ref] mbool6);
+L449:          Vector mVector = this->MainMesh_skl->GetSocketLocation("drillVfxSocket");
+L516:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, mParticleSystem, mVector, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L606:          this->mDrillingVfx01 = mParticleSystemComponent;
+L625:          ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAttached(Ventilationsmoke, this->MainMesh_skl, "ventVfxSocket_01", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L742:          this->mVentFfx01 = mParticleSystemComponent1;
+L761:          ParticleSystemComponent* mParticleSystemComponent2 = GameplayStatics->SpawnEmitterAttached(Ventilationsmoke, this->MainMesh_skl, "ventVfxSocket_02", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L878:          this->mVentFfx02 = mParticleSystemComponent2;
+L897:          goto ExecutionFlow.Pop();
+L898:          this->StopProductionLoopEffects(mbool7);
+L917:          ExecutionFlow.Push(L1071);
+L922:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAttached(Stop_Miner_MK1_Engine, this->MainMesh_skl, "AudioSocket_Drill_StartStop", true);
+L996:          AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEventAttached(Stop_Miner_MK1_Dirt, this->MainMesh_skl, "Root", true);
+L1070:         goto ExecutionFlow.Pop();
+L1071:         bool mbool8 = KismetSystemLibrary->IsValid(this->mDrillingVfx01);
+L1122:         if (!mbool8) goto ExecutionFlow.Pop();
+L1132:         this->mDrillingVfx01->K2_DestroyComponent(this);
+L1165:         this->mVentFfx01->K2_DestroyComponent(this);
+L1198:         this->mVentFfx02->K2_DestroyComponent(this);
+L1231:         goto ExecutionFlow.Pop();
+L1232:         this->LostSignificance();
+L1242:         bool mbool9 = this->IsProducing();
+L1266:         if (!mbool9) goto ExecutionFlow.Pop();
+L1276:         goto L15;
+L1281:         this->ReceiveDestroyed();
+L1291:         bool mbool10 = KismetSystemLibrary->IsValid(this->mDrillingVfx01);
+L1342:         if (!mbool10) goto ExecutionFlow.Pop();
+L1352:         this->mDrillingVfx01->K2_DestroyComponent(this);
+L1385:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Build_MinerMk1 ==============

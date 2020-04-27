@@ -1,0 +1,99 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetText ==============
+============ END FUNCTION SetText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Build_ManufacturerMk1(26);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Build_ManufacturerMk1(139);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C:ExecuteUbergraph_Build_ManufacturerMk1.K2Node_Event_didStartProducing) = didStartProducing;
+L18:           this->ExecuteUbergraph_Build_ManufacturerMk1(308);
+============ END FUNCTION StartProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C:ExecuteUbergraph_Build_ManufacturerMk1.K2Node_Event_didStopProducing) = didStopProducing;
+L18:           this->ExecuteUbergraph_Build_ManufacturerMk1(1078);
+============ END FUNCTION StopProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_ManufacturerMk1 ==============
+L10:           this->TryStopIdlingLoopEffects(false);
+L21:           <End of Inlined Event Graph Function>;
+L26:           this->GainedSignificance();
+L36:           bool mbool = this->HasPower();
+L60:           if (!mbool) goto L1539;
+L74:           this->TryStartIdlingLoopEffects(false);
+L85:           bool mbool1 = this->IsProducing();
+L109:          if (!mbool1) goto L1539;
+L123:          this->TryStartProductionLoopEffects(false);
+L134:          <End of Inlined Event Graph Function>;
+L139:          this->LostSignificance();
+L149:          bool mbool2 = this->HasPower();
+L173:          bool mbool3 = this->IsProducing();
+L197:          bool mbool4 = BooleanAND(mbool2, mbool3);
+L235:          if (!mbool4) goto L265;
+L249:          this->TryStopProductionLoopEffects(false);
+L260:          goto L10;
+L265:          bool mbool5 = this->HasPower();
+L289:          if (!mbool5) goto L1539;
+L303:          goto L10;
+L308:          this->StartProductionLoopEffects(mbool6);
+L327:          bool mbool7 = KismetSystemLibrary->IsValid(this->P_SideHeat_01);
+L378:          if (!mbool7) goto L397;
+L392:          <End of Inlined Event Graph Function>;
+L397:          Vector mVector = this->MainMesh->GetSocketLocation("vfx_heatSocket_01");
+L464:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, P_CoolingSmokeSides_03, mVector, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L554:          this->P_SideHeat_01 = mParticleSystemComponent;
+L573:          Vector mVector1 = this->MainMesh->GetSocketLocation("vfx_heatSocket_02");
+L640:          ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAtLocation(this, P_CoolingSmokeSides_03, mVector1, Rotator::FromPitchYawRoll(0, 180, 0), Vector(1, 1, 1), true, 0);
+L730:          this->P_SideHeat_02 = mParticleSystemComponent1;
+L749:          Vector mVector2 = this->MainMesh->GetSocketLocation("vfx_ChimneySocket_01");
+L816:          ParticleSystemComponent* mParticleSystemComponent2 = GameplayStatics->SpawnEmitterAtLocation(this, P_Manufacturer_Chimney_01, mVector2, Rotator::FromPitchYawRoll(0, 180, 0), Vector(1, 1, 1), true, 0);
+L906:          this->P_ChimneySmoke_01 = mParticleSystemComponent2;
+L925:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(Play_F_Manufacturer_AmbienceStartupLoop, this->MainMesh, "sfx_AmbienceRoot", true);
+L999:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(Play_F_Manufacturer_AmbienceLoopDirect, this->MainMesh, "sfx_AmbienceRoot", true);
+L1073:         <End of Inlined Event Graph Function>;
+L1078:         this->StopProductionLoopEffects(mbool8);
+L1097:         bool mbool9 = KismetSystemLibrary->IsValid(this->P_SideHeat_01);
+L1148:         if (!mbool9) goto L1539;
+L1162:         bool mbool10 = KismetSystemLibrary->IsValid(this->P_SideHeat_02);
+L1213:         if (!mbool10) goto L1539;
+L1227:         bool mbool11 = KismetSystemLibrary->IsValid(this->P_ChimneySmoke_01);
+L1278:         if (!mbool11) goto L1539;
+L1292:         this->P_ChimneySmoke_01->K2_DestroyComponent(this);
+L1325:         this->P_SideHeat_02->K2_DestroyComponent(this);
+L1358:         this->P_SideHeat_01->K2_DestroyComponent(this);
+L1391:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAttached(Stop_F_Manufacturer_AmbienceLoop, this->MainMesh, "sfx_AmbienceRoot", true);
+L1465:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEventAttached(Stop_F_Manufacturer_AmbienceLoopDirect, this->MainMesh, "sfx_AmbienceRoot", true);
+============ END FUNCTION ExecuteUbergraph_Build_ManufacturerMk1 ==============

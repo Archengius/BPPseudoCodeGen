@@ -1,0 +1,1321 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetEquipmentHUDParent ==============
+L0:            bool mbool = NotEqual_ByteByte(slotType, 0);
+L31:           if (!mbool) goto L140;
+L45:           mbool = NotEqual_ByteByte(slotType, 1);
+L76:           if (!mbool) goto L140;
+L90:           mbool = NotEqual_ByteByte(slotType, 2);
+L121:          if (!mbool) goto L164;
+L135:          <End of Inlined Event Graph Function>;
+L140:          Overlay* overlayParent = this->mHandSlotOverlay;
+L159:          <End of Inlined Event Graph Function>;
+L164:          overlayParent = this->mBodySlotOverlay;
+============ END FUNCTION GetEquipmentHUDParent ==============
+
+
+
+
+
+============ BEGIN FUNCTION FindWidgetToPop ==============
+L0:            ExecutionFlow.Push(L294);
+L5:            TArray<FGInteractWidget*> mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L33:           int32 mint32 = KismetArrayLibrary->Array_LastIndex([ref] mTArray<FGInteractWidget>);
+L92:           int32 index = mint32;
+L119:          bool mbool = GreaterEqual_IntInt(index, 0);
+L153:          if (!mbool) goto L283;
+L167:          ExecutionFlow.Push(L119);
+L172:          TArray<FGInteractWidget*> mTArray<FGInteractWidget>1 = this->GetInteractWidgetStack();
+L200:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>1, index, [ref] mFGInteractWidget);
+L259:          FGInteractWidget* Widget = mFGInteractWidget;
+L278:          <End of Inlined Event Graph Function>;
+L283:          Widget = nullptr;
+============ END FUNCTION FindWidgetToPop ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetMessageBox ==============
+L0:            VerticalBox* messageBox = this->mMessageBox;
+============ END FUNCTION GetMessageBox ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetShoppingList ==============
+L0:            Widget_ShoppingList* shoppingList = this->Widget_ShoppingList_134;
+============ END FUNCTION GetShoppingList ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopWidget ==============
+L0:            ExecutionFlow.Push(L1630);
+L5:            ExecutionFlow.Push(L40);
+L10:           bool mbool = this->PopWidget(WidgetToRemove);
+L39:           goto ExecutionFlow.Pop();
+L40:           this->PrePopWidget(WidgetToRemove);
+L63:           bool mbool1 = KismetSystemLibrary->IsValid(WidgetToRemove);
+L114:          if (!mbool1) goto L1063;
+L128:          FGInteractWidget* WidgetToPop = WidgetToRemove;
+L147:          bool Temp_bool_True_if_break_was_hit_Variable = false;
+L158:          int32 Temp_int_Loop_Counter_Variable = 0;
+L181:          int32 Temp_int_Array_Index_Variable = 0;
+L204:          bool mbool2 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L233:          TArray<FGInteractWidget*> mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L261:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGInteractWidget>);
+L320:          bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L358:          bool mbool4 = BooleanAND(mbool2, mbool3);
+L396:          if (!mbool4) goto L1171;
+L410:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L437:          ExecutionFlow.Push(L1556);
+L442:          mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L470:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>, Temp_int_Array_Index_Variable, [ref] mFGInteractWidget);
+L529:          bool mbool5 = EqualEqual_ObjectObject(WidgetToPop, mFGInteractWidget);
+L567:          if (!mbool5) goto ExecutionFlow.Pop();
+L577:          bool didPop = true;
+L588:          mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L616:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>, Temp_int_Array_Index_Variable, [ref] mFGInteractWidget);
+L675:          bool mbool6 = this->mCenterWidgetBox->RemoveChild(mFGInteractWidget);
+L726:          mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L754:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>, Temp_int_Array_Index_Variable, [ref] mFGInteractWidget);
+L813:          Widget_UseableBase* mWidget_UseableBase = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_UseableBase.Widget_UseableBase_C>(mFGInteractWidget);
+L849:          bool mbool7 = mWidget_UseableBase;
+L878:          if (!mbool7) goto L956;
+L892:          mFScriptDelegate->BindUFunction(this, OnInventorySlotStackMove);
+L915:          mWidget_UseableBase->InventorySlotStackMoveEvent.Remove(mFScriptDelegate);
+L956:          mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L984:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>, Temp_int_Array_Index_Variable, [ref] mFGInteractWidget);
+L1043:         this->RemoveInteractWidget(mFGInteractWidget);
+L1062:         goto ExecutionFlow.Pop();
+L1063:         this->FindWidgetToPop([ref] mFGInteractWidget1);
+L1086:         WidgetToPop = mFGInteractWidget1;
+L1105:         bool mbool8 = KismetSystemLibrary->IsValid(WidgetToPop);
+L1156:         if (!mbool8) goto ExecutionFlow.Pop();
+L1166:         goto L147;
+L1171:         TArray<FGInteractWidget*> mTArray<FGInteractWidget>1 = this->GetInteractWidgetStack();
+L1199:         int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<FGInteractWidget>1);
+L1258:         bool mbool9 = EqualEqual_IntInt(mint321, 0);
+L1292:         if (!mbool9) goto L1335;
+L1306:         this->ResetInput();
+L1320:         this->UpdateHUDVisibility();
+L1334:         goto ExecutionFlow.Pop();
+L1335:         if (!didPop) goto ExecutionFlow.Pop();
+L1345:         TArray<FGInteractWidget*> mTArray<FGInteractWidget>2 = this->GetInteractWidgetStack();
+L1373:         TArray<FGInteractWidget*> mTArray<FGInteractWidget>3 = this->GetInteractWidgetStack();
+L1401:         int32 mint322 = KismetArrayLibrary->Array_LastIndex([ref] mTArray<FGInteractWidget>3);
+L1460:         KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>2, mint322, [ref] mFGInteractWidget2);
+L1519:         mFGInteractWidget2->SetInputMode();
+L1555:         goto ExecutionFlow.Pop();
+L1556:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1598:         Temp_int_Loop_Counter_Variable = mint323;
+L1625:         goto L204;
+============ END FUNCTION PopWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPreviewKeyDown ==============
+L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Enter"));
+L137:          FGAudioMessage* mFGAudioMessage = this->GetCurrentAudioMessage();
+L157:          bool mbool1 = KismetSystemLibrary->IsValid(mFGAudioMessage);
+L208:          bool mbool2 = BooleanAND(mbool, mbool1);
+L246:          if (!mbool2) goto L394;
+L260:          FGAudioMessage* mFGAudioMessage1 = this->GetCurrentAudioMessage();
+L280:          mFGAudioMessage1->CancelPlayback();
+L312:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L362:          EventReply ReturnValue = mEventReply;
+L389:          goto L471;
+L394:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L444:          ReturnValue = mEventReply1;
+============ END FUNCTION OnPreviewKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetVersionLabelPosition ==============
+L0:            Vector2D Temp_struct_Variable = ScriptStruct /Script/CoreUObject.Vector2D(X = 32, Y = 32);
+L42:           Vector2D Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.Vector2D(X = 160, Y = 32);
+L84:           uint8 muint8 = FGVersionFunctionLibrary->GetGameVersion();
+L134:          bool mbool = EqualEqual_ByteByte(muint8, 0);
+L165:          bool Temp_bool_Variable = mbool;
+L184:          this->mVersionLabel->SetRenderTranslation(switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mVector2D;
+});
+============ END FUNCTION SetVersionLabelPosition ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetExperimentalVisibility ==============
+L0:            uint8 Temp_byte_Variable = 3;
+L20:           uint8 Temp_byte_Variable1 = 1;
+L40:           uint8 muint8 = FGVersionFunctionLibrary->GetGameVersion();
+L90:           bool mbool = EqualEqual_ByteByte(muint8, 1);
+L121:          bool Temp_bool_Variable = mbool;
+L140:          this->mExperimentalBuildLabel->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint81;
+});
+============ END FUNCTION GetExperimentalVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetChildUIVisibility ==============
+L0:            this->GetFGHud([ref] mFGHUD);
+L23:           bool mbool = mFGHUD->GetPartialPumpiMode();
+L65:           if (!mbool) goto L104;
+L79:           uint8 ReturnValue = 2;
+L99:           goto L124;
+L104:          ReturnValue = 4;
+============ END FUNCTION GetChildUIVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION PrePopWidget ==============
+L0:            ExecutionFlow.Push(L429);
+L5:            ExecutionFlow.Push(L212);
+L10:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L34:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L70:           bool mbool = mFGPlayerController;
+L99:           if (!mbool) goto ExecutionFlow.Pop();
+L109:          TSubclassOf<FGInteractWidget> mTSubclassOf<FGInteractWidget> = GameplayStatics->GetObjectClass(WidgetBeingRemoved);
+L160:          mFGPlayerController->OnToggleInteractionUI->ProcessMulticastDelegate(false, mTSubclassOf<FGInteractWidget>);
+L211:          goto ExecutionFlow.Pop();
+L212:          Widget_PlayerInventory* mWidget_PlayerInventory = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Character/Player/Widget_PlayerInventory.Widget_PlayerInventory_C>(WidgetBeingRemoved);
+L248:          bool mbool1 = mWidget_PlayerInventory;
+L277:          if (!mbool1) goto ExecutionFlow.Pop();
+L287:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L311:          FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);
+L347:          bool mbool2 = mFGPlayerController1;
+L376:          if (!mbool2) goto ExecutionFlow.Pop();
+L386:          mFGPlayerController1->OnToggleInventory->ProcessMulticastDelegate(false);
+L428:          goto ExecutionFlow.Pop();
+============ END FUNCTION PrePopWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowTutorialHint ==============
+L0:            bool mbool = this->mTutorialInfoSlot->HasAnyChildren();
+L42:           if (!mbool) goto L92;
+L56:           this->mTutorialInfoSlot->ClearChildren();
+L92:           bool mbool1 = EqualEqual_ByteByte(this->mCachedTutorialHintData.ID, 12);
+L132:          if (!mbool1) goto L151;
+L146:          <End of Inlined Event Graph Function>;
+L151:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mCachedTutorialHintData.HintTexts);
+L219:          bool mbool2 = GreaterEqual_IntInt(mint32, 1);
+L253:          bool mbool3 = KismetTextLibrary->TextIsEmpty([ref] this->mCachedTutorialHintData.Title);
+L313:          bool mbool4 = Not_PreBool(mbool3);
+L342:          bool mbool5 = BooleanOR(mbool4, mbool2);
+L380:          if (!mbool5) goto L674;
+L394:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L418:          Widget_TutorialInfo* mWidget_TutorialInfo = WidgetBlueprintLibrary->Create(this, Widget_TutorialInfo, mPlayerController);
+L479:          KismetSystemLibrary->SetTextPropertyByName(mWidget_TutorialInfo, "mTitle", [ref] this->mCachedTutorialHintData.Title);
+L551:          KismetArrayLibrary->SetArrayPropertyByName(mWidget_TutorialInfo, "mHints", [ref] this->mCachedTutorialHintData.HintTexts);
+L623:          PanelSlot* mPanelSlot = this->mTutorialInfoSlot->AddChild(mWidget_TutorialInfo);
+============ END FUNCTION ShowTutorialHint ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetFGHud ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           HUD* mHUD = mPlayerController->GetHUD();
+L66:           FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L102:          bool mbool = mFGHUD;
+L131:          if (!mbool) goto L169;
+L145:          FGHUD* HUD = mFGHUD;
+L164:          <End of Inlined Event Graph Function>;
+L169:          mPlayerController = this->GetOwningPlayer();
+L193:          BP_DebugCameraController* mBP_DebugCameraController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_DebugCameraController.BP_DebugCameraController_C>(mPlayerController);
+L229:          bool mbool1 = mBP_DebugCameraController;
+L258:          if (!mbool1) goto L318;
+L272:          HUD = mBP_DebugCameraController->mOriginalHUD;
+L313:          <End of Inlined Event Graph Function>;
+L318:          KismetSystemLibrary->PrintString(this, "Cast failed to FGHUD", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L414:          HUD = nullptr;
+============ END FUNCTION GetFGHud ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetPrototypeCameraVisibility ==============
+L0:            if (!New Visibility) goto L57;
+L14:           this->CameraCanvas->SetVisibility(4);
+L52:           <End of Inlined Event Graph Function>;
+L57:           this->CameraCanvas->SetVisibility(2);
+============ END FUNCTION SetPrototypeCameraVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetPrototypeVisibility ==============
+L0:            if (!NewVisibility) goto L95;
+L14:           this->HUD_Overlay->SetVisibility(4);
+L52:           this->StandardUI->SetVisibility(4);
+L90:           <End of Inlined Event Graph Function>;
+L95:           this->HUD_Overlay->SetVisibility(2);
+L133:          this->StandardUI->SetVisibility(2);
+============ END FUNCTION SetPrototypeVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnInventorySlotStackMove ==============
+L0:            ExecutionFlow.Push(L1130);
+L5:            bool mbool = NotEqual_ByteByte(InteractionDirection, 0);
+L36:           if (!mbool) goto L96;
+L50:           mbool = NotEqual_ByteByte(InteractionDirection, 1);
+L81:           if (!mbool) goto L711;
+L95:           goto ExecutionFlow.Pop();
+L96:           bool Temp_bool_True_if_break_was_hit_Variable = false;
+L107:          int32 Temp_int_Loop_Counter_Variable = 0;
+L130:          int32 Temp_int_Array_Index_Variable = 0;
+L153:          bool mbool1 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L182:          TArray<FGInteractWidget*> mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L210:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGInteractWidget>);
+L269:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L307:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L345:          if (!mbool3) goto L629;
+L359:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L386:          ExecutionFlow.Push(L1056);
+L391:          mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L419:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>, Temp_int_Array_Index_Variable, [ref] mFGInteractWidget);
+L478:          Widget_UseableBase* mWidget_UseableBase = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_UseableBase.Widget_UseableBase_C>(mFGInteractWidget);
+L514:          bool mbool4 = mWidget_UseableBase;
+L543:          if (!mbool4) goto ExecutionFlow.Pop();
+L553:          mWidget_UseableBase->DropInventorySlotStack(InventorySlot, [ref] mbool5);
+L607:          if (!mbool5) goto ExecutionFlow.Pop();
+L617:          Temp_bool_True_if_break_was_hit_Variable = true;
+L628:          goto ExecutionFlow.Pop();
+L629:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L649:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_DialBoxDropDown, mPawn, true);
+L710:          goto ExecutionFlow.Pop();
+L711:          bool mbool6 = KismetSystemLibrary->IsValid(this->CachedPlayerInventoryAddon);
+L762:          if (!mbool6) goto ExecutionFlow.Pop();
+L772:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L796:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L832:          bool mbool7 = mFGPlayerController;
+L861:          if (!mbool7) goto ExecutionFlow.Pop();
+L871:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L922:          mBP_RemoteCallObject->Server_MoveItemIfSpace(InventorySlot->mCachedInventoryComponent, InventorySlot->mSlotIdx, this->CachedPlayerInventoryAddon->mInventoryComponent);
+L1051:         goto L629;
+L1056:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1098:         Temp_int_Loop_Counter_Variable = mint321;
+L1125:         goto L153;
+============ END FUNCTION OnInventorySlotStackMove ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreateAddOnPlayerInventory ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           Widget_PlayerInventoryAddon* mWidget_PlayerInventoryAddon = WidgetBlueprintLibrary->Create(this, Widget_PlayerInventoryAddon, mPlayerController);
+L85:           const FText Temp_text_Variable = "[object Object]";
+L158:          KismetSystemLibrary->SetTextPropertyByName(mWidget_PlayerInventoryAddon, "mRelevantItemsText", [ref] Temp_text_Variable);
+L221:          PanelSlot* mPanelSlot = Container->AddChild(mWidget_PlayerInventoryAddon);
+L272:          mFScriptDelegate->BindUFunction(this, OnInventorySlotStackMove);
+L295:          mWidget_PlayerInventoryAddon->SlotStackMoveEvent.AddUnique(mFScriptDelegate);
+L336:          this->CachedPlayerInventoryAddon = mWidget_PlayerInventoryAddon;
+L355:          Widget_PlayerInventoryAddon* CachedPlayerInventoryAddon = this->CachedPlayerInventoryAddon;
+============ END FUNCTION CreateAddOnPlayerInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsChatWindowVisible ==============
+L0:            uint8 Temp_byte_Variable = 0;
+L20:           uint8 Temp_byte_Variable1 = 2;
+L40:           this->GetFGHud([ref] mFGHUD);
+L63:           bool mbool = mFGHUD->GetHUDVisibility();
+L105:          bool mbool1 = this->mChatWindow->GetInputWindowVisibility();
+L151:          this->mChatWindow->IsLastMessageFresh([ref] mbool2);
+L196:          bool mbool3 = mFGHUD->GetPumpiMode();
+L238:          bool mbool4 = BooleanOR(mbool1, mbool2);
+L276:          bool mbool5 = Not_PreBool(mbool3);
+L305:          bool mbool6 = BooleanOR(mbool5, mbool);
+L343:          bool mbool7 = BooleanAND(mbool6, mbool4);
+L381:          bool Temp_bool_Variable = mbool7;
+L400:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION IsChatWindowVisible ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetUIVisibility ==============
+L0:            this->GetFGHud([ref] mFGHUD);
+L23:           bool mbool = mFGHUD->GetPumpiMode();
+L65:           if (!mbool) goto L104;
+L79:           uint8 ReturnValue = 2;
+L99:           goto L124;
+L104:          ReturnValue = 4;
+============ END FUNCTION GetUIVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyDown ==============
+L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Escape"));
+L137:          bool mbool1 = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "E"));
+L215:          bool mbool2 = BooleanOR(mbool1, mbool);
+L253:          if (!mbool2) goto L666;
+L267:          TArray<FGInteractWidget*> mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L295:          int32 mint32 = KismetArrayLibrary->Array_LastIndex([ref] mTArray<FGInteractWidget>);
+L354:          bool mbool3 = GreaterEqual_IntInt(mint32, 0);
+L388:          if (!mbool3) goto L743;
+L402:          TArray<FGInteractWidget*> mTArray<FGInteractWidget>1 = this->GetInteractWidgetStack();
+L430:          int32 mint321 = KismetArrayLibrary->Array_LastIndex([ref] mTArray<FGInteractWidget>1);
+L489:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>1, mint321, [ref] mFGInteractWidget);
+L548:          mFGInteractWidget->OnEscapePressed();
+L584:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L634:          EventReply ReturnValue = mEventReply;
+L661:          goto L743;
+L666:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L716:          ReturnValue = mEventReply1;
+============ END FUNCTION OnKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION HUDPanelVisibility ==============
+L0:            this->GetFGHud([ref] mFGHUD);
+L23:           bool mbool = mFGHUD->GetHUDVisibility();
+L65:           bool mbool1 = mFGHUD->GetPumpiMode();
+L107:          bool mbool2 = Not_PreBool(mbool);
+L136:          bool mbool3 = BooleanOR(mbool1, mbool2);
+L174:          if (!mbool3) goto L213;
+L188:          uint8 ReturnValue = 2;
+L208:          goto L233;
+L213:          ReturnValue = 3;
+============ END FUNCTION HUDPanelVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetMessageNotifierVisibility ==============
+L0:            this->GetFGHud([ref] mFGHUD);
+L23:           bool mbool = mFGHUD->GetPumpiMode();
+L65:           bool mbool1 = this->mMessageBox->HasAnyChildren();
+L107:          bool mbool2 = Not_PreBool(mbool1);
+L136:          bool mbool3 = BooleanOR(mbool, mbool2);
+L174:          if (!mbool3) goto L213;
+L188:          uint8 ReturnValue = 2;
+L208:          goto L233;
+L213:          ReturnValue = 4;
+============ END FUNCTION GetMessageNotifierVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateHUDVisibility ==============
+L0:            this->GetFGHud([ref] mFGHUD);
+L23:           bool mbool = this->mCenterWidgetBox->HasAnyChildren();
+L65:           bool mbool1 = this->PopupSlot->HasAnyChildren();
+L107:          bool mbool2 = BooleanOR(mbool1, mbool);
+L145:          bool mbool3 = Not_PreBool(mbool2);
+L174:          mFGHUD->SetHUDVisibility(mbool3);
+============ END FUNCTION UpdateHUDVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicPopupVisibility ==============
+L0:            uint8 Temp_byte_Variable = 2;
+L20:           uint8 Temp_byte_Variable1 = 3;
+L40:           this->GetFGHud([ref] mFGHUD);
+L63:           bool mbool = mFGHUD->GetPumpiMode();
+L105:          bool Temp_bool_Variable = mbool;
+L124:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetSchematicPopupVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddMessageNotification ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           Widget_MessageNotifier* mWidget_MessageNotifier = WidgetBlueprintLibrary->Create(this, Widget_MessageNotifier, mPlayerController);
+L85:           KismetSystemLibrary->SetClassPropertyByName(mWidget_MessageNotifier, "mMessage", newMessage);
+L148:          VerticalBoxSlot* mVerticalBoxSlot = this->mMessageBox->AddChildToVerticalBox(mWidget_MessageNotifier);
+============ END FUNCTION AddMessageNotification ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemDropLocation ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           mPlayerController->GetActorEyesViewPoint([ref] mVector, [ref] mRotator);
+L78:           Vector mVector1 = GetForwardVector(mRotator);
+L115:          Vector mVector2 = Multiply_VectorFloat(mVector1, 250);
+L157:          Vector mVector3 = Add_VectorVector(mVector, mVector2);
+L203:          Vector dropLocation = mVector3;
+============ END FUNCTION GetItemDropLocation ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDrop ==============
+L0:            ExecutionFlow.Push(L884);
+L5:            ExecutionFlow.Push(L865);
+L10:           BP_DragNDropInventory* mBP_DragNDropInventory = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/BP_DragNDropInventory.BP_DragNDropInventory_C>(Operation);
+L46:           bool mbool = mBP_DragNDropInventory;
+L75:           if (!mbool) goto ExecutionFlow.Pop();
+L85:           bool local_handled = true;
+L96:           Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mBP_DragNDropInventory->payload);
+L154:          bool mbool1 = mWidget_InventorySlot;
+L183:          if (!mbool1) goto ExecutionFlow.Pop();
+L193:          bool mbool2 = mWidget_InventorySlot->mCachedInventoryComponent->GetStackFromIndex(mWidget_InventorySlot->mSlotIdx, [ref] mInventoryStack);
+L297:          FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint32, [ref] mInventoryItem);
+L356:          FGInventoryLibrary->BreakInventoryItem([ref] mInventoryItem, [ref] mTSubclassOf<FGItemDescriptor>, [ref] mActor);
+L415:          uint8 muint8 = FGItemDescriptor->GetForm(mTSubclassOf<FGItemDescriptor>);
+L474:          bool mbool3 = EqualEqual_ByteByte(muint8, 1);
+L505:          if (!mbool3) goto ExecutionFlow.Pop();
+L515:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L535:          FGItemPickup_Spawnable->FindGroundLocationInfrontOfActor(mPawn, 230, [ref] mInventoryStack, [ref] mVector, [ref] mRotator);
+L608:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L632:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L668:          bool mbool4 = mFGPlayerController;
+L697:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L748:          mBP_RemoteCallObject->Server_DropItemIntoStack(mWidget_InventorySlot->mCachedInventoryComponent, mWidget_InventorySlot->mSlotIdx, mVector, mRotator);
+L864:          goto ExecutionFlow.Pop();
+L865:          bool ReturnValue = local_handled;
+============ END FUNCTION OnDrop ==============
+
+
+
+
+
+============ BEGIN FUNCTION RefreshInputMode ==============
+L0:            bool mbool = this->PopupSlot->HasAnyChildren();
+L42:           if (!mbool) goto L249;
+L56:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L80:           Widget* mWidget = this->PopupSlot->GetChildAt(0);
+L127:          Widget_Popup* mWidget_Popup = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Popup.Widget_Popup_C>(mWidget);
+L163:          bool mbool1 = mWidget_Popup;
+L192:          WidgetBlueprintLibrary->SetInputMode_UIOnlyEx(mPlayerController, mWidget_Popup, 1);
+L244:          <End of Inlined Event Graph Function>;
+L249:          bool mbool2 = this->mMenuSlot->HasAnyChildren();
+L291:          if (!mbool2) goto L310;
+L305:          <End of Inlined Event Graph Function>;
+L310:          TArray<FGInteractWidget*> mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L338:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGInteractWidget>);
+L397:          bool mbool3 = Greater_IntInt(mint32, 0);
+L431:          if (!mbool3) goto L660;
+L445:          TArray<FGInteractWidget*> mTArray<FGInteractWidget>1 = this->GetInteractWidgetStack();
+L473:          int32 mint321 = KismetArrayLibrary->Array_LastIndex([ref] mTArray<FGInteractWidget>1);
+L532:          TArray<FGInteractWidget*> mTArray<FGInteractWidget>2 = this->GetInteractWidgetStack();
+L560:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>2, mint321, [ref] mFGInteractWidget);
+L619:          mFGInteractWidget->SetInputMode();
+L655:          <End of Inlined Event Graph Function>;
+L660:          this->ResetInput();
+============ END FUNCTION RefreshInputMode ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreatePopupWidget ==============
+L0:            TSubclassOf<Widget_Popup> mTSubclassOf<Widget_Popup> = ClassCast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Popup.Widget_Popup_C>(PopupData.PopupClass);
+L45:           bool mbool = mTSubclassOf<Widget_Popup>;
+L74:           if (!mbool) goto L528;
+L88:           TSubclassOf<Widget_Popup> PopupClass = mTSubclassOf<Widget_Popup>;
+L107:          this->mPopupBlur->SetBlurStrength(1);
+L148:          this->mPopupModal->SetVisibility(0);
+L186:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L210:          Widget_Popup* mWidget_Popup = WidgetBlueprintLibrary->Create(this, PopupClass, mPlayerController);
+L271:          mWidget_Popup->mPopupData = PopupData;
+L320:          PanelSlot* mPanelSlot = this->PopupSlot->AddChild(mWidget_Popup);
+L371:          mPlayerController = this->GetOwningPlayer();
+L395:          WidgetBlueprintLibrary->SetInputMode_UIOnlyEx(mPlayerController, mWidget_Popup, 0);
+L447:          mPlayerController = this->GetOwningPlayer();
+L471:          mPlayerController->bShowMouseCursor = true;
+L504:          FGPopupWidget* ReturnValue = mWidget_Popup;
+L523:          goto L552;
+L528:          PopupClass = Widget_Popup;
+L547:          goto L107;
+============ END FUNCTION CreatePopupWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetReloadRespawnText ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L56:           bool mbool = mFGCharacterPlayer;
+L85:           if (!mbool) goto L635;
+L99:           bool mbool1 = mFGCharacterPlayer->IsAliveAndWell();
+L141:          if (!mbool1) goto L660;
+L155:          FGEquipment* mFGEquipment = mFGCharacterPlayer->GetEquipmentInSlot(1);
+L199:          FGWeapon* mFGWeapon = Cast<Class /Script/FactoryGame.FGWeapon>(mFGEquipment);
+L235:          bool mbool2 = mFGWeapon;
+L264:          if (!mbool2) goto L660;
+L278:          FText Temp_text_Variable1 = "[object Object]";
+L348:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L372:          FText mFText = FGInputLibrary->FormatStringWithKeyNames(mPlayerController, "[object Object]", false);
+L498:          bool mbool3 = mFGWeapon->GetIsReloading();
+L540:          bool Temp_bool_Variable = mbool3;
+L559:          FText ReturnValue = switch (Temp_bool_Variable) {
+case false -> mFText;
+case true -> Temp_text_Variable1;
+default -> mFText1;
+};
+L630:          goto L1096;
+L635:          ReturnValue = ;
+L655:          goto L1096;
+L660:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L684:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);
+L720:          bool mbool4 = mFGPlayerController;
+L749:          if (!mbool4) goto L1076;
+L763:          FText Temp_text_Variable = ;
+L783:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L807:          FText mFText2 = FGInputLibrary->FormatStringWithKeyNames(mPlayerController2, "[object Object]", false);
+L939:          bool mbool5 = mFGPlayerController->NeedRespawn();
+L981:          bool Temp_bool_Variable1 = mbool5;
+L1000:         ReturnValue = switch (Temp_bool_Variable1) {
+case false -> Temp_text_Variable;
+case true -> mFText2;
+default -> mFText3;
+};
+L1071:         goto L1096;
+L1076:         ReturnValue = ;
+============ END FUNCTION GetReloadRespawnText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetReloadRespawnTextVisibility ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L56:           bool mbool = mFGCharacterPlayer;
+L85:           if (!mbool) goto L616;
+L99:           bool mbool1 = mFGCharacterPlayer->IsAliveAndWell();
+L141:          if (!mbool1) goto L641;
+L155:          FGEquipment* mFGEquipment = mFGCharacterPlayer->GetEquipmentInSlot(1);
+L199:          FGWeapon* mFGWeapon = Cast<Class /Script/FactoryGame.FGWeapon>(mFGEquipment);
+L235:          bool mbool2 = mFGWeapon;
+L264:          if (!mbool2) goto L641;
+L278:          bool mbool3 = this->mPlayerInteractionMessages->IsVisible();
+L320:          bool mbool4 = Not_PreBool(mbool3);
+L349:          bool mbool5 = mFGWeapon->HasAmmunition();
+L391:          bool mbool6 = mFGWeapon->CanReload();
+L433:          bool mbool7 = Not_PreBool(mbool5);
+L462:          bool mbool8 = BooleanAND(mbool7, mbool6);
+L500:          bool mbool9 = BooleanAND(mbool8, mbool4);
+L538:          if (!mbool9) goto L1003;
+L552:          uint8 muint8 = this->HUDPanelVisibility();
+L584:          uint8 ReturnValue = muint8;
+L611:          goto L1023;
+L616:          ReturnValue = 2;
+L636:          goto L1023;
+L641:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L665:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L701:          bool mbool10 = mFGPlayerController;
+L730:          if (!mbool10) goto L978;
+L744:          bool mbool11 = KismetSystemLibrary->IsValid(mFGPlayerController);
+L795:          bool mbool12 = mFGPlayerController->NeedRespawn();
+L837:          bool mbool13 = BooleanAND(mbool11, mbool12);
+L875:          if (!mbool13) goto L953;
+L889:          uint8 muint81 = this->HUDPanelVisibility();
+L921:          ReturnValue = muint81;
+L948:          goto L1023;
+L953:          ReturnValue = 2;
+L973:          goto L1023;
+L978:          ReturnValue = 2;
+L998:          goto L1023;
+L1003:         ReturnValue = 2;
+============ END FUNCTION GetReloadRespawnTextVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopAllWidgets_Internal ==============
+L0:            ExecutionFlow.Push(L418);
+L5:            TArray<FGInteractWidget*> mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L33:           int32 mint32 = KismetArrayLibrary->Array_LastIndex([ref] mTArray<FGInteractWidget>);
+L92:           int32 index = mint32;
+L119:          bool mbool = GreaterEqual_IntInt(index, 0);
+L153:          if (!mbool) goto L389;
+L167:          ExecutionFlow.Push(L119);
+L172:          TArray<FGInteractWidget*> mTArray<FGInteractWidget>1 = this->GetInteractWidgetStack();
+L200:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>1, index, [ref] mFGInteractWidget);
+L259:          bool mbool1 = this->PopWidget(mFGInteractWidget);
+L292:          int32 mint321 = Subtract_IntInt(index, 1);
+L334:          int32 Temp_int_Variable = mint321;
+L361:          index = Temp_int_Variable;
+L388:          goto ExecutionFlow.Pop();
+L389:          this->RefreshInputMode();
+L403:          this->UpdateHUDVisibility();
+L417:          goto ExecutionFlow.Pop();
+============ END FUNCTION PopAllWidgets_Internal ==============
+
+
+
+
+
+============ BEGIN FUNCTION DoesWidgetExist ==============
+L0:            ExecutionFlow.Push(L514);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           TArray<FGInteractWidget*> mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L79:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGInteractWidget>);
+L138:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L176:          if (!mbool) goto L424;
+L190:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L217:          ExecutionFlow.Push(L440);
+L222:          mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L250:          KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>, Temp_int_Array_Index_Variable, [ref] mFGInteractWidget);
+L309:          TSubclassOf<FGInteractWidget> mTSubclassOf<FGInteractWidget> = GameplayStatics->GetObjectClass(mFGInteractWidget);
+L360:          bool mbool1 = ClassIsChildOf(mTSubclassOf<FGInteractWidget>, WidgetClass);
+L398:          if (!mbool1) goto ExecutionFlow.Pop();
+L408:          bool doesExist = true;
+L419:          <End of Inlined Event Graph Function>;
+L424:          doesExist = false;
+L435:          <End of Inlined Event Graph Function>;
+L440:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L482:          Temp_int_Loop_Counter_Variable = mint321;
+L509:          goto L51;
+============ END FUNCTION DoesWidgetExist ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPlayerInteractionVisibility ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L56:           bool mbool = mFGCharacterPlayer;
+L85:           if (!mbool) goto L355;
+L99:           mPawn = this->GetOwningPlayerPawn();
+L119:          mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L155:          mbool = mFGCharacterPlayer;
+L184:          Actor* mActor = mFGCharacterPlayer->GetBestUsableActor();
+L226:          bool mbool1 = KismetSystemLibrary->IsValid(mActor);
+L277:          if (!mbool1) goto L380;
+L291:          uint8 muint8 = this->HUDPanelVisibility();
+L323:          uint8 ReturnValue = muint8;
+L350:          goto L400;
+L355:          ReturnValue = 2;
+L375:          goto L400;
+L380:          ReturnValue = 2;
+============ END FUNCTION GetPlayerInteractionVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(5217);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Play Landed Effect ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_CustomEvent_Velocity) = Velocity;
+L18:           this->ExecuteUbergraph_BP_GameUI(4536);
+============ END FUNCTION Play Landed Effect ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceivedMessage ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_inMessage) = inMessage;
+L18:           this->ExecuteUbergraph_BP_GameUI(1237);
+============ END FUNCTION ReceivedMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveAudioMessage ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(1412);
+============ END FUNCTION RemoveAudioMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddIntroTutorialInfo ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_tutorialHintData) = TutorialHintData;
+L18:           this->ExecuteUbergraph_BP_GameUI(1427);
+============ END FUNCTION AddIntroTutorialInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTutorialInfo ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_CustomEvent_hintData) = hintData;
+L18:           this->ExecuteUbergraph_BP_GameUI(1792);
+============ END FUNCTION UpdateTutorialInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION HandleFocusLost ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(1820);
+============ END FUNCTION HandleFocusLost ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddPawnHUD ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_newContent) = newContent;
+L18:           this->ExecuteUbergraph_BP_GameUI(2626);
+============ END FUNCTION AddPawnHUD ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemovePawnHUD ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(2746);
+============ END FUNCTION RemovePawnHUD ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddInteractWidget ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_widgetToAdd) = widgetToAdd;
+L18:           this->ExecuteUbergraph_BP_GameUI(2783);
+============ END FUNCTION AddInteractWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPlayerBeginTypeMessage ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(3158);
+============ END FUNCTION OnPlayerBeginTypeMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(3344);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnChatMessageReceived ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(3837);
+============ END FUNCTION OnChatMessageReceived ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearHintOnTutorialStepCompleted ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(3874);
+============ END FUNCTION ClearHintOnTutorialStepCompleted ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowRespawnMessage ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(3962);
+============ END FUNCTION ShowRespawnMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClosePopup ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(4541);
+============ END FUNCTION ClosePopup ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnReceiveRadiationStart ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(4546);
+============ END FUNCTION OnReceiveRadiationStart ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnReceiveRadiationStop ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(4589);
+============ END FUNCTION OnReceiveRadiationStop ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRadiationIntensityUpdated ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_radiationIntensity) = radiationIntensity;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_radiationImmunity) = radiationImmunity;
+L36:           this->ExecuteUbergraph_BP_GameUI(4632);
+============ END FUNCTION OnRadiationIntensityUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION ForceStopRadiationUI ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(4708);
+============ END FUNCTION ForceStopRadiationUI ==============
+
+
+
+
+
+============ BEGIN FUNCTION PushWidget ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_Widget) = Widget;
+L18:           this->ExecuteUbergraph_BP_GameUI(4907);
+============ END FUNCTION PushWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowDirectionalSubtitle ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_Subtitle) = Subtitle;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_Instigator1) = Instigator;
+L36:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_Duration) = Duration;
+L54:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_bUseDuration) = bUseDuration;
+L72:           this->ExecuteUbergraph_BP_GameUI(5017);
+============ END FUNCTION ShowDirectionalSubtitle ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopSubtitle ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_Instigator) = Instigator;
+L18:           this->ExecuteUbergraph_BP_GameUI(5022);
+============ END FUNCTION StopSubtitle ==============
+
+
+
+
+
+============ BEGIN FUNCTION EventUpdateHUDScaling ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(5068);
+============ END FUNCTION EventUpdateHUDScaling ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayAudioMessage ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_Event_messageClass) = MessageClass;
+L18:           this->ExecuteUbergraph_BP_GameUI(5237);
+============ END FUNCTION PlayAudioMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnResumeGame ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(5524);
+============ END FUNCTION OnResumeGame ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowQuickSearch ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(5561);
+============ END FUNCTION ShowQuickSearch ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreateBreakNotification ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(5599);
+============ END FUNCTION CreateBreakNotification ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopAllWidgets ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(7186);
+============ END FUNCTION PopAllWidgets ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnInitialized ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(7319);
+============ END FUNCTION OnInitialized ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnAutosaveStart ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/BP_GameUI.BP_GameUI_C:ExecuteUbergraph_BP_GameUI.K2Node_CustomEvent_TimeUntilAutosave) = TimeUntilAutosave;
+L18:           this->ExecuteUbergraph_BP_GameUI(7918);
+============ END FUNCTION OnAutosaveStart ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnAutosaveFinished ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(7964);
+============ END FUNCTION OnAutosaveFinished ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResetInput ==============
+L0:            this->ExecuteUbergraph_BP_GameUI(8001);
+============ END FUNCTION ResetInput ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_GameUI ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L58:           FGChatManager* mFGChatManager = FGChatManager->Get(mGameStateBase);
+L109:          bool mbool = KismetSystemLibrary->IsValid(mFGChatManager);
+L160:          if (!mbool) goto L369;
+L174:          mGameStateBase = GameplayStatics->GetGameState(this);
+L217:          mFGChatManager = FGChatManager->Get(mGameStateBase);
+L268:          mFScriptDelegate->BindUFunction(this, OnChatMessageReceived);
+L291:          mFGChatManager->OnChatMessageAdded.AddUnique(mFScriptDelegate);
+L332:          this->mChatWindow->UpdateVisibility();
+L368:          goto ExecutionFlow.Pop();
+L369:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1918412098, ExecutionFunction = "ExecuteUbergraph_BP_GameUI", CallbackTarget = this));
+L445:          goto ExecutionFlow.Pop();
+L446:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->FadeAnim, 0, 1, 0, 1);
+L492:          goto ExecutionFlow.Pop();
+L493:          this->UpdateHUDVisibility();
+L507:          goto ExecutionFlow.Pop();
+L508:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L532:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L568:          bool mbool1 = mFGPlayerController;
+L597:          if (!mbool1) goto ExecutionFlow.Pop();
+L607:          this->AddInteractWidget(mFGInteractWidget);
+L630:          PanelSlot* mPanelSlot = this->mCenterWidgetBox->AddChild(mFGInteractWidget);
+L681:          HorizontalBoxSlot* mHorizontalBoxSlot = Cast<Class /Script/UMG.HorizontalBoxSlot>(mPanelSlot);
+L717:          bool mbool2 = mHorizontalBoxSlot;
+L746:          if (!mbool2) goto ExecutionFlow.Pop();
+L756:          uint8 muint8 = mFGInteractWidget->GetDesiredHorizontalAlignment();
+L806:          mHorizontalBoxSlot->SetHorizontalAlignment(muint8);
+L847:          uint8 muint81 = mFGInteractWidget->GetDesiredVerticalAlignment();
+L897:          mHorizontalBoxSlot->SetVerticalAlignment(muint81);
+L938:          SlateChildSize mSlateChildSize = mFGInteractWidget->GetDesiredAlignmentSize();
+L988:          mHorizontalBoxSlot->SetSize(mSlateChildSize);
+L1029:         TArray<FGInteractWidget*> mTArray<FGInteractWidget> = this->GetInteractWidgetStack();
+L1057:         int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGInteractWidget>);
+L1116:         bool mbool3 = EqualEqual_IntInt(mint32, 1);
+L1150:         if (!mbool3) goto ExecutionFlow.Pop();
+L1160:         mFGInteractWidget->SetupDefaultFocus();
+L1196:         mFGInteractWidget->SetInputMode();
+L1232:         goto L493;
+L1237:         TSubclassOf<FGAudioMessage> mTSubclassOf<FGAudioMessage> = ClassCast<Class /Script/FactoryGame.FGAudioMessage>(mTSubclassOf<FGMessageBase>);
+L1273:         bool mbool4 = mTSubclassOf<FGAudioMessage>;
+L1302:         if (!mbool4) goto L1340;
+L1316:         this->PlayAudioMessage(mTSubclassOf<FGAudioMessage>);
+L1339:         goto ExecutionFlow.Pop();
+L1340:         this->AddMessageNotification(mTSubclassOf<FGMessageBase>);
+L1363:         goto ExecutionFlow.Pop();
+L1364:         this->mAudioMessageSlot->ClearChildren();
+L1400:         this->SetCurrentAudioMessage(nullptr);
+L1411:         goto ExecutionFlow.Pop();
+L1412:         this->RemoveAudioMessage();
+L1422:         goto L1364;
+L1427:         this->UpdateTutorialInfo(mTutorialHintData);
+L1450:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1474:         FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);
+L1510:         bool mbool5 = mFGPlayerController1;
+L1539:         if (!mbool5) goto ExecutionFlow.Pop();
+L1549:         bool mbool6 = KismetSystemLibrary->IsValidClass(mTutorialHintData.MESSAGE);
+L1609:         if (!mbool6) goto ExecutionFlow.Pop();
+L1619:         bool mbool7 = mFGPlayerController1->GetPlayerHasMessage(mTutorialHintData.MESSAGE);
+L1679:         bool mbool8 = Not_PreBool(mbool7);
+L1708:         if (!mbool8) goto L1777;
+L1722:         mFGPlayerController1->Client_AddMessage(mTutorialHintData.MESSAGE);
+L1776:         goto ExecutionFlow.Pop();
+L1777:         this->ShowTutorialHint();
+L1791:         goto ExecutionFlow.Pop();
+L1792:         this->mCachedTutorialHintData = mTutorialHintData1;
+L1819:         goto ExecutionFlow.Pop();
+L1820:         int32 mint321 = this->mMenuSlot->GetChildrenCount();
+L1870:         bool mbool9 = Greater_IntInt(mint321, 0);
+L1904:         if (!mbool9) goto L2118;
+L1918:         Widget* mWidget = this->mMenuSlot->GetChildAt(0);
+L1965:         BP_MenuBase* mBP_MenuBase = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C>(mWidget);
+L2001:         bool mbool10 = mBP_MenuBase;
+L2030:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L2054:         mBP_MenuBase->mFocusWidget->SetUserFocus(mPlayerController2);
+L2117:         goto ExecutionFlow.Pop();
+L2118:         TArray<FGInteractWidget*> mTArray<FGInteractWidget>1 = this->GetInteractWidgetStack();
+L2146:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArray<FGInteractWidget>1);
+L2205:         bool mbool11 = Greater_IntInt(mint322, 0);
+L2239:         if (!mbool11) goto ExecutionFlow.Pop();
+L2249:         TArray<FGInteractWidget*> mTArray<FGInteractWidget>2 = this->GetInteractWidgetStack();
+L2277:         KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>2, 0, [ref] mFGInteractWidget1);
+L2332:         Widget* mWidget1 = mFGInteractWidget1->GetDefaultFocusWidget();
+L2374:         bool mbool12 = KismetSystemLibrary->IsValid(mWidget1);
+L2425:         if (!mbool12) goto ExecutionFlow.Pop();
+L2435:         mTArray<FGInteractWidget>2 = this->GetInteractWidgetStack();
+L2463:         KismetArrayLibrary->Array_Get([ref] mTArray<FGInteractWidget>2, 0, [ref] mFGInteractWidget1);
+L2518:         mWidget1 = mFGInteractWidget1->GetDefaultFocusWidget();
+L2560:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L2584:         mWidget1->SetUserFocus(mPlayerController3);
+L2625:         goto ExecutionFlow.Pop();
+L2626:         OverlaySlot* mOverlaySlot = this->mPawnHUDOverlay->AddChildToOverlay(mUserWidget);
+L2677:         mOverlaySlot->SetVerticalAlignment(0);
+L2711:         mOverlaySlot->SetHorizontalAlignment(0);
+L2745:         goto ExecutionFlow.Pop();
+L2746:         this->mPawnHUDOverlay->ClearChildren();
+L2782:         goto ExecutionFlow.Pop();
+L2783:         this->AddInteractWidget(mFGInteractWidget2);
+L2802:         Widget_UseableBase* mWidget_UseableBase = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_UseableBase.Widget_UseableBase_C>(mFGInteractWidget2);
+L2838:         bool mbool13 = mWidget_UseableBase;
+L2867:         if (!mbool13) goto ExecutionFlow.Pop();
+L2877:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
+L2901:         FGPlayerController* mFGPlayerController2 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController4);
+L2937:         bool mbool14 = mFGPlayerController2;
+L2966:         if (!mbool14) goto L3082;
+L2980:         TSubclassOf<Widget_UseableBase> mTSubclassOf<Widget_UseableBase> = GameplayStatics->GetObjectClass(mWidget_UseableBase);
+L3031:         mFGPlayerController2->OnToggleInteractionUI->ProcessMulticastDelegate(true, mTSubclassOf<Widget_UseableBase>);
+L3082:         mFScriptDelegate1->BindUFunction(this, OnInventorySlotStackMove);
+L3105:         mWidget_UseableBase->InventorySlotStackMoveEvent.AddUnique(mFScriptDelegate1);
+L3146:         goto ExecutionFlow.Pop();
+L3147:         this->PopPopupQueue();
+L3157:         goto ExecutionFlow.Pop();
+L3158:         TArray<FGInteractWidget*> mTArray<FGInteractWidget>3 = this->GetInteractWidgetStack();
+L3186:         int32 mint323 = KismetArrayLibrary->Array_Length([ref] mTArray<FGInteractWidget>3);
+L3245:         bool mbool15 = Greater_IntInt(mint323, 0);
+L3279:         if (!mbool15) goto L3307;
+L3293:         this->PopAllWidgets();
+L3307:         this->mChatWindow->OnPlayerBeginTypeMessage();
+L3343:         goto ExecutionFlow.Pop();
+L3344:         this->Construct();
+L3354:         ExecutionFlow.Push(L3715);
+L3359:         ExecutionFlow.Push(L3547);
+L3364:         FString mFString = FGVersionFunctionLibrary->GetVersionString();
+L3414:         FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L3473:         this->mVersionLabel->SetText(mFText);
+L3518:         this->GetExperimentalVisibility();
+L3532:         this->SetVersionLabelPosition();
+L3546:         goto ExecutionFlow.Pop();
+L3547:         PlayerController* mPlayerController5 = this->GetOwningPlayer();
+L3571:         BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController5);
+L3607:         bool mbool16 = mBP_PlayerController;
+L3636:         if (!mbool16) goto ExecutionFlow.Pop();
+L3646:         mFScriptDelegate2->BindUFunction(this, OnPlayerBeginTypeMessage);
+L3669:         mBP_PlayerController->OnBeginTypeChat.AddUnique(mFScriptDelegate2);
+L3710:         goto L15;
+L3715:         FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L3757:         mFScriptDelegate3->BindUFunction(this, EventUpdateHUDScaling);
+L3780:         mFGGameUserSettings->SubscribeToDynamicOptionUpdate("FG.HUDScaling", [ref] mFScriptDelegate3);
+L3836:         goto ExecutionFlow.Pop();
+L3837:         this->mChatWindow->OnChatMessageReceived();
+L3873:         goto ExecutionFlow.Pop();
+L3874:         this->mTutorialInfoSlot->ClearChildren();
+L3910:         this->mCachedTutorialHintData = ScriptStruct /Script/FactoryGame.TutorialHintData(ID = 0, Title = , HintTexts = TextProperty /Script/FactoryGame.TutorialHintData:HintTexts.HintTexts[] {[]}, MESSAGE = nullptr);
+L3961:         goto ExecutionFlow.Pop();
+L3962:         this->mHudContainer->SetRenderOpacity(0);
+L3999:         this->Widget_FicsitLogoSplash->ShowLogo();
+L4035:         float mfloat = this->Widget_FicsitLogoSplash->SpawnAnim->GetEndTime();
+L4107:         KismetSystemLibrary->Delay(this, mfloat, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 446, UUID = -33259864, ExecutionFunction = "ExecuteUbergraph_BP_GameUI", CallbackTarget = this));
+L4187:         goto ExecutionFlow.Pop();
+L4188:         FGPopupWidget* mFGPopupWidget = this->GetPopup();
+L4208:         mFGPopupWidget->RemoveFromParent();
+L4244:         this->SetPopup(nullptr);
+L4255:         this->mPopupBlur->SetBlurStrength(0);
+L4296:         this->mPopupModal->SetVisibility(2);
+L4334:         this->PopupSlot->ClearChildren();
+L4370:         this->RefreshInputMode();
+L4384:         this->UpdateHUDVisibility();
+L4398:         goto ExecutionFlow.Pop();
+L4399:         mFGPopupWidget = this->GetPopup();
+L4419:         bool mbool17 = KismetSystemLibrary->IsValid(mFGPopupWidget);
+L4470:         if (!mbool17) goto L3147;
+L4484:         goto L4188;
+L4489:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->JumpLand, 0, 1, 0, 1);
+L4535:         goto ExecutionFlow.Pop();
+L4536:         goto L4489;
+L4541:         goto L4399;
+L4546:         this->Widget_TakeDamage->UpdateRadiation(true, 0);
+L4588:         goto ExecutionFlow.Pop();
+L4589:         this->Widget_TakeDamage->UpdateRadiation(false, 0);
+L4631:         goto ExecutionFlow.Pop();
+L4632:         this->Widget_TakeDamage->UpdateRadiation(true, mfloat1);
+L4678:         goto ExecutionFlow.Pop();
+L4679:         this->PopAllWidgets_Internal();
+L4693:         this->ClosePopup();
+L4707:         goto ExecutionFlow.Pop();
+L4708:         goto L4589;
+L4713:         FGGameUserSettings* mFGGameUserSettings1 = FGGameUserSettings->GetFGGameUserSettings();
+L4755:         bool mbool18 = mFGGameUserSettings1->GetBoolOptionValue("FG.UseDirectionalSubtitle");
+L4824:         if (!mbool18) goto ExecutionFlow.Pop();
+L4834:         this->Widget_DirectionalSubtitlesContainer->CreateSubtitle(mconst FText, mActor, mfloat2, mbool19);
+L4906:         goto ExecutionFlow.Pop();
+L4907:         goto L508;
+L4912:         this->ResetInput();
+L4926:         FGGameUserSettings* mFGGameUserSettings2 = FGGameUserSettings->GetFGGameUserSettings();
+L4968:         mFGGameUserSettings2->UnsubscribeToAllDynamicOptionUpdate(this);
+L5001:         goto ExecutionFlow.Pop();
+L5002:         this->Destruct();
+L5012:         goto L4912;
+L5017:         goto L4713;
+L5022:         this->Widget_DirectionalSubtitlesContainer->StopSubtitle([ref] mActor1);
+L5067:         goto ExecutionFlow.Pop();
+L5068:         FGGameUserSettings* mFGGameUserSettings3 = FGGameUserSettings->GetFGGameUserSettings();
+L5110:         float mfloat3 = mFGGameUserSettings3->GetFloatOptionValue("FG.HUDScaling");
+L5175:         this->mHUDScaler->SetUserSpecifiedScale(mfloat3);
+L5216:         goto ExecutionFlow.Pop();
+L5217:         goto L5002;
+L5222:         this->PopAllWidgets();
+L5232:         goto L4679;
+L5237:         PlayerController* mPlayerController6 = this->GetOwningPlayer();
+L5261:         FGAudioMessage* mFGAudioMessage = WidgetBlueprintLibrary->Create(this, mTSubclassOf<FGAudioMessage>1, mPlayerController6);
+L5322:         bool mbool20 = EqualEqual_ByteByte(mFGAudioMessage->mType, 1);
+L5375:         if (!mbool20) goto L5453;
+L5389:         mFScriptDelegate4->BindUFunction(this, ShowTutorialHint);
+L5412:         mFGAudioMessage->AssignOnConcludedDelegate(mFScriptDelegate4);
+L5453:         PanelSlot* mPanelSlot1 = this->mAudioMessageSlot->AddChild(mFGAudioMessage);
+L5504:         this->SetCurrentAudioMessage(mFGAudioMessage);
+L5523:         goto ExecutionFlow.Pop();
+L5524:         this->mMenuSlot->ClearChildren();
+L5560:         goto ExecutionFlow.Pop();
+L5561:         this->BPW_QuickSearch->SetQuickSearchVisibility(true);
+L5598:         goto ExecutionFlow.Pop();
+L5599:         PlayerController* mPlayerController7 = this->GetOwningPlayer();
+L5623:         float mfloat4 = mPlayerController7->GetGameTimeSinceCreation();
+L5673:         int32 mint324 = FFloor(mfloat4);
+L5710:         float mfloat5 = Conv_IntToFloat(mint324);
+L5747:         float mfloat6 = Divide_FloatFloat(mfloat5, 7200);
+L5789:         int32 mint325 = FFloor(mfloat6);
+L5826:         float mfloat7 = Conv_IntToFloat(mint325);
+L5863:         bool mbool21 = EqualEqual_FloatFloat(mfloat6, mfloat7);
+L5901:         if (!mbool21) goto ExecutionFlow.Pop();
+L5911:         FGGameUserSettings* mFGGameUserSettings4 = FGGameUserSettings->GetFGGameUserSettings();
+L5953:         int32 mint326 = KismetArrayLibrary->Array_Length([ref] this->mPlaytimeWarningMessages);
+L6012:         bool mbool22 = Greater_IntInt(mint326, 0);
+L6046:         bool mbool23 = mFGGameUserSettings4->GetShowBreakNotification();
+L6088:         bool mbool24 = BooleanAND(mbool23, mbool22);
+L6126:         if (!mbool24) goto ExecutionFlow.Pop();
+L6136:         mint326 = KismetArrayLibrary->Array_Length([ref] this->mPlaytimeWarningMessages);
+L6195:         int32 mint327 = RandomInteger(mint326);
+L6232:         this->mPlaytimeWarningMessageIndex = mint327;
+L6259:         PlayerController* mPlayerController8 = this->GetOwningPlayer();
+L6283:         Widget_WaterNotifier* mWidget_WaterNotifier = WidgetBlueprintLibrary->Create(this, Widget_WaterNotifier, mPlayerController8);
+L6344:         KismetArrayLibrary->Array_Get([ref] this->mPlaytimeWarningMessages, 0, [ref] mFText1);
+L6399:         KismetSystemLibrary->SetTextPropertyByName(mWidget_WaterNotifier, "mText", [ref] mFText1);
+L6462:         mPlayerController7 = this->GetOwningPlayer();
+L6486:         mfloat4 = mPlayerController7->GetGameTimeSinceCreation();
+L6536:         mint324 = FFloor(mfloat4);
+L6573:         mfloat5 = Conv_IntToFloat(mint324);
+L6610:         mfloat6 = Divide_FloatFloat(mfloat5, 7200);
+L6652:         mint325 = FFloor(mfloat6);
+L6689:         int32 mint328 = Multiply_IntInt(mint325, 2);
+L6731:         mFormatArgumentData.ArgumentName = "A";
+L6761:         mFormatArgumentData.ArgumentValueType = 0;
+L6790:         mFormatArgumentData.ArgumentValue = ;
+L6819:         mFormatArgumentData.ArgumentValueInt = mint328;
+L6855:         mFormatArgumentData.ArgumentValueFloat = 0;
+L6887:         mFormatArgumentData.ArgumentValueGender = 0;
+L6916:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L6936:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L7071:         KismetSystemLibrary->SetTextPropertyByName(mWidget_WaterNotifier, "mTitleMessageText", [ref] mFText2);
+L7134:         PanelSlot* mPanelSlot2 = this->mBreakNotificationBox->AddChild(mWidget_WaterNotifier);
+L7185:         goto ExecutionFlow.Pop();
+L7186:         goto L5222;
+L7191:         PlayerController* mPlayerController9 = this->GetOwningPlayer();
+L7215:         FGVirtualCursorFunctionLibrary->DisableVirtualCursor(mPlayerController9);
+L7256:         goto ExecutionFlow.Pop();
+L7257:         mPlayerController9 = this->GetOwningPlayer();
+L7281:         mPlayerController9->bShowMouseCursor = false;
+L7314:         goto L7191;
+L7319:         GameStateBase* mGameStateBase1 = GameplayStatics->GetGameState(this);
+L7362:         FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase1);
+L7398:         bool mbool25 = mFGGameState;
+L7427:         if (!mbool25) goto ExecutionFlow.Pop();
+L7437:         this->mFGGameState = mFGGameState;
+L7456:         mFScriptDelegate5->BindUFunction(this, OnAutosaveStart);
+L7479:         this->mFGGameState->mOnAutoSaveTimeNotification.AddUnique(mFScriptDelegate5);
+L7520:         mFScriptDelegate6->BindUFunction(this, OnAutosaveFinished);
+L7543:         this->mFGGameState->mOnAutoSaveFinished.AddUnique(mFScriptDelegate6);
+L7584:         goto ExecutionFlow.Pop();
+L7585:         PlayerController* mPlayerController10 = this->GetOwningPlayer();
+L7609:         WidgetBlueprintLibrary->SetInputMode_GameOnly(mPlayerController10);
+L7650:         Pawn* mPawn = this->GetOwningPlayerPawn();
+L7670:         Controller* mController = mPawn->GetController();
+L7712:         PlayerController* mPlayerController11 = Cast<Class /Script/Engine.PlayerController>(mController);
+L7748:         bool mbool26 = mPlayerController11;
+L7777:         if (!mbool26) goto ExecutionFlow.Pop();
+L7787:         mPlayerController11->ResetIgnoreInputFlags();
+L7823:         goto L7257;
+L7828:         mPlayerController10 = this->GetOwningPlayer();
+L7852:         bool mbool27 = KismetSystemLibrary->IsValid(mPlayerController10);
+L7903:         if (!mbool27) goto ExecutionFlow.Pop();
+L7913:         goto L7585;
+L7918:         this->BPW_AutosaveNotification->OnAutosaveStarting(mfloat8);
+L7963:         goto ExecutionFlow.Pop();
+L7964:         this->BPW_AutosaveNotification->OnAutosaveFinished();
+L8000:         goto ExecutionFlow.Pop();
+L8001:         goto L7828;
+============ END FUNCTION ExecuteUbergraph_BP_GameUI ==============

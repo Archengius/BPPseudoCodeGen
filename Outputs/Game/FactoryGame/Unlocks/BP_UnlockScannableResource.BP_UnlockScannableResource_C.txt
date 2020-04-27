@@ -1,0 +1,109 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Unlocks/BP_UnlockScannableResource.BP_UnlockScannableResource_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetUnlockDataStruct ==============
+L0:            ExecutionFlow.Push(L1082);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           TArray<TSubclassOf<FGResourceDescriptor>> mTArray<TSubclassOf<FGResourceDescriptor>> = this->GetResourcesToAddToScanner();
+L79:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGResourceDescriptor>>);
+L138:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L176:          if (!mbool) goto L976;
+L190:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L217:          ExecutionFlow.Push(L1008);
+L222:          mTArray<TSubclassOf<FGResourceDescriptor>> = this->GetResourcesToAddToScanner();
+L250:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResourceDescriptor>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGResourceDescriptor>);
+L309:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGResourceDescriptor>);
+L368:          mFormatArgumentData.ArgumentName = "item";
+L401:          mFormatArgumentData.ArgumentValueType = 4;
+L430:          mFormatArgumentData.ArgumentValue = mFText;
+L466:          mFormatArgumentData.ArgumentValueInt = 0;
+L498:          mFormatArgumentData.ArgumentValueFloat = 0;
+L530:          mFormatArgumentData.ArgumentValueGender = 0;
+L559:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L579:          Texture2D* mTexture2D = FGItemDescriptor->GetBigIcon(mTSubclassOf<FGResourceDescriptor>);
+L630:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L755:          mFUnlockDataStruct.UnlockName_2_490383D6421D4A92D86E1F835769488A = mFText1;
+L791:          mFUnlockDataStruct.UnlockIcon_9_3E3B124C41C68907A6EB9FAD36C04BC4 = mTexture2D;
+L819:          mFUnlockDataStruct.UnlockAmount_13_F32234CC46ECA4C99973A28AA05BE30E = 0;
+L851:          mFUnlockDataStruct.UnlockStructIndex_34_716E881C402D058998F7CDA17E1E4BF2 = Temp_int_Array_Index_Variable;
+L887:          mFUnlockDataStruct.Unlock_29_06E6D017481991B0E94072A4F21FCC03 = this;
+L907:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] localUnlockDataStruct, [ref] mFUnlockDataStruct);
+L975:          goto ExecutionFlow.Pop();
+L976:          TArray<FUnlockDataStruct> UnlockDataStruct = localUnlockDataStruct;
+L1003:         <End of Inlined Event Graph Function>;
+L1008:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1050:         Temp_int_Loop_Counter_Variable = mint322;
+L1077:         goto L51;
+============ END FUNCTION GetUnlockDataStruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetStingerWidgetRewardData ==============
+L0:            TSet<TSubclassOf<FGStingerWidgetRewardData>> mTSet<TSubclassOf<FGStingerWidgetRewardData>> = [RewardData_ScannableResource];
+L24:           TSet<TSubclassOf<FGStingerWidgetRewardData>> StingerRewardTypes = mTSet<TSubclassOf<FGStingerWidgetRewardData>>;
+============ END FUNCTION GetStingerWidgetRewardData ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetUnlockRewardWidgets ==============
+L0:            ExecutionFlow.Push(L1993);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           TArray<TSubclassOf<FGResourceDescriptor>> mTArray<TSubclassOf<FGResourceDescriptor>> = this->GetResourcesToAddToScanner();
+L79:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGResourceDescriptor>>);
+L138:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L176:          if (!mbool) goto L1887;
+L190:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L217:          ExecutionFlow.Push(L1919);
+L222:          Widget_RewardProduct* mWidget_RewardProduct = WidgetBlueprintLibrary->Create(this, Widget_RewardProduct, OwningPlayer);
+L283:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_RewardProduct, "mForcedCategoryIcon", Recipe_Icon_Scanner);
+L346:          mTArray<TSubclassOf<FGResourceDescriptor>> = this->GetResourcesToAddToScanner();
+L374:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResourceDescriptor>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGResourceDescriptor>);
+L433:          mItemAmount.ItemClass = mTSubclassOf<FGResourceDescriptor>;
+L461:          mItemAmount.amount = 0;
+L493:          TArray<ItemAmount> mTArray<ItemAmount> = [mItemAmount];
+L513:          KismetArrayLibrary->SetArrayPropertyByName(mWidget_RewardProduct, "mProducts", [ref] mTArray<ItemAmount>);
+L576:          KismetSystemLibrary->SetClassPropertyByName(mWidget_RewardProduct, "mSchematicClass", SchematicClass);
+L639:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_RewardProduct, "mTradingPostWidget", TradingPostWidget);
+L702:          mTArray<TSubclassOf<FGResourceDescriptor>> = this->GetResourcesToAddToScanner();
+L730:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResourceDescriptor>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGResourceDescriptor>);
+L789:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGResourceDescriptor>);
+L848:          mFormatArgumentData.ArgumentName = "Item";
+L881:          mFormatArgumentData.ArgumentValueType = 4;
+L910:          mFormatArgumentData.ArgumentValue = mFText;
+L946:          mFormatArgumentData.ArgumentValueInt = 0;
+L978:          mFormatArgumentData.ArgumentValueFloat = 0;
+L1010:         mFormatArgumentData.ArgumentValueGender = 0;
+L1039:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L1059:         FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1180:         KismetSystemLibrary->SetTextPropertyByName(mWidget_RewardProduct, "mTitle", [ref] mFText1);
+L1243:         mTArray<TSubclassOf<FGResourceDescriptor>> = this->GetResourcesToAddToScanner();
+L1271:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResourceDescriptor>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGResourceDescriptor>);
+L1330:         mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGResourceDescriptor>);
+L1389:         mFormatArgumentData1.ArgumentName = "Item";
+L1422:         mFormatArgumentData1.ArgumentValueType = 4;
+L1451:         mFormatArgumentData1.ArgumentValue = mFText;
+L1487:         mFormatArgumentData1.ArgumentValueInt = 0;
+L1519:         mFormatArgumentData1.ArgumentValueFloat = 0;
+L1551:         mFormatArgumentData1.ArgumentValueGender = 0;
+L1580:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
+L1600:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L1755:         KismetSystemLibrary->SetTextPropertyByName(mWidget_RewardProduct, "mDescription", [ref] mFText2);
+L1818:         int32 mint321 = KismetArrayLibrary->Array_Add([ref] RewardWidgets, [ref] mWidget_RewardProduct);
+L1886:         goto ExecutionFlow.Pop();
+L1887:         TArray<UserWidget*> Widgets = RewardWidgets;
+L1914:         <End of Inlined Event Graph Function>;
+L1919:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1961:         Temp_int_Loop_Counter_Variable = mint322;
+L1988:         goto L51;
+============ END FUNCTION GetUnlockRewardWidgets ==============

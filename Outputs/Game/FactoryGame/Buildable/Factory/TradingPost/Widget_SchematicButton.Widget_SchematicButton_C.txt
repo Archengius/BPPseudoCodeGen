@@ -1,0 +1,401 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_SchematicButton.Widget_SchematicButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetResearchTextVisibility ==============
+L0:            this->IsActiveSchematic([ref] mbool);
+L23:           if (!mbool) goto L62;
+L37:           uint8 ReturnValue = 0;
+L57:           goto L82;
+L62:           ReturnValue = 1;
+============ END FUNCTION GetResearchTextVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLockedLockVisibility ==============
+L0:            bool mbool = BooleanOR(this->mIsSchematicPhaseLocked, this->mIsSchematicLockedByTutorial);
+L38:           if (!mbool) goto L77;
+L52:           uint8 ReturnValue = 3;
+L72:           goto L97;
+L77:           ReturnValue = 2;
+============ END FUNCTION GetLockedLockVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLockedIconVisibility ==============
+L0:            bool mbool = BooleanOR(this->mIsSchematicPhaseLocked, this->mIsSchematicLockedByTutorial);
+L38:           if (!mbool) goto L77;
+L52:           uint8 ReturnValue = 2;
+L72:           goto L97;
+L77:           ReturnValue = 3;
+============ END FUNCTION GetLockedIconVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIsButtonClickable ==============
+L0:            bool mbool = BooleanOR(this->mIsSchematicPhaseLocked, this->mIsSchematicDependentLocked);
+L38:           bool mbool1 = BooleanOR(mbool, this->mIsSchematicLockedByTutorial);
+L76:           bool mbool2 = Not_PreBool(mbool1);
+L105:          if (!mbool2) goto L206;
+L119:          bool mbool3 = this->mSchematicList->mSchematicManager->IsSchematicPurchased(this->mSchematicClass);
+L192:          if (!mbool3) goto L231;
+L206:          uint8 ReturnValue = 3;
+L226:          goto L251;
+L231:          ReturnValue = 0;
+============ END FUNCTION GetIsButtonClickable ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonIsEnabled ==============
+L0:            bool mbool = BooleanOR(this->mIsSchematicPhaseLocked, this->mIsSchematicDependentLocked);
+L38:           bool mbool1 = BooleanOR(mbool, this->mIsSchematicLockedByTutorial);
+L76:           bool mbool2 = Not_PreBool(mbool1);
+L105:          bool ReturnValue = mbool2;
+============ END FUNCTION GetButtonIsEnabled ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicEnabledInPhase ==============
+L0:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L43:           FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
+L79:           bool mbool = mFGGameState;
+L108:          if (!mbool) goto L460;
+L122:          FGGamePhaseManager* mFGGamePhaseManager = FGGamePhaseManager->Get(mFGGameState);
+L173:          bool mbool1 = KismetSystemLibrary->IsValid(mFGGamePhaseManager);
+L224:          if (!mbool1) goto L476;
+L238:          mFGGamePhaseManager = FGGamePhaseManager->Get(mFGGameState);
+L289:          uint8 muint8 = mFGGamePhaseManager->GetGamePhase();
+L339:          uint8 muint81 = mFGGamePhaseManager->GetGamePhaseForSchematic(this->mSchematicClass);
+L398:          bool mbool2 = GreaterEqual_ByteByte(muint8, muint81);
+L436:          bool ReturnValue = mbool2;
+L455:          goto L487;
+L460:          ReturnValue = true;
+L471:          goto L487;
+L476:          ReturnValue = true;
+============ END FUNCTION GetSchematicEnabledInPhase ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsActivateButtonEnabled ==============
+L0:            bool mbool = this->mSchematicList->mSchematicManager->CanSetAsActiveSchematic(this->mSchematicClass);
+L73:           bool ReturnValue = mbool;
+============ END FUNCTION IsActivateButtonEnabled ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActivateButtonVisibility ==============
+L0:            this->IsActiveSchematic([ref] mbool);
+L23:           bool mbool1 = Not_PreBool(mbool);
+L52:           bool mbool2 = EqualEqual_ClassClass(this->mTradingPostWidget->mSelectedSchematic, this->mSchematicClass);
+L112:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L150:          if (!mbool3) goto L189;
+L164:          uint8 ReturnValue = 0;
+L184:          goto L209;
+L189:          ReturnValue = 2;
+============ END FUNCTION GetActivateButtonVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSelectedSchematicFeedback ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mSchematicList->mSchematicManager);
+L73:           if (!mbool) goto L1237;
+L87:           bool mbool1 = EqualEqual_ClassClass(this->mSchematicList->mTradingPostWidget->mSelectedSchematic, this->mSchematicClass);
+L169:          if (!mbool1) goto L508;
+L183:          this->mButtonBG->SetRenderOpacity(1);
+L220:          bool mbool2 = this->mSchematicList->mSchematicManager->IsSchematicPurchased(this->mSchematicClass);
+L293:          bool mbool3 = BooleanOR(this->mIsSchematicPhaseLocked, this->mIsSchematicDependentLocked);
+L331:          bool mbool4 = BooleanOR(mbool3, this->mIsSchematicLockedByTutorial);
+L369:          bool mbool5 = BooleanOR(mbool4, mbool2);
+L407:          if (!mbool5) goto L1068;
+L421:          HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L476:          LinearColor ReturnValue = mLinearColor;
+L503:          goto L1237;
+L508:          bool mbool6 = this->IsHovered();
+L532:          if (!mbool6) goto L871;
+L546:          this->mButtonBG->SetRenderOpacity(1);
+L583:          bool mbool7 = this->mSchematicList->mSchematicManager->IsSchematicPurchased(this->mSchematicClass);
+L656:          bool mbool8 = BooleanOR(this->mIsSchematicPhaseLocked, this->mIsSchematicDependentLocked);
+L694:          bool mbool9 = BooleanOR(mbool8, this->mIsSchematicLockedByTutorial);
+L732:          bool mbool10 = BooleanOR(mbool9, mbool7);
+L770:          if (!mbool10) goto L1155;
+L784:          HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L839:          ReturnValue = mLinearColor1;
+L866:          goto L1237;
+L871:          this->mButtonBG->SetRenderOpacity(0);
+L908:          mLinearColor2.R = 0.20000000298023224;
+L940:          mLinearColor2.G = 0.20000000298023224;
+L972:          mLinearColor2.B = 0.20000000298023224;
+L1004:         mLinearColor2.A = 1;
+L1036:         ReturnValue = mLinearColor2;
+L1063:         goto L1237;
+L1068:         HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor3, [ref] mSlateColor2);
+L1123:         ReturnValue = mLinearColor3;
+L1150:         goto L1237;
+L1155:         HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor3, [ref] mLinearColor4);
+L1210:         ReturnValue = mLinearColor4;
+============ END FUNCTION GetSelectedSchematicFeedback ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsActiveSchematic ==============
+L0:            TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = this->mSchematicList->mSchematicManager->GetActiveSchematic();
+L64:           bool mbool = EqualEqual_ClassClass(mTSubclassOf<FGSchematic>, this->mSchematicClass);
+L102:          bool IsActive = mbool;
+============ END FUNCTION IsActiveSchematic ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCategoryIconColor ==============
+L0:            bool mbool = BooleanOR(this->mIsSchematicPhaseLocked, this->mIsSchematicDependentLocked);
+L38:           bool mbool1 = BooleanOR(mbool, this->mIsSchematicLockedByTutorial);
+L76:           bool mbool2 = Not_PreBool(mbool1);
+L105:          if (!mbool2) goto L293;
+L119:          bool mbool3 = KismetSystemLibrary->IsValid(this->mSchematicList->mSchematicManager);
+L192:          if (!mbool3) goto L770;
+L206:          bool mbool4 = this->mSchematicList->mSchematicManager->IsSchematicPurchased(this->mSchematicClass);
+L279:          if (!mbool4) goto L380;
+L293:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L348:          LinearColor ReturnValue = mLinearColor;
+L375:          goto L770;
+L380:          bool mbool5 = this->IsHovered();
+L404:          if (!mbool5) goto L505;
+L418:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L473:          ReturnValue = mLinearColor1;
+L500:          goto L770;
+L505:          bool mbool6 = EqualEqual_ClassClass(this->mSchematicList->mTradingPostWidget->mSelectedSchematic, this->mSchematicClass);
+L587:          if (!mbool6) goto L688;
+L601:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor2, [ref] mLinearColor2);
+L656:          ReturnValue = mLinearColor2;
+L683:          goto L770;
+L688:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor3, [ref] mLinearColor3);
+L743:          ReturnValue = mLinearColor3;
+============ END FUNCTION GetCategoryIconColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicActivatedBorderVisibility ==============
+L0:            this->IsActiveSchematic([ref] mbool);
+L23:           if (!mbool) goto L62;
+L37:           uint8 ReturnValue = 3;
+L57:           goto L82;
+L62:           ReturnValue = 2;
+============ END FUNCTION GetSchematicActivatedBorderVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicBoughtTextColor ==============
+L0:            bool mbool = BooleanOR(this->mIsSchematicPhaseLocked, this->mIsSchematicDependentLocked);
+L38:           bool mbool1 = BooleanOR(mbool, this->mIsSchematicLockedByTutorial);
+L76:           bool mbool2 = Not_PreBool(mbool1);
+L105:          if (!mbool2) goto L293;
+L119:          bool mbool3 = KismetSystemLibrary->IsValid(this->mSchematicList->mSchematicManager);
+L192:          if (!mbool3) goto L380;
+L206:          bool mbool4 = this->mSchematicList->mSchematicManager->IsSchematicPurchased(this->mSchematicClass);
+L279:          if (!mbool4) goto L476;
+L293:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L348:          SlateColor ReturnValue = mSlateColor;
+L375:          goto L688;
+L380:          bool mbool5 = EqualEqual_ClassClass(this->mSchematicList->mTradingPostWidget->mSelectedSchematic, this->mSchematicClass);
+L462:          if (!mbool5) goto L563;
+L476:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L531:          ReturnValue = mSlateColor1;
+L558:          goto L688;
+L563:          bool mbool6 = this->IsHovered();
+L587:          if (!mbool6) goto L606;
+L601:          goto L476;
+L606:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor2, [ref] mLinearColor2);
+L661:          ReturnValue = mSlateColor2;
+============ END FUNCTION GetSchematicBoughtTextColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicBoughtBorderColor ==============
+L0:            bool mbool = this->mSchematicList->mSchematicManager->IsSchematicPurchased(this->mSchematicClass);
+L73:           if (!mbool) goto L144;
+L87:           LinearColor ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.009310999885201454, G = 0.02352900058031082, B = 0.023295000195503235, A = 1);
+L139:          goto L226;
+L144:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L199:          ReturnValue = mLinearColor;
+============ END FUNCTION GetSchematicBoughtBorderColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicBoughtContentColor ==============
+L0:            bool mbool = this->mSchematicList->mSchematicManager->IsSchematicPurchased(this->mSchematicClass);
+L73:           if (!mbool) goto L144;
+L87:           LinearColor ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.5840790271759033, G = 0.9130989909172058, B = 0.9046609997749329, A = 1);
+L139:          goto L226;
+L144:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L199:          ReturnValue = mLinearColor;
+============ END FUNCTION GetSchematicBoughtContentColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicBoughtColorFeedback ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(nullptr);
+L43:           if (!mbool) goto L493;
+L57:           bool mbool1 = this->mSchematicList->mSchematicManager->IsSchematicPurchased(this->mSchematicClass);
+L130:          if (!mbool1) goto L201;
+L144:          LinearColor ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.009310999885201454, G = 0.02352900058031082, B = 0.023295000195503235, A = 0.3499999940395355);
+L196:          goto L493;
+L201:          bool mbool2 = KismetSystemLibrary->IsValid(this->mSchematicList->mTradingPostWidget);
+L274:          if (!mbool2) goto L493;
+L288:          bool mbool3 = EqualEqual_ClassClass(this->mSchematicList->mTradingPostWidget->mSelectedSchematic, this->mSchematicClass);
+L370:          if (!mbool3) goto L441;
+L384:          ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.10640200227499008, B = 0.25, A = 1);
+L436:          goto L493;
+L441:          ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.009310999885201454, G = 0.02352900058031082, B = 0.023295000195503235, A = 1);
+============ END FUNCTION GetSchematicBoughtColorFeedback ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetCategoryIcon ==============
+L0:            mSlateBrush.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 32, Y = 32);
+L51:           mSlateBrush.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
+L112:          mSlateBrush.TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0);
+L189:          mSlateBrush.ResourceObject = nullptr;
+L209:          mSlateBrush.DrawAs = 3;
+L238:          mSlateBrush.Tiling = 0;
+L267:          mSlateBrush.Mirroring = 0;
+L296:          SlateBrush mSlateBrush1 = FGSchematic->GetItemIcon(this->mSchematicClass);
+L355:          bool mbool = EqualEqual_ObjectObject(mSlateBrush.ResourceObject, mSlateBrush1.ResourceObject);
+L411:          if (!mbool) goto L1025;
+L425:          TSubclassOf<FGSchematicCategory> mTSubclassOf<FGSchematicCategory> = FGSchematic->GetSchematicCategory(this->mSchematicClass);
+L476:          SlateBrush mSlateBrush2 = FGSchematicCategory->GetCategoryIcon(mTSubclassOf<FGSchematicCategory>);
+L535:          this->mIconTexture = mSlateBrush2.ResourceObject;
+L563:          mSlateBrush3.ImageSize = this->CategoryIcon->Brush.ImageSize;
+L630:          mSlateBrush3.Margin = this->CategoryIcon->Brush.Margin;
+L697:          mSlateBrush3.TintColor = this->CategoryIcon->Brush.TintColor;
+L764:          mSlateBrush3.ResourceObject = this->mIconTexture;
+L792:          mSlateBrush3.DrawAs = this->CategoryIcon->Brush.DrawAs;
+L859:          mSlateBrush3.Tiling = this->CategoryIcon->Brush.Tiling;
+L926:          mSlateBrush3.Mirroring = this->CategoryIcon->Brush.Mirroring;
+L993:          SlateBrush ReturnValue = mSlateBrush3;
+L1020:         goto L1117;
+L1025:         SlateBrush mSlateBrush4 = FGSchematic->GetItemIcon(this->mSchematicClass);
+L1084:         this->mIconTexture = mSlateBrush4.ResourceObject;
+L1112:         goto L563;
+============ END FUNCTION GetCategoryIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicBoughtCheckImageFeedback ==============
+L0:            bool mbool = this->mSchematicList->mSchematicManager->IsSchematicPurchased(this->mSchematicClass);
+L73:           if (!mbool) goto L112;
+L87:           uint8 ReturnValue = 0;
+L107:          goto L132;
+L112:          ReturnValue = 2;
+============ END FUNCTION GetSchematicBoughtCheckImageFeedback ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActivatedText ==============
+L0:            this->IsActiveSchematic([ref] mbool);
+L23:           if (!mbool) goto L69;
+L37:           FText ReturnValue = this->mActiveText;
+L64:           goto L89;
+L69:           ReturnValue = ;
+============ END FUNCTION GetActivatedText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicName ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mSchematicClass);
+L51:           if (!mbool) goto L156;
+L65:           FText mFText = FGSchematic->GetSchematicDisplayName(this->mSchematicClass);
+L124:          FText ReturnValue = mFText;
+L151:          goto L176;
+L156:          ReturnValue = ;
+============ END FUNCTION GetSchematicName ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_102_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SchematicButton(10);
+============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_102_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SchematicButton(199);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_68_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SchematicButton(611);
+============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_68_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SchematicButton ==============
+L10:           this->mSchematicList->mTradingPostWidget->OnSchematicClicked(this->mSchematicClass);
+L77:           Pawn* mPawn = this->GetOwningPlayerPawn();
+L97:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_Select, mPawn, true);
+L158:          this->Widget_ButtonShine->PlayShineAnim();
+L194:          <End of Inlined Event Graph Function>;
+L199:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L223:          BP_SchematicHelper->IsSchematicPhaseLocked(mPlayerController, this->mSchematicClass, this, [ref] mbool);
+L287:          this->mIsSchematicPhaseLocked = mbool;
+L306:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L330:          BP_SchematicHelper->IsSchematicDependentLocked(mPlayerController1, this->mSchematicClass, this, [ref] mbool1);
+L394:          this->mIsSchematicDependentLocked = mbool1;
+L413:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L437:          BP_SchematicHelper->IsSchematicLockedByTutorial(mPlayerController2, this->mSchematicClass, this, [ref] mbool2);
+L501:          this->mIsSchematicLockedByTutorial = mbool2;
+L520:          <End of Inlined Event Graph Function>;
+L525:          Pawn* mPawn1 = this->GetOwningPlayerPawn();
+L545:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_MouseOver, mPawn1, true);
+L606:          <End of Inlined Event Graph Function>;
+L611:          goto L525;
+============ END FUNCTION ExecuteUbergraph_Widget_SchematicButton ==============

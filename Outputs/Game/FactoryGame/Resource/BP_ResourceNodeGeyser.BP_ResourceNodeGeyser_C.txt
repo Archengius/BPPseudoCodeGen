@@ -1,0 +1,92 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Resource/BP_ResourceNodeGeyser.BP_ResourceNodeGeyser_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnIsOccupiedChanged ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Resource/BP_ResourceNodeGeyser.BP_ResourceNodeGeyser_C:ExecuteUbergraph_BP_ResourceNodeGeyser.K2Node_Event_newIsOccupied) = newIsOccupied;
+L18:           this->ExecuteUbergraph_BP_ResourceNodeGeyser(582);
+============ END FUNCTION OnIsOccupiedChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_BP_ResourceNodeGeyser(659);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_BP_ResourceNodeGeyser(771);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION EruptLoop ==============
+L0:            this->ExecuteUbergraph_BP_ResourceNodeGeyser(956);
+============ END FUNCTION EruptLoop ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_ResourceNodeGeyser ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->GeyserEruption_02->Activate(true);
+L52:           if (!this->mIsSignificant) goto L199;
+L66:           this->mEruptLoopOngoing = true;
+L77:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(nullptr, this, true);
+L122:          KismetSystemLibrary->Delay(this, 15, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 211, UUID = -978391255, ExecutionFunction = "ExecuteUbergraph_BP_ResourceNodeGeyser", CallbackTarget = this));
+L198:          goto ExecutionFlow.Pop();
+L199:          this->mEruptLoopOngoing = false;
+L210:          goto ExecutionFlow.Pop();
+L211:          bool mbool = this->IsOccupied();
+L235:          if (!mbool) goto L250;
+L249:          goto ExecutionFlow.Pop();
+L250:          KismetSystemLibrary->Delay(this, this->mAudioSyncTimer, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 1033054131, ExecutionFunction = "ExecuteUbergraph_BP_ResourceNodeGeyser", CallbackTarget = this));
+L330:          goto ExecutionFlow.Pop();
+L331:          bool mbool1 = this->IsOccupied();
+L355:          bool mbool2 = Not_PreBool(this->mIsSignificant);
+L384:          bool mbool3 = BooleanOR(mbool1, mbool2);
+L422:          if (!mbool3) goto L66;
+L436:          this->mEruptLoopOngoing = false;
+L447:          goto ExecutionFlow.Pop();
+L448:          this->Geyser_02->Deactivate();
+L484:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(nullptr, this, true);
+L529:          goto ExecutionFlow.Pop();
+L530:          this->Geyser_02->Activate(true);
+L567:          this->EruptLoop();
+L581:          goto ExecutionFlow.Pop();
+L582:          this->OnIsOccupiedChanged(mbool4);
+L601:          if (!this->mIsSignificant) goto ExecutionFlow.Pop();
+L611:          bool mbool5 = Not_PreBool(mbool4);
+L640:          if (!mbool5) goto L448;
+L654:          goto L530;
+L659:          this->GainedSignificance();
+L669:          this->mIsSignificant = true;
+L680:          bool mbool6 = this->IsOccupied();
+L704:          if (!mbool6) goto L719;
+L718:          goto ExecutionFlow.Pop();
+L719:          this->EruptLoop();
+L733:          this->Geyser_02->Activate(true);
+L770:          goto ExecutionFlow.Pop();
+L771:          this->LostSignificance();
+L781:          this->mIsSignificant = false;
+L792:          this->Geyser_02->Deactivate();
+L828:          goto ExecutionFlow.Pop();
+L829:          float mfloat = RandomFloatInRange(this->m_RandomStartDelayMin, this->m_RandomStartDelayMax);
+L875:          KismetSystemLibrary->Delay(this, mfloat, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 331, UUID = -492186008, ExecutionFunction = "ExecuteUbergraph_BP_ResourceNodeGeyser", CallbackTarget = this));
+L955:          goto ExecutionFlow.Pop();
+L956:          bool mbool7 = Not_PreBool(this->mEruptLoopOngoing);
+L985:          if (!mbool7) goto ExecutionFlow.Pop();
+L995:          goto L829;
+============ END FUNCTION ExecuteUbergraph_BP_ResourceNodeGeyser ==============

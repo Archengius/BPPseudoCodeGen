@@ -1,0 +1,222 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_SplitterProgrammableRule.Widget_SplitterProgrammableRule_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ShowHideDeleteButton ==============
+L0:            bool Temp_bool_Variable = ShowDeleteButton;
+L19:           uint8 Temp_byte_Variable = 0;
+L39:           uint8 Temp_byte_Variable1 = 1;
+L59:           this->mDeleteContainer->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+============ END FUNCTION ShowHideDeleteButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveRule ==============
+L0:            this->OnRemoved->ProcessMulticastDelegate(this);
+============ END FUNCTION RemoveRule ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetRuleOutputIndex ==============
+L0:            mSplitterSortRule.ItemClass = this->mCachedRule.ItemClass;
+L37:           mSplitterSortRule.OutputIndex = OutputIndex;
+L73:           this->OnUpdated->ProcessMulticastDelegate(this->mRuleIndex, mSplitterSortRule);
+============ END FUNCTION SetRuleOutputIndex ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetRuleItemClass ==============
+L0:            mSplitterSortRule.ItemClass = ItemClass;
+L28:           mSplitterSortRule.OutputIndex = this->mCachedRule.OutputIndex;
+L73:           this->OnUpdated->ProcessMulticastDelegate(this->mRuleIndex, mSplitterSortRule);
+============ END FUNCTION SetRuleItemClass ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSortRuleSafe ==============
+L0:            bool mbool = GreaterEqual_IntInt(this->mRuleIndex, 0);
+L34:           int32 mint32 = this->mSplitterSmart->GetNumSortRules();
+L84:           bool mbool1 = Less_IntInt(this->mRuleIndex, mint32);
+L122:          bool mbool2 = BooleanAND(mbool1, mbool);
+L160:          if (!mbool2) goto L265;
+L174:          SplitterSortRule mSplitterSortRule = this->mSplitterSmart->GetSortRuleAt(this->mRuleIndex);
+L233:          SplitterSortRule Rule = mSplitterSortRule;
+L260:          <End of Inlined Event Graph Function>;
+L265:          Rule = ScriptStruct /Script/FactoryGame.SplitterSortRule(ItemClass = nullptr, OutputIndex = -1);
+============ END FUNCTION GetSortRuleSafe ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddButtonsForDescriptorsContaining ==============
+============ END FUNCTION AddButtonsForDescriptorsContaining ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSelectedItemDescriptor ==============
+L0:            this->mSearchbar->SetVisibility(1);
+L38:           this->SetRuleItemClass(inDescriptor);
+============ END FUNCTION SetSelectedItemDescriptor ==============
+
+
+
+
+
+============ BEGIN FUNCTION RefreshItemClassButton ==============
+L0:            Texture2D* tempIconRef = Rectangle_Border;
+L19:           bool mbool = KismetSystemLibrary->IsValidClass(this->mCachedRule.ItemClass);
+L79:           if (!mbool) goto L335;
+L93:           TSubclassOf<FGOverflowDescriptor> mTSubclassOf<FGOverflowDescriptor> = ClassCast<Class /Script/FactoryGame.FGOverflowDescriptor>(this->mCachedRule.ItemClass);
+L138:          bool mbool1 = mTSubclassOf<FGOverflowDescriptor>;
+L167:          if (!mbool1) goto L447;
+L181:          tempIconRef = SortRule_AnyUndefined;
+L200:          FText mFText = FGItemDescriptor->GetItemName(this->mCachedRule.ItemClass);
+L268:          this->mItemClassButton->UpdateButton(tempIconRef, mFText, , 2, 0, );
+L330:          <End of Inlined Event Graph Function>;
+L335:          this->mItemClassButton->UpdateButton(Rectangle_Border, "[object Object]", , 2, 0, );
+L442:          <End of Inlined Event Graph Function>;
+L447:          TSubclassOf<FGAnyUndefinedDescriptor> mTSubclassOf<FGAnyUndefinedDescriptor> = ClassCast<Class /Script/FactoryGame.FGAnyUndefinedDescriptor>(this->mCachedRule.ItemClass);
+L492:          bool mbool2 = mTSubclassOf<FGAnyUndefinedDescriptor>;
+L521:          if (!mbool2) goto L559;
+L535:          tempIconRef = SortRule_AnyUndefined;
+L554:          goto L200;
+L559:          TSubclassOf<FGWildCardDescriptor> mTSubclassOf<FGWildCardDescriptor> = ClassCast<Class /Script/FactoryGame.FGWildCardDescriptor>(this->mCachedRule.ItemClass);
+L604:          bool mbool3 = mTSubclassOf<FGWildCardDescriptor>;
+L633:          if (!mbool3) goto L671;
+L647:          tempIconRef = SortRule_Any;
+L666:          goto L200;
+L671:          TSubclassOf<FGNoneDescriptor> mTSubclassOf<FGNoneDescriptor> = ClassCast<Class /Script/FactoryGame.FGNoneDescriptor>(this->mCachedRule.ItemClass);
+L716:          bool mbool4 = mTSubclassOf<FGNoneDescriptor>;
+L745:          if (!mbool4) goto L783;
+L759:          tempIconRef = SortRule_None;
+L778:          goto L200;
+L783:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(this->mCachedRule.ItemClass);
+L843:          tempIconRef = mTexture2D;
+L862:          goto L200;
+============ END FUNCTION RefreshItemClassButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SplitterProgrammableRule(316);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_InputBox_K2Node_ComponentBoundEvent_0_OnTextChanged__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/Widget_SplitterProgrammableRule.Widget_SplitterProgrammableRule_C:ExecuteUbergraph_Widget_SplitterProgrammableRule.K2Node_ComponentBoundEvent_Text) = text;
+L18:           this->ExecuteUbergraph_Widget_SplitterProgrammableRule(340);
+============ END FUNCTION BndEvt__Widget_InputBox_K2Node_ComponentBoundEvent_0_OnTextChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_6_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_SplitterProgrammableRule(368);
+============ END FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_6_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ForceRefreshButton ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_SplitterProgrammableRule.Widget_SplitterProgrammableRule_C:ExecuteUbergraph_Widget_SplitterProgrammableRule.K2Node_CustomEvent_Splitter_Rule) = Splitter Rule;
+L18:           this->ExecuteUbergraph_Widget_SplitterProgrammableRule(373);
+============ END FUNCTION ForceRefreshButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mOtherListButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Widget_SplitterProgrammableRule.Widget_SplitterProgrammableRule_C:ExecuteUbergraph_Widget_SplitterProgrammableRule.K2Node_ComponentBoundEvent_Index) = index;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Widget_SplitterProgrammableRule.Widget_SplitterProgrammableRule_C:ExecuteUbergraph_Widget_SplitterProgrammableRule.K2Node_ComponentBoundEvent_ListButton) = ListButton;
+L36:           this->ExecuteUbergraph_Widget_SplitterProgrammableRule(430);
+============ END FUNCTION BndEvt__mOtherListButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Widget_SplitterProgrammableRule.Widget_SplitterProgrammableRule_C:ExecuteUbergraph_Widget_SplitterProgrammableRule.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_SplitterProgrammableRule(435);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SplitterProgrammableRule ==============
+L10:           this->ShowHideDeleteButton(this->mShowDeleteButton);
+L33:           <End of Inlined Event Graph Function>;
+L38:           this->RefreshItemClassButton();
+L52:           <End of Inlined Event Graph Function>;
+L57:           this->Construct();
+L67:           FGBlueprintFunctionLibrary->GetAllDescriptorsSorted(this->mSplitterSmart, [ref] this->mAllDescriptorsSorted);
+L117:          const TSubclassOf<FGItemDescriptor> Temp_class_Variable = FGWildCardDescriptor;
+L136:          KismetArrayLibrary->Array_Insert([ref] this->mAllDescriptorsSorted, [ref] Temp_class_Variable, 0);
+L191:          const TSubclassOf<FGItemDescriptor> Temp_class_Variable1 = FGNoneDescriptor;
+L210:          KismetArrayLibrary->Array_Insert([ref] this->mAllDescriptorsSorted, [ref] Temp_class_Variable1, 0);
+L265:          this->GetSortRuleSafe([ref] mSplitterSortRule);
+L288:          this->ForceRefreshButton(mSplitterSortRule);
+L311:          <End of Inlined Event Graph Function>;
+L316:          goto L57;
+L321:          this->RemoveRule();
+L335:          <End of Inlined Event Graph Function>;
+L340:          this->AddButtonsForDescriptorsContaining([ref] mFText);
+L363:          <End of Inlined Event Graph Function>;
+L368:          goto L321;
+L373:          this->mCachedRule = mSplitterSortRule1;
+L400:          goto L38;
+L405:          this->OnClicked->ProcessMulticastDelegate(this);
+L425:          <End of Inlined Event Graph Function>;
+L430:          goto L405;
+L435:          this->PreConstruct(mbool);
+L454:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_SplitterProgrammableRule ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUpdated__DelegateSignature ==============
+============ END FUNCTION OnUpdated__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRemoved__DelegateSignature ==============
+============ END FUNCTION OnRemoved__DelegateSignature ==============

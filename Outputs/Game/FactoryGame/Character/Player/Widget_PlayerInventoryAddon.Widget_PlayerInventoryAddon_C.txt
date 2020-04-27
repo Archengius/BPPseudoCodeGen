@@ -1,0 +1,303 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/Widget_PlayerInventoryAddon.Widget_PlayerInventoryAddon_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION FindInventorySlotWithIdx ==============
+L0:            ExecutionFlow.Push(L541);
+L5:            this->mInventoryWidget->GetAllInventorySlots([ref] mTArray<Widget_InventorySlot>);
+L50:           int32 Temp_int_Loop_Counter_Variable = 0;
+L73:           int32 Temp_int_Array_Index_Variable = 0;
+L96:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<Widget_InventorySlot>);
+L155:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L193:          if (!mbool) goto L451;
+L207:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L234:          ExecutionFlow.Push(L467);
+L239:          KismetArrayLibrary->Array_Get([ref] mTArray<Widget_InventorySlot>, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L298:          bool mbool1 = EqualEqual_IntInt(mWidget_InventorySlot->mSlotIdx, slotIdx);
+L358:          if (!mbool1) goto ExecutionFlow.Pop();
+L368:          KismetArrayLibrary->Array_Get([ref] mTArray<Widget_InventorySlot>, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L427:          Widget_InventorySlot* Array Element = mWidget_InventorySlot;
+L446:          <End of Inlined Event Graph Function>;
+L451:          Array Element = nullptr;
+L462:          <End of Inlined Event Graph Function>;
+L467:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L509:          Temp_int_Loop_Counter_Variable = mint321;
+L536:          goto L96;
+============ END FUNCTION FindInventorySlotWithIdx ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetDividerVisibility ==============
+L0:            bool Temp_bool_Variable = IsVisible;
+L19:           uint8 Temp_byte_Variable = 3;
+L39:           uint8 Temp_byte_Variable1 = 1;
+L59:           this->mDivider->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+============ END FUNCTION SetDividerVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetRelevantItemsText ==============
+L0:            this->mRelevantItemsText = mRelevantItemsText;
+L27:           this->mRelevantItemsTextObject->SetText(this->mRelevantItemsText);
+============ END FUNCTION SetRelevantItemsText ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShouldItemClassUpdateRelevantInventory ==============
+L0:            ExecutionFlow.Push(L407);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mRelevantClasses);
+L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L148:          if (!mbool) goto L317;
+L162:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L189:          ExecutionFlow.Push(L333);
+L194:          KismetArrayLibrary->Array_Get([ref] this->mRelevantClasses, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
+L253:          bool mbool1 = ClassIsChildOf(UpdatedItemClass, mTSubclassOf<FGItemDescriptor>);
+L291:          if (!mbool1) goto ExecutionFlow.Pop();
+L301:          bool Return = true;
+L312:          <End of Inlined Event Graph Function>;
+L317:          Return = false;
+L328:          <End of Inlined Event Graph Function>;
+L333:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L375:          Temp_int_Loop_Counter_Variable = mint321;
+L402:          goto L51;
+============ END FUNCTION ShouldItemClassUpdateRelevantInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupRelevantInventory ==============
+L0:            this->mRelevantClasses = mRelevantClasses;
+L27:           this->UpdateRelevantInventory();
+============ END FUNCTION SetupRelevantInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRelevantInventory ==============
+L0:            ExecutionFlow.Push(L1971);
+L5:            TArray<int32> mTArray<int32> = this->mInventoryComponent->GetRelevantStackIndexes(this->mRelevantClasses, this->mRelevantInventoryStackLimit);
+L73:           TArray<int32> LocalRelevantInventoryIndexes = mTArray<int32>;
+L100:          int32 Temp_int_Loop_Counter_Variable = 0;
+L123:          int32 Temp_int_Array_Index_Variable = 0;
+L146:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] LocalRelevantInventoryIndexes);
+L205:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L243:          if (!mbool) goto L878;
+L257:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L284:          ExecutionFlow.Push(L1379);
+L289:          Widget* mWidget = this->mRelevantInventory->GetChildAt(Temp_int_Array_Index_Variable);
+L340:          bool mbool1 = KismetSystemLibrary->IsValid(mWidget);
+L391:          if (!mbool1) goto L1453;
+L405:          mWidget = this->mRelevantInventory->GetChildAt(Temp_int_Array_Index_Variable);
+L456:          Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mWidget);
+L492:          bool mbool2 = mWidget_InventorySlot;
+L521:          KismetArrayLibrary->Array_Get([ref] LocalRelevantInventoryIndexes, Temp_int_Array_Index_Variable, [ref] mint321);
+L580:          mWidget_InventorySlot->mSlotIdx = mint321;
+L629:          mWidget = this->mRelevantInventory->GetChildAt(Temp_int_Array_Index_Variable);
+L680:          mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mWidget);
+L716:          mbool2 = mWidget_InventorySlot;
+L745:          KismetArrayLibrary->Array_Get([ref] LocalRelevantInventoryIndexes, Temp_int_Array_Index_Variable, [ref] mint321);
+L804:          this->FindInventorySlotWithIdx(mint321, [ref] mWidget_InventorySlot1);
+L836:          mWidget_InventorySlot->mInventorySlotToRepresent = mWidget_InventorySlot1;
+L877:          goto ExecutionFlow.Pop();
+L878:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] LocalRelevantInventoryIndexes);
+L937:          int32 mint323 = this->mRelevantInventory->GetChildrenCount();
+L987:          bool mbool3 = Greater_IntInt(mint323, mint322);
+L1025:         if (!mbool3) goto L1188;
+L1039:         ExecutionFlow.Push(L878);
+L1044:         int32 mint324 = this->mRelevantInventory->GetChildrenCount();
+L1094:         int32 mint325 = Subtract_IntInt(mint324, 1);
+L1136:         bool mbool4 = this->mRelevantInventory->RemoveChildAt(mint325);
+L1187:         goto ExecutionFlow.Pop();
+L1188:         uint8 Temp_byte_Variable = 1;
+L1208:         uint8 Temp_byte_Variable1 = 4;
+L1228:         bool mbool5 = this->mRelevantInventory->HasAnyChildren();
+L1270:         bool Temp_bool_Variable = mbool5;
+L1289:         this->mRelevantInventoryContainer->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L1378:         goto ExecutionFlow.Pop();
+L1379:         int32 mint326 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1421:         Temp_int_Loop_Counter_Variable = mint326;
+L1448:         goto L146;
+L1453:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1477:         Widget_InventorySlot* mWidget_InventorySlot2 = WidgetBlueprintLibrary->Create(this, Widget_InventorySlot, mPlayerController);
+L1538:         KismetArrayLibrary->Array_Get([ref] LocalRelevantInventoryIndexes, Temp_int_Array_Index_Variable, [ref] mint321);
+L1597:         KismetSystemLibrary->SetIntPropertyByName(mWidget_InventorySlot2, "mSlotIdx", mint321);
+L1660:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_InventorySlot2, "mCachedInventoryComponent", this->mInventoryComponent);
+L1723:         KismetArrayLibrary->Array_Get([ref] LocalRelevantInventoryIndexes, Temp_int_Array_Index_Variable, [ref] mint321);
+L1782:         this->FindInventorySlotWithIdx(mint321, [ref] mWidget_InventorySlot1);
+L1814:         mWidget_InventorySlot2->mInventorySlotToRepresent = mWidget_InventorySlot1;
+L1855:         PanelSlot* mPanelSlot = this->mRelevantInventory->AddChild(mWidget_InventorySlot2);
+L1906:         mFScriptDelegate->BindUFunction(this, OnInventorySlotMoveStack);
+L1929:         mWidget_InventorySlot2->OnMoveStack.AddUnique(mFScriptDelegate);
+L1970:         goto ExecutionFlow.Pop();
+============ END FUNCTION UpdateRelevantInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnInventorySlotMoveStack ==============
+L0:            this->SlotStackMoveEvent->ProcessMulticastDelegate(InventorySlotSender, 0);
+L30:           this->UpdateRelevantInventory();
+============ END FUNCTION OnInventorySlotMoveStack ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetInventoryComponents ==============
+L0:            this->mInventoryComponent = inventoryComponent;
+L19:           this->mTrashInventoryComponent = trash;
+============ END FUNCTION SetInventoryComponents ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerInventoryAddon(594);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSortButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerInventoryAddon(1110);
+============ END FUNCTION BndEvt__mSortButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUpdateRelevantInventory ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Character/Player/Widget_PlayerInventoryAddon.Widget_PlayerInventoryAddon_C:ExecuteUbergraph_Widget_PlayerInventoryAddon.K2Node_CustomEvent_itemClass) = ItemClass;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Character/Player/Widget_PlayerInventoryAddon.Widget_PlayerInventoryAddon_C:ExecuteUbergraph_Widget_PlayerInventoryAddon.K2Node_CustomEvent_numAdded) = numAdded;
+L36:           this->ExecuteUbergraph_Widget_PlayerInventoryAddon(1157);
+============ END FUNCTION OnUpdateRelevantInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Character/Player/Widget_PlayerInventoryAddon.Widget_PlayerInventoryAddon_C:ExecuteUbergraph_Widget_PlayerInventoryAddon.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_PlayerInventoryAddon(1214);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mTrashInventoryWidget_K2Node_ComponentBoundEvent_1_OnInventoryDragEnter__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerInventoryAddon(1418);
+============ END FUNCTION BndEvt__mTrashInventoryWidget_K2Node_ComponentBoundEvent_1_OnInventoryDragEnter__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mTrashInventoryWidget_K2Node_ComponentBoundEvent_2_OnInventoryDragLeave__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerInventoryAddon(1485);
+============ END FUNCTION BndEvt__mTrashInventoryWidget_K2Node_ComponentBoundEvent_2_OnInventoryDragLeave__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mTrashInventoryWidget_K2Node_ComponentBoundEvent_3_OnInventoryMouseLeave__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PlayerInventoryAddon(15);
+============ END FUNCTION BndEvt__mTrashInventoryWidget_K2Node_ComponentBoundEvent_3_OnInventoryMouseLeave__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PlayerInventoryAddon ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->mTrashBG->SetColorAndOpacity(ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 1));
+L81:           goto ExecutionFlow.Pop();
+L82:           ExecutionFlow.Push(L211);
+L87:           mFScriptDelegate->BindUFunction(this, OnInventorySlotMoveStack);
+L110:          KismetArrayLibrary->Array_Get([ref] mTArray<Widget_InventorySlot>, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L169:          mWidget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate);
+L210:          goto ExecutionFlow.Pop();
+L211:          int32 mint32 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L253:          int32 Temp_int_Loop_Counter_Variable = mint32;
+L280:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<Widget_InventorySlot>);
+L339:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L377:          if (!mbool) goto L423;
+L391:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L418:          goto L82;
+L423:          mFScriptDelegate1->BindUFunction(this, OnUpdateRelevantInventory);
+L446:          this->mInventoryComponent->OnItemAddedDelegate.AddUnique(mFScriptDelegate1);
+L487:          mFScriptDelegate1->BindUFunction(this, OnUpdateRelevantInventory);
+L510:          this->mInventoryComponent->OnItemRemovedDelegate.AddUnique(mFScriptDelegate1);
+L551:          this->UpdateRelevantInventory();
+L565:          goto ExecutionFlow.Pop();
+L566:          Temp_int_Array_Index_Variable = 0;
+L589:          goto L280;
+L594:          this->Construct();
+L604:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L624:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L660:          bool mbool1 = mFGCharacterPlayer;
+L689:          if (!mbool1) goto L982;
+L703:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetTrashSlot();
+L745:          FGInventoryComponent* mFGInventoryComponent1 = mFGCharacterPlayer->GetInventory();
+L787:          this->SetInventoryComponents(mFGInventoryComponent1, mFGInventoryComponent);
+L819:          this->mInventoryWidget->Init(this->mInventoryComponent);
+L864:          this->mTrashInventoryWidget->Init(this->mTrashInventoryComponent);
+L909:          this->mInventoryWidget->GetAllInventorySlots([ref] mTArray<Widget_InventorySlot>);
+L954:          Temp_int_Loop_Counter_Variable = 0;
+L977:          goto L566;
+L982:          KismetSystemLibrary->PrintString(this, "Cast to fgcharacterplayer failed in inventory addon", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L1109:         goto ExecutionFlow.Pop();
+L1110:         this->mInventoryComponent->SortInventory();
+L1142:         this->UpdateRelevantInventory();
+L1156:         goto ExecutionFlow.Pop();
+L1157:         this->ShouldItemClassUpdateRelevantInventory(mTSubclassOf<FGItemDescriptor>, [ref] mbool2);
+L1189:         if (!mbool2) goto ExecutionFlow.Pop();
+L1199:         this->UpdateRelevantInventory();
+L1213:         goto ExecutionFlow.Pop();
+L1214:         this->SetRelevantItemsText(this->mRelevantItemsText);
+L1237:         int32 Temp_int_Variable = 9;
+L1260:         int32 Temp_int_Variable1 = 6;
+L1283:         bool Temp_bool_Variable = this->mInventoryWidget->mUseSmallSlots;
+L1324:         this->mInventoryWidget->mOverrideWidth = switch (Temp_bool_Variable) {
+case false -> Temp_int_Variable1;
+case true -> Temp_int_Variable;
+default -> mint322;
+};
+L1417:         goto ExecutionFlow.Pop();
+L1418:         this->mTrashBG->SetColorAndOpacity(ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1));
+L1484:         goto ExecutionFlow.Pop();
+L1485:         goto L15;
+============ END FUNCTION ExecuteUbergraph_Widget_PlayerInventoryAddon ==============
+
+
+
+
+
+============ BEGIN FUNCTION SlotStackMoveEvent__DelegateSignature ==============
+============ END FUNCTION SlotStackMoveEvent__DelegateSignature ==============

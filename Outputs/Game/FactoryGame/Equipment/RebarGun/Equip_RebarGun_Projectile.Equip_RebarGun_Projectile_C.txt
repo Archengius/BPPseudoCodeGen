@@ -1,0 +1,204 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/RebarGun/Equip_RebarGun_Projectile.Equip_RebarGun_Projectile_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION PlayFireEffect ==============
+L0:            this->ExecuteUbergraph_Equip_RebarGun_Projectile(1698);
+============ END FUNCTION PlayFireEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayReloadEffects ==============
+L0:            this->ExecuteUbergraph_Equip_RebarGun_Projectile(2449);
+============ END FUNCTION PlayReloadEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_RebarGun_Projectile(2454);
+============ END FUNCTION WasEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasUnEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_RebarGun_Projectile(3939);
+============ END FUNCTION WasUnEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayFailedToFireEffects ==============
+L0:            this->ExecuteUbergraph_Equip_RebarGun_Projectile(4355);
+============ END FUNCTION PlayFailedToFireEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Equip_RebarGun_Projectile ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->mMuteDryFire = false;
+L26:           goto ExecutionFlow.Pop();
+L27:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_T_RebarGun_Fire, this, true);
+L80:           this->mMuteDryFire = true;
+L91:           KismetSystemLibrary->Delay(this, 1.2000000476837158, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 203425631, ExecutionFunction = "ExecuteUbergraph_Equip_RebarGun_Projectile", CallbackTarget = this));
+L167:          goto ExecutionFlow.Pop();
+L168:          ExecutionFlow.Push(L356);
+L173:          AnimInstance* mAnimInstance = this->RebarGun_skl->GetAnimInstance();
+L215:          Anim_Rebargun* mAnim_Rebargun = Cast<AnimBlueprintGeneratedClass /Game/FactoryGame/Equipment/RebarGun/Anim_Rebargun.Anim_Rebargun_C>(mAnimInstance);
+L251:          bool mbool = mAnim_Rebargun;
+L280:          if (!mbool) goto ExecutionFlow.Pop();
+L290:          bool mbool1 = mAnim_Rebargun->Montage_IsPlaying(RebargunReload_01_Montage);
+L341:          if (!mbool1) goto L922;
+L355:          goto ExecutionFlow.Pop();
+L356:          FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
+L376:          SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L418:          AnimInstance* mAnimInstance1 = mSkeletalMeshComponent->GetAnimInstance();
+L460:          bool mbool2 = mAnimInstance1->Montage_IsPlaying(RebargunReload_01_Montage);
+L511:          if (!mbool2) goto L526;
+L525:          goto ExecutionFlow.Pop();
+L526:          mFGCharacterPlayer = this->GetInstigatorCharacter();
+L546:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L588:          mAnimInstance1 = mSkeletalMeshComponent->GetAnimInstance();
+L630:          float mfloat = mAnimInstance1->Montage_Play(RebargunReload_01_Montage, 1, 0, 0, true);
+L702:          Pawn* mPawn = this->GetInstigator();
+L722:          Controller* mController = mPawn->GetController();
+L764:          PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L800:          bool mbool3 = mPlayerController;
+L829:          if (!mbool3) goto ExecutionFlow.Pop();
+L839:          mPlayerController->ClientPlayCameraAnim(RebargunReload_CameraAnim, 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L921:          goto ExecutionFlow.Pop();
+L922:          float mfloat1 = mAnim_Rebargun->Montage_Play(RebargunReload_01_Montage, 1, 0, 0, true);
+L994:          goto ExecutionFlow.Pop();
+L995:          this->PlayReloadEffects();
+L1005:         int32 mint32 = RandomIntegerInRange(0, 1000);
+L1043:         this->mRandomReloadAnim = mint32;
+L1070:         bool mbool4 = Less_IntInt(this->mRandomReloadAnim, 999);
+L1104:         if (!mbool4) goto L1123;
+L1118:         goto L168;
+L1123:         ExecutionFlow.Push(L1351);
+L1128:         AnimInstance* mAnimInstance2 = this->RebarGun_skl->GetAnimInstance();
+L1170:         bool mbool5 = mAnimInstance2->Montage_IsPlaying(RebargunReload_02_Montage);
+L1221:         if (!mbool5) goto L1236;
+L1235:         goto ExecutionFlow.Pop();
+L1236:         mAnimInstance2 = this->RebarGun_skl->GetAnimInstance();
+L1278:         float mfloat2 = mAnimInstance2->Montage_Play(RebargunReload_02_Montage, 1, 0, 0, true);
+L1350:         goto ExecutionFlow.Pop();
+L1351:         FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L1371:         SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L1413:         AnimInstance* mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L1455:         bool mbool6 = mAnimInstance3->Montage_IsPlaying(RebargunReload_02_Montage);
+L1506:         if (!mbool6) goto L1521;
+L1520:         goto ExecutionFlow.Pop();
+L1521:         mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L1541:         mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L1583:         mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L1625:         float mfloat3 = mAnimInstance3->Montage_Play(RebargunReload_02_Montage, 1, 0, 0, true);
+L1697:         goto ExecutionFlow.Pop();
+L1698:         ExecutionFlow.Push(L1816);
+L1703:         ExecutionFlow.Push(L1938);
+L1708:         AnimInstance* mAnimInstance4 = this->RebarGun_skl->GetAnimInstance();
+L1750:         bool mbool7 = mAnimInstance4->Montage_IsPlaying(RebargunPrimary_01_Montage);
+L1801:         if (!mbool7) goto L2334;
+L1815:         goto ExecutionFlow.Pop();
+L1816:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(P_MuzzleFlash_01, this->RebarGun_skl, "muzzleSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1933:         goto L27;
+L1938:         FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L1958:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
+L2000:         AnimInstance* mAnimInstance5 = mSkeletalMeshComponent2->GetAnimInstance();
+L2042:         float mfloat4 = mAnimInstance5->Montage_Play(RebargunPrimary_02_Montage, 1, 0, 0, true);
+L2114:         Pawn* mPawn1 = this->GetInstigator();
+L2134:         Controller* mController1 = mPawn1->GetController();
+L2176:         PlayerController* mPlayerController1 = Cast<Class /Script/Engine.PlayerController>(mController1);
+L2212:         bool mbool8 = mPlayerController1;
+L2241:         if (!mbool8) goto ExecutionFlow.Pop();
+L2251:         mPlayerController1->ClientPlayCameraAnim(RebargunPrimary_02_CameraAnim, 1.100000023841858, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L2333:         goto ExecutionFlow.Pop();
+L2334:         mAnimInstance4 = this->RebarGun_skl->GetAnimInstance();
+L2376:         float mfloat5 = mAnimInstance4->Montage_Play(RebargunPrimary_01_Montage, 1, 0, 0, true);
+L2448:         goto ExecutionFlow.Pop();
+L2449:         goto L995;
+L2454:         bool mbool9 = this->IsLocalInstigator();
+L2474:         if (!mbool9) goto ExecutionFlow.Pop();
+L2484:         bool mbool10 = this->ShouldShowStinger();
+L2504:         if (!mbool10) goto L3146;
+L2518:         ExecutionFlow.Push(L2923);
+L2523:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L2543:         SkeletalMeshComponent* mSkeletalMeshComponent3 = mFGCharacterPlayer3->GetMesh1P();
+L2585:         AnimInstance* mAnimInstance6 = mSkeletalMeshComponent3->GetAnimInstance();
+L2627:         bool mbool11 = mAnimInstance6->Montage_IsPlaying(RebargunStinger_03_Montage);
+L2678:         if (!mbool11) goto L2693;
+L2692:         goto ExecutionFlow.Pop();
+L2693:         mFGCharacterPlayer3 = this->GetInstigatorCharacter();
+L2713:         mSkeletalMeshComponent3 = mFGCharacterPlayer3->GetMesh1P();
+L2755:         mAnimInstance6 = mSkeletalMeshComponent3->GetAnimInstance();
+L2797:         float mfloat6 = mAnimInstance6->Montage_Play(RebargunStinger_03_Montage, 1, 0, 0, true);
+L2869:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_T_RebarGun_Stinger, this, true);
+L2922:         goto ExecutionFlow.Pop();
+L2923:         AnimInstance* mAnimInstance7 = this->RebarGun_skl->GetAnimInstance();
+L2965:         bool mbool12 = mAnimInstance7->Montage_IsPlaying(RebargunStinger_03_Montage);
+L3016:         if (!mbool12) goto L3031;
+L3030:         goto ExecutionFlow.Pop();
+L3031:         mAnimInstance7 = this->RebarGun_skl->GetAnimInstance();
+L3073:         float mfloat7 = mAnimInstance7->Montage_Play(RebargunStinger_03_Montage, 1, 0, 0, true);
+L3145:         goto ExecutionFlow.Pop();
+L3146:         ExecutionFlow.Push(L3716);
+L3151:         FGCharacterPlayer* mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L3171:         SkeletalMeshComponent* mSkeletalMeshComponent4 = mFGCharacterPlayer4->GetMesh1P();
+L3213:         AnimInstance* mAnimInstance8 = mSkeletalMeshComponent4->GetAnimInstance();
+L3255:         bool mbool13 = KismetSystemLibrary->IsValid(mAnimInstance8);
+L3306:         if (!mbool13) goto ExecutionFlow.Pop();
+L3316:         mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L3336:         mSkeletalMeshComponent4 = mFGCharacterPlayer4->GetMesh1P();
+L3378:         mAnimInstance8 = mSkeletalMeshComponent4->GetAnimInstance();
+L3420:         bool mbool14 = mAnimInstance8->Montage_IsPlaying(RebargunEquip_01_Montage);
+L3471:         if (!mbool14) goto L3486;
+L3485:         goto ExecutionFlow.Pop();
+L3486:         mFGCharacterPlayer4 = this->GetInstigatorCharacter();
+L3506:         mSkeletalMeshComponent4 = mFGCharacterPlayer4->GetMesh1P();
+L3548:         mAnimInstance8 = mSkeletalMeshComponent4->GetAnimInstance();
+L3590:         float mfloat8 = mAnimInstance8->Montage_Play(RebargunEquip_01_Montage, 1, 0, 0, true);
+L3662:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_T_RebarGun_Equip_V2, this, true);
+L3715:         goto ExecutionFlow.Pop();
+L3716:         AnimInstance* mAnimInstance9 = this->RebarGun_skl->GetAnimInstance();
+L3758:         bool mbool15 = mAnimInstance9->Montage_IsPlaying(RebargunEquip_01_Montage);
+L3809:         if (!mbool15) goto L3824;
+L3823:         goto ExecutionFlow.Pop();
+L3824:         mAnimInstance9 = this->RebarGun_skl->GetAnimInstance();
+L3866:         float mfloat9 = mAnimInstance9->Montage_Play(RebargunEquip_01_Montage, 1, 0, 0, true);
+L3938:         goto ExecutionFlow.Pop();
+L3939:         this->WasUnEquipped();
+L3949:         bool mbool16 = this->IsLocalInstigator();
+L3969:         if (!mbool16) goto ExecutionFlow.Pop();
+L3979:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Stop_T_RebarGun_Stinger, this, true);
+L4032:         FGCharacterPlayer* mFGCharacterPlayer5 = this->GetInstigatorCharacter();
+L4052:         SkeletalMeshComponent* mSkeletalMeshComponent5 = mFGCharacterPlayer5->GetMesh1P();
+L4094:         AnimInstance* mAnimInstance10 = mSkeletalMeshComponent5->GetAnimInstance();
+L4136:         AnimMontage* mAnimMontage = mAnimInstance10->GetCurrentActiveMontage();
+L4178:         mAnimInstance10->Montage_Stop(0, mAnimMontage);
+L4224:         AnimInstance* mAnimInstance11 = this->RebarGun_skl->GetAnimInstance();
+L4266:         AnimMontage* mAnimMontage1 = mAnimInstance11->GetCurrentActiveMontage();
+L4308:         mAnimInstance11->Montage_Stop(0, mAnimMontage1);
+L4354:         goto ExecutionFlow.Pop();
+L4355:         bool mbool17 = this->HasAmmunition();
+L4375:         bool mbool18 = Not_PreBool(mbool17);
+L4404:         bool mbool19 = this->GetIsReloading();
+L4424:         bool mbool20 = Not_PreBool(mbool19);
+L4453:         bool mbool21 = BooleanAND(mbool18, mbool20);
+L4491:         bool mbool22 = Not_PreBool(this->mMuteDryFire);
+L4520:         bool mbool23 = BooleanAND(mbool21, mbool22);
+L4558:         if (!mbool23) goto ExecutionFlow.Pop();
+L4568:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Play_T_RebarGun_Dry_Shot_01, this, true);
+L4621:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Equip_RebarGun_Projectile ==============

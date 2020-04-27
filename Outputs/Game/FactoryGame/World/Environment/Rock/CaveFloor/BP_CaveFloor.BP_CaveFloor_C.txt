@@ -1,0 +1,158 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/World/Environment/Rock/CaveFloor/BP_CaveFloor.BP_CaveFloor_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetEntrenceAndExitIndex ==============
+L0:            int32 Temp_int_Variable = 0;
+L23:           int32 Temp_int_Variable1 = 0;
+L46:           int32 mint32 = KismetArrayLibrary->Array_LastIndex([ref] this->CaveDataArray);
+L105:          int32 mint321 = KismetArrayLibrary->Array_LastIndex([ref] this->CaveDataArray);
+L164:          int32 mint322 = Subtract_IntInt(mint32, 1);
+L206:          int32 mint323 = Subtract_IntInt(mint321, 1);
+L248:          bool Temp_bool_Variable1 = this->mSwitchEntrenceAndExit;
+L267:          bool Temp_bool_Variable = this->mSwitchEntrenceAndExit;
+L286:          int32 entrence = switch (Temp_bool_Variable1) {
+case false -> Temp_int_Variable1;
+case true -> mint323;
+default -> mint324;
+};
+L357:          int32 Exit = switch (Temp_bool_Variable) {
+case false -> mint322;
+case true -> Temp_int_Variable;
+default -> mint325;
+};
+============ END FUNCTION GetEntrenceAndExitIndex ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetStaticMeshForIndex ==============
+L0:            ExecutionFlow.Push(L257);
+L5:            int32 local_index = index;
+L32:           ExecutionFlow.Push(L141);
+L37:           this->GetEntrenceAndExitIndex([ref] mint32, [ref] mint321);
+L69:           bool mbool = EqualEqual_IntInt(mint32, local_index);
+L107:          if (!mbool) goto L165;
+L121:          StaticMesh* local_staticMesh = this->mEntranceMesh;
+L140:          goto ExecutionFlow.Pop();
+L141:          StaticMesh* NewParam = local_staticMesh;
+L160:          <End of Inlined Event Graph Function>;
+L165:          bool mbool1 = EqualEqual_IntInt(mint321, local_index);
+L203:          if (!mbool1) goto L237;
+L217:          local_staticMesh = this->mExitMesh;
+L236:          goto ExecutionFlow.Pop();
+L237:          local_staticMesh = this->mCaveMesh;
+L256:          goto ExecutionFlow.Pop();
+============ END FUNCTION GetStaticMeshForIndex ==============
+
+
+
+
+
+============ BEGIN FUNCTION BuildCaveElement ==============
+L0:            ExecutionFlow.Push(L1844);
+L5:            int32 Temp_int_Variable = 0;
+L28:           int32 mint32 = Subtract_IntInt(this->NumberOfSplinePoints, 2);
+L70:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L108:          if (!mbool) goto ExecutionFlow.Pop();
+L118:          ExecutionFlow.Push(L1067);
+L123:          int32 Local_CurrentLoopIndex = Temp_int_Variable;
+L150:          int32 mint321 = Add_IntInt(Local_CurrentLoopIndex, 1);
+L192:          int32 Local_NextLoopIndex = mint321;
+L219:          ExecutionFlow.Push(L1141);
+L224:          this->Spline->GetLocationAndTangentAtSplinePoint(Local_CurrentLoopIndex, [ref] mVector, [ref] mVector1, 0);
+L285:          Vector Local_StartLocation = mVector;
+L312:          this->Spline->GetLocationAndTangentAtSplinePoint(Local_CurrentLoopIndex, [ref] mVector, [ref] mVector1, 0);
+L373:          Vector Local_StartTangent = mVector1;
+L400:          this->Spline->GetLocationAndTangentAtSplinePoint(Local_NextLoopIndex, [ref] mVector2, [ref] mVector3, 0);
+L461:          Vector Local_EndLocation = mVector2;
+L488:          this->Spline->GetLocationAndTangentAtSplinePoint(Local_NextLoopIndex, [ref] mVector2, [ref] mVector3, 0);
+L549:          Vector Local_EndTangent = mVector3;
+L576:          KismetArrayLibrary->Array_Get([ref] this->CaveDataArray, Local_CurrentLoopIndex, [ref] mCaveData);
+L635:          float Local_StartRoll = mCaveData.CaveBank_9_2E244F454EFB45D21BDAB0A2F52AAF65;
+L671:          KismetArrayLibrary->Array_Get([ref] this->CaveDataArray, Local_CurrentLoopIndex, [ref] mCaveData);
+L730:          Vector2D mVector2D = MakeVector2D(mCaveData.CaveWidth_10_21A92FE2432BB92C0A0F739941EC76CC, mCaveData.CaveHeight_12_F58A294D4ED9A50923132BB6156E620B);
+L794:          Vector2D Local_StartScale = mVector2D;
+L821:          KismetArrayLibrary->Array_Get([ref] this->CaveDataArray, Local_NextLoopIndex, [ref] mCaveData1);
+L880:          float Local_EndRoll = mCaveData1.CaveBank_9_2E244F454EFB45D21BDAB0A2F52AAF65;
+L916:          KismetArrayLibrary->Array_Get([ref] this->CaveDataArray, Local_NextLoopIndex, [ref] mCaveData1);
+L975:          Vector2D mVector2D1 = MakeVector2D(mCaveData1.CaveWidth_10_21A92FE2432BB92C0A0F739941EC76CC, mCaveData1.CaveHeight_12_F58A294D4ED9A50923132BB6156E620B);
+L1039:         Vector2D Local_EndScale = mVector2D1;
+L1066:         goto ExecutionFlow.Pop();
+L1067:         int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L1109:         Temp_int_Variable = mint322;
+L1136:         goto L28;
+L1141:         if (!this->mEnableCollision) goto L1717;
+L1155:         const Transform Temp_struct_Variable = Transform(Rotator(0, 0, 0, 1), Vector(0, 0, 0), Vector(1, 1, 1));
+L1214:         SplineMeshComponent* mSplineMeshComponent = this->AddComponent("NODE_AddSplineMeshComponent-3", false, [ref] Temp_struct_Variable, this);
+L1258:         SplineMeshComponent* Local_CurrentSplineMesh = mSplineMeshComponent;
+L1277:         this->GetStaticMeshForIndex(Local_CurrentLoopIndex, [ref] mStaticMesh);
+L1309:         bool mbool1 = Local_CurrentSplineMesh->SetStaticMesh(mStaticMesh);
+L1364:         bool mbool2 = KismetSystemLibrary->IsValid(this->mSplineMaterial);
+L1415:         if (!mbool2) goto L1479;
+L1429:         Local_CurrentSplineMesh->SetMaterial(0, this->mSplineMaterial);
+L1479:         Local_CurrentSplineMesh->SetStartAndEnd(Local_StartLocation, Local_StartTangent, Local_EndLocation, Local_EndTangent, false);
+L1548:         Local_CurrentSplineMesh->SetStartRoll(Local_StartRoll, false);
+L1590:         Local_CurrentSplineMesh->SetEndRoll(Local_EndRoll, false);
+L1632:         Local_CurrentSplineMesh->SetStartScale(Local_StartScale, false);
+L1674:         Local_CurrentSplineMesh->SetEndScale(Local_EndScale, true);
+L1716:         goto ExecutionFlow.Pop();
+L1717:         const Transform Temp_struct_Variable1 = Transform(Rotator(0, 0, 0, 1), Vector(0, 0, 0), Vector(1, 1, 1));
+L1776:         SplineMeshComponent* mSplineMeshComponent1 = this->AddComponent("NODE_AddSplineMeshComponent-5", false, [ref] Temp_struct_Variable1, this);
+L1820:         Local_CurrentSplineMesh = mSplineMeshComponent1;
+L1839:         goto L1277;
+============ END FUNCTION BuildCaveElement ==============
+
+
+
+
+
+============ BEGIN FUNCTION UserConstructionScript ==============
+L0:            ExecutionFlow.Push(L1293);
+L5:            ExecutionFlow.Push(L518);
+L10:           ExecutionFlow.Push(L503);
+L15:           ExecutionFlow.Push(L98);
+L20:           int32 mint32 = this->Spline->GetNumberOfSplinePoints();
+L70:           this->NumberOfSplinePoints = mint32;
+L97:           goto ExecutionFlow.Pop();
+L98:           int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->CaveDataArray);
+L157:          bool mbool = Less_IntInt(mint321, this->NumberOfSplinePoints);
+L195:          if (!mbool) goto L282;
+L209:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->CaveDataArray, [ref] this->CaveMeshDefaults);
+L277:          goto L98;
+L282:          mint321 = KismetArrayLibrary->Array_Length([ref] this->CaveDataArray);
+L341:          bool mbool1 = Greater_IntInt(mint321, this->NumberOfSplinePoints);
+L379:          if (!mbool1) goto ExecutionFlow.Pop();
+L389:          int32 mint323 = KismetArrayLibrary->Array_LastIndex([ref] this->CaveDataArray);
+L448:          KismetArrayLibrary->Array_Remove([ref] this->CaveDataArray, mint323);
+L498:          goto L98;
+L503:          this->BuildCaveElement();
+L517:          goto ExecutionFlow.Pop();
+L518:          if (!this->DrawCavePointNumbers) goto ExecutionFlow.Pop();
+L528:          int32 Temp_int_Variable = 0;
+L551:          int32 mint324 = Subtract_IntInt(this->NumberOfSplinePoints, 1);
+L593:          bool mbool2 = LessEqual_IntInt(Temp_int_Variable, mint324);
+L631:          if (!mbool2) goto ExecutionFlow.Pop();
+L641:          ExecutionFlow.Push(L1219);
+L646:          FString mFString = KismetStringLibrary->Conv_IntToString(Temp_int_Variable);
+L705:          this->CurrentCavePoint = mFString;
+L732:          this->Spline->GetLocationAndTangentAtSplinePoint(Temp_int_Variable, [ref] mVector, [ref] mVector1, 0);
+L793:          Vector mVector2 = Multiply_VectorInt(mVector1, -1);
+L835:          BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L881:          Rotator mRotator = Conv_VectorToRotator(mVector2);
+L918:          float mfloat3 = Add_FloatFloat(mfloat2, 50);
+L960:          Vector mVector3 = MakeVector(mfloat, mfloat1, mfloat3);
+L1015:         Transform mTransform = MakeTransform(mVector3, mRotator, Vector(1, 1, 1));
+L1074:         TextRenderComponent* mTextRenderComponent = this->AddComponent("NODE_AddTextRenderComponent-0", false, [ref] mTransform, this);
+L1118:         FText mFText = KismetTextLibrary->Conv_StringToText(this->CurrentCavePoint);
+L1177:         mTextRenderComponent->K2_SetText([ref] mFText);
+L1218:         goto ExecutionFlow.Pop();
+L1219:         int32 mint325 = Add_IntInt(Temp_int_Variable, 1);
+L1261:         Temp_int_Variable = mint325;
+L1288:         goto L551;
+============ END FUNCTION UserConstructionScript ==============

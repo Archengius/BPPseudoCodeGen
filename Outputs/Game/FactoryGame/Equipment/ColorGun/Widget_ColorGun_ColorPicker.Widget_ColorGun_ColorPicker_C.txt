@@ -1,0 +1,224 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CompressValue ==============
+L0:            float mfloat = Subtract_FloatFloat(1, MinValue);
+L42:           float mfloat1 = Multiply_FloatFloat(Value, mfloat);
+L88:           float mfloat2 = Add_FloatFloat(mfloat1, MinValue);
+L134:          float Out Value = mfloat2;
+============ END FUNCTION CompressValue ==============
+
+
+
+
+
+============ BEGIN FUNCTION ConvertColorToPreviewColor ==============
+L0:            float LocalMinValue = MinValue;
+L27:           this->CompressValue(InputColor.B, LocalMinValue, [ref] mfloat);
+L77:           this->CompressValue(InputColor.G, LocalMinValue, [ref] mfloat1);
+L127:          this->CompressValue(InputColor.R, LocalMinValue, [ref] mfloat2);
+L177:          mLinearColor.R = mfloat2;
+L213:          mLinearColor.G = mfloat1;
+L249:          mLinearColor.B = mfloat;
+L285:          mLinearColor.A = 1;
+L317:          LinearColor OutputColor = mLinearColor;
+============ END FUNCTION ConvertColorToPreviewColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdatePreview ==============
+L0:            uint8 muint8 = Conv_IntToByte(this->SelectedIndex);
+L37:           LinearColor mLinearColor = this->mColorGun->GetPrimaryColorForSlot(muint8);
+L96:           LinearColor mLinearColor1 = this->mColorGun->GetSecondaryColorForSlot(muint8);
+L155:          this->ConvertColorToPreviewColor(mLinearColor, 0.009999999776482582, [ref] mLinearColor2);
+L192:          this->ConvertColorToPreviewColor(mLinearColor1, 0.009999999776482582, [ref] mLinearColor3);
+L229:          this->Widget_ColorPicker_Preview->SetColors(mLinearColor2, mLinearColor3);
+============ END FUNCTION UpdatePreview ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupSlots ==============
+L0:            ExecutionFlow.Push(L1288);
+L5:            this->mColorGrid->ClearChildren();
+L41:           int32 Temp_int_Variable = 0;
+L64:           uint8 muint8 = this->mColorGun->GetNumColorSlotsExposedToPlayers();
+L114:          int32 mint32 = Conv_ByteToInt(muint8);
+L151:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L193:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L231:          if (!mbool) goto ExecutionFlow.Pop();
+L241:          ExecutionFlow.Push(L1214);
+L246:          int32 LocalIndex = Temp_int_Variable;
+L273:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L297:          Widget_ColorPicker_Slot* mWidget_ColorPicker_Slot = WidgetBlueprintLibrary->Create(this, Widget_ColorPicker_Slot, mPlayerController);
+L358:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ColorPicker_Slot, "mSize", [ref] this->mSlotSizes);
+L421:          uint8 muint81 = Conv_IntToByte(LocalIndex);
+L458:          LinearColor mLinearColor = this->mColorGun->GetPrimaryColorForSlot(muint81);
+L517:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ColorPicker_Slot, "mPrimaryColor", [ref] mLinearColor);
+L580:          uint8 muint82 = Conv_IntToByte(LocalIndex);
+L617:          LinearColor mLinearColor1 = this->mColorGun->GetSecondaryColorForSlot(muint82);
+L676:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ColorPicker_Slot, "mSecondaryColor", [ref] mLinearColor1);
+L739:          KismetSystemLibrary->SetIntPropertyByName(mWidget_ColorPicker_Slot, "mIndex", LocalIndex);
+L802:          PanelSlot* mPanelSlot = this->mColorGrid->AddChild(mWidget_ColorPicker_Slot);
+L853:          mFScriptDelegate->BindUFunction(this, OnSlotClicked);
+L876:          mWidget_ColorPicker_Slot->OnClicked.AddUnique(mFScriptDelegate);
+L917:          mFScriptDelegate1->BindUFunction(this, OnSlotHovered);
+L940:          mWidget_ColorPicker_Slot->OnHovered.AddUnique(mFScriptDelegate1);
+L981:          mFScriptDelegate2->BindUFunction(this, OnSlotUnhovered);
+L1004:         mWidget_ColorPicker_Slot->OnUnhovered.AddUnique(mFScriptDelegate2);
+L1045:         mFScriptDelegate3->BindUFunction(this, OnSlotEditClicked);
+L1068:         mWidget_ColorPicker_Slot->OnEditClicked.AddUnique(mFScriptDelegate3);
+L1109:         bool mbool1 = EqualEqual_IntInt(LocalIndex, this->SelectedIndex);
+L1147:         if (!mbool1) goto ExecutionFlow.Pop();
+L1157:         this->mSelectedSlot = mWidget_ColorPicker_Slot;
+L1176:         this->mSelectedSlot->SetIsSelected(true);
+L1213:         goto ExecutionFlow.Pop();
+L1214:         int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L1256:         Temp_int_Variable = mint322;
+L1283:         goto L64;
+============ END FUNCTION SetupSlots ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(315);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSlotClicked ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_Slot3) = Slot;
+L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(320);
+============ END FUNCTION OnSlotClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSlotHovered ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_Slot2) = Slot;
+L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(525);
+============ END FUNCTION OnSlotHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSlotUnhovered ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_Slot1) = Slot;
+L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(526);
+============ END FUNCTION OnSlotUnhovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(527);
+============ END FUNCTION BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mCancel_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(625);
+============ END FUNCTION BndEvt__mCancel_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSlotEditClicked ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_Slot) = Slot;
+L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(645);
+============ END FUNCTION OnSlotEditClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUpdatePreset ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_PrimaryColor) = PrimaryColor;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_SecondaryColor) = SecondaryColor;
+L36:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(1084);
+============ END FUNCTION OnUpdatePreset ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ColorGun_ColorPicker ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->UpdatePreview();
+L29:           goto ExecutionFlow.Pop();
+L30:           bool mbool = KismetSystemLibrary->IsValid(this->mColorGun);
+L81:           if (!mbool) goto L238;
+L95:           uint8 muint8 = this->mColorGun->GetColorSlotIndex();
+L145:          int32 mint32 = Conv_ByteToInt(muint8);
+L182:          this->SelectedIndex = mint32;
+L209:          this->SetupSlots();
+L223:          this->UpdatePreview();
+L237:          goto ExecutionFlow.Pop();
+L238:          KismetSystemLibrary->RetriggerableDelay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 30, UUID = -96541862, ExecutionFunction = "ExecuteUbergraph_Widget_ColorGun_ColorPicker", CallbackTarget = this));
+L314:          goto ExecutionFlow.Pop();
+L315:          goto L30;
+L320:          bool mbool1 = NotEqual_ObjectObject(mWidget_ColorPicker_Slot, this->mSelectedSlot);
+L358:          if (!mbool1) goto ExecutionFlow.Pop();
+L368:          this->mSelectedSlot->SetIsSelected(false);
+L405:          this->mSelectedSlot = mWidget_ColorPicker_Slot;
+L424:          this->mSelectedSlot->SetIsSelected(true);
+L461:          this->SelectedIndex = this->mSelectedSlot->mIndex;
+L510:          this->UpdatePreview();
+L524:          goto ExecutionFlow.Pop();
+L525:          goto ExecutionFlow.Pop();
+L526:          goto ExecutionFlow.Pop();
+L527:          uint8 muint81 = Conv_IntToByte(this->SelectedIndex);
+L564:          this->mColorGun->SetColorSlot(muint81);
+L605:          this->OnAccept->ProcessMulticastDelegate();
+L624:          goto ExecutionFlow.Pop();
+L625:          this->OnCancel->ProcessMulticastDelegate();
+L644:          goto ExecutionFlow.Pop();
+L645:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L669:          Widget_ColorPicker_EditPreset* mWidget_ColorPicker_EditPreset = WidgetBlueprintLibrary->Create(this, Widget_ColorPicker_EditPreset, mPlayerController);
+L730:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ColorPicker_EditPreset, "mPrimaryColor", [ref] mWidget_ColorPicker_Slot1->mPrimaryColor);
+L815:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ColorPicker_EditPreset, "mSecondaryColor", [ref] mWidget_ColorPicker_Slot1->mSecondaryColor);
+L900:          OverlaySlot* mOverlaySlot = this->mEditPresetContainer->AddChildToOverlay(mWidget_ColorPicker_EditPreset);
+L951:          mOverlaySlot->SetHorizontalAlignment(0);
+L985:          mOverlaySlot->SetVerticalAlignment(0);
+L1019:         mFScriptDelegate->BindUFunction(this, OnUpdatePreset);
+L1042:         mWidget_ColorPicker_EditPreset->OnAccept.AddUnique(mFScriptDelegate);
+L1083:         goto ExecutionFlow.Pop();
+L1084:         uint8 muint82 = Conv_IntToByte(this->SelectedIndex);
+L1121:         this->mColorGun->SetPrimaryColorForSlot(muint82, mLinearColor);
+L1171:         uint8 muint83 = Conv_IntToByte(this->SelectedIndex);
+L1208:         this->mColorGun->SetSecondaryColorForSlot(muint83, mLinearColor1);
+L1258:         this->mSelectedSlot->UpdateColors(mLinearColor, mLinearColor1);
+L1312:         goto L15;
+============ END FUNCTION ExecuteUbergraph_Widget_ColorGun_ColorPicker ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCancel__DelegateSignature ==============
+============ END FUNCTION OnCancel__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnAccept__DelegateSignature ==============
+============ END FUNCTION OnAccept__DelegateSignature ==============

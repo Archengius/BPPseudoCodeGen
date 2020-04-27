@@ -1,0 +1,462 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/RadarTower/UI/Widget_RadarTower.Widget_RadarTower_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateStandByButton ==============
+L0:            bool mbool = Not_PreBool(Producing);
+L29:           this->Widget_StandbyButton->SetStandbyButtonBrush(mbool);
+============ END FUNCTION UpdateStandByButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION ToggleStandby ==============
+L0:            bool NewStandByMode = false;
+L11:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L35:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L71:           bool mbool = mFGPlayerController;
+L100:          if (!mbool) goto L354;
+L114:          bool mbool1 = this->mRadarTower->IsProductionPaused();
+L156:          bool mbool2 = Not_PreBool(mbool1);
+L185:          NewStandByMode = mbool2;
+L204:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L255:          mBP_RemoteCallObject->Server_SetIsProductionPausedOnFactory(this->mRadarTower, NewStandByMode);
+L309:          this->Widget_StandbyButton->SetStandbyButtonBrush(NewStandByMode);
+============ END FUNCTION ToggleStandby ==============
+
+
+
+
+
+============ BEGIN FUNCTION RevealStepToNormalizedRevealPercent ==============
+L0:            float mfloat = this->mRadarTower->GetNormalizedProgressValueForStep(inInt);
+L59:           float ReturnValue = mfloat;
+============ END FUNCTION RevealStepToNormalizedRevealPercent ==============
+
+
+
+
+
+============ BEGIN FUNCTION InitScanLines ==============
+L0:            ExecutionFlow.Push(L1094);
+L5:            int32 Temp_int_Variable = 0;
+L28:           int32 mint32 = this->mRadarTower->GetNumRadarExpansionSteps();
+L78:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L120:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L158:          if (!mbool) goto ExecutionFlow.Pop();
+L168:          ExecutionFlow.Push(L1020);
+L173:          int32 LocalIndex = Temp_int_Variable;
+L200:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L224:          Widget_RadarTower_ScanLine* mWidget_RadarTower_ScanLine = WidgetBlueprintLibrary->Create(this, Widget_RadarTower_ScanLine, mPlayerController);
+L285:          BreakVector2D(this->mMovingScanLine->Brush.ImageSize, [ref] mfloat, [ref] mfloat1);
+L353:          KismetSystemLibrary->SetFloatPropertyByName(mWidget_RadarTower_ScanLine, "mMaxSize", mfloat);
+L416:          float mfloat2 = this->RevealStepToNormalizedRevealPercent(LocalIndex);
+L457:          KismetSystemLibrary->SetFloatPropertyByName(mWidget_RadarTower_ScanLine, "mNormalizedRadius", mfloat2);
+L520:          OverlaySlot* mOverlaySlot = this->mScanlineContainer->AddChildToOverlay(mWidget_RadarTower_ScanLine);
+L571:          mOverlaySlot->SetHorizontalAlignment(0);
+L605:          mOverlaySlot->SetVerticalAlignment(0);
+L639:          LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L691:          LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 1);
+L743:          bool mbool1 = this->mRadarTower->HasPower();
+L789:          int32 mint322 = this->mRadarTower->GetCurrentExpansionStep();
+L839:          bool mbool2 = LessEqual_IntInt(LocalIndex, mint322);
+L877:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L915:          bool Temp_bool_Variable = mbool3;
+L934:          mWidget_RadarTower_ScanLine->SetColorAndOpacity(switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mLinearColor;
+});
+L1019:         goto ExecutionFlow.Pop();
+L1020:         int32 mint323 = Add_IntInt(Temp_int_Variable, 1);
+L1062:         Temp_int_Variable = mint323;
+L1089:         goto L28;
+============ END FUNCTION InitScanLines ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTitle ==============
+L0:            TScriptInterface<FGActorRepresentationInterface> mTScriptInterface<FGActorRepresentationInterface> = QueryInterface<Class /Script/FactoryGame.FGActorRepresentationInterface>(this->mRadarTower);
+L36:           bool mbool = mTScriptInterface<FGActorRepresentationInterface>;
+L65:           if (!mbool) goto L1841;
+L79:           FText mFText = GetInterfaceUObject(mTScriptInterface<FGActorRepresentationInterface>)->GetActorRepresentationText();
+L134:          FText mFText1 = KismetSystemLibrary->MakeLiteralText();
+L186:          FText Temp_text_Variable = "[object Object]";
+L255:          bool mbool1 = KismetTextLibrary->NotEqual_TextText([ref] OverrideText, [ref] mFText1);
+L315:          FText mFText2 = KismetTextLibrary->Conv_StringToText("");
+L367:          FText mFText3 = KismetTextLibrary->Conv_StringToText("Radar Tower");
+L430:          bool Temp_bool_Variable2 = mbool1;
+L449:          mFormatArgumentData.ArgumentName = "Name";
+L482:          mFormatArgumentData.ArgumentValueType = 4;
+L511:          mFormatArgumentData.ArgumentValue = switch (Temp_bool_Variable2) {
+case false -> mFText;
+case true -> OverrideText;
+default -> mFText4;
+};
+L591:          mFormatArgumentData.ArgumentValueInt = 0;
+L623:          mFormatArgumentData.ArgumentValueFloat = 0;
+L655:          mFormatArgumentData.ArgumentValueGender = 0;
+L684:          bool mbool2 = KismetTextLibrary->EqualEqual_TextText([ref] switch (Temp_bool_Variable2) {
+case false -> mFText;
+case true -> OverrideText;
+default -> mFText4;
+}, [ref] mFText2);
+L788:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L808:          bool mbool3 = KismetTextLibrary->EqualEqual_TextText([ref] switch (Temp_bool_Variable2) {
+case false -> mFText;
+case true -> OverrideText;
+default -> mFText4;
+}, [ref] mFText3);
+L912:          FText mFText5 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1030:         bool mbool4 = BooleanOR(mbool3, mbool2);
+L1068:         bool Temp_bool_Variable = mbool4;
+L1087:         this->Widget_Window_DarkMode->SetTitle(switch (Temp_bool_Variable) {
+case false -> mFText5;
+case true -> Temp_text_Variable;
+default -> mFText6;
+});
+L1176:         mFText1 = KismetSystemLibrary->MakeLiteralText();
+L1228:         mbool1 = KismetTextLibrary->NotEqual_TextText([ref] OverrideText, [ref] mFText1);
+L1288:         FText Temp_text_Variable1 = ;
+L1308:         mFText2 = KismetTextLibrary->Conv_StringToText("");
+L1360:         mFText3 = KismetTextLibrary->Conv_StringToText("Radar Tower");
+L1423:         Temp_bool_Variable2 = mbool1;
+L1442:         mbool2 = KismetTextLibrary->EqualEqual_TextText([ref] switch (Temp_bool_Variable2) {
+case false -> mFText;
+case true -> OverrideText;
+default -> mFText4;
+}, [ref] mFText2);
+L1546:         mbool3 = KismetTextLibrary->EqualEqual_TextText([ref] switch (Temp_bool_Variable2) {
+case false -> mFText;
+case true -> OverrideText;
+default -> mFText4;
+}, [ref] mFText3);
+L1650:         mbool4 = BooleanOR(mbool3, mbool2);
+L1688:         bool Temp_bool_Variable1 = mbool4;
+L1707:         this->mTowerName->SetText(switch (Temp_bool_Variable1) {
+case false -> switch (Temp_bool_Variable2) {
+case false -> mFText;
+case true -> OverrideText;
+default -> mFText4;
+};
+case true -> Temp_text_Variable1;
+default -> mFText7;
+});
+L1836:         <End of Inlined Event Graph Function>;
+L1841:         mFText = ;
+L1861:         goto L134;
+============ END FUNCTION UpdateTitle ==============
+
+
+
+
+
+============ BEGIN FUNCTION SecondsToMinutesAndSecondsText ==============
+L0:            Timespan mTimespan = FromSeconds(Input);
+L37:           BreakTimespan(mTimespan, [ref] mint32, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324);
+L101:          int32 mint325 = Multiply_IntInt(mint32, 24);
+L143:          FText mFText = KismetTextLibrary->Conv_IntToText(mint323, false, true, 2, 324);
+L214:          int32 mint326 = Add_IntInt(mint325, mint321);
+L260:          mFormatArgumentData.ArgumentName = "Seconds";
+L296:          mFormatArgumentData.ArgumentValueType = 4;
+L325:          mFormatArgumentData.ArgumentValue = mFText;
+L361:          mFormatArgumentData.ArgumentValueInt = 0;
+L393:          mFormatArgumentData.ArgumentValueFloat = 0;
+L425:          mFormatArgumentData.ArgumentValueGender = 0;
+L454:          int32 mint327 = Multiply_IntInt(mint326, 60);
+L496:          int32 mint328 = Add_IntInt(mint327, mint322);
+L542:          FText mFText1 = KismetTextLibrary->Conv_IntToText(mint328, false, true, 2, 324);
+L613:          mFormatArgumentData1.ArgumentName = "Minutes";
+L649:          mFormatArgumentData1.ArgumentValueType = 4;
+L678:          mFormatArgumentData1.ArgumentValue = mFText1;
+L714:          mFormatArgumentData1.ArgumentValueInt = 0;
+L746:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L778:          mFormatArgumentData1.ArgumentValueGender = 0;
+L807:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
+L836:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L954:          FText Output = mFText2;
+============ END FUNCTION SecondsToMinutesAndSecondsText ==============
+
+
+
+
+
+============ BEGIN FUNCTION InitScannedPercent ==============
+L0:            float Temp_float_Variable = 0;
+L23:           int32 mint32 = this->mRadarTower->GetCurrentExpansionStep();
+L73:           float mfloat = this->RevealStepToNormalizedRevealPercent(mint32);
+L114:          bool mbool = this->mRadarTower->HasPower();
+L160:          bool Temp_bool_Variable2 = mbool;
+L179:          this->mScannedAreaMaterial->SetScalarParameterValue("NormalizedRadius", switch (Temp_bool_Variable2) {
+case false -> Temp_float_Variable;
+case true -> mfloat;
+default -> mfloat1;
+});
+L277:          FText Temp_text_Variable = "[object Object]";
+L341:          FText Temp_text_Variable1 = "[object Object]";
+L407:          bool mbool1 = this->mRadarTower->IsProductionPaused();
+L449:          bool Temp_bool_Variable = mbool1;
+L468:          int32 mint321 = this->mRadarTower->GetCurrentExpansionStep();
+L518:          float mfloat2 = this->RevealStepToNormalizedRevealPercent(mint321);
+L559:          FText mFText = KismetTextLibrary->AsPercent_Float(mfloat2, 0, false, true, 1, 324, 0, 0);
+L642:          bool mbool2 = this->mRadarTower->HasPower();
+L688:          bool Temp_bool_Variable1 = mbool2;
+L707:          this->mPercentScanned->SetText(switch (Temp_bool_Variable) {
+case false -> switch (Temp_bool_Variable1) {
+case false -> Temp_text_Variable1;
+case true -> mFText;
+default -> mFText2;
+};
+case true -> Temp_text_Variable;
+default -> mFText1;
+});
+============ END FUNCTION InitScannedPercent ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_RadarTower(1273);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRadiusChanged ==============
+L0:            this->ExecuteUbergraph_Widget_RadarTower(2364);
+============ END FUNCTION OnRadiusChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateScanTimer ==============
+L0:            this->ExecuteUbergraph_Widget_RadarTower(2392);
+============ END FUNCTION UpdateScanTimer ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_RadarTower(2520);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mTowerName_K2Node_ComponentBoundEvent_0_OnEditableTextCommittedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Buildable/Factory/RadarTower/UI/Widget_RadarTower.Widget_RadarTower_C:ExecuteUbergraph_Widget_RadarTower.K2Node_ComponentBoundEvent_Text) = text;
+L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Buildable/Factory/RadarTower/UI/Widget_RadarTower.Widget_RadarTower_C:ExecuteUbergraph_Widget_RadarTower.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
+L36:           this->ExecuteUbergraph_Widget_RadarTower(2577);
+============ END FUNCTION BndEvt__mTowerName_K2Node_ComponentBoundEvent_0_OnEditableTextCommittedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION LerpScannedAreaEvent ==============
+L0:            this->ExecuteUbergraph_Widget_RadarTower(3435);
+============ END FUNCTION LerpScannedAreaEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mRadarTower_K2Node_ComponentBoundEvent_2_BuildingStateChanged__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/RadarTower/UI/Widget_RadarTower.Widget_RadarTower_C:ExecuteUbergraph_Widget_RadarTower.K2Node_ComponentBoundEvent_state) = State;
+L18:           this->ExecuteUbergraph_Widget_RadarTower(4707);
+============ END FUNCTION BndEvt__mRadarTower_K2Node_ComponentBoundEvent_2_BuildingStateChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_3_OnStandbyClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_RadarTower(4712);
+============ END FUNCTION BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_3_OnStandbyClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnProductionChanged ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/RadarTower/UI/Widget_RadarTower.Widget_RadarTower_C:ExecuteUbergraph_Widget_RadarTower.K2Node_CustomEvent_HasChanged) = HasChanged;
+L18:           this->ExecuteUbergraph_Widget_RadarTower(4727);
+============ END FUNCTION OnProductionChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_RadarTower ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpHandle);
+L57:           goto ExecutionFlow.Pop();
+L58:           ExecutionFlow.Push(L570);
+L63:           Widget* mWidget = this->mScanlineContainer->GetChildAt(Temp_int_Variable);
+L114:          Widget_RadarTower_ScanLine* mWidget_RadarTower_ScanLine = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/RadarTower/UI/Widget_RadarTower_ScanLine.Widget_RadarTower_ScanLine_C>(mWidget);
+L150:          bool mbool = mWidget_RadarTower_ScanLine;
+L179:          if (!mbool) goto ExecutionFlow.Pop();
+L189:          LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L241:          LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 1);
+L293:          int32 mint32 = this->mRadarTower->GetCurrentExpansionStep();
+L343:          bool mbool1 = this->mRadarTower->HasPower();
+L389:          bool mbool2 = Less_IntInt(Temp_int_Variable, mint32);
+L427:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L465:          bool Temp_bool_Variable = mbool3;
+L484:          mWidget_RadarTower_ScanLine->SetColorAndOpacity(switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mLinearColor;
+});
+L569:          goto ExecutionFlow.Pop();
+L570:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L612:          int32 Temp_int_Variable = mint321;
+L639:          int32 mint322 = this->mScanlineContainer->GetChildrenCount();
+L689:          bool mbool4 = LessEqual_IntInt(Temp_int_Variable, mint322);
+L727:          if (!mbool4) goto L746;
+L741:          goto L58;
+L746:          bool mbool5 = this->mRadarTower->HasPower();
+L792:          if (!mbool5) goto L1024;
+L806:          int32 mint323 = this->mRadarTower->GetCurrentExpansionStep();
+L856:          bool mbool6 = NotEqual_IntInt(mint323, this->CachedExpansionStep);
+L894:          if (!mbool6) goto ExecutionFlow.Pop();
+L904:          mFScriptDelegate->BindUFunction(this, LerpScannedAreaEvent);
+L927:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mLerpUpdateTime, true);
+L996:          this->mLerpHandle = mTimerHandle;
+L1023:         goto ExecutionFlow.Pop();
+L1024:         this->mTimeUntilNextScan->SetText("[object Object]");
+L1108:         goto ExecutionFlow.Pop();
+L1109:         bool mbool7 = this->mRadarTower->HasPower();
+L1155:         if (!mbool7) goto L1184;
+L1169:         if (!Temp_bool_Variable1) goto L1236;
+L1183:         goto ExecutionFlow.Pop();
+L1184:         bool Temp_bool_Variable1 = false;
+L1195:         if (!Temp_bool_Variable2) goto L1210;
+L1209:         goto ExecutionFlow.Pop();
+L1210:         bool Temp_bool_Variable2 = true;
+L1221:         this->OnRadiusChanged();
+L1235:         goto ExecutionFlow.Pop();
+L1236:         Temp_bool_Variable1 = true;
+L1247:         Temp_bool_Variable2 = false;
+L1258:         this->OnRadiusChanged();
+L1272:         goto ExecutionFlow.Pop();
+L1273:         this->Construct();
+L1283:         FGBuildableRadarTower* mFGBuildableRadarTower = Cast<Class /Script/FactoryGame.FGBuildableRadarTower>(this->mInteractObject);
+L1319:         bool mbool8 = mFGBuildableRadarTower;
+L1348:         if (!mbool8) goto ExecutionFlow.Pop();
+L1358:         this->mRadarTower = mFGBuildableRadarTower;
+L1377:         int32 mint324 = this->mRadarTower->GetCurrentExpansionStep();
+L1427:         this->CachedExpansionStep = mint324;
+L1454:         this->UpdateTitle();
+L1470:         mFScriptDelegate1->BindUFunction(this, OnEscapePressed);
+L1493:         this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate1);
+L1534:         mFScriptDelegate2->BindUFunction(this, OnRadiusChanged);
+L1557:         this->mRadarTower->OnRadarTowerRadiusUpdated.AddUnique(mFScriptDelegate2);
+L1598:         mFScriptDelegate3->BindUFunction(this, UpdateStandByButton);
+L1621:         this->mRadarTower->mOnHasProductionChanged.AddUnique(mFScriptDelegate3);
+L1662:         MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mScannedArea->GetDynamicMaterial();
+L1704:         this->mScannedAreaMaterial = mMaterialInstanceDynamic;
+L1723:         BreakVector2D(this->mScannedArea->Brush.ImageSize, [ref] mfloat, [ref] mfloat1);
+L1791:         this->mScannedAreaMaterial->SetScalarParameterValue("MaxSize", mfloat);
+L1845:         MaterialInstanceDynamic* mMaterialInstanceDynamic1 = this->mMovingScanLine->GetDynamicMaterial();
+L1887:         BreakVector2D(this->mMovingScanLine->Brush.ImageSize, [ref] mfloat2, [ref] mfloat3);
+L1955:         mMaterialInstanceDynamic1->SetScalarParameterValue("MaxSize", mfloat2);
+L2009:         this->UpdateScanTimer();
+L2023:         mFScriptDelegate4->BindUFunction(this, UpdateScanTimer);
+L2046:         TimerHandle mTimerHandle1 = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate4, 0.30000001192092896, true);
+L2111:         this->mScanTimer = mTimerHandle1;
+L2138:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ScanCircle, 0, 0, 0, 1);
+L2184:         this->InitScanLines();
+L2198:         this->InitScannedPercent();
+L2212:         bool mbool9 = this->mRadarTower->IsProductionPaused();
+L2254:         this->Widget_StandbyButton->SetStandbyButtonBrush(mbool9);
+L2299:         mFScriptDelegate5->BindUFunction(this, OnProductionChanged);
+L2322:         this->mRadarTower->mOnHasProductionChanged.AddUnique(mFScriptDelegate5);
+L2363:         goto ExecutionFlow.Pop();
+L2364:         Temp_int_Variable = 0;
+L2387:         goto L639;
+L2392:         float mfloat4 = this->mRadarTower->GetTimeToNextExpansion();
+L2442:         this->SecondsToMinutesAndSecondsText(mfloat4, [ref] mFText);
+L2474:         this->mTimeUntilNextScan->SetText(mFText);
+L2519:         goto ExecutionFlow.Pop();
+L2520:         this->Destruct();
+L2530:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mScanTimer);
+L2572:         goto L15;
+L2577:         bool mbool10 = NotEqual_ByteByte(muint8, 0);
+L2608:         if (!mbool10) goto L3234;
+L2622:         mbool10 = NotEqual_ByteByte(muint8, 1);
+L2653:         if (!mbool10) goto L2713;
+L2667:         mbool10 = NotEqual_ByteByte(muint8, 2);
+L2698:         if (!mbool10) goto L3234;
+L2712:         goto ExecutionFlow.Pop();
+L2713:         TScriptInterface<FGActorRepresentationInterface> mTScriptInterface<FGActorRepresentationInterface> = QueryInterface<Class /Script/FactoryGame.FGActorRepresentationInterface>(this->mRadarTower);
+L2749:         bool mbool11 = mTScriptInterface<FGActorRepresentationInterface>;
+L2778:         if (!mbool11) goto L3209;
+L2792:         mFormatArgumentData.ArgumentName = "Name";
+L2825:         mFormatArgumentData.ArgumentValueType = 4;
+L2854:         mFormatArgumentData.ArgumentValue = mconst FText;
+L2890:         mFormatArgumentData.ArgumentValueInt = 0;
+L2922:         mFormatArgumentData.ArgumentValueFloat = 0;
+L2954:         mFormatArgumentData.ArgumentValueGender = 0;
+L2983:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L3003:         FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L3121:         FText mFText2 = GetInterfaceUObject(mTScriptInterface<FGActorRepresentationInterface>)->SetActorRepresentationText([ref] mFText1);
+L3185:         this->UpdateTitle(mconst FText);
+L3208:         goto ExecutionFlow.Pop();
+L3209:         mFText2 = ;
+L3229:         goto L3185;
+L3234:         TScriptInterface<FGActorRepresentationInterface> mTScriptInterface<FGActorRepresentationInterface>1 = QueryInterface<Class /Script/FactoryGame.FGActorRepresentationInterface>(this->mRadarTower);
+L3270:         bool mbool12 = mTScriptInterface<FGActorRepresentationInterface>1;
+L3299:         if (!mbool12) goto L3410;
+L3313:         FText mFText3 = GetInterfaceUObject(mTScriptInterface<FGActorRepresentationInterface>1)->GetActorRepresentationText();
+L3368:         this->mTowerName->SetText(mFText3);
+L3409:         goto ExecutionFlow.Pop();
+L3410:         mFText3 = ;
+L3430:         goto L3368;
+L3435:         float mfloat5 = Add_FloatFloat(this->mScannedAreaLerpT, this->mLerpUpdateTime);
+L3481:         float mfloat6 = FClamp(mfloat5, 0, 1);
+L3528:         this->mScannedAreaLerpT = mfloat6;
+L3555:         int32 mint325 = this->mRadarTower->GetCurrentExpansionStep();
+L3605:         float mfloat7 = this->RevealStepToNormalizedRevealPercent(mint325);
+L3646:         float mfloat8 = this->RevealStepToNormalizedRevealPercent(this->CachedExpansionStep);
+L3687:         float mfloat9 = Ease(mfloat8, mfloat7, this->mScannedAreaLerpT, 7, 2, 2);
+L3754:         this->mScannedAreaMaterial->SetScalarParameterValue("NormalizedRadius", mfloat9);
+L3808:         mint325 = this->mRadarTower->GetCurrentExpansionStep();
+L3858:         mfloat7 = this->RevealStepToNormalizedRevealPercent(mint325);
+L3899:         mfloat8 = this->RevealStepToNormalizedRevealPercent(this->CachedExpansionStep);
+L3940:         mfloat9 = Ease(mfloat8, mfloat7, this->mScannedAreaLerpT, 7, 2, 2);
+L4007:         FText mFText4 = KismetTextLibrary->AsPercent_Float(mfloat9, 0, false, true, 1, 324, 0, 0);
+L4090:         this->mPercentScanned->SetText(mFText4);
+L4135:         int32 mint326 = this->mRadarTower->GetCurrentExpansionStep();
+L4185:         Widget* mWidget1 = this->mScanlineContainer->GetChildAt(mint326);
+L4236:         Widget_RadarTower_ScanLine* mWidget_RadarTower_ScanLine1 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/RadarTower/UI/Widget_RadarTower_ScanLine.Widget_RadarTower_ScanLine_C>(mWidget1);
+L4272:         bool mbool13 = mWidget_RadarTower_ScanLine1;
+L4301:         if (!mbool13) goto L4520;
+L4315:         float mfloat10 = Ease(0, 1, this->mScannedAreaLerpT, 5, 2, 2);
+L4374:         LinearColor mLinearColor1 = LinearColorLerp(ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), mfloat10);
+L4479:         mWidget_RadarTower_ScanLine1->SetColorAndOpacity(mLinearColor1);
+L4520:         bool mbool14 = GreaterEqual_FloatFloat(this->mScannedAreaLerpT, 1);
+L4554:         if (!mbool14) goto ExecutionFlow.Pop();
+L4564:         int32 mint327 = this->mRadarTower->GetCurrentExpansionStep();
+L4614:         this->CachedExpansionStep = mint327;
+L4641:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpHandle);
+L4683:         this->mScannedAreaLerpT = 0;
+L4706:         goto ExecutionFlow.Pop();
+L4707:         goto L1109;
+L4712:         this->ToggleStandby();
+L4726:         goto ExecutionFlow.Pop();
+L4727:         this->InitScannedPercent();
+L4741:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_RadarTower ==============

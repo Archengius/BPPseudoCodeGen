@@ -1,0 +1,181 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GatherBackgrounds ==============
+L0:            TArray<Widget_SubMenuBackground*> mTArray<Widget_SubMenuBackground> = [];
+L11:           WidgetBlueprintLibrary->GetAllWidgetsOfClass(this, [ref] mTArray<Widget_SubMenuBackground>, Widget_SubMenuBackground, false);
+L63:           this->mSubmenusToAnimate = mTArray<Widget_SubMenuBackground>;
+============ END FUNCTION GatherBackgrounds ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayBackgroundEnterAnimation ==============
+L0:            ExecutionFlow.Push(L549);
+L5:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mSubmenusToAnimate);
+L64:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L106:          int32 Temp_int_Loop_Counter_Variable = mint321;
+L133:          mint32 = KismetArrayLibrary->Array_Length([ref] this->mSubmenusToAnimate);
+L192:          mint321 = Subtract_IntInt(mint32, 1);
+L234:          int32 mint322 = Max(0, mint321);
+L276:          int32 Temp_int_Array_Index_Variable = mint322;
+L303:          bool mbool = GreaterEqual_IntInt(Temp_int_Loop_Counter_Variable, 0);
+L337:          if (!mbool) goto ExecutionFlow.Pop();
+L347:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L374:          ExecutionFlow.Push(L475);
+L379:          KismetArrayLibrary->Array_Get([ref] this->mSubmenusToAnimate, Temp_int_Array_Index_Variable, [ref] mWidget_SubMenuBackground);
+L438:          mWidget_SubMenuBackground->PlayBackgroundSpawnAnim();
+L474:          goto ExecutionFlow.Pop();
+L475:          int32 mint323 = Subtract_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L517:          Temp_int_Loop_Counter_Variable = mint323;
+L544:          goto L303;
+============ END FUNCTION PlayBackgroundEnterAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayEnterAnimation ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mOnEnterAnimation);
+L51:           if (!mbool) goto L176;
+L65:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->mOnEnterAnimation, 0, 1, 0, 1);
+L111:          this->ShouldAnimateBackground(prevMenu, [ref] mbool1);
+L143:          if (!mbool1) goto L210;
+L157:          this->PlayBackgroundEnterAnimation();
+L171:          <End of Inlined Event Graph Function>;
+L176:          if (!this->mNeedCustomEnterDone) goto L195;
+L190:          goto L111;
+L195:          this->OnMenuEnterDone();
+L205:          goto L111;
+============ END FUNCTION PlayEnterAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShouldAnimateBackground ==============
+L0:            BP_MenuBase* mBP_MenuBase = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C>(prevMenu);
+L36:           bool mbool = mBP_MenuBase;
+L65:           if (!mbool) goto L131;
+L79:           if (!mBP_MenuBase->UsesSubmenuBackground) goto L131;
+L115:          bool Animate = false;
+L126:          <End of Inlined Event Graph Function>;
+L131:          Animate = true;
+============ END FUNCTION ShouldAnimateBackground ==============
+
+
+
+
+
+============ BEGIN FUNCTION RestoreFocusOnPopupClosed ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           this->mFocusWidget->SetUserFocus(mPlayerController);
+============ END FUNCTION RestoreFocusOnPopupClosed ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyDown ==============
+L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Escape"));
+L137:          bool mbool1 = BooleanAND(mbool, this->mHandleEscape);
+L175:          if (!mbool1) goto L285;
+L189:          this->OnEscape();
+L203:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L253:          EventReply ReturnValue = mEventReply;
+L280:          goto L362;
+L285:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L335:          ReturnValue = mEventReply1;
+============ END FUNCTION OnKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEscape ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mOwningMenu);
+L51:           if (!mbool) goto L101;
+L65:           this->mOwningMenu->OnEscape();
+============ END FUNCTION OnEscape ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_BP_MenuBase(29);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BP_MenuBase(59);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnAnim ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C:ExecuteUbergraph_BP_MenuBase.K2Node_CustomEvent_PlayBackgroundAnim) = PlayBackgroundAnim;
+L18:           this->ExecuteUbergraph_BP_MenuBase(64);
+============ END FUNCTION SpawnAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMenuEnter ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C:ExecuteUbergraph_BP_MenuBase.K2Node_Event_prevMenu1) = prevMenu;
+L18:           this->ExecuteUbergraph_BP_MenuBase(69);
+============ END FUNCTION OnMenuEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnAnimationFinished ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C:ExecuteUbergraph_BP_MenuBase.K2Node_Event_Animation) = Animation;
+L18:           this->ExecuteUbergraph_BP_MenuBase(97);
+============ END FUNCTION OnAnimationFinished ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMenuExit ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C:ExecuteUbergraph_BP_MenuBase.K2Node_Event_prevMenu) = prevMenu;
+L18:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C:ExecuteUbergraph_BP_MenuBase.K2Node_Event_noAnimation) = noAnimation;
+L36:           this->ExecuteUbergraph_BP_MenuBase(164);
+============ END FUNCTION OnMenuExit ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_MenuBase ==============
+L10:           this->GatherBackgrounds();
+L24:           <End of Inlined Event Graph Function>;
+L29:           this->Destruct();
+L39:           <End of Inlined Event Graph Function>;
+L44:           this->Construct();
+L54:           goto L10;
+L59:           goto L44;
+L64:           <End of Inlined Event Graph Function>;
+L69:           this->PlayEnterAnimation(mWidget);
+L92:           <End of Inlined Event Graph Function>;
+L97:           bool mbool = EqualEqual_ObjectObject(mconst WidgetAnimation, this->mOnEnterAnimation);
+L135:          if (!mbool) goto L174;
+L149:          this->OnMenuEnterDone();
+L159:          <End of Inlined Event Graph Function>;
+L164:          this->OnMenuExitDone();
+============ END FUNCTION ExecuteUbergraph_BP_MenuBase ==============

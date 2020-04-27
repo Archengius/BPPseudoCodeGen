@@ -1,0 +1,129 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/StorageTank/Widget_PipeStorageTank.Widget_PipeStorageTank_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetContentText ==============
+L0:            float mfloat = this->mPipeResorvoir->GetFluidContent();
+L50:           float mfloat1 = this->mPipeResorvoir->GetFluidContentMax();
+L100:          int32 mint32 = Round(mfloat);
+L137:          int32 mint321 = Round(mfloat1);
+L174:          FString mFString = KismetStringLibrary->Conv_IntToString(mint32);
+L233:          FString mFString1 = KismetStringLibrary->Conv_IntToString(mint321);
+L292:          FString mFString2 = KismetStringLibrary->Concat_StrStr(mFString, "/");
+L354:          FString mFString3 = KismetStringLibrary->Concat_StrStr(mFString2, mFString1);
+L422:          FString mFString4 = KismetStringLibrary->Concat_StrStr(mFString3, " m³");
+L490:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString4);
+L549:          FText ReturnValue = mFText;
+============ END FUNCTION GetContentText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTypeText ==============
+L0:            TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->mPipeResorvoir->GetFluidDescriptor();
+L42:           bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGItemDescriptor>);
+L93:           if (!mbool) goto L240;
+L107:          mTSubclassOf<FGItemDescriptor> = this->mPipeResorvoir->GetFluidDescriptor();
+L149:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGItemDescriptor>);
+L208:          FText ReturnValue = mFText;
+L235:          goto L299;
+L240:          ReturnValue = "[object Object]";
+============ END FUNCTION GetTypeText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_PipeStorageTank(788);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PipeStorageTank(960);
+============ END FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Tick ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/StorageTank/Widget_PipeStorageTank.Widget_PipeStorageTank_C:ExecuteUbergraph_Widget_PipeStorageTank.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/StorageTank/Widget_PipeStorageTank.Widget_PipeStorageTank_C:ExecuteUbergraph_Widget_PipeStorageTank.K2Node_Event_InDeltaTime) = InDeltaTime;
+L36:           this->ExecuteUbergraph_Widget_PipeStorageTank(975);
+============ END FUNCTION Tick ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_PipeStorageTank(1307);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__BPW_PipeModule_K2Node_ComponentBoundEvent_1_OnFlush__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/StorageTank/Widget_PipeStorageTank.Widget_PipeStorageTank_C:ExecuteUbergraph_Widget_PipeStorageTank.K2Node_ComponentBoundEvent_FlushNetwork) = FlushNetwork;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/StorageTank/Widget_PipeStorageTank.Widget_PipeStorageTank_C:ExecuteUbergraph_Widget_PipeStorageTank.K2Node_ComponentBoundEvent_DrainDuration) = DrainDuration;
+L36:           this->ExecuteUbergraph_Widget_PipeStorageTank(1312);
+============ END FUNCTION BndEvt__BPW_PipeModule_K2Node_ComponentBoundEvent_1_OnFlush__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PipeStorageTank ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool mbool = KismetSystemLibrary->IsValid(this->mPipeResorvoir);
+L66:           if (!mbool) goto L168;
+L80:           TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->mPipeResorvoir->GetFluidDescriptor();
+L122:          this->BPW_PipeModule->SetFluidType(mTSubclassOf<FGItemDescriptor>);
+L167:          goto ExecutionFlow.Pop();
+L168:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1559627994, ExecutionFunction = "ExecuteUbergraph_Widget_PipeStorageTank", CallbackTarget = this));
+L244:          goto ExecutionFlow.Pop();
+L245:          KismetSystemLibrary->PrintString(this, "Error: Failed to get remote call object", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), 2);
+L360:          goto ExecutionFlow.Pop();
+L361:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L385:          BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
+L421:          bool mbool1 = mBP_PlayerController;
+L450:          if (!mbool1) goto L245;
+L464:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L515:          bool mbool2 = KismetSystemLibrary->IsValid(mBP_RemoteCallObject);
+L566:          if (!mbool2) goto L245;
+L580:          if (!mbool3) goto L691;
+L594:          mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L645:          mBP_RemoteCallObject->Server_FlushPipeNetwork(this->mPipeResorvoir);
+L690:          goto ExecutionFlow.Pop();
+L691:          mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L742:          mBP_RemoteCallObject->Server_FlushIntegrant(this->mPipeResorvoir);
+L787:          goto ExecutionFlow.Pop();
+L788:          this->Init();
+L798:          FGBuildablePipeReservoir* mFGBuildablePipeReservoir = Cast<Class /Script/FactoryGame.FGBuildablePipeReservoir>(this->mInteractObject);
+L834:          bool mbool4 = mFGBuildablePipeReservoir;
+L863:          if (!mbool4) goto ExecutionFlow.Pop();
+L873:          this->mPipeResorvoir = mFGBuildablePipeReservoir;
+L892:          this->Widget_Window_DarkMode->SetTitle(this->mPipeResorvoir->mDisplayName);
+L959:          goto ExecutionFlow.Pop();
+L960:          this->OnEscapePressed();
+L974:          goto ExecutionFlow.Pop();
+L975:          float mfloat = this->mPipeResorvoir->GetFlowLimit();
+L1025:         float mfloat1 = this->mPipeResorvoir->GetFlowFill();
+L1075:         float mfloat2 = this->mPipeResorvoir->GetFlowDrain();
+L1125:         float mfloat3 = this->mPipeResorvoir->GetFluidContentMax();
+L1175:         float mfloat4 = this->mPipeResorvoir->GetFluidContent();
+L1225:         this->BPW_PipeModule->UpdateValues(mfloat4, mfloat3, mfloat1, mfloat2, mfloat);
+L1306:         goto ExecutionFlow.Pop();
+L1307:         goto L15;
+L1312:         goto L361;
+============ END FUNCTION ExecuteUbergraph_Widget_PipeStorageTank ==============

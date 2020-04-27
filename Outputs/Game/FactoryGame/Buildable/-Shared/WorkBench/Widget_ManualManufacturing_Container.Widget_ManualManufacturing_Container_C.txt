@@ -1,0 +1,134 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_ManualManufacturing_Container.Widget_ManualManufacturing_Container_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnPreviewKeyDown ==============
+L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "SpaceBar"));
+L137:          if (!mbool) goto L187;
+L151:          this->mManufacturingWidget->SpaceBarOverride();
+L187:          EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L237:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnPreviewKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetWindowAlignment ==============
+L0:            this->SetDesiredHorizontalAlignment(2);
+L12:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L36:           HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
+L91:           TScriptInterface<BPI_GameUI> mTScriptInterface<BPI_GameUI> = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Interface/UI/BPI_GameUI.BPI_GameUI_C>(mFGGameUI);
+L127:          bool mbool = mTScriptInterface<BPI_GameUI>;
+L156:          if (!mbool) goto L333;
+L170:          GetInterfaceUObject(mTScriptInterface<BPI_GameUI>)->GetShoppingList([ref] mWidget_ShoppingList);
+L216:          bool mbool1 = mWidget_ShoppingList->mShoppingListIngredientContainer->HasAnyChildren();
+L280:          if (!mbool1) goto L349;
+L294:          this->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = -128, Y = 0));
+L328:          <End of Inlined Event Graph Function>;
+L333:          Widget_ShoppingList* mWidget_ShoppingList = nullptr;
+L344:          goto L216;
+L349:          this->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0));
+============ END FUNCTION SetWindowAlignment ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateHeaderText ==============
+L0:            FGBuildable* mFGBuildable = Cast<Class /Script/FactoryGame.FGBuildable>(this->mInteractObject);
+L36:           bool mbool = mFGBuildable;
+L65:           if (!mbool) goto L146;
+L79:           this->Widget_Window_DarkMode->SetTitle(mFGBuildable->mDisplayName);
+============ END FUNCTION UpdateHeaderText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Cleanup ==============
+L0:            this->mManufacturingWidget->Cleanup();
+L36:           this->Widget_Window_DarkMode->OnClose->Clear();
+============ END FUNCTION Cleanup ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_ManualManufacturing_Container(244);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_ManualManufacturing_Container(269);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ManualManufacturing_Container(431);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION LoopSmoke ==============
+L0:            this->ExecuteUbergraph_Widget_ManualManufacturing_Container(567);
+============ END FUNCTION LoopSmoke ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mManufacturingWidget_K2Node_ComponentBoundEvent_0_OnRelevantClassesUpdated__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ArrayProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_ManualManufacturing_Container.Widget_ManualManufacturing_Container_C:ExecuteUbergraph_Widget_ManualManufacturing_Container.K2Node_ComponentBoundEvent_RelevantClasses) = relevantClasses;
+L18:           this->ExecuteUbergraph_Widget_ManualManufacturing_Container(583);
+============ END FUNCTION BndEvt__mManufacturingWidget_K2Node_ComponentBoundEvent_0_OnRelevantClassesUpdated__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ManualManufacturing_Container ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L157);
+L20:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L44:           Widget_Smoke* mWidget_Smoke = WidgetBlueprintLibrary->Create(this, Widget_Smoke, mPlayerController);
+L105:          OverlaySlot* mOverlaySlot = this->SmokeContainer->AddChildToOverlay(mWidget_Smoke);
+L156:          goto ExecutionFlow.Pop();
+L157:          if (!this->mLoopingSmoke) goto ExecutionFlow.Pop();
+L167:          KismetSystemLibrary->Delay(this, 1.5, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1535993134, ExecutionFunction = "ExecuteUbergraph_Widget_ManualManufacturing_Container", CallbackTarget = this));
+L243:          goto ExecutionFlow.Pop();
+L244:          this->Destruct();
+L254:          this->Cleanup();
+L268:          goto ExecutionFlow.Pop();
+L269:          this->Init();
+L279:          this->mManufacturingWidget->mInteractObject = this->mInteractObject;
+L320:          this->mManufacturingWidget->Init();
+L356:          bool mbool = KismetSystemLibrary->IsValid(this->mManufacturingWidget);
+L407:          this->SetInventoryVisibility(mbool);
+L430:          goto ExecutionFlow.Pop();
+L431:          this->Construct();
+L441:          this->UpdateHeaderText();
+L455:          mFScriptDelegate->BindUFunction(this, OnEscapePressed);
+L478:          this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate);
+L519:          this->mManufacturingWidget->Manufacturing Container = this;
+L552:          this->SetWindowAlignment();
+L566:          goto ExecutionFlow.Pop();
+L567:          this->mLoopingSmoke = true;
+L578:          goto L157;
+L583:          this->Widget_Window_DarkMode->SetupRelevantInventory([ref] mTArray<TSubclassOf<FGItemDescriptor>>);
+L628:          goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_ManualManufacturing_Container ==============

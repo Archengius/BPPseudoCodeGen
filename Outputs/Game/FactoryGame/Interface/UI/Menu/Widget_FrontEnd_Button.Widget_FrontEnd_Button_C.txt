@@ -1,0 +1,337 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_FrontEnd_Button.Widget_FrontEnd_Button_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetTitle ==============
+L0:            this->mDisplayName = mDisplayName;
+L27:           this->Title->SetText(this->mDisplayName);
+============ END FUNCTION SetTitle ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActiveWidgetInSwitcher ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mTargetWidget);
+L51:           if (!mbool) goto L306;
+L65:           bool mbool1 = KismetSystemLibrary->IsValid(this->mSwitcherWidget);
+L116:          if (!mbool1) goto L306;
+L130:          Widget* Temp_object_Variable = nullptr;
+L141:          bool Temp_bool_Variable = this->isSelected;
+L160:          this->mSwitcherWidget->SetActiveWidget(switch (Temp_bool_Variable) {
+case false -> this->mTargetWidget;
+case true -> Temp_object_Variable;
+default -> mWidget;
+});
+L249:          bool mbool2 = Not_PreBool(this->isSelected);
+L278:          this->SetSelected(mbool2);
+L301:          <End of Inlined Event Graph Function>;
+============ END FUNCTION SetActiveWidgetInSwitcher ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearListOfSelections ==============
+L0:            ExecutionFlow.Push(L618);
+L5:            bool mbool = KismetSystemLibrary->IsValid(this->mParentList);
+L56:           if (!mbool) goto L419;
+L70:           PanelWidget* LocalParent = this->mParentList;
+L89:           int32 Temp_int_Variable = 0;
+L112:          int32 mint32 = LocalParent->GetChildrenCount();
+L162:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint32);
+L200:          if (!mbool1) goto ExecutionFlow.Pop();
+L210:          ExecutionFlow.Push(L544);
+L215:          Widget* mWidget = LocalParent->GetChildAt(Temp_int_Variable);
+L266:          Widget_FrontEnd_Button* mWidget_FrontEnd_Button = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_FrontEnd_Button.Widget_FrontEnd_Button_C>(mWidget);
+L302:          bool mbool2 = mWidget_FrontEnd_Button;
+L331:          if (!mbool2) goto ExecutionFlow.Pop();
+L341:          bool mbool3 = NotEqual_ObjectObject(mWidget_FrontEnd_Button, this);
+L371:          if (!mbool3) goto ExecutionFlow.Pop();
+L381:          mWidget_FrontEnd_Button->SetSelected(false);
+L418:          goto ExecutionFlow.Pop();
+L419:          PanelWidget* mPanelWidget = this->GetParent();
+L439:          bool mbool4 = KismetSystemLibrary->IsValid(mPanelWidget);
+L490:          if (!mbool4) goto ExecutionFlow.Pop();
+L500:          mPanelWidget = this->GetParent();
+L520:          LocalParent = mPanelWidget;
+L539:          goto L89;
+L544:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L586:          Temp_int_Variable = mint321;
+L613:          goto L112;
+============ END FUNCTION ClearListOfSelections ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonTextColor ==============
+L0:            bool mbool = this->mFrontEndButton->IsHovered();
+L46:           bool mbool1 = BooleanOR(mbool, this->IsFocused);
+L84:           if (!mbool1) goto L185;
+L98:           HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L153:          SlateColor ReturnValue = mSlateColor;
+L180:          goto L267;
+L185:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L240:          ReturnValue = mSlateColor1;
+============ END FUNCTION GetButtonTextColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonColor ==============
+L0:            bool mbool = this->mFrontEndButton->IsHovered();
+L46:           bool mbool1 = BooleanOR(mbool, this->IsFocused);
+L84:           if (!mbool1) goto L155;
+L98:           LinearColor ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.7835379838943481, G = 0.2917709946632385, B = 0.057805001735687256, A = 1);
+L150:          goto L381;
+L155:          if (!this->isSelected) goto L226;
+L169:          ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.13286800682544708, G = 0.13286800682544708, B = 0.13563300669193268, A = 1);
+L221:          goto L381;
+L226:          mLinearColor.R = 0;
+L258:          mLinearColor.G = 0;
+L290:          mLinearColor.B = 0;
+L322:          mLinearColor.A = 0;
+L354:          ReturnValue = mLinearColor;
+============ END FUNCTION GetButtonColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetFocused ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           this->mFrontEndButton->SetUserFocus(mPlayerController);
+L65:           this->mFrontEndButton->SetKeyboardFocus();
+L97:           this->IsFocused = true;
+============ END FUNCTION SetFocused ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFocusReceived ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           this->mFrontEndButton->SetUserFocus(mPlayerController);
+L65:           EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L115:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnFocusReceived ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowButton ==============
+L0:            this->mFrontEndButton->SetVisibility(0);
+============ END FUNCTION ShowButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION HideButton ==============
+L0:            this->mFrontEndButton->SetVisibility(1);
+============ END FUNCTION HideButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetButtonText ==============
+L0:            FText ReturnValue = this->mDisplayName;
+============ END FUNCTION GetButtonText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_FrontEnd_Button(2524);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_FrontEnd_Button(2529);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_FrontEnd_Button(2534);
+============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__PauseMenuButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_FrontEnd_Button(2567);
+============ END FUNCTION BndEvt__PauseMenuButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_FrontEnd_Button.Widget_FrontEnd_Button_C:ExecuteUbergraph_Widget_FrontEnd_Button.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_FrontEnd_Button(2676);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSelected ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_FrontEnd_Button.Widget_FrontEnd_Button_C:ExecuteUbergraph_Widget_FrontEnd_Button.K2Node_CustomEvent_IsSelected) = isSelected;
+L18:           this->ExecuteUbergraph_Widget_FrontEnd_Button(4472);
+============ END FUNCTION SetSelected ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mFrontEndButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_FrontEnd_Button(4496);
+============ END FUNCTION BndEvt__mFrontEndButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_FrontEnd_Button ==============
+L10:           this->OnUnhovered->ProcessMulticastDelegate();
+L29:           <End of Inlined Event Graph Function>;
+L34:           if (!this->isSelected) goto L1176;
+L48:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L103:          mSlateBrush.ImageSize = this->mFrontEndButton->WidgetStyle.Normal.ImageSize;
+L179:          mSlateBrush.Margin = this->mFrontEndButton->WidgetStyle.Normal.Margin;
+L255:          mSlateBrush.TintColor = mSlateColor;
+L291:          mSlateBrush.ResourceObject = this->mFrontEndButton->WidgetStyle.Normal.ResourceObject;
+L359:          mSlateBrush.DrawAs = this->mFrontEndButton->WidgetStyle.Normal.DrawAs;
+L435:          mSlateBrush.Tiling = this->mFrontEndButton->WidgetStyle.Normal.Tiling;
+L511:          mSlateBrush.Mirroring = this->mFrontEndButton->WidgetStyle.Normal.Mirroring;
+L587:          mButtonStyle.Normal = mSlateBrush;
+L623:          mButtonStyle.Hovered = this->mFrontEndButton->WidgetStyle.Hovered;
+L690:          mButtonStyle.Pressed = this->mFrontEndButton->WidgetStyle.Pressed;
+L757:          mButtonStyle.Disabled = this->mFrontEndButton->WidgetStyle.Disabled;
+L824:          mButtonStyle.NormalPadding = this->mFrontEndButton->WidgetStyle.NormalPadding;
+L891:          mButtonStyle.PressedPadding = this->mFrontEndButton->WidgetStyle.PressedPadding;
+L958:          mButtonStyle.PressedSlateSound = this->mFrontEndButton->WidgetStyle.PressedSlateSound;
+L1025:         mButtonStyle.HoveredSlateSound = this->mFrontEndButton->WidgetStyle.HoveredSlateSound;
+L1092:         this->mFrontEndButton->SetStyle([ref] mButtonStyle);
+L1133:         this->Pointer->SetVisibility(0);
+L1171:         <End of Inlined Event Graph Function>;
+L1176:         LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L1228:         LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 1);
+L1280:         bool Temp_bool_Variable = this->mUseTransparentBackground;
+L1299:         mSlateColor1.SpecifiedColor = switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mLinearColor1;
+};
+L1379:         mSlateColor1.ColorUseRule = 0;
+L1408:         mSlateBrush1.ImageSize = this->mFrontEndButton->WidgetStyle.Normal.ImageSize;
+L1484:         mSlateBrush1.Margin = this->mFrontEndButton->WidgetStyle.Normal.Margin;
+L1560:         mSlateBrush1.TintColor = mSlateColor1;
+L1596:         mSlateBrush1.ResourceObject = this->mFrontEndButton->WidgetStyle.Normal.ResourceObject;
+L1664:         mSlateBrush1.DrawAs = this->mFrontEndButton->WidgetStyle.Normal.DrawAs;
+L1740:         mSlateBrush1.Tiling = this->mFrontEndButton->WidgetStyle.Normal.Tiling;
+L1816:         mSlateBrush1.Mirroring = this->mFrontEndButton->WidgetStyle.Normal.Mirroring;
+L1892:         mButtonStyle1.Normal = mSlateBrush1;
+L1928:         mButtonStyle1.Hovered = this->mFrontEndButton->WidgetStyle.Hovered;
+L1995:         mButtonStyle1.Pressed = this->mFrontEndButton->WidgetStyle.Pressed;
+L2062:         mButtonStyle1.Disabled = this->mFrontEndButton->WidgetStyle.Disabled;
+L2129:         mButtonStyle1.NormalPadding = this->mFrontEndButton->WidgetStyle.NormalPadding;
+L2196:         mButtonStyle1.PressedPadding = this->mFrontEndButton->WidgetStyle.PressedPadding;
+L2263:         mButtonStyle1.PressedSlateSound = this->mFrontEndButton->WidgetStyle.PressedSlateSound;
+L2330:         mButtonStyle1.HoveredSlateSound = this->mFrontEndButton->WidgetStyle.HoveredSlateSound;
+L2397:         this->mFrontEndButton->SetStyle([ref] mButtonStyle1);
+L2438:         this->Pointer->SetVisibility(1);
+L2476:         <End of Inlined Event Graph Function>;
+L2481:         this->OnClicked->ProcessMulticastDelegate();
+L2500:         <End of Inlined Event Graph Function>;
+L2505:         this->HideButton();
+L2519:         <End of Inlined Event Graph Function>;
+L2524:         <End of Inlined Event Graph Function>;
+L2529:         goto L2505;
+L2534:         this->SetActiveWidgetInSwitcher();
+L2548:         this->ClearListOfSelections();
+L2562:         goto L2481;
+L2567:         this->OnHovered->ProcessMulticastDelegate();
+L2586:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L2610:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_MouseOver, mPlayerController, true);
+L2671:         <End of Inlined Event Graph Function>;
+L2676:         if (!this->IsBigButton) goto L4388;
+L2690:         this->Pointer->SetBrushSize(ScriptStruct /Script/CoreUObject.Vector2D(X = 30, Y = 30));
+L2746:         this->FontSize = 25;
+L2769:         mSlateFontInfo.FontObject = this->Title->Font.FontObject;
+L2828:         mSlateFontInfo.FontMaterial = this->Title->Font.FontMaterial;
+L2887:         mSlateFontInfo.OutlineSettings = this->Title->Font.OutlineSettings;
+L2954:         mSlateFontInfo.TypefaceFontName = this->Title->Font.TypefaceFontName;
+L3021:         mSlateFontInfo.Size = this->FontSize;
+L3057:         this->Title->SetFont(mSlateFontInfo);
+L3098:         this->SetTitle(this->mDisplayName);
+L3121:         LinearColor Temp_struct_Variable2 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0);
+L3173:         LinearColor Temp_struct_Variable3 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.09530699998140335, G = 0.09530699998140335, B = 0.09530699998140335, A = 1);
+L3225:         bool Temp_bool_Variable1 = this->mUseTransparentBackground;
+L3244:         mSlateColor2.SpecifiedColor = switch (Temp_bool_Variable1) {
+case false -> Temp_struct_Variable3;
+case true -> Temp_struct_Variable2;
+default -> mLinearColor2;
+};
+L3324:         mSlateColor2.ColorUseRule = 0;
+L3353:         mSlateBrush2.ImageSize = this->mFrontEndButton->WidgetStyle.Normal.ImageSize;
+L3429:         mSlateBrush2.Margin = this->mFrontEndButton->WidgetStyle.Normal.Margin;
+L3505:         mSlateBrush2.TintColor = mSlateColor2;
+L3541:         mSlateBrush2.ResourceObject = this->mFrontEndButton->WidgetStyle.Normal.ResourceObject;
+L3609:         mSlateBrush2.DrawAs = this->mFrontEndButton->WidgetStyle.Normal.DrawAs;
+L3685:         mSlateBrush2.Tiling = this->mFrontEndButton->WidgetStyle.Normal.Tiling;
+L3761:         mSlateBrush2.Mirroring = this->mFrontEndButton->WidgetStyle.Normal.Mirroring;
+L3837:         mButtonStyle2.Normal = mSlateBrush2;
+L3873:         mButtonStyle2.Hovered = this->mFrontEndButton->WidgetStyle.Hovered;
+L3940:         mButtonStyle2.Pressed = this->mFrontEndButton->WidgetStyle.Pressed;
+L4007:         mButtonStyle2.Disabled = this->mFrontEndButton->WidgetStyle.Disabled;
+L4074:         mButtonStyle2.NormalPadding = this->mFrontEndButton->WidgetStyle.NormalPadding;
+L4141:         mButtonStyle2.PressedPadding = this->mFrontEndButton->WidgetStyle.PressedPadding;
+L4208:         mButtonStyle2.PressedSlateSound = this->mFrontEndButton->WidgetStyle.PressedSlateSound;
+L4275:         mButtonStyle2.HoveredSlateSound = this->mFrontEndButton->WidgetStyle.HoveredSlateSound;
+L4342:         this->mFrontEndButton->SetStyle([ref] mButtonStyle2);
+L4383:         <End of Inlined Event Graph Function>;
+L4388:         this->Pointer->SetBrushSize(ScriptStruct /Script/CoreUObject.Vector2D(X = 20, Y = 20));
+L4444:         this->FontSize = 15;
+L4467:         goto L2769;
+L4472:         this->isSelected = mbool;
+L4491:         goto L34;
+L4496:         goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_FrontEnd_Button ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUnhovered__DelegateSignature ==============
+============ END FUNCTION OnUnhovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHovered__DelegateSignature ==============
+============ END FUNCTION OnHovered__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============

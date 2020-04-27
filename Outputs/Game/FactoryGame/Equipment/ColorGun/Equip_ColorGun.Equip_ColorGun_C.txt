@@ -1,0 +1,171 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/ColorGun/Equip_ColorGun.Equip_ColorGun_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ToggleColorPickerUI ==============
+L0:            this->ExecuteUbergraph_Equip_ColorGun(723);
+============ END FUNCTION ToggleColorPickerUI ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayFireEffect ==============
+L0:            this->ExecuteUbergraph_Equip_ColorGun(807);
+============ END FUNCTION PlayFireEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayReloadEffects ==============
+L0:            this->ExecuteUbergraph_Equip_ColorGun(1853);
+============ END FUNCTION PlayReloadEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_ColorGun(2657);
+============ END FUNCTION WasEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION Event Clear Color Picker UI ==============
+L0:            this->ExecuteUbergraph_Equip_ColorGun(3441);
+============ END FUNCTION Event Clear Color Picker UI ==============
+
+
+
+
+
+============ BEGIN FUNCTION WasUnEquipped ==============
+L0:            this->ExecuteUbergraph_Equip_ColorGun(3541);
+============ END FUNCTION WasUnEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Equip_ColorGun ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool mbool = KismetSystemLibrary->IsValid(this->mColorWidget);
+L66:           if (!mbool) goto ExecutionFlow.Pop();
+L76:           Pawn* mPawn = this->GetInstigator();
+L96:           Controller* mController = mPawn->GetController();
+L138:          BPHUDHelpers->PopStackWidget(mController, this->mColorWidget, this);
+L193:          this->mColorWidget = nullptr;
+L204:          goto ExecutionFlow.Pop();
+L205:          Pawn* mPawn1 = this->GetInstigator();
+L225:          Controller* mController1 = mPawn1->GetController();
+L267:          PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController1);
+L303:          bool mbool1 = mPlayerController;
+L332:          if (!mbool1) goto ExecutionFlow.Pop();
+L342:          Widget_ColorGunUI* mWidget_ColorGunUI = WidgetBlueprintLibrary->Create(this, Widget_ColorGunUI, mPlayerController);
+L403:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ColorGunUI, "mColorGun", this);
+L458:          this->mColorWidget = mWidget_ColorGunUI;
+L477:          BPHUDHelpers->PushStackWidget(mPlayerController, this->mColorWidget, this);
+L532:          goto ExecutionFlow.Pop();
+L533:          bool mbool2 = KismetSystemLibrary->IsValid(this->mColorWidget);
+L584:          if (!mbool2) goto ExecutionFlow.Pop();
+L594:          Pawn* mPawn2 = this->GetInstigator();
+L614:          Controller* mController2 = mPawn2->GetController();
+L656:          BPHUDHelpers->PopStackWidget(mController2, this->mColorWidget, this);
+L711:          this->mColorWidget = nullptr;
+L722:          goto ExecutionFlow.Pop();
+L723:          bool mbool3 = KismetSystemLibrary->IsValid(this->mColorWidget);
+L774:          if (!mbool3) goto L205;
+L788:          this->Event Clear Color Picker UI();
+L802:          goto L205;
+L807:          this->PlayFireEffect();
+L817:          ExecutionFlow.Push(L1501);
+L822:          ExecutionFlow.Push(L935);
+L827:          AnimInstance* mAnimInstance = this->Colorgun_skl->GetAnimInstance();
+L869:          bool mbool4 = mAnimInstance->Montage_IsPlaying(ColorGun_Primary_01_Montage);
+L920:          if (!mbool4) goto L1738;
+L934:          goto ExecutionFlow.Pop();
+L935:          FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
+L955:          SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L997:          AnimInstance* mAnimInstance1 = mSkeletalMeshComponent->GetAnimInstance();
+L1039:         bool mbool5 = mAnimInstance1->Montage_IsPlaying(ColorGun_Primary_01_Montage);
+L1090:         if (!mbool5) goto L1105;
+L1104:         goto ExecutionFlow.Pop();
+L1105:         mFGCharacterPlayer = this->GetInstigatorCharacter();
+L1125:         mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L1167:         mAnimInstance1 = mSkeletalMeshComponent->GetAnimInstance();
+L1209:         float mfloat = mAnimInstance1->Montage_Play(ColorGun_Primary_01_Montage, 1, 0, 0, true);
+L1281:         Pawn* mPawn3 = this->GetInstigator();
+L1301:         Controller* mController3 = mPawn3->GetController();
+L1343:         PlayerController* mPlayerController1 = Cast<Class /Script/Engine.PlayerController>(mController3);
+L1379:         bool mbool6 = mPlayerController1;
+L1408:         if (!mbool6) goto ExecutionFlow.Pop();
+L1418:         mPlayerController1->ClientPlayCameraAnim(ColorGunPrimary_01_CameraAnim, 1, 1, 0, 0.10000000149011612, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L1500:         goto ExecutionFlow.Pop();
+L1501:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(P_Colorgun_coloring_01, this->Colorgun_skl, "muzzleVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1618:         uint8 muint8 = this->GetColorSlotIndex();
+L1646:         LinearColor mLinearColor = this->GetPrimaryColorForSlot(muint8);
+L1683:         mParticleSystemComponent->SetColorParameter("Cd", mLinearColor);
+L1737:         goto ExecutionFlow.Pop();
+L1738:         mAnimInstance = this->Colorgun_skl->GetAnimInstance();
+L1780:         float mfloat1 = mAnimInstance->Montage_Play(ColorGun_Primary_01_Montage, 1, 0, 0, true);
+L1852:         goto ExecutionFlow.Pop();
+L1853:         this->PlayReloadEffects();
+L1863:         ExecutionFlow.Push(L2091);
+L1868:         AnimInstance* mAnimInstance2 = this->Colorgun_skl->GetAnimInstance();
+L1910:         bool mbool7 = mAnimInstance2->Montage_IsPlaying(ColorGun_Reload_01_Montage);
+L1961:         if (!mbool7) goto L1976;
+L1975:         goto ExecutionFlow.Pop();
+L1976:         mAnimInstance2 = this->Colorgun_skl->GetAnimInstance();
+L2018:         float mfloat2 = mAnimInstance2->Montage_Play(ColorGun_Reload_01_Montage, 1, 0, 0, true);
+L2090:         goto ExecutionFlow.Pop();
+L2091:         FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L2111:         SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L2153:         AnimInstance* mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L2195:         bool mbool8 = mAnimInstance3->Montage_IsPlaying(ColorGun_Reload_01_Montage);
+L2246:         if (!mbool8) goto L2261;
+L2260:         goto ExecutionFlow.Pop();
+L2261:         mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L2281:         mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L2323:         mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L2365:         float mfloat3 = mAnimInstance3->Montage_Play(ColorGun_Reload_01_Montage, 1, 0, 0, true);
+L2437:         Pawn* mPawn4 = this->GetInstigator();
+L2457:         Controller* mController4 = mPawn4->GetController();
+L2499:         PlayerController* mPlayerController2 = Cast<Class /Script/Engine.PlayerController>(mController4);
+L2535:         bool mbool9 = mPlayerController2;
+L2564:         if (!mbool9) goto ExecutionFlow.Pop();
+L2574:         mPlayerController2->ClientPlayCameraAnim(ColorGunReload_01_Camera, 1, 1, 0, 0.10000000149011612, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L2656:         goto ExecutionFlow.Pop();
+L2657:         FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L2677:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
+L2719:         AnimInstance* mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L2761:         bool mbool10 = KismetSystemLibrary->IsValid(mAnimInstance4);
+L2812:         if (!mbool10) goto ExecutionFlow.Pop();
+L2822:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L2842:         mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
+L2884:         mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L2926:         bool mbool11 = mAnimInstance4->Montage_IsPlaying(ColorGun_Equip_02_Montage);
+L2977:         if (!mbool11) goto L2992;
+L2991:         goto ExecutionFlow.Pop();
+L2992:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_ColorGun_Equip, this, true);
+L3045:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
+L3065:         mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
+L3107:         mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L3149:         float mfloat4 = mAnimInstance4->Montage_Play(ColorGun_Equip_02_Montage, 1, 0, 0, true);
+L3221:         Pawn* mPawn5 = this->GetInstigator();
+L3241:         Controller* mController5 = mPawn5->GetController();
+L3283:         PlayerController* mPlayerController3 = Cast<Class /Script/Engine.PlayerController>(mController5);
+L3319:         bool mbool12 = mPlayerController3;
+L3348:         if (!mbool12) goto ExecutionFlow.Pop();
+L3358:         mPlayerController3->ClientPlayCameraAnim(ColorGunEquip_02_CameraAnim, 1, 1, 0, 0.10000000149011612, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L3440:         goto ExecutionFlow.Pop();
+L3441:         KismetSystemLibrary->PrintString(this, "Closed Color Picker", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L3536:         goto L533;
+L3541:         goto L15;
+============ END FUNCTION ExecuteUbergraph_Equip_ColorGun ==============

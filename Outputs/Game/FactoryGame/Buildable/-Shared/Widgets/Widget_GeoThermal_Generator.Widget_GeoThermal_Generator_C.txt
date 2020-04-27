@@ -1,0 +1,110 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_GeoThermal_Generator.Widget_GeoThermal_Generator_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetFuseVisibility ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mPowerCircuitGraph);
+L51:           if (!mbool) goto L339;
+L65:           FGPowerCircuit* mFGPowerCircuit = this->mPowerCircuitGraph->mPowerInfo->GetPowerCircuit();
+L129:          bool mbool1 = KismetSystemLibrary->IsValid(mFGPowerCircuit);
+L180:          if (!mbool1) goto L339;
+L194:          mFGPowerCircuit = this->mPowerCircuitGraph->mPowerInfo->GetPowerCircuit();
+L258:          bool mbool2 = mFGPowerCircuit->IsFuseTriggered();
+L300:          if (!mbool2) goto L339;
+L314:          uint8 ReturnValue = 4;
+L334:          goto L359;
+L339:          ReturnValue = 1;
+============ END FUNCTION GetFuseVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnGetPowerCircuit ==============
+L0:            FGPowerInfoComponent* mFGPowerInfoComponent = this->mGenerator->GetPowerInfo();
+L42:           bool mbool = KismetSystemLibrary->IsValid(mFGPowerInfoComponent);
+L93:           if (!mbool) goto L215;
+L107:          mFGPowerInfoComponent = this->mGenerator->GetPowerInfo();
+L149:          FGPowerCircuit* mFGPowerCircuit = mFGPowerInfoComponent->GetPowerCircuit();
+L191:          FGPowerCircuit* ReturnValue = mFGPowerCircuit;
+L210:          goto L226;
+L215:          ReturnValue = nullptr;
+============ END FUNCTION OnGetPowerCircuit ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsConnected ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mGenerator);
+L51:           if (!mbool) goto L173;
+L65:           FGPowerInfoComponent* mFGPowerInfoComponent = this->mGenerator->GetPowerInfo();
+L107:          bool mbool1 = mFGPowerInfoComponent->IsConnected();
+L149:          bool IsConnected = mbool1;
+L168:          <End of Inlined Event Graph Function>;
+L173:          IsConnected = false;
+============ END FUNCTION IsConnected ==============
+
+
+
+
+
+============ BEGIN FUNCTION Cleanup ==============
+L0:            this->Widget_Window_DarkMode->OnClose->Clear();
+============ END FUNCTION Cleanup ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetBurnProgressPercent ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mGenerator);
+L51:           if (!mbool) goto L142;
+L65:           float mfloat = this->mGenerator->GetFuelAmount();
+L115:          float ReturnValue = mfloat;
+============ END FUNCTION GetBurnProgressPercent ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_GeoThermal_Generator(259);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_GeoThermal_Generator(274);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_GeoThermal_Generator(289);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_GeoThermal_Generator ==============
+L10:           this->mConnectionWarning->UpdateWarning("[object Object]");
+L190:          mFScriptDelegate->BindUFunction(this, OnEscapePressed);
+L213:          this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate);
+L254:          <End of Inlined Event Graph Function>;
+L259:          this->Init();
+L269:          <End of Inlined Event Graph Function>;
+L274:          this->Construct();
+L284:          goto L10;
+L289:          this->Destruct();
+L299:          this->Cleanup();
+============ END FUNCTION ExecuteUbergraph_Widget_GeoThermal_Generator ==============

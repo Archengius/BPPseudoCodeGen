@@ -1,0 +1,207 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ManufacturingStat.Widget_ManufacturingStat_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetBrush ==============
+L0:            const SlateBrush Temp_struct_Variable = ScriptStruct /Script/SlateCore.SlateBrush(ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 32, Y = 32), Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0), TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0), ResourceObject = nullptr, ResourceName = "None", UVRegion = ScriptStruct /Script/CoreUObject.Box2D(Min = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), Max = ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), bIsValid = 0), DrawAs = 3, Tiling = 0, Mirroring = 0, ImageType = 0, bIsDynamicallyLoaded = false, bHasUObject = false);
+L228:          mSlateBrush.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 25, Y = 25);
+L279:          mSlateBrush.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
+L340:          mSlateBrush.TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0);
+L417:          mSlateBrush.ResourceObject = cycletime;
+L445:          mSlateBrush.DrawAs = 3;
+L474:          mSlateBrush.Tiling = 0;
+L503:          mSlateBrush.Mirroring = 0;
+L532:          bool Temp_bool_Variable = this->isCycleTime;
+L551:          mSlateBrush1.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 25, Y = 25);
+L602:          mSlateBrush1.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
+L663:          mSlateBrush1.TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0);
+L740:          mSlateBrush1.ResourceObject = efficiency;
+L768:          mSlateBrush1.DrawAs = 3;
+L797:          mSlateBrush1.Tiling = 0;
+L826:          mSlateBrush1.Mirroring = 0;
+L855:          mSlateBrush2.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 25, Y = 25);
+L906:          mSlateBrush2.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
+L967:          mSlateBrush2.TintColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0);
+L1044:         mSlateBrush2.ResourceObject = ResIcon_Power;
+L1072:         mSlateBrush2.DrawAs = 3;
+L1101:         mSlateBrush2.Tiling = 0;
+L1130:         mSlateBrush2.Mirroring = 0;
+L1159:         bool Temp_bool_Variable2 = this->isPowerConsumption;
+L1178:         bool Temp_bool_Variable1 = this->isEfficiency;
+L1197:         this->mIcon->SetBrush([ref] switch (Temp_bool_Variable) {
+case false -> switch (Temp_bool_Variable2) {
+case false -> switch (Temp_bool_Variable1) {
+case false -> Temp_struct_Variable;
+case true -> mSlateBrush1;
+default -> mconst SlateBrush2;
+};
+case true -> mSlateBrush2;
+default -> mconst SlateBrush1;
+};
+case true -> mSlateBrush;
+default -> mconst SlateBrush;
+});
+============ END FUNCTION SetBrush ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetIconColor ==============
+L0:            if (!this->mWhiteIcon) goto L211;
+L14:           HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L69:           this->mIconContainer->SetContentColorAndOpacity(mLinearColor);
+L110:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L165:          this->mStatText->SetColorAndOpacity(mSlateColor1);
+L206:          <End of Inlined Event Graph Function>;
+L211:          this->mIconContainer->SetContentColorAndOpacity(this->mIconColor);
+L252:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor2, [ref] mSlateColor2);
+L307:          this->mStatText->SetColorAndOpacity(mSlateColor2);
+============ END FUNCTION SetIconColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetStatText ==============
+L0:            FText Temp_text_Variable = ;
+L20:           FText mFText = KismetTextLibrary->GetEmptyText();
+L70:           FText mFText1 = KismetTextLibrary->Conv_FloatToText(this->mManufacturingStat, 0, false, true, 1, 4, 0, 1);
+L153:          mFormatArgumentData.ArgumentName = "value";
+L187:          mFormatArgumentData.ArgumentValueType = 4;
+L216:          mFormatArgumentData.ArgumentValue = mFText1;
+L252:          mFormatArgumentData.ArgumentValueInt = 0;
+L284:          mFormatArgumentData.ArgumentValueFloat = 0;
+L316:          mFormatArgumentData.ArgumentValueGender = 0;
+L345:          mFormatArgumentData1.ArgumentName = "suffix";
+L380:          mFormatArgumentData1.ArgumentValueType = 4;
+L409:          mFormatArgumentData1.ArgumentValue = this->mCustomSuffix;
+L445:          mFormatArgumentData1.ArgumentValueInt = 0;
+L477:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L509:          mFormatArgumentData1.ArgumentValueGender = 0;
+L538:          bool mbool = KismetTextLibrary->EqualEqual_TextText([ref] mFText, [ref] this->mCustomSuffix);
+L598:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
+L627:          bool Temp_bool_Variable = mbool;
+L646:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L725:          bool Temp_bool_Variable2 = this->isPowerConsumption;
+L744:          FText mFText3 = KismetTextLibrary->AsPercent_Float(this->mManufacturingStat, 0, false, true, 1, 4, 0, 0);
+L827:          bool Temp_bool_Variable1 = this->isEfficiency;
+L846:          FText mFText4 = KismetTextLibrary->Conv_FloatToText(this->mManufacturingStat, 0, false, true, 1, 4, 0, 1);
+L929:          mFormatArgumentData2.ArgumentName = "A";
+L959:          mFormatArgumentData2.ArgumentValueType = 4;
+L988:          mFormatArgumentData2.ArgumentValue = mFText4;
+L1024:         mFormatArgumentData2.ArgumentValueInt = 0;
+L1056:         mFormatArgumentData2.ArgumentValueFloat = 0;
+L1088:         mFormatArgumentData2.ArgumentValueGender = 0;
+L1117:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData2];
+L1137:         bool Temp_bool_Variable3 = this->isCycleTime;
+L1156:         FText mFText5 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L1261:         FText mFText6 = KismetTextLibrary->Conv_FloatToText(this->mManufacturingStat, 0, false, true, 1, 4, 0, 1);
+L1344:         mFormatArgumentData3.ArgumentName = "A";
+L1374:         mFormatArgumentData3.ArgumentValueType = 4;
+L1403:         mFormatArgumentData3.ArgumentValue = mFText6;
+L1439:         mFormatArgumentData3.ArgumentValueInt = 0;
+L1471:         mFormatArgumentData3.ArgumentValueFloat = 0;
+L1503:         mFormatArgumentData3.ArgumentValueGender = 0;
+L1532:         TArray<FormatArgumentData> mTArray<FormatArgumentData>2 = [mFormatArgumentData3];
+L1552:         FText mFText7 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>2);
+L1658:         FText ReturnValue = switch (Temp_bool_Variable) {
+case false -> mFText2;
+case true -> switch (Temp_bool_Variable3) {
+case false -> switch (Temp_bool_Variable2) {
+case false -> switch (Temp_bool_Variable1) {
+case false -> Temp_text_Variable;
+case true -> mFText3;
+default -> mFText11;
+};
+case true -> mFText5;
+default -> mFText10;
+};
+case true -> mFText7;
+default -> mFText9;
+};
+default -> mFText8;
+};
+============ END FUNCTION GetStatText ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ManufacturingStat.Widget_ManufacturingStat_C:ExecuteUbergraph_Widget_ManufacturingStat.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_ManufacturingStat(144);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDragEnter ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ManufacturingStat.Widget_ManufacturingStat_C:ExecuteUbergraph_Widget_ManufacturingStat.K2Node_Event_MyGeometry) = MyGeometry;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ManufacturingStat.Widget_ManufacturingStat_C:ExecuteUbergraph_Widget_ManufacturingStat.K2Node_Event_PointerEvent1) = PointerEvent;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ManufacturingStat.Widget_ManufacturingStat_C:ExecuteUbergraph_Widget_ManufacturingStat.K2Node_Event_Operation1) = Operation;
+L54:           this->ExecuteUbergraph_Widget_ManufacturingStat(177);
+============ END FUNCTION OnDragEnter ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDragLeave ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ManufacturingStat.Widget_ManufacturingStat_C:ExecuteUbergraph_Widget_ManufacturingStat.K2Node_Event_PointerEvent) = PointerEvent;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ManufacturingStat.Widget_ManufacturingStat_C:ExecuteUbergraph_Widget_ManufacturingStat.K2Node_Event_Operation) = Operation;
+L36:           this->ExecuteUbergraph_Widget_ManufacturingStat(198);
+============ END FUNCTION OnDragLeave ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ManufacturingStat(219);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateStat ==============
+L0:            this->ExecuteUbergraph_Widget_ManufacturingStat(224);
+============ END FUNCTION UpdateStat ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_ManufacturingStat(306);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ManufacturingStat ==============
+L10:           this->UpdateStat();
+L24:           mFScriptDelegate->BindUFunction(this, UpdateStat);
+L47:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.5, true);
+L112:          this->mUpdateTimer = mTimerHandle;
+L139:          <End of Inlined Event Graph Function>;
+L144:          this->SetIconColor();
+L158:          this->SetBrush();
+L172:          <End of Inlined Event Graph Function>;
+L177:          this->SetVisibility(3);
+L193:          <End of Inlined Event Graph Function>;
+L198:          this->SetVisibility(4);
+L214:          <End of Inlined Event Graph Function>;
+L219:          goto L10;
+L224:          FText mFText = this->GetStatText();
+L256:          this->mStatText->SetText(mFText);
+L301:          <End of Inlined Event Graph Function>;
+L306:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateTimer);
+============ END FUNCTION ExecuteUbergraph_Widget_ManufacturingStat ==============

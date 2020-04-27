@@ -1,0 +1,218 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/MAMTree/Widget_MAMTree_NodeInfo.Widget_MAMTree_NodeInfo_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetResearchButtonFeedback ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGResearchManager* mFGResearchManager = FGResearchManager->Get(mPlayerController);
+L75:           bool mbool = mFGResearchManager->IsAnyResearchBeingConducted();
+L117:          if (!mbool) goto L579;
+L131:          FText Temp_text_Variable = "[object Object]";
+L222:          FText Temp_text_Variable1 = "[object Object]";
+L294:          mPlayerController = this->GetOwningPlayer();
+L318:          mFGResearchManager = FGResearchManager->Get(mPlayerController);
+L369:          bool mbool1 = mFGResearchManager->IsResearchBeingConducted(this->mSchematic);
+L420:          bool Temp_bool_Variable = mbool1;
+L439:          this->mButtonInfo->SetText(switch (Temp_bool_Variable) {
+case false -> Temp_text_Variable;
+case true -> Temp_text_Variable1;
+default -> mFText;
+});
+L528:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ButtonFeedbackAnim, 0, 0, 0, 1);
+L574:          <End of Inlined Event Graph Function>;
+L579:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L599:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L635:          bool mbool2 = mFGCharacterPlayer;
+L664:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
+L706:          mPlayerController = this->GetOwningPlayer();
+L730:          mFGResearchManager = FGResearchManager->Get(mPlayerController);
+L781:          bool mbool3 = mFGResearchManager->CanAffordResearch(mFGInventoryComponent, this->mSchematic);
+L841:          if (!mbool3) goto L963;
+L855:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->ShowReasearchButtonAnim, 0, 1, 0, 1);
+L901:          this->mButtonInfo->SetVisibility(2);
+L939:          this->StopAnimation(this->ButtonFeedbackAnim);
+L958:          <End of Inlined Event Graph Function>;
+L963:          this->mButtonInfo->SetText("[object Object]");
+L1051:         goto L528;
+============ END FUNCTION GetResearchButtonFeedback ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateState ==============
+L0:            ExecutionFlow.Push(L3854);
+L5:            FText mFText = FGSchematic->GetSchematicDisplayName(this->mSchematic);
+L64:           FText mFText1 = KismetTextLibrary->TextToUpper([ref] mFText);
+L123:          this->mSchematicName->SetText(mFText1);
+L168:          SlateBrush mSlateBrush = FGSchematic->GetItemIcon(this->mSchematic);
+L227:          Texture2D* mTexture2D = WidgetBlueprintLibrary->GetBrushResourceAsTexture2D([ref] mSlateBrush);
+L278:          this->mSchematicIcon->SetBrushFromTexture(mTexture2D, false);
+L324:          if (!this->mIsNodeSelected) goto L352;
+L338:          this->GetResearchButtonFeedback();
+L352:          this->mCostSlotsContainer->ClearChildren();
+L388:          FText LocalCostText = ;
+L408:          FText LocalRewardsText = ;
+L428:          this->mRewardsContainer->ClearChildren();
+L464:          float mfloat = FGSchematic->GetTimeToComplete(this->mSchematic);
+L523:          Timespan mTimespan = FromSeconds(mfloat);
+L560:          BreakTimespan(mTimespan, [ref] mint32, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324);
+L624:          FText mFText2 = KismetTextLibrary->Conv_IntToText(mint323, false, true, 2, 324);
+L695:          mFormatArgumentData.ArgumentName = "s";
+L725:          mFormatArgumentData.ArgumentValueType = 4;
+L754:          mFormatArgumentData.ArgumentValue = mFText2;
+L790:          mFormatArgumentData.ArgumentValueInt = 0;
+L822:          mFormatArgumentData.ArgumentValueFloat = 0;
+L854:          mFormatArgumentData.ArgumentValueGender = 0;
+L883:          FText mFText3 = KismetTextLibrary->Conv_IntToText(mint322, false, true, 2, 324);
+L954:          mFormatArgumentData1.ArgumentName = "m";
+L984:          mFormatArgumentData1.ArgumentValueType = 4;
+L1013:         mFormatArgumentData1.ArgumentValue = mFText3;
+L1049:         mFormatArgumentData1.ArgumentValueInt = 0;
+L1081:         mFormatArgumentData1.ArgumentValueFloat = 0;
+L1113:         mFormatArgumentData1.ArgumentValueGender = 0;
+L1142:         int32 mint325 = Multiply_IntInt(mint32, 24);
+L1184:         int32 mint326 = Add_IntInt(mint325, mint321);
+L1230:         mFormatArgumentData2.ArgumentName = "h";
+L1260:         mFormatArgumentData2.ArgumentValueType = 0;
+L1289:         mFormatArgumentData2.ArgumentValue = ;
+L1318:         mFormatArgumentData2.ArgumentValueInt = mint326;
+L1354:         mFormatArgumentData2.ArgumentValueFloat = 0;
+L1386:         mFormatArgumentData2.ArgumentValueGender = 0;
+L1415:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData2, mFormatArgumentData1, mFormatArgumentData];
+L1453:         FText mFText4 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1563:         this->mResearchTime->SetText(mFText4);
+L1608:         BP_SchematicHelper->GetUnlockDataStructFromSchematic(this->mSchematic, this, [ref] mTArray<FUnlockDataStruct>);
+L1663:         int32 mint327 = KismetArrayLibrary->Array_Length([ref] mTArray<FUnlockDataStruct>);
+L1722:         bool mbool = Greater_IntInt(mint327, 0);
+L1756:         if (!mbool) goto L2420;
+L1770:         int32 Temp_int_Loop_Counter_Variable = 0;
+L1793:         int32 Temp_int_Array_Index_Variable1 = 0;
+L1816:         BP_SchematicHelper->GetUnlockDataStructFromSchematic(this->mSchematic, this, [ref] mTArray<FUnlockDataStruct>);
+L1871:         int32 mint328 = KismetArrayLibrary->Array_Length([ref] mTArray<FUnlockDataStruct>);
+L1930:         bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint328);
+L1968:         if (!mbool1) goto L2458;
+L1982:         Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
+L2009:         ExecutionFlow.Push(L3780);
+L2014:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L2038:         BPW_GenericSchematicRewardButton* mBPW_GenericSchematicRewardButton = WidgetBlueprintLibrary->Create(this, BPW_GenericSchematicRewardButton, mPlayerController);
+L2099:         BP_SchematicHelper->GetUnlockDataStructFromSchematic(this->mSchematic, this, [ref] mTArray<FUnlockDataStruct>);
+L2154:         KismetArrayLibrary->Array_Get([ref] mTArray<FUnlockDataStruct>, Temp_int_Array_Index_Variable1, [ref] mFUnlockDataStruct);
+L2213:         KismetSystemLibrary->SetStructurePropertyByName(mBPW_GenericSchematicRewardButton, "mUnlockData", [ref] mFUnlockDataStruct);
+L2276:         bool mbool2 = Not_PreBool(this->mIsNodeSelected);
+L2305:         KismetSystemLibrary->SetBoolPropertyByName(mBPW_GenericSchematicRewardButton, "mShouldAlwaysAutoScrollText", mbool2);
+L2368:         PanelSlot* mPanelSlot = this->mRewardsContainer->AddChild(mBPW_GenericSchematicRewardButton);
+L2419:         goto ExecutionFlow.Pop();
+L2420:         this->mRewardsSection->SetVisibility(1);
+L2458:         int32 Temp_int_Loop_Counter_Variable1 = 0;
+L2481:         int32 Temp_int_Array_Index_Variable = 0;
+L2504:         TArray<ItemAmount> mTArray<ItemAmount> = FGSchematic->GetCost(this->mSchematic);
+L2563:         int32 mint329 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L2622:         bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint329);
+L2660:         if (!mbool3) goto L3211;
+L2674:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
+L2701:         ExecutionFlow.Push(L3137);
+L2706:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L2730:         Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, Widget_CostSlotWrapper, mPlayerController1);
+L2791:         Widget_CostSlotWrapper* LocalCostSlot = mWidget_CostSlotWrapper;
+L2810:         Pawn* mPawn = this->GetOwningPlayerPawn();
+L2830:         mTArray<ItemAmount> = FGSchematic->GetCost(this->mSchematic);
+L2889:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L2948:         HUDHelpers->GetNumItemsFromPlayerInventory(mPawn, mItemAmount.ItemClass, this, [ref] mint3210);
+L3021:         LocalCostSlot->Setup CostIcon(nullptr, mItemAmount, nullptr, 0, mint3210, false, false, false);
+L3085:         PanelSlot* mPanelSlot1 = this->mCostSlotsContainer->AddChild(LocalCostSlot);
+L3136:         goto ExecutionFlow.Pop();
+L3137:         int32 mint3211 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L3179:         Temp_int_Loop_Counter_Variable1 = mint3211;
+L3206:         goto L2504;
+L3211:         bool mbool4 = NotEqual_ByteByte(this->mNodeState, 1);
+L3242:         if (!mbool4) goto L3302;
+L3256:         mbool4 = NotEqual_ByteByte(this->mNodeState, 2);
+L3287:         if (!mbool4) goto L3302;
+L3301:         goto ExecutionFlow.Pop();
+L3302:         FText Temp_text_Variable = ;
+L3322:         FText Temp_text_Variable1 = "[object Object]";
+L3419:         FText Temp_text_Variable2 = "[object Object]";
+L3492:         FText Temp_text_Variable3 = ;
+L3512:         FText Temp_text_Variable4 = ;
+L3532:         uint8 Temp_byte_Variable = this->mNodeState;
+L3559:         this->mButtonInfo->SetText(switch (Temp_byte_Variable) {
+case 0 -> Temp_text_Variable;
+case 1 -> Temp_text_Variable1;
+case 2 -> Temp_text_Variable2;
+case 3 -> Temp_text_Variable3;
+case 4 -> Temp_text_Variable4;
+default -> mFText5;
+});
+L3695:         this->mButtonInfo->SetVisibility(3);
+L3733:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ButtonFeedbackAnim, 0, 0, 0, 1);
+L3779:         goto ExecutionFlow.Pop();
+L3780:         int32 mint3212 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L3822:         Temp_int_Loop_Counter_Variable = mint3212;
+L3849:         goto L1816;
+============ END FUNCTION UpdateState ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSchematic ==============
+L0:            this->mSchematic = schematic;
+L19:           this->UpdateState();
+============ END FUNCTION SetSchematic ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_MAMTree_NodeInfo(10);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mResearchButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_MAMTree_NodeInfo(425);
+============ END FUNCTION BndEvt__mResearchButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_MAMTree_NodeInfo ==============
+L10:           this->SetSchematic(this->mSchematic);
+L33:           uint8 Temp_byte_Variable = 4;
+L53:           uint8 Temp_byte_Variable1 = 1;
+L73:           bool mbool = NotEqual_ByteByte(this->mNodeState, 3);
+L104:          bool Temp_bool_Variable = mbool;
+L123:          this->mContent->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L212:          uint8 Temp_byte_Variable2 = 4;
+L232:          uint8 Temp_byte_Variable3 = 1;
+L252:          mbool = NotEqual_ByteByte(this->mNodeState, 3);
+L283:          bool mbool1 = Not_PreBool(mbool);
+L312:          bool Temp_bool_Variable1 = mbool1;
+L331:          this->mHiddenInfo->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint81;
+});
+L420:          <End of Inlined Event Graph Function>;
+L425:          this->OnClicked->ProcessMulticastDelegate();
+============ END FUNCTION ExecuteUbergraph_Widget_MAMTree_NodeInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============

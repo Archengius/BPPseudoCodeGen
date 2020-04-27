@@ -1,0 +1,77 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_CodexEntryParent.Widget_CodexEntryParent_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetStats ==============
+L0:            ExecutionFlow.Push(L2201);
+L5:            TArray<Widget_CodexStats*> mTArray<Widget_CodexStats> = [];
+L16:           WidgetBlueprintLibrary->GetAllWidgetsOfClass(this, [ref] mTArray<Widget_CodexStats>, Widget_CodexStats, false);
+L68:           int32 Temp_int_Loop_Counter_Variable1 = 0;
+L91:           int32 Temp_int_Array_Index_Variable1 = 0;
+L114:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<Widget_CodexStats>);
+L173:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint32);
+L211:          if (!mbool) goto ExecutionFlow.Pop();
+L221:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable1;
+L248:          ExecutionFlow.Push(L2053);
+L253:          KismetArrayLibrary->Array_Get([ref] mTArray<Widget_CodexStats>, Temp_int_Array_Index_Variable1, [ref] mWidget_CodexStats);
+L312:          Widget_CodexStats* CodexStats = mWidget_CodexStats;
+L331:          CodexStats->mNameText->SetText(this->mName);
+L398:          mSlateBrush.ImageSize = CodexStats->mIcon->Brush.ImageSize;
+L487:          mSlateBrush.Margin = CodexStats->mIcon->Brush.Margin;
+L576:          mSlateBrush.TintColor = CodexStats->mIcon->Brush.TintColor;
+L665:          mSlateBrush.ResourceObject = this->mIcon;
+L693:          mSlateBrush.DrawAs = CodexStats->mIcon->Brush.DrawAs;
+L782:          mSlateBrush.Tiling = CodexStats->mIcon->Brush.Tiling;
+L871:          mSlateBrush.Mirroring = CodexStats->mIcon->Brush.Mirroring;
+L960:          CodexStats->mIcon->SetBrush([ref] mSlateBrush);
+L1027:         KismetArrayLibrary->Array_Append([ref] this->mStats, [ref] this->mAdditionalStats);
+L1077:         int32 Temp_int_Loop_Counter_Variable = 0;
+L1100:         int32 Temp_int_Array_Index_Variable = 0;
+L1123:         int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mStats);
+L1182:         bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L1220:         if (!mbool1) goto ExecutionFlow.Pop();
+L1230:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L1257:         ExecutionFlow.Push(L2127);
+L1262:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1286:         Widget_CodexStatItem* mWidget_CodexStatItem = WidgetBlueprintLibrary->Create(this, Widget_CodexStatItem, mPlayerController);
+L1347:         KismetArrayLibrary->Array_Get([ref] this->mStats, Temp_int_Array_Index_Variable, [ref] mFText);
+L1406:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L1465:         bool mbool2 = KismetStringLibrary->Split(mFString, ";", [ref] mFString1, [ref] mFString2, 1, 0);
+L1541:         FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString1);
+L1600:         KismetSystemLibrary->SetTextPropertyByName(mWidget_CodexStatItem, "mInfo", [ref] mFText1);
+L1663:         KismetArrayLibrary->Array_Get([ref] this->mStats, Temp_int_Array_Index_Variable, [ref] mFText);
+L1722:         mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L1781:         mbool2 = KismetStringLibrary->Split(mFString, ";", [ref] mFString1, [ref] mFString2, 1, 0);
+L1857:         FText mFText2 = KismetTextLibrary->Conv_StringToText(mFString2);
+L1916:         KismetSystemLibrary->SetTextPropertyByName(mWidget_CodexStatItem, "mValue", [ref] mFText2);
+L1979:         VerticalBoxSlot* mVerticalBoxSlot = CodexStats->mStatsContainer->AddChildToVerticalBox(mWidget_CodexStatItem);
+L2052:         goto ExecutionFlow.Pop();
+L2053:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L2095:         Temp_int_Loop_Counter_Variable1 = mint322;
+L2122:         goto L114;
+L2127:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2169:         Temp_int_Loop_Counter_Variable = mint323;
+L2196:         goto L1123;
+============ END FUNCTION GetStats ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_CodexEntryParent(29);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_CodexEntryParent ==============
+L10:           this->GetStats();
+L24:           <End of Inlined Event Graph Function>;
+L29:           goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_CodexEntryParent ==============

@@ -1,0 +1,84 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_HintContainer.Widget_HintContainer_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetKeybindingHints ==============
+L0:            ExecutionFlow.Push(L885);
+L5:            this->mKeyBindingHints = mKeyBindingHints;
+L32:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mKeyBindingHints);
+L91:           bool mbool = Greater_IntInt(mint32, 0);
+L125:          if (!mbool) goto L779;
+L139:          this->SetVisibility(3);
+L155:          this->mHintContainer->ClearChildren();
+L191:          int32 Temp_int_Loop_Counter_Variable = 0;
+L214:          int32 Temp_int_Array_Index_Variable = 0;
+L237:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mKeyBindingHints);
+L296:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L334:          if (!mbool1) goto L796;
+L348:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L375:          ExecutionFlow.Push(L811);
+L380:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L404:          Widget_Hint* mWidget_Hint = WidgetBlueprintLibrary->Create(this, Widget_Hint, mPlayerController);
+L465:          KismetArrayLibrary->Array_Get([ref] this->mKeyBindingHints, Temp_int_Array_Index_Variable, [ref] mStruct_KeybindingHint);
+L524:          KismetSystemLibrary->SetTextPropertyByName(mWidget_Hint, "mHintKeyText", [ref] mStruct_KeybindingHint.KeyBinding_5_6C26EF9041BC54531A02F2B5B7DC3464);
+L596:          KismetArrayLibrary->Array_Get([ref] this->mKeyBindingHints, Temp_int_Array_Index_Variable, [ref] mStruct_KeybindingHint);
+L655:          KismetSystemLibrary->SetTextPropertyByName(mWidget_Hint, "mHintDescriptionText", [ref] mStruct_KeybindingHint.Action_3_8CED3F9B4A70C1822B95758560DE8695);
+L727:          PanelSlot* mPanelSlot = this->mHintContainer->AddChild(mWidget_Hint);
+L778:          goto ExecutionFlow.Pop();
+L779:          this->SetVisibility(1);
+L795:          goto ExecutionFlow.Pop();
+L796:          this->AnimateHints();
+L810:          goto ExecutionFlow.Pop();
+L811:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L853:          Temp_int_Loop_Counter_Variable = mint322;
+L880:          goto L237;
+============ END FUNCTION SetKeybindingHints ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_HintContainer.Widget_HintContainer_C:ExecuteUbergraph_Widget_HintContainer.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_HintContainer(469);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimateHints ==============
+L0:            this->ExecuteUbergraph_Widget_HintContainer(503);
+============ END FUNCTION AnimateHints ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_HintContainer ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L183);
+L20:           Widget* mWidget = this->mHintContainer->GetChildAt(Temp_int_Variable);
+L71:           Widget_Hint* mWidget_Hint = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Hint.Widget_Hint_C>(mWidget);
+L107:          bool mbool = mWidget_Hint;
+L136:          if (!mbool) goto ExecutionFlow.Pop();
+L146:          mWidget_Hint->PlaySpawnAnim();
+L182:          goto ExecutionFlow.Pop();
+L183:          int32 mint32 = Add_IntInt(Temp_int_Variable, 1);
+L225:          int32 Temp_int_Variable = mint32;
+L252:          int32 mint321 = this->mHintContainer->GetChildrenCount();
+L302:          int32 mint322 = Subtract_IntInt(mint321, 1);
+L344:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint322);
+L382:          if (!mbool1) goto ExecutionFlow.Pop();
+L392:          KismetSystemLibrary->Delay(this, 0.05000000074505806, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -348465805, ExecutionFunction = "ExecuteUbergraph_Widget_HintContainer", CallbackTarget = this));
+L468:          goto ExecutionFlow.Pop();
+L469:          if (!this->mShowKeybindingsOnConstruct) goto ExecutionFlow.Pop();
+L479:          this->SetKeybindingHints([ref] this->mKeyBindingHints);
+L502:          goto ExecutionFlow.Pop();
+L503:          Temp_int_Variable = 0;
+L526:          goto L252;
+============ END FUNCTION ExecuteUbergraph_Widget_HintContainer ==============

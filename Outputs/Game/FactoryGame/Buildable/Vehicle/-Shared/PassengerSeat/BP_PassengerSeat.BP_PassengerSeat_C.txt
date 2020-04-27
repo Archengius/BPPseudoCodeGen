@@ -1,0 +1,85 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/-Shared/PassengerSeat/BP_PassengerSeat.BP_PassengerSeat_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION InpActEvt_Use_K2Node_InputActionEvent_0 ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/PassengerSeat/BP_PassengerSeat.BP_PassengerSeat_C:ExecuteUbergraph_BP_PassengerSeat.K2Node_InputActionEvent_Key) = Key;
+L18:           this->ExecuteUbergraph_BP_PassengerSeat(750);
+============ END FUNCTION InpActEvt_Use_K2Node_InputActionEvent_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateCamera ==============
+L0:            this->ExecuteUbergraph_BP_PassengerSeat(10);
+============ END FUNCTION UpdateCamera ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceivePossessed ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/PassengerSeat/BP_PassengerSeat.BP_PassengerSeat_C:ExecuteUbergraph_BP_PassengerSeat.K2Node_Event_NewController) = NewController;
+L18:           this->ExecuteUbergraph_BP_PassengerSeat(360);
+============ END FUNCTION ReceivePossessed ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveUnpossessed ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/PassengerSeat/BP_PassengerSeat.BP_PassengerSeat_C:ExecuteUbergraph_BP_PassengerSeat.K2Node_Event_OldController) = OldController;
+L18:           this->ExecuteUbergraph_BP_PassengerSeat(560);
+============ END FUNCTION ReceiveUnpossessed ==============
+
+
+
+
+
+============ BEGIN FUNCTION Server_Leave ==============
+L0:            this->ExecuteUbergraph_BP_PassengerSeat(970);
+============ END FUNCTION Server_Leave ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_PassengerSeat ==============
+L10:           float mfloat = this->GetInputAxisValue("Turn");
+L51:           float mfloat1 = this->GetInputAxisValue("LookUp");
+L92:           BreakRotator(this->SpringArm->RelativeRotation, [ref] mfloat2, [ref] mfloat3, [ref] mfloat4);
+L160:          float mfloat5 = Add_FloatFloat(mfloat4, mfloat);
+L206:          float mfloat6 = Add_FloatFloat(mfloat1, mfloat3);
+L252:          Rotator mRotator = MakeRotator(0, mfloat6, mfloat5);
+L303:          this->SpringArm->K2_SetRelativeRotation(mRotator, false, [ref] mHitResult, false);
+L355:          <End of Inlined Event Graph Function>;
+L360:          this->ReceivePossessed(mController);
+L379:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mController);
+L415:          bool mbool = mFGPlayerController;
+L444:          if (!mbool) goto L995;
+L458:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L509:          mBP_RemoteCallObject->Client_AddPawnHUD(Widget_PassengerSeat, this);
+L555:          <End of Inlined Event Graph Function>;
+L560:          this->ReceiveUnpossessed(mController1);
+L579:          FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController1);
+L615:          bool mbool1 = mFGPlayerController1;
+L644:          if (!mbool1) goto L995;
+L658:          BP_RemoteCallObject* mBP_RemoteCallObject1 = mFGPlayerController1->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L709:          mBP_RemoteCallObject1->Client_RemovePawnHUD();
+L745:          <End of Inlined Event Graph Function>;
+L750:          Controller* mController2 = this->GetController();
+L770:          FGPlayerController* mFGPlayerController2 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController2);
+L806:          bool mbool2 = mFGPlayerController2;
+L835:          if (!mbool2) goto L995;
+L849:          DisabledInputGate mDisabledInputGate = mFGPlayerController2->GetDisabledInputGate();
+L899:          bool mbool3 = Not_PreBool(mDisabledInputGate.mUse);
+L937:          if (!mbool3) goto L995;
+L951:          this->Server_Leave();
+L965:          <End of Inlined Event Graph Function>;
+L970:          bool mbool4 = this->DriverLeave(false);
+============ END FUNCTION ExecuteUbergraph_BP_PassengerSeat ==============

@@ -1,0 +1,263 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_PopupContentImageButton.Widget_PopupContentImageButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CacheDataFromReward ==============
+L0:            FText mFText = FGSchematic->GetSchematicDisplayName(this->mSchematic);
+L59:           this->mSchematicTitle = mFText;
+L86:           SlateBrush mSlateBrush = FGSchematic->GetItemIcon(this->mSchematic);
+L145:          this->mImageBrush = mSlateBrush;
+L172:          TArray<ItemAmount> mTArray<ItemAmount> = FGSchematic->GetCost(this->mSchematic);
+L231:          this->mSchematicCost = mTArray<ItemAmount>;
+L258:          BP_SchematicHelper->GetRecipesFromSchematic(this->mSchematic, this, [ref] mTArray<TSubclassOf<FGRecipe>>);
+L313:          TArray<TSubclassOf<FGRecipe>> localRecipes = mTArray<TSubclassOf<FGRecipe>>;
+L340:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] localRecipes);
+L399:          bool mbool = Greater_IntInt(mint32, 0);
+L433:          if (!mbool) goto L888;
+L447:          if (!true) goto L707;
+L453:          KismetArrayLibrary->Array_Get([ref] localRecipes, 0, [ref] mTSubclassOf<FGRecipe>);
+L508:          TArray<ItemAmount> mTArray<ItemAmount>1 = FGRecipe->GetProducts(mTSubclassOf<FGRecipe>, false);
+L568:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, 0, [ref] mItemAmount);
+L623:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mItemAmount.ItemClass);
+L683:          this->mItemTexture = mTexture2D;
+L702:          <End of Inlined Event Graph Function>;
+L707:          BP_SchematicHelper->GetUnlocksInventorySlot(this->mSchematic, this, [ref] mbool1);
+L762:          BP_SchematicHelper->GetUnlocksHandSlots(this->mSchematic, this, [ref] mbool2);
+L817:          bool mbool3 = BooleanOR(mbool1, mbool2);
+L855:          if (!mbool3) goto L888;
+L869:          this->mItemTexture = ThumbsUp_64;
+============ END FUNCTION CacheDataFromReward ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIsSmeltable ==============
+L0:            ExecutionFlow.Push(L732);
+L5:            bool LocalIsSmeltable = false;
+L16:           bool Temp_bool_True_if_break_was_hit_Variable = false;
+L27:           int32 Temp_int_Loop_Counter_Variable = 0;
+L50:           int32 Temp_int_Array_Index_Variable = 0;
+L73:           TArray<TSubclassOf<Object>> mTArray<TSubclassOf<Object>> = FGRecipe->GetProducedIn(inClass);
+L132:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<Object>>);
+L191:          bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L220:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L258:          bool mbool2 = BooleanAND(mbool, mbool1);
+L296:          if (!mbool2) goto L562;
+L310:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L337:          ExecutionFlow.Push(L586);
+L342:          mTArray<TSubclassOf<Object>> = FGRecipe->GetProducedIn(inClass);
+L401:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<Object>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<Object>);
+L460:          TSubclassOf<Build_FoundryMk1> mTSubclassOf<Build_FoundryMk1> = ClassCast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C>(mTSubclassOf<Object>);
+L496:          bool mbool3 = mTSubclassOf<Build_FoundryMk1>;
+L525:          if (!mbool3) goto L660;
+L539:          LocalIsSmeltable = true;
+L550:          Temp_bool_True_if_break_was_hit_Variable = true;
+L561:          goto ExecutionFlow.Pop();
+L562:          bool IsSmeltable = LocalIsSmeltable;
+L581:          <End of Inlined Event Graph Function>;
+L586:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L628:          Temp_int_Loop_Counter_Variable = mint321;
+L655:          goto L73;
+L660:          TSubclassOf<Build_SmelterMk1> mTSubclassOf<Build_SmelterMk1> = ClassCast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C>(nullptr);
+L688:          bool mbool4 = mTSubclassOf<Build_SmelterMk1>;
+L717:          if (!mbool4) goto ExecutionFlow.Pop();
+L727:          goto L539;
+============ END FUNCTION GetIsSmeltable ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearSelectionList ==============
+L0:            ExecutionFlow.Push(L468);
+L5:            bool mbool = KismetSystemLibrary->IsValid(this->mListWidget);
+L56:           if (!mbool) goto ExecutionFlow.Pop();
+L66:           int32 Temp_int_Variable = 0;
+L89:           int32 mint32 = this->mListWidget->GetChildrenCount();
+L139:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L181:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint321);
+L219:          if (!mbool1) goto ExecutionFlow.Pop();
+L229:          ExecutionFlow.Push(L394);
+L234:          Widget* mWidget = this->mListWidget->GetChildAt(Temp_int_Variable);
+L285:          Widget_PopupContentImageButton* mWidget_PopupContentImageButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_PopupContentImageButton.Widget_PopupContentImageButton_C>(mWidget);
+L321:          bool mbool2 = mWidget_PopupContentImageButton;
+L350:          if (!mbool2) goto ExecutionFlow.Pop();
+L360:          mWidget_PopupContentImageButton->mIsSelected = false;
+L393:          goto ExecutionFlow.Pop();
+L394:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L436:          Temp_int_Variable = mint322;
+L463:          goto L89;
+============ END FUNCTION ClearSelectionList ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIndexInList ==============
+L0:            PanelWidget* mPanelWidget = this->GetParent();
+L20:           bool mbool = NotEqual_ObjectObject(this->mListWidget, mPanelWidget);
+L58:           if (!mbool) goto L163;
+L72:           int32 mint32 = this->mListWidget->GetChildIndex(this->mParentWidget);
+L131:          int32 index = mint32;
+L158:          <End of Inlined Event Graph Function>;
+L163:          bool mbool1 = KismetSystemLibrary->IsValid(this->mListWidget);
+L214:          if (!mbool1) goto L311;
+L228:          int32 mint321 = this->mListWidget->GetChildIndex(this);
+L279:          index = mint321;
+L306:          <End of Inlined Event Graph Function>;
+L311:          index = 0;
+============ END FUNCTION GetIndexInList ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTextColor ==============
+L0:            if (!this->mIsDisabled) goto L101;
+L14:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L69:           SlateColor ReturnValue = mSlateColor;
+L96:           goto L346;
+L101:          bool mbool = this->IsHovered();
+L125:          bool mbool1 = BooleanOR(this->mIsSelected, mbool);
+L163:          if (!mbool1) goto L264;
+L177:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L232:          ReturnValue = mSlateColor1;
+L259:          goto L346;
+L264:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
+L319:          ReturnValue = mSlateColor1;
+============ END FUNCTION GetTextColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetBackgroundColor ==============
+L0:            if (!this->mIsSelected) goto L101;
+L14:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L69:           LinearColor ReturnValue = mLinearColor;
+L96:           goto L256;
+L101:          mLinearColor1.R = 0;
+L133:          mLinearColor1.G = 0;
+L165:          mLinearColor1.B = 0;
+L197:          mLinearColor1.A = 0;
+L229:          ReturnValue = mLinearColor1;
+============ END FUNCTION GetBackgroundColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Widget_PopupContentImageButton.Widget_PopupContentImageButton_C:ExecuteUbergraph_Widget_PopupContentImageButton.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_PopupContentImageButton(512);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_PopupContentImageButton(1377);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateButton ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/Widget_PopupContentImageButton.Widget_PopupContentImageButton_C:ExecuteUbergraph_Widget_PopupContentImageButton.K2Node_CustomEvent_Title) = Title;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_PopupContentImageButton.Widget_PopupContentImageButton_C:ExecuteUbergraph_Widget_PopupContentImageButton.K2Node_CustomEvent_ImageBrush) = ImageBrush;
+L36:           this->ExecuteUbergraph_Widget_PopupContentImageButton(1483);
+============ END FUNCTION UpdateButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mPopupContentButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PopupContentImageButton(1574);
+============ END FUNCTION BndEvt__mPopupContentButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mPopupContentButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PopupContentImageButton(1651);
+============ END FUNCTION BndEvt__mPopupContentButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mPopupContentButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PopupContentImageButton(1688);
+============ END FUNCTION BndEvt__mPopupContentButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PopupContentImageButton ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           Widget_TooltipInventorySlots* mWidget_TooltipInventorySlots = WidgetBlueprintLibrary->Create(this, Widget_TooltipInventorySlots, nullptr);
+L68:           KismetSystemLibrary->SetClassPropertyByName(mWidget_TooltipInventorySlots, "mSchematic", this->mSchematic);
+L131:          PanelSlot* mPanelSlot = this->VerticalBox_1->AddChild(mWidget_TooltipInventorySlots);
+L182:          goto ExecutionFlow.Pop();
+L183:          BP_SchematicHelper->GetRecipesFromSchematic(this->mSchematic, this, [ref] mTArray<TSubclassOf<FGRecipe>>);
+L238:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L262:          Widget_TooltipRecipe* mWidget_TooltipRecipe = WidgetBlueprintLibrary->Create(this, Widget_TooltipRecipe, mPlayerController);
+L323:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>, 0, [ref] mTSubclassOf<FGRecipe>);
+L378:          KismetSystemLibrary->SetClassPropertyByName(mWidget_TooltipRecipe, "mRecipe", mTSubclassOf<FGRecipe>);
+L441:          this->mTooltipRecipe = mWidget_TooltipRecipe;
+L460:          PanelSlot* mPanelSlot1 = this->VerticalBox_1->AddChild(this->mTooltipRecipe);
+L511:          goto ExecutionFlow.Pop();
+L512:          this->CacheDataFromReward();
+L526:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] this->mSchematicTitle);
+L585:          FString mFString1 = KismetStringLibrary->Replace(mFString, "Alternate:", "Alternate Blueprint:", 1);
+L680:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString1);
+L739:          this->UpdateButton(mFText, this->mImageBrush);
+L771:          mSlateBrush.ImageSize = this->mBlueprintYealdImage->Brush.ImageSize;
+L838:          mSlateBrush.Margin = this->mBlueprintYealdImage->Brush.Margin;
+L905:          mSlateBrush.TintColor = this->mBlueprintYealdImage->Brush.TintColor;
+L972:          mSlateBrush.ResourceObject = this->mItemTexture;
+L1000:         mSlateBrush.DrawAs = this->mBlueprintYealdImage->Brush.DrawAs;
+L1067:         mSlateBrush.Tiling = this->mBlueprintYealdImage->Brush.Tiling;
+L1134:         mSlateBrush.Mirroring = this->mBlueprintYealdImage->Brush.Mirroring;
+L1201:         this->mBlueprintYealdImage->SetBrush([ref] mSlateBrush);
+L1246:         ExecutionFlow.Push(L15);
+L1251:         BP_SchematicHelper->GetRecipesFromSchematic(this->mSchematic, this, [ref] mTArray<TSubclassOf<FGRecipe>>1);
+L1306:         bool mbool = KismetArrayLibrary->Array_IsValidIndex([ref] mTArray<TSubclassOf<FGRecipe>>1, 0);
+L1362:         if (!mbool) goto ExecutionFlow.Pop();
+L1372:         goto L183;
+L1377:         bool mbool1 = KismetSystemLibrary->IsValid(this->mListWidget);
+L1428:         if (!mbool1) goto L1443;
+L1442:         goto ExecutionFlow.Pop();
+L1443:         PanelWidget* mPanelWidget = this->GetParent();
+L1463:         this->mListWidget = mPanelWidget;
+L1482:         goto ExecutionFlow.Pop();
+L1483:         this->mSchematicName->SetText(mFText1);
+L1528:         this->mItemImageBrush->SetBrush([ref] mSlateBrush1);
+L1573:         goto ExecutionFlow.Pop();
+L1574:         this->ClearSelectionList();
+L1588:         this->mIsSelected = true;
+L1599:         this->GetIndexInList([ref] mint32);
+L1622:         this->NotifyPopupContentIndexSelect->ProcessMulticastDelegate(mint32);
+L1650:         goto ExecutionFlow.Pop();
+L1651:         this->mTooltipRecipe->OnHovered();
+L1687:         goto ExecutionFlow.Pop();
+L1688:         this->mTooltipRecipe->OnUnhovered();
+L1724:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_PopupContentImageButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyPopupContentIndexSelect__DelegateSignature ==============
+============ END FUNCTION NotifyPopupContentIndexSelect__DelegateSignature ==============

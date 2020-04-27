@@ -1,0 +1,236 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/RadarTower/Build_RadarTower.Build_RadarTower_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetActorCompassViewDistance ==============
+L0:            uint8 ReturnValue = 4;
+============ END FUNCTION GetActorCompassViewDistance ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorCompassViewDistance ==============
+L0:            uint8 ReturnValue = 0;
+============ END FUNCTION SetActorCompassViewDistance ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorRepresentationText ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L127;
+L34:           this->FlushNetDormancy();
+L44:           this->mMapText = newText;
+L71:           bool mbool1 = this->UpdateRepresentation();
+L95:           FText ReturnValue = newText;
+L122:          goto L356;
+L127:          PlayerController* mPlayerController = GameplayStatics->GetPlayerController(this, 0);
+L175:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L211:          bool mbool2 = mFGPlayerController;
+L240:          if (!mbool2) goto L356;
+L254:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L305:          mBP_RemoteCallObject->Server_SetActorRepresentationText(this, newText);
+L351:          goto L95;
+============ END FUNCTION SetActorRepresentationText ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L145;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->UpdateRepresentation(this, false);
+L121:          bool ReturnValue = mbool1;
+L140:          goto L156;
+L145:          ReturnValue = false;
+============ END FUNCTION UpdateRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationColor ==============
+L0:            HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           LinearColor ReturnValue = mLinearColor;
+============ END FUNCTION GetActorRepresentationColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationText ==============
+L0:            FText ReturnValue = this->mMapText;
+============ END FUNCTION GetActorRepresentationText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationTexture ==============
+L0:            Texture2D* ReturnValue = MapCompass_Icon_radartower;
+============ END FUNCTION GetActorRepresentationTexture ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationType ==============
+L0:            uint8 ReturnValue = 6;
+============ END FUNCTION GetActorRepresentationType ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorShouldShowInCompass ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION GetActorShouldShowInCompass ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddAsRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L145;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->CreateAndAddNewRepresentation(this, false);
+L121:          bool ReturnValue = mbool1;
+L140:          goto L156;
+L145:          ReturnValue = false;
+============ END FUNCTION AddAsRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorFogOfWarRevealRadius ==============
+L0:            float mfloat = this->GetCurrentRevealRadius();
+L28:           float ReturnValue = mfloat;
+============ END FUNCTION GetActorFogOfWarRevealRadius ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorFogOfWarRevealType ==============
+L0:            uint8 Temp_byte_Variable = 2;
+L20:           uint8 Temp_byte_Variable1 = 0;
+L40:           bool mbool = this->HasPower();
+L64:           bool Temp_bool_Variable = mbool;
+L83:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetActorFogOfWarRevealType ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorShouldShowOnMap ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION GetActorShouldShowOnMap ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRealActorLocation ==============
+L0:            Vector mVector = this->K2_GetActorLocation();
+L28:           KismetSystemLibrary->GetComponentBounds(this->FGColoredInstanceMeshProxy, [ref] mVector1, [ref] mVector2, [ref] mfloat);
+L96:           BreakVector(mVector2, [ref] mfloat1, [ref] mfloat2, [ref] mfloat3);
+L142:          Vector mVector3 = MakeVector(0, 0, mfloat3);
+L189:          Vector mVector4 = Add_VectorVector(mVector, mVector3);
+L235:          Vector ReturnValue = mVector4;
+============ END FUNCTION GetRealActorLocation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRealActorRotation ==============
+L0:            Rotator mRotator = this->K2_GetActorRotation();
+L28:           Rotator ReturnValue = mRotator;
+============ END FUNCTION GetRealActorRotation ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsActorStatic ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION IsActorStatic ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveAsRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L144;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->RemoveRepresentationOfActor(this);
+L120:          bool ReturnValue = mbool1;
+L139:          goto L155;
+L144:          ReturnValue = false;
+============ END FUNCTION RemoveAsRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorRepresentationColor ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/RadarTower/Build_RadarTower.Build_RadarTower_C:ExecuteUbergraph_Build_RadarTower.K2Node_Event_newColor) = NewColor;
+L18:           this->ExecuteUbergraph_Build_RadarTower(57);
+============ END FUNCTION SetActorRepresentationColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Build_RadarTower(62);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveEndPlay ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Buildable/Factory/RadarTower/Build_RadarTower.Build_RadarTower_C:ExecuteUbergraph_Build_RadarTower.K2Node_Event_EndPlayReason) = EndPlayReason;
+L18:           this->ExecuteUbergraph_Build_RadarTower(91);
+============ END FUNCTION ReceiveEndPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRadiusUpdateTriggered ==============
+L0:            this->ExecuteUbergraph_Build_RadarTower(120);
+============ END FUNCTION OnRadiusUpdateTriggered ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_RadarTower ==============
+L10:           mFScriptDelegate->BindUFunction(this, OnRadiusUpdateTriggered);
+L33:           this->OnRadarTowerRadiusUpdated.AddUnique(mFScriptDelegate);
+L52:           <End of Inlined Event Graph Function>;
+L57:           <End of Inlined Event Graph Function>;
+L62:           bool mbool = this->AddAsRepresentation();
+L86:           goto L10;
+L91:           bool mbool1 = this->RemoveAsRepresentation();
+L115:          <End of Inlined Event Graph Function>;
+L120:          bool mbool2 = this->UpdateRepresentation();
+============ END FUNCTION ExecuteUbergraph_Build_RadarTower ==============

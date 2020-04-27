@@ -1,0 +1,151 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Spitter/BP_SpitterMelee.BP_SpitterMelee_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetNewTarget ==============
+L0:            ExecutionFlow.Push(L1080);
+L5:            int32 Temp_int_Variable = 0;
+L28:           bool mbool = LessEqual_IntInt(Temp_int_Variable, 8);
+L62:           if (!mbool) goto ExecutionFlow.Pop();
+L72:           ExecutionFlow.Push(L1006);
+L77:           Pawn* mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
+L129:          bool mbool1 = KismetSystemLibrary->IsValid(mPawn);
+L180:          if (!mbool1) goto ExecutionFlow.Pop();
+L190:          mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
+L242:          Vector mVector = mPawn->K2_GetActorLocation();
+L292:          Vector mVector1 = this->K2_GetActorLocation();
+L320:          Vector mVector2 = Subtract_VectorVector(mVector, mVector1);
+L366:          float mfloat = VSize(mVector2);
+L403:          bool mbool2 = LessEqual_FloatFloat(mfloat, 9999);
+L437:          if (!mbool2) goto ExecutionFlow.Pop();
+L447:          bool mbool3 = KismetSystemLibrary->IsValid(this->mTargetPawn);
+L498:          if (!mbool3) goto L934;
+L512:          Vector mVector3 = this->mTargetPawn->K2_GetActorLocation();
+L562:          Vector mVector4 = this->K2_GetActorLocation();
+L590:          mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
+L642:          Vector mVector5 = Subtract_VectorVector(mVector3, mVector4);
+L688:          float mfloat1 = VSize(mVector5);
+L725:          mVector = mPawn->K2_GetActorLocation();
+L775:          mVector1 = this->K2_GetActorLocation();
+L803:          mVector2 = Subtract_VectorVector(mVector, mVector1);
+L849:          mfloat = VSize(mVector2);
+L886:          bool mbool4 = Less_FloatFloat(mfloat, mfloat1);
+L924:          if (!mbool4) goto ExecutionFlow.Pop();
+L934:          mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
+L986:          this->mTargetPawn = mPawn;
+L1005:         goto ExecutionFlow.Pop();
+L1006:         int32 mint32 = Add_IntInt(Temp_int_Variable, 1);
+L1048:         Temp_int_Variable = mint32;
+L1075:         goto L28;
+============ END FUNCTION GetNewTarget ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveActorBeginOverlap ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/BP_SpitterMelee.BP_SpitterMelee_C:ExecuteUbergraph_BP_SpitterMelee.K2Node_Event_OtherActor) = OtherActor;
+L18:           this->ExecuteUbergraph_BP_SpitterMelee(1275);
+============ END FUNCTION ReceiveActorBeginOverlap ==============
+
+
+
+
+
+============ BEGIN FUNCTION DestroyOnParticleDone ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/BP_SpitterMelee.BP_SpitterMelee_C:ExecuteUbergraph_BP_SpitterMelee.K2Node_CustomEvent_PSystem2) = PSystem;
+L18:           this->ExecuteUbergraph_BP_SpitterMelee(1389);
+============ END FUNCTION DestroyOnParticleDone ==============
+
+
+
+
+
+============ BEGIN FUNCTION DestroyWithRagdoll ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/BP_SpitterMelee.BP_SpitterMelee_C:ExecuteUbergraph_BP_SpitterMelee.K2Node_CustomEvent_PSystem1) = PSystem;
+L18:           this->ExecuteUbergraph_BP_SpitterMelee(1394);
+============ END FUNCTION DestroyWithRagdoll ==============
+
+
+
+
+
+============ BEGIN FUNCTION DestroyWithAirC ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/BP_SpitterMelee.BP_SpitterMelee_C:ExecuteUbergraph_BP_SpitterMelee.K2Node_CustomEvent_PSystem) = PSystem;
+L18:           this->ExecuteUbergraph_BP_SpitterMelee(1486);
+============ END FUNCTION DestroyWithAirC ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_SpitterMelee(1563);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_SpitterMelee ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           if (!this->Triggered) goto L30;
+L29:           goto ExecutionFlow.Pop();
+L30:           this->Triggered = true;
+L41:           this->Sphere1->SetCollisionEnabled(0);
+L79:           mFScriptDelegate->BindUFunction(this, DestroyOnParticleDone);
+L102:          this->ParticleSystem->OnSystemFinished.AddUnique(mFScriptDelegate);
+L143:          goto ExecutionFlow.Pop();
+L144:          mFGCharacterPlayer->RagdollCharacter(true);
+L177:          this->Sphere1->SetCollisionEnabled(0);
+L215:          mFScriptDelegate1->BindUFunction(this, DestroyWithRagdoll);
+L238:          this->ParticleSystem->OnSystemFinished.AddUnique(mFScriptDelegate1);
+L279:          goto ExecutionFlow.Pop();
+L280:          mFGCharacterPlayer->RagdollCharacter(false);
+L313:          this->K2_DestroyActor();
+L327:          goto ExecutionFlow.Pop();
+L328:          mFGCharacterPlayer->CharacterMovement->AirControl = this->mPlayerAirControl;
+L399:          this->K2_DestroyActor();
+L413:          goto ExecutionFlow.Pop();
+L414:          KismetSystemLibrary->Delay(this, 0, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 1415966430, ExecutionFunction = "ExecuteUbergraph_BP_SpitterMelee", CallbackTarget = this));
+L490:          goto ExecutionFlow.Pop();
+L491:          this->Triggered = true;
+L502:          float mfloat = GameplayStatics->ApplyDamage(mFGCharacterPlayer, 10, nullptr, nullptr, DamageType_SpitterMelee);
+L577:          Vector mVector = mFGCharacterPlayer->K2_GetActorLocation();
+L627:          Actor* mActor = this->GetOwner();
+L647:          Vector mVector1 = mActor->K2_GetActorLocation();
+L697:          Vector mVector2 = GetDirectionUnitVector(mVector1, mVector);
+L743:          Vector mVector3 = Multiply_VectorFloat(mVector2, 1500);
+L785:          BreakVector(mVector3, [ref] mfloat1, [ref] mfloat2, [ref] mfloat3);
+L831:          Vector mVector4 = MakeVector(mfloat1, mfloat2, 1000);
+L882:          mFGCharacterPlayer->LaunchCharacter(mVector4, true, true);
+L929:          if (!this->mRagdollPlayer) goto L1020;
+L943:          KismetSystemLibrary->Delay(this, 0.05000000074505806, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 144, UUID = 2107533048, ExecutionFunction = "ExecuteUbergraph_BP_SpitterMelee", CallbackTarget = this));
+L1019:         goto ExecutionFlow.Pop();
+L1020:         if (!this->mLimitAirControl) goto L41;
+L1034:         this->mPlayerAirControl = mFGCharacterPlayer->CharacterMovement->AirControl;
+L1105:         mFGCharacterPlayer->CharacterMovement->AirControl = 0;
+L1172:         this->Sphere1->SetCollisionEnabled(0);
+L1210:         mFScriptDelegate2->BindUFunction(this, DestroyWithAirC);
+L1233:         this->ParticleSystem->OnSystemFinished.AddUnique(mFScriptDelegate2);
+L1274:         goto ExecutionFlow.Pop();
+L1275:         this->ReceiveActorBeginOverlap(mActor1);
+L1294:         FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor1);
+L1330:         bool mbool = mFGCharacterPlayer;
+L1359:         if (!mbool) goto ExecutionFlow.Pop();
+L1369:         goto L491;
+L1374:         this->K2_DestroyActor();
+L1388:         goto ExecutionFlow.Pop();
+L1389:         goto L1374;
+L1394:         KismetSystemLibrary->Delay(this, 1.5, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 280, UUID = -953419367, ExecutionFunction = "ExecuteUbergraph_BP_SpitterMelee", CallbackTarget = this));
+L1470:         goto ExecutionFlow.Pop();
+L1471:         this->ReceiveBeginPlay();
+L1481:         goto L414;
+L1486:         KismetSystemLibrary->Delay(this, 1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 328, UUID = 94626385, ExecutionFunction = "ExecuteUbergraph_BP_SpitterMelee", CallbackTarget = this));
+L1562:         goto ExecutionFlow.Pop();
+L1563:         goto L1471;
+============ END FUNCTION ExecuteUbergraph_BP_SpitterMelee ==============

@@ -1,0 +1,41 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Player/Widget_Chunk_Health.Widget_Chunk_Health_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetHealthChunkColor ==============
+L0:            PanelWidget* mPanelWidget = this->GetParent();
+L20:           int32 mint32 = mPanelWidget->GetChildIndex(this);
+L71:           bool mbool = LessEqual_IntInt(mint32, 4);
+L105:          if (!mbool) goto L210;
+L119:          this->SetRenderScale(ScriptStruct /Script/CoreUObject.Vector2D(X = 1, Y = 1));
+L153:          LinearColor ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.02881699986755848, B = 0.06770800054073334, A = 0.800000011920929);
+L205:          goto L296;
+L210:          this->SetRenderScale(ScriptStruct /Script/CoreUObject.Vector2D(X = 0.800000011920929, Y = 0.800000011920929));
+L244:          ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.838798999786377, G = 0.8713669776916504, B = 0.887923002243042, A = 1);
+============ END FUNCTION GetHealthChunkColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetChunkVisibility ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mPlayerHealthComponent);
+L51:           if (!mbool) goto L400;
+L65:           uint8 Temp_byte_Variable = 0;
+L85:           uint8 Temp_byte_Variable1 = 1;
+L105:          PanelWidget* mPanelWidget = this->GetParent();
+L125:          int32 mint32 = mPanelWidget->GetChildIndex(this);
+L176:          float mfloat = Multiply_IntFloat(mint32, this->mAmountOfHealthPerChunk);
+L222:          float mfloat1 = this->mPlayerHealthComponent->GetCurrentHealth();
+L272:          bool mbool1 = Greater_FloatFloat(mfloat1, mfloat);
+L310:          bool Temp_bool_Variable = mbool1;
+L329:          uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetChunkVisibility ==============

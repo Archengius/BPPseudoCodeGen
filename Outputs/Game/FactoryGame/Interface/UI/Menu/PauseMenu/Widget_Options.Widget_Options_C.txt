@@ -1,0 +1,1456 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateDynamicSettings ==============
+L0:            ExecutionFlow.Push(L360);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->DynamicOptionWidgets);
+L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L148:          if (!mbool) goto ExecutionFlow.Pop();
+L158:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L185:          ExecutionFlow.Push(L286);
+L190:          KismetArrayLibrary->Array_Get([ref] this->DynamicOptionWidgets, Temp_int_Array_Index_Variable, [ref] mFGDynamicOptionsRow);
+L249:          mFGDynamicOptionsRow->OnOptionValueUpdated();
+L285:          goto ExecutionFlow.Pop();
+L286:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L328:          Temp_int_Loop_Counter_Variable = mint321;
+L355:          goto L51;
+============ END FUNCTION UpdateDynamicSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupDynamicOptions ==============
+L0:            ExecutionFlow.Push(L1346);
+L5:            int32 Temp_int_Variable1 = 0;
+L28:           int32 Temp_int_Variable = 0;
+L51:           int32 mint32 = KismetSystemLibrary->MakeLiteralInt(5);
+L106:          bool mbool = Less_IntInt(Temp_int_Variable1, mint32);
+L144:          if (!mbool) goto ExecutionFlow.Pop();
+L154:          uint8 muint8 = Conv_IntToByte(Temp_int_Variable1);
+L191:          uint8 muint81 = KismetNodeHelperLibrary->GetEnumeratorValueFromIndex(EOptionCategory, muint8);
+L259:          int32 mint321 = Conv_ByteToInt(muint81);
+L296:          Temp_int_Variable = mint321;
+L323:          ExecutionFlow.Push(L1198);
+L328:          uint8 muint82 = Conv_IntToByte(Temp_int_Variable);
+L365:          uint8 muint83 = KismetNodeHelperLibrary->GetValidValue(EOptionCategory, muint82);
+L433:          TArray<FGDynamicOptionsRow*> mTArray<FGDynamicOptionsRow> = FGOptionsLibrary->GetDynamicOptionsWidgets(this, muint83);
+L493:          this->DynamicOptionWidgets = mTArray<FGDynamicOptionsRow>;
+L520:          int32 Temp_int_Loop_Counter_Variable = 0;
+L543:          int32 Temp_int_Array_Index_Variable = 0;
+L566:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->DynamicOptionWidgets);
+L625:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint322);
+L663:          if (!mbool1) goto ExecutionFlow.Pop();
+L673:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L700:          ExecutionFlow.Push(L1272);
+L705:          muint82 = Conv_IntToByte(Temp_int_Variable);
+L742:          muint83 = KismetNodeHelperLibrary->GetValidValue(EOptionCategory, muint82);
+L810:          uint8 Temp_byte_Variable = muint83;
+L837:          KismetArrayLibrary->Array_Get([ref] this->DynamicOptionWidgets, Temp_int_Array_Index_Variable, [ref] mFGDynamicOptionsRow);
+L896:          PanelSlot* mPanelSlot = switch (Temp_byte_Variable) {
+case 0 -> this->OptionsGameplay;
+case 1 -> this->OptionAudio;
+case 2 -> this->OptionsVideo;
+case 3 -> this->OptionsControls;
+case 4 -> this->OptionsUserInterface;
+default -> mVerticalBox;
+}->AddChild(mFGDynamicOptionsRow);
+L1038:         KismetArrayLibrary->Array_Get([ref] this->DynamicOptionWidgets, Temp_int_Array_Index_Variable, [ref] mFGDynamicOptionsRow);
+L1097:         OptionRowData mOptionRowData = mFGDynamicOptionsRow->GetOptionRowData();
+L1147:         mFGDynamicOptionsRow->SetToolTipText([ref] mOptionRowData.Tooltip);
+L1197:         goto ExecutionFlow.Pop();
+L1198:         int32 mint323 = Add_IntInt(Temp_int_Variable1, 1);
+L1240:         Temp_int_Variable1 = mint323;
+L1267:         goto L51;
+L1272:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1314:         Temp_int_Loop_Counter_Variable = mint324;
+L1341:         goto L566;
+============ END FUNCTION SetupDynamicOptions ==============
+
+
+
+
+
+============ BEGIN FUNCTION ApplyVideoSettings ==============
+L0:            FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L42:           mFGGameUserSettings->SetHZBOEnabled(this->mHZBOCheckbox->mIsChecked);
+============ END FUNCTION ApplyVideoSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetCurrentShowBreakNotifications ==============
+L0:            FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L42:           bool mbool = mFGGameUserSettings->GetShowBreakNotification();
+L84:           this->mBreakNotificationCheckbox->SetChecked(mbool, false, [ref] mbool1);
+============ END FUNCTION SetCurrentShowBreakNotifications ==============
+
+
+
+
+
+============ BEGIN FUNCTION BindEventsForGameplayOptions ==============
+L0:            mFScriptDelegate->BindUFunction(this, NetworkQualityPrevious);
+L23:           this->mNetworkQualityOption->mButtonOptionLeft->OnClicked.AddUnique(mFScriptDelegate);
+L86:           mFScriptDelegate1->BindUFunction(this, NetworkQualityNext);
+L109:          this->mNetworkQualityOption->mButtonOptionRight->OnClicked.AddUnique(mFScriptDelegate1);
+============ END FUNCTION BindEventsForGameplayOptions ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResetMouseSensitivity ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController);
+L60:           bool mbool = mFGPlayerControllerBase;
+L89:           float mfloat = mFGPlayerControllerBase->GetDefaultMouseSensitivity();
+L139:          mFGPlayerControllerBase->SetMouseSensitivity(mfloat);
+============ END FUNCTION ResetMouseSensitivity ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResetAudioSettings ==============
+L0:            ExecutionFlow.Push(L926);
+L5:            GameUserSettings* mGameUserSettings = GameUserSettings->GetGameUserSettings();
+L47:           FGGameUserSettings* mFGGameUserSettings = Cast<Class /Script/FactoryGame.FGGameUserSettings>(mGameUserSettings);
+L83:           bool mbool = mFGGameUserSettings;
+L112:          if (!mbool) goto ExecutionFlow.Pop();
+L122:          FGGameUserSettings* local_userSettings = mFGGameUserSettings;
+L141:          TArray<FString> mTArray<FString> = [];
+L152:          BlueprintMapLibrary->Map_Keys([ref] this->mAudioOptions, [ref] mTArray<FString>);
+L202:          int32 Temp_int_Loop_Counter_Variable = 0;
+L225:          int32 Temp_int_Array_Index_Variable = 0;
+L248:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FString>);
+L307:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L345:          if (!mbool1) goto ExecutionFlow.Pop();
+L355:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L382:          ExecutionFlow.Push(L852);
+L387:          KismetArrayLibrary->Array_Get([ref] mTArray<FString>, Temp_int_Array_Index_Variable, [ref] mFString);
+L446:          float mfloat = local_userSettings->GetAudioVolume(mFString);
+L505:          FName mFName = KismetStringLibrary->Conv_StringToName(mFString);
+L564:          AkGameplayStatics->SetGlobalRTPCValue(mFName, mfloat, 0);
+L619:          KismetArrayLibrary->Array_Get([ref] mTArray<FString>, Temp_int_Array_Index_Variable, [ref] mFString);
+L678:          bool mbool2 = BlueprintMapLibrary->Map_Find([ref] this->mAudioOptions, [ref] mFString, [ref] mWidget_OptionsSlider);
+L747:          mfloat = local_userSettings->GetAudioVolume(mFString);
+L806:          mWidget_OptionsSlider->SetProgressBarPercentage(mfloat);
+L851:          goto ExecutionFlow.Pop();
+L852:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L894:          Temp_int_Loop_Counter_Variable = mint321;
+L921:          goto L248;
+============ END FUNCTION ResetAudioSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateGameplaySettings ==============
+L0:            ExecutionFlow.Push(L582);
+L5:            ExecutionFlow.Push(L407);
+L10:           ExecutionFlow.Push(L86);
+L15:           this->SetCurrentLanguage();
+L29:           this->SetCurrentArachnophobiaMode();
+L43:           this->SetCurrentHeadbobScale();
+L57:           this->SetCurrentAnalyticsSetting();
+L71:           this->SetCurrentShowBreakNotifications();
+L85:           goto ExecutionFlow.Pop();
+L86:           GameUserSettings* mGameUserSettings = GameUserSettings->GetGameUserSettings();
+L128:          FGGameUserSettings* mFGGameUserSettings = Cast<Class /Script/FactoryGame.FGGameUserSettings>(mGameUserSettings);
+L164:          bool mbool = mFGGameUserSettings;
+L193:          if (!mbool) goto ExecutionFlow.Pop();
+L203:          int32 mint32 = mFGGameUserSettings->GetNeworkQuality();
+L253:          this->mNetworkQualityIndex = mint32;
+L280:          KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mNetworkQualityIndex, [ref] mFText);
+L339:          this->mNetworkQualityOption->mOptionNameText->SetText(mFText);
+L406:          goto ExecutionFlow.Pop();
+L407:          FGGameUserSettings* mFGGameUserSettings1 = FGGameUserSettings->GetFGGameUserSettings();
+L449:          int32 mint321 = mFGGameUserSettings1->GetAutosaveInterval();
+L499:          float mfloat = Conv_IntToFloat(mint321);
+L536:          this->AutosaveIntervalSlider->SetNormalizedValue(mfloat);
+L581:          goto ExecutionFlow.Pop();
+============ END FUNCTION UpdateGameplaySettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetCurrentAnalyticsSetting ==============
+L0:            FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L42:           bool mbool = mFGGameUserSettings->GetAnalyticsDisabled();
+L84:           bool mbool1 = Not_PreBool(mbool);
+L113:          this->mDataCheckbox->SetChecked(mbool1, false, [ref] mbool2);
+============ END FUNCTION SetCurrentAnalyticsSetting ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetCurrentHeadbobScale ==============
+L0:            FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L42:           float mfloat = mFGGameUserSettings->GetHeadBobScale();
+L92:           this->mHeadBobSlider->SetProgressBarPercentage(mfloat);
+============ END FUNCTION SetCurrentHeadbobScale ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdatePostProcessValues ==============
+L0:            ExecutionFlow.Push(L598);
+L5:            GameUserSettings* mGameUserSettings = GameUserSettings->GetGameUserSettings();
+L47:           FGGameUserSettings* mFGGameUserSettings = Cast<Class /Script/FactoryGame.FGGameUserSettings>(mGameUserSettings);
+L83:           bool mbool = mFGGameUserSettings;
+L112:          if (!mbool) goto ExecutionFlow.Pop();
+L122:          ExecutionFlow.Push(L500);
+L127:          int32 mint32 = mFGGameUserSettings->GetPostProcessingQuality();
+L177:          this->mPostProcessQualityIndex = mint32;
+L204:          FText Temp_text_Variable = "[object Object]";
+L268:          KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mPostProcessQualityIndex, [ref] mFText);
+L327:          bool mbool1 = mFGGameUserSettings->IsPostProcessUsingCustomSettings();
+L369:          bool Temp_bool_Variable = mbool1;
+L388:          this->mPostProcessingOption->mOptionNameText->SetText(switch (Temp_bool_Variable) {
+case false -> mFText;
+case true -> Temp_text_Variable;
+default -> mFText1;
+});
+L499:          goto ExecutionFlow.Pop();
+L500:          bool mbool2 = mFGGameUserSettings->IsMotionBlurEnabled();
+L542:          this->mMotionBlurCheckbox->SetChecked(mbool2, false, [ref] mbool3);
+L597:          goto ExecutionFlow.Pop();
+============ END FUNCTION UpdatePostProcessValues ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupSubmenuOptionsForSpawnAnim ==============
+L0:            ExecutionFlow.Push(L622);
+L5:            Widget* mWidget = this->mSwitcher->GetActiveWidget();
+L47:           PanelWidget* mPanelWidget = Cast<Class /Script/UMG.PanelWidget>(mWidget);
+L83:           bool mbool = mPanelWidget;
+L112:          if (!mbool) goto ExecutionFlow.Pop();
+L122:          int32 Temp_int_Variable = 0;
+L145:          int32 mint32 = mPanelWidget->GetChildrenCount();
+L195:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint32);
+L233:          if (!mbool1) goto L516;
+L247:          ExecutionFlow.Push(L548);
+L252:          Widget* mWidget1 = mPanelWidget->GetChildAt(Temp_int_Variable);
+L303:          UserWidget* mUserWidget = Cast<Class /Script/UMG.UserWidget>(mWidget1);
+L339:          bool mbool2 = mUserWidget;
+L368:          if (!mbool2) goto ExecutionFlow.Pop();
+L378:          mUserWidget->StopAllAnimations();
+L410:          mUserWidget->SetRenderOpacity(0);
+L447:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalActiveOptions, [ref] mUserWidget);
+L515:          goto ExecutionFlow.Pop();
+L516:          TArray<UserWidget*> ActiveOptions = LocalActiveOptions;
+L543:          <End of Inlined Event Graph Function>;
+L548:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L590:          Temp_int_Variable = mint322;
+L617:          goto L145;
+============ END FUNCTION SetupSubmenuOptionsForSpawnAnim ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnAudioValueChanged ==============
+L0:            this->ApplyAudioSliders();
+============ END FUNCTION OnAudioValueChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnResolutionChanged ==============
+L0:            GameUserSettings* mGameUserSettings = GameUserSettings->GetGameUserSettings();
+L42:           bool mbool = KismetStringLibrary->Split(selected item, "x", [ref] mFString, [ref] mFString1, 1, 0);
+L118:          int32 mint32 = KismetStringLibrary->Conv_StringToInt(mFString1);
+L177:          int32 mint321 = KismetStringLibrary->Conv_StringToInt(mFString);
+L236:          mIntPoint.X = mint321;
+L272:          mIntPoint.Y = mint32;
+L308:          mGameUserSettings->SetScreenResolution(mIntPoint);
+L349:          this->mResolutionBox->mDropdownBox->SetSelectedOption(selected item);
+============ END FUNCTION OnResolutionChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDefaultKeybindPressed ==============
+L0:            this->mKeybindView->DefaultBindings();
+============ END FUNCTION OnDefaultKeybindPressed ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateControlSettings ==============
+L0:            ExecutionFlow.Push(L457);
+L5:            FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L47:           FGGameUserSettings* localSettings = mFGGameUserSettings;
+L66:           ExecutionFlow.Push(L272);
+L71:           ExecutionFlow.Push(L174);
+L76:           bool mbool = localSettings->GetInvertedLook();
+L118:          this->mInvertLookOption->SetChecked(mbool, false, [ref] mbool1);
+L173:          goto ExecutionFlow.Pop();
+L174:          bool mbool2 = localSettings->GetHoldToSprint();
+L216:          this->mHoldToSprint->SetChecked(mbool2, false, [ref] mbool3);
+L271:          goto ExecutionFlow.Pop();
+L272:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L296:          FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController);
+L332:          bool mbool4 = mFGPlayerControllerBase;
+L361:          float mfloat = mFGPlayerControllerBase->GetMouseSensitivity();
+L411:          this->mSensitivitySlider->SetNormalizedValue(mfloat);
+L456:          goto ExecutionFlow.Pop();
+============ END FUNCTION UpdateControlSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetCurrentArachnophobiaMode ==============
+L0:            FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L42:           bool mbool = mFGGameUserSettings->GetArachnophobiaMode();
+L84:           this->mArachnophobiaModeCheckbox->SetChecked(mbool, false, [ref] mbool1);
+============ END FUNCTION SetCurrentArachnophobiaMode ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetCurrentLanguage ==============
+L0:            ExecutionFlow.Push(L780);
+L5:            TArray<FText> mTArray<FText> = [];
+L16:           BlueprintMapLibrary->Map_Values([ref] this->mLanguageData, [ref] mTArray<FText>);
+L66:           TArray<FString> mTArray<FString> = [];
+L77:           BlueprintMapLibrary->Map_Keys([ref] this->mLanguageData, [ref] mTArray<FString>);
+L127:          int32 Temp_int_Loop_Counter_Variable = 0;
+L150:          int32 Temp_int_Array_Index_Variable = 0;
+L173:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FString>);
+L232:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L270:          if (!mbool) goto L523;
+L284:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L311:          ExecutionFlow.Push(L706);
+L316:          FString mFString = FGBlueprintFunctionLibrary->GetLanguage();
+L366:          KismetArrayLibrary->Array_Get([ref] mTArray<FString>, Temp_int_Array_Index_Variable, [ref] mFString1);
+L425:          bool mbool1 = KismetStringLibrary->EqualEqual_StriStri(mFString, mFString1);
+L485:          if (!mbool1) goto ExecutionFlow.Pop();
+L495:          int32 localLanguageIndex = Temp_int_Array_Index_Variable;
+L522:          goto ExecutionFlow.Pop();
+L523:          FString mFString2 = KismetTextLibrary->Conv_TextToString([ref] mTArray<FText>[localLanguageIndex]);
+L592:          this->mLanguageBox->mDropdownBox->SetSelectedOption(mFString2);
+L655:          FString mFString3 = FGBlueprintFunctionLibrary->GetLanguage();
+L705:          goto ExecutionFlow.Pop();
+L706:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L748:          Temp_int_Loop_Counter_Variable = mint321;
+L775:          goto L173;
+============ END FUNCTION SetCurrentLanguage ==============
+
+
+
+
+
+============ BEGIN FUNCTION ApplyControlsSettings ==============
+L0:            ExecutionFlow.Push(L380);
+L5:            FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L47:           FGGameUserSettings* localSettings = mFGGameUserSettings;
+L66:           ExecutionFlow.Push(L204);
+L71:           ExecutionFlow.Push(L140);
+L76:           localSettings->SetInvertedLook(this->mInvertLookOption->mIsChecked);
+L139:          goto ExecutionFlow.Pop();
+L140:          localSettings->SetHoldToSprint(this->mHoldToSprint->mIsChecked);
+L203:          goto ExecutionFlow.Pop();
+L204:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L228:          FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController);
+L264:          bool mbool = mFGPlayerControllerBase;
+L293:          this->mSensitivitySlider->GetAdjustedValue([ref] mfloat);
+L338:          mFGPlayerControllerBase->SetMouseSensitivity(mfloat);
+L379:          goto ExecutionFlow.Pop();
+============ END FUNCTION ApplyControlsSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION ApplyAudioSettings ==============
+L0:            this->ApplyAudioSliders();
+============ END FUNCTION ApplyAudioSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION ApplyGameplaySettings ==============
+L0:            ExecutionFlow.Push(L1624);
+L5:            ExecutionFlow.Push(L1444);
+L10:           ExecutionFlow.Push(L1278);
+L15:           ExecutionFlow.Push(L1149);
+L20:           ExecutionFlow.Push(L962);
+L25:           ExecutionFlow.Push(L738);
+L30:           TArray<FString> mTArray<FString> = [];
+L41:           BlueprintMapLibrary->Map_Keys([ref] this->mLanguageData, [ref] mTArray<FString>);
+L91:           TArray<FText> mTArray<FText> = [];
+L102:          BlueprintMapLibrary->Map_Values([ref] this->mLanguageData, [ref] mTArray<FText>);
+L152:          bool Temp_bool_True_if_break_was_hit_Variable = false;
+L163:          int32 Temp_int_Loop_Counter_Variable = 0;
+L186:          int32 Temp_int_Array_Index_Variable = 0;
+L209:          bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L238:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FText>);
+L297:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L335:          bool mbool2 = BooleanAND(mbool, mbool1);
+L373:          if (!mbool2) goto ExecutionFlow.Pop();
+L383:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L410:          ExecutionFlow.Push(L1550);
+L415:          FString mFString = this->mLanguageBox->mDropdownBox->GetSelectedOption();
+L487:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L546:          KismetArrayLibrary->Array_Get([ref] mTArray<FText>, Temp_int_Array_Index_Variable, [ref] mFText1);
+L605:          bool mbool3 = KismetTextLibrary->EqualEqual_IgnoreCase_TextText([ref] mFText1, [ref] mFText);
+L665:          if (!mbool3) goto ExecutionFlow.Pop();
+L675:          FGBlueprintFunctionLibrary->ChangeLanguage(mTArray<FString>[Temp_int_Array_Index_Variable]);
+L726:          Temp_bool_True_if_break_was_hit_Variable = true;
+L737:          goto ExecutionFlow.Pop();
+L738:          FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L780:          mFGGameUserSettings->SetArachnophobiaMode(this->mArachnophobiaModeCheckbox->mIsChecked);
+L843:          float mfloat = Conv_BoolToFloat(this->mArachnophobiaModeCheckbox->mIsChecked);
+L902:          AkGameplayStatics->SetGlobalRTPCValue("RTPC_ArachnophobiaMode", mfloat, 0);
+L961:          goto ExecutionFlow.Pop();
+L962:          FGGameUserSettings* mFGGameUserSettings1 = FGGameUserSettings->GetFGGameUserSettings();
+L1004:         bool mbool4 = Not_PreBool(this->mDataCheckbox->mIsChecked);
+L1055:         AnalyticsService* mAnalyticsService = FGGameInstance->GetGameAnalyticsService(this);
+L1098:         mFGGameUserSettings1->SetAnalyticsDisabled(mbool4, mAnalyticsService);
+L1148:         goto ExecutionFlow.Pop();
+L1149:         FGGameUserSettings* mFGGameUserSettings2 = FGGameUserSettings->GetFGGameUserSettings();
+L1191:         this->mHeadBobSlider->GetAdjustedValue([ref] mfloat1);
+L1236:         mFGGameUserSettings2->SetHeadBobScale(mfloat1);
+L1277:         goto ExecutionFlow.Pop();
+L1278:         FGGameUserSettings* mFGGameUserSettings3 = FGGameUserSettings->GetFGGameUserSettings();
+L1320:         this->AutosaveIntervalSlider->GetAdjustedValue([ref] mfloat2);
+L1365:         int32 mint321 = FTrunc(mfloat2);
+L1402:         mFGGameUserSettings3->SetAutosaveInterval(mint321);
+L1443:         goto ExecutionFlow.Pop();
+L1444:         FGGameUserSettings* mFGGameUserSettings4 = FGGameUserSettings->GetFGGameUserSettings();
+L1486:         mFGGameUserSettings4->SetShowBreakNotification(this->mBreakNotificationCheckbox->mIsChecked);
+L1549:         goto ExecutionFlow.Pop();
+L1550:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1592:         Temp_int_Loop_Counter_Variable = mint322;
+L1619:         goto L209;
+============ END FUNCTION ApplyGameplaySettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION ApplyAudioSliders ==============
+L0:            ExecutionFlow.Push(L1026);
+L5:            GameUserSettings* mGameUserSettings = GameUserSettings->GetGameUserSettings();
+L47:           FGGameUserSettings* mFGGameUserSettings = Cast<Class /Script/FactoryGame.FGGameUserSettings>(mGameUserSettings);
+L83:           bool mbool = mFGGameUserSettings;
+L112:          if (!mbool) goto ExecutionFlow.Pop();
+L122:          FGGameUserSettings* local_userSettings = mFGGameUserSettings;
+L141:          TArray<FString> mTArray<FString> = [];
+L152:          BlueprintMapLibrary->Map_Keys([ref] this->mAudioOptions, [ref] mTArray<FString>);
+L202:          int32 Temp_int_Loop_Counter_Variable = 0;
+L225:          int32 Temp_int_Array_Index_Variable = 0;
+L248:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FString>);
+L307:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L345:          if (!mbool1) goto ExecutionFlow.Pop();
+L355:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L382:          ExecutionFlow.Push(L952);
+L387:          KismetArrayLibrary->Array_Get([ref] mTArray<FString>, Temp_int_Array_Index_Variable, [ref] mFString);
+L446:          bool mbool2 = BlueprintMapLibrary->Map_Find([ref] this->mAudioOptions, [ref] mFString, [ref] mWidget_OptionsSlider);
+L515:          float mfloat = mWidget_OptionsSlider->OptionSlider->GetValue();
+L587:          FName mFName = KismetStringLibrary->Conv_StringToName(mFString);
+L646:          AkGameplayStatics->SetGlobalRTPCValue(mFName, mfloat, 0);
+L701:          KismetArrayLibrary->Array_Get([ref] mTArray<FString>, Temp_int_Array_Index_Variable, [ref] mFString);
+L760:          mbool2 = BlueprintMapLibrary->Map_Find([ref] this->mAudioOptions, [ref] mFString, [ref] mWidget_OptionsSlider);
+L829:          mfloat = mWidget_OptionsSlider->OptionSlider->GetValue();
+L901:          local_userSettings->SetAudioVolume(mFString, mfloat);
+L951:          goto ExecutionFlow.Pop();
+L952:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L994:          Temp_int_Loop_Counter_Variable = mint321;
+L1021:         goto L248;
+============ END FUNCTION ApplyAudioSliders ==============
+
+
+
+
+
+============ BEGIN FUNCTION CacheAudioSliders ==============
+L0:            mFScriptDelegate->BindUFunction(this, OnAudioValueChanged);
+L23:           this->mMasterVolumeSlider->GetNewValue.AddUnique(mFScriptDelegate);
+L64:           const FString Temp_string_Variable5 = "Master_Bus_Volume";
+L101:          BlueprintMapLibrary->Map_Add([ref] this->mAudioOptions, [ref] Temp_string_Variable5, [ref] this->mMasterVolumeSlider);
+L160:          mFScriptDelegate1->BindUFunction(this, OnAudioValueChanged);
+L183:          this->mAmbientVolumeSlider->GetNewValue.AddUnique(mFScriptDelegate1);
+L224:          const FString Temp_string_Variable2 = "Ambient_Bus_Volume";
+L262:          BlueprintMapLibrary->Map_Add([ref] this->mAudioOptions, [ref] Temp_string_Variable2, [ref] this->mAmbientVolumeSlider);
+L321:          mFScriptDelegate2->BindUFunction(this, OnAudioValueChanged);
+L344:          this->mFactoryVolSlider->GetNewValue.AddUnique(mFScriptDelegate2);
+L385:          const FString Temp_string_Variable1 = "Factory_Bus_Volume";
+L423:          BlueprintMapLibrary->Map_Add([ref] this->mAudioOptions, [ref] Temp_string_Variable1, [ref] this->mFactoryVolSlider);
+L482:          mFScriptDelegate3->BindUFunction(this, OnAudioValueChanged);
+L505:          this->mMusicVolumeSlider->GetNewValue.AddUnique(mFScriptDelegate3);
+L546:          const FString Temp_string_Variable = "Music_Bus_Volume";
+L582:          BlueprintMapLibrary->Map_Add([ref] this->mAudioOptions, [ref] Temp_string_Variable, [ref] this->mMusicVolumeSlider);
+L641:          mFScriptDelegate4->BindUFunction(this, OnAudioValueChanged);
+L664:          this->mSFXVolSlider->GetNewValue.AddUnique(mFScriptDelegate4);
+L705:          const FString Temp_string_Variable3 = "SFX_Bus_Volume";
+L739:          BlueprintMapLibrary->Map_Add([ref] this->mAudioOptions, [ref] Temp_string_Variable3, [ref] this->mSFXVolSlider);
+L798:          mFScriptDelegate5->BindUFunction(this, OnAudioValueChanged);
+L821:          this->mVOVolSlider->GetNewValue.AddUnique(mFScriptDelegate5);
+L862:          const FString Temp_string_Variable4 = "VO_Bus_Volume";
+L895:          BlueprintMapLibrary->Map_Add([ref] this->mAudioOptions, [ref] Temp_string_Variable4, [ref] this->mVOVolSlider);
+============ END FUNCTION CacheAudioSliders ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateAudioSettings ==============
+L0:            ExecutionFlow.Push(L741);
+L5:            GameUserSettings* mGameUserSettings = GameUserSettings->GetGameUserSettings();
+L47:           FGGameUserSettings* mFGGameUserSettings = Cast<Class /Script/FactoryGame.FGGameUserSettings>(mGameUserSettings);
+L83:           bool mbool = mFGGameUserSettings;
+L112:          if (!mbool) goto ExecutionFlow.Pop();
+L122:          FGGameUserSettings* local_userSettings = mFGGameUserSettings;
+L141:          TArray<FString> mTArray<FString> = [];
+L152:          BlueprintMapLibrary->Map_Keys([ref] this->mAudioOptions, [ref] mTArray<FString>);
+L202:          int32 Temp_int_Loop_Counter_Variable = 0;
+L225:          int32 Temp_int_Array_Index_Variable = 0;
+L248:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FString>);
+L307:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L345:          if (!mbool1) goto ExecutionFlow.Pop();
+L355:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L382:          ExecutionFlow.Push(L667);
+L387:          KismetArrayLibrary->Array_Get([ref] mTArray<FString>, Temp_int_Array_Index_Variable, [ref] mFString);
+L446:          float mfloat = local_userSettings->GetAudioVolume(mFString);
+L505:          float mfloat1 = FClamp(mfloat, 0, 1);
+L552:          bool mbool2 = BlueprintMapLibrary->Map_Find([ref] this->mAudioOptions, [ref] mFString, [ref] mWidget_OptionsSlider);
+L621:          mWidget_OptionsSlider->SetProgressBarPercentage(mfloat1);
+L666:          goto ExecutionFlow.Pop();
+L667:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L709:          Temp_int_Loop_Counter_Variable = mint321;
+L736:          goto L248;
+============ END FUNCTION UpdateAudioSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION BindEventsForVolumeSliders ==============
+L0:            ExecutionFlow.Push(L1068);
+L5:            ExecutionFlow.Push(L895);
+L10:           ExecutionFlow.Push(L722);
+L15:           ExecutionFlow.Push(L549);
+L20:           ExecutionFlow.Push(L376);
+L25:           ExecutionFlow.Push(L203);
+L30:           mFScriptDelegate->BindUFunction(this, DoVolumeThings);
+L53:           this->mAmbientVolumeSlider->OptionSlider->OnValueChanged.AddUnique(mFScriptDelegate);
+L116:          mFScriptDelegate1->BindUFunction(this, SaveSettings);
+L139:          this->mAmbientVolumeSlider->OptionSlider->OnMouseCaptureEnd.AddUnique(mFScriptDelegate1);
+L202:          goto ExecutionFlow.Pop();
+L203:          mFScriptDelegate->BindUFunction(this, DoVolumeThings);
+L226:          this->mFactoryVolSlider->OptionSlider->OnValueChanged.AddUnique(mFScriptDelegate);
+L289:          mFScriptDelegate1->BindUFunction(this, SaveSettings);
+L312:          this->mFactoryVolSlider->OptionSlider->OnMouseCaptureEnd.AddUnique(mFScriptDelegate1);
+L375:          goto ExecutionFlow.Pop();
+L376:          mFScriptDelegate->BindUFunction(this, DoVolumeThings);
+L399:          this->mSFXVolSlider->OptionSlider->OnValueChanged.AddUnique(mFScriptDelegate);
+L462:          mFScriptDelegate1->BindUFunction(this, SaveSettings);
+L485:          this->mSFXVolSlider->OptionSlider->OnMouseCaptureEnd.AddUnique(mFScriptDelegate1);
+L548:          goto ExecutionFlow.Pop();
+L549:          mFScriptDelegate->BindUFunction(this, DoVolumeThings);
+L572:          this->mMusicVolumeSlider->OptionSlider->OnValueChanged.AddUnique(mFScriptDelegate);
+L635:          mFScriptDelegate1->BindUFunction(this, SaveSettings);
+L658:          this->mMusicVolumeSlider->OptionSlider->OnMouseCaptureEnd.AddUnique(mFScriptDelegate1);
+L721:          goto ExecutionFlow.Pop();
+L722:          mFScriptDelegate->BindUFunction(this, DoVolumeThings);
+L745:          this->mVOVolSlider->OptionSlider->OnValueChanged.AddUnique(mFScriptDelegate);
+L808:          mFScriptDelegate1->BindUFunction(this, SaveSettings);
+L831:          this->mVOVolSlider->OptionSlider->OnMouseCaptureEnd.AddUnique(mFScriptDelegate1);
+L894:          goto ExecutionFlow.Pop();
+L895:          mFScriptDelegate->BindUFunction(this, DoVolumeThings);
+L918:          this->mMasterVolumeSlider->OptionSlider->OnValueChanged.AddUnique(mFScriptDelegate);
+L981:          mFScriptDelegate1->BindUFunction(this, SaveSettings);
+L1004:         this->mMasterVolumeSlider->OptionSlider->OnMouseCaptureEnd.AddUnique(mFScriptDelegate1);
+L1067:         goto ExecutionFlow.Pop();
+============ END FUNCTION BindEventsForVolumeSliders ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClampedNextIndex ==============
+L0:            int32 mint32 = Add_IntInt(currentIndex, 1);
+L42:           int32 mint321 = KismetArrayLibrary->Array_LastIndex([ref] settingsArray);
+L101:          int32 mint322 = Min(mint32, mint321);
+L147:          int32 nextIndex = mint322;
+============ END FUNCTION ClampedNextIndex ==============
+
+
+
+
+
+============ BEGIN FUNCTION BindEventsToAllButtonsForVideoSettings ==============
+L0:            ExecutionFlow.Push(L1618);
+L5:            ExecutionFlow.Push(L1531);
+L10:           ExecutionFlow.Push(L1466);
+L15:           ExecutionFlow.Push(L1401);
+L20:           ExecutionFlow.Push(L1336);
+L25:           ExecutionFlow.Push(L1163);
+L30:           ExecutionFlow.Push(L990);
+L35:           ExecutionFlow.Push(L817);
+L40:           ExecutionFlow.Push(L644);
+L45:           ExecutionFlow.Push(L401);
+L50:           ExecutionFlow.Push(L228);
+L55:           mFScriptDelegate->BindUFunction(this, AntiAliasPrevious);
+L78:           this->mAntiAliasingOption->mButtonOptionLeft->OnClicked.AddUnique(mFScriptDelegate);
+L141:          mFScriptDelegate1->BindUFunction(this, AntiAliasNext);
+L164:          this->mAntiAliasingOption->mButtonOptionRight->OnClicked.AddUnique(mFScriptDelegate1);
+L227:          goto ExecutionFlow.Pop();
+L228:          mFScriptDelegate2->BindUFunction(this, FoliagePrevious);
+L251:          this->mFoliageQualityOption->mButtonOptionLeft->OnClicked.AddUnique(mFScriptDelegate2);
+L314:          mFScriptDelegate3->BindUFunction(this, FoliageNext);
+L337:          this->mFoliageQualityOption->mButtonOptionRight->OnClicked.AddUnique(mFScriptDelegate3);
+L400:          goto ExecutionFlow.Pop();
+L401:          ExecutionFlow.Push(L579);
+L406:          mFScriptDelegate4->BindUFunction(this, PostProcessingPrevious);
+L429:          this->mPostProcessingOption->mButtonOptionLeft->OnClicked.AddUnique(mFScriptDelegate4);
+L492:          mFScriptDelegate5->BindUFunction(this, PostProcessingNext);
+L515:          this->mPostProcessingOption->mButtonOptionRight->OnClicked.AddUnique(mFScriptDelegate5);
+L578:          goto ExecutionFlow.Pop();
+L579:          mFScriptDelegate6->BindUFunction(this, OnMotionBlurChecked);
+L602:          this->mMotionBlurCheckbox->OnCheckChanged.AddUnique(mFScriptDelegate6);
+L643:          goto ExecutionFlow.Pop();
+L644:          mFScriptDelegate7->BindUFunction(this, ShadowQualityPrevious);
+L667:          this->mShadowQualityOption->mButtonOptionLeft->OnClicked.AddUnique(mFScriptDelegate7);
+L730:          mFScriptDelegate8->BindUFunction(this, ShadowQualityNext);
+L753:          this->mShadowQualityOption->mButtonOptionRight->OnClicked.AddUnique(mFScriptDelegate8);
+L816:          goto ExecutionFlow.Pop();
+L817:          mFScriptDelegate9->BindUFunction(this, TextureQualityPrevious);
+L840:          this->mTextureQualityOption->mButtonOptionLeft->OnClicked.AddUnique(mFScriptDelegate9);
+L903:          mFScriptDelegate10->BindUFunction(this, TextureQualityNext);
+L926:          this->mTextureQualityOption->mButtonOptionRight->OnClicked.AddUnique(mFScriptDelegate10);
+L989:          goto ExecutionFlow.Pop();
+L990:          mFScriptDelegate11->BindUFunction(this, VFXQualityPrevious);
+L1013:         this->mVFXQualityOption->mButtonOptionLeft->OnClicked.AddUnique(mFScriptDelegate11);
+L1076:         mFScriptDelegate12->BindUFunction(this, VFXQualityNext);
+L1099:         this->mVFXQualityOption->mButtonOptionRight->OnClicked.AddUnique(mFScriptDelegate12);
+L1162:         goto ExecutionFlow.Pop();
+L1163:         mFScriptDelegate13->BindUFunction(this, ViewDistancePrevious);
+L1186:         this->mViewDistanceOption->mButtonOptionLeft->OnClicked.AddUnique(mFScriptDelegate13);
+L1249:         mFScriptDelegate14->BindUFunction(this, ViewDistanceNext);
+L1272:         this->mViewDistanceOption->mButtonOptionRight->OnClicked.AddUnique(mFScriptDelegate14);
+L1335:         goto ExecutionFlow.Pop();
+L1336:         mFScriptDelegate15->BindUFunction(this, OnVSyncChecked);
+L1359:         this->mVSyncCheckbox->OnCheckChanged.AddUnique(mFScriptDelegate15);
+L1400:         goto ExecutionFlow.Pop();
+L1401:         mFScriptDelegate16->BindUFunction(this, OnFullScreenChecked);
+L1424:         this->mFullScreenCheckbox->OnCheckChanged.AddUnique(mFScriptDelegate16);
+L1465:         goto ExecutionFlow.Pop();
+L1466:         mFScriptDelegate17->BindUFunction(this, OnFOVChanged);
+L1489:         this->mFOVSlider->GetNewValue.AddUnique(mFScriptDelegate17);
+L1530:         goto ExecutionFlow.Pop();
+L1531:         mFScriptDelegate18->BindUFunction(this, OnResolutionChanged);
+L1554:         this->mResolutionBox->mDropdownBox->OnSelectionChanged.AddUnique(mFScriptDelegate18);
+L1617:         goto ExecutionFlow.Pop();
+============ END FUNCTION BindEventsToAllButtonsForVideoSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateVideoSettings ==============
+L0:            ExecutionFlow.Push(L2759);
+L5:            ExecutionFlow.Push(L2619);
+L10:           ExecutionFlow.Push(L2292);
+L15:           ExecutionFlow.Push(L2152);
+L20:           ExecutionFlow.Push(L1906);
+L25:           ExecutionFlow.Push(L1660);
+L30:           ExecutionFlow.Push(L1414);
+L35:           ExecutionFlow.Push(L1168);
+L40:           ExecutionFlow.Push(L1153);
+L45:           ExecutionFlow.Push(L907);
+L50:           ExecutionFlow.Push(L661);
+L55:           ExecutionFlow.Push(L482);
+L60:           GameUserSettings* mGameUserSettings = GameUserSettings->GetGameUserSettings();
+L102:          IntPoint mIntPoint = mGameUserSettings->GetScreenResolution();
+L152:          FString mFString = KismetStringLibrary->Conv_IntToString(mIntPoint.Y);
+L220:          FString mFString1 = KismetStringLibrary->Conv_IntToString(mIntPoint.X);
+L288:          FString mFString2 = KismetStringLibrary->Concat_StrStr(mFString1, "x");
+L350:          FString mFString3 = KismetStringLibrary->Concat_StrStr(mFString2, mFString);
+L418:          this->mResolutionBox->mDropdownBox->SetSelectedOption(mFString3);
+L481:          goto ExecutionFlow.Pop();
+L482:          GameUserSettings* mGameUserSettings1 = GameUserSettings->GetGameUserSettings();
+L524:          uint8 muint8 = mGameUserSettings1->GetFullscreenMode();
+L574:          bool mbool = EqualEqual_ByteByte(muint8, 0);
+L605:          this->mFullScreenCheckbox->SetChecked(mbool, false, [ref] mbool1);
+L660:          goto ExecutionFlow.Pop();
+L661:          GameUserSettings* mGameUserSettings2 = GameUserSettings->GetGameUserSettings();
+L703:          int32 mint32 = mGameUserSettings2->GetAntiAliasingQuality();
+L753:          this->mAntiAliasingIndex = mint32;
+L780:          KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mAntiAliasingIndex, [ref] mFText);
+L839:          this->mAntiAliasingOption->mOptionNameText->SetText(mFText);
+L906:          goto ExecutionFlow.Pop();
+L907:          GameUserSettings* mGameUserSettings3 = GameUserSettings->GetGameUserSettings();
+L949:          int32 mint321 = mGameUserSettings3->GetFoliageQuality();
+L999:          this->mFoliageQualityIndex = mint321;
+L1026:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mFoliageQualityIndex, [ref] mFText1);
+L1085:         this->mFoliageQualityOption->mOptionNameText->SetText(mFText1);
+L1152:         goto ExecutionFlow.Pop();
+L1153:         this->UpdatePostProcessValues();
+L1167:         goto ExecutionFlow.Pop();
+L1168:         GameUserSettings* mGameUserSettings4 = GameUserSettings->GetGameUserSettings();
+L1210:         int32 mint322 = mGameUserSettings4->GetShadowQuality();
+L1260:         this->mShadowQualityIndex = mint322;
+L1287:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mShadowQualityIndex, [ref] mFText2);
+L1346:         this->mShadowQualityOption->mOptionNameText->SetText(mFText2);
+L1413:         goto ExecutionFlow.Pop();
+L1414:         GameUserSettings* mGameUserSettings5 = GameUserSettings->GetGameUserSettings();
+L1456:         int32 mint323 = mGameUserSettings5->GetTextureQuality();
+L1506:         this->mTextureQualityIndex = mint323;
+L1533:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mTextureQualityIndex, [ref] mFText3);
+L1592:         this->mTextureQualityOption->mOptionNameText->SetText(mFText3);
+L1659:         goto ExecutionFlow.Pop();
+L1660:         GameUserSettings* mGameUserSettings6 = GameUserSettings->GetGameUserSettings();
+L1702:         int32 mint324 = mGameUserSettings6->GetViewDistanceQuality();
+L1752:         this->mViewDistanceIndex = mint324;
+L1779:         KismetArrayLibrary->Array_Get([ref] this->mViewDistanceSettings, this->mViewDistanceIndex, [ref] mFText4);
+L1838:         this->mViewDistanceOption->mOptionNameText->SetText(mFText4);
+L1905:         goto ExecutionFlow.Pop();
+L1906:         GameUserSettings* mGameUserSettings7 = GameUserSettings->GetGameUserSettings();
+L1948:         int32 mint325 = mGameUserSettings7->GetVisualEffectQuality();
+L1998:         this->mVFXIndex = mint325;
+L2025:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mVFXIndex, [ref] mFText5);
+L2084:         this->mVFXQualityOption->mOptionNameText->SetText(mFText5);
+L2151:         goto ExecutionFlow.Pop();
+L2152:         GameUserSettings* mGameUserSettings8 = GameUserSettings->GetGameUserSettings();
+L2194:         bool mbool2 = mGameUserSettings8->IsVSyncEnabled();
+L2236:         this->mVSyncCheckbox->SetChecked(mbool2, false, [ref] mbool3);
+L2291:         goto ExecutionFlow.Pop();
+L2292:         GameUserSettings* mGameUserSettings9 = GameUserSettings->GetGameUserSettings();
+L2334:         FGGameUserSettings* mFGGameUserSettings = Cast<Class /Script/FactoryGame.FGGameUserSettings>(mGameUserSettings9);
+L2370:         bool mbool4 = mFGGameUserSettings;
+L2399:         if (!mbool4) goto ExecutionFlow.Pop();
+L2409:         int32 mint326 = mFGGameUserSettings->GetFOV();
+L2459:         this->mFOV = mint326;
+L2486:         mint326 = mFGGameUserSettings->GetFOV();
+L2536:         float mfloat = Conv_IntToFloat(mint326);
+L2573:         this->mFOVSlider->SetNormalizedValue(mfloat);
+L2618:         goto ExecutionFlow.Pop();
+L2619:         FGGameUserSettings* mFGGameUserSettings1 = FGGameUserSettings->GetFGGameUserSettings();
+L2661:         bool mbool5 = mFGGameUserSettings1->IsHZBOEnabled();
+L2703:         this->mHZBOCheckbox->SetChecked(mbool5, false, [ref] mbool6);
+L2758:         goto ExecutionFlow.Pop();
+============ END FUNCTION UpdateVideoSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateLanguageBox ==============
+L0:            ExecutionFlow.Push(L507);
+L5:            TArray<FText> mTArray<FText> = [];
+L16:           BlueprintMapLibrary->Map_Values([ref] this->mLanguageData, [ref] mTArray<FText>);
+L66:           int32 Temp_int_Loop_Counter_Variable = 0;
+L89:           int32 Temp_int_Array_Index_Variable = 0;
+L112:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FText>);
+L171:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L209:          if (!mbool) goto ExecutionFlow.Pop();
+L219:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L246:          ExecutionFlow.Push(L433);
+L251:          KismetArrayLibrary->Array_Get([ref] mTArray<FText>, Temp_int_Array_Index_Variable, [ref] mFText);
+L310:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L369:          this->mLanguageBox->mDropdownBox->AddOption(mFString);
+L432:          goto ExecutionFlow.Pop();
+L433:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L475:          Temp_int_Loop_Counter_Variable = mint321;
+L502:          goto L112;
+============ END FUNCTION PopulateLanguageBox ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateResolutionBox ==============
+L0:            ExecutionFlow.Push(L715);
+L5:            TArray<IntPoint> mTArray<IntPoint> = [];
+L16:           bool mbool = KismetSystemLibrary->GetSupportedFullscreenResolutions([ref] mTArray<IntPoint>);
+L67:           int32 Temp_int_Loop_Counter_Variable = 0;
+L90:           int32 Temp_int_Array_Index_Variable = 0;
+L113:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<IntPoint>);
+L172:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L210:          if (!mbool1) goto ExecutionFlow.Pop();
+L220:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L247:          ExecutionFlow.Push(L641);
+L252:          KismetArrayLibrary->Array_Get([ref] mTArray<IntPoint>, Temp_int_Array_Index_Variable, [ref] mIntPoint);
+L311:          FString mFString = KismetStringLibrary->Conv_IntToString(mIntPoint.Y);
+L379:          FString mFString1 = KismetStringLibrary->Conv_IntToString(mIntPoint.X);
+L447:          FString mFString2 = KismetStringLibrary->Concat_StrStr(mFString1, "x");
+L509:          FString mFString3 = KismetStringLibrary->Concat_StrStr(mFString2, mFString);
+L577:          this->mResolutionBox->mDropdownBox->AddOption(mFString3);
+L640:          goto ExecutionFlow.Pop();
+L641:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L683:          Temp_int_Loop_Counter_Variable = mint321;
+L710:          goto L113;
+============ END FUNCTION PopulateResolutionBox ==============
+
+
+
+
+
+============ BEGIN FUNCTION PostProcessingNext ==============
+L0:            this->ExecuteUbergraph_Widget_Options(4350);
+============ END FUNCTION PostProcessingNext ==============
+
+
+
+
+
+============ BEGIN FUNCTION PostProcessingPrevious ==============
+L0:            this->ExecuteUbergraph_Widget_Options(4272);
+============ END FUNCTION PostProcessingPrevious ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShadowQualityNext ==============
+L0:            this->ExecuteUbergraph_Widget_Options(3650);
+============ END FUNCTION ShadowQualityNext ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShadowQualityPrevious ==============
+L0:            this->ExecuteUbergraph_Widget_Options(3608);
+============ END FUNCTION ShadowQualityPrevious ==============
+
+
+
+
+
+============ BEGIN FUNCTION FoliagePrevious ==============
+L0:            this->ExecuteUbergraph_Widget_Options(324);
+============ END FUNCTION FoliagePrevious ==============
+
+
+
+
+
+============ BEGIN FUNCTION TextureQualityNext ==============
+L0:            this->ExecuteUbergraph_Widget_Options(329);
+============ END FUNCTION TextureQualityNext ==============
+
+
+
+
+
+============ BEGIN FUNCTION TextureQualityPrevious ==============
+L0:            this->ExecuteUbergraph_Widget_Options(607);
+============ END FUNCTION TextureQualityPrevious ==============
+
+
+
+
+
+============ BEGIN FUNCTION FoliageNext ==============
+L0:            this->ExecuteUbergraph_Widget_Options(901);
+============ END FUNCTION FoliageNext ==============
+
+
+
+
+
+============ BEGIN FUNCTION ViewDistanceNext ==============
+L0:            this->ExecuteUbergraph_Widget_Options(1179);
+============ END FUNCTION ViewDistanceNext ==============
+
+
+
+
+
+============ BEGIN FUNCTION ViewDistancePrevious ==============
+L0:            this->ExecuteUbergraph_Widget_Options(1457);
+============ END FUNCTION ViewDistancePrevious ==============
+
+
+
+
+
+============ BEGIN FUNCTION VFXQualityNext ==============
+L0:            this->ExecuteUbergraph_Widget_Options(1751);
+============ END FUNCTION VFXQualityNext ==============
+
+
+
+
+
+============ BEGIN FUNCTION VFXQualityPrevious ==============
+L0:            this->ExecuteUbergraph_Widget_Options(2029);
+============ END FUNCTION VFXQualityPrevious ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnVSyncChecked ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_CustomEvent_bIsChecked1) = bIsChecked;
+L18:           this->ExecuteUbergraph_Widget_Options(2902);
+============ END FUNCTION OnVSyncChecked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFullScreenChecked ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_CustomEvent_bIsChecked) = bIsChecked;
+L18:           this->ExecuteUbergraph_Widget_Options(3096);
+============ END FUNCTION OnFullScreenChecked ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResetVideoSettings ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_CustomEvent_confirm2) = confirm;
+L18:           this->ExecuteUbergraph_Widget_Options(3509);
+============ END FUNCTION ResetVideoSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEscape ==============
+L0:            this->ExecuteUbergraph_Widget_Options(3613);
+============ END FUNCTION OnEscape ==============
+
+
+
+
+
+============ BEGIN FUNCTION SaveChanges ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_CustomEvent_Confirm1) = confirm;
+L18:           this->ExecuteUbergraph_Widget_Options(3655);
+============ END FUNCTION SaveChanges ==============
+
+
+
+
+
+============ BEGIN FUNCTION DoVolumeThings ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_CustomEvent_VolumeThingsValue) = VolumeThingsValue;
+L18:           this->ExecuteUbergraph_Widget_Options(4355);
+============ END FUNCTION DoVolumeThings ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnFOVChanged ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_CustomEvent_newFOV) = NewFOV;
+L18:           this->ExecuteUbergraph_Widget_Options(5427);
+============ END FUNCTION OnFOVChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowConfirmResetPopup ==============
+L0:            this->ExecuteUbergraph_Widget_Options(5432);
+============ END FUNCTION ShowConfirmResetPopup ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Options(6083);
+============ END FUNCTION BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_FrontEnd_Button_C_0_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Options(6088);
+============ END FUNCTION BndEvt__Widget_FrontEnd_Button_C_0_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowConfirmChangesPopup ==============
+L0:            this->ExecuteUbergraph_Widget_Options(6249);
+============ END FUNCTION ShowConfirmChangesPopup ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Options(6254);
+============ END FUNCTION BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_Options(6535);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMotionBlurChecked ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_CustomEvent_Checked) = Checked;
+L18:           this->ExecuteUbergraph_Widget_Options(6767);
+============ END FUNCTION OnMotionBlurChecked ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSwitcher_K2Node_ComponentBoundEvent_4_OnActiveWidgetSet__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_ComponentBoundEvent_oldWidget) = oldWidget;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_ComponentBoundEvent_newWidget) = newWidget;
+L36:           this->ExecuteUbergraph_Widget_Options(7234);
+============ END FUNCTION BndEvt__mSwitcher_K2Node_ComponentBoundEvent_4_OnActiveWidgetSet__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION AntiAliasNext ==============
+L0:            this->ExecuteUbergraph_Widget_Options(7287);
+============ END FUNCTION AntiAliasNext ==============
+
+
+
+
+
+============ BEGIN FUNCTION AntiAliasPrevious ==============
+L0:            this->ExecuteUbergraph_Widget_Options(7292);
+============ END FUNCTION AntiAliasPrevious ==============
+
+
+
+
+
+============ BEGIN FUNCTION NetworkQualityPrevious ==============
+L0:            this->ExecuteUbergraph_Widget_Options(7297);
+============ END FUNCTION NetworkQualityPrevious ==============
+
+
+
+
+
+============ BEGIN FUNCTION NetworkQualityNext ==============
+L0:            this->ExecuteUbergraph_Widget_Options(7666);
+============ END FUNCTION NetworkQualityNext ==============
+
+
+
+
+
+============ BEGIN FUNCTION SaveSettings ==============
+L0:            this->ExecuteUbergraph_Widget_Options(7739);
+============ END FUNCTION SaveSettings ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMenuExit ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_Event_prevMenu) = prevMenu;
+L18:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_Event_noAnimation) = noAnimation;
+L36:           this->ExecuteUbergraph_Widget_Options(7818);
+============ END FUNCTION OnMenuExit ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckResolutionChanges ==============
+L0:            this->ExecuteUbergraph_Widget_Options(7861);
+============ END FUNCTION CheckResolutionChanges ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResolutionChangedAccepted ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_CustomEvent_Confirm) = confirm;
+L18:           this->ExecuteUbergraph_Widget_Options(8161);
+============ END FUNCTION ResolutionChangedAccepted ==============
+
+
+
+
+
+============ BEGIN FUNCTION OpenRequireRestartIfRequired ==============
+L0:            this->ExecuteUbergraph_Widget_Options(8408);
+============ END FUNCTION OpenRequireRestartIfRequired ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/PauseMenu/Widget_Options.Widget_Options_C:ExecuteUbergraph_Widget_Options.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_Options(8930);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_Options(8945);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION RevertUnsavedChanges ==============
+L0:            this->ExecuteUbergraph_Widget_Options(8960);
+============ END FUNCTION RevertUnsavedChanges ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Options(9076);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Options ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->UpdateDynamicSettings();
+L29:           goto ExecutionFlow.Pop();
+L30:           GameUserSettings* mGameUserSettings = GameUserSettings->GetGameUserSettings();
+L72:           int32 mint32 = Max(Subtract_IntInt(this->mFoliageQualityIndex, 1), 0);
+L129:          this->mFoliageQualityIndex = mint32;
+L156:          mGameUserSettings->SetFoliageQuality(this->mFoliageQualityIndex);
+L197:          KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mFoliageQualityIndex, [ref] mFText);
+L256:          this->mFoliageQualityOption->mOptionNameText->SetText(mFText);
+L323:          goto ExecutionFlow.Pop();
+L324:          goto L30;
+L329:          GameUserSettings* mGameUserSettings1 = GameUserSettings->GetGameUserSettings();
+L371:          this->ClampedNextIndex(this->mTextureQualityIndex, [ref] this->mSettings, [ref] mint321);
+L412:          this->mTextureQualityIndex = mint321;
+L439:          mGameUserSettings1->SetTextureQuality(this->mTextureQualityIndex);
+L480:          KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mTextureQualityIndex, [ref] mFText1);
+L539:          this->mTextureQualityOption->mOptionNameText->SetText(mFText1);
+L606:          goto ExecutionFlow.Pop();
+L607:          GameUserSettings* mGameUserSettings2 = GameUserSettings->GetGameUserSettings();
+L649:          int32 mint322 = Max(Subtract_IntInt(this->mTextureQualityIndex, 1), 0);
+L706:          this->mTextureQualityIndex = mint322;
+L733:          mGameUserSettings2->SetTextureQuality(this->mTextureQualityIndex);
+L774:          KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mTextureQualityIndex, [ref] mFText2);
+L833:          this->mTextureQualityOption->mOptionNameText->SetText(mFText2);
+L900:          goto ExecutionFlow.Pop();
+L901:          GameUserSettings* mGameUserSettings3 = GameUserSettings->GetGameUserSettings();
+L943:          this->ClampedNextIndex(this->mFoliageQualityIndex, [ref] this->mSettings, [ref] mint323);
+L984:          this->mFoliageQualityIndex = mint323;
+L1011:         mGameUserSettings3->SetFoliageQuality(this->mFoliageQualityIndex);
+L1052:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mFoliageQualityIndex, [ref] mFText3);
+L1111:         this->mFoliageQualityOption->mOptionNameText->SetText(mFText3);
+L1178:         goto ExecutionFlow.Pop();
+L1179:         GameUserSettings* mGameUserSettings4 = GameUserSettings->GetGameUserSettings();
+L1221:         this->ClampedNextIndex(this->mViewDistanceIndex, [ref] this->mViewDistanceSettings, [ref] mint324);
+L1262:         this->mViewDistanceIndex = mint324;
+L1289:         mGameUserSettings4->SetViewDistanceQuality(this->mViewDistanceIndex);
+L1330:         KismetArrayLibrary->Array_Get([ref] this->mViewDistanceSettings, this->mViewDistanceIndex, [ref] mFText4);
+L1389:         this->mViewDistanceOption->mOptionNameText->SetText(mFText4);
+L1456:         goto ExecutionFlow.Pop();
+L1457:         GameUserSettings* mGameUserSettings5 = GameUserSettings->GetGameUserSettings();
+L1499:         int32 mint325 = Max(Subtract_IntInt(this->mViewDistanceIndex, 1), 0);
+L1556:         this->mViewDistanceIndex = mint325;
+L1583:         mGameUserSettings5->SetViewDistanceQuality(this->mViewDistanceIndex);
+L1624:         KismetArrayLibrary->Array_Get([ref] this->mViewDistanceSettings, this->mViewDistanceIndex, [ref] mFText5);
+L1683:         this->mViewDistanceOption->mOptionNameText->SetText(mFText5);
+L1750:         goto ExecutionFlow.Pop();
+L1751:         GameUserSettings* mGameUserSettings6 = GameUserSettings->GetGameUserSettings();
+L1793:         this->ClampedNextIndex(this->mVFXIndex, [ref] this->mSettings, [ref] mint326);
+L1834:         this->mVFXIndex = mint326;
+L1861:         mGameUserSettings6->SetVisualEffectQuality(this->mVFXIndex);
+L1902:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mVFXIndex, [ref] mFText6);
+L1961:         this->mVFXQualityOption->mOptionNameText->SetText(mFText6);
+L2028:         goto ExecutionFlow.Pop();
+L2029:         GameUserSettings* mGameUserSettings7 = GameUserSettings->GetGameUserSettings();
+L2071:         int32 mint327 = Max(Subtract_IntInt(this->mVFXIndex, 1), 0);
+L2128:         this->mVFXIndex = mint327;
+L2155:         mGameUserSettings7->SetVisualEffectQuality(this->mVFXIndex);
+L2196:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mVFXIndex, [ref] mFText7);
+L2255:         this->mVFXQualityOption->mOptionNameText->SetText(mFText7);
+L2322:         goto ExecutionFlow.Pop();
+L2323:         int32 mint328 = Max(Subtract_IntInt(this->mShadowQualityIndex, 1), 0);
+L2380:         this->mShadowQualityIndex = mint328;
+L2407:         mGameUserSettings8->SetShadowQuality(this->mShadowQualityIndex);
+L2448:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mShadowQualityIndex, [ref] mFText8);
+L2507:         this->mShadowQualityOption->mOptionNameText->SetText(mFText8);
+L2574:         goto ExecutionFlow.Pop();
+L2575:         this->ClampedNextIndex(this->mShadowQualityIndex, [ref] this->mSettings, [ref] mint329);
+L2616:         this->mShadowQualityIndex = mint329;
+L2643:         mGameUserSettings9->SetShadowQuality(this->mShadowQualityIndex);
+L2684:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mShadowQualityIndex, [ref] mFText9);
+L2743:         this->mShadowQualityOption->mOptionNameText->SetText(mFText9);
+L2810:         goto ExecutionFlow.Pop();
+L2811:         this->UpdateVideoSettings();
+L2825:         goto ExecutionFlow.Pop();
+L2826:         GameUserSettings* mGameUserSettings10 = GameUserSettings->GetGameUserSettings();
+L2868:         mGameUserSettings10->SetVSyncEnabled(true);
+L2901:         goto ExecutionFlow.Pop();
+L2902:         if (!mbool) goto L2921;
+L2916:         goto L2826;
+L2921:         GameUserSettings* mGameUserSettings11 = GameUserSettings->GetGameUserSettings();
+L2963:         bool mbool1 = mGameUserSettings11->IsVSyncEnabled();
+L3005:         if (!mbool1) goto ExecutionFlow.Pop();
+L3015:         mGameUserSettings11->SetVSyncEnabled(false);
+L3048:         goto ExecutionFlow.Pop();
+L3049:         GameUserSettings* mGameUserSettings9 = GameUserSettings->GetGameUserSettings();
+L3091:         goto L2575;
+L3096:         GameUserSettings* mGameUserSettings12 = GameUserSettings->GetGameUserSettings();
+L3138:         uint8 Temp_byte_Variable = 2;
+L3158:         uint8 Temp_byte_Variable1 = 0;
+L3178:         bool Temp_bool_Variable = mbool2;
+L3197:         mGameUserSettings12->SetFullscreenMode(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L3282:         goto ExecutionFlow.Pop();
+L3283:         GameUserSettings* mGameUserSettings13 = GameUserSettings->GetGameUserSettings();
+L3325:         mGameUserSettings13->SetToDefaults();
+L3361:         mGameUserSettings13->ValidateSettings();
+L3397:         this->ResetMouseSensitivity();
+L3411:         this->ResetAudioSettings();
+L3425:         mGameUserSettings13->ApplySettings(true);
+L3462:         this->UpdateGameplaySettings();
+L3476:         this->UpdateVideoSettings();
+L3490:         this->UpdateControlSettings();
+L3504:         goto L15;
+L3509:         this->mOwningMenu->RestoreFocusOnPopupClosed(false);
+L3546:         if (!mbool3) goto ExecutionFlow.Pop();
+L3556:         goto L3283;
+L3561:         GameUserSettings* mGameUserSettings8 = GameUserSettings->GetGameUserSettings();
+L3603:         goto L2323;
+L3608:         goto L3561;
+L3613:         this->mOwningMenu->OnEscape();
+L3649:         goto ExecutionFlow.Pop();
+L3650:         goto L3049;
+L3655:         this->mOwningMenu->RestoreFocusOnPopupClosed(false);
+L3692:         if (!mbool4) goto ExecutionFlow.Pop();
+L3702:         GameUserSettings* mGameUserSettings14 = GameUserSettings->GetGameUserSettings();
+L3744:         bool mbool5 = mGameUserSettings14->IsFullscreenModeDirty();
+L3786:         bool mbool6 = mGameUserSettings14->IsScreenResolutionDirty();
+L3828:         bool mbool7 = BooleanOR(mbool5, mbool6);
+L3866:         this->ResolutionChanged = mbool7;
+L3885:         this->ApplyAudioSettings();
+L3899:         this->ApplyGameplaySettings();
+L3913:         this->ApplyControlsSettings();
+L3927:         this->ApplyVideoSettings();
+L3941:         mGameUserSettings14->ApplySettings(true);
+L3978:         mGameUserSettings14->SaveSettings();
+L4014:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L4038:         mPlayerController->bShowMouseCursor = true;
+L4071:         this->CheckResolutionChanges();
+L4085:         goto ExecutionFlow.Pop();
+L4086:         int32 mint3210 = Max(Subtract_IntInt(this->mPostProcessQualityIndex, 1), 0);
+L4143:         this->mPostProcessQualityIndex = mint3210;
+L4170:         GameUserSettings* mGameUserSettings15 = GameUserSettings->GetGameUserSettings();
+L4212:         mGameUserSettings15->SetPostProcessingQuality(this->mPostProcessQualityIndex);
+L4257:         this->UpdatePostProcessValues();
+L4271:         goto ExecutionFlow.Pop();
+L4272:         goto L4086;
+L4277:         this->ClampedNextIndex(this->mPostProcessQualityIndex, [ref] this->mSettings, [ref] mint3211);
+L4318:         this->mPostProcessQualityIndex = mint3211;
+L4345:         goto L4170;
+L4350:         goto L4277;
+L4355:         goto ExecutionFlow.Pop();
+L4356:         this->Construct();
+L4366:         ExecutionFlow.Push(L5167);
+L4371:         ExecutionFlow.Push(L5152);
+L4376:         ExecutionFlow.Push(L5137);
+L4381:         ExecutionFlow.Push(L5108);
+L4386:         ExecutionFlow.Push(L5065);
+L4391:         ExecutionFlow.Push(L4949);
+L4396:         TMap<FString, FText> mTMap<FString, FText> = [("[object Object]" = "en-US-POSIX"), ("[object Object]" = "ar-001"), ("[object Object]" = "cs-CZ"), ("[object Object]" = "de-DE"), ("[object Object]" = "es-ES"), ("[object Object]" = "pt-BR"), ("[object Object]" = "fr-FR"), ("[object Object]" = "it-IT"), ("[object Object]" = "ja"), ("[object Object]" = "zh-Hans-HK"), ("[object Object]" = "ru-RU"), ("[object Object]" = "tr-TR"), ("[object Object]" = "zh-Hans-CN"), ("[object Object]" = "zh-Hant"), ("[object Object]" = "pl-PL"), ("[object Object]" = "el"), ("[object Object]" = "nl-NL"), ("[object Object]" = "fi-FI"), ("[object Object]" = "en-GB"), ("[object Object]" = "uk-UA"), ("[object Object]" = "fa-IR"), ("[object Object]" = "hu"), ("[object Object]" = "vi-VN")];
+L4921:         this->mLanguageData = mTMap<FString, FText>;
+L4948:         goto ExecutionFlow.Pop();
+L4949:         GameUserSettings* mGameUserSettings16 = GameUserSettings->GetGameUserSettings();
+L4991:         mGameUserSettings16->LoadSettings(true);
+L5028:         mGameUserSettings16->ValidateSettings();
+L5064:         goto ExecutionFlow.Pop();
+L5065:         this->BindEventsToAllButtonsForVideoSettings();
+L5079:         this->BindEventsForVolumeSliders();
+L5093:         this->BindEventsForGameplayOptions();
+L5107:         goto ExecutionFlow.Pop();
+L5108:         this->PopulateResolutionBox();
+L5122:         this->PopulateLanguageBox();
+L5136:         goto ExecutionFlow.Pop();
+L5137:         this->CacheAudioSliders();
+L5151:         goto ExecutionFlow.Pop();
+L5152:         this->Init();
+L5166:         goto ExecutionFlow.Pop();
+L5167:         this->mKeybindView->mOwningWidget = this;
+L5200:         goto ExecutionFlow.Pop();
+L5201:         this->UpdateAudioSettings();
+L5215:         goto ExecutionFlow.Pop();
+L5216:         this->UpdateControlSettings();
+L5230:         goto ExecutionFlow.Pop();
+L5231:         GameUserSettings* mGameUserSettings17 = GameUserSettings->GetGameUserSettings();
+L5273:         FGGameUserSettings* mFGGameUserSettings = Cast<Class /Script/FactoryGame.FGGameUserSettings>(mGameUserSettings17);
+L5309:         bool mbool8 = mFGGameUserSettings;
+L5338:         if (!mbool8) goto ExecutionFlow.Pop();
+L5348:         int32 mint3212 = FTrunc(mfloat);
+L5385:         mFGGameUserSettings->SetFOV(mint3212);
+L5426:         goto ExecutionFlow.Pop();
+L5427:         goto L5231;
+L5432:         mFScriptDelegate->BindUFunction(this, ResetVideoSettings);
+L5455:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L5479:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController1, "[object Object]", "[object Object]", [ref] mFScriptDelegate, 1, nullptr, nullptr);
+L5686:         goto ExecutionFlow.Pop();
+L5687:         this->ShowConfirmChangesPopup();
+L5701:         goto ExecutionFlow.Pop();
+L5702:         this->ShowConfirmResetPopup();
+L5716:         goto ExecutionFlow.Pop();
+L5717:         mFScriptDelegate1->BindUFunction(this, SaveChanges);
+L5740:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L5764:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", "[object Object]", [ref] mFScriptDelegate1, 1, nullptr, nullptr);
+L5955:         goto ExecutionFlow.Pop();
+L5956:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mAntiAliasingIndex, [ref] mFText10);
+L6015:         this->mAntiAliasingOption->mOptionNameText->SetText(mFText10);
+L6082:         goto ExecutionFlow.Pop();
+L6083:         goto L5702;
+L6088:         goto L5687;
+L6093:         GameUserSettings* mGameUserSettings18 = GameUserSettings->GetGameUserSettings();
+L6135:         this->ClampedNextIndex(this->mAntiAliasingIndex, [ref] this->mSettings, [ref] mint3213);
+L6176:         this->mAntiAliasingIndex = mint3213;
+L6203:         mGameUserSettings18->SetAntiAliasingQuality(this->mAntiAliasingIndex);
+L6244:         goto L5956;
+L6249:         goto L5717;
+L6254:         AkGameplayStatics->SetGlobalRTPCValue("RTPC_CaveReverb", 0, 0);
+L6309:         AkGameplayStatics->SetGlobalRTPCValue("RTPC_WorldReverb", 0, 0);
+L6364:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L6388:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Stop_P_Swim_UnderWater, mPlayerController3, true);
+L6449:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
+L6473:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_B_FactoryTraversal_Jelly_Inside, mPlayerController4, true);
+L6534:         goto ExecutionFlow.Pop();
+L6535:         ExecutionFlow.Push(L6570);
+L6540:         ExecutionFlow.Push(L5216);
+L6545:         ExecutionFlow.Push(L2811);
+L6550:         ExecutionFlow.Push(L5201);
+L6555:         this->UpdateGameplaySettings();
+L6569:         goto ExecutionFlow.Pop();
+L6570:         GameUserSettings* mGameUserSettings19 = GameUserSettings->GetGameUserSettings();
+L6612:         IntPoint mIntPoint = mGameUserSettings19->GetScreenResolution();
+L6662:         this->CachedScreenResolution = mIntPoint;
+L6689:         uint8 muint81 = mGameUserSettings19->GetFullscreenMode();
+L6739:         this->CachedFullscreenMode = muint81;
+L6766:         goto ExecutionFlow.Pop();
+L6767:         GameUserSettings* mGameUserSettings20 = GameUserSettings->GetGameUserSettings();
+L6809:         FGGameUserSettings* mFGGameUserSettings1 = Cast<Class /Script/FactoryGame.FGGameUserSettings>(mGameUserSettings20);
+L6845:         bool mbool9 = mFGGameUserSettings1;
+L6874:         if (!mbool9) goto ExecutionFlow.Pop();
+L6884:         mFGGameUserSettings1->SetMotionBlurEnabled(mbool10);
+L6925:         this->UpdatePostProcessValues();
+L6939:         goto ExecutionFlow.Pop();
+L6940:         GameUserSettings* mGameUserSettings21 = GameUserSettings->GetGameUserSettings();
+L6982:         int32 mint3214 = Max(Subtract_IntInt(this->mAntiAliasingIndex, 1), 0);
+L7039:         this->mAntiAliasingIndex = mint3214;
+L7066:         mGameUserSettings21->SetAntiAliasingQuality(this->mAntiAliasingIndex);
+L7107:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mAntiAliasingIndex, [ref] mFText11);
+L7166:         this->mAntiAliasingOption->mOptionNameText->SetText(mFText11);
+L7233:         goto ExecutionFlow.Pop();
+L7234:         bool mbool11 = NotEqual_ObjectObject(mWidget, mWidget1);
+L7272:         if (!mbool11) goto ExecutionFlow.Pop();
+L7282:         goto L6535;
+L7287:         goto L6093;
+L7292:         goto L6940;
+L7297:         int32 mint3215 = Max(Subtract_IntInt(this->mNetworkQualityIndex, 1), 0);
+L7354:         this->mNetworkQualityIndex = mint3215;
+L7381:         GameUserSettings* mGameUserSettings22 = GameUserSettings->GetGameUserSettings();
+L7423:         FGGameUserSettings* mFGGameUserSettings2 = Cast<Class /Script/FactoryGame.FGGameUserSettings>(mGameUserSettings22);
+L7459:         bool mbool12 = mFGGameUserSettings2;
+L7488:         if (!mbool12) goto ExecutionFlow.Pop();
+L7498:         mFGGameUserSettings2->SetNeworkQuality(this->mNetworkQualityIndex);
+L7539:         KismetArrayLibrary->Array_Get([ref] this->mSettings, this->mNetworkQualityIndex, [ref] mFText12);
+L7598:         this->mNetworkQualityOption->mOptionNameText->SetText(mFText12);
+L7665:         goto ExecutionFlow.Pop();
+L7666:         this->ClampedNextIndex(this->mNetworkQualityIndex, [ref] this->mSettings, [ref] mint3216);
+L7707:         this->mNetworkQualityIndex = mint3216;
+L7734:         goto L7381;
+L7739:         GameUserSettings* mGameUserSettings23 = GameUserSettings->GetGameUserSettings();
+L7781:         mGameUserSettings23->SaveSettings();
+L7817:         goto ExecutionFlow.Pop();
+L7818:         this->RevertUnsavedChanges();
+L7832:         this->OnMenuExit(mWidget2, mbool13);
+L7860:         goto ExecutionFlow.Pop();
+L7861:         if (!this->ResolutionChanged) goto L8146;
+L7875:         mFScriptDelegate2->BindUFunction(this, ResolutionChangedAccepted);
+L7898:         PlayerController* mPlayerController5 = this->GetOwningPlayer();
+L7922:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController5, "[object Object]", "[object Object]", [ref] mFScriptDelegate2, 1, Widget_PopupContentResolutionTimer, this);
+L8145:         goto ExecutionFlow.Pop();
+L8146:         this->OpenRequireRestartIfRequired();
+L8160:         goto ExecutionFlow.Pop();
+L8161:         ExecutionFlow.Push(L8393);
+L8166:         if (!mbool14) goto L8181;
+L8180:         goto ExecutionFlow.Pop();
+L8181:         GameUserSettings* mGameUserSettings24 = GameUserSettings->GetGameUserSettings();
+L8223:         mGameUserSettings24->SetFullscreenMode(this->CachedFullscreenMode);
+L8264:         mGameUserSettings24->SetScreenResolution(this->CachedScreenResolution);
+L8305:         mGameUserSettings24->ApplySettings(true);
+L8342:         mGameUserSettings24->SaveSettings();
+L8378:         this->UpdateVideoSettings();
+L8392:         goto ExecutionFlow.Pop();
+L8393:         this->OpenRequireRestartIfRequired();
+L8407:         goto ExecutionFlow.Pop();
+L8408:         GameUserSettings* mGameUserSettings25 = GameUserSettings->GetGameUserSettings();
+L8450:         FGGameUserSettings* mFGGameUserSettings3 = Cast<Class /Script/FactoryGame.FGGameUserSettings>(mGameUserSettings25);
+L8486:         bool mbool15 = mFGGameUserSettings3;
+L8515:         bool mbool16 = mFGGameUserSettings3->GetRequireRestart();
+L8557:         if (!mbool16) goto ExecutionFlow.Pop();
+L8567:         mFGGameUserSettings3 = Cast<Class /Script/FactoryGame.FGGameUserSettings>(mGameUserSettings25);
+L8603:         mbool15 = mFGGameUserSettings3;
+L8632:         mFGGameUserSettings3->ClearRequireRestart();
+L8664:         PlayerController* mPlayerController6 = this->GetOwningPlayer();
+L8688:         mFScriptDelegate3->BindUFunction(this, ResolutionChangedAccepted);
+L8711:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController6, "[object Object]", "[object Object]", [ref] mFScriptDelegate3, 0, nullptr, nullptr);
+L8929:         goto ExecutionFlow.Pop();
+L8930:         this->SetupDynamicOptions();
+L8944:         goto ExecutionFlow.Pop();
+L8945:         this->RevertUnsavedChanges();
+L8959:         goto ExecutionFlow.Pop();
+L8960:         GameUserSettings* mGameUserSettings26 = GameUserSettings->GetGameUserSettings();
+L9002:         mGameUserSettings26->LoadSettings(true);
+L9039:         mGameUserSettings26->ValidateSettings();
+L9075:         goto ExecutionFlow.Pop();
+L9076:         goto L4356;
+============ END FUNCTION ExecuteUbergraph_Widget_Options ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnBackClicked__DelegateSignature ==============
+============ END FUNCTION OnBackClicked__DelegateSignature ==============

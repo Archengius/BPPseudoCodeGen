@@ -1,0 +1,207 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Player/Widget_TakeDamage.Widget_TakeDamage_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetIsHealthCritical ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L56:           bool mbool = mFGCharacterPlayer;
+L85:           float mfloat = mFGCharacterPlayer->mHealthComponent->GetCurrentHealth();
+L157:          float mfloat1 = mFGCharacterPlayer->mHealthComponent->GetMaxHealth();
+L229:          float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L275:          bool mbool1 = Greater_FloatFloat(mfloat2, 0.3333300054073334);
+L309:          bool mbool2 = Not_PreBool(mbool1);
+L338:          bool IsHealthCritical = mbool2;
+============ END FUNCTION GetIsHealthCritical ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_TakeDamage(1983);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION SpawnPointer ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Player/Widget_TakeDamage.Widget_TakeDamage_C:ExecuteUbergraph_Widget_TakeDamage.K2Node_CustomEvent_damagedActor) = DamagedActor;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Player/Widget_TakeDamage.Widget_TakeDamage_C:ExecuteUbergraph_Widget_TakeDamage.K2Node_CustomEvent_Damage) = Damage;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Player/Widget_TakeDamage.Widget_TakeDamage_C:ExecuteUbergraph_Widget_TakeDamage.K2Node_CustomEvent_damageType) = DamageType;
+L54:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Player/Widget_TakeDamage.Widget_TakeDamage_C:ExecuteUbergraph_Widget_TakeDamage.K2Node_CustomEvent_instigatedBy) = InstigatedBy;
+L72:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Player/Widget_TakeDamage.Widget_TakeDamage_C:ExecuteUbergraph_Widget_TakeDamage.K2Node_CustomEvent_damageCauser) = DamageCauser;
+L90:           this->ExecuteUbergraph_Widget_TakeDamage(2207);
+============ END FUNCTION SpawnPointer ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRadiationDamage ==============
+L0:            this->ExecuteUbergraph_Widget_TakeDamage(3065);
+============ END FUNCTION OnRadiationDamage ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetPlayerPawn ==============
+L0:            this->ExecuteUbergraph_Widget_TakeDamage(3274);
+============ END FUNCTION SetPlayerPawn ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowWarningMessage ==============
+L0:            this->ExecuteUbergraph_Widget_TakeDamage(3279);
+============ END FUNCTION ShowWarningMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRadiation ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Player/Widget_TakeDamage.Widget_TakeDamage_C:ExecuteUbergraph_Widget_TakeDamage.K2Node_CustomEvent_RadiationActive) = RadiationActive;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Player/Widget_TakeDamage.Widget_TakeDamage_C:ExecuteUbergraph_Widget_TakeDamage.K2Node_CustomEvent_amount) = amount;
+L36:           this->ExecuteUbergraph_Widget_TakeDamage(3417);
+============ END FUNCTION UpdateRadiation ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_TakeDamage ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->StopAnimation(this->RadiationPulse);
+L34:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->RadiationFade, 0, 1, 0, 1);
+L80:           goto ExecutionFlow.Pop();
+L81:           UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->CriticalHealth, 0, 1, 0, 1);
+L127:          FText Temp_text_Variable = "[object Object]";
+L234:          FText Temp_text_Variable1 = "[object Object]";
+L327:          this->GetIsHealthCritical([ref] mbool);
+L350:          bool Temp_bool_Variable1 = mbool;
+L369:          this->mDamageWarningText->SetText(switch (Temp_bool_Variable1) {
+case false -> Temp_text_Variable1;
+case true -> Temp_text_Variable;
+default -> mFText;
+});
+L458:          LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L510:          this->GetIsHealthCritical([ref] mbool1);
+L533:          bool Temp_bool_Variable = mbool1;
+L552:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor, [ref] mSlateColor);
+L607:          this->mDamageWarningIcon->SetColorAndOpacity(switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable;
+case true -> mLinearColor;
+default -> mLinearColor1;
+});
+L692:          Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
+L744:          this->GetIsHealthCritical([ref] mbool1);
+L767:          Temp_bool_Variable = mbool1;
+L786:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor, [ref] mSlateColor);
+L841:          mSlateColor1.SpecifiedColor = switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable;
+case true -> mLinearColor;
+default -> mLinearColor1;
+};
+L921:          mSlateColor1.ColorUseRule = 0;
+L950:          this->mDamageWarningText->SetColorAndOpacity(mSlateColor1);
+L991:          this->mDamageWarning->SetVisibility(0);
+L1029:         KismetSystemLibrary->RetriggerableDelay(this, 3, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 1106, UUID = 2051014059, ExecutionFunction = "ExecuteUbergraph_Widget_TakeDamage", CallbackTarget = this));
+L1105:         goto ExecutionFlow.Pop();
+L1106:         this->mDamageWarning->SetVisibility(2);
+L1144:         goto ExecutionFlow.Pop();
+L1145:         this->mRadiationContainer->ClearChildren();
+L1181:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1205:         Widget_TakeDamageIndicator* mWidget_TakeDamageIndicator = WidgetBlueprintLibrary->Create(this, Widget_TakeDamageIndicator, mPlayerController);
+L1266:         HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor2, [ref] mSlateColor2);
+L1321:         KismetSystemLibrary->SetStructurePropertyByName(mWidget_TakeDamageIndicator, "mColor", [ref] mLinearColor2);
+L1384:         KismetSystemLibrary->SetBoolPropertyByName(mWidget_TakeDamageIndicator, "mIsRadiation", true);
+L1439:         PanelSlot* mPanelSlot = this->mRadiationContainer->AddChild(mWidget_TakeDamageIndicator);
+L1490:         goto ExecutionFlow.Pop();
+L1491:         bool mbool2 = KismetSystemLibrary->IsValid(this->mDamageCauser);
+L1542:         if (!mbool2) goto ExecutionFlow.Pop();
+L1552:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1576:         Widget_TakeDamageIndicator* mWidget_TakeDamageIndicator1 = WidgetBlueprintLibrary->Create(this, Widget_TakeDamageIndicator, mPlayerController1);
+L1637:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_TakeDamageIndicator1, "DamageCauser", this->mDamageCauser);
+L1700:         HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor3, [ref] mSlateColor3);
+L1755:         KismetSystemLibrary->SetStructurePropertyByName(mWidget_TakeDamageIndicator1, "mColor", [ref] mLinearColor3);
+L1818:         Vector mVector = this->mDamageCauser->K2_GetActorLocation();
+L1868:         KismetSystemLibrary->SetVectorPropertyByName(mWidget_TakeDamageIndicator1, "mDamagePosition", [ref] mVector);
+L1931:         PanelSlot* mPanelSlot1 = this->mContainer->AddChild(mWidget_TakeDamageIndicator1);
+L1982:         goto ExecutionFlow.Pop();
+L1983:         this->SetPlayerPawn();
+L1997:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L2021:         BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController2);
+L2057:         bool mbool3 = mBP_PlayerController;
+L2086:         if (!mbool3) goto ExecutionFlow.Pop();
+L2096:         mFScriptDelegate->BindUFunction(this, SetPlayerPawn);
+L2119:         mBP_PlayerController->OnRespawnEnd.AddUnique(mFScriptDelegate);
+L2160:         UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->WarningPulse, 0, 0, 0, 1);
+L2206:         goto ExecutionFlow.Pop();
+L2207:         this->ShowWarningMessage();
+L2221:         const DamageType_Radiation* mconst DamageType_Radiation = Cast<BlueprintGeneratedClass /Game/FactoryGame/Resource/DamageType_Radiation.DamageType_Radiation_C>(mconst DamageType);
+L2257:         bool mbool4 = mconst DamageType_Radiation;
+L2286:         if (!mbool4) goto L2475;
+L2300:         int32 mint32 = this->mRadiationContainer->GetChildrenCount();
+L2350:         bool mbool5 = Greater_IntInt(mint32, 0);
+L2384:         if (!mbool5) goto L1145;
+L2398:         KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 1145, UUID = 476003142, ExecutionFunction = "ExecuteUbergraph_Widget_TakeDamage", CallbackTarget = this));
+L2474:         goto ExecutionFlow.Pop();
+L2475:         const DamageType_FallDamage* mconst DamageType_FallDamage = Cast<BlueprintGeneratedClass /Game/FactoryGame/World/Environment/DamageType_FallDamage.DamageType_FallDamage_C>(mconst DamageType);
+L2511:         bool mbool6 = mconst DamageType_FallDamage;
+L2540:         if (!mbool6) goto L2601;
+L2554:         UMGSequencePlayer* mUMGSequencePlayer3 = this->PlayAnimation(this->FallFade, 0, 1, 0, 1);
+L2600:         goto ExecutionFlow.Pop();
+L2601:         bool mbool7 = KismetSystemLibrary->IsValid(mController);
+L2652:         if (!mbool7) goto L2839;
+L2666:         Pawn* mPawn = mController->K2_GetPawn();
+L2708:         bool mbool8 = KismetSystemLibrary->IsValid(mPawn);
+L2759:         if (!mbool8) goto L2839;
+L2773:         mPawn = mController->K2_GetPawn();
+L2815:         this->mDamageCauser = mPawn;
+L2834:         goto L1491;
+L2839:         this->mDamageCauser = mActor;
+L2858:         goto L1491;
+L2863:         Pawn* mPawn1 = this->GetOwningPlayerPawn();
+L2883:         FGCharacterBase* mFGCharacterBase = Cast<Class /Script/FactoryGame.FGCharacterBase>(mPawn1);
+L2919:         bool mbool9 = mFGCharacterBase;
+L2948:         if (!mbool9) goto ExecutionFlow.Pop();
+L2958:         FGHealthComponent* mFGHealthComponent = mFGCharacterBase->GetHealthComponent();
+L3000:         mFScriptDelegate1->BindUFunction(this, SpawnPointer);
+L3023:         mFGHealthComponent->OnTakeAnyDamageDelegate.AddUnique(mFScriptDelegate1);
+L3064:         goto ExecutionFlow.Pop();
+L3065:         bool mbool10 = this->IsAnimationPlaying(this->RadiationPulse);
+L3094:         if (!mbool10) goto L3185;
+L3108:         KismetSystemLibrary->RetriggerableDelay(this, 1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 964063419, ExecutionFunction = "ExecuteUbergraph_Widget_TakeDamage", CallbackTarget = this));
+L3184:         goto ExecutionFlow.Pop();
+L3185:         this->mRadiation->SetVisibility(3);
+L3223:         UMGSequencePlayer* mUMGSequencePlayer4 = this->PlayAnimation(this->RadiationPulse, 0, 0, 0, 1);
+L3269:         goto L3108;
+L3274:         goto L2863;
+L3279:         this->GetIsHealthCritical([ref] mbool11);
+L3302:         if (!mbool11) goto L3393;
+L3316:         bool mbool12 = this->IsAnimationPlaying(this->CriticalHealth);
+L3345:         bool mbool13 = Not_PreBool(mbool12);
+L3374:         if (!mbool13) goto L127;
+L3388:         goto L81;
+L3393:         this->StopAnimation(this->CriticalHealth);
+L3412:         goto L127;
+L3417:         uint8 Temp_byte_Variable = 2;
+L3437:         uint8 Temp_byte_Variable1 = 3;
+L3457:         bool Temp_bool_Variable2 = mbool14;
+L3476:         this->mRadiationWarning->SetVisibility(switch (Temp_bool_Variable2) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L3565:         float mfloat = Ease(0.029999999329447746, 1, mfloat1, 6, 20, 2);
+L3624:         this->mRadationAmount->mProgressBar->SetPercent(mfloat);
+L3687:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_TakeDamage ==============

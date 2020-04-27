@@ -1,0 +1,92 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/-Shared/BP_MaterialEffect_Dismantle.BP_MaterialEffect_Dismantle_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnStarted ==============
+L0:            this->ExecuteUbergraph_BP_MaterialEffect_Dismantle(752);
+============ END FUNCTION OnStarted ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUpdate ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/-Shared/BP_MaterialEffect_Dismantle.BP_MaterialEffect_Dismantle_C:ExecuteUbergraph_BP_MaterialEffect_Dismantle.K2Node_Event_deltaTime) = DeltaTime;
+L18:           this->ExecuteUbergraph_BP_MaterialEffect_Dismantle(1337);
+============ END FUNCTION OnUpdate ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreStarted ==============
+L0:            this->ExecuteUbergraph_BP_MaterialEffect_Dismantle(1681);
+============ END FUNCTION PreStarted ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_MaterialEffect_Dismantle ==============
+L10:           this->SetDuration(this->mMaterializeDuration);
+L29:           BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L75:           float mfloat3 = Multiply_FloatFloat(mfloat2, 2.799999952316284);
+L117:          float mfloat4 = Add_FloatFloat(mfloat3, 30);
+L159:          this->SetMaterialScalarParameterValue("HeightZ", mfloat4);
+L191:          BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L237:          BreakVector(mVector1, [ref] mfloat5, [ref] mfloat6, [ref] mfloat7);
+L283:          float mfloat8 = Subtract_FloatFloat(mfloat7, mfloat2);
+L329:          float mfloat9 = Subtract_FloatFloat(mfloat8, 10);
+L371:          this->SetMaterialScalarParameterValue("OriginZ", mfloat9);
+L403:          this->SetMaterialScalarParameterValue("BuildOffset", 0);
+L431:          <End of Inlined Event Graph Function>;
+L436:          this->SetDuration(this->mMaterializeDuration);
+L455:          this->SetMaterialScalarParameterValue("HeightZ", 7000);
+L483:          Actor* mActor = this->GetOwner();
+L503:          Transform mTransform = mActor->GetTransform();
+L553:          BreakTransform([ref] mTransform, [ref] mVector2, [ref] mRotator, [ref] mVector3);
+L599:          BreakVector(mVector2, [ref] mfloat10, [ref] mfloat11, [ref] mfloat12);
+L645:          float mfloat13 = Add_FloatFloat(mfloat12, -114);
+L687:          this->SetMaterialScalarParameterValue("OriginZ", mfloat13);
+L719:          this->SetMaterialScalarParameterValue("BuildOffset", 0);
+L747:          <End of Inlined Event Graph Function>;
+L752:          this->OnStarted();
+L762:          this->mElapsedTime = 0;
+L785:          mActor = this->GetOwner();
+L805:          FGBuildableSpaceElevator* mFGBuildableSpaceElevator = Cast<Class /Script/FactoryGame.FGBuildableSpaceElevator>(mActor);
+L841:          bool mbool = mFGBuildableSpaceElevator;
+L870:          if (!mbool) goto L1010;
+L884:          mActor = this->GetOwner();
+L904:          TArray<MeshComponent*> mTArray<MeshComponent> = mActor->GetComponentsByClass(MeshComponent);
+L963:          this->SetMeshes(mTArray<MeshComponent>);
+L982:          this->mMaterializeDuration = 8;
+L1005:         goto L436;
+L1010:         mActor = this->GetOwner();
+L1030:         mTArray<MeshComponent> = mActor->GetComponentsByClass(MeshComponent);
+L1089:         this->SetMeshes(mTArray<MeshComponent>);
+L1108:         this->GetMeshesBounds(false, false, [ref] mVector1, [ref] mVector);
+L1138:         float mfloat14 = this->GetSpeed();
+L1166:         BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L1212:         float mfloat15 = Divide_FloatFloat(mfloat2, mfloat14);
+L1258:         float mfloat16 = FClamp(mfloat15, 0.4000000059604645, 8);
+L1305:         this->mMaterializeDuration = mfloat16;
+L1332:         goto L10;
+L1337:         this->OnUpdate(mfloat17);
+L1356:         float mfloat18 = Add_FloatFloat(this->mElapsedTime, mfloat17);
+L1402:         this->mElapsedTime = mfloat18;
+L1429:         bool mbool1 = LessEqual_FloatFloat(this->mElapsedTime, this->mMaterializeDuration);
+L1467:         if (!mbool1) goto L1647;
+L1481:         float mfloat19 = FMin(Divide_FloatFloat(this->mElapsedTime, this->mMaterializeDuration), 1);
+L1542:         float mfloat20 = FGSkySphere->GetFloatCurveValue([ref] this->mMaterializeCurve, mfloat19);
+L1610:         this->SetMaterialScalarParameterValue("MaterializeAmount", mfloat20);
+L1642:         <End of Inlined Event Graph Function>;
+L1647:         this->Deactivate();
+L1661:         <End of Inlined Event Graph Function>;
+L1666:         this->PreStarted();
+L1676:         goto L785;
+L1681:         goto L1666;
+============ END FUNCTION ExecuteUbergraph_BP_MaterialEffect_Dismantle ==============

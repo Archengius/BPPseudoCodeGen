@@ -1,0 +1,762 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop.BPW_ResourceSinkShop_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnStorageOpened ==============
+L0:            ExecutionFlow.Push(L631);
+L5:            this->mWindow->SetInventoryVisibility(true, true);
+L43:           FGInventoryComponent* mFGInventoryComponent = this->mResourceSinkShop->GetShopInventory();
+L85:           mFGInventoryComponent->SortInventory();
+L117:          mFGInventoryComponent = this->mResourceSinkShop->GetShopInventory();
+L159:          this->mShopInventory->Init(mFGInventoryComponent);
+L204:          int32 Temp_int_Loop_Counter_Variable = 0;
+L227:          int32 Temp_int_Array_Index_Variable = 0;
+L250:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mShopInventory->mInventorySlots);
+L331:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L369:          if (!mbool) goto ExecutionFlow.Pop();
+L379:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L406:          ExecutionFlow.Push(L557);
+L411:          mFScriptDelegate->BindUFunction(this, OnInventorySlotStackMove);
+L434:          KismetArrayLibrary->Array_Get([ref] this->mShopInventory->mInventorySlots, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L515:          mWidget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate);
+L556:          goto ExecutionFlow.Pop();
+L557:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L599:          Temp_int_Loop_Counter_Variable = mint321;
+L626:          goto L250;
+============ END FUNCTION OnStorageOpened ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateBanner ==============
+L0:            Vector2D Temp_struct_Variable = ScriptStruct /Script/CoreUObject.Vector2D(X = 300, Y = 300);
+L42:           Vector2D Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.Vector2D(X = 230, Y = 230);
+L84:           bool mbool = EqualEqual_ClassClass(this->mSelectedSchematicCategory, SC_RSS_Attachments);
+L122:          SlateBrush mSlateBrush = FGSchematicCategory->GetCategoryIcon(this->mSelectedSchematicCategory);
+L181:          bool Temp_bool_Variable = mbool;
+L200:          FText mFText = FGSchematicCategory->GetCategoryName(this->mSelectedSchematicCategory);
+L259:          mSlateBrush1.ImageSize = switch (Temp_bool_Variable) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mVector2D;
+};
+L339:          mSlateBrush1.Margin = this->BPW_ResourceSinkShop_Banner->mBannerStruct.ImageBrush_5_012E7B504A7AB4B9D1F758A855CF7C5F.Margin;
+L415:          mSlateBrush1.TintColor = this->BPW_ResourceSinkShop_Banner->mBannerStruct.ImageBrush_5_012E7B504A7AB4B9D1F758A855CF7C5F.TintColor;
+L491:          mSlateBrush1.ResourceObject = mSlateBrush.ResourceObject;
+L528:          mSlateBrush1.DrawAs = this->BPW_ResourceSinkShop_Banner->mBannerStruct.ImageBrush_5_012E7B504A7AB4B9D1F758A855CF7C5F.DrawAs;
+L604:          mSlateBrush1.Tiling = this->BPW_ResourceSinkShop_Banner->mBannerStruct.ImageBrush_5_012E7B504A7AB4B9D1F758A855CF7C5F.Tiling;
+L680:          mSlateBrush1.Mirroring = this->BPW_ResourceSinkShop_Banner->mBannerStruct.ImageBrush_5_012E7B504A7AB4B9D1F758A855CF7C5F.Mirroring;
+L756:          mResourceSinkShop_Banner_Struct.Text_7_9ECC94234929451FA80AFDAC404AD507 = mFText;
+L792:          mResourceSinkShop_Banner_Struct.ImageBrush_5_012E7B504A7AB4B9D1F758A855CF7C5F = mSlateBrush1;
+L828:          mResourceSinkShop_Banner_Struct.TextEndPosition_12_284EB20F4CB57ECB983D038E3F457990 = this->BPW_ResourceSinkShop_Banner->mBannerStruct.TextEndPosition_12_284EB20F4CB57ECB983D038E3F457990;
+L895:          mResourceSinkShop_Banner_Struct.ImageEndPosition_10_3EA4EF5B4A94A13E17A775B8C65CE230 = this->BPW_ResourceSinkShop_Banner->mBannerStruct.ImageEndPosition_10_3EA4EF5B4A94A13E17A775B8C65CE230;
+L962:          this->BPW_ResourceSinkShop_Banner->SetBanner(mResourceSinkShop_Banner_Struct);
+============ END FUNCTION UpdateBanner ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetBannerStruct ==============
+============ END FUNCTION GetBannerStruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetAmountOfCouponsInPlayerInventory ==============
+L0:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L20:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L56:           bool mbool = mFGCharacterPlayer;
+L85:           if (!mbool) goto L601;
+L99:           FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
+L141:          int32 mint32 = mFGInventoryComponent->GetNumItems(Desc_ResourceSinkCoupon);
+L200:          FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
+L271:          mFormatArgumentData.ArgumentName = "amount";
+L306:          mFormatArgumentData.ArgumentValueType = 4;
+L335:          mFormatArgumentData.ArgumentValue = mFText;
+L371:          mFormatArgumentData.ArgumentValueInt = 0;
+L403:          mFormatArgumentData.ArgumentValueFloat = 0;
+L435:          mFormatArgumentData.ArgumentValueGender = 0;
+L464:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L484:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L556:          this->mAmountOfCouponsText->SetText(mFText1);
+============ END FUNCTION GetAmountOfCouponsInPlayerInventory ==============
+
+
+
+
+
+============ BEGIN FUNCTION ResetHeader ==============
+L0:            float mfloat = this->mContentScrollBox->GetScrollOffset();
+L50:           bool mbool = Greater_FloatFloat(mfloat, 0.10000000149011612);
+L84:           if (!mbool) goto L149;
+L98:           this->mContentScrollBox->ScrollToStart();
+L130:          this->OnScroll(0);
+============ END FUNCTION ResetHeader ==============
+
+
+
+
+
+============ BEGIN FUNCTION ListButtonOnClicked ==============
+L0:            this->OnSchematicCategoryClicked(index);
+============ END FUNCTION ListButtonOnClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION DropInventorySlotStack ==============
+L0:            bool WasStackMoved = false;
+============ END FUNCTION DropInventorySlotStack ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckItemsInCart ==============
+L0:            ExecutionFlow.Push(L662);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mShopItemButtons);
+L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L148:          if (!mbool) goto ExecutionFlow.Pop();
+L158:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L185:          ExecutionFlow.Push(L588);
+L190:          KismetArrayLibrary->Array_Get([ref] this->mShopItemButtons, Temp_int_Array_Index_Variable, [ref] mBPW_ResourceSinkShop_Item);
+L249:          bool mbool1 = Not_PreBool(mBPW_ResourceSinkShop_Item->mIsAddedToCart);
+L300:          if (!mbool1) goto ExecutionFlow.Pop();
+L310:          KismetArrayLibrary->Array_Get([ref] this->mShopItemButtons, Temp_int_Array_Index_Variable, [ref] mBPW_ResourceSinkShop_Item);
+L369:          bool mbool2 = BlueprintMapLibrary->Map_Contains([ref] this->mCartItemStruct, [ref] mBPW_ResourceSinkShop_Item->FGSchematic);
+L451:          mBPW_ResourceSinkShop_Item->mIsAddedToCart = mbool2;
+L492:          KismetArrayLibrary->Array_Get([ref] this->mShopItemButtons, Temp_int_Array_Index_Variable, [ref] mBPW_ResourceSinkShop_Item);
+L551:          mBPW_ResourceSinkShop_Item->UpdateButtonState();
+L587:          goto ExecutionFlow.Pop();
+L588:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L630:          Temp_int_Loop_Counter_Variable = mint321;
+L657:          goto L51;
+============ END FUNCTION CheckItemsInCart ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateShopButtonStates ==============
+L0:            ExecutionFlow.Push(L603);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mShopItemButtons);
+L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L148:          if (!mbool) goto ExecutionFlow.Pop();
+L158:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L185:          ExecutionFlow.Push(L529);
+L190:          TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>> = [];
+L201:          BlueprintMapLibrary->Map_Keys([ref] this->mCartItemStruct, [ref] mTArray<TSubclassOf<FGSchematic>>);
+L251:          KismetArrayLibrary->Array_Get([ref] this->mShopItemButtons, Temp_int_Array_Index_Variable, [ref] mBPW_ResourceSinkShop_Item);
+L310:          bool mbool1 = KismetArrayLibrary->Array_Contains([ref] mTArray<TSubclassOf<FGSchematic>>, [ref] mBPW_ResourceSinkShop_Item->FGSchematic);
+L392:          mBPW_ResourceSinkShop_Item->mIsAddedToCart = mbool1;
+L433:          KismetArrayLibrary->Array_Get([ref] this->mShopItemButtons, Temp_int_Array_Index_Variable, [ref] mBPW_ResourceSinkShop_Item);
+L492:          mBPW_ResourceSinkShop_Item->UpdateButtonState();
+L528:          goto ExecutionFlow.Pop();
+L529:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L571:          Temp_int_Loop_Counter_Variable = mint321;
+L598:          goto L51;
+============ END FUNCTION UpdateShopButtonStates ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetInitialSelectedCategory ==============
+L0:            ExecutionFlow.Push(L695);
+L5:            ExecutionFlow.Push(L272);
+L10:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L34:           FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(mPlayerController->PlayerState);
+L92:           bool mbool = mFGPlayerState;
+L121:          if (!mbool) goto ExecutionFlow.Pop();
+L131:          TSubclassOf<FGSchematicCategory> mTSubclassOf<FGSchematicCategory> = mFGPlayerState->GetLastSelectedResourceSinkShopCategory();
+L173:          this->mSelectedSchematicCategory = mTSubclassOf<FGSchematicCategory>;
+L192:          bool mbool1 = KismetSystemLibrary->IsValidClass(this->mSelectedSchematicCategory);
+L243:          if (!mbool1) goto L616;
+L257:          this->PopulateShop();
+L271:          goto ExecutionFlow.Pop();
+L272:          int32 mint32 = KismetArrayLibrary->Array_Find([ref] this->mAllSchematicCategories, [ref] this->mSelectedSchematicCategory);
+L340:          bool mbool2 = GreaterEqual_IntInt(mint32, 0);
+L374:          if (!mbool2) goto ExecutionFlow.Pop();
+L384:          mint32 = KismetArrayLibrary->Array_Find([ref] this->mAllSchematicCategories, [ref] this->mSelectedSchematicCategory);
+L452:          Widget* mWidget = this->mCategoryContainer->GetChildAt(mint32);
+L503:          BPW_ResourceSinkShop_CategoryButtons* mBPW_ResourceSinkShop_CategoryButtons = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop_CategoryButtons.BPW_ResourceSinkShop_CategoryButtons_C>(mWidget);
+L539:          bool mbool3 = mBPW_ResourceSinkShop_CategoryButtons;
+L568:          if (!mbool3) goto ExecutionFlow.Pop();
+L578:          mBPW_ResourceSinkShop_CategoryButtons->SetIsSelected(true);
+L615:          goto ExecutionFlow.Pop();
+L616:          KismetArrayLibrary->Array_Get([ref] this->mAllSchematicCategories, 0, [ref] mTSubclassOf<FGSchematicCategory>1);
+L671:          this->mSelectedSchematicCategory = mTSubclassOf<FGSchematicCategory>1;
+L690:          goto L257;
+============ END FUNCTION SetInitialSelectedCategory ==============
+
+
+
+
+
+============ BEGIN FUNCTION ChangeItemAmountInCart ==============
+L0:            bool mbool = BlueprintMapLibrary->Map_Find([ref] this->mCartItemStruct, [ref] schematic, [ref] mResourceSinkShop_CartItem_Struct);
+L69:           mResourceSinkShop_CartItem_Struct1.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668 = mResourceSinkShop_CartItem_Struct.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668;
+L106:          mResourceSinkShop_CartItem_Struct1.mCartItemAmount_6_93629BD24F75478DFED5F086C5732798 = ItemAmount;
+L142:          mResourceSinkShop_CartItem_Struct1.mIsAddedToWishlist_9_29588D2B45D70D08A8074F8ACB4F5B3A = mResourceSinkShop_CartItem_Struct.mIsAddedToWishlist_9_29588D2B45D70D08A8074F8ACB4F5B3A;
+L179:          BlueprintMapLibrary->Map_Add([ref] this->mCartItemStruct, [ref] schematic, [ref] mResourceSinkShop_CartItem_Struct1);
+L238:          TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>> = [];
+L249:          BlueprintMapLibrary->Map_Keys([ref] this->mCartItemStruct, [ref] mTArray<TSubclassOf<FGSchematic>>);
+L299:          int32 mint32 = KismetArrayLibrary->Array_Find([ref] mTArray<TSubclassOf<FGSchematic>>, [ref] schematic);
+L367:          Widget* mWidget = this->mShoppingCartList->mCartList->mCartItemVerticalBox->GetChildAt(mint32);
+L462:          BPW_ResourceSinkShop_CartItem* mBPW_ResourceSinkShop_CartItem = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop_CartItem.BPW_ResourceSinkShop_CartItem_C>(mWidget);
+L498:          bool mbool1 = mBPW_ResourceSinkShop_CartItem;
+L527:          if (!mbool1) goto L655;
+L541:          bool mbool2 = BlueprintMapLibrary->Map_Find([ref] this->mCartItemStruct, [ref] schematic, [ref] mResourceSinkShop_CartItem_Struct2);
+L610:          mBPW_ResourceSinkShop_CartItem->UpdateCartItem(mResourceSinkShop_CartItem_Struct2);
+============ END FUNCTION ChangeItemAmountInCart ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateCartAmount ==============
+L0:            this->AmountOverlay->SetVisibility(3);
+L38:           TArray<ResourceSinkShop_CartItem_Struct> mTArray<ResourceSinkShop_CartItem_Struct> = [];
+L49:           BlueprintMapLibrary->Map_Values([ref] this->mCartItemStruct, [ref] mTArray<ResourceSinkShop_CartItem_Struct>);
+L99:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ResourceSinkShop_CartItem_Struct>);
+L158:          int32 localItemAmount = mint32;
+L185:          FText mFText = KismetTextLibrary->Conv_IntToText(localItemAmount, false, true, 1, 324);
+L256:          this->mAmountInShoppingCart->SetText(mFText);
+L301:          this->GetTotalCost([ref] mint321);
+L324:          FText mFText1 = KismetTextLibrary->Conv_IntToText(mint321, false, true, 1, 324);
+L395:          this->mShoppingCartList->SetTotalCostText(mFText1);
+L440:          bool mbool = Greater_IntInt(localItemAmount, 0);
+L474:          if (!mbool) goto L493;
+L488:          <End of Inlined Event Graph Function>;
+L493:          this->AmountOverlay->SetVisibility(1);
+============ END FUNCTION UpdateCartAmount ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetTotalCost ==============
+L0:            ExecutionFlow.Push(L632);
+L5:            TArray<ResourceSinkShop_CartItem_Struct> mTArray<ResourceSinkShop_CartItem_Struct> = [];
+L16:           BlueprintMapLibrary->Map_Values([ref] this->mCartItemStruct, [ref] mTArray<ResourceSinkShop_CartItem_Struct>);
+L66:           int32 Temp_int_Loop_Counter_Variable = 0;
+L89:           int32 Temp_int_Array_Index_Variable = 0;
+L112:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ResourceSinkShop_CartItem_Struct>);
+L171:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L209:          if (!mbool) goto L526;
+L223:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L250:          ExecutionFlow.Push(L558);
+L255:          KismetArrayLibrary->Array_Get([ref] mTArray<ResourceSinkShop_CartItem_Struct>, Temp_int_Array_Index_Variable, [ref] mResourceSinkShop_CartItem_Struct);
+L314:          TArray<ItemAmount> mTArray<ItemAmount> = FGSchematic->GetCost(mResourceSinkShop_CartItem_Struct.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668);
+L382:          int32 mint321 = Multiply_IntInt(mTArray<ItemAmount>[0].amount, mResourceSinkShop_CartItem_Struct.mCartItemAmount_6_93629BD24F75478DFED5F086C5732798);
+L452:          int32 mint322 = Add_IntInt(localTotalCost, mint321);
+L498:          int32 localTotalCost = mint322;
+L525:          goto ExecutionFlow.Pop();
+L526:          int32 totalCost = localTotalCost;
+L553:          <End of Inlined Event Graph Function>;
+L558:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L600:          Temp_int_Loop_Counter_Variable = mint323;
+L627:          goto L112;
+============ END FUNCTION GetTotalCost ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnBuyAll ==============
+L0:            ExecutionFlow.Push(L2241);
+L5:            Pawn* mPawn = this->GetOwningPlayerPawn();
+L25:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L61:           bool mbool = mFGCharacterPlayer;
+L90:           if (!mbool) goto ExecutionFlow.Pop();
+L100:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
+L142:          FGInventoryComponent* localPlayerInventory = mFGInventoryComponent;
+L161:          this->GetTotalCost([ref] mint32);
+L184:          int32 mint321 = localPlayerInventory->GetNumItems(Desc_ResourceSinkCoupon);
+L243:          bool mbool1 = GreaterEqual_IntInt(mint321, mint32);
+L281:          if (!mbool1) goto L1205;
+L295:          TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>> = [];
+L306:          BlueprintMapLibrary->Map_Keys([ref] this->mCartItemStruct, [ref] mTArray<TSubclassOf<FGSchematic>>);
+L356:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L379:          int32 Temp_int_Array_Index_Variable = 0;
+L402:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGSchematic>>);
+L461:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint322);
+L499:          if (!mbool2) goto L1242;
+L513:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
+L540:          ExecutionFlow.Push(L1558);
+L545:          bool Temp_bool_True_if_break_was_hit_Variable = false;
+L556:          int32 Temp_int_Loop_Counter_Variable = 0;
+L579:          int32 Temp_int_Array_Index_Variable1 = 0;
+L602:          bool mbool3 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L631:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGSchematic>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
+L690:          TArray<FGUnlock*> mTArray<FGUnlock> = FGSchematic->GetUnlocks(mTSubclassOf<FGSchematic>);
+L749:          int32 mint323 = KismetArrayLibrary->Array_Length([ref] mTArray<FGUnlock>);
+L808:          bool mbool4 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint323);
+L846:          bool mbool5 = BooleanAND(mbool3, mbool4);
+L884:          if (!mbool5) goto L1632;
+L898:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
+L925:          ExecutionFlow.Push(L2167);
+L930:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGSchematic>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
+L989:          mTArray<FGUnlock> = FGSchematic->GetUnlocks(mTSubclassOf<FGSchematic>);
+L1048:         KismetArrayLibrary->Array_Get([ref] mTArray<FGUnlock>, Temp_int_Array_Index_Variable1, [ref] mFGUnlock);
+L1107:         FGUnlockGiveItem* mFGUnlockGiveItem = Cast<Class /Script/FactoryGame.FGUnlockGiveItem>(mFGUnlock);
+L1143:         bool mbool6 = mFGUnlockGiveItem;
+L1172:         if (!mbool6) goto ExecutionFlow.Pop();
+L1182:         bool localContaisGiveItemUnlock = true;
+L1193:         Temp_bool_True_if_break_was_hit_Variable = true;
+L1204:         goto ExecutionFlow.Pop();
+L1205:         this->mShoppingCartList->PlayCantAffordAnim();
+L1241:         goto ExecutionFlow.Pop();
+L1242:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1266:         BPHUDHelpers->GetDefaultRCO(mPlayerController, this, [ref] mBP_RemoteCallObject);
+L1321:         mBP_RemoteCallObject->Server_PurchaseResourceSinkSchematics(this->mResourceSinkShop, localPlayerInventory, [ref] SchematicsToPurchase);
+L1384:         BlueprintMapLibrary->Map_Clear([ref] this->mCartItemStruct);
+L1425:         this->UpdateShoppingCartList();
+L1439:         this->UpdateCartAmount();
+L1453:         this->mShoppingCartList->SetVisibility(1);
+L1491:         if (!localContaisGiveItemUnlock) goto ExecutionFlow.Pop();
+L1501:         this->Widget_SlidingTabs->SetActiveIndex(1, true);
+L1543:         this->OnStorageOpened();
+L1557:         goto ExecutionFlow.Pop();
+L1558:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1600:         Temp_int_Loop_Counter_Variable1 = mint324;
+L1627:         goto L402;
+L1632:         int32 Temp_int_Variable = 0;
+L1655:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGSchematic>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
+L1714:         bool mbool7 = BlueprintMapLibrary->Map_Find([ref] this->mCartItemStruct, [ref] mTSubclassOf<FGSchematic>, [ref] mResourceSinkShop_CartItem_Struct);
+L1783:         int32 mint325 = Subtract_IntInt(mResourceSinkShop_CartItem_Struct.mCartItemAmount_6_93629BD24F75478DFED5F086C5732798, 1);
+L1834:         bool mbool8 = LessEqual_IntInt(Temp_int_Variable, mint325);
+L1872:         if (!mbool8) goto ExecutionFlow.Pop();
+L1882:         ExecutionFlow.Push(L2093);
+L1887:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGSchematic>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
+L1946:         mbool7 = BlueprintMapLibrary->Map_Find([ref] this->mCartItemStruct, [ref] mTSubclassOf<FGSchematic>, [ref] mResourceSinkShop_CartItem_Struct);
+L2015:         int32 mint326 = KismetArrayLibrary->Array_Add([ref] SchematicsToPurchase, [ref] mResourceSinkShop_CartItem_Struct.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668);
+L2092:         goto ExecutionFlow.Pop();
+L2093:         int32 mint327 = Add_IntInt(Temp_int_Variable, 1);
+L2135:         Temp_int_Variable = mint327;
+L2162:         goto L1655;
+L2167:         int32 mint328 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2209:         Temp_int_Loop_Counter_Variable = mint328;
+L2236:         goto L602;
+============ END FUNCTION OnBuyAll ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateShoppingCartList ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mShoppingCartList);
+L51:           if (!mbool) goto L171;
+L65:           TArray<ResourceSinkShop_CartItem_Struct> mTArray<ResourceSinkShop_CartItem_Struct> = [];
+L76:           BlueprintMapLibrary->Map_Values([ref] this->mCartItemStruct, [ref] mTArray<ResourceSinkShop_CartItem_Struct>);
+L126:          this->mShoppingCartList->UpdateCartList([ref] mTArray<ResourceSinkShop_CartItem_Struct>);
+============ END FUNCTION UpdateShoppingCartList ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnItemRemovedFromCart ==============
+L0:            bool mbool = BlueprintMapLibrary->Map_Remove([ref] this->mCartItemStruct, [ref] mSchematic);
+L60:           if (!mbool) goto L174;
+L74:           this->UpdateShoppingCartList();
+L88:           this->UpdateCartAmount();
+L102:          this->mShoppingCartList->mCartList->UpdateEmptyCartFeedback();
+L160:          this->CheckItemsInCart();
+============ END FUNCTION OnItemRemovedFromCart ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseButtonDown ==============
+L0:            bool mbool = this->mShoppingCartList->IsHovered();
+L46:           bool mbool1 = Not_PreBool(mbool);
+L75:           if (!mbool1) goto L209;
+L89:           this->mShoppingCartList->SetVisibility(1);
+L127:          EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L177:          EventReply ReturnValue = mEventReply;
+L204:          goto L286;
+L209:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L259:          ReturnValue = mEventReply1;
+============ END FUNCTION OnMouseButtonDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION FilterSchematicByCategory ==============
+L0:            FGSchematic->GetSubCategories(mSchematic, [ref] localSubCategories);
+L50:           TSubclassOf<FGSchematicCategory> mTSubclassOf<FGSchematicCategory> = FGSchematic->GetSchematicCategory(mSchematic);
+L101:          bool mbool = KismetArrayLibrary->Array_Contains([ref] localSubCategories, [ref] mSchematicSubcategory);
+L161:          bool mbool1 = EqualEqual_ClassClass(mTSubclassOf<FGSchematicCategory>, mSchematicCategory);
+L199:          bool mbool2 = BooleanAND(mbool1, mbool);
+L237:          bool IsVisible = mbool2;
+============ END FUNCTION FilterSchematicByCategory ==============
+
+
+
+
+
+============ BEGIN FUNCTION OpenCartMenu ==============
+L0:            TArray<ResourceSinkShop_CartItem_Struct> mTArray<ResourceSinkShop_CartItem_Struct> = [];
+L11:           BlueprintMapLibrary->Map_Values([ref] this->mCartItemStruct, [ref] mTArray<ResourceSinkShop_CartItem_Struct>);
+L61:           this->mShoppingCartList->UpdateCartList([ref] mTArray<ResourceSinkShop_CartItem_Struct>);
+L106:          this->mShoppingCartList->SetVisibility(0);
+L144:          this->GetTotalCost([ref] mint32);
+L167:          FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
+L238:          this->mShoppingCartList->SetTotalCostText(mFText);
+============ END FUNCTION OpenCartMenu ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateShop ==============
+L0:            ExecutionFlow.Push(L2418);
+L5:            KismetArrayLibrary->Array_Clear([ref] this->mShopItemButtons);
+L46:           this->mSubcategoryContainer->ClearChildren();
+L82:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L106:          FGResourceSinkSubsystem* mFGResourceSinkSubsystem = FGResourceSinkSubsystem->Get(mPlayerController);
+L157:          FGBlueprintFunctionLibrary->GetSubCategoriesForSchematicCategory(mFGResourceSinkSubsystem, this->mSelectedSchematicCategory, [ref] localAllSubCategories);
+L216:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] localAllSubCategories);
+L275:          bool mbool = LessEqual_IntInt(mint32, 1);
+L309:          bool localSingleSubcategory = mbool;
+L328:          int32 Temp_int_Loop_Counter_Variable = 0;
+L351:          int32 Temp_int_Array_Index_Variable1 = 0;
+L374:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] localAllSubCategories);
+L433:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L471:          if (!mbool1) goto ExecutionFlow.Pop();
+L481:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
+L508:          ExecutionFlow.Push(L2209);
+L513:          KismetArrayLibrary->Array_Get([ref] localAllSubCategories, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGSchematicCategory>);
+L572:          TSubclassOf<FGSchematicCategory> localSchematicSubcategory = mTSubclassOf<FGSchematicCategory>;
+L591:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L615:          BPW_ResourceSinkShop_Subcategory_Header* mBPW_ResourceSinkShop_Subcategory_Header = WidgetBlueprintLibrary->Create(this, BPW_ResourceSinkShop_Subcategory_Header, mPlayerController1);
+L676:          KismetSystemLibrary->SetClassPropertyByName(mBPW_ResourceSinkShop_Subcategory_Header, "mSchematicSubcategory", localSchematicSubcategory);
+L739:          KismetSystemLibrary->SetBoolPropertyByName(mBPW_ResourceSinkShop_Subcategory_Header, "mHideTitle", localSingleSubcategory);
+L802:          BPW_ResourceSinkShop_Subcategory_Header* localSubCategoryHeader = mBPW_ResourceSinkShop_Subcategory_Header;
+L821:          WrapBox* localShopItemContainer = mBPW_ResourceSinkShop_Subcategory_Header->mShopItemsContainer;
+L862:          localShopItemContainer->ClearChildren();
+L898:          VerticalBoxSlot* mVerticalBoxSlot = this->mSubcategoryContainer->AddChildToVerticalBox(localSubCategoryHeader);
+L949:          mVerticalBoxSlot->SetVerticalAlignment(1);
+L983:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1007:         FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController2);
+L1058:         TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>> = [];
+L1069:         mFGSchematicManager->GetAllSchematicsOfTypeFilteredOnDependency(7, [ref] mTArray<TSubclassOf<FGSchematic>>);
+L1112:         int32 Temp_int_Loop_Counter_Variable1 = 0;
+L1135:         int32 Temp_int_Array_Index_Variable = 0;
+L1158:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGSchematic>>);
+L1217:         bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint322);
+L1255:         if (!mbool2) goto L2283;
+L1269:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
+L1296:         ExecutionFlow.Push(L2344);
+L1301:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGSchematic>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
+L1360:         TSubclassOf<FGSchematic> localSchematic = mTSubclassOf<FGSchematic>;
+L1379:         this->FilterSchematicByCategory(localSchematic, this->mSelectedSchematicCategory, localSchematicSubcategory, [ref] mbool3);
+L1429:         if (!mbool3) goto ExecutionFlow.Pop();
+L1439:         TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>>1 = [];
+L1450:         BlueprintMapLibrary->Map_Keys([ref] this->mCartItemStruct, [ref] mTArray<TSubclassOf<FGSchematic>>1);
+L1500:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L1524:         BPW_ResourceSinkShop_Item* mBPW_ResourceSinkShop_Item = WidgetBlueprintLibrary->Create(this, BPW_ResourceSinkShop_Item, mPlayerController3);
+L1585:         KismetSystemLibrary->SetClassPropertyByName(mBPW_ResourceSinkShop_Item, "FGSchematic", localSchematic);
+L1648:         TArray<ItemAmount> mTArray<ItemAmount> = FGSchematic->GetCost(localSchematic);
+L1707:         KismetSystemLibrary->SetIntPropertyByName(mBPW_ResourceSinkShop_Item, "mSchematicCost", mTArray<ItemAmount>[0].amount);
+L1785:         bool mbool4 = KismetArrayLibrary->Array_Contains([ref] mTArray<TSubclassOf<FGSchematic>>1, [ref] localSchematic);
+L1845:         KismetSystemLibrary->SetBoolPropertyByName(mBPW_ResourceSinkShop_Item, "mIsAddedToCart", mbool4);
+L1908:         BPW_ResourceSinkShop_Item* localResourceSinkItemWidget = mBPW_ResourceSinkShop_Item;
+L1927:         int32 mint323 = KismetArrayLibrary->Array_Add([ref] this->mShopItemButtons, [ref] localResourceSinkItemWidget);
+L1995:         WrapBoxSlot* mWrapBoxSlot = localShopItemContainer->AddChildToWrapBox(localResourceSinkItemWidget);
+L2046:         mWrapBoxSlot->SetHorizontalAlignment(2);
+L2080:         mFScriptDelegate->BindUFunction(this, OnShopSchematicClicked);
+L2103:         localResourceSinkItemWidget->OnShopItemClicked.AddUnique(mFScriptDelegate);
+L2144:         mFScriptDelegate1->BindUFunction(this, OnShopSchematicClicked);
+L2167:         localResourceSinkItemWidget->OnBuyButtonClicked.AddUnique(mFScriptDelegate1);
+L2208:         goto ExecutionFlow.Pop();
+L2209:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2251:         Temp_int_Loop_Counter_Variable = mint324;
+L2278:         goto L374;
+L2283:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->FadeInCategory, 0, 1, 0, 1);
+L2329:         this->ResetHeader();
+L2343:         goto ExecutionFlow.Pop();
+L2344:         int32 mint325 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L2386:         Temp_int_Loop_Counter_Variable1 = mint325;
+L2413:         goto L1158;
+============ END FUNCTION PopulateShop ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSchematicCategoryClicked ==============
+L0:            KismetArrayLibrary->Array_Get([ref] this->mAllSchematicCategories, index, [ref] mTSubclassOf<FGSchematicCategory>);
+L59:           bool mbool = NotEqual_ClassClass(this->mSelectedSchematicCategory, mTSubclassOf<FGSchematicCategory>);
+L97:           if (!mbool) goto L618;
+L111:          int32 mint32 = KismetArrayLibrary->Array_Find([ref] this->mAllSchematicCategories, [ref] this->mSelectedSchematicCategory);
+L179:          Widget* mWidget = this->mCategoryContainer->GetChildAt(mint32);
+L230:          BPW_ResourceSinkShop_CategoryButtons* mBPW_ResourceSinkShop_CategoryButtons = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop_CategoryButtons.BPW_ResourceSinkShop_CategoryButtons_C>(mWidget);
+L266:          bool mbool1 = mBPW_ResourceSinkShop_CategoryButtons;
+L295:          if (!mbool1) goto L618;
+L309:          mBPW_ResourceSinkShop_CategoryButtons->SetIsSelected(false);
+L346:          KismetArrayLibrary->Array_Get([ref] this->mAllSchematicCategories, index, [ref] mTSubclassOf<FGSchematicCategory>);
+L405:          this->mSelectedSchematicCategory = mTSubclassOf<FGSchematicCategory>;
+L424:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L448:          FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(mPlayerController->PlayerState);
+L506:          bool mbool2 = mFGPlayerState;
+L535:          if (!mbool2) goto L618;
+L549:          mFGPlayerState->SetLastSelectedResourceSinkShopCategory(this->mSelectedSchematicCategory);
+L590:          this->PopulateShop();
+L604:          this->UpdateBanner();
+============ END FUNCTION OnSchematicCategoryClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreateCategoryButtons ==============
+L0:            ExecutionFlow.Push(L1357);
+L5:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L29:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L80:           TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>> = [];
+L91:           mFGSchematicManager->GetAllSchematicsOfTypeFilteredOnDependency(7, [ref] mTArray<TSubclassOf<FGSchematic>>);
+L134:          int32 Temp_int_Loop_Counter_Variable = 0;
+L157:          int32 Temp_int_Array_Index_Variable1 = 0;
+L180:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGSchematic>>);
+L239:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L277:          if (!mbool) goto L502;
+L291:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
+L318:          ExecutionFlow.Push(L1283);
+L323:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGSchematic>>, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGSchematic>);
+L382:          TSubclassOf<FGSchematicCategory> mTSubclassOf<FGSchematicCategory> = FGSchematic->GetSchematicCategory(mTSubclassOf<FGSchematic>);
+L433:          int32 mint321 = KismetArrayLibrary->Array_AddUnique([ref] this->mAllSchematicCategories, [ref] mTSubclassOf<FGSchematicCategory>);
+L501:          goto ExecutionFlow.Pop();
+L502:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L525:          int32 Temp_int_Array_Index_Variable = 0;
+L548:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->mAllSchematicCategories);
+L607:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint322);
+L645:          if (!mbool1) goto ExecutionFlow.Pop();
+L655:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
+L682:          ExecutionFlow.Push(L1209);
+L687:          KismetArrayLibrary->Array_Get([ref] this->mAllSchematicCategories, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematicCategory>1);
+L746:          TSubclassOf<FGSchematicCategory> localSchematicCategory = mTSubclassOf<FGSchematicCategory>1;
+L765:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L789:          BPW_ResourceSinkShop_CategoryButtons* mBPW_ResourceSinkShop_CategoryButtons = WidgetBlueprintLibrary->Create(this, BPW_ResourceSinkShop_CategoryButtons, mPlayerController1);
+L850:          FText mFText = FGSchematicCategory->GetCategoryName(localSchematicCategory);
+L909:          KismetSystemLibrary->SetTextPropertyByName(mBPW_ResourceSinkShop_CategoryButtons, "mName", [ref] mFText);
+L972:          BPW_ResourceSinkShop_CategoryButtons* CategoryButton = mBPW_ResourceSinkShop_CategoryButtons;
+L991:          HorizontalBoxSlot* mHorizontalBoxSlot = this->mCategoryContainer->AddChildToHorizontalBox(CategoryButton);
+L1042:         mSlateChildSize.Value = 1;
+L1074:         mSlateChildSize.SizeRule = 1;
+L1103:         mHorizontalBoxSlot->SetSize(mSlateChildSize);
+L1144:         mFScriptDelegate->BindUFunction(this, OnSchematicCategoryClicked);
+L1167:         CategoryButton->OnClicked.AddUnique(mFScriptDelegate);
+L1208:         goto ExecutionFlow.Pop();
+L1209:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1251:         Temp_int_Loop_Counter_Variable1 = mint323;
+L1278:         goto L548;
+L1283:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1325:         Temp_int_Loop_Counter_Variable = mint324;
+L1352:         goto L180;
+============ END FUNCTION CreateCategoryButtons ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnShopSchematicHovered ==============
+L0:            this->mHoveredButton = mButton;
+L19:           this->mHoveredSchematic = mSchematic;
+============ END FUNCTION OnShopSchematicHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnShopSchematicClicked ==============
+L0:            bool mbool = FGSchematic->IsRepeatPurchasesAllowed(schematic);
+L51:           bool mbool1 = Not_PreBool(mbool);
+L80:           bool mbool2 = BlueprintMapLibrary->Map_Contains([ref] this->mCartItemStruct, [ref] schematic);
+L140:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L178:          bool mbool4 = Not_PreBool(mbool3);
+L207:          if (!mbool4) goto L572;
+L221:          bool mbool5 = BlueprintMapLibrary->Map_Find([ref] this->mCartItemStruct, [ref] schematic, [ref] mResourceSinkShop_CartItem_Struct);
+L290:          int32 mint32 = Add_IntInt(mResourceSinkShop_CartItem_Struct.mCartItemAmount_6_93629BD24F75478DFED5F086C5732798, 1);
+L341:          mResourceSinkShop_CartItem_Struct1.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668 = schematic;
+L369:          mResourceSinkShop_CartItem_Struct1.mCartItemAmount_6_93629BD24F75478DFED5F086C5732798 = mint32;
+L405:          mResourceSinkShop_CartItem_Struct1.mIsAddedToWishlist_9_29588D2B45D70D08A8074F8ACB4F5B3A = false;
+L425:          BlueprintMapLibrary->Map_Add([ref] this->mCartItemStruct, [ref] schematic, [ref] mResourceSinkShop_CartItem_Struct1);
+L484:          this->UpdateShoppingCartList();
+L498:          this->UpdateCartAmount();
+L512:          this->CheckItemsInCart();
+L526:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->AddedToCart, 0, 1, 0, 1);
+============ END FUNCTION OnShopSchematicClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mWindow_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop(218);
+============ END FUNCTION BndEvt__mWindow_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop(237);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mShoppingCartList_K2Node_ComponentBoundEvent_9_OnBuyAllButtonClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop(1123);
+============ END FUNCTION BndEvt__mShoppingCartList_K2Node_ComponentBoundEvent_9_OnBuyAllButtonClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mShoppingCartList_K2Node_ComponentBoundEvent_10_OnItemAmountChangedInCart__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop.BPW_ResourceSinkShop_C:ExecuteUbergraph_BPW_ResourceSinkShop.K2Node_ComponentBoundEvent_Schematic) = schematic;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop.BPW_ResourceSinkShop_C:ExecuteUbergraph_BPW_ResourceSinkShop.K2Node_ComponentBoundEvent_Amount) = amount;
+L36:           this->ExecuteUbergraph_BPW_ResourceSinkShop(1519);
+============ END FUNCTION BndEvt__mShoppingCartList_K2Node_ComponentBoundEvent_10_OnItemAmountChangedInCart__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mShoppingCartList_K2Node_ComponentBoundEvent_11_OnItemRemovedFromCart__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop.BPW_ResourceSinkShop_C:ExecuteUbergraph_BPW_ResourceSinkShop.K2Node_ComponentBoundEvent_mSchematic) = mSchematic;
+L18:           this->ExecuteUbergraph_BPW_ResourceSinkShop(1720);
+============ END FUNCTION BndEvt__mShoppingCartList_K2Node_ComponentBoundEvent_11_OnItemRemovedFromCart__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mWindow_K2Node_ComponentBoundEvent_5_OnTabButtonClicked__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop.BPW_ResourceSinkShop_C:ExecuteUbergraph_BPW_ResourceSinkShop.K2Node_ComponentBoundEvent_ButtonIndex) = ButtonIndex;
+L18:           this->ExecuteUbergraph_BPW_ResourceSinkShop(1854);
+============ END FUNCTION BndEvt__mWindow_K2Node_ComponentBoundEvent_5_OnTabButtonClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mCart_Button_K2Node_ComponentBoundEvent_6_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop(1964);
+============ END FUNCTION BndEvt__mCart_Button_K2Node_ComponentBoundEvent_6_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnScroll ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop.BPW_ResourceSinkShop_C:ExecuteUbergraph_BPW_ResourceSinkShop.K2Node_CustomEvent_CurrentOffset) = CurrentOffset;
+L18:           this->ExecuteUbergraph_BPW_ResourceSinkShop(1969);
+============ END FUNCTION OnScroll ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_ResourceSinkShop ==============
+L10:           this->UpdateShopButtonStates();
+L24:           <End of Inlined Event Graph Function>;
+L29:           bool Temp_bool_Variable = false;
+L40:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->MinimizeHeader, 0, 1, 0, 1);
+L86:           <End of Inlined Event Graph Function>;
+L91:           bool Temp_bool_Variable1 = false;
+L102:          if (!Temp_bool_Variable) goto L121;
+L116:          <End of Inlined Event Graph Function>;
+L121:          Temp_bool_Variable = true;
+L132:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->MinimizeHeader, 0, 1, 1, 1);
+L178:          <End of Inlined Event Graph Function>;
+L183:          if (!Temp_bool_Variable1) goto L202;
+L197:          <End of Inlined Event Graph Function>;
+L202:          Temp_bool_Variable1 = true;
+L213:          goto L29;
+L218:          this->OnEscapePressed();
+L232:          <End of Inlined Event Graph Function>;
+L237:          FGBuildableResourceSinkShop* mFGBuildableResourceSinkShop = Cast<Class /Script/FactoryGame.FGBuildableResourceSinkShop>(this->mInteractObject);
+L273:          bool mbool = mFGBuildableResourceSinkShop;
+L302:          this->mResourceSinkShop = mFGBuildableResourceSinkShop;
+L321:          this->CreateCategoryButtons();
+L335:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L359:          Vector2D mVector2D = WidgetLayoutLibrary->GetViewportSize(this);
+L410:          BreakVector2D(mVector2D, [ref] mfloat, [ref] mfloat1);
+L447:          float mfloat2 = Divide_FloatFloat(mfloat1, 2);
+L489:          float mfloat3 = Divide_FloatFloat(mfloat, 2);
+L531:          int32 mint32 = FTrunc(mfloat2);
+L568:          int32 mint321 = FTrunc(mfloat3);
+L605:          mPlayerController->SetMouseLocation(mint321, mint32);
+L655:          this->bIsFocusable = true;
+L666:          this->SetInitialSelectedCategory();
+L680:          this->mWindow->SetInventoryVisibility(false, false);
+L718:          this->GetAmountOfCouponsInPlayerInventory();
+L732:          mFScriptDelegate->BindUFunction(this, OnScroll);
+L755:          this->mContentScrollBox->OnUserScrolled.AddUnique(mFScriptDelegate);
+L796:          this->UpdateBanner();
+L810:          <End of Inlined Event Graph Function>;
+L815:          bool mbool1 = Greater_FloatFloat(mfloat4, 0.20000000298023224);
+L849:          if (!mbool1) goto L91;
+L863:          goto L183;
+L868:          TArray<ResourceSinkShop_CartItem_Struct> mTArray<ResourceSinkShop_CartItem_Struct> = [];
+L879:          BlueprintMapLibrary->Map_Values([ref] this->mCartItemStruct, [ref] mTArray<ResourceSinkShop_CartItem_Struct>);
+L929:          this->mShoppingCartList->SetBuyButtonVisibility([ref] mTArray<ResourceSinkShop_CartItem_Struct>);
+L974:          this->mShoppingCartList->mCartList->UpdateEmptyCartFeedback();
+L1032:         <End of Inlined Event Graph Function>;
+L1037:         this->mShoppingCartList->SetVisibility(1);
+L1075:         <End of Inlined Event Graph Function>;
+L1080:         this->mShoppingCartList->SetVisibility(0);
+L1118:         goto L868;
+L1123:         this->OnBuyAll();
+L1137:         this->UpdateShopButtonStates();
+L1151:         this->mShoppingCartList->mCartList->UpdateEmptyCartFeedback();
+L1209:         TArray<ResourceSinkShop_CartItem_Struct> mTArray<ResourceSinkShop_CartItem_Struct>1 = [];
+L1220:         BlueprintMapLibrary->Map_Values([ref] this->mCartItemStruct, [ref] mTArray<ResourceSinkShop_CartItem_Struct>1);
+L1270:         this->mShoppingCartList->SetBuyButtonVisibility([ref] mTArray<ResourceSinkShop_CartItem_Struct>1);
+L1315:         this->GetAmountOfCouponsInPlayerInventory();
+L1329:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1353:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_Shop_SpaceCashier, mPlayerController1, true);
+L1414:         <End of Inlined Event Graph Function>;
+L1419:         uint8 muint8 = this->mShoppingCartList->GetVisibility();
+L1469:         bool mbool2 = EqualEqual_ByteByte(muint8, 0);
+L1500:         if (!mbool2) goto L1080;
+L1514:         goto L1037;
+L1519:         this->ChangeItemAmountInCart(mTSubclassOf<FGSchematic>, mint322);
+L1551:         this->mShoppingCartList->mCartList->UpdateEmptyCartFeedback();
+L1609:         TArray<ResourceSinkShop_CartItem_Struct> mTArray<ResourceSinkShop_CartItem_Struct>2 = [];
+L1620:         BlueprintMapLibrary->Map_Values([ref] this->mCartItemStruct, [ref] mTArray<ResourceSinkShop_CartItem_Struct>2);
+L1670:         this->mShoppingCartList->SetBuyButtonVisibility([ref] mTArray<ResourceSinkShop_CartItem_Struct>2);
+L1715:         <End of Inlined Event Graph Function>;
+L1720:         this->OnItemRemovedFromCart(mTSubclassOf<FGSchematic>1);
+L1743:         TArray<ResourceSinkShop_CartItem_Struct> mTArray<ResourceSinkShop_CartItem_Struct>3 = [];
+L1754:         BlueprintMapLibrary->Map_Values([ref] this->mCartItemStruct, [ref] mTArray<ResourceSinkShop_CartItem_Struct>3);
+L1804:         this->mShoppingCartList->SetBuyButtonVisibility([ref] mTArray<ResourceSinkShop_CartItem_Struct>3);
+L1849:         goto L10;
+L1854:         bool mbool3 = EqualEqual_IntInt(mint323, 1);
+L1888:         if (!mbool3) goto L1921;
+L1902:         this->OnStorageOpened();
+L1916:         <End of Inlined Event Graph Function>;
+L1921:         this->mWindow->SetInventoryVisibility(false, true);
+L1959:         <End of Inlined Event Graph Function>;
+L1964:         goto L1419;
+L1969:         goto L815;
+============ END FUNCTION ExecuteUbergraph_BPW_ResourceSinkShop ==============

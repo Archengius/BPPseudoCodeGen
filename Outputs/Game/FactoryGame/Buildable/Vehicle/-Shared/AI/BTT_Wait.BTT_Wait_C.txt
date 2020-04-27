@@ -1,0 +1,59 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_Wait.BTT_Wait_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveExecuteAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_Wait.BTT_Wait_C:ExecuteUbergraph_BTT_Wait.K2Node_Event_OwnerController1) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_Wait.BTT_Wait_C:ExecuteUbergraph_BTT_Wait.K2Node_Event_ControlledPawn1) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTT_Wait(49);
+============ END FUNCTION ReceiveExecuteAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTickAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_Wait.BTT_Wait_C:ExecuteUbergraph_BTT_Wait.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_Wait.BTT_Wait_C:ExecuteUbergraph_BTT_Wait.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_Wait.BTT_Wait_C:ExecuteUbergraph_BTT_Wait.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L54:           this->ExecuteUbergraph_BTT_Wait(152);
+============ END FUNCTION ReceiveTickAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveAbort ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/AI/BTT_Wait.BTT_Wait_C:ExecuteUbergraph_BTT_Wait.K2Node_Event_OwnerActor) = OwnerActor;
+L18:           this->ExecuteUbergraph_BTT_Wait(453);
+============ END FUNCTION ReceiveAbort ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTT_Wait ==============
+L10:           this->mTimer = 0;
+L33:           this->FinishExecute(true);
+L44:           <End of Inlined Event Graph Function>;
+L49:           FGWheeledVehicle* mFGWheeledVehicle = Cast<Class /Script/FactoryGame.FGWheeledVehicle>(mPawn);
+L85:           bool mbool = mFGWheeledVehicle;
+L114:          if (!mbool) goto L495;
+L128:          this->mVehicle = mFGWheeledVehicle;
+L147:          <End of Inlined Event Graph Function>;
+L152:          this->ReceiveTickAI(mAIController, mPawn1, mfloat);
+L189:          FGTargetPointLinkedList* mFGTargetPointLinkedList = this->mVehicle->GetTargetNodeLinkedList();
+L231:          FGTargetPoint* mFGTargetPoint = mFGTargetPointLinkedList->GetCurrentTarget();
+L273:          float mfloat1 = mFGTargetPoint->GetWaitTime();
+L323:          bool mbool1 = Greater_FloatFloat(mfloat1, this->mTimer);
+L361:          if (!mbool1) goto L10;
+L375:          float mfloat2 = Add_FloatFloat(this->mTimer, mfloat);
+L421:          this->mTimer = mfloat2;
+L448:          <End of Inlined Event Graph Function>;
+L453:          this->ReceiveAbort(mActor);
+L472:          this->mTimer = 0;
+============ END FUNCTION ExecuteUbergraph_BTT_Wait ==============

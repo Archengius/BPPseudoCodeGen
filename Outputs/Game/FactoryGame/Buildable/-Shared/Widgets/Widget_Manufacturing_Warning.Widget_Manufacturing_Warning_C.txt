@@ -1,0 +1,104 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_Manufacturing_Warning.Widget_Manufacturing_Warning_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION HideWarning ==============
+L0:            this->SetVisibility(1);
+============ END FUNCTION HideWarning ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateWarning ==============
+L0:            this->SetText(text);
+L23:           this->SetVisibility(3);
+============ END FUNCTION UpdateWarning ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetText ==============
+L0:            this->mText = InText;
+L27:           this->WarningText->SetText(this->mText);
+============ END FUNCTION SetText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetWarningText ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mManufacturer);
+L51:           if (!mbool) goto L189;
+L65:           bool mbool1 = this->mManufacturer->HasPower();
+L111:          bool mbool2 = Not_PreBool(mbool1);
+L140:          if (!mbool2) goto L409;
+L154:          FText ReturnValue = "[object Object]";
+L184:          goto L560;
+L189:          bool mbool3 = KismetSystemLibrary->IsValid(this->mResourceExtractor);
+L240:          if (!mbool3) goto L348;
+L254:          bool mbool4 = this->mResourceExtractor->HasPower();
+L300:          bool mbool5 = Not_PreBool(mbool4);
+L329:          if (!mbool5) goto L499;
+L343:          goto L154;
+L348:          ReturnValue = "[object Object]";
+L404:          goto L560;
+L409:          bool mbool6 = this->mManufacturer->IsProductionPaused();
+L451:          if (!mbool6) goto L560;
+L465:          ReturnValue = "[object Object]";
+L494:          goto L560;
+L499:          bool mbool7 = this->mResourceExtractor->IsProductionPaused();
+L541:          if (!mbool7) goto L560;
+L555:          goto L465;
+============ END FUNCTION GetWarningText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Manufacturing_Warning(712);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_Manufacturing_Warning.Widget_Manufacturing_Warning_C:ExecuteUbergraph_Widget_Manufacturing_Warning.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_Manufacturing_Warning(10);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Manufacturing_Warning ==============
+L10:           if (!this->mOverrideSize) goto L263;
+L24:           this->mSizeBox->ClearWidthOverride();
+L56:           this->mSizeBox->ClearHeightOverride();
+L88:           OverlaySlot* mOverlaySlot = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mSizeBox);
+L139:          mOverlaySlot->SetHorizontalAlignment(0);
+L173:          mOverlaySlot = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mSizeBox);
+L224:          mOverlaySlot->SetVerticalAlignment(0);
+L258:          <End of Inlined Event Graph Function>;
+L263:          this->mSizeBox->SetHeightOverride(80);
+L300:          this->mSizeBox->SetWidthOverride(128);
+L337:          OverlaySlot* mOverlaySlot1 = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mSizeBox);
+L388:          mOverlaySlot1->SetHorizontalAlignment(2);
+L422:          mOverlaySlot1 = WidgetLayoutLibrary->SlotAsOverlaySlot(this->mSizeBox);
+L473:          mOverlaySlot1->SetVerticalAlignment(2);
+L507:          <End of Inlined Event Graph Function>;
+L512:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->IdleAnim, 0, 0, 0, 1);
+L558:          FText mFText = KismetTextLibrary->Conv_StringToText("");
+L610:          bool mbool = KismetTextLibrary->NotEqual_TextText([ref] this->mText, [ref] mFText);
+L670:          if (!mbool) goto L717;
+L684:          this->SetText(this->mText);
+L707:          <End of Inlined Event Graph Function>;
+L712:          goto L512;
+============ END FUNCTION ExecuteUbergraph_Widget_Manufacturing_Warning ==============

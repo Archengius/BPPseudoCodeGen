@@ -1,0 +1,274 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/PipePump/Build_PipelinePump.Build_PipelinePump_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ApplyFluidDescriptorColor ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mFluidDesc);
+L51:           if (!mbool) goto L215;
+L65:           Color mColor = FGItemDescriptor->GetFluidColor(this->mFluidDesc);
+L124:          LinearColor mLinearColor = Conv_ColorToLinearColor(mColor);
+L161:          this->Mat->SetVectorParameterValue("LiquidColor", mLinearColor);
+============ END FUNCTION ApplyFluidDescriptorColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayPistonSound ==============
+L0:            float mfloat = this->GetIndicatorHeadLift();
+L28:           bool mbool = GreaterEqual_FloatFloat(mfloat, 20);
+L62:           if (!mbool) goto L148;
+L76:           if (!this->mIsExceedingHeadLift) goto L368;
+L90:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_PipelinePump_Pistons, this, true);
+L143:          <End of Inlined Event Graph Function>;
+L148:          if (!this->mIsExceedingHeadLift) goto L310;
+L162:          AkGameplayStatics->SetActorRTPCValue("RTPC_Pipeline_Pump_Headlift", 0, 0, this);
+L218:          this->mIsExceedingHeadLift = false;
+L229:          KismetSystemLibrary->PrintString(this, "Below", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L310:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_PipelinePump_Pistons, this, true);
+L363:          <End of Inlined Event Graph Function>;
+L368:          AkGameplayStatics->SetActorRTPCValue("RTPC_Pipeline_Pump_Headlift", 100, 0, this);
+L424:          this->mIsExceedingHeadLift = true;
+L435:          KismetSystemLibrary->PrintString(this, "Exceeds", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L518:          goto L90;
+============ END FUNCTION PlayPistonSound ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPumpStopped ==============
+L0:            this->Mat->SetScalarParameterValue("FlowRate", 0);
+============ END FUNCTION OnPumpStopped ==============
+
+
+
+
+
+============ BEGIN FUNCTION UserConstructionScript ==============
+L0:            this->UserConstructionScript();
+L10:           int32 mint32 = KismetArrayLibrary->Array_Add([ref] this->mExcludeFromMaterialInstancing, [ref] this->PumpMesh);
+============ END FUNCTION UserConstructionScript ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHasPowerChanged ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/PipePump/Build_PipelinePump.Build_PipelinePump_C:ExecuteUbergraph_Build_PipelinePump.K2Node_Event_newHasPower) = newHasPower;
+L18:           this->ExecuteUbergraph_Build_PipelinePump(598);
+============ END FUNCTION OnHasPowerChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopIsLookedAtForDismantle ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Factory/PipePump/Build_PipelinePump.Build_PipelinePump_C:ExecuteUbergraph_Build_PipelinePump.K2Node_Event_byCharacter) = byCharacter;
+L18:           this->ExecuteUbergraph_Build_PipelinePump(148);
+============ END FUNCTION StopIsLookedAtForDismantle ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Build_PipelinePump(680);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION BuildEffectFinishedEvent ==============
+L0:            this->ExecuteUbergraph_Build_PipelinePump(836);
+============ END FUNCTION BuildEffectFinishedEvent ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayProductionAudioChain ==============
+L0:            this->ExecuteUbergraph_Build_PipelinePump(913);
+============ END FUNCTION PlayProductionAudioChain ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopProductionAudioChain ==============
+L0:            this->ExecuteUbergraph_Build_PipelinePump(1134);
+============ END FUNCTION StopProductionAudioChain ==============
+
+
+
+
+
+============ BEGIN FUNCTION FluidDescriptorSetNotify ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/Factory/PipePump/Build_PipelinePump.Build_PipelinePump_C:ExecuteUbergraph_Build_PipelinePump.K2Node_Event_fluidDesc) = fluidDesc;
+L18:           this->ExecuteUbergraph_Build_PipelinePump(1217);
+============ END FUNCTION FluidDescriptorSetNotify ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/PipePump/Build_PipelinePump.Build_PipelinePump_C:ExecuteUbergraph_Build_PipelinePump.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_Build_PipelinePump(1270);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayEngineAudioChain ==============
+L0:            this->ExecuteUbergraph_Build_PipelinePump(1570);
+============ END FUNCTION PlayEngineAudioChain ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopEngineAudioChain ==============
+L0:            this->ExecuteUbergraph_Build_PipelinePump(1636);
+============ END FUNCTION StopEngineAudioChain ==============
+
+
+
+
+
+============ BEGIN FUNCTION Factory_ReceiveStopProducing ==============
+L0:            this->ExecuteUbergraph_Build_PipelinePump(1641);
+============ END FUNCTION Factory_ReceiveStopProducing ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Build_PipelinePump(1706);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Build_PipelinePump(1711);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMaterialInstancesUpdated ==============
+L0:            this->ExecuteUbergraph_Build_PipelinePump(1716);
+============ END FUNCTION OnMaterialInstancesUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_PipelinePump ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           KismetSystemLibrary->PrintString(this, "Hello", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L96:           goto ExecutionFlow.Pop();
+L97:           this->PumpMesh->SetMaterial(0, this->Mat);
+L147:          goto ExecutionFlow.Pop();
+L148:          this->StopIsLookedAtForDismantle(mFGCharacterPlayer);
+L167:          this->PumpMesh->SetMaterial(0, this->Mat);
+L217:          goto ExecutionFlow.Pop();
+L218:          this->mLastFlowUpdate = 0;
+L241:          float mfloat = this->GetIndicatorFlowPct();
+L283:          bool mbool = GreaterEqual_FloatFloat(mfloat, 0.004999999888241291);
+L317:          if (!mbool) goto L428;
+L331:          float mfloat1 = this->GetIndicatorHeadLiftPct();
+L359:          this->Mat->SetScalarParameterValue("FlowRate", mfloat1);
+L413:          if (!this->mIsPlayingPistons) goto L471;
+L427:          goto ExecutionFlow.Pop();
+L428:          this->OnPumpStopped();
+L442:          this->StopProductionAudioChain();
+L456:          this->StopEngineAudioChain();
+L470:          goto ExecutionFlow.Pop();
+L471:          this->PlayProductionAudioChain();
+L485:          this->PlayEngineAudioChain();
+L499:          this->mIsPlayingPistons = true;
+L510:          goto ExecutionFlow.Pop();
+L511:          bool mbool1 = this->IsProducing();
+L535:          if (!mbool1) goto ExecutionFlow.Pop();
+L545:          bool mbool2 = GreaterEqual_FloatFloat(this->mLastFlowUpdate, this->mUpdateFlowTime);
+L583:          if (!mbool2) goto ExecutionFlow.Pop();
+L593:          goto L218;
+L598:          bool mbool3 = Not_PreBool(mbool4);
+L627:          if (!mbool3) goto ExecutionFlow.Pop();
+L637:          this->OnPumpStopped();
+L651:          this->StopProductionAudioChain();
+L665:          this->StopEngineAudioChain();
+L679:          goto ExecutionFlow.Pop();
+L680:          this->ReceiveBeginPlay();
+L690:          MaterialInterface* mMaterialInterface = this->PumpMesh->GetMaterial(0);
+L741:          MaterialInstanceDynamic* mMaterialInstanceDynamic = Cast<Class /Script/Engine.MaterialInstanceDynamic>(mMaterialInterface);
+L777:          bool mbool5 = mMaterialInstanceDynamic;
+L806:          if (!mbool5) goto ExecutionFlow.Pop();
+L816:          this->Mat = mMaterialInstanceDynamic;
+L835:          goto ExecutionFlow.Pop();
+L836:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 97, UUID = 1070639759, ExecutionFunction = "ExecuteUbergraph_Build_PipelinePump", CallbackTarget = this));
+L912:          goto ExecutionFlow.Pop();
+L913:          bool mbool6 = KismetSystemLibrary->IsValid(this->mPlayPumpPistons01);
+L964:          if (!mbool6) goto L979;
+L978:          goto ExecutionFlow.Pop();
+L979:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimer(this, "PlayPistonSound", 0.3499999940395355, true);
+L1053:         this->mPistonAudioTimer = mTimerHandle;
+L1080:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_PipelinePump_Pistons, this, true);
+L1133:         goto ExecutionFlow.Pop();
+L1134:         this->mIsPlayingPistons = false;
+L1145:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mPistonAudioTimer);
+L1187:         goto ExecutionFlow.Pop();
+L1188:         this->StopProductionAudioChain();
+L1202:         this->StopEngineAudioChain();
+L1216:         goto ExecutionFlow.Pop();
+L1217:         this->mFluidDesc = mTSubclassOf<FGItemDescriptor>;
+L1236:         this->ApplyFluidDescriptorColor();
+L1250:         goto ExecutionFlow.Pop();
+L1251:         this->OnPumpStopped();
+L1265:         goto L1188;
+L1270:         float mfloat2 = Add_FloatFloat(mfloat3, this->mLastFlowUpdate);
+L1316:         this->mLastFlowUpdate = mfloat2;
+L1343:         goto L511;
+L1348:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_PipelinePump_Engine, this, true);
+L1401:         goto ExecutionFlow.Pop();
+L1402:         bool mbool7 = KismetSystemLibrary->IsValid(this->mPlayPumpEngine);
+L1453:         if (!mbool7) goto ExecutionFlow.Pop();
+L1463:         goto L1348;
+L1468:         this->StopProductionAudioChain();
+L1482:         this->StopEngineAudioChain();
+L1496:         goto ExecutionFlow.Pop();
+L1497:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_PipelinePump_Engine, this, true);
+L1550:         this->mPlayPumpEngine = mAkComponent2;
+L1569:         goto ExecutionFlow.Pop();
+L1570:         bool mbool8 = KismetSystemLibrary->IsValid(this->mPlayPumpEngine);
+L1621:         if (!mbool8) goto L1497;
+L1635:         goto ExecutionFlow.Pop();
+L1636:         goto L1402;
+L1641:         goto L1251;
+L1646:         this->LostSignificance();
+L1656:         bool mbool9 = this->HasPower();
+L1680:         if (!mbool9) goto ExecutionFlow.Pop();
+L1690:         goto L1468;
+L1695:         this->GainedSignificance();
+L1705:         goto ExecutionFlow.Pop();
+L1706:         goto L1646;
+L1711:         goto L1695;
+L1716:         MaterialInterface* mMaterialInterface1 = this->PumpMesh->GetMaterial(0);
+L1767:         MaterialInstanceDynamic* mMaterialInstanceDynamic1 = Cast<Class /Script/Engine.MaterialInstanceDynamic>(mMaterialInterface1);
+L1803:         bool mbool10 = mMaterialInstanceDynamic1;
+L1832:         if (!mbool10) goto L15;
+L1846:         this->Mat = mMaterialInstanceDynamic1;
+L1865:         this->ApplyFluidDescriptorColor();
+L1879:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Build_PipelinePump ==============

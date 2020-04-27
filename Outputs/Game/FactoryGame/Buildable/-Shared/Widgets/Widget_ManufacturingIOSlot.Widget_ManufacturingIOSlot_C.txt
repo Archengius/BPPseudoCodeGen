@@ -1,0 +1,226 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ManufacturingIOSlot.Widget_ManufacturingIOSlot_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ConstructFromManufacturingWidget ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(WidgetManufacturing);
+L51:           if (!mbool) goto L420;
+L65:           bool Temp_bool_Variable = this->mIsOutput;
+L84:           FGInventoryComponent* mFGInventoryComponent = this->mManufacturingWidget->mBuildableManufacturer->GetOutputInventory();
+L148:          FGInventoryComponent* mFGInventoryComponent1 = this->mManufacturingWidget->mBuildableManufacturer->GetInputInventory();
+L212:          this->mCachedInventorySlot = switch (Temp_bool_Variable) {
+case false -> mFGInventoryComponent1;
+case true -> mFGInventoryComponent;
+default -> mFGInventoryComponent2;
+};
+L275:          if (!this->mIsOutput) goto L420;
+L289:          this->Widget_CostSlotWrapper->SetVisibility(1);
+L327:          this->Widget_InventorySlot->SetVisibility(0);
+L365:          this->Widget_InventorySlot->mCachedInventoryComponent = this->mCachedInventorySlot;
+L406:          this->UpdateOutputTooltip();
+============ END FUNCTION ConstructFromManufacturingWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateOutputTooltip ==============
+L0:            this->GetItemAmount([ref] mItemAmount);
+L23:           this->Widget_InventorySlot->mFilterItemDescriptor = mItemAmount.ItemClass;
+============ END FUNCTION UpdateOutputTooltip ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetDividerTopVisibility ==============
+L0:            if (!this->mIsOutput) goto L39;
+L14:           uint8 ReturnValue = 1;
+L34:           goto L325;
+L39:           PanelWidget* mPanelWidget = this->GetParent();
+L59:           int32 mint32 = mPanelWidget->GetChildIndex(this);
+L110:          int32 mint321 = mPanelWidget->GetChildrenCount();
+L160:          bool mbool = EqualEqual_IntInt(mint32, 0);
+L194:          bool mbool1 = Less_IntInt(mint321, 4);
+L228:          bool mbool2 = BooleanAND(mbool1, mbool);
+L266:          if (!mbool2) goto L305;
+L280:          ReturnValue = 0;
+L300:          goto L325;
+L305:          ReturnValue = 1;
+============ END FUNCTION GetDividerTopVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetDividerVisibility ==============
+L0:            uint8 Temp_byte_Variable = 1;
+L20:           uint8 Temp_byte_Variable1 = 0;
+L40:           bool Temp_bool_Variable = this->mIsOutput;
+L59:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetDividerVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetInputInfoVisibility ==============
+L0:            uint8 Temp_byte_Variable = 1;
+L20:           uint8 Temp_byte_Variable1 = 0;
+L40:           bool Temp_bool_Variable = this->mIsOutput;
+L59:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetInputInfoVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNumPerSecond ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mManufacturingWidget);
+L51:           if (!mbool) goto L421;
+L65:           this->GetItemAmount([ref] mItemAmount);
+L88:           FGInventoryLibrary->GetAmountConvertedFromItemAmount([ref] mItemAmount, [ref] mTSubclassOf<FGItemDescriptor>, [ref] mfloat);
+L147:          float mfloat1 = this->mManufacturingWidget->mBuildableManufacturer->GetProductionCycleTime();
+L223:          float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L269:          float mfloat3 = Multiply_FloatFloat(mfloat2, 60);
+L311:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat3, 1, false, true, 1, 324, 0, 3);
+L394:          FText ReturnValue = mFText;
+============ END FUNCTION GetNumPerSecond ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetOutputSlotVisibility ==============
+L0:            uint8 Temp_byte_Variable = 0;
+L20:           uint8 Temp_byte_Variable1 = 1;
+L40:           bool Temp_bool_Variable = this->mIsOutput;
+L59:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION GetOutputSlotVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemNum ==============
+L0:            this->GetItemAmount([ref] mItemAmount);
+L23:           FGInventoryLibrary->GetAmountConvertedFromItemAmount([ref] mItemAmount, [ref] mTSubclassOf<FGItemDescriptor>, [ref] mfloat);
+L82:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 0, 3);
+L165:          FText ReturnValue = mFText;
+============ END FUNCTION GetItemNum ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemAmount ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mManufacturingWidget);
+L51:           if (!mbool) goto L650;
+L65:           TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mManufacturingWidget->mActivatedRecipe);
+L146:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L205:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L247:          TArray<ItemAmount> mTArray<ItemAmount>1 = FGRecipe->GetProducts(this->mManufacturingWidget->mActivatedRecipe, false);
+L329:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, 0, [ref] mItemAmount);
+L384:          bool Temp_bool_Variable = this->mIsOutput;
+L403:          PanelWidget* mPanelWidget = this->GetParent();
+L423:          int32 mint322 = mPanelWidget->GetChildIndex(this);
+L474:          int32 mint323 = Min(mint321, mint322);
+L520:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, mint323, [ref] mItemAmount1);
+L579:          ItemAmount ItemAmount = switch (Temp_bool_Variable) {
+case false -> mItemAmount1;
+case true -> mItemAmount;
+default -> mItemAmount2;
+};
+============ END FUNCTION GetItemAmount ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemName ==============
+L0:            this->GetItemAmount([ref] mItemAmount);
+L23:           FText Temp_text_Variable = ;
+L43:           FText mFText = FGItemDescriptor->GetItemName(mItemAmount.ItemClass);
+L111:          uint8 muint8 = FGItemDescriptor->GetForm(mItemAmount.ItemClass);
+L179:          mFormatArgumentData.ArgumentName = "name";
+L212:          mFormatArgumentData.ArgumentValueType = 4;
+L241:          mFormatArgumentData.ArgumentValue = mFText;
+L277:          mFormatArgumentData.ArgumentValueInt = 0;
+L309:          mFormatArgumentData.ArgumentValueFloat = 0;
+L341:          mFormatArgumentData.ArgumentValueGender = 0;
+L370:          bool mbool = NotEqual_ByteByte(muint8, 1);
+L401:          FText mFText1 = FGInventoryLibrary->GetProductionSuffixFromFormType(muint8);
+L460:          bool Temp_bool_Variable = mbool;
+L479:          mFormatArgumentData1.ArgumentName = "suffix";
+L514:          mFormatArgumentData1.ArgumentValueType = 4;
+L543:          mFormatArgumentData1.ArgumentValue = switch (Temp_bool_Variable) {
+case false -> Temp_text_Variable;
+case true -> mFText1;
+default -> mFText2;
+};
+L623:          mFormatArgumentData1.ArgumentValueInt = 0;
+L655:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L687:          mFormatArgumentData1.ArgumentValueGender = 0;
+L716:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1];
+L736:          FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L844:          mFormatArgumentData2.ArgumentName = "suffix";
+L879:          mFormatArgumentData2.ArgumentValueType = 4;
+L908:          mFormatArgumentData2.ArgumentValue = mFText3;
+L944:          mFormatArgumentData2.ArgumentValueInt = 0;
+L976:          mFormatArgumentData2.ArgumentValueFloat = 0;
+L1008:         mFormatArgumentData2.ArgumentValueGender = 0;
+L1037:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData2, mFormatArgumentData];
+L1066:         FText mFText4 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L1179:         FText ReturnValue = mFText4;
+============ END FUNCTION GetItemName ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ManufacturingIOSlot(181);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Set CostSlot ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ManufacturingIOSlot.Widget_ManufacturingIOSlot_C:ExecuteUbergraph_Widget_ManufacturingIOSlot.K2Node_CustomEvent_SlotIdx) = slotIdx;
+L18:           this->ExecuteUbergraph_Widget_ManufacturingIOSlot(186);
+============ END FUNCTION Set CostSlot ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ManufacturingIOSlot ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool mbool = KismetSystemLibrary->IsValid(this->mManufacturingWidget);
+L66:           if (!mbool) goto L104;
+L80:           this->ConstructFromManufacturingWidget(this->mManufacturingWidget);
+L103:          goto ExecutionFlow.Pop();
+L104:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1694640019, ExecutionFunction = "ExecuteUbergraph_Widget_ManufacturingIOSlot", CallbackTarget = this));
+L180:          goto ExecutionFlow.Pop();
+L181:          goto L15;
+L186:          this->GetItemAmount([ref] mItemAmount);
+L209:          this->Widget_CostSlotWrapper->Setup CostIcon(nullptr, mItemAmount, this->mCachedInventorySlot, mint32, 0, false, false, false);
+L281:          goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_ManufacturingIOSlot ==============

@@ -1,0 +1,337 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/BP_FrontEnd.BP_FrontEnd_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CreatePopupWidget ==============
+L0:            TSubclassOf<Widget_Popup> mTSubclassOf<Widget_Popup> = ClassCast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Popup.Widget_Popup_C>(PopupData.PopupClass);
+L45:           bool mbool = mTSubclassOf<Widget_Popup>;
+L74:           if (!mbool) goto L528;
+L88:           this->mPopupClass = mTSubclassOf<Widget_Popup>;
+L107:          this->mPopupBlur->SetBlurStrength(1);
+L148:          this->mPopupModal->SetVisibility(0);
+L186:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L210:          Widget_Popup* mWidget_Popup = WidgetBlueprintLibrary->Create(this, this->mPopupClass, mPlayerController);
+L271:          mWidget_Popup->mPopupData = PopupData;
+L320:          PanelSlot* mPanelSlot = this->mPopupSlot->AddChild(mWidget_Popup);
+L371:          mPlayerController = this->GetOwningPlayer();
+L395:          WidgetBlueprintLibrary->SetInputMode_UIOnlyEx(mPlayerController, mWidget_Popup, 0);
+L447:          mPlayerController = this->GetOwningPlayer();
+L471:          mPlayerController->bShowMouseCursor = true;
+L504:          FGPopupWidget* ReturnValue = mWidget_Popup;
+L523:          goto L552;
+L528:          this->mPopupClass = Widget_Popup;
+L547:          goto L107;
+============ END FUNCTION CreatePopupWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShouldShutdown ==============
+L0:            bool Shutdown = false;
+============ END FUNCTION ShouldShutdown ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetErrorButtonText ==============
+L0:            this->ShouldShutdownAfterThisError([ref] mbool);
+L23:           if (!mbool) goto L108;
+L37:           FText ButtonText = "[object Object]";
+L103:          <End of Inlined Event Graph Function>;
+L108:          this->HasMoreErrors([ref] mbool1);
+L131:          if (!mbool1) goto L218;
+L145:          ButtonText = "[object Object]";
+L213:          <End of Inlined Event Graph Function>;
+L218:          ButtonText = "[object Object]";
+============ END FUNCTION GetErrorButtonText ==============
+
+
+
+
+
+============ BEGIN FUNCTION HasMoreErrors ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGErrorMessage* mFGErrorMessage = FGGameInstance->PeekNextError(mPlayerController);
+L75:           bool mbool = KismetSystemLibrary->IsValid(mFGErrorMessage);
+L126:          bool moreErrors = mbool;
+============ END FUNCTION HasMoreErrors ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShouldShutdownAfterThisError ==============
+L0:            this->HasMoreErrors([ref] mbool);
+L23:           bool mbool1 = Not_PreBool(mbool);
+L52:           bool mbool2 = BooleanAND(mbool1, this->mShouldQuitAfterErrors);
+L90:           bool Shutdown = mbool2;
+============ END FUNCTION ShouldShutdownAfterThisError ==============
+
+
+
+
+
+============ BEGIN FUNCTION Internal_ShouldShowLogin ==============
+L0:            bool ShouldShow = false;
+============ END FUNCTION Internal_ShouldShowLogin ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShouldShowLogin ==============
+L0:            uint8 Temp_byte_Variable = 0;
+L20:           uint8 Temp_byte_Variable1 = 2;
+L40:           this->Internal_ShouldShowLogin([ref] mbool);
+L63:           bool Temp_bool_Variable = mbool;
+L82:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION ShouldShowLogin ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetNextErrorMessage ==============
+L0:            this->mLastErrorMessage = newError;
+L19:           bool mbool = KismetSystemLibrary->IsValid(this->mLastErrorMessage);
+L70:           if (!mbool) goto L258;
+L84:           this->mShouldQuitAfterErrors = false;
+L95:           this->GetErrorButtonText([ref] mFText);
+L118:          this->Widget_ErrorMessage->SetButtonText(mFText);
+L163:          FText mFText1 = this->mLastErrorMessage->GetErrorMessage();
+L213:          this->Widget_ErrorMessage->SetBody(mFText1);
+============ END FUNCTION SetNextErrorMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetNextErrorMessage ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGErrorMessage* mFGErrorMessage = FGGameInstance->GetNextError(mPlayerController);
+L75:           FGErrorMessage* errorMessage = mFGErrorMessage;
+============ END FUNCTION GetNextErrorMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION Internal_ShowErrorMessage ==============
+L0:            bool ShouldShow = false;
+============ END FUNCTION Internal_ShowErrorMessage ==============
+
+
+
+
+
+============ BEGIN FUNCTION Internal_ShouldShowMainMenu ==============
+L0:            this->Internal_ShowErrorMessage([ref] mbool);
+L23:           this->Internal_ShouldShowAlphaInfo([ref] mbool1);
+L46:           bool mbool2 = Not_PreBool(mbool);
+L75:           bool mbool3 = Not_PreBool(mbool1);
+L104:          bool mbool4 = BooleanAND(mbool3, mbool2);
+L142:          bool ShouldShow = mbool4;
+============ END FUNCTION Internal_ShouldShowMainMenu ==============
+
+
+
+
+
+============ BEGIN FUNCTION Internal_ShouldShowAlphaInfo ==============
+L0:            bool local_showAlphaInfo = true;
+L11:           GameInstance* mGameInstance = GameplayStatics->GetGameInstance(this);
+L54:           FGGameInstance* mFGGameInstance = Cast<Class /Script/FactoryGame.FGGameInstance>(mGameInstance);
+L90:           bool mbool = mFGGameInstance;
+L119:          if (!mbool) goto L223;
+L133:          bool mbool1 = mFGGameInstance->HasPlayerSeenAlphaInfoScreen();
+L175:          bool mbool2 = Not_PreBool(mbool1);
+L204:          local_showAlphaInfo = mbool2;
+L223:          bool ShouldShow = local_showAlphaInfo;
+============ END FUNCTION Internal_ShouldShowAlphaInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShouldShowErrorPopup ==============
+L0:            uint8 Temp_byte_Variable = 0;
+L20:           uint8 Temp_byte_Variable1 = 2;
+L40:           this->Internal_ShowErrorMessage([ref] mbool);
+L63:           bool Temp_bool_Variable = mbool;
+L82:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION ShouldShowErrorPopup ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShouldShowMainMenu ==============
+L0:            uint8 Temp_byte_Variable = 0;
+L20:           uint8 Temp_byte_Variable1 = 2;
+L40:           this->Internal_ShouldShowMainMenu([ref] mbool);
+L63:           bool Temp_bool_Variable = mbool;
+L82:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION ShouldShowMainMenu ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShouldShowAlphaInfo ==============
+L0:            uint8 Temp_byte_Variable = 0;
+L20:           uint8 Temp_byte_Variable1 = 2;
+L40:           this->Internal_ShouldShowAlphaInfo([ref] mbool);
+L63:           bool Temp_bool_Variable = mbool;
+L82:           uint8 ReturnValue = switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+};
+============ END FUNCTION ShouldShowAlphaInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupMainMenu ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           mPlayerController->bShowMouseCursor = true;
+L57:           mPlayerController = this->GetOwningPlayer();
+L81:           WidgetBlueprintLibrary->SetInputMode_UIOnlyEx(mPlayerController, nullptr, 0);
+============ END FUNCTION SetupMainMenu ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BP_FrontEnd(1235);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_ErrorMessage_K2Node_ComponentBoundEvent_0_mOnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BP_FrontEnd(15);
+============ END FUNCTION BndEvt__Widget_ErrorMessage_K2Node_ComponentBoundEvent_0_mOnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetAndSetNewError ==============
+L0:            this->ExecuteUbergraph_BP_FrontEnd(552);
+============ END FUNCTION GetAndSetNewError ==============
+
+
+
+
+
+============ BEGIN FUNCTION ConditionallySetNewError ==============
+L0:            this->ExecuteUbergraph_BP_FrontEnd(599);
+============ END FUNCTION ConditionallySetNewError ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_BP_FrontEnd(931);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClosePopup ==============
+L0:            this->ExecuteUbergraph_BP_FrontEnd(1240);
+============ END FUNCTION ClosePopup ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_FrontEnd ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->GetAndSetNewError();
+L29:           this->ShouldShutdown([ref] mbool);
+L52:           if (!mbool) goto ExecutionFlow.Pop();
+L62:           KismetSystemLibrary->QuitGame(this, nullptr, 0, false);
+L99:           goto ExecutionFlow.Pop();
+L100:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L124:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_Menu_Music, mPlayerController, true);
+L185:          goto ExecutionFlow.Pop();
+L186:          GameInstance* mGameInstance = GameplayStatics->GetGameInstance(this);
+L229:          FGGameInstance* mFGGameInstance = Cast<Class /Script/FactoryGame.FGGameInstance>(mGameInstance);
+L265:          bool mbool1 = mFGGameInstance;
+L294:          if (!mbool1) goto ExecutionFlow.Pop();
+L304:          mFScriptDelegate->BindUFunction(this, ConditionallySetNewError);
+L327:          mFGGameInstance->mOnNewError.AddUnique(mFScriptDelegate);
+L368:          goto ExecutionFlow.Pop();
+L369:          GameInstance* mGameInstance1 = GameplayStatics->GetGameInstance(this);
+L412:          FGGameInstance* mFGGameInstance1 = Cast<Class /Script/FactoryGame.FGGameInstance>(mGameInstance1);
+L448:          bool mbool2 = mFGGameInstance1;
+L477:          if (!mbool2) goto ExecutionFlow.Pop();
+L487:          mFScriptDelegate->BindUFunction(this, ConditionallySetNewError);
+L510:          mFGGameInstance1->mOnNewError.Remove(mFScriptDelegate);
+L551:          goto ExecutionFlow.Pop();
+L552:          this->GetNextErrorMessage([ref] mFGErrorMessage);
+L575:          this->SetNextErrorMessage(mFGErrorMessage);
+L598:          goto ExecutionFlow.Pop();
+L599:          bool mbool3 = KismetSystemLibrary->IsValid(this->mLastErrorMessage);
+L650:          if (!mbool3) goto L665;
+L664:          goto ExecutionFlow.Pop();
+L665:          this->GetAndSetNewError();
+L679:          goto ExecutionFlow.Pop();
+L680:          this->ConditionallySetNewError();
+L694:          ExecutionFlow.Push(L100);
+L699:          ExecutionFlow.Push(L709);
+L704:          goto L186;
+L709:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L733:          bool mbool4 = KismetSystemLibrary->IsLoggedIn(mPlayerController1);
+L784:          if (!mbool4) goto L799;
+L798:          goto ExecutionFlow.Pop();
+L799:          LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L823:          FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L859:          bool mbool5 = mFGLocalPlayer;
+L888:          if (!mbool5) goto ExecutionFlow.Pop();
+L898:          mFGLocalPlayer->AutoLogin();
+L930:          goto ExecutionFlow.Pop();
+L931:          goto L369;
+L936:          FGPopupWidget* mFGPopupWidget = this->GetPopup();
+L956:          mFGPopupWidget->RemoveFromParent();
+L992:          this->SetPopup(nullptr);
+L1003:         this->mPopupBlur->SetBlurStrength(0);
+L1044:         this->mPopupModal->SetVisibility(2);
+L1082:         this->mPopupSlot->ClearChildren();
+L1118:         goto ExecutionFlow.Pop();
+L1119:         mFGPopupWidget = this->GetPopup();
+L1139:         bool mbool6 = KismetSystemLibrary->IsValid(mFGPopupWidget);
+L1190:         if (!mbool6) goto L1209;
+L1204:         goto L936;
+L1209:         this->PopPopupQueue();
+L1219:         goto ExecutionFlow.Pop();
+L1220:         this->Construct();
+L1230:         goto L680;
+L1235:         goto L1220;
+L1240:         goto L1119;
+============ END FUNCTION ExecuteUbergraph_BP_FrontEnd ==============

@@ -1,0 +1,442 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ShouldSave ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION ShouldSave ==============
+
+
+
+
+
+============ BEGIN FUNCTION GatherDependencies ==============
+L0:            TArray<Object*> mTArray<Object> = [];
+L11:           TArray<Object*> out_dependentObjects = mTArray<Object>;
+============ END FUNCTION GatherDependencies ==============
+
+
+
+
+
+============ BEGIN FUNCTION NeedTransform ==============
+L0:            bool ReturnValue = false;
+============ END FUNCTION NeedTransform ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLookAtDecription ==============
+L0:            Controller* mController = byCharacter->GetController();
+L42:           HUDHelpers->GetKeyNameForActionSimple(mController, "Use", this, [ref] mFText);
+L110:          mFormatArgumentData.ArgumentName = "BUTTON";
+L145:          mFormatArgumentData.ArgumentValueType = 4;
+L174:          mFormatArgumentData.ArgumentValue = mFText;
+L210:          mFormatArgumentData.ArgumentValueInt = 0;
+L242:          mFormatArgumentData.ArgumentValueFloat = 0;
+L274:          mFormatArgumentData.ArgumentValueGender = 0;
+L303:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L323:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L458:          FText ReturnValue = mFText1;
+============ END FUNCTION GetLookAtDecription ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsUseable ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION IsUseable ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateUseState ==============
+L0:            FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, FGUseState_Valid);
+============ END FUNCTION UpdateUseState ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorCompassViewDistance ==============
+L0:            uint8 ReturnValue = this->compassViewDistance;
+============ END FUNCTION GetActorCompassViewDistance ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorCompassViewDistance ==============
+L0:            this->FlushNetDormancy();
+L10:           this->compassViewDistance = compassViewDistance;
+L37:           bool mbool = this->HasAuthority();
+L57:           if (!mbool) goto L127;
+L71:           bool mbool1 = this->UpdateRepresentation();
+L95:           uint8 ReturnValue = this->compassViewDistance;
+L122:          goto L356;
+L127:          PlayerController* mPlayerController = GameplayStatics->GetPlayerController(this, 0);
+L175:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L211:          bool mbool2 = mFGPlayerController;
+L240:          if (!mbool2) goto L356;
+L254:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L305:          mBP_RemoteCallObject->Server_SetActorCompassViewDistance(this, this->compassViewDistance);
+L351:          goto L95;
+============ END FUNCTION SetActorCompassViewDistance ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorRepresentationText ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L127;
+L34:           this->FlushNetDormancy();
+L44:           this->mCompassText = newText;
+L71:           bool mbool1 = this->UpdateRepresentation();
+L95:           FText ReturnValue = this->mCompassText;
+L122:          goto L356;
+L127:          PlayerController* mPlayerController = GameplayStatics->GetPlayerController(this, 0);
+L175:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L211:          bool mbool2 = mFGPlayerController;
+L240:          if (!mbool2) goto L356;
+L254:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L305:          mBP_RemoteCallObject->Server_SetActorRepresentationText(this, newText);
+L351:          goto L95;
+============ END FUNCTION SetActorRepresentationText ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L145;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->UpdateRepresentation(this, false);
+L121:          bool ReturnValue = mbool1;
+L140:          goto L156;
+L145:          ReturnValue = false;
+============ END FUNCTION UpdateRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorFogOfWarRevealRadius ==============
+L0:            float ReturnValue = 0;
+============ END FUNCTION GetActorFogOfWarRevealRadius ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorFogOfWarRevealType ==============
+L0:            uint8 ReturnValue = 0;
+============ END FUNCTION GetActorFogOfWarRevealType ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationColor ==============
+L0:            LinearColor ReturnValue = this->mCompassColor;
+============ END FUNCTION GetActorRepresentationColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationText ==============
+L0:            FText ReturnValue = this->mCompassText;
+============ END FUNCTION GetActorRepresentationText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationTexture ==============
+L0:            Texture2D* ReturnValue = this->mCompassTexture;
+============ END FUNCTION GetActorRepresentationTexture ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorRepresentationType ==============
+L0:            uint8 ReturnValue = 1;
+============ END FUNCTION GetActorRepresentationType ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorShouldShowInCompass ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION GetActorShouldShowInCompass ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveAsRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L144;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->RemoveRepresentationOfActor(this);
+L120:          bool ReturnValue = mbool1;
+L139:          goto L155;
+L144:          ReturnValue = false;
+============ END FUNCTION RemoveAsRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRealActorRotation ==============
+L0:            Rotator ReturnValue = Rotator::FromPitchYawRoll(0, 0, 0);
+============ END FUNCTION GetRealActorRotation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRealActorLocation ==============
+L0:            Vector mVector = this->K2_GetActorLocation();
+L28:           Vector ReturnValue = mVector;
+============ END FUNCTION GetRealActorLocation ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetActorShouldShowOnMap ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION GetActorShouldShowOnMap ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsActorStatic ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION IsActorStatic ==============
+
+
+
+
+
+============ BEGIN FUNCTION AddAsRepresentation ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L145;
+L34:           FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
+L77:           bool mbool1 = mFGActorRepresentationManager->CreateAndAddNewRepresentation(this, false);
+L121:          bool ReturnValue = mbool1;
+L140:          goto L156;
+L145:          ReturnValue = false;
+============ END FUNCTION AddAsRepresentation ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetColor ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L100;
+L34:           this->FlushNetDormancy();
+L44:           this->mCompassColor = NewColor;
+L71:           bool mbool1 = this->UpdateRepresentation();
+L95:           <End of Inlined Event Graph Function>;
+L100:          PlayerController* mPlayerController = GameplayStatics->GetPlayerController(this, 0);
+L148:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L184:          bool mbool2 = mFGPlayerController;
+L213:          if (!mbool2) goto L324;
+L227:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L278:          mBP_RemoteCallObject->Server_SetActorRepresentationColor(this, NewColor);
+============ END FUNCTION SetColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION CloseWidget ==============
+L0:            BPHUDHelpers->PopStackWidget(Controller, this->mWidget, this);
+L55:           this->mWidget = nullptr;
+============ END FUNCTION CloseWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION PostLoadGame ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_saveVersion3) = SaveVersion;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_gameVersion3) = GameVersion;
+L36:           this->ExecuteUbergraph_BP_Beacon(559);
+============ END FUNCTION PostLoadGame ==============
+
+
+
+
+
+============ BEGIN FUNCTION PostSaveGame ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_saveVersion2) = SaveVersion;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_gameVersion2) = GameVersion;
+L36:           this->ExecuteUbergraph_BP_Beacon(554);
+============ END FUNCTION PostSaveGame ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreLoadGame ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_saveVersion1) = SaveVersion;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_gameVersion1) = GameVersion;
+L36:           this->ExecuteUbergraph_BP_Beacon(549);
+============ END FUNCTION PreLoadGame ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreSaveGame ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_saveVersion) = SaveVersion;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_gameVersion) = GameVersion;
+L36:           this->ExecuteUbergraph_BP_Beacon(544);
+============ END FUNCTION PreSaveGame ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUseStop ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_byCharacter3) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_state3) = State;
+L36:           this->ExecuteUbergraph_BP_Beacon(29);
+============ END FUNCTION OnUseStop ==============
+
+
+
+
+
+============ BEGIN FUNCTION RegisterInteractingPlayer ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_player2) = Player;
+L18:           this->ExecuteUbergraph_BP_Beacon(34);
+============ END FUNCTION RegisterInteractingPlayer ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartIsLookedAt ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_byCharacter2) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_state2) = State;
+L36:           this->ExecuteUbergraph_BP_Beacon(39);
+============ END FUNCTION StartIsLookedAt ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopIsLookedAt ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_byCharacter1) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_state1) = State;
+L36:           this->ExecuteUbergraph_BP_Beacon(44);
+============ END FUNCTION StopIsLookedAt ==============
+
+
+
+
+
+============ BEGIN FUNCTION UnregisterInteractingPlayer ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_player1) = Player;
+L18:           this->ExecuteUbergraph_BP_Beacon(49);
+============ END FUNCTION UnregisterInteractingPlayer ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_Beacon(54);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUse ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_byCharacter) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_state) = State;
+L36:           this->ExecuteUbergraph_BP_Beacon(83);
+============ END FUNCTION OnUse ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActorRepresentationColor ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_newColor) = NewColor;
+L18:           this->ExecuteUbergraph_BP_Beacon(564);
+============ END FUNCTION SetActorRepresentationColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION PickUpBeacon ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C:ExecuteUbergraph_BP_Beacon.K2Node_Event_player) = Player;
+L18:           this->ExecuteUbergraph_BP_Beacon(592);
+============ END FUNCTION PickUpBeacon ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_Beacon ==============
+L10:           this->K2_DestroyActor();
+L24:           <End of Inlined Event Graph Function>;
+L29:           <End of Inlined Event Graph Function>;
+L34:           <End of Inlined Event Graph Function>;
+L39:           <End of Inlined Event Graph Function>;
+L44:           <End of Inlined Event Graph Function>;
+L49:           <End of Inlined Event Graph Function>;
+L54:           bool mbool = this->AddAsRepresentation();
+L78:           <End of Inlined Event Graph Function>;
+L83:           bool mbool1 = mFGCharacterPlayer->IsLocallyControlled();
+L129:          if (!mbool1) goto L1016;
+L143:          bool mbool2 = KismetSystemLibrary->IsValid(this->mWidget);
+L194:          if (!mbool2) goto L228;
+L208:          this->CloseWidget(nullptr);
+L223:          <End of Inlined Event Graph Function>;
+L228:          Controller* mController = mFGCharacterPlayer->GetController();
+L270:          PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L306:          bool mbool3 = mPlayerController;
+L335:          if (!mbool3) goto L1016;
+L349:          Widget_Beacon* mWidget_Beacon = WidgetBlueprintLibrary->Create(this, Widget_Beacon, mPlayerController);
+L410:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Beacon, "mBeacon", this);
+L465:          BPHUDHelpers->PushStackWidget(mPlayerController, mWidget_Beacon, this);
+L520:          this->mWidget = mWidget_Beacon;
+L539:          <End of Inlined Event Graph Function>;
+L544:          <End of Inlined Event Graph Function>;
+L549:          <End of Inlined Event Graph Function>;
+L554:          <End of Inlined Event Graph Function>;
+L559:          <End of Inlined Event Graph Function>;
+L564:          this->SetColor(mLinearColor);
+L587:          <End of Inlined Event Graph Function>;
+L592:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer1->GetInventory();
+L634:          InventoryItem mInventoryItem = FGInventoryLibrary->MakeInventoryItem(BP_EquipmentDescriptorBeacon);
+L693:          bool mbool4 = mFGInventoryComponent->HasEnoughSpaceForItem([ref] mInventoryItem);
+L744:          if (!mbool4) goto L1016;
+L758:          bool mbool5 = this->RemoveAsRepresentation();
+L782:          mFGInventoryComponent = mFGCharacterPlayer1->GetInventory();
+L824:          InventoryItem mInventoryItem1 = FGInventoryLibrary->MakeInventoryItem(BP_EquipmentDescriptorBeacon);
+L883:          InventoryStack mInventoryStack = FGInventoryLibrary->MakeInventoryStack(1, mInventoryItem1);
+L947:          int32 mint32 = mFGInventoryComponent->AddStack([ref] mInventoryStack, false);
+L1011:         goto L10;
+============ END FUNCTION ExecuteUbergraph_BP_Beacon ==============

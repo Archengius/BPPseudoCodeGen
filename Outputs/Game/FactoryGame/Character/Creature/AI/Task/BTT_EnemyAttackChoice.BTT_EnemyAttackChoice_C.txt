@@ -1,0 +1,118 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Task/BTT_EnemyAttackChoice.BTT_EnemyAttackChoice_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION mOnAttackFailed_5A0EFF09427D5915F9D3B18E5D81C9BC ==============
+L0:            this->ExecuteUbergraph_BTT_EnemyAttackChoice(1456);
+============ END FUNCTION mOnAttackFailed_5A0EFF09427D5915F9D3B18E5D81C9BC ==============
+
+
+
+
+
+============ BEGIN FUNCTION mOnAttackFinished_5A0EFF09427D5915F9D3B18E5D81C9BC ==============
+L0:            this->ExecuteUbergraph_BTT_EnemyAttackChoice(1451);
+============ END FUNCTION mOnAttackFinished_5A0EFF09427D5915F9D3B18E5D81C9BC ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveAbort ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_EnemyAttackChoice.BTT_EnemyAttackChoice_C:ExecuteUbergraph_BTT_EnemyAttackChoice.K2Node_Event_OwnerActor) = OwnerActor;
+L18:           this->ExecuteUbergraph_BTT_EnemyAttackChoice(39);
+============ END FUNCTION ReceiveAbort ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveExecuteAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_EnemyAttackChoice.BTT_EnemyAttackChoice_C:ExecuteUbergraph_BTT_EnemyAttackChoice.K2Node_Event_OwnerController1) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_EnemyAttackChoice.BTT_EnemyAttackChoice_C:ExecuteUbergraph_BTT_EnemyAttackChoice.K2Node_Event_ControlledPawn1) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTT_EnemyAttackChoice(69);
+============ END FUNCTION ReceiveExecuteAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveAbortAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_EnemyAttackChoice.BTT_EnemyAttackChoice_C:ExecuteUbergraph_BTT_EnemyAttackChoice.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_EnemyAttackChoice.BTT_EnemyAttackChoice_C:ExecuteUbergraph_BTT_EnemyAttackChoice.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTT_EnemyAttackChoice(1379);
+============ END FUNCTION ReceiveAbortAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTT_EnemyAttackChoice ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->FinishExecute(false);
+L26:           goto ExecutionFlow.Pop();
+L27:           this->FinishExecute(true);
+L38:           goto ExecutionFlow.Pop();
+L39:           this->ReceiveAbort(mActor);
+L58:           this->FinishAbort();
+L68:           goto ExecutionFlow.Pop();
+L69:           this->ReceiveExecuteAI(mAIController, mPawn);
+L97:           FGEnemyController* mFGEnemyController = Cast<Class /Script/FactoryGame.FGEnemyController>(mAIController);
+L133:          bool mbool = mFGEnemyController;
+L162:          if (!mbool) goto ExecutionFlow.Pop();
+L172:          float mfloat = RandomFloat();
+L200:          bool mbool1 = LessEqual_FloatFloat(mfloat, this->mChanceToDoFirstAttack);
+L238:          if (!mbool1) goto L325;
+L252:          this->mAttackClassToDo = this->mAttackClass;
+L271:          ExecutionFlow.Push(L379);
+L276:          ExecutionFlow.Push(L1200);
+L281:          BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->BoolBBKey, false);
+L324:          goto ExecutionFlow.Pop();
+L325:          if (!this->mAttack2Cooldown) goto L344;
+L339:          goto L252;
+L344:          ExecutionFlow.Push(L1066);
+L349:          this->mAttackClassToDo = this->mAttackClass2;
+L368:          this->mAttack2Cooldown = true;
+L379:          Pawn* mPawn1 = mFGEnemyController->K2_GetPawn();
+L421:          float mfloat1 = FGAttack->GetAttackActivationDistance(this->mAttackClassToDo);
+L480:          bool mbool2 = FGCombatFunctionLibrary->IsWithinRange(mPawn1, mFGEnemyController->mCurrentAggroTarget, mfloat1);
+L571:          bool mbool3 = BooleanOR(mbool2, this->ForceAttack);
+L609:          if (!mbool3) goto L15;
+L623:          Pawn* mPawn2 = mFGEnemyController->K2_GetPawn();
+L665:          FGEnemy* mFGEnemy = Cast<Class /Script/FactoryGame.FGEnemy>(mPawn2);
+L701:          bool mbool4 = mFGEnemy;
+L730:          FGGameplayTask_AttackMelee* mFGGameplayTask_AttackMelee = FGGameplayTask_AttackMelee->Attack(mFGEnemy, mFGEnemyController->mCurrentAggroTarget, this->mAttackClassToDo);
+L821:          bool mbool5 = KismetSystemLibrary->IsValid(mFGGameplayTask_AttackMelee);
+L872:          if (!mbool5) goto L1046;
+L886:          mFScriptDelegate->BindUFunction(this, mOnAttackFinished_5A0EFF09427D5915F9D3B18E5D81C9BC);
+L909:          mFGGameplayTask_AttackMelee->mOnAttackFinished.AddUnique(mFScriptDelegate);
+L950:          mFScriptDelegate1->BindUFunction(this, mOnAttackFailed_5A0EFF09427D5915F9D3B18E5D81C9BC);
+L973:          mFGGameplayTask_AttackMelee->mOnAttackFailed.AddUnique(mFScriptDelegate1);
+L1014:         mFGGameplayTask_AttackMelee->ReadyForActivation();
+L1046:         this->mGameplayTask = mFGGameplayTask_AttackMelee;
+L1065:         goto ExecutionFlow.Pop();
+L1066:         if (!this->RandomMove) goto L1156;
+L1080:         float mfloat2 = RandomFloat();
+L1108:         bool mbool6 = LessEqual_FloatFloat(mfloat2, this->RandomMoveChance);
+L1146:         if (!mbool6) goto ExecutionFlow.Pop();
+L1156:         BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->BoolBBKey, true);
+L1199:         goto ExecutionFlow.Pop();
+L1200:         int32 mint32 = Add_IntInt(this->mCooldownCounter, 1);
+L1242:         int32 Temp_int_Variable = mint32;
+L1269:         this->mCooldownCounter = Temp_int_Variable;
+L1296:         bool mbool7 = GreaterEqual_IntInt(Temp_int_Variable, this->mAttack2WaitAmount);
+L1334:         if (!mbool7) goto ExecutionFlow.Pop();
+L1344:         this->mCooldownCounter = 0;
+L1367:         this->mAttack2Cooldown = false;
+L1378:         goto ExecutionFlow.Pop();
+L1379:         this->ReceiveAbortAI(mAIController1, mPawn3);
+L1407:         this->mGameplayTask->EndTask();
+L1439:         this->FinishExecute(true);
+L1450:         goto ExecutionFlow.Pop();
+L1451:         goto L27;
+L1456:         goto L15;
+============ END FUNCTION ExecuteUbergraph_BTT_EnemyAttackChoice ==============

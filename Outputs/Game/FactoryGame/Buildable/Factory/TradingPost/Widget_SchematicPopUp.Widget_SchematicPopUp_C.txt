@@ -1,0 +1,233 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_SchematicPopUp.Widget_SchematicPopUp_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CreateRewardIcon ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           Widget_StingerSmallIcon* mWidget_StingerSmallIcon = WidgetBlueprintLibrary->Create(this, Widget_StingerSmallIcon, mPlayerController);
+L85:           HorizontalBoxSlot* mHorizontalBoxSlot = this->Widget_Stinger->SmallIconsContainer->AddChildToHorizontalBox(mWidget_StingerSmallIcon);
+L158:          mHorizontalBoxSlot->SetVerticalAlignment(2);
+L192:          mWidget_StingerSmallIcon->mRewardText->SetText(Icon Text);
+L259:          mWidget_StingerSmallIcon->mRewardText->SetText(Icon Text);
+L326:          mSlateBrush.ImageSize = mWidget_StingerSmallIcon->mNewIconImage->Brush.ImageSize;
+L415:          mSlateBrush.Margin = mWidget_StingerSmallIcon->mNewIconImage->Brush.Margin;
+L504:          mSlateBrush.TintColor = mWidget_StingerSmallIcon->mNewIconImage->Brush.TintColor;
+L593:          mSlateBrush.ResourceObject = Icon;
+L621:          mSlateBrush.DrawAs = mWidget_StingerSmallIcon->mNewIconImage->Brush.DrawAs;
+L710:          mSlateBrush.Tiling = mWidget_StingerSmallIcon->mNewIconImage->Brush.Tiling;
+L799:          mSlateBrush.Mirroring = mWidget_StingerSmallIcon->mNewIconImage->Brush.Mirroring;
+L888:          mWidget_StingerSmallIcon->mNewIconImage->SetBrush([ref] mSlateBrush);
+L955:          mSlateBrush1.ImageSize = mWidget_StingerSmallIcon->mNewIconImage->Brush.ImageSize;
+L1044:         mSlateBrush1.Margin = mWidget_StingerSmallIcon->mNewIconImage->Brush.Margin;
+L1133:         mSlateBrush1.TintColor = mWidget_StingerSmallIcon->mNewIconImage->Brush.TintColor;
+L1222:         mSlateBrush1.ResourceObject = Icon;
+L1250:         mSlateBrush1.DrawAs = mWidget_StingerSmallIcon->mNewIconImage->Brush.DrawAs;
+L1339:         mSlateBrush1.Tiling = mWidget_StingerSmallIcon->mNewIconImage->Brush.Tiling;
+L1428:         mSlateBrush1.Mirroring = mWidget_StingerSmallIcon->mNewIconImage->Brush.Mirroring;
+L1517:         mWidget_StingerSmallIcon->mNewIconImage->SetBrush([ref] mSlateBrush1);
+============ END FUNCTION CreateRewardIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION GenerateSchematicRewardIcons ==============
+L0:            ExecutionFlow.Push(L594);
+L5:            this->Widget_Stinger->SmallIconsContainer->ClearChildren();
+L63:           TArray<TSubclassOf<FGStingerWidgetRewardData>> mTArray<TSubclassOf<FGStingerWidgetRewardData>> = [];
+L74:           BlueprintSetLibrary->Set_ToArray([ref] RelevantRewardTypes, [ref] mTArray<TSubclassOf<FGStingerWidgetRewardData>>);
+L124:          int32 Temp_int_Loop_Counter_Variable = 0;
+L147:          int32 Temp_int_Array_Index_Variable = 0;
+L170:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGStingerWidgetRewardData>>);
+L229:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L267:          if (!mbool) goto L515;
+L281:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L308:          ExecutionFlow.Push(L520);
+L313:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGStingerWidgetRewardData>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGStingerWidgetRewardData>);
+L372:          Texture2D* mTexture2D = FGStingerWidgetRewardData->GetIconTexture(mTSubclassOf<FGStingerWidgetRewardData>);
+L423:          FText mFText = FGStingerWidgetRewardData->GetIconText(mTSubclassOf<FGStingerWidgetRewardData>);
+L482:          this->CreateRewardIcon(mTexture2D, mFText);
+L514:          goto ExecutionFlow.Pop();
+L515:          <End of Inlined Event Graph Function>;
+L520:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L562:          Temp_int_Loop_Counter_Variable = mint321;
+L589:          goto L170;
+============ END FUNCTION GenerateSchematicRewardIcons ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetRelevantRewardData ==============
+L0:            ExecutionFlow.Push(L760);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           TArray<FGUnlock*> mTArray<FGUnlock> = FGSchematic->GetUnlocks(this->mSchematic);
+L110:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGUnlock>);
+L169:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L207:          if (!mbool) goto L608;
+L221:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L248:          ExecutionFlow.Push(L640);
+L253:          mTArray<FGUnlock> = FGSchematic->GetUnlocks(this->mSchematic);
+L312:          KismetArrayLibrary->Array_Get([ref] mTArray<FGUnlock>, Temp_int_Array_Index_Variable, [ref] mFGUnlock);
+L371:          TScriptInterface<BPI_UnlockableInterface> mTScriptInterface<BPI_UnlockableInterface> = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Unlocks/BPI_UnlockableInterface.BPI_UnlockableInterface_C>(mFGUnlock);
+L407:          bool mbool1 = mTScriptInterface<BPI_UnlockableInterface>;
+L436:          if (!mbool1) goto L714;
+L450:          GetInterfaceUObject(mTScriptInterface<BPI_UnlockableInterface>)->GetStingerWidgetRewardData([ref] mTSet<TSubclassOf<FGStingerWidgetRewardData>>);
+L496:          TArray<TSubclassOf<FGStingerWidgetRewardData>> mTArray<TSubclassOf<FGStingerWidgetRewardData>> = [];
+L507:          BlueprintSetLibrary->Set_ToArray([ref] mTSet<TSubclassOf<FGStingerWidgetRewardData>>, [ref] mTArray<TSubclassOf<FGStingerWidgetRewardData>>);
+L557:          BlueprintSetLibrary->Set_AddItems([ref] LocalStingerWidgetRewardData, [ref] mTArray<TSubclassOf<FGStingerWidgetRewardData>>);
+L607:          goto ExecutionFlow.Pop();
+L608:          TSet<TSubclassOf<FGStingerWidgetRewardData>> RelevantRewardTypes = LocalStingerWidgetRewardData;
+L635:          <End of Inlined Event Graph Function>;
+L640:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L682:          Temp_int_Loop_Counter_Variable = mint321;
+L709:          goto L51;
+L714:          BlueprintSetLibrary->Set_Clear([ref] mTSet<TSubclassOf<FGStingerWidgetRewardData>>);
+L755:          goto L496;
+============ END FUNCTION GetRelevantRewardData ==============
+
+
+
+
+
+============ BEGIN FUNCTION Set Stinger Content ==============
+L0:            uint8 muint8 = FGSchematic->GetType(this->mSchematic);
+L59:           bool mbool = NotEqual_ByteByte(muint8, 0);
+L90:           if (!mbool) goto L379;
+L104:          mbool = NotEqual_ByteByte(muint8, 2);
+L135:          if (!mbool) goto L379;
+L149:          mbool = NotEqual_ByteByte(muint8, 3);
+L180:          if (!mbool) goto L379;
+L194:          mbool = NotEqual_ByteByte(muint8, 4);
+L225:          if (!mbool) goto L379;
+L239:          mbool = NotEqual_ByteByte(muint8, 5);
+L270:          if (!mbool) goto L379;
+L284:          mbool = NotEqual_ByteByte(muint8, 6);
+L315:          if (!mbool) goto L379;
+L329:          mbool = NotEqual_ByteByte(muint8, 7);
+L360:          if (!mbool) goto L379;
+L374:          <End of Inlined Event Graph Function>;
+L379:          FText mFText = FGSchematic->GetSchematicDisplayName(this->mSchematic);
+L438:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L497:          this->Widget_Stinger->mTitleText->SetTitle(mFString);
+L564:          FString Temp_string_Variable = "";
+L584:          FString Temp_string_Variable1 = "";
+L604:          FString Temp_string_Variable2 = "SCHEMATIC PURCHASED";
+L643:          FString Temp_string_Variable3 = "RESEARCH FINISHED";
+L680:          FString Temp_string_Variable4 = "MILESTONE UNLOCKED";
+L718:          FString Temp_string_Variable5 = "ALTERNATE RECIPE UNLOCKED";
+L763:          FString Temp_string_Variable6 = "MILESTONE UNLOCKED";
+L801:          FString Temp_string_Variable7 = "MILESTONE UNLOCKED";
+L839:          FString Temp_string_Variable8 = "";
+L859:          FString Temp_string_Variable9 = "MILESTONE UNLOCKED";
+L897:          uint8 muint81 = FGSchematic->GetType(this->mSchematic);
+L956:          uint8 Temp_byte_Variable = muint81;
+L983:          this->Widget_Stinger->mUnlockedText->SetTitle(switch (Temp_byte_Variable) {
+case 0 -> Temp_string_Variable9;
+case 1 -> Temp_string_Variable8;
+case 2 -> Temp_string_Variable7;
+case 3 -> Temp_string_Variable6;
+case 4 -> Temp_string_Variable5;
+case 5 -> Temp_string_Variable4;
+case 6 -> Temp_string_Variable3;
+case 7 -> Temp_string_Variable2;
+case 8 -> Temp_string_Variable1;
+case 9 -> Temp_string_Variable;
+default -> mFString1;
+});
+L1216:         SlateBrush mSlateBrush = FGSchematic->GetItemIcon(this->mSchematic);
+L1275:         this->mIconTexture = mSlateBrush.ResourceObject;
+L1303:         mSlateBrush1.ImageSize = this->Widget_Stinger->mNewIcon->Brush.ImageSize;
+L1392:         mSlateBrush1.Margin = this->Widget_Stinger->mNewIcon->Brush.Margin;
+L1481:         mSlateBrush1.TintColor = this->Widget_Stinger->mNewIcon->Brush.TintColor;
+L1570:         mSlateBrush1.ResourceObject = this->mIconTexture;
+L1598:         mSlateBrush1.DrawAs = this->Widget_Stinger->mNewIcon->Brush.DrawAs;
+L1687:         mSlateBrush1.Tiling = this->Widget_Stinger->mNewIcon->Brush.Tiling;
+L1776:         mSlateBrush1.Mirroring = this->Widget_Stinger->mNewIcon->Brush.Mirroring;
+L1865:         this->Widget_Stinger->mNewIcon->SetBrush([ref] mSlateBrush1);
+L1932:         this->GetRelevantRewardData([ref] mTSet<TSubclassOf<FGStingerWidgetRewardData>>);
+L1955:         this->GenerateSchematicRewardIcons(mTSet<TSubclassOf<FGStingerWidgetRewardData>>);
+============ END FUNCTION Set Stinger Content ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSchematicUnlockedText ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mSchematic);
+L51:           if (!mbool) goto L156;
+L65:           FText mFText = FGSchematic->GetSchematicDisplayName(this->mSchematic);
+L124:          FText ReturnValue = mFText;
+L151:          goto L176;
+L156:          ReturnValue = ;
+============ END FUNCTION GetSchematicUnlockedText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SchematicPopUp(795);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSchematicPurchased ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_SchematicPopUp.Widget_SchematicPopUp_C:ExecuteUbergraph_Widget_SchematicPopUp.K2Node_CustomEvent_Schematic) = schematic;
+L18:           this->ExecuteUbergraph_Widget_SchematicPopUp(800);
+============ END FUNCTION OnSchematicPurchased ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SchematicPopUp ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L39:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L90:           bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L141:          if (!mbool) goto L295;
+L155:          mFScriptDelegate->BindUFunction(this, OnSchematicPurchased);
+L178:          mPlayerController = this->GetOwningPlayer();
+L202:          mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
+L253:          mFGSchematicManager->PurchasedSchematicDelegate.AddUnique(mFScriptDelegate);
+L294:          goto ExecutionFlow.Pop();
+L295:          KismetSystemLibrary->Delay(this, 1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 1259136128, ExecutionFunction = "ExecuteUbergraph_Widget_SchematicPopUp", CallbackTarget = this));
+L371:          goto ExecutionFlow.Pop();
+L372:          if (!Temp_bool_IsClosed_Variable) goto L387;
+L386:          goto ExecutionFlow.Pop();
+L387:          bool Temp_bool_IsClosed_Variable = true;
+L398:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L422:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_UnlockUpgradeJuice_Lead, mPlayerController1, true);
+L483:          KismetSystemLibrary->Delay(this, 2.799999952316284, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 560, UUID = -511523248, ExecutionFunction = "ExecuteUbergraph_Widget_SchematicPopUp", CallbackTarget = this));
+L559:          goto ExecutionFlow.Pop();
+L560:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L584:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_UnlockUpgradeJuice_Whoosh, mPlayerController2, true);
+L645:          KismetSystemLibrary->Delay(this, 5, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 722, UUID = -1318111521, ExecutionFunction = "ExecuteUbergraph_Widget_SchematicPopUp", CallbackTarget = this));
+L721:          goto ExecutionFlow.Pop();
+L722:          Temp_bool_IsClosed_Variable = false;
+L733:          bool Temp_bool_Has_Been_Initd_Variable = true;
+L744:          goto ExecutionFlow.Pop();
+L745:          Temp_bool_IsClosed_Variable = true;
+L756:          goto ExecutionFlow.Pop();
+L757:          ExecutionFlow.Push(L372);
+L762:          if (!Temp_bool_Has_Been_Initd_Variable) goto L777;
+L776:          goto ExecutionFlow.Pop();
+L777:          Temp_bool_Has_Been_Initd_Variable = true;
+L788:          if (!false) goto ExecutionFlow.Pop();
+L790:          goto L745;
+L795:          goto L15;
+L800:          this->mSchematic = mTSubclassOf<FGSchematic>;
+L819:          this->Set Stinger Content();
+L833:          UMGSequencePlayer* mUMGSequencePlayer = this->Widget_Stinger->PlayAnimation(this->Widget_Stinger->SpawnAnimation, 0, 1, 0, 1);
+L923:          this->Content->SetVisibility(0);
+L961:          this->Widget_Stinger->ShowSmallIcons();
+L997:          goto L757;
+============ END FUNCTION ExecuteUbergraph_Widget_SchematicPopUp ==============

@@ -1,0 +1,117 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_TooltipRecipe.Widget_TooltipRecipe_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnUnhovered ==============
+L0:            HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor, [ref] mSlateColor);
+L55:           this->mProductionTime->SetColorAndOpacity(mSlateColor);
+============ END FUNCTION OnUnhovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHovered ==============
+L0:            HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           this->mProductionTime->SetColorAndOpacity(mSlateColor);
+============ END FUNCTION OnHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_TooltipRecipe(1353);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Widget_TooltipRecipe.Widget_TooltipRecipe_C:ExecuteUbergraph_Widget_TooltipRecipe.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_TooltipRecipe(2359);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_TooltipRecipe ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           int32 mint32 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L57:           int32 Temp_int_Loop_Counter_Variable = mint32;
+L84:           TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mRecipe);
+L143:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L202:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L240:          if (!mbool) goto L634;
+L254:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L281:          ExecutionFlow.Push(L15);
+L286:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L310:          Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, Widget_CostSlotWrapper, mPlayerController);
+L371:          mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mRecipe);
+L430:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L489:          mWidget_CostSlotWrapper->Setup CostIcon(nullptr, mItemAmount, nullptr, 0, 0, true, false, false);
+L549:          mWidget_CostSlotWrapper->mSmallSlot = true;
+L582:          PanelSlot* mPanelSlot = this->mIngredientsContainer->AddChild(mWidget_CostSlotWrapper);
+L633:          goto ExecutionFlow.Pop();
+L634:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L657:          int32 Temp_int_Array_Index_Variable1 = 0;
+L680:          TArray<ItemAmount> mTArray<ItemAmount>1 = FGRecipe->GetProducts(this->mRecipe, false);
+L740:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>1);
+L799:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint322);
+L837:          if (!mbool1) goto ExecutionFlow.Pop();
+L847:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable1;
+L874:          ExecutionFlow.Push(L1228);
+L879:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L903:          Widget_CostSlotWrapper* mWidget_CostSlotWrapper1 = WidgetBlueprintLibrary->Create(this, Widget_CostSlotWrapper, mPlayerController1);
+L964:          mTArray<ItemAmount>1 = FGRecipe->GetProducts(this->mRecipe, false);
+L1024:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, Temp_int_Array_Index_Variable1, [ref] mItemAmount1);
+L1083:         mWidget_CostSlotWrapper1->Setup CostIcon(nullptr, mItemAmount1, nullptr, 0, 0, true, false, false);
+L1143:         mWidget_CostSlotWrapper1->mSmallSlot = true;
+L1176:         PanelSlot* mPanelSlot1 = this->mProductsContainer->AddChild(mWidget_CostSlotWrapper1);
+L1227:         goto ExecutionFlow.Pop();
+L1228:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1270:         Temp_int_Loop_Counter_Variable1 = mint323;
+L1297:         goto L680;
+L1302:         Temp_int_Loop_Counter_Variable = 0;
+L1325:         Temp_int_Array_Index_Variable = 0;
+L1348:         goto L84;
+L1353:         this->mIngredientsContainer->ClearChildren();
+L1389:         bool mbool2 = KismetSystemLibrary->IsValidClass(this->mRecipe);
+L1440:         if (!mbool2) goto ExecutionFlow.Pop();
+L1450:         bool mbool3 = KismetTextLibrary->TextIsEmpty([ref] this->mRecipeNameText);
+L1501:         bool mbool4 = Not_PreBool(mbool3);
+L1530:         if (!mbool4) goto L1627;
+L1544:         this->mRecipeNameLabel->SetText(this->mRecipeNameText);
+L1589:         this->mRecipeNameLabel->SetVisibility(0);
+L1627:         TArray<ItemAmount> mTArray<ItemAmount>2 = FGRecipe->GetProducts(this->mRecipe, false);
+L1687:         float mfloat = FGRecipe->GetManufacturingDuration(this->mRecipe);
+L1746:         FGInventoryLibrary->GetAmountConvertedFromItemAmount([ref] mTArray<ItemAmount>2[0], [ref] mTSubclassOf<FGItemDescriptor>, [ref] mfloat1);
+L1811:         float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L1857:         float mfloat3 = Divide_FloatFloat(60, mfloat2);
+L1899:         FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat3, 0, false, true, 1, 324, 0, 3);
+L1982:         mFormatArgumentData.ArgumentName = "time";
+L2015:         mFormatArgumentData.ArgumentValueType = 4;
+L2044:         mFormatArgumentData.ArgumentValue = mFText;
+L2080:         mFormatArgumentData.ArgumentValueInt = 0;
+L2112:         mFormatArgumentData.ArgumentValueFloat = 0;
+L2144:         mFormatArgumentData.ArgumentValueGender = 0;
+L2173:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L2193:         FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L2309:         this->mProductionTime->SetText(mFText1);
+L2354:         goto L1302;
+L2359:         uint8 Temp_byte_Variable = 3;
+L2379:         uint8 Temp_byte_Variable1 = 1;
+L2399:         bool Temp_bool_Variable = this->HideProductionInfo;
+L2418:         this->mProductionInfoContainer->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L2507:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_TooltipRecipe ==============

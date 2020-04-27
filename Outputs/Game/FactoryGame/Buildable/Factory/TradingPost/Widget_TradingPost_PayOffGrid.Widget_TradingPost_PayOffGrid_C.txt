@@ -1,0 +1,85 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost_PayOffGrid.Widget_TradingPost_PayOffGrid_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION DropInventorySlotStack ==============
+L0:            ExecutionFlow.Push(L524);
+L5:            bool Temp_bool_True_if_break_was_hit_Variable = false;
+L16:           int32 Temp_int_Loop_Counter_Variable = 0;
+L39:           int32 Temp_int_Array_Index_Variable = 0;
+L62:           bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L91:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mPayOffSlots);
+L150:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L188:          bool mbool2 = BooleanAND(mbool, mbool1);
+L226:          if (!mbool2) goto L426;
+L240:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L267:          ExecutionFlow.Push(L450);
+L272:          KismetArrayLibrary->Array_Get([ref] this->mPayOffSlots, Temp_int_Array_Index_Variable, [ref] mWidget_TradingPostPayOffSlot);
+L331:          mWidget_TradingPostPayOffSlot->DropOntoInventorySlot(InventorySlot, [ref] mbool3);
+L385:          bool LocalResult = mbool3;
+L404:          if (!LocalResult) goto ExecutionFlow.Pop();
+L414:          Temp_bool_True_if_break_was_hit_Variable = true;
+L425:          goto ExecutionFlow.Pop();
+L426:          bool Result = LocalResult;
+L445:          <End of Inlined Event Graph Function>;
+L450:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L492:          Temp_int_Loop_Counter_Variable = mint321;
+L519:          goto L62;
+============ END FUNCTION DropInventorySlotStack ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetUpPayOffSlots ==============
+L0:            ExecutionFlow.Push(L988);
+L5:            this->mPayOffGrid->ClearChildren();
+L41:           KismetArrayLibrary->Array_Clear([ref] this->mPayOffSlots);
+L82:           bool mbool = KismetSystemLibrary->IsValidClass(mSchematic);
+L133:          if (!mbool) goto ExecutionFlow.Pop();
+L143:          int32 Temp_int_Loop_Counter_Variable = 0;
+L166:          int32 Temp_int_Array_Index_Variable = 0;
+L189:          TArray<ItemAmount> mTArray<ItemAmount> = FGSchematic->GetCost(mSchematic);
+L248:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L307:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L345:          if (!mbool1) goto ExecutionFlow.Pop();
+L355:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L382:          ExecutionFlow.Push(L914);
+L387:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L411:          Widget_TradingPostPayOffSlot* mWidget_TradingPostPayOffSlot = WidgetBlueprintLibrary->Create(this, Widget_TradingPostPayOffSlot, mPlayerController);
+L472:          mTArray<ItemAmount> = FGSchematic->GetCost(mSchematic);
+L531:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L590:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_TradingPostPayOffSlot, "mItemAmount", [ref] mItemAmount);
+L653:          KismetSystemLibrary->SetClassPropertyByName(mWidget_TradingPostPayOffSlot, "mSchematic", mSchematic);
+L716:          UniformGridSlot* mUniformGridSlot = this->mPayOffGrid->AddChildToUniformGrid(mWidget_TradingPostPayOffSlot);
+L767:          mUniformGridSlot->SetRow(0);
+L804:          mUniformGridSlot->SetColumn(Temp_int_Array_Index_Variable);
+L845:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mPayOffSlots, [ref] mWidget_TradingPostPayOffSlot);
+L913:          goto ExecutionFlow.Pop();
+L914:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L956:          Temp_int_Loop_Counter_Variable = mint322;
+L983:          goto L189;
+============ END FUNCTION SetUpPayOffSlots ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_TradingPost_PayOffGrid(48);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_TradingPost_PayOffGrid ==============
+L10:           this->Construct();
+L20:           this->SetUpPayOffSlots(this->mSchematic);
+L43:           <End of Inlined Event Graph Function>;
+L48:           goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_TradingPost_PayOffGrid ==============

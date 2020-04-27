@@ -1,0 +1,141 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/OilPump/Build_OilPump.Build_OilPump_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetExtractedResource ==============
+L0:            TScriptInterface<FGExtractableResourceInterface> mTScriptInterface<FGExtractableResourceInterface> = this->GetExtractableResource();
+L28:           TSubclassOf<FGResourceDescriptor> mTSubclassOf<FGResourceDescriptor> = GetInterfaceUObject(mTScriptInterface<FGExtractableResourceInterface>)->GetResourceClass();
+L75:           TSubclassOf<FGItemDescriptor> Resource = mTSubclassOf<FGResourceDescriptor>;
+============ END FUNCTION GetExtractedResource ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetDisplayText ==============
+============ END FUNCTION SetDisplayText ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopIdlingLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/OilPump/Build_OilPump.Build_OilPump_C:ExecuteUbergraph_Build_OilPump.K2Node_Event_didLosePower) = didLosePower;
+L18:           this->ExecuteUbergraph_Build_OilPump(1772);
+============ END FUNCTION StopIdlingLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/OilPump/Build_OilPump.Build_OilPump_C:ExecuteUbergraph_Build_OilPump.K2Node_Event_didStopProducing) = didStopProducing;
+L18:           this->ExecuteUbergraph_Build_OilPump(120);
+============ END FUNCTION StopProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Build_OilPump(830);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Build_OilPump(895);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartIdlingLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/OilPump/Build_OilPump.Build_OilPump_C:ExecuteUbergraph_Build_OilPump.K2Node_Event_didGainPower) = didGainPower;
+L18:           this->ExecuteUbergraph_Build_OilPump(900);
+============ END FUNCTION StartIdlingLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartProductionLoopEffects ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/OilPump/Build_OilPump.Build_OilPump_C:ExecuteUbergraph_Build_OilPump.K2Node_Event_didStartProducing) = didStartProducing;
+L18:           this->ExecuteUbergraph_Build_OilPump(1636);
+============ END FUNCTION StartProductionLoopEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Build_OilPump ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->TryStopProductionLoopEffects(false);
+L26:           this->TryStopIdlingLoopEffects(false);
+L37:           goto ExecutionFlow.Pop();
+L38:           bool mbool = this->HasPower();
+L62:           if (!mbool) goto ExecutionFlow.Pop();
+L72:           goto L26;
+L77:           bool mbool1 = this->IsProducing();
+L101:          if (!mbool1) goto L38;
+L115:          goto L15;
+L120:          this->StopProductionLoopEffects(mbool2);
+L139:          bool mbool3 = KismetSystemLibrary->IsValid(this->mBurnerFlameVfx);
+L190:          if (!mbool3) goto ExecutionFlow.Pop();
+L200:          ExecutionFlow.Push(L250);
+L205:          this->mBurnerFlameVfx->K2_DestroyComponent(this);
+L238:          this->mBurnerFlameVfx = nullptr;
+L249:          goto ExecutionFlow.Pop();
+L250:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(Stop_F_Pump_Oil_GasFire_Small, this->MainMesh, "burnerVfxSocket", true);
+L324:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(Stop_F_Pump_Oil_Liquid_Bubbles, this->MainMesh, "DrillBottom", true);
+L398:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEventAttached(Stop_F_Pump_Oil_Pump_Rattle_Bass, this->MainMesh, "drillside", true);
+L472:          AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEventAttached(Stop_F_Pump_Oil_Liquid_Loop_LPF, this->MainMesh, "pipe_01", true);
+L546:          AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEventAttached(Stop_F_Pump_Oil_Pump_Rattle_Light, this->MainMesh, "pipe_01", true);
+L620:          AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEventAttached(Stop_F_Pump_Oil_Pump_Engine, this->MainMesh, "DrillBottom", true);
+L694:          AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEventAttached(Stop_F_Pump_Oil_Liquid_Loop_LPF, this->MainMesh, "AudioSocketGround", true);
+L768:          goto ExecutionFlow.Pop();
+L769:          bool mbool4 = this->IsProducing();
+L793:          if (!mbool4) goto ExecutionFlow.Pop();
+L803:          this->TryStartProductionLoopEffects(false);
+L814:          goto ExecutionFlow.Pop();
+L815:          this->LostSignificance();
+L825:          goto L77;
+L830:          goto L815;
+L835:          this->GainedSignificance();
+L845:          bool mbool5 = this->HasPower();
+L869:          if (!mbool5) goto ExecutionFlow.Pop();
+L879:          this->TryStartIdlingLoopEffects(false);
+L890:          goto L769;
+L895:          goto L835;
+L900:          this->StartIdlingLoopEffects(mbool6);
+L919:          this->MainMesh->SetScalarParameterValueOnMaterials("HasPower", 1);
+L969:          goto ExecutionFlow.Pop();
+L970:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(BurnerFire, this->MainMesh, "burnerVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1087:         this->mBurnerFlameVfx = mParticleSystemComponent;
+L1106:         goto ExecutionFlow.Pop();
+L1107:         ExecutionFlow.Push(L1117);
+L1112:         goto L970;
+L1117:         AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEventAttached(Play_F_Pump_Oil_GasFire_Small, this->MainMesh, "burnerVfxSocket", true);
+L1191:         AkComponent* mAkComponent8 = AkGameplayStatics->PostAkEventAttached(Play_F_Pump_Oil_Liquid_Loop_LPF, this->MainMesh, "AudioSocketGround", true);
+L1265:         AkComponent* mAkComponent9 = AkGameplayStatics->PostAkEventAttached(Play_F_Pump_Oil_Liquid_Bubbles, this->MainMesh, "DrillBottom", true);
+L1339:         AkComponent* mAkComponent10 = AkGameplayStatics->PostAkEventAttached(Play_F_Pump_Oil_Pump_Rattle_Bass, this->MainMesh, "drillside", true);
+L1413:         AkComponent* mAkComponent11 = AkGameplayStatics->PostAkEventAttached(Play_F_Pump_Oil_Liquid_Loop_LPF, this->MainMesh, "pipe_01", true);
+L1487:         AkComponent* mAkComponent12 = AkGameplayStatics->PostAkEventAttached(Play_F_Pump_Oil_Pump_Rattle_Light, this->MainMesh, "pipe_01", true);
+L1561:         AkComponent* mAkComponent13 = AkGameplayStatics->PostAkEventAttached(Play_F_Pump_Oil_Pump_Engine, this->MainMesh, "DrillBottom", true);
+L1635:         goto ExecutionFlow.Pop();
+L1636:         this->StartProductionLoopEffects(mbool7);
+L1655:         bool mbool8 = KismetSystemLibrary->IsValid(this->mBurnerFlameVfx);
+L1706:         if (!mbool8) goto L1107;
+L1720:         goto ExecutionFlow.Pop();
+L1721:         this->MainMesh->SetScalarParameterValueOnMaterials("HasPower", 0);
+L1771:         goto ExecutionFlow.Pop();
+L1772:         this->StopIdlingLoopEffects(mbool9);
+L1791:         goto L1721;
+============ END FUNCTION ExecuteUbergraph_Build_OilPump ==============

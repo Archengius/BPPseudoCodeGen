@@ -1,0 +1,71 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/WorkBench/Build_WorkBench.Build_WorkBench_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CanDismantle ==============
+L0:            FGCharacterPlayer* mFGCharacterPlayer = this->BP_WorkBenchComponent->GetWorkBenchUser();
+L42:           bool mbool = KismetSystemLibrary->IsValid(mFGCharacterPlayer);
+L93:           bool mbool1 = Not_PreBool(mbool);
+L122:          bool ReturnValue = mbool1;
+============ END FUNCTION CanDismantle ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLookAtDecription ==============
+L0:            bool mbool = EqualEqual_ClassClass(State.State, UseState_WorkBench);
+L47:           if (!mbool) goto L161;
+L61:           FText mFText = this->GetLookAtDecription(byCharacter, [ref] byCharacter->mCachedUseState);
+L129:          FText ReturnValue = mFText;
+L156:          goto L188;
+L161:          ReturnValue = this->mOccupiedText;
+============ END FUNCTION GetLookAtDecription ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsUseable ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION IsUseable ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateUseState ==============
+L0:            FGCharacterPlayer* mFGCharacterPlayer = this->BP_WorkBenchComponent->GetWorkBenchUser();
+L42:           bool mbool = KismetSystemLibrary->IsValid(mFGCharacterPlayer);
+L93:           if (!mbool) goto L674;
+L107:          FGCharacterPlayer* mFGCharacterPlayer1 = this->BP_WorkBenchComponent->GetWorkBenchUser();
+L149:          bool mbool1 = EqualEqual_ObjectObject(mFGCharacterPlayer1, byCharacter);
+L187:          bool mbool2 = Not_PreBool(mbool1);
+L216:          if (!mbool2) goto L674;
+L230:          FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, nullptr);
+L272:          bool local_canUse = false;
+L283:          Controller* mController = byCharacter->GetController();
+L325:          PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L361:          bool mbool3 = mPlayerController;
+L390:          if (!mbool3) goto L740;
+L404:          HUD* mHUD = mPlayerController->GetHUD();
+L446:          FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L482:          bool mbool4 = mFGHUD;
+L511:          if (!mbool4) goto L669;
+L525:          uint8 Temp_byte_Variable = 0;
+L545:          uint8 Temp_byte_Variable1 = 5;
+L565:          bool Temp_bool_Variable = local_canUse;
+L584:          mFGHUD->SetCrosshairState(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L669:          <End of Inlined Event Graph Function>;
+L674:          FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, UseState_WorkBench);
+L724:          local_canUse = true;
+L735:          goto L283;
+============ END FUNCTION UpdateUseState ==============

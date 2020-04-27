@@ -1,0 +1,38 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_RecipeDetails.Widget_RecipeDetails_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_RecipeDetails(625);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_RecipeDetails ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           int32 Temp_int_Array_Index_Variable = 0;
+L38:           TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mRecipe);
+L97:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L156:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L194:          if (!mbool) goto ExecutionFlow.Pop();
+L204:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L231:          ExecutionFlow.Push(L551);
+L236:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L260:          Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, Widget_CostSlotWrapper, mPlayerController);
+L321:          mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mRecipe);
+L380:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L439:          mWidget_CostSlotWrapper->Setup CostIcon(nullptr, mItemAmount, nullptr, 0, 0, false, false, false);
+L499:          HorizontalBoxSlot* mHorizontalBoxSlot = this->HorizontalBox_101->AddChildToHorizontalBox(mWidget_CostSlotWrapper);
+L550:          goto ExecutionFlow.Pop();
+L551:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L593:          int32 Temp_int_Loop_Counter_Variable = mint321;
+L620:          goto L38;
+L625:          Temp_int_Loop_Counter_Variable = 0;
+L648:          goto L15;
+============ END FUNCTION ExecuteUbergraph_Widget_RecipeDetails ==============

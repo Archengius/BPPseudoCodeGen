@@ -1,0 +1,121 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_SequenceHelper.Widget_SequenceHelper_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyDown ==============
+L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Escape"));
+L137:          if (!mbool) goto L247;
+L151:          this->RemoveFromParent();
+L165:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L215:          EventReply ReturnValue = mEventReply;
+L242:          goto L324;
+L247:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L297:          ReturnValue = mEventReply1;
+============ END FUNCTION OnKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_SequenceHelper(1553);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_SequenceHelper(1638);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClickedWithRef_Event_0 ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Widget_SequenceHelper.Widget_SequenceHelper_C:ExecuteUbergraph_Widget_SequenceHelper.K2Node_CustomEvent_ClickedButton) = ClickedButton;
+L18:           this->ExecuteUbergraph_Widget_SequenceHelper(1761);
+============ END FUNCTION OnClickedWithRef_Event_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION CustomEvent_0 ==============
+L0:            this->ExecuteUbergraph_Widget_SequenceHelper(2060);
+============ END FUNCTION CustomEvent_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_SequenceHelper ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->RemoveFromParent();
+L29:           goto ExecutionFlow.Pop();
+L30:           ExecutionFlow.Push(L798);
+L35:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L59:           Widget_SequenceButton* mWidget_SequenceButton = WidgetBlueprintLibrary->Create(this, Widget_SequenceButton, mPlayerController);
+L120:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L140:          Char_Player* mChar_Player = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C>(mPawn);
+L176:          bool mbool = mChar_Player;
+L205:          KismetArrayLibrary->Array_Get([ref] mChar_Player->mSequences, Temp_int_Array_Index_Variable, [ref] mLevelSequence);
+L286:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_SequenceButton, "mSequence", mLevelSequence);
+L349:          VerticalBoxSlot* mVerticalBoxSlot = this->mBox->AddChildToVerticalBox(mWidget_SequenceButton);
+L400:          mPawn = this->GetOwningPlayerPawn();
+L420:          mChar_Player = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C>(mPawn);
+L456:          mbool = mChar_Player;
+L485:          KismetArrayLibrary->Array_Get([ref] mChar_Player->mSequences, Temp_int_Array_Index_Variable, [ref] mLevelSequence);
+L566:          FString mFString = KismetSystemLibrary->GetObjectName(mLevelSequence);
+L625:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L684:          mWidget_SequenceButton->mText = mFText;
+L733:          mFScriptDelegate->BindUFunction(this, OnClickedWithRef_Event_0);
+L756:          mWidget_SequenceButton->OnClickedWithRef.AddUnique(mFScriptDelegate);
+L797:          goto ExecutionFlow.Pop();
+L798:          int32 mint32 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L840:          int32 Temp_int_Loop_Counter_Variable = mint32;
+L867:          mPawn = this->GetOwningPlayerPawn();
+L887:          mChar_Player = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/Char_Player.Char_Player_C>(mPawn);
+L923:          mbool = mChar_Player;
+L952:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mChar_Player->mSequences);
+L1033:         bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L1071:         if (!mbool1) goto L1117;
+L1085:         int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L1112:         goto L30;
+L1117:         mPlayerController = this->GetOwningPlayer();
+L1141:         Widget_SequenceButton* mWidget_SequenceButton1 = WidgetBlueprintLibrary->Create(this, Widget_SequenceButton, mPlayerController);
+L1202:         VerticalBoxSlot* mVerticalBoxSlot1 = this->mBox->AddChildToVerticalBox(mWidget_SequenceButton1);
+L1253:         mWidget_SequenceButton1->mText = "[object Object]";
+L1337:         mFScriptDelegate1->BindUFunction(this, CustomEvent_0);
+L1360:         mWidget_SequenceButton1->OnClicked.AddUnique(mFScriptDelegate1);
+L1401:         Widget* mWidget = this->mBox->GetChildAt(0);
+L1448:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1472:         WidgetBlueprintLibrary->SetInputMode_UIOnlyEx(mPlayerController1, mWidget, 0);
+L1524:         goto ExecutionFlow.Pop();
+L1525:         Temp_int_Array_Index_Variable = 0;
+L1548:         goto L867;
+L1553:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1577:         mPlayerController2->bShowMouseCursor = true;
+L1610:         Temp_int_Loop_Counter_Variable = 0;
+L1633:         goto L1525;
+L1638:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L1662:         mPlayerController3->bShowMouseCursor = false;
+L1695:         mPlayerController3 = this->GetOwningPlayer();
+L1719:         WidgetBlueprintLibrary->SetInputMode_GameOnly(mPlayerController3);
+L1760:         goto ExecutionFlow.Pop();
+L1761:         Widget_SequenceButton* mWidget_SequenceButton2 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_SequenceButton.Widget_SequenceButton_C>(mWidget_Button);
+L1797:         bool mbool2 = mWidget_SequenceButton2;
+L1826:         if (!mbool2) goto ExecutionFlow.Pop();
+L1836:         LevelSequencePlayer* mLevelSequencePlayer = LevelSequencePlayer->CreateLevelSequencePlayer(this, mWidget_SequenceButton2->mSequence, ScriptStruct /Script/MovieScene.MovieSceneSequencePlaybackSettings(bAutoPlay = false, LoopCount = ScriptStruct /Script/MovieScene.MovieSceneSequenceLoopCount(Value = 0), PlayRate = 1, StartTime = 0, bRandomStartTime = false, bRestoreState = false, bDisableMovementInput = false, bDisableLookAtInput = false, bHidePlayer = false, bHideHud = false, bDisableCameraCuts = false, bPauseAtEnd = false), [ref] mLevelSequenceActor);
+L1971:         LevelSequencePlayer* mLevelSequencePlayer1 = mLevelSequenceActor->GetSequencePlayer();
+L2013:         mLevelSequencePlayer1->Play();
+L2045:         this->RemoveFromParent();
+L2059:         goto ExecutionFlow.Pop();
+L2060:         goto L15;
+============ END FUNCTION ExecuteUbergraph_Widget_SequenceHelper ==============

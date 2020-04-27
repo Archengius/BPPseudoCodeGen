@@ -1,0 +1,256 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/PipePump/UI/Widget_PipelinePump.Widget_PipelinePump_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetHeadliftTooltip ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController);
+L85:           const FText Temp_text_Variable1 = "[object Object]";
+L202:          KismetSystemLibrary->SetTextPropertyByName(mWidget_Tooltip, "mDescriptionText", [ref] Temp_text_Variable1);
+L265:          const FText Temp_text_Variable = "[object Object]";
+L332:          KismetSystemLibrary->SetTextPropertyByName(mWidget_Tooltip, "mTitleText", [ref] Temp_text_Variable);
+L395:          Widget* ReturnValue = mWidget_Tooltip;
+============ END FUNCTION GetHeadliftTooltip ==============
+
+
+
+
+
+============ BEGIN FUNCTION ActivateHeadLiftWarning ==============
+L0:            this->mHeadLiftWarning = true;
+L11:           this->UpdateWarning();
+============ END FUNCTION ActivateHeadLiftWarning ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateWarning ==============
+L0:            uint8 Temp_byte_Variable2 = 0;
+L20:           uint8 Temp_byte_Variable3 = 2;
+L40:           bool mbool = this->mFactory->HasPower();
+L86:           bool mbool1 = Not_PreBool(mbool);
+L115:          bool Temp_bool_Variable2 = mbool1;
+L134:          this->mFlowWarning->SetVisibility(switch (Temp_bool_Variable2) {
+case false -> Temp_byte_Variable3;
+case true -> Temp_byte_Variable2;
+default -> muint8;
+});
+L223:          uint8 Temp_byte_Variable = 0;
+L243:          uint8 Temp_byte_Variable1 = 2;
+L263:          bool mbool2 = this->mFactory->HasPower();
+L309:          bool mbool3 = Not_PreBool(mbool2);
+L338:          bool mbool4 = BooleanOR(this->mHeadLiftWarning, mbool3);
+L376:          bool Temp_bool_Variable1 = mbool4;
+L395:          this->mHeadWarning->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint81;
+});
+L484:          FText Temp_text_Variable = "[object Object]";
+L581:          FText Temp_text_Variable1 = "[object Object]";
+L647:          bool Temp_bool_Variable = this->mHeadLiftWarning;
+L666:          this->mHeadWarning->SetText(switch (Temp_bool_Variable) {
+case false -> Temp_text_Variable1;
+case true -> Temp_text_Variable;
+default -> mFText;
+});
+============ END FUNCTION UpdateWarning ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetStaticInfo ==============
+L0:            float mfloat = this->mFactory->GetFlowLimit();
+L50:           float mfloat1 = Multiply_FloatFloat(mfloat, 60);
+L92:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat1, 0, false, true, 1, 324, 0, 0);
+L175:          this->mMaxFlowRateText->SetText(mFText);
+L220:          float mfloat2 = this->mFactory->GetDesignHeadLift();
+L270:          FText mFText1 = KismetTextLibrary->Conv_FloatToText(mfloat2, 0, false, true, 1, 324, 0, 0);
+L353:          this->mRecMaxHeadLiftText->SetText(mFText1);
+L398:          float mfloat3 = this->mFactory->GetMaxHeadLift();
+L448:          float mfloat4 = this->mFactory->GetDesignHeadLift();
+L498:          float mfloat5 = Divide_FloatFloat(mfloat4, mfloat3);
+L544:          this->mHeadLiftGauge->SetDividerPosition(mfloat5);
+============ END FUNCTION SetStaticInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateStats ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mFactory);
+L51:           if (!mbool) goto L1279;
+L65:           float mfloat = this->mFactory->GetFlowLimit();
+L115:          float mfloat1 = this->mFactory->GetIndicatorFlow();
+L165:          float mfloat2 = Divide_FloatFloat(mfloat1, mfloat);
+L211:          this->mFlowRateGauge->UpdateGaugeValue(mfloat2);
+L256:          float mfloat3 = this->mFactory->GetMaxHeadLift();
+L306:          float mfloat4 = this->mFactory->GetIndicatorHeadLift();
+L356:          float mfloat5 = Divide_FloatFloat(mfloat4, mfloat3);
+L402:          this->mHeadLiftGauge->UpdateGaugeValue(mfloat5);
+L447:          float mfloat6 = this->mFactory->GetIndicatorFlow();
+L497:          float mfloat7 = Multiply_FloatFloat(mfloat6, 60);
+L539:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat7, 0, false, true, 1, 324, 0, 0);
+L622:          this->mFlowRateText->SetText(mFText);
+L667:          float mfloat8 = this->mFactory->GetIndicatorHeadLift();
+L717:          FText mFText1 = KismetTextLibrary->Conv_FloatToText(mfloat8, 0, false, true, 1, 324, 1, 1);
+L800:          this->mHeadLiftText->SetText(mFText1);
+L845:          float mfloat9 = this->mFactory->GetDesignHeadLift();
+L895:          float mfloat10 = this->mFactory->GetIndicatorHeadLift();
+L945:          bool mbool1 = Greater_FloatFloat(mfloat10, mfloat9);
+L983:          if (!mbool1) goto L1212;
+L997:          bool mbool2 = KismetSystemLibrary->K2_IsTimerActiveHandle(this, this->mHeadLiftWarningTimer);
+L1049:         bool mbool3 = Not_PreBool(mbool2);
+L1078:         if (!mbool3) goto L1279;
+L1092:         mFScriptDelegate->BindUFunction(this, ActivateHeadLiftWarning);
+L1115:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 2, false);
+L1180:         this->mHeadLiftWarningTimer = mTimerHandle;
+L1207:         <End of Inlined Event Graph Function>;
+L1212:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mHeadLiftWarningTimer);
+L1254:         this->mHeadLiftWarning = false;
+L1265:         this->UpdateWarning();
+============ END FUNCTION UpdateStats ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetFlowText ==============
+L0:            float mfloat = this->mFactory->GetIndicatorFlow();
+L50:           float mfloat1 = Multiply_FloatFloat(mfloat, 60);
+L92:           float mfloat2 = Abs(mfloat1);
+L129:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat2, 0, false, true, 1, 324, 1, 1);
+L212:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L271:          FString mFString1 = KismetStringLibrary->Concat_StrStr(mFString, " m³/min");
+L347:          FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString1);
+L406:          FText ReturnValue = mFText1;
+============ END FUNCTION GetFlowText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetBackPressureText ==============
+L0:            float mfloat = this->mFactory->GetIndicatorHeadLift();
+L50:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 1, 1);
+L133:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L192:          FString mFString1 = KismetStringLibrary->Concat_StrStr(mFString, " m");
+L255:          FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString1);
+L314:          FText ReturnValue = mFText1;
+============ END FUNCTION GetBackPressureText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPressureText ==============
+L0:            float mfloat = this->mFactory->GetIndicatorHeadLift();
+L50:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 1, 1);
+L133:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L192:          FString mFString1 = KismetStringLibrary->Concat_StrStr(mFString, " m");
+L255:          FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString1);
+L314:          FText ReturnValue = mFText1;
+============ END FUNCTION GetPressureText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetFlowLimitText ==============
+L0:            float mfloat = this->mFactory->GetFlowLimit();
+L50:           float mfloat1 = Multiply_FloatFloat(mfloat, 60);
+L92:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat1, 0, false, true, 1, 324, 1, 1);
+L175:          bool mbool = NearlyEqual_FloatFloat(mfloat1, 0, 9.999999974752427e-7);
+L214:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L273:          FString mFString1 = KismetStringLibrary->Concat_StrStr(mFString, " m³/min");
+L349:          FString mFString2 = SelectString("∞", mFString1, mbool);
+L400:          FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString2);
+L459:          FText ReturnValue = mFText1;
+============ END FUNCTION GetFlowLimitText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_PipelinePump(29);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_PipelinePump(223);
+============ END FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mRateSlider_K2Node_ComponentBoundEvent_1_OnFloatValueChangedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/PipePump/UI/Widget_PipelinePump.Widget_PipelinePump_C:ExecuteUbergraph_Widget_PipelinePump.K2Node_ComponentBoundEvent_Value1) = Value;
+L18:           this->ExecuteUbergraph_Widget_PipelinePump(242);
+============ END FUNCTION BndEvt__mRateSlider_K2Node_ComponentBoundEvent_1_OnFloatValueChangedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mPressureSlider_K2Node_ComponentBoundEvent_2_OnFloatValueChangedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/PipePump/UI/Widget_PipelinePump.Widget_PipelinePump_C:ExecuteUbergraph_Widget_PipelinePump.K2Node_ComponentBoundEvent_Value) = Value;
+L18:           this->ExecuteUbergraph_Widget_PipelinePump(334);
+============ END FUNCTION BndEvt__mPressureSlider_K2Node_ComponentBoundEvent_2_OnFloatValueChangedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCustomTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/PipePump/UI/Widget_PipelinePump.Widget_PipelinePump_C:ExecuteUbergraph_Widget_PipelinePump.K2Node_Event_UpdateTime) = UpdateTime;
+L18:           this->ExecuteUbergraph_Widget_PipelinePump(477);
+============ END FUNCTION OnCustomTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mFactory_K2Node_ComponentBoundEvent_3_BuildingStateChanged__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Factory/PipePump/UI/Widget_PipelinePump.Widget_PipelinePump_C:ExecuteUbergraph_Widget_PipelinePump.K2Node_ComponentBoundEvent_state) = State;
+L18:           this->ExecuteUbergraph_Widget_PipelinePump(496);
+============ END FUNCTION BndEvt__mFactory_K2Node_ComponentBoundEvent_3_BuildingStateChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_PipelinePump ==============
+L10:           this->UpdateWarning();
+L24:           <End of Inlined Event Graph Function>;
+L29:           this->Init();
+L39:           FGBuildablePipelinePump* mFGBuildablePipelinePump = Cast<Class /Script/FactoryGame.FGBuildablePipelinePump>(this->mInteractObject);
+L75:           bool mbool = mFGBuildablePipelinePump;
+L104:          if (!mbool) goto L510;
+L118:          this->mFactory = mFGBuildablePipelinePump;
+L137:          this->Widget_Window_DarkMode->SetTitle(this->mFactory->mDisplayName);
+L204:          this->SetStaticInfo();
+L218:          goto L10;
+L223:          this->OnEscapePressed();
+L237:          <End of Inlined Event Graph Function>;
+L242:          float mfloat = Multiply_FloatFloat(mfloat1, this->mMaxRate);
+L288:          this->mFactory->SetFlowLimit(mfloat);
+L329:          <End of Inlined Event Graph Function>;
+L334:          float mfloat2 = Multiply_FloatFloat(mfloat3, this->mMaxPressure);
+L380:          float mfloat4 = Add_FloatFloat(mfloat2, 2);
+L422:          this->mFactory->SetMaxHeadLift(mfloat2, mfloat4);
+L472:          <End of Inlined Event Graph Function>;
+L477:          this->UpdateStats();
+L491:          <End of Inlined Event Graph Function>;
+L496:          this->UpdateWarning();
+============ END FUNCTION ExecuteUbergraph_Widget_PipelinePump ==============

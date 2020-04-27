@@ -1,0 +1,192 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_OptionSelection.Widget_OptionSelection_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION HandleSelection ==============
+L0:            if (!this->mIsDynamicOption) goto L755;
+L14:           FString mFString = this->GetNewSelectionKey(this->currentKey, incrementSelection);
+L60:           bool mbool = KismetStringLibrary->NotEqual_StrStr(this->currentKey, mFString);
+L120:          if (!mbool) goto L755;
+L134:          mFString = this->GetNewSelectionKey(this->currentKey, incrementSelection);
+L180:          this->currentKey = mFString;
+L207:          bool mbool1 = NotEqual_ByteByte(this->mOptionRowData.OptionType, 1);
+L247:          if (!mbool1) goto L320;
+L261:          mbool1 = NotEqual_ByteByte(this->mOptionRowData.OptionType, 2);
+L301:          if (!mbool1) goto L540;
+L315:          <End of Inlined Event Graph Function>;
+L320:          FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L362:          bool mbool2 = BlueprintMapLibrary->Map_Find([ref] this->mOptionRowData.IntegerSelectionValues, [ref] this->currentKey, [ref] mint32);
+L440:          mFGGameUserSettings->SetIntOptionValue(this->mOptionRowData.ConsoleVariable, mint32, this->mOptionRowData.UpdateInstantly, this->mOptionRowData.RequireRestart);
+L535:          <End of Inlined Event Graph Function>;
+L540:          FGGameUserSettings* mFGGameUserSettings1 = FGGameUserSettings->GetFGGameUserSettings();
+L582:          bool mbool3 = BlueprintMapLibrary->Map_Find([ref] this->mOptionRowData.FloatSelectionValues, [ref] this->currentKey, [ref] mfloat);
+L660:          mFGGameUserSettings1->SetFloatOptionValue(this->mOptionRowData.ConsoleVariable, mfloat, this->mOptionRowData.UpdateInstantly, this->mOptionRowData.RequireRestart);
+============ END FUNCTION HandleSelection ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateSelectionValue ==============
+L0:            ExecutionFlow.Push(L1584);
+L5:            FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L47:           bool mbool = NotEqual_ByteByte(this->mOptionRowData.OptionType, 1);
+L87:           if (!mbool) goto L156;
+L101:          mbool = NotEqual_ByteByte(this->mOptionRowData.OptionType, 2);
+L141:          if (!mbool) goto L911;
+L155:          goto ExecutionFlow.Pop();
+L156:          TArray<FString> mTArray<FString> = [];
+L167:          BlueprintMapLibrary->Map_Keys([ref] this->mOptionRowData.IntegerSelectionValues, [ref] mTArray<FString>);
+L226:          int32 Temp_int_Loop_Counter_Variable = 0;
+L249:          int32 Temp_int_Array_Index_Variable = 0;
+L272:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FString>);
+L331:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L369:          if (!mbool1) goto ExecutionFlow.Pop();
+L379:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L406:          ExecutionFlow.Push(L837);
+L411:          KismetArrayLibrary->Array_Get([ref] mTArray<FString>, Temp_int_Array_Index_Variable, [ref] mFString);
+L470:          bool mbool2 = BlueprintMapLibrary->Map_Find([ref] this->mOptionRowData.IntegerSelectionValues, [ref] mFString, [ref] mint321);
+L548:          int32 mint322 = mFGGameUserSettings->GetIntOptionValue(this->mOptionRowData.ConsoleVariable);
+L616:          bool mbool3 = EqualEqual_IntInt(mint321, mint322);
+L654:          if (!mbool3) goto ExecutionFlow.Pop();
+L664:          KismetArrayLibrary->Array_Get([ref] mTArray<FString>, Temp_int_Array_Index_Variable, [ref] mFString);
+L723:          this->currentKey = mFString;
+L750:          FText mFText = KismetTextLibrary->Conv_StringToText(this->currentKey);
+L809:          this->mText = mFText;
+L836:          goto ExecutionFlow.Pop();
+L837:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L879:          Temp_int_Loop_Counter_Variable = mint323;
+L906:          goto L272;
+L911:          TArray<FString> mTArray<FString>1 = [];
+L922:          BlueprintMapLibrary->Map_Keys([ref] this->mOptionRowData.FloatSelectionValues, [ref] mTArray<FString>1);
+L981:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L1004:         int32 Temp_int_Array_Index_Variable1 = 0;
+L1027:         int32 mint324 = KismetArrayLibrary->Array_Length([ref] mTArray<FString>1);
+L1086:         bool mbool4 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint324);
+L1124:         if (!mbool4) goto ExecutionFlow.Pop();
+L1134:         Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable1;
+L1161:         ExecutionFlow.Push(L1510);
+L1166:         KismetArrayLibrary->Array_Get([ref] mTArray<FString>1, Temp_int_Array_Index_Variable1, [ref] mFString1);
+L1225:         bool mbool5 = BlueprintMapLibrary->Map_Find([ref] this->mOptionRowData.FloatSelectionValues, [ref] mFString1, [ref] mfloat);
+L1303:         float mfloat1 = mFGGameUserSettings->GetFloatOptionValue(this->mOptionRowData.ConsoleVariable);
+L1371:         bool mbool6 = EqualEqual_FloatFloat(mfloat, mfloat1);
+L1409:         if (!mbool6) goto ExecutionFlow.Pop();
+L1419:         KismetArrayLibrary->Array_Get([ref] mTArray<FString>1, Temp_int_Array_Index_Variable1, [ref] mFString1);
+L1478:         this->currentKey = mFString1;
+L1505:         goto L750;
+L1510:         int32 mint325 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1552:         Temp_int_Loop_Counter_Variable1 = mint325;
+L1579:         goto L1027;
+============ END FUNCTION UpdateSelectionValue ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetHoverColor ==============
+L0:            HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
+L55:           bool mbool = this->IsHovered();
+L93:           HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor1, [ref] mSlateColor1);
+L148:          LinearColor mLinearColor2 = SelectColor(mLinearColor1, mLinearColor, mbool);
+L203:          LinearColor ReturnValue = mLinearColor2;
+============ END FUNCTION GetHoverColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetOptionName ==============
+L0:            FText ReturnValue = this->mText;
+============ END FUNCTION GetOptionName ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButtonOptionRight_K2Node_ComponentBoundEvent_170_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_OptionSelection(115);
+============ END FUNCTION BndEvt__mButtonOptionRight_K2Node_ComponentBoundEvent_170_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRowHovered ==============
+L0:            this->ExecuteUbergraph_Widget_OptionSelection(220);
+============ END FUNCTION OnRowHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRowUnhovered ==============
+L0:            this->ExecuteUbergraph_Widget_OptionSelection(266);
+============ END FUNCTION OnRowUnhovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButtonOptionRight_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_OptionSelection(312);
+============ END FUNCTION BndEvt__mButtonOptionRight_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnInitValueController ==============
+L0:            this->ExecuteUbergraph_Widget_OptionSelection(317);
+============ END FUNCTION OnInitValueController ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButtonOptionLeft_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_OptionSelection(336);
+============ END FUNCTION BndEvt__mButtonOptionLeft_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnOptionValueUpdated ==============
+L0:            this->ExecuteUbergraph_Widget_OptionSelection(341);
+============ END FUNCTION OnOptionValueUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButtonOptionLeft_K2Node_ComponentBoundEvent_188_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_OptionSelection(10);
+============ END FUNCTION BndEvt__mButtonOptionLeft_K2Node_ComponentBoundEvent_188_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_OptionSelection ==============
+L10:           this->HandleSelection(false);
+L25:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L49:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Click, mPlayerController, true);
+L110:          <End of Inlined Event Graph Function>;
+L115:          this->HandleSelection(true);
+L130:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L154:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Click, mPlayerController1, true);
+L215:          <End of Inlined Event Graph Function>;
+L220:          this->mTintBorder->SetContentColorAndOpacity(this->mHoveredColor);
+L261:          <End of Inlined Event Graph Function>;
+L266:          this->mTintBorder->SetContentColorAndOpacity(this->mUnhoveredColor);
+L307:          <End of Inlined Event Graph Function>;
+L312:          <End of Inlined Event Graph Function>;
+L317:          this->UpdateSelectionValue();
+L331:          <End of Inlined Event Graph Function>;
+L336:          <End of Inlined Event Graph Function>;
+L341:          this->UpdateSelectionValue();
+============ END FUNCTION ExecuteUbergraph_Widget_OptionSelection ==============

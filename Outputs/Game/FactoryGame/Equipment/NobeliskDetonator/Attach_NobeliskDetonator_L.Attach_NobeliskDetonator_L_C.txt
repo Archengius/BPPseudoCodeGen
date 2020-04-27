@@ -1,0 +1,117 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/NobeliskDetonator/Attach_NobeliskDetonator_L.Attach_NobeliskDetonator_L_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ClientPlayReloadEffect ==============
+L0:            this->ExecuteUbergraph_Attach_NobeliskDetonator_L(15);
+============ END FUNCTION ClientPlayReloadEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayFireEffect ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/NobeliskDetonator/Attach_NobeliskDetonator_L.Attach_NobeliskDetonator_L_C:ExecuteUbergraph_Attach_NobeliskDetonator_L.K2Node_Event_flashLocation) = flashLocation;
+L18:           this->ExecuteUbergraph_Attach_NobeliskDetonator_L(2485);
+============ END FUNCTION PlayFireEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayAttachEffects3P ==============
+L0:            this->ExecuteUbergraph_Attach_NobeliskDetonator_L(2504);
+============ END FUNCTION PlayAttachEffects3P ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Attach_NobeliskDetonator_L ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->ClientPlayReloadEffect();
+L25:           this->mIsLoaded = true;
+L36:           FGCharacterPlayer* mFGCharacterPlayer = this->GetAttachedTo();
+L56:           SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
+L102:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L144:          bool mbool = mAnimInstance->Montage_IsPlaying(NobeliskDetonatorReload_01_Montage);
+L195:          if (!mbool) goto L210;
+L209:          goto ExecutionFlow.Pop();
+L210:          mFGCharacterPlayer = this->GetAttachedTo();
+L230:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
+L276:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L318:          float mfloat = mAnimInstance->Montage_Play(NobeliskDetonatorReload_01_Montage, 1, 0, 0, true);
+L390:          AnimInstance* mAnimInstance1 = this->Detonator_skel->GetAnimInstance();
+L432:          bool mbool1 = mAnimInstance1->Montage_IsPlaying(NobeliskDetonatorReload_01_Montage);
+L483:          if (!mbool1) goto L498;
+L497:          goto ExecutionFlow.Pop();
+L498:          mAnimInstance1 = this->Detonator_skel->GetAnimInstance();
+L540:          float mfloat1 = mAnimInstance1->Montage_Play(NobeliskDetonatorReload_01_Montage, 1, 0, 0, true);
+L612:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_E_Nobelisk_Reload_3P, this, true);
+L665:          goto ExecutionFlow.Pop();
+L666:          AnimInstance* mAnimInstance2 = this->Detonator_skel->GetAnimInstance();
+L708:          float mfloat2 = mAnimInstance2->Montage_Play(NobeliskDetonatorEquip_01_Montage, 1, 0, 0, true);
+L780:          goto L612;
+L785:          mAnimInstance2 = this->Detonator_skel->GetAnimInstance();
+L827:          bool mbool2 = mAnimInstance2->Montage_IsPlaying(NobeliskDetonatorEquip_01_Montage);
+L878:          if (!mbool2) goto L666;
+L892:          goto ExecutionFlow.Pop();
+L893:          this->PlayAttachEffects3P();
+L903:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetAttachedTo();
+L923:          SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh3P();
+L969:          AnimInstance* mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L1011:         bool mbool3 = mAnimInstance3->Montage_IsPlaying(NobeliskDetonatorEquip_01_Montage);
+L1062:         if (!mbool3) goto L1077;
+L1076:         goto ExecutionFlow.Pop();
+L1077:         mFGCharacterPlayer1 = this->GetAttachedTo();
+L1097:         mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh3P();
+L1143:         mAnimInstance3 = mSkeletalMeshComponent1->GetAnimInstance();
+L1185:         float mfloat3 = mAnimInstance3->Montage_Play(NobeliskDetonatorEquip_01_Montage, 1, 0, 0, true);
+L1257:         goto L785;
+L1262:         ExecutionFlow.Push(L1441);
+L1267:         FGCharacterPlayer* mFGCharacterPlayer2 = this->GetAttachedTo();
+L1287:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh3P();
+L1333:         AnimInstance* mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L1375:         bool mbool4 = mAnimInstance4->Montage_IsPlaying(NobeliskDetonatorDetonate_01_Montage);
+L1426:         if (!mbool4) goto L1664;
+L1440:         goto ExecutionFlow.Pop();
+L1441:         AnimInstance* mAnimInstance5 = this->Detonator_skel->GetAnimInstance();
+L1483:         bool mbool5 = mAnimInstance5->Montage_IsPlaying(NobeliskDetonatorDetonate_02_Montage);
+L1534:         if (!mbool5) goto L1549;
+L1548:         goto ExecutionFlow.Pop();
+L1549:         mAnimInstance5 = this->Detonator_skel->GetAnimInstance();
+L1591:         float mfloat4 = mAnimInstance5->Montage_Play(NobeliskDetonatorDetonate_02_Montage, 1, 0, 0, true);
+L1663:         goto ExecutionFlow.Pop();
+L1664:         mFGCharacterPlayer2 = this->GetAttachedTo();
+L1684:         mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh3P();
+L1730:         mAnimInstance4 = mSkeletalMeshComponent2->GetAnimInstance();
+L1772:         float mfloat5 = mAnimInstance4->Montage_Play(NobeliskDetonatorDetonate_01_Montage, 1, 1, 0, true);
+L1844:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_E_Nobelisk_Trigger_3P, this, true);
+L1897:         goto ExecutionFlow.Pop();
+L1898:         ExecutionFlow.Push(L2262);
+L1903:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetAttachedTo();
+L1923:         SkeletalMeshComponent* mSkeletalMeshComponent3 = mFGCharacterPlayer3->GetMesh3P();
+L1969:         AnimInstance* mAnimInstance6 = mSkeletalMeshComponent3->GetAnimInstance();
+L2011:         bool mbool6 = mAnimInstance6->Montage_IsPlaying(NobeliskDetonatorDetonateNoexpl_01_Montage);
+L2062:         if (!mbool6) goto L2077;
+L2076:         goto ExecutionFlow.Pop();
+L2077:         mFGCharacterPlayer3 = this->GetAttachedTo();
+L2097:         mSkeletalMeshComponent3 = mFGCharacterPlayer3->GetMesh3P();
+L2143:         mAnimInstance6 = mSkeletalMeshComponent3->GetAnimInstance();
+L2185:         float mfloat6 = mAnimInstance6->Montage_Play(NobeliskDetonatorDetonateNoexpl_01_Montage, 1, 1, 0.10000000149011612, true);
+L2257:         goto L1844;
+L2262:         AnimInstance* mAnimInstance7 = this->Detonator_skel->GetAnimInstance();
+L2304:         bool mbool7 = mAnimInstance7->Montage_IsPlaying(NobeliskDetonatorDetonate_02_Montage);
+L2355:         if (!mbool7) goto L2370;
+L2369:         goto ExecutionFlow.Pop();
+L2370:         mAnimInstance7 = this->Detonator_skel->GetAnimInstance();
+L2412:         float mfloat7 = mAnimInstance7->Montage_Play(NobeliskDetonatorDetonate_02_Montage, 1, 0, 0.10000000149011612, true);
+L2484:         goto ExecutionFlow.Pop();
+L2485:         if (!this->mIsLoaded) goto L1898;
+L2499:         goto L1262;
+L2504:         goto L893;
+============ END FUNCTION ExecuteUbergraph_Attach_NobeliskDetonator_L ==============

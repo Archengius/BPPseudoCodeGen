@@ -1,0 +1,101 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_MenuSwitcherContainer.Widget_MenuSwitcherContainer_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetFirstChildOfSwitcher ==============
+L0:            bool mbool = SwitcherWidget->HasAnyChildren();
+L42:           if (!mbool) goto L122;
+L56:           Widget* mWidget = SwitcherWidget->GetChildAt(0);
+L103:          Widget* Child = mWidget;
+============ END FUNCTION GetFirstChildOfSwitcher ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSwitcherWidget ==============
+L0:            Widget* mWidget = this->mSwitcherWidgetSlot->GetChildAt(0);
+L47:           WidgetSwitcher* mWidgetSwitcher = Cast<Class /Script/UMG.WidgetSwitcher>(mWidget);
+L83:           bool mbool = mWidgetSwitcher;
+L112:          if (!mbool) goto L164;
+L126:          this->mSwitcherWidget = mWidgetSwitcher;
+L145:          WidgetSwitcher* Widget Switcher = this->mSwitcherWidget;
+============ END FUNCTION SetSwitcherWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetNoneActive ==============
+L0:            this->ExecuteUbergraph_Widget_MenuSwitcherContainer(558);
+============ END FUNCTION SetNoneActive ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetActiveWidget ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_MenuSwitcherContainer.Widget_MenuSwitcherContainer_C:ExecuteUbergraph_Widget_MenuSwitcherContainer.K2Node_CustomEvent_Widget) = Widget;
+L18:           this->ExecuteUbergraph_Widget_MenuSwitcherContainer(817);
+============ END FUNCTION SetActiveWidget ==============
+
+
+
+
+
+============ BEGIN FUNCTION WidgetAnimationEvt_HideSwitcher_K2Node_WidgetAnimationEvent_0 ==============
+L0:            this->ExecuteUbergraph_Widget_MenuSwitcherContainer(10);
+============ END FUNCTION WidgetAnimationEvt_HideSwitcher_K2Node_WidgetAnimationEvent_0 ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_MenuSwitcherContainer ==============
+L10:           bool mbool = KismetSystemLibrary->IsValid(this->mSwitcherWidget);
+L61:           if (!mbool) goto L822;
+L75:           this->mSwitcherWidget->SetActiveWidgetIndex(0);
+L116:          bool mbool1 = this->mSwitcherWidget->HasAnyChildren();
+L158:          if (!mbool1) goto L243;
+L172:          Widget* mWidget = this->mSwitcherWidget->GetChildAt(0);
+L219:          this->mPreviousWidget = mWidget;
+L238:          <End of Inlined Event Graph Function>;
+L243:          this->mPreviousWidget = nullptr;
+L254:          <End of Inlined Event Graph Function>;
+L259:          this->PlayBackgroundAnim = true;
+L270:          mBP_MenuBase->SpawnAnim(this->PlayBackgroundAnim);
+L315:          this->mSwitcherWidget->SetActiveWidget(mWidget1);
+L360:          this->mPreviousWidget = mWidget1;
+L379:          this->OnWidgetSet->ProcessMulticastDelegate(true);
+L399:          <End of Inlined Event Graph Function>;
+L404:          BP_MenuBase* mBP_MenuBase1 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C>(this->mPreviousWidget);
+L440:          bool mbool2 = mBP_MenuBase1;
+L469:          if (!mbool2) goto L259;
+L483:          bool mbool3 = Not_PreBool(mBP_MenuBase1->UsesSubmenuBackground);
+L534:          this->PlayBackgroundAnim = mbool3;
+L553:          goto L270;
+L558:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->HideSwitcher, 0, 1, 0, 1);
+L604:          this->OnWidgetSet->ProcessMulticastDelegate(false);
+L624:          <End of Inlined Event Graph Function>;
+L629:          this->SetRenderOpacity(1);
+L644:          bool mbool4 = KismetSystemLibrary->IsValid(this->mSwitcherWidget);
+L695:          if (!mbool4) goto L822;
+L709:          BP_MenuBase* mBP_MenuBase = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C>(mWidget1);
+L745:          bool mbool5 = mBP_MenuBase;
+L774:          if (!mbool5) goto L315;
+L788:          goto L404;
+L793:          this->StopAnimation(this->HideSwitcher);
+L812:          goto L629;
+L817:          goto L793;
+============ END FUNCTION ExecuteUbergraph_Widget_MenuSwitcherContainer ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnWidgetSet__DelegateSignature ==============
+============ END FUNCTION OnWidgetSet__DelegateSignature ==============

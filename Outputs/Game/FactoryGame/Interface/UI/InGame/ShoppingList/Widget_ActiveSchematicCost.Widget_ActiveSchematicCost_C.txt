@@ -1,0 +1,129 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/ShoppingList/Widget_ActiveSchematicCost.Widget_ActiveSchematicCost_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetNumIngredientsPaidOff ==============
+L0:            ExecutionFlow.Push(L1284);
+L5:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L48:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mGameStateBase);
+L99:           bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L150:          if (!mbool) goto L1182;
+L164:          int32 Temp_int_Loop_Counter_Variable = 0;
+L187:          int32 Temp_int_Array_Index_Variable = 0;
+L210:          mGameStateBase = GameplayStatics->GetGameState(this);
+L253:          mFGSchematicManager = FGSchematicManager->Get(mGameStateBase);
+L304:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L346:          TArray<ItemAmount> mTArray<ItemAmount> = mFGSchematicManager->GetPaidOffCostFor(mTSubclassOf<FGSchematic>);
+L405:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L464:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L502:          if (!mbool1) goto ExecutionFlow.Pop();
+L512:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L539:          ExecutionFlow.Push(L1210);
+L544:          this->GetIngredient([ref] mItemAmount);
+L567:          mGameStateBase = GameplayStatics->GetGameState(this);
+L610:          mFGSchematicManager = FGSchematicManager->Get(mGameStateBase);
+L661:          mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L703:          mTArray<ItemAmount> = mFGSchematicManager->GetPaidOffCostFor(mTSubclassOf<FGSchematic>);
+L762:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount1);
+L821:          bool mbool2 = EqualEqual_ClassClass(mItemAmount1.ItemClass, mItemAmount.ItemClass);
+L877:          if (!mbool2) goto ExecutionFlow.Pop();
+L887:          mGameStateBase = GameplayStatics->GetGameState(this);
+L930:          mFGSchematicManager = FGSchematicManager->Get(mGameStateBase);
+L981:          mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L1023:         mTArray<ItemAmount> = mFGSchematicManager->GetPaidOffCostFor(mTSubclassOf<FGSchematic>);
+L1082:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount1);
+L1141:         int32 NumItems = mItemAmount1.amount;
+L1177:         <End of Inlined Event Graph Function>;
+L1182:         NumItems = 0;
+L1205:         <End of Inlined Event Graph Function>;
+L1210:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1252:         Temp_int_Loop_Counter_Variable = mint321;
+L1279:         goto L210;
+============ END FUNCTION GetNumIngredientsPaidOff ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIngredient ==============
+L0:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L43:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mGameStateBase);
+L94:           bool mbool = KismetSystemLibrary->IsValid(mFGSchematicManager);
+L145:          if (!mbool) goto L717;
+L159:          mGameStateBase = GameplayStatics->GetGameState(this);
+L202:          mFGSchematicManager = FGSchematicManager->Get(mGameStateBase);
+L253:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L295:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L346:          if (!mbool1) goto L760;
+L360:          PanelWidget* mPanelWidget = this->GetParent();
+L380:          mGameStateBase = GameplayStatics->GetGameState(this);
+L423:          int32 mint32 = mPanelWidget->GetChildIndex(this);
+L474:          mFGSchematicManager = FGSchematicManager->Get(mGameStateBase);
+L525:          mTSubclassOf<FGSchematic> = mFGSchematicManager->GetActiveSchematic();
+L567:          TArray<ItemAmount> mTArray<ItemAmount> = FGSchematic->GetCost(mTSubclassOf<FGSchematic>);
+L626:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, mint32, [ref] mItemAmount);
+L685:          ItemAmount ingredient = mItemAmount;
+L712:          <End of Inlined Event Graph Function>;
+L717:          ingredient = ScriptStruct /Script/FactoryGame.ItemAmount(ItemClass = nullptr, amount = 0);
+L755:          <End of Inlined Event Graph Function>;
+L760:          ingredient = ScriptStruct /Script/FactoryGame.ItemAmount(ItemClass = nullptr, amount = 0);
+============ END FUNCTION GetIngredient ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTimer ==============
+L0:            this->ExecuteUbergraph_Widget_ActiveSchematicCost(10);
+============ END FUNCTION UpdateTimer ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_ActiveSchematicCost(504);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_ActiveSchematicCost(624);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ActiveSchematicCost ==============
+L10:           this->GetIngredient([ref] mItemAmount);
+L33:           this->GetIngredient([ref] mItemAmount1);
+L56:           this->GetNumIngredientsPaidOff([ref] mint32);
+L79:           Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mItemAmount1.ItemClass);
+L139:          this->Widget_CostSlotWrapper->Setup CostIcon(mTexture2D, mItemAmount, nullptr, 0, mint32, false, false, false);
+L211:          this->GetIngredient([ref] mItemAmount2);
+L234:          uint8 Temp_byte_Variable = 3;
+L254:          uint8 Temp_byte_Variable1 = 1;
+L274:          this->GetNumIngredientsPaidOff([ref] mint321);
+L297:          bool mbool = GreaterEqual_IntInt(mint321, mItemAmount2.amount);
+L344:          bool Temp_bool_Variable = mbool;
+L363:          this->mMilestonePaidOff->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+L452:          <End of Inlined Event Graph Function>;
+L457:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateHandle);
+L499:          <End of Inlined Event Graph Function>;
+L504:          mFScriptDelegate->BindUFunction(this, UpdateTimer);
+L527:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
+L592:          this->mUpdateHandle = mTimerHandle;
+L619:          <End of Inlined Event Graph Function>;
+L624:          goto L457;
+============ END FUNCTION ExecuteUbergraph_Widget_ActiveSchematicCost ==============

@@ -1,0 +1,60 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/AI/BTT_JumpAway.BTT_JumpAway_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveExecuteAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/AI/BTT_JumpAway.BTT_JumpAway_C:ExecuteUbergraph_BTT_JumpAway.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/AI/BTT_JumpAway.BTT_JumpAway_C:ExecuteUbergraph_BTT_JumpAway.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTT_JumpAway(26);
+============ END FUNCTION ReceiveExecuteAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION BirdHasLanded ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/AI/BTT_JumpAway.BTT_JumpAway_C:ExecuteUbergraph_BTT_JumpAway.K2Node_CustomEvent_birdLanded) = birdLanded;
+L18:           this->ExecuteUbergraph_BTT_JumpAway(933);
+============ END FUNCTION BirdHasLanded ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTT_JumpAway ==============
+L10:           this->FinishExecute(true);
+L21:           <End of Inlined Event Graph Function>;
+L26:           Controller_NonFlyingBird* mController_NonFlyingBird = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Controller_NonFlyingBird.Controller_NonFlyingBird_C>(mAIController);
+L62:           bool mbool = mController_NonFlyingBird;
+L91:           if (!mbool) goto L970;
+L105:          mController_NonFlyingBird->TryToJump();
+L141:          Char_NonFlyingBird* mChar_NonFlyingBird = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Char_NonFlyingBird.Char_NonFlyingBird_C>(mPawn);
+L177:          bool mbool1 = mChar_NonFlyingBird;
+L206:          if (!mbool1) goto L970;
+L220:          bool mbool2 = NotEqual_ByteByte(mChar_NonFlyingBird->CharacterMovement->MovementMode, 0);
+L295:          if (!mbool2) goto L848;
+L309:          mbool2 = NotEqual_ByteByte(mChar_NonFlyingBird->CharacterMovement->MovementMode, 1);
+L384:          if (!mbool2) goto L848;
+L398:          mbool2 = NotEqual_ByteByte(mChar_NonFlyingBird->CharacterMovement->MovementMode, 2);
+L473:          if (!mbool2) goto L848;
+L487:          mbool2 = NotEqual_ByteByte(mChar_NonFlyingBird->CharacterMovement->MovementMode, 3);
+L562:          if (!mbool2) goto L864;
+L576:          mbool2 = NotEqual_ByteByte(mChar_NonFlyingBird->CharacterMovement->MovementMode, 4);
+L651:          if (!mbool2) goto L848;
+L665:          mbool2 = NotEqual_ByteByte(mChar_NonFlyingBird->CharacterMovement->MovementMode, 5);
+L740:          if (!mbool2) goto L848;
+L754:          mbool2 = NotEqual_ByteByte(mChar_NonFlyingBird->CharacterMovement->MovementMode, 6);
+L829:          if (!mbool2) goto L848;
+L843:          <End of Inlined Event Graph Function>;
+L848:          this->FinishExecute(false);
+L859:          <End of Inlined Event Graph Function>;
+L864:          mFScriptDelegate->BindUFunction(this, BirdHasLanded);
+L887:          mChar_NonFlyingBird->OnLandedDelegate.AddUnique(mFScriptDelegate);
+L928:          <End of Inlined Event Graph Function>;
+L933:          mChar_NonFlyingBird1->OnLandedDelegate->Clear();
+L965:          goto L10;
+============ END FUNCTION ExecuteUbergraph_BTT_JumpAway ==============

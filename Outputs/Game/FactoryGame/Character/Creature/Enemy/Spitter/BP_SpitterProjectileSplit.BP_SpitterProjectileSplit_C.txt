@@ -1,0 +1,47 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Spitter/BP_SpitterProjectileSplit.BP_SpitterProjectileSplit_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_BP_SpitterProjectileSplit(10);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayExplosionEffects ==============
+L0:            this->ExecuteUbergraph_BP_SpitterProjectileSplit(672);
+============ END FUNCTION PlayExplosionEffects ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_SpitterProjectileSplit ==============
+L10:           this->ReceiveBeginPlay();
+L20:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_E_Spitter_Projectile_Split, this, true);
+L73:           AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_E_Spitter_Projectile_Loop, this, true);
+L126:          <End of Inlined Event Graph Function>;
+L131:          SphereComponent* mSphereComponent = this->GetCollisionSphere();
+L151:          mSphereComponent->SetCollisionEnabled(0);
+L189:          <End of Inlined Event Graph Function>;
+L194:          this->SetLifeSpan(1);
+L213:          goto L131;
+L218:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Stop_E_Spitter_Projectile_Loop, this, true);
+L271:          Vector mVector = this->K2_GetActorLocation();
+L299:          AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEventAtLocation(this, Play_E_Spitter_Projectile_Land, mVector, Rotator::FromPitchYawRoll(0, 0, 0));
+L373:          goto L194;
+L378:          this->Projectile->Deactivate();
+L414:          mVector = this->K2_GetActorLocation();
+L442:          SphereComponent* mSphereComponent1 = this->GetCollisionSphere();
+L462:          Vector mVector1 = MakeVector(0, 0, mSphereComponent1->SphereRadius);
+L531:          Vector mVector2 = Subtract_VectorVector(mVector, mVector1);
+L577:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, P_SpitImpact_01, mVector2, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L667:          goto L218;
+L672:          goto L378;
+============ END FUNCTION ExecuteUbergraph_BP_SpitterProjectileSplit ==============

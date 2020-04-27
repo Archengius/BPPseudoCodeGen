@@ -1,0 +1,181 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Spitter/Char_Spitter.Char_Spitter_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetAttackLocation ==============
+L0:            SkeletalMeshComponent* mSkeletalMeshComponent = this->GetMesh3P();
+L24:           Vector mVector = mSkeletalMeshComponent->GetSocketLocation("fireSocket");
+L91:           Vector ReturnValue = mVector;
+============ END FUNCTION GetAttackLocation ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateStrafeDirection ==============
+L0:            Actor* mActor = this->GetCurrentAggroTarget();
+L20:           bool mbool = KismetSystemLibrary->IsValid(mActor);
+L71:           if (!mbool) goto L279;
+L85:           Rotator mRotator = this->K2_GetActorRotation();
+L113:          Vector mVector = GetRightVector(mRotator);
+L150:          Vector mVector1 = Multiply_VectorFloat(mVector, -1);
+L192:          Vector mVector2 = SelectVector(mVector, mVector1, this->mDoStrafeRight);
+L247:          this->mStrafeDirection = mVector2;
+L274:          <End of Inlined Event Graph Function>;
+L279:          this->StopStrafe();
+============ END FUNCTION UpdateStrafeDirection ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopStrafe ==============
+L0:            this->mIsStrafing = false;
+L11:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mStrafeHandler);
+L53:           this->OnStrafeEnded->ProcessMulticastDelegate();
+============ END FUNCTION StopStrafe ==============
+
+
+
+
+
+============ BEGIN FUNCTION DoStrafe ==============
+L0:            this->AddMovementInput(this->mStrafeDirection, 1, false);
+============ END FUNCTION DoStrafe ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartStrafe ==============
+L0:            this->mIsStrafing = true;
+L11:           mFScriptDelegate->BindUFunction(this, UpdateStrafeDirection);
+L34:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
+L99:           this->mStrafeHandler = mTimerHandle;
+L126:          bool mbool = RandomBool();
+L146:          this->mDoStrafeRight = mbool;
+============ END FUNCTION StartStrafe ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/Char_Spitter.Char_Spitter_C:ExecuteUbergraph_Char_Spitter.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_Char_Spitter(127);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCurrentAggroTargetReplicated ==============
+L0:            this->ExecuteUbergraph_Char_Spitter(530);
+============ END FUNCTION OnCurrentAggroTargetReplicated ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Capsule_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/Char_Spitter.Char_Spitter_C:ExecuteUbergraph_Char_Spitter.K2Node_ComponentBoundEvent_OverlappedComponent) = OverlappedComponent;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/Char_Spitter.Char_Spitter_C:ExecuteUbergraph_Char_Spitter.K2Node_ComponentBoundEvent_OtherActor) = OtherActor;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/Char_Spitter.Char_Spitter_C:ExecuteUbergraph_Char_Spitter.K2Node_ComponentBoundEvent_OtherComp) = OtherComp;
+L54:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/Char_Spitter.Char_Spitter_C:ExecuteUbergraph_Char_Spitter.K2Node_ComponentBoundEvent_OtherBodyIndex) = OtherBodyIndex;
+L72:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/Char_Spitter.Char_Spitter_C:ExecuteUbergraph_Char_Spitter.K2Node_ComponentBoundEvent_bFromSweep) = bFromSweep;
+L90:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/Char_Spitter.Char_Spitter_C:ExecuteUbergraph_Char_Spitter.K2Node_ComponentBoundEvent_SweepResult) = SweepResult;
+L108:          this->ExecuteUbergraph_Char_Spitter(545);
+============ END FUNCTION BndEvt__Capsule_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Char_Spitter(850);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveEndPlay ==============
+L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/Char_Spitter.Char_Spitter_C:ExecuteUbergraph_Char_Spitter.K2Node_Event_EndPlayReason) = EndPlayReason;
+L18:           this->ExecuteUbergraph_Char_Spitter(894);
+============ END FUNCTION ReceiveEndPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION GainedSignificance ==============
+L0:            this->ExecuteUbergraph_Char_Spitter(933);
+============ END FUNCTION GainedSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION LostSignificance ==============
+L0:            this->ExecuteUbergraph_Char_Spitter(1017);
+============ END FUNCTION LostSignificance ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Char_Spitter ==============
+L10:           this->Mesh->SetComponentTickInterval(0);
+L47:           <End of Inlined Event Graph Function>;
+L52:           if (!this->mIsStrafing) goto L1022;
+L66:           this->DoStrafe();
+L80:           <End of Inlined Event Graph Function>;
+L85:           this->Mesh->SetComponentTickInterval(0);
+L122:          <End of Inlined Event Graph Function>;
+L127:          goto L52;
+L132:          SkeletalMeshComponent* mSkeletalMeshComponent = this->GetMesh3P();
+L156:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L198:          Anim_Spitter* mAnim_Spitter = Cast<AnimBlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Enemy/Spitter/Anim_Spitter.Anim_Spitter_C>(mAnimInstance);
+L234:          bool mbool = mAnim_Spitter;
+L263:          if (!mbool) goto L1022;
+L277:          Actor* mActor = this->GetCurrentAggroTarget();
+L297:          bool mbool1 = KismetSystemLibrary->IsValid(mActor);
+L348:          mAnim_Spitter->mHasAggroTarget = mbool1;
+L389:          <End of Inlined Event Graph Function>;
+L394:          mSkeletalMeshComponent = this->GetMesh3P();
+L418:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L460:          bool mbool2 = KismetSystemLibrary->IsValid(mAnimInstance);
+L511:          if (!mbool2) goto L1022;
+L525:          goto L132;
+L530:          this->OnCurrentAggroTargetReplicated();
+L540:          goto L394;
+L545:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor1);
+L581:          bool mbool3 = mFGCharacterPlayer;
+L610:          if (!mbool3) goto L1022;
+L624:          Vector mVector = this->K2_GetActorLocation();
+L652:          Vector mVector1 = mFGCharacterPlayer->K2_GetActorLocation();
+L702:          Vector mVector2 = GetDirectionUnitVector(mVector, mVector1);
+L748:          Vector mVector3 = Multiply_VectorVector(mVector2, Vector(500, 500, 500));
+L798:          mFGCharacterPlayer->LaunchCharacter(mVector3, true, true);
+L845:          <End of Inlined Event Graph Function>;
+L850:          FGBlueprintFunctionLibrary->AddGainSignificanceObjectToSignificanceManager(this, this, 10000);
+L889:          <End of Inlined Event Graph Function>;
+L894:          FGBlueprintFunctionLibrary->RemoveGainSignificanceObjectFromSignificanceManager(this, this);
+L928:          <End of Inlined Event Graph Function>;
+L933:          this->CharacterMovement->SetComponentTickInterval(0);
+L970:          goto L85;
+L975:          this->CharacterMovement->SetComponentTickInterval(0.10000000149011612);
+L1012:         goto L10;
+L1017:         goto L975;
+============ END FUNCTION ExecuteUbergraph_Char_Spitter ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnStrafeEnded__DelegateSignature ==============
+============ END FUNCTION OnStrafeEnded__DelegateSignature ==============

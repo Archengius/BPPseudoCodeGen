@@ -1,0 +1,52 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu_PowerProduction.Widget_BuildMenu_PowerProduction_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetStatText ==============
+L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mBuildingDesc);
+L51:           if (!mbool) goto L999;
+L65:           float mfloat = FGBuildingDescriptor->GetPowerProduction(this->mBuildingDesc);
+L124:          bool mbool1 = Greater_FloatFloat(mfloat, 0.10000000149011612);
+L158:          if (!mbool1) goto L705;
+L172:          mfloat = FGBuildingDescriptor->GetPowerProduction(this->mBuildingDesc);
+L231:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 0, 3);
+L314:          mFormatArgumentData.ArgumentName = "Value";
+L348:          mFormatArgumentData.ArgumentValueType = 4;
+L377:          mFormatArgumentData.ArgumentValue = mFText;
+L413:          mFormatArgumentData.ArgumentValueInt = 0;
+L445:          mFormatArgumentData.ArgumentValueFloat = 0;
+L477:          mFormatArgumentData.ArgumentValueGender = 0;
+L506:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L526:          FText mFText1 = KismetTextLibrary->Format(STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/ST_Units.ST_Units", "[object Object]"), mTArray<FormatArgumentData>);
+L655:          this->mStatText->SetText(mFText1);
+L700:          <End of Inlined Event Graph Function>;
+L705:          float mfloat1 = FGBuildingDescriptor->GetPowerConsumption(this->mBuildingDesc);
+L764:          bool mbool2 = Greater_FloatFloat(mfloat1, 0.10000000149011612);
+L798:          if (!mbool2) goto L999;
+L812:          mfloat1 = FGBuildingDescriptor->GetPowerConsumption(this->mBuildingDesc);
+L871:          FText mFText2 = KismetTextLibrary->Conv_FloatToText(mfloat1, 0, false, true, 1, 324, 0, 3);
+L954:          this->mStatText->SetText(mFText2);
+============ END FUNCTION GetStatText ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu_PowerProduction.Widget_BuildMenu_PowerProduction_C:ExecuteUbergraph_Widget_BuildMenu_PowerProduction.K2Node_Event_IsDesignTime) = IsDesignTime;
+L18:           this->ExecuteUbergraph_Widget_BuildMenu_PowerProduction(29);
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_BuildMenu_PowerProduction ==============
+L10:           this->GetStatText();
+L24:           <End of Inlined Event Graph Function>;
+L29:           goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_BuildMenu_PowerProduction ==============

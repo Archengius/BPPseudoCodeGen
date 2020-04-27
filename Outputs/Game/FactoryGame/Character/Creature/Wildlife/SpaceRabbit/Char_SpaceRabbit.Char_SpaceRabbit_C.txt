@@ -1,0 +1,362 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetLookAtDecription ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mFriendActor);
+L51:           if (!mbool) goto L97;
+L65:           FText ReturnValue = this->mFriendText;
+L92:           goto L124;
+L97:           ReturnValue = this->mPetText;
+============ END FUNCTION GetLookAtDecription ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsUseable ==============
+L0:            bool ReturnValue = true;
+============ END FUNCTION IsUseable ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateUseState ==============
+L0:            FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, FGUseState_Valid);
+============ END FUNCTION UpdateUseState ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetupLootTimer ==============
+L0:            mFScriptDelegate->BindUFunction(this, RollLoot);
+L23:           float mfloat = RandomFloatInRange(this->mLotMinTime, this->mLotMaxTime);
+L69:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, mfloat, false);
+L138:          this->mLootTimerHandle = mTimerHandle;
+============ END FUNCTION SetupLootTimer ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRep_mLootTableIndex ==============
+============ END FUNCTION OnRep_mLootTableIndex ==============
+
+
+
+
+
+============ BEGIN FUNCTION RollLoot ==============
+L0:            bool mbool = this->mInventory->IsEmpty();
+L42:           if (!mbool) goto L324;
+L56:           BP_SpaceRabbitSettings* mBP_SpaceRabbitSettings = FGLootSettings->GetLootSettingsDefaultObject(this->mLootSettings);
+L107:          mBP_SpaceRabbitSettings->GetRandomLoot([ref] this->mLootTableIndex);
+L152:          TArray<InventoryStack> Temp_struct_Variable = this->mLootSettings->ClassDefaultObject->mLootTable;
+L201:          KismetArrayLibrary->Array_Get([ref] Temp_struct_Variable, this->mLootTableIndex, [ref] mInventoryStack);
+L260:          int32 mint32 = this->mInventory->AddStack([ref] mInventoryStack, true);
+L324:          mFScriptDelegate->BindUFunction(this, RollLoot);
+L347:          float mfloat = RandomFloatInRange(this->mLotMinTime, this->mLotMaxTime);
+L393:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, mfloat, false);
+L462:          this->mLootTimerHandle = mTimerHandle;
+============ END FUNCTION RollLoot ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetNewFriend ==============
+L0:            bool mbool = this->HasAuthority();
+L20:           if (!mbool) goto L550;
+L34:           BlackboardComponent* mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(this);
+L77:           bool mbool1 = mBlackboardComponent->GetValueAsBool([ref] this->mGotBerryBBKeyName);
+L128:          if (!mbool1) goto L359;
+L142:          BlackboardComponent* mBlackboardComponent1 = AIBlueprintHelperLibrary->GetBlackboard(this);
+L185:          mBlackboardComponent1->SetValueAsObject([ref] this->mFriendBBKeyName, newFriend);
+L235:          this->FlushNetDormancy();
+L245:          this->mFriendActor = newFriend;
+L264:          this->SetPersistent(true);
+L275:          bool mbool2 = KismetSystemLibrary->IsValid(this->mFriendActor);
+L326:          if (!mbool2) goto L508;
+L340:          this->SetupLootTimer();
+L354:          <End of Inlined Event Graph Function>;
+L359:          AIController* mAIController = AIBlueprintHelperLibrary->GetAIController(this);
+L402:          FGCreatureController* mFGCreatureController = Cast<Class /Script/FactoryGame.FGCreatureController>(mAIController);
+L438:          bool mbool3 = mFGCreatureController;
+L467:          mFGCreatureController->StartPanic();
+L503:          <End of Inlined Event Graph Function>;
+L508:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLootTimerHandle);
+============ END FUNCTION SetNewFriend ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopBackwardWalk ==============
+L0:            this->mWalkBackDirection = Vector(0, 0, 0);
+L31:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mWalkBackTimerHandle);
+L73:           this->FlushNetDormancy();
+L83:           this->mIsWalkingBackwards = false;
+L94:           this->OnWalkBackStopped->ProcessMulticastDelegate();
+============ END FUNCTION StopBackwardWalk ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateWalkBackMovement ==============
+L0:            if (!this->mIsWalkingBackwards) goto L43;
+L14:           this->AddMovementInput(this->mWalkBackDirection, 1, false);
+============ END FUNCTION UpdateWalkBackMovement ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateWalkBackDirection ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mPotentialThreat);
+L51:           if (!mbool) goto L307;
+L65:           float mfloat = this->mPotentialThreat->GetDistanceTo(this);
+L116:          bool mbool1 = Less_FloatFloat(mfloat, this->mWalkBackDistance);
+L154:          if (!mbool1) goto L326;
+L168:          Rotator mRotator = this->K2_GetActorRotation();
+L196:          Vector mVector = Conv_RotatorToVector(mRotator);
+L233:          Vector mVector1 = Multiply_VectorFloat(mVector, -1);
+L275:          this->mWalkBackDirection = mVector1;
+L302:          <End of Inlined Event Graph Function>;
+L307:          this->StopBackwardWalk();
+L321:          <End of Inlined Event Graph Function>;
+L326:          this->StopBackwardWalk();
+============ END FUNCTION UpdateWalkBackDirection ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartWalkBack ==============
+L0:            mFScriptDelegate->BindUFunction(this, UpdateWalkBackDirection);
+L23:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
+L88:           this->mWalkBackTimerHandle = mTimerHandle;
+L115:          this->FlushNetDormancy();
+L125:          this->mIsWalkingBackwards = true;
+L136:          Controller* mController = this->GetController();
+L156:          Controller_SpaceRabbit* mController_SpaceRabbit = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Controller_SpaceRabbit.Controller_SpaceRabbit_C>(mController);
+L192:          bool mbool = mController_SpaceRabbit;
+L221:          if (!mbool) goto L284;
+L235:          this->mWalkBackDistance = mController_SpaceRabbit->mPersonalDistance;
+============ END FUNCTION StartWalkBack ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUseStop ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_byCharacter3) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_state3) = State;
+L36:           this->ExecuteUbergraph_Char_SpaceRabbit(229);
+============ END FUNCTION OnUseStop ==============
+
+
+
+
+
+============ BEGIN FUNCTION RegisterInteractingPlayer ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_player1) = Player;
+L18:           this->ExecuteUbergraph_Char_SpaceRabbit(230);
+============ END FUNCTION RegisterInteractingPlayer ==============
+
+
+
+
+
+============ BEGIN FUNCTION StartIsLookedAt ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_byCharacter2) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_state2) = State;
+L36:           this->ExecuteUbergraph_Char_SpaceRabbit(231);
+============ END FUNCTION StartIsLookedAt ==============
+
+
+
+
+
+============ BEGIN FUNCTION StopIsLookedAt ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_byCharacter1) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_state1) = State;
+L36:           this->ExecuteUbergraph_Char_SpaceRabbit(232);
+============ END FUNCTION StopIsLookedAt ==============
+
+
+
+
+
+============ BEGIN FUNCTION UnregisterInteractingPlayer ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_player) = Player;
+L18:           this->ExecuteUbergraph_Char_SpaceRabbit(233);
+============ END FUNCTION UnregisterInteractingPlayer ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L18:           this->ExecuteUbergraph_Char_SpaceRabbit(234);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyOnTakeDamage ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damagedActor2) = DamagedActor;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damageAmount) = damageAmount;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damageType2) = DamageType;
+L54:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_instigatedBy2) = InstigatedBy;
+L72:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damageCauser2) = DamageCauser;
+L90:           this->ExecuteUbergraph_Char_SpaceRabbit(249);
+============ END FUNCTION NotifyOnTakeDamage ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveDied ==============
+L0:            this->ExecuteUbergraph_Char_SpaceRabbit(516);
+============ END FUNCTION ReceiveDied ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyOnTakePointDamage ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damagedActor1) = DamagedActor;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damage1) = Damage;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_instigatedBy1) = InstigatedBy;
+L54:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_HitLocation) = HitLocation;
+L72:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_hitComponent) = HitComponent;
+L90:           PERSISTENT_FRAME(NameProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_boneName) = BoneName;
+L108:          PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_shotFromDirection) = ShotFromDirection;
+L126:          PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damageType1) = DamageType;
+L144:          PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damageCauser1) = DamageCauser;
+L162:          this->ExecuteUbergraph_Char_SpaceRabbit(591);
+============ END FUNCTION NotifyOnTakePointDamage ==============
+
+
+
+
+
+============ BEGIN FUNCTION NotifyOnTakeRadialDamage ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damagedActor) = DamagedActor;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damage) = Damage;
+L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_instigatedBy) = InstigatedBy;
+L54:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damageType) = DamageType;
+L72:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_damageCauser) = DamageCauser;
+L90:           this->ExecuteUbergraph_Char_SpaceRabbit(683);
+============ END FUNCTION NotifyOnTakeRadialDamage ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            this->ExecuteUbergraph_Char_SpaceRabbit(739);
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION PlayConsumeItemEffect ==============
+L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_itemDescriptor) = itemDescriptor;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_amount) = amount;
+L36:           this->ExecuteUbergraph_Char_SpaceRabbit(754);
+============ END FUNCTION PlayConsumeItemEffect ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnUse ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_byCharacter) = byCharacter;
+L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Wildlife/SpaceRabbit/Char_SpaceRabbit.Char_SpaceRabbit_C:ExecuteUbergraph_Char_SpaceRabbit.K2Node_Event_state) = State;
+L36:           this->ExecuteUbergraph_Char_SpaceRabbit(985);
+============ END FUNCTION OnUse ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Char_SpaceRabbit ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_E_SpaceBunny_VO_Friendly, this, true);
+L68:           goto ExecutionFlow.Pop();
+L69:           AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_E_SpaceBunny_VO_Hurt, this, true);
+L122:          goto ExecutionFlow.Pop();
+L123:          bool mbool = this->HasAuthority();
+L143:          if (!mbool) goto ExecutionFlow.Pop();
+L153:          bool mbool1 = KismetSystemLibrary->IsValid(this->mFriendActor);
+L204:          if (!mbool1) goto ExecutionFlow.Pop();
+L214:          this->SetupLootTimer();
+L228:          goto ExecutionFlow.Pop();
+L229:          goto ExecutionFlow.Pop();
+L230:          goto ExecutionFlow.Pop();
+L231:          goto ExecutionFlow.Pop();
+L232:          goto ExecutionFlow.Pop();
+L233:          goto ExecutionFlow.Pop();
+L234:          this->UpdateWalkBackMovement();
+L248:          goto ExecutionFlow.Pop();
+L249:          if (!this->mIsAlive) goto ExecutionFlow.Pop();
+L259:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_E_SpaceBunny_VO_Hurt, this, true);
+L312:          bool mbool2 = this->HasAuthority();
+L332:          if (!mbool2) goto ExecutionFlow.Pop();
+L342:          AIController* mAIController = AIBlueprintHelperLibrary->GetAIController(this);
+L385:          FGCreatureController* mFGCreatureController = Cast<Class /Script/FactoryGame.FGCreatureController>(mAIController);
+L421:          bool mbool3 = mFGCreatureController;
+L450:          if (!mbool3) goto ExecutionFlow.Pop();
+L460:          mFGCreatureController->StartPanic();
+L496:          this->SetNewFriend(nullptr);
+L511:          goto L69;
+L516:          this->ReceiveDied();
+L526:          AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_E_SpaceBunny_VO_Hurt, this, true);
+L579:          this->mIsAlive = false;
+L590:          goto ExecutionFlow.Pop();
+L591:          this->NotifyOnTakePointDamage(mActor, mfloat, mController, mVector, mPrimitiveComponent, mFName, mVector1, mconst DamageType, mActor1);
+L682:          goto ExecutionFlow.Pop();
+L683:          this->NotifyOnTakeRadialDamage(mActor2, mfloat1, mController1, mconst DamageType1, mActor3);
+L738:          goto ExecutionFlow.Pop();
+L739:          this->ReceiveBeginPlay();
+L749:          goto L123;
+L754:          KismetSystemLibrary->PrintString(this, "char_rabbit ate something", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L855:          AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Play_E_SpaceBunny_Idle_Alt_02_Graze, this, true);
+L908:          KismetSystemLibrary->Delay(this, 1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -604063592, ExecutionFunction = "ExecuteUbergraph_Char_SpaceRabbit", CallbackTarget = this));
+L984:          goto ExecutionFlow.Pop();
+L985:          bool mbool4 = mFGCharacterPlayer->IsLocallyControlled();
+L1031:         bool mbool5 = EqualEqual_ObjectObject(this->mFriendActor, mFGCharacterPlayer);
+L1069:         bool mbool6 = BooleanAND(mbool5, mbool4);
+L1107:         if (!mbool6) goto L1455;
+L1121:         Controller* mController2 = mFGCharacterPlayer->GetController();
+L1163:         FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mController2);
+L1199:         bool mbool7 = mFGPlayerController;
+L1228:         if (!mbool7) goto ExecutionFlow.Pop();
+L1238:         HUD* mHUD = mFGPlayerController->GetHUD();
+L1280:         FGHUD* mFGHUD = Cast<Class /Script/FactoryGame.FGHUD>(mHUD);
+L1316:         bool mbool8 = mFGHUD;
+L1345:         if (!mbool8) goto ExecutionFlow.Pop();
+L1355:         mFGHUD->OpenInteractUI(Widget_SpaceRabbit, this);
+L1401:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEvent(Play_E_SpaceBunny_VO_Friendly, this, true);
+L1454:         goto ExecutionFlow.Pop();
+L1455:         this->SetNewFriend(mFGCharacterPlayer);
+L1478:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Char_SpaceRabbit ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnWalkBackStopped__DelegateSignature ==============
+============ END FUNCTION OnWalkBackStopped__DelegateSignature ==============

@@ -1,0 +1,1219 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION HideHotbarPresetInfo ==============
+L0:            this->mHotbarPresetInfoBox->SetVisibility(2);
+============ END FUNCTION HideHotbarPresetInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowHotbarPresetInfo ==============
+L0:            ExecutionFlow.Push(L2177);
+L5:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L29:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L65:           bool mbool = mFGPlayerController;
+L94:           mFGPlayerController->GetPresetHotbar(index, [ref] mPresetHotbar);
+L144:          PresetHotbar LocalPresetHotbar = mPresetHotbar;
+L171:          this->mHotbarPresetInfoBox->mItemName->SetText(LocalPresetHotbar.PresetName);
+L247:          int32 mint32 = Conv_ByteToInt(LocalPresetHotbar.IconIndex);
+L293:          KismetArrayLibrary->Array_Get([ref] LocalPresetHotbar.Hotbar.HotbarShortcuts, mint32, [ref] mFGHotbarShortcut);
+L370:          Texture2D* mTexture2D = mFGHotbarShortcut->GetDisplayImage();
+L416:          mSlateBrush.ImageSize = this->mHotbarPresetInfoBox->mPreviewIcon->Brush.ImageSize;
+L505:          mSlateBrush.Margin = this->mHotbarPresetInfoBox->mPreviewIcon->Brush.Margin;
+L594:          mSlateBrush.TintColor = this->mHotbarPresetInfoBox->mPreviewIcon->Brush.TintColor;
+L683:          mSlateBrush.ResourceObject = mTexture2D;
+L711:          mSlateBrush.DrawAs = this->mHotbarPresetInfoBox->mPreviewIcon->Brush.DrawAs;
+L800:          mSlateBrush.Tiling = this->mHotbarPresetInfoBox->mPreviewIcon->Brush.Tiling;
+L889:          mSlateBrush.Mirroring = this->mHotbarPresetInfoBox->mPreviewIcon->Brush.Mirroring;
+L978:          this->mHotbarPresetInfoBox->mPreviewIcon->SetBrush([ref] mSlateBrush);
+L1045:         this->mHotbarPresetInfoBox->SetVisibility(0);
+L1083:         UMGSequencePlayer* mUMGSequencePlayer = this->mHotbarPresetInfoBox->PlayAnimation(this->mHotbarPresetInfoBox->IconAnim, 0, 1, 0, 1);
+L1173:         this->mHotbarPresetInfo_SmallIconsContainer->ClearChildren();
+L1209:         int32 Temp_int_Loop_Counter_Variable = 0;
+L1232:         int32 Temp_int_Array_Index_Variable = 0;
+L1255:         int32 mint321 = KismetArrayLibrary->Array_Length([ref] LocalPresetHotbar.Hotbar.HotbarShortcuts);
+L1332:         bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L1370:         if (!mbool1) goto L2056;
+L1384:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L1411:         ExecutionFlow.Push(L2103);
+L1416:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1440:         FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);
+L1476:         bool mbool2 = mFGPlayerController1;
+L1505:         KismetArrayLibrary->Array_Get([ref] LocalPresetHotbar.Hotbar.HotbarShortcuts, Temp_int_Array_Index_Variable, [ref] mFGHotbarShortcut1);
+L1582:         bool mbool3 = mFGHotbarShortcut1->IsValidShortcut(mFGPlayerController1);
+L1637:         if (!mbool3) goto ExecutionFlow.Pop();
+L1647:         BPW_HobarPreset_Editor_SmallIcon* mBPW_HobarPreset_Editor_SmallIcon = WidgetBlueprintLibrary->Create(this, BPW_HobarPreset_Editor_SmallIcon, nullptr);
+L1700:         KismetArrayLibrary->Array_Get([ref] LocalPresetHotbar.Hotbar.HotbarShortcuts, Temp_int_Array_Index_Variable, [ref] mFGHotbarShortcut1);
+L1777:         Texture2D* mTexture2D1 = mFGHotbarShortcut1->GetDisplayImage();
+L1823:         KismetSystemLibrary->SetObjectPropertyByName(mBPW_HobarPreset_Editor_SmallIcon, "mIcon", mTexture2D1);
+L1886:         KismetSystemLibrary->SetIntPropertyByName(mBPW_HobarPreset_Editor_SmallIcon, "mIndex", Temp_int_Array_Index_Variable);
+L1949:         KismetSystemLibrary->SetBoolPropertyByName(mBPW_HobarPreset_Editor_SmallIcon, "mSmallIcon", true);
+L2004:         PanelSlot* mPanelSlot = this->mHotbarPresetInfo_SmallIconsContainer->AddChild(mBPW_HobarPreset_Editor_SmallIcon);
+L2055:         goto ExecutionFlow.Pop();
+L2056:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->FadeInHotbarPresetSmallIcons, 0, 1, 0, 1);
+L2102:         goto ExecutionFlow.Pop();
+L2103:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2145:         Temp_int_Loop_Counter_Variable = mint322;
+L2172:         goto L1255;
+============ END FUNCTION ShowHotbarPresetInfo ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHotbarPresetMenuButtonClicked ==============
+L0:            bool mbool = NotEqual_IntInt(MenuItemIndex, 0);
+L34:           if (!mbool) goto L149;
+L48:           mbool = NotEqual_IntInt(MenuItemIndex, 1);
+L82:           if (!mbool) goto L465;
+L96:           mbool = NotEqual_IntInt(MenuItemIndex, 2);
+L130:          if (!mbool) goto L904;
+L144:          <End of Inlined Event Graph Function>;
+L149:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L173:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L209:          bool mbool1 = mFGPlayerController;
+L238:          mFGPlayerController->GetPresetHotbar(HotbarPresetIndex, [ref] mPresetHotbar);
+L288:          TArray<FGHotbarShortcut*> LocalShortcuts = mPresetHotbar.Hotbar.HotbarShortcuts;
+L333:          int32 mint32 = Conv_ByteToInt(mPresetHotbar.IconIndex);
+L379:          this->mHotbarPresetEditor->OnOpen(mPresetHotbar.PresetName, mint32, HotbarPresetIndex, [ref] LocalShortcuts);
+L460:          <End of Inlined Event Graph Function>;
+L465:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L489:          FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);
+L525:          bool mbool2 = mFGPlayerController1;
+L554:          mFGPlayerController1->GetPresetHotbar(HotbarPresetIndex, [ref] mPresetHotbar1);
+L604:          mPlayerController1 = this->GetOwningPlayer();
+L628:          mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);
+L664:          mbool2 = mFGPlayerController1;
+L693:          TArray<FGHotbarShortcut*> mTArray<FGHotbarShortcut> = [];
+L704:          mFGPlayerController1->GetCurrentShortcuts([ref] mTArray<FGHotbarShortcut>);
+L745:          LocalShortcuts = mTArray<FGHotbarShortcut>;
+L772:          int32 mint321 = Conv_ByteToInt(mPresetHotbar1.IconIndex);
+L818:          this->mHotbarPresetEditor->OnOpen(mPresetHotbar1.PresetName, mint321, HotbarPresetIndex, [ref] LocalShortcuts);
+L899:          <End of Inlined Event Graph Function>;
+L904:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L928:          FGPlayerController* mFGPlayerController2 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController2);
+L964:          bool mbool3 = mFGPlayerController2;
+L993:          bool mbool4 = mFGPlayerController2->RemovePresetHotbar(HotbarPresetIndex);
+L1044:         if (!mbool4) goto L1072;
+L1058:         this->InitPresetHotbars();
+============ END FUNCTION OnHotbarPresetMenuButtonClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHotbarPresetUpdated ==============
+L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
+L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L60:           bool mbool = mFGPlayerController;
+L89:           int32 mint32 = mFGPlayerController->GetNumPresetHotbars();
+L139:          bool mbool1 = GreaterEqual_IntInt(PresetIndex, mint32);
+L177:          if (!mbool1) goto L373;
+L191:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L215:          FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);
+L251:          bool mbool2 = mFGPlayerController1;
+L280:          bool mbool3 = mFGPlayerController1->CreatePresetHotbarFromCurrentHotbar([ref] Name, IconIndex);
+L340:          if (!mbool3) goto L810;
+L354:          this->InitPresetHotbars();
+L368:          <End of Inlined Event Graph Function>;
+L373:          if (!ShouldOverwrite) goto L527;
+L387:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L411:          FGPlayerController* mFGPlayerController2 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController2);
+L447:          bool mbool4 = mFGPlayerController2;
+L476:          bool mbool5 = mFGPlayerController2->CopyCurrentHotbarToPresetHotbar(PresetIndex);
+L527:          PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L551:          FGPlayerController* mFGPlayerController3 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController3);
+L587:          bool mbool6 = mFGPlayerController3;
+L616:          mFGPlayerController3->ChangeNameOfPresetHotbar(PresetIndex, [ref] Name);
+L666:          mPlayerController3 = this->GetOwningPlayer();
+L690:          mFGPlayerController3 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController3);
+L726:          mbool6 = mFGPlayerController3;
+L755:          mFGPlayerController3->ChangeIconIndexOfPresetHotbar(PresetIndex, IconIndex);
+L805:          goto L354;
+============ END FUNCTION OnHotbarPresetUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnAddHotbarPreset ==============
+L0:            FText NewLocalVar_1 = "[object Object]";
+L67:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L91:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L127:          bool mbool = mFGPlayerController;
+L156:          bool mbool1 = mFGPlayerController->CanCreateNewPresetHotbar();
+L198:          if (!mbool1) goto L601;
+L212:          mPlayerController = this->GetOwningPlayer();
+L236:          mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L272:          mbool = mFGPlayerController;
+L301:          TArray<FGHotbarShortcut*> mTArray<FGHotbarShortcut> = [];
+L312:          mFGPlayerController->GetCurrentShortcuts([ref] mTArray<FGHotbarShortcut>);
+L353:          mPlayerController = this->GetOwningPlayer();
+L377:          mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L413:          mbool = mFGPlayerController;
+L442:          int32 mint32 = mFGPlayerController->GetNumPresetHotbars();
+L492:          this->mHotbarPresetEditor->OnOpen("[object Object]", 0, mint32, [ref] mTArray<FGHotbarShortcut>);
+============ END FUNCTION OnAddHotbarPreset ==============
+
+
+
+
+
+============ BEGIN FUNCTION InitPresetHotbars ==============
+L0:            ExecutionFlow.Push(L1237);
+L5:            this->mHotbarPresetContainer->ClearChildren();
+L41:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L65:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L101:          bool mbool = mFGPlayerController;
+L130:          TArray<PresetHotbar> mTArray<PresetHotbar> = [];
+L141:          mFGPlayerController->GetAllPresetHotbars([ref] mTArray<PresetHotbar>);
+L182:          int32 Temp_int_Loop_Counter_Variable = 0;
+L205:          int32 Temp_int_Array_Index_Variable = 0;
+L228:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<PresetHotbar>);
+L287:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L325:          if (!mbool1) goto L853;
+L339:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L366:          ExecutionFlow.Push(L1163);
+L371:          BPW_HotbarPreset_Button* mBPW_HotbarPreset_Button = WidgetBlueprintLibrary->Create(this, BPW_HotbarPreset_Button, nullptr);
+L424:          KismetSystemLibrary->SetIntPropertyByName(mBPW_HotbarPreset_Button, "mIndex", Temp_int_Array_Index_Variable);
+L487:          KismetArrayLibrary->Array_Get([ref] mTArray<PresetHotbar>, Temp_int_Array_Index_Variable, [ref] mPresetHotbar);
+L546:          KismetSystemLibrary->SetStructurePropertyByName(mBPW_HotbarPreset_Button, "mPresetHotbar", [ref] mPresetHotbar);
+L609:          PanelSlot* mPanelSlot = this->mHotbarPresetContainer->AddChild(mBPW_HotbarPreset_Button);
+L660:          mFScriptDelegate->BindUFunction(this, OnHotbarPresetMenuButtonClicked);
+L683:          mBPW_HotbarPreset_Button->OnMenuItemClicked.AddUnique(mFScriptDelegate);
+L724:          mFScriptDelegate1->BindUFunction(this, ShowHotbarPresetInfo);
+L747:          mBPW_HotbarPreset_Button->OnHotbarPresetHovered.AddUnique(mFScriptDelegate1);
+L788:          mFScriptDelegate2->BindUFunction(this, HideHotbarPresetInfo);
+L811:          mBPW_HotbarPreset_Button->OnHotbarPresetUnhovered.AddUnique(mFScriptDelegate2);
+L852:          goto ExecutionFlow.Pop();
+L853:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L877:          FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);
+L913:          bool mbool2 = mFGPlayerController1;
+L942:          bool mbool3 = mFGPlayerController1->CanCreateNewPresetHotbar();
+L984:          if (!mbool3) goto ExecutionFlow.Pop();
+L994:          BPW_AddHotbarPreset_Button* mBPW_AddHotbarPreset_Button = WidgetBlueprintLibrary->Create(this, BPW_AddHotbarPreset_Button, nullptr);
+L1047:         PanelSlot* mPanelSlot1 = this->mHotbarPresetContainer->AddChild(mBPW_AddHotbarPreset_Button);
+L1098:         mFScriptDelegate3->BindUFunction(this, OnAddHotbarPreset);
+L1121:         mBPW_AddHotbarPreset_Button->OnAddHotbarPresetClicked.AddUnique(mFScriptDelegate3);
+L1162:         goto ExecutionFlow.Pop();
+L1163:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1205:         Temp_int_Loop_Counter_Variable = mint321;
+L1232:         goto L228;
+============ END FUNCTION InitPresetHotbars ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetShortcutKeys ==============
+L0:            ExecutionFlow.Push(L587);
+L5:            int32 Temp_int_Variable = 0;
+L28:           bool mbool = LessEqual_IntInt(Temp_int_Variable, 9);
+L62:           if (!mbool) goto L481;
+L76:           ExecutionFlow.Push(L513);
+L81:           int32 mint32 = Add_IntInt(Temp_int_Variable, 1);
+L123:          FString mFString = KismetStringLibrary->Conv_IntToString(mint32);
+L182:          FString mFString1 = KismetStringLibrary->Concat_StrStr("Shortcut", mFString);
+L251:          FName mFName = KismetStringLibrary->Conv_StringToName(mFString1);
+L310:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L334:          InputActionKeyMapping mInputActionKeyMapping = FGInputLibrary->GetKeyMappingForAction(mPlayerController, mFName, false);
+L403:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalShorcutKeys, [ref] mInputActionKeyMapping.Key);
+L480:          goto ExecutionFlow.Pop();
+L481:          TArray<Key> ShortcutKeys = LocalShorcutKeys;
+L508:          <End of Inlined Event Graph Function>;
+L513:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L555:          Temp_int_Variable = mint322;
+L582:          goto L28;
+============ END FUNCTION GetShortcutKeys ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetShouldSearchResultBeBoundToHotbar ==============
+L0:            this->GetShortcutKeys([ref] mTArray<Key>);
+L23:           Key mKey = KismetInputLibrary->GetKey([ref] KeyEvent);
+L82:           bool mbool = KismetArrayLibrary->Array_Contains([ref] mTArray<Key>, [ref] mKey);
+L142:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L166:          bool mbool1 = this->mSearchResultsContainer->IsHovered();
+L212:          bool mbool2 = this->mSearchbar->HasUserFocusedDescendants(mPlayerController);
+L263:          bool mbool3 = BooleanAND(mbool, mbool2);
+L301:          bool mbool4 = BooleanAND(mbool3, mbool1);
+L339:          bool mbool5 = BooleanAND(mbool4, this->mMouseMoved);
+L377:          bool ReturnValue = mbool5;
+============ END FUNCTION GetShouldSearchResultBeBoundToHotbar ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnMouseMove ==============
+L0:            this->mMouseMoved = true;
+L11:           EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L61:           EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnMouseMove ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPreviewKeyDown ==============
+L0:            ExecutionFlow.Push(L2065);
+L5:            TArray<Key> mTArray<Key> = [ScriptStruct /Script/InputCore.Key(KeyName = "Zero"), ScriptStruct /Script/InputCore.Key(KeyName = "One"), ScriptStruct /Script/InputCore.Key(KeyName = "Two"), ScriptStruct /Script/InputCore.Key(KeyName = "Three"), ScriptStruct /Script/InputCore.Key(KeyName = "Four"), ScriptStruct /Script/InputCore.Key(KeyName = "Five"), ScriptStruct /Script/InputCore.Key(KeyName = "Six"), ScriptStruct /Script/InputCore.Key(KeyName = "Seven"), ScriptStruct /Script/InputCore.Key(KeyName = "Eight"), ScriptStruct /Script/InputCore.Key(KeyName = "Nine")];
+L286:          TArray<Key> NewLocalVar_0 = mTArray<Key>;
+L313:          ExecutionFlow.Push(L405);
+L318:          bool mbool = this->GetShouldSearchResultBeBoundToHotbar([ref] InKeyEvent);
+L351:          if (!mbool) goto ExecutionFlow.Pop();
+L361:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L385:          this->SetUserFocus(mPlayerController);
+L404:          goto ExecutionFlow.Pop();
+L405:          Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L464:          bool mbool1 = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Down"));
+L542:          bool mbool2 = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Up"));
+L620:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L644:          InputActionKeyMapping mInputActionKeyMapping = FGInputLibrary->GetKeyMappingForAction(mPlayerController1, "CycleToPreviousHotbar", false);
+L717:          InputActionKeyMapping mInputActionKeyMapping1 = FGInputLibrary->GetKeyMappingForAction(mPlayerController1, "CycleToNextHotbar", false);
+L790:          bool mbool3 = KismetInputLibrary->EqualEqual_KeyKey(mKey, mInputActionKeyMapping.Key);
+L859:          bool mbool4 = KismetInputLibrary->EqualEqual_KeyKey(mKey, mInputActionKeyMapping1.Key);
+L928:          bool mbool5 = BooleanAND(mbool3, mbool1);
+L966:          bool mbool6 = BooleanAND(mbool4, mbool2);
+L1004:         bool mbool7 = BooleanOR(mInputActionKeyMapping1.bShift, mInputActionKeyMapping1.bCtrl);
+L1060:         bool mbool8 = BooleanOR(mInputActionKeyMapping.bShift, mInputActionKeyMapping.bCtrl);
+L1116:         bool mbool9 = BooleanOR(mbool7, mInputActionKeyMapping1.bAlt);
+L1163:         bool mbool10 = BooleanOR(mbool8, mInputActionKeyMapping.bAlt);
+L1210:         bool mbool11 = BooleanOR(mbool9, mInputActionKeyMapping1.bCmd);
+L1257:         bool mbool12 = BooleanOR(mbool10, mInputActionKeyMapping.bCmd);
+L1304:         bool mbool13 = Not_PreBool(mbool11);
+L1333:         bool mbool14 = Not_PreBool(mbool12);
+L1362:         bool mbool15 = BooleanAND(mbool6, mbool13);
+L1400:         bool mbool16 = BooleanAND(mbool5, mbool14);
+L1438:         bool mbool17 = BooleanOR(mbool15, mbool16);
+L1476:         if (!mbool17) goto L1946;
+L1490:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1514:         FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController2);
+L1550:         bool mbool18 = mFGPlayerController;
+L1579:         if (!mbool18) goto L1946;
+L1593:         mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
+L1652:         mPlayerController1 = this->GetOwningPlayer();
+L1676:         mInputActionKeyMapping1 = FGInputLibrary->GetKeyMappingForAction(mPlayerController1, "CycleToNextHotbar", false);
+L1749:         mbool4 = KismetInputLibrary->EqualEqual_KeyKey(mKey, mInputActionKeyMapping1.Key);
+L1818:         if (!mbool4) goto L2028;
+L1832:         mFGPlayerController->CycleToNextHotbar();
+L1864:         EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L1914:         EventReply ReturnValue = mEventReply;
+L1941:         goto L2065;
+L1946:         EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L1996:         ReturnValue = mEventReply1;
+L2023:         goto L2065;
+L2028:         mFGPlayerController->CycleToPreviousHotbar();
+L2060:         goto L1864;
+============ END FUNCTION OnPreviewKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION SaveCategories ==============
+L0:            this->mOwningState->mLastSelectedBuildCategory = this->mSelectedBuildCategory;
+============ END FUNCTION SaveCategories ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnCategoryClicked ==============
+L0:            KismetArrayLibrary->Array_Get([ref] this->mAllBuildCategories, index, [ref] mTSubclassOf<FGBuildCategory>);
+L59:           bool mbool = NotEqual_ClassClass(mTSubclassOf<FGBuildCategory>, this->mSelectedBuildCategory);
+L97:           if (!mbool) goto L217;
+L111:          KismetArrayLibrary->Array_Get([ref] this->mAllBuildCategories, index, [ref] mTSubclassOf<FGBuildCategory>);
+L170:          this->mSelectedBuildCategory = mTSubclassOf<FGBuildCategory>;
+L189:          this->PopulateBuildings();
+L203:          this->SetSearchbarUnfocused();
+============ END FUNCTION OnCategoryClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSearchbarUnfocused ==============
+L0:            this->mIsSearchFocused = false;
+L11:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L35:           this->SetUserFocus(mPlayerController);
+L54:           this->ClearAndHideSearchResults();
+============ END FUNCTION SetSearchbarUnfocused ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSearchbarFocused ==============
+L0:            this->mIsSearchFocused = true;
+L11:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L35:           this->mSearchbar->mInputBox->SetUserFocus(mPlayerController);
+L98:           this->mSearchbar->mInputBox->SetText();
+============ END FUNCTION SetSearchbarFocused ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsShortcutSettingAllowed ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->mHoveredRecipeButton);
+L51:           if (!mbool) goto L357;
+L65:           bool mbool1 = this->mHoveredRecipeButton->Widget_ShoppingListButton->mInputNumberToAdd->IsVisible();
+L151:          bool mbool2 = this->mHoveredRecipeButton->Widget_ShoppingListButton->mInputNumberToAdd->HasKeyboardFocus();
+L237:          bool mbool3 = Not_PreBool(mbool1);
+L266:          bool mbool4 = Not_PreBool(mbool2);
+L295:          bool mbool5 = BooleanOR(mbool4, mbool3);
+L333:          bool ReturnValue = mbool5;
+L352:          goto L368;
+L357:          ReturnValue = false;
+============ END FUNCTION IsShortcutSettingAllowed ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearAndHideSearchResults ==============
+L0:            this->mSearchResultsContainer->ClearChildren();
+L36:           this->mSubCategoriesContainer->SetVisibility(4);
+L74:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->SearchResultHoveredTimerHandle);
+============ END FUNCTION ClearAndHideSearchResults ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSearchCreateResults ==============
+L0:            ExecutionFlow.Push(L1718);
+L5:            FText localSearchResult = mText;
+L32:           this->BlockMouse();
+L46:           FText mFText = KismetTextLibrary->Conv_StringToText("");
+L98:           bool mbool = KismetTextLibrary->NotEqual_TextText([ref] localSearchResult, [ref] mFText);
+L158:          if (!mbool) goto L1425;
+L172:          this->mSubCategoriesContainer->SetVisibility(1);
+L210:          mFScriptDelegate->BindUFunction(this, CheckSearchResultHover);
+L233:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
+L298:          this->SearchResultHoveredTimerHandle = mTimerHandle;
+L325:          this->mSearchResultsContainer->ClearChildren();
+L361:          int32 Temp_int_Loop_Counter_Variable = 0;
+L384:          int32 Temp_int_Array_Index_Variable = 0;
+L407:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mAvailableRecipes);
+L466:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L504:          if (!mbool1) goto L1440;
+L518:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L545:          ExecutionFlow.Push(L1644);
+L550:          KismetArrayLibrary->Array_Get([ref] this->mAvailableRecipes, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGRecipe>);
+L609:          TSubclassOf<FGRecipe> localRecipe = mTSubclassOf<FGRecipe>;
+L628:          bool mbool2 = KismetSystemLibrary->IsValidClass(localRecipe);
+L679:          if (!mbool2) goto ExecutionFlow.Pop();
+L689:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] localSearchResult);
+L748:          bool mbool3 = KismetStringLibrary->EqualEqual_StriStri(mFString, "");
+L801:          FText mFText1 = FGRecipe->GetRecipeName(localRecipe);
+L860:          FString mFString1 = KismetTextLibrary->Conv_TextToString([ref] mFText1);
+L919:          bool mbool4 = BPHUDHelpers->DoesTextContainSearchWords(mFString1, mFString, true, this);
+L985:          bool mbool5 = BooleanOR(mbool4, mbool3);
+L1023:         if (!mbool5) goto ExecutionFlow.Pop();
+L1033:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1057:         Widget_BuildMenuRecipeButton* mWidget_BuildMenuRecipeButton = WidgetBlueprintLibrary->Create(this, Widget_BuildMenuRecipeButton, mPlayerController);
+L1118:         KismetSystemLibrary->SetClassPropertyByName(mWidget_BuildMenuRecipeButton, "mRecipe", localRecipe);
+L1181:         VerticalBoxSlot* mVerticalBoxSlot = this->mSearchResultsContainer->AddChildToVerticalBox(mWidget_BuildMenuRecipeButton);
+L1232:         mFScriptDelegate1->BindUFunction(this, OnRecipeClicked);
+L1255:         mWidget_BuildMenuRecipeButton->OnRecipeClicked.AddUnique(mFScriptDelegate1);
+L1296:         mFScriptDelegate2->BindUFunction(this, OnRecipeHovered);
+L1319:         mWidget_BuildMenuRecipeButton->OnRecipeHovered.AddUnique(mFScriptDelegate2);
+L1360:         mFScriptDelegate3->BindUFunction(this, OnStopHoveringRecipe);
+L1383:         mWidget_BuildMenuRecipeButton->OnStopHoveringRecipe.AddUnique(mFScriptDelegate3);
+L1424:         goto ExecutionFlow.Pop();
+L1425:         this->ClearAndHideSearchResults();
+L1439:         goto ExecutionFlow.Pop();
+L1440:         Widget* mWidget = this->mSearchResultsContainer->GetChildAt(0);
+L1487:         Widget_BuildMenuRecipeButton* mWidget_BuildMenuRecipeButton1 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenuRecipeButton.Widget_BuildMenuRecipeButton_C>(mWidget);
+L1523:         bool mbool6 = mWidget_BuildMenuRecipeButton1;
+L1552:         if (!mbool6) goto ExecutionFlow.Pop();
+L1562:         mWidget_BuildMenuRecipeButton1->SimulateOnHovered();
+L1598:         this->CreateInfoBox(mWidget_BuildMenuRecipeButton1->mRecipe);
+L1643:         goto ExecutionFlow.Pop();
+L1644:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1686:         Temp_int_Loop_Counter_Variable = mint321;
+L1713:         goto L407;
+============ END FUNCTION OnSearchCreateResults ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyDown ==============
+L0:            TArray<Key> mTArray<Key> = [ScriptStruct /Script/InputCore.Key(KeyName = "Zero"), ScriptStruct /Script/InputCore.Key(KeyName = "One"), ScriptStruct /Script/InputCore.Key(KeyName = "Two"), ScriptStruct /Script/InputCore.Key(KeyName = "Three"), ScriptStruct /Script/InputCore.Key(KeyName = "Four"), ScriptStruct /Script/InputCore.Key(KeyName = "Five"), ScriptStruct /Script/InputCore.Key(KeyName = "Six"), ScriptStruct /Script/InputCore.Key(KeyName = "Seven"), ScriptStruct /Script/InputCore.Key(KeyName = "Eight"), ScriptStruct /Script/InputCore.Key(KeyName = "Nine")];
+L281:          TArray<Key> LocalNumKeys = mTArray<Key>;
+L308:          InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromKeyEvent([ref] InKeyEvent);
+L367:          bool mbool = KismetInputLibrary->InputEvent_IsAltDown([ref] mInputEvent);
+L418:          this->mIsAltDown = mbool;
+L437:          EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L487:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnKeyDown ==============
+
+
+
+
+
+============ BEGIN FUNCTION PopulateBuildings ==============
+L0:            ExecutionFlow.Push(L2266);
+L5:            this->mSubCategoriesContainer->ClearChildren();
+L41:           FGBlueprintFunctionLibrary->GetAvailableSubCategoriesForCategory(this->mOwningBuildGun, this->mSelectedBuildCategory, [ref] subCategories);
+L100:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L123:          int32 Temp_int_Array_Index_Variable1 = 0;
+L146:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] subCategories);
+L205:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint32);
+L243:          if (!mbool) goto L1848;
+L257:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable1;
+L284:          ExecutionFlow.Push(L1895);
+L289:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L313:          Widget_BuildMenu_SubCategoryButton* mWidget_BuildMenu_SubCategoryButton = WidgetBlueprintLibrary->Create(this, Widget_BuildMenu_SubCategoryButton, mPlayerController);
+L374:          KismetArrayLibrary->Array_Get([ref] subCategories, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGBuildSubCategory>);
+L433:          KismetSystemLibrary->SetClassPropertyByName(mWidget_BuildMenu_SubCategoryButton, "mSubCategory", mTSubclassOf<FGBuildSubCategory>);
+L496:          VerticalBoxSlot* mVerticalBoxSlot = this->mSubCategoriesContainer->AddChildToVerticalBox(mWidget_BuildMenu_SubCategoryButton);
+L547:          mVerticalBoxSlot->SetVerticalAlignment(1);
+L581:          KismetArrayLibrary->Array_Get([ref] subCategories, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGBuildSubCategory>);
+L640:          mWidget_BuildMenu_SubCategoryButton->GetSubcategoryNameTest(mTSubclassOf<FGBuildSubCategory>);
+L685:          mWidget_BuildMenu_SubCategoryButton->mBuildingsContainer->ClearChildren();
+L743:          KismetArrayLibrary->Array_Clear([ref] recipesInCategory);
+L784:          KismetArrayLibrary->Array_Get([ref] subCategories, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGBuildSubCategory>);
+L843:          FGBlueprintFunctionLibrary->GetAvailableRecipesInSubCategory(this->mOwningBuildGun, this->mSelectedBuildCategory, mTSubclassOf<FGBuildSubCategory>, [ref] recipesInCategory);
+L911:          KismetArrayLibrary->Array_Clear([ref] this->mBuildingWidgets);
+L952:          int32 Temp_int_Loop_Counter_Variable = 0;
+L975:          int32 Temp_int_Array_Index_Variable = 0;
+L998:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] recipesInCategory);
+L1057:         bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L1095:         if (!mbool1) goto L1969;
+L1109:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L1136:         ExecutionFlow.Push(L2192);
+L1141:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1165:         Widget_BuildMenuRecipeButton* mWidget_BuildMenuRecipeButton = WidgetBlueprintLibrary->Create(this, Widget_BuildMenuRecipeButton, mPlayerController1);
+L1226:         KismetArrayLibrary->Array_Get([ref] recipesInCategory, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGRecipe>);
+L1285:         KismetSystemLibrary->SetClassPropertyByName(mWidget_BuildMenuRecipeButton, "mRecipe", mTSubclassOf<FGRecipe>);
+L1348:         KismetArrayLibrary->Array_Get([ref] recipesInCategory, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGRecipe>);
+L1407:         this->CanAffordRecipe(mTSubclassOf<FGRecipe>, [ref] mbool2);
+L1439:         mWidget_BuildMenuRecipeButton->mCanAfford = mbool2;
+L1480:         WrapBoxSlot* mWrapBoxSlot = mWidget_BuildMenu_SubCategoryButton->mBuildingsContainer->AddChildToWrapBox(mWidget_BuildMenuRecipeButton);
+L1553:         mWrapBoxSlot->SetHorizontalAlignment(1);
+L1587:         mFScriptDelegate->BindUFunction(this, OnRecipeHovered);
+L1610:         mWidget_BuildMenuRecipeButton->OnRecipeHovered.AddUnique(mFScriptDelegate);
+L1651:         mFScriptDelegate1->BindUFunction(this, OnRecipeClicked);
+L1674:         mWidget_BuildMenuRecipeButton->OnRecipeClicked.AddUnique(mFScriptDelegate1);
+L1715:         mFScriptDelegate2->BindUFunction(this, OnStopHoveringRecipe);
+L1738:         mWidget_BuildMenuRecipeButton->OnStopHoveringRecipe.AddUnique(mFScriptDelegate2);
+L1779:         int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->mBuildingWidgets, [ref] mWidget_BuildMenuRecipeButton);
+L1847:         goto ExecutionFlow.Pop();
+L1848:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->FadeInCategory, 0, 1, 0, 1);
+L1894:         goto ExecutionFlow.Pop();
+L1895:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1937:         Temp_int_Loop_Counter_Variable1 = mint323;
+L1964:         goto L146;
+L1969:         Widget* mWidget = mWidget_BuildMenu_SubCategoryButton->mBuildingsContainer->GetChildAt(0);
+L2038:         this->SetDefaultFocusWidget(mWidget);
+L2057:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L2081:         mWidget = mWidget_BuildMenu_SubCategoryButton->mBuildingsContainer->GetChildAt(0);
+L2150:         mWidget->SetUserFocus(mPlayerController2);
+L2191:         goto ExecutionFlow.Pop();
+L2192:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2234:         Temp_int_Loop_Counter_Variable = mint324;
+L2261:         goto L998;
+============ END FUNCTION PopulateBuildings ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateShortcuts ==============
+L0:            ExecutionFlow.Push(L360);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mBuildingWidgets);
+L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L148:          if (!mbool) goto ExecutionFlow.Pop();
+L158:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L185:          ExecutionFlow.Push(L286);
+L190:          KismetArrayLibrary->Array_Get([ref] this->mBuildingWidgets, Temp_int_Array_Index_Variable, [ref] mWidget_BuildMenuRecipeButton);
+L249:          mWidget_BuildMenuRecipeButton->ResolveHotkeyIndex();
+L285:          goto ExecutionFlow.Pop();
+L286:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L328:          Temp_int_Loop_Counter_Variable = mint321;
+L355:          goto L51;
+============ END FUNCTION UpdateShortcuts ==============
+
+
+
+
+
+============ BEGIN FUNCTION HandleShortcutPressed ==============
+L0:            bool mbool = this->IsShortcutSettingAllowed();
+L24:           bool mbool1 = KismetSystemLibrary->IsValidClass(this->mHoveredRecipe);
+L75:           bool mbool2 = BooleanAND(mbool1, mbool);
+L113:          if (!mbool2) goto L291;
+L127:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L151:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L187:          bool mbool3 = mFGPlayerController;
+L216:          mFGPlayerController->SetRecipeShortcutOnIndex(this->mHoveredRecipe, shortcutIndex);
+L266:          this->UpdateShortcuts();
+L280:          bool setupNewShortcut = true;
+============ END FUNCTION HandleShortcutPressed ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnStopHoveringRecipe ==============
+L0:            ExecutionFlow.Push(L130);
+L5:            ExecutionFlow.Push(L70);
+L10:           bool mbool = EqualEqual_ClassClass(Recipe, this->mHoveredRecipe);
+L48:           if (!mbool) goto ExecutionFlow.Pop();
+L58:           this->mHoveredRecipe = nullptr;
+L69:           goto ExecutionFlow.Pop();
+L70:           bool mbool1 = EqualEqual_ObjectObject(RecipeButton, this->mHoveredRecipeButton);
+L108:          if (!mbool1) goto ExecutionFlow.Pop();
+L118:          this->mHoveredRecipeButton = nullptr;
+L129:          goto ExecutionFlow.Pop();
+============ END FUNCTION OnStopHoveringRecipe ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRecipeHovered ==============
+L0:            this->mHoveredRecipeButton = RecipeButton;
+L19:           this->mHoveredRecipe = Recipe;
+L38:           this->CreateInfoBox(this->mHoveredRecipe);
+============ END FUNCTION OnRecipeHovered ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnKeyUp ==============
+L0:            KeyEvent KeyEvent = InKeyEvent;
+L27:           InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromKeyEvent([ref] KeyEvent);
+L86:           bool mbool = KismetInputLibrary->InputEvent_IsAltDown([ref] mInputEvent);
+L137:          this->mIsAltDown = mbool;
+L156:          bool mbool1 = EqualEqual_IntInt(this->Widget_SlidingTabs->mActiveIndex, 0);
+L212:          bool mbool2 = Not_PreBool(this->mSearchWaitForKeyUp);
+L241:          Key mKey = KismetInputLibrary->GetKey([ref] KeyEvent);
+L300:          bool mbool3 = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "SpaceBar"));
+L378:          bool mbool4 = Not_PreBool(this->mIsSearchFocused);
+L407:          bool mbool5 = BooleanAND(mbool3, mbool4);
+L445:          bool mbool6 = BooleanAND(mbool5, mbool2);
+L483:          bool mbool7 = BooleanAND(mbool6, mbool1);
+L521:          if (!mbool7) goto L873;
+L535:          this->SetSearchbarFocused();
+L549:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L573:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L609:          bool mbool8 = mFGPlayerController;
+L638:          int32 mint32 = mFGPlayerController->GetShortcutIndexFromKey([ref] KeyEvent);
+L697:          bool mbool9 = NotEqual_IntInt(mint32, -1);
+L731:          if (!mbool9) goto L889;
+L745:          this->HandleShortcutPressed(mint32, [ref] mbool10);
+L777:          if (!mbool10) goto L889;
+L791:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L841:          EventReply ReturnValue = mEventReply;
+L868:          goto L966;
+L873:          this->mSearchWaitForKeyUp = false;
+L884:          goto L549;
+L889:          EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
+L939:          ReturnValue = mEventReply1;
+============ END FUNCTION OnKeyUp ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsCentralStorageBuilt ==============
+L0:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L43:           FGCentralStorageSubsystem* mFGCentralStorageSubsystem = FGCentralStorageSubsystem->Get(mGameStateBase);
+L94:           bool mbool = mFGCentralStorageSubsystem->IsCentralStorageBuilt();
+L136:          bool IsBuilt = mbool;
+============ END FUNCTION IsCentralStorageBuilt ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsSpaceElevatorBuilt ==============
+L0:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L43:           FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
+L79:           bool mbool = mFGGameState;
+L108:          bool mbool1 = mFGGameState->IsSpaceElevatorBuilt();
+L150:          bool IsBuilt = mbool1;
+============ END FUNCTION IsSpaceElevatorBuilt ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsTradingPostBuilt ==============
+L0:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L43:           FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
+L79:           bool mbool = mFGGameState;
+L108:          bool mbool1 = mFGGameState->IsTradingPostBuilt();
+L150:          bool IsBuilt = mbool1;
+============ END FUNCTION IsTradingPostBuilt ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetInfoboxVisiblity ==============
+L0:            this->BuildMenu_InfoBox->SetVisibility(2);
+============ END FUNCTION GetInfoboxVisiblity ==============
+
+
+
+
+
+============ BEGIN FUNCTION InitBuildMenu ==============
+L0:            FGBuildGun* mFGBuildGun = this->mOwningState->GetBuildGun();
+L42:           this->mOwningBuildGun = mFGBuildGun;
+L61:           bool mbool = KismetSystemLibrary->IsValid(this->mOwningBuildGun);
+L112:          if (!mbool) goto L265;
+L126:          TArray<TSubclassOf<FGRecipe>> mTArray<TSubclassOf<FGRecipe>> = [];
+L137:          this->mOwningBuildGun->GetAvailableRecipes([ref] mTArray<TSubclassOf<FGRecipe>>);
+L178:          this->mAvailableRecipes = mTArray<TSubclassOf<FGRecipe>>;
+L205:          FGRecipe->SortByName([ref] this->mAvailableRecipes);
+L246:          this->GetInfoboxVisiblity();
+L260:          <End of Inlined Event Graph Function>;
+L265:          FString mFString = KismetSystemLibrary->GetDisplayName(this);
+L316:          FString mFString1 = KismetStringLibrary->Concat_StrStr(mFString, " failed to initialize owning build gun.");
+L416:          KismetSystemLibrary->PrintString(this, mFString1, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), 2);
+============ END FUNCTION InitBuildMenu ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRecipeClicked ==============
+L0:            this->mOwningBuildGun->GotoBuildState(InputPin);
+============ END FUNCTION OnRecipeClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreateInfoBox ==============
+L0:            ExecutionFlow.Push(L4295);
+L5:            bool mbool = KismetSystemLibrary->IsValidClass(Recipe);
+L56:           uint8 Temp_byte_Variable = 2;
+L76:           uint8 Temp_byte_Variable1 = 0;
+L96:           bool Temp_bool_Variable = mbool;
+L115:          this->BuildMenu_InfoBox->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L204:          this->BuildMenu_InfoBox->mStatContainer->ClearChildren();
+L262:          this->BuildMenu_InfoBox->mCostContainer->ClearChildren();
+L320:          int32 Temp_int_Loop_Counter_Variable = 0;
+L343:          int32 Temp_int_Array_Index_Variable = 0;
+L366:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mAvailableRecipes);
+L425:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L463:          if (!mbool1) goto L1471;
+L477:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L504:          ExecutionFlow.Push(L3586);
+L509:          KismetArrayLibrary->Array_Get([ref] this->mAvailableRecipes, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGRecipe>);
+L568:          bool mbool2 = EqualEqual_ClassClass(mTSubclassOf<FGRecipe>, Recipe);
+L606:          if (!mbool2) goto ExecutionFlow.Pop();
+L616:          int32 Temp_int_Loop_Counter_Variable1 = 0;
+L639:          int32 Temp_int_Array_Index_Variable1 = 0;
+L662:          KismetArrayLibrary->Array_Get([ref] this->mAvailableRecipes, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGRecipe>);
+L721:          TArray<ItemAmount> mTArray<ItemAmount> = this->mOwningBuildGun->GetCostForRecipe(mTSubclassOf<FGRecipe>);
+L780:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L839:          bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint321);
+L877:          if (!mbool3) goto ExecutionFlow.Pop();
+L887:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable1;
+L914:          ExecutionFlow.Push(L3660);
+L919:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L943:          Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, Widget_CostSlotWrapper, mPlayerController);
+L1004:         WrapBoxSlot* mWrapBoxSlot = this->BuildMenu_InfoBox->mCostContainer->AddChildToWrapBox(mWidget_CostSlotWrapper);
+L1077:         Pawn* mPawn = this->GetOwningPlayerPawn();
+L1097:         KismetArrayLibrary->Array_Get([ref] this->mAvailableRecipes, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGRecipe>);
+L1156:         mTArray<ItemAmount> = this->mOwningBuildGun->GetCostForRecipe(mTSubclassOf<FGRecipe>);
+L1215:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable1, [ref] mItemAmount);
+L1274:         HUDHelpers->GetNumItemsFromPlayerInventory(mPawn, mItemAmount.ItemClass, this, [ref] mint322);
+L1347:         mWidget_CostSlotWrapper->Setup CostIcon(nullptr, mItemAmount, nullptr, 0, mint322, false, false, false);
+L1411:         mWidget_CostSlotWrapper->mCostSlotContainer->SetRenderOpacity(0);
+L1470:         goto ExecutionFlow.Pop();
+L1471:         TArray<ItemAmount> mTArray<ItemAmount>1 = FGRecipe->GetProducts(Recipe, false);
+L1531:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, 0, [ref] mItemAmount1);
+L1586:         bool mbool4 = KismetSystemLibrary->IsValidClass(mItemAmount1.ItemClass);
+L1646:         if (!mbool4) goto ExecutionFlow.Pop();
+L1656:         ExecutionFlow.Push(L4258);
+L1661:         ExecutionFlow.Push(L3734);
+L1666:         ExecutionFlow.Push(L3062);
+L1671:         mTArray<ItemAmount>1 = FGRecipe->GetProducts(Recipe, false);
+L1731:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, 0, [ref] mItemAmount1);
+L1786:         FText mFText = FGItemDescriptor->GetItemName(mItemAmount1.ItemClass);
+L1854:         this->BuildMenu_InfoBox->mItemName->SetText(mFText);
+L1921:         mTArray<ItemAmount>1 = FGRecipe->GetProducts(Recipe, false);
+L1981:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, 0, [ref] mItemAmount1);
+L2036:         FText mFText1 = FGItemDescriptor->GetItemDescription(mItemAmount1.ItemClass);
+L2104:         this->BuildMenu_InfoBox->mRichTextBlock->SetText([ref] mFText1);
+L2167:         mTArray<ItemAmount>1 = FGRecipe->GetProducts(Recipe, false);
+L2227:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, 0, [ref] mItemAmount1);
+L2282:         Texture2D* mTexture2D = FGItemDescriptor->GetBigIcon(mItemAmount1.ItemClass);
+L2342:         mSlateBrush.ImageSize = this->BuildMenu_InfoBox->mPreviewIcon->Brush.ImageSize;
+L2431:         mSlateBrush.Margin = this->BuildMenu_InfoBox->mPreviewIcon->Brush.Margin;
+L2520:         mSlateBrush.TintColor = this->BuildMenu_InfoBox->mPreviewIcon->Brush.TintColor;
+L2609:         mSlateBrush.ResourceObject = mTexture2D;
+L2637:         mSlateBrush.DrawAs = this->BuildMenu_InfoBox->mPreviewIcon->Brush.DrawAs;
+L2726:         mSlateBrush.Tiling = this->BuildMenu_InfoBox->mPreviewIcon->Brush.Tiling;
+L2815:         mSlateBrush.Mirroring = this->BuildMenu_InfoBox->mPreviewIcon->Brush.Mirroring;
+L2904:         this->BuildMenu_InfoBox->mPreviewIcon->SetBrush([ref] mSlateBrush);
+L2971:         UMGSequencePlayer* mUMGSequencePlayer = this->BuildMenu_InfoBox->PlayAnimation(this->BuildMenu_InfoBox->IconAnim, 0, 1, 0, 1);
+L3061:         goto ExecutionFlow.Pop();
+L3062:         mTArray<ItemAmount>1 = FGRecipe->GetProducts(Recipe, false);
+L3122:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, 0, [ref] mItemAmount1);
+L3177:         TSubclassOf<FGBuildingDescriptor> mTSubclassOf<FGBuildingDescriptor> = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(mItemAmount1.ItemClass);
+L3222:         bool mbool5 = mTSubclassOf<FGBuildingDescriptor>;
+L3251:         if (!mbool5) goto ExecutionFlow.Pop();
+L3261:         float mfloat = FGBuildingDescriptor->GetPowerProduction(mTSubclassOf<FGBuildingDescriptor>);
+L3320:         bool mbool6 = Greater_FloatFloat(mfloat, 0.10000000149011612);
+L3354:         if (!mbool6) goto ExecutionFlow.Pop();
+L3364:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L3388:         Widget_BuildMenu_PowerProduction* mWidget_BuildMenu_PowerProduction = WidgetBlueprintLibrary->Create(this, Widget_BuildMenu_PowerProduction, mPlayerController1);
+L3449:         KismetSystemLibrary->SetClassPropertyByName(mWidget_BuildMenu_PowerProduction, "mBuildingDesc", mTSubclassOf<FGBuildingDescriptor>);
+L3512:         WrapBoxSlot* mWrapBoxSlot1 = this->BuildMenu_InfoBox->mStatContainer->AddChildToWrapBox(mWidget_BuildMenu_PowerProduction);
+L3585:         goto ExecutionFlow.Pop();
+L3586:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L3628:         Temp_int_Loop_Counter_Variable = mint323;
+L3655:         goto L366;
+L3660:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L3702:         Temp_int_Loop_Counter_Variable1 = mint324;
+L3729:         goto L662;
+L3734:         mTArray<ItemAmount>1 = FGRecipe->GetProducts(Recipe, false);
+L3794:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, 0, [ref] mItemAmount1);
+L3849:         TSubclassOf<FGBuildingDescriptor> mTSubclassOf<FGBuildingDescriptor>1 = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(mItemAmount1.ItemClass);
+L3894:         bool mbool7 = mTSubclassOf<FGBuildingDescriptor>1;
+L3923:         if (!mbool7) goto ExecutionFlow.Pop();
+L3933:         float mfloat1 = FGBuildingDescriptor->GetPowerConsumption(mTSubclassOf<FGBuildingDescriptor>1);
+L3992:         bool mbool8 = Greater_FloatFloat(mfloat1, 0.10000000149011612);
+L4026:         if (!mbool8) goto ExecutionFlow.Pop();
+L4036:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L4060:         Widget_BuildMenu_PowerProduction* mWidget_BuildMenu_PowerProduction1 = WidgetBlueprintLibrary->Create(this, Widget_BuildMenu_PowerProduction, mPlayerController2);
+L4121:         KismetSystemLibrary->SetClassPropertyByName(mWidget_BuildMenu_PowerProduction1, "mBuildingDesc", mTSubclassOf<FGBuildingDescriptor>1);
+L4184:         WrapBoxSlot* mWrapBoxSlot2 = this->BuildMenu_InfoBox->mStatContainer->AddChildToWrapBox(mWidget_BuildMenu_PowerProduction1);
+L4257:         goto ExecutionFlow.Pop();
+L4258:         this->BuildMenu_InfoBox->AnimateCostSlots();
+L4294:         goto ExecutionFlow.Pop();
+============ END FUNCTION CreateInfoBox ==============
+
+
+
+
+
+============ BEGIN FUNCTION CreateCategoryButtons ==============
+L0:            ExecutionFlow.Push(L2265);
+L5:            FGBlueprintFunctionLibrary->GetAllBuildCategories(this->mOwningBuildGun, [ref] this->mAllBuildCategories);
+L55:           ExecutionFlow.Push(L931);
+L60:           int32 Temp_int_Loop_Counter_Variable1 = 0;
+L83:           int32 Temp_int_Array_Index_Variable2 = 0;
+L106:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mAvailableRecipes);
+L165:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint32);
+L203:          if (!mbool) goto ExecutionFlow.Pop();
+L213:          Temp_int_Array_Index_Variable2 = Temp_int_Loop_Counter_Variable1;
+L240:          ExecutionFlow.Push(L2117);
+L245:          int32 Temp_int_Loop_Counter_Variable = 0;
+L268:          int32 Temp_int_Array_Index_Variable = 0;
+L291:          KismetArrayLibrary->Array_Get([ref] this->mAvailableRecipes, Temp_int_Array_Index_Variable2, [ref] mTSubclassOf<FGRecipe>);
+L350:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(mTSubclassOf<FGRecipe>, false);
+L410:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L469:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L507:          if (!mbool1) goto ExecutionFlow.Pop();
+L517:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L544:          ExecutionFlow.Push(L2191);
+L549:          KismetArrayLibrary->Array_Get([ref] this->mAvailableRecipes, Temp_int_Array_Index_Variable2, [ref] mTSubclassOf<FGRecipe>);
+L608:          mTArray<ItemAmount> = FGRecipe->GetProducts(mTSubclassOf<FGRecipe>, false);
+L668:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L727:          TSubclassOf<FGBuildingDescriptor> mTSubclassOf<FGBuildingDescriptor> = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(mItemAmount.ItemClass);
+L772:          bool mbool2 = mTSubclassOf<FGBuildingDescriptor>;
+L801:          if (!mbool2) goto ExecutionFlow.Pop();
+L811:          TSubclassOf<FGBuildCategory> mTSubclassOf<FGBuildCategory> = FGBuildDescriptor->GetBuildCategory(mTSubclassOf<FGBuildingDescriptor>);
+L862:          int32 mint322 = KismetArrayLibrary->Array_AddUnique([ref] unlockedCategories, [ref] mTSubclassOf<FGBuildCategory>);
+L930:          goto ExecutionFlow.Pop();
+L931:          int32 Temp_int_Loop_Counter_Variable2 = 0;
+L954:          int32 Temp_int_Array_Index_Variable1 = 0;
+L977:          int32 mint323 = KismetArrayLibrary->Array_Length([ref] this->mAllBuildCategories);
+L1036:         bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable2, mint323);
+L1074:         if (!mbool3) goto ExecutionFlow.Pop();
+L1084:         Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable2;
+L1111:         ExecutionFlow.Push(L2043);
+L1116:         KismetArrayLibrary->Array_Get([ref] this->mAllBuildCategories, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGBuildCategory>1);
+L1175:         TSubclassOf<FGBuildCategory> LocalCategory = mTSubclassOf<FGBuildCategory>1;
+L1194:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1218:         Widget_CategoryButton* mWidget_CategoryButton = WidgetBlueprintLibrary->Create(this, Widget_CategoryButton, mPlayerController);
+L1279:         int32 mint324 = KismetArrayLibrary->Array_Find([ref] unlockedCategories, [ref] LocalCategory);
+L1347:         bool mbool4 = NotEqual_IntInt(mint324, -1);
+L1381:         KismetSystemLibrary->SetBoolPropertyByName(mWidget_CategoryButton, "mIsCategoryVisible", mbool4);
+L1444:         FText mFText = FGBuildCategory->GetCategoryName(LocalCategory);
+L1503:         KismetSystemLibrary->SetTextPropertyByName(mWidget_CategoryButton, "mName", [ref] mFText);
+L1566:         SlateBrush mSlateBrush = FGBuildCategory->GetCategoryIcon(LocalCategory);
+L1625:         Texture2D* mTexture2D = WidgetBlueprintLibrary->GetBrushResourceAsTexture2D([ref] mSlateBrush);
+L1676:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_CategoryButton, "mIcon", mTexture2D);
+L1739:         Widget_CategoryButton* LocalCategoryButton = mWidget_CategoryButton;
+L1758:         VerticalBoxSlot* mVerticalBoxSlot = this->mCategoryButtonsContainer->Container->AddChildToVerticalBox(LocalCategoryButton);
+L1831:         mFScriptDelegate->BindUFunction(this, OnCategoryClicked);
+L1854:         LocalCategoryButton->OnClicked.AddUnique(mFScriptDelegate);
+L1895:         bool mbool5 = EqualEqual_ClassClass(LocalCategory, this->mOwningState->mLastSelectedBuildCategory);
+L1955:         if (!mbool5) goto ExecutionFlow.Pop();
+L1965:         LocalCategoryButton->SetAsSelected();
+L2001:         this->mSelectedBuildCategory = this->mOwningState->mLastSelectedBuildCategory;
+L2042:         goto ExecutionFlow.Pop();
+L2043:         int32 mint325 = Add_IntInt(Temp_int_Loop_Counter_Variable2, 1);
+L2085:         Temp_int_Loop_Counter_Variable2 = mint325;
+L2112:         goto L977;
+L2117:         int32 mint326 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L2159:         Temp_int_Loop_Counter_Variable1 = mint326;
+L2186:         goto L106;
+L2191:         int32 mint327 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2233:         Temp_int_Loop_Counter_Variable = mint327;
+L2260:         goto L291;
+============ END FUNCTION CreateCategoryButtons ==============
+
+
+
+
+
+============ BEGIN FUNCTION CanAffordRecipe ==============
+L0:            ExecutionFlow.Push(L1473);
+L5:            bool mbool = EqualEqual_ClassClass(Recipe, Recipe_TradingPost);
+L43:           if (!mbool) goto L110;
+L57:           this->IsTradingPostBuilt([ref] mbool1);
+L80:           if (!mbool1) goto L110;
+L94:           bool CanAfford = false;
+L105:          <End of Inlined Event Graph Function>;
+L110:          bool mbool2 = EqualEqual_ClassClass(Recipe, Recipe_SpaceElevator);
+L148:          if (!mbool2) goto L215;
+L162:          this->IsSpaceElevatorBuilt([ref] mbool3);
+L185:          if (!mbool3) goto L215;
+L199:          CanAfford = false;
+L210:          <End of Inlined Event Graph Function>;
+L215:          int32 Temp_int_Loop_Counter_Variable = 0;
+L238:          int32 Temp_int_Array_Index_Variable = 0;
+L261:          TArray<ItemAmount> mTArray<ItemAmount> = this->mOwningBuildGun->GetCostForRecipe(Recipe);
+L320:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
+L379:          bool mbool4 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L417:          if (!mbool4) goto L1372;
+L431:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L458:          ExecutionFlow.Push(L1388);
+L463:          FGInventoryComponent* mFGInventoryComponent = this->mOwningBuildGun->GetInventory();
+L505:          mTArray<ItemAmount> = this->mOwningBuildGun->GetCostForRecipe(Recipe);
+L564:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L623:          int32 mint321 = mFGInventoryComponent->GetNumItems(mItemAmount.ItemClass);
+L691:          int32 NumItems = mint321;
+L718:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L742:          FGCentralStorageSubsystem* mFGCentralStorageSubsystem = FGCentralStorageSubsystem->Get(mPlayerController);
+L793:          bool mbool5 = KismetSystemLibrary->IsValid(mFGCentralStorageSubsystem);
+L844:          if (!mbool5) goto L1192;
+L858:          mPlayerController = this->GetOwningPlayer();
+L882:          mFGCentralStorageSubsystem = FGCentralStorageSubsystem->Get(mPlayerController);
+L933:          mTArray<ItemAmount> = this->mOwningBuildGun->GetCostForRecipe(Recipe);
+L992:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L1051:         int32 mint322 = mFGCentralStorageSubsystem->GetNumItemsFromCentralStorage(mItemAmount.ItemClass);
+L1119:         int32 mint323 = Add_IntInt(mint322, NumItems);
+L1165:         NumItems = mint323;
+L1192:         mTArray<ItemAmount> = this->mOwningBuildGun->GetCostForRecipe(Recipe);
+L1251:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L1310:         bool mbool6 = GreaterEqual_IntInt(NumItems, mItemAmount.amount);
+L1357:         if (!mbool6) goto L1462;
+L1371:         goto ExecutionFlow.Pop();
+L1372:         CanAfford = true;
+L1383:         <End of Inlined Event Graph Function>;
+L1388:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1430:         Temp_int_Loop_Counter_Variable = mint324;
+L1457:         goto L261;
+L1462:         CanAfford = false;
+============ END FUNCTION CanAffordRecipe ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnScroll ==============
+L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C:ExecuteUbergraph_Widget_BuildMenu.K2Node_CustomEvent_ScrollPos) = ScrollPos;
+L18:           this->ExecuteUbergraph_Widget_BuildMenu(254);
+============ END FUNCTION OnScroll ==============
+
+
+
+
+
+============ BEGIN FUNCTION RemoveHotbarUpdateListener ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu(1279);
+============ END FUNCTION RemoveHotbarUpdateListener ==============
+
+
+
+
+
+============ BEGIN FUNCTION ListenForHotbarUpdate ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu(1690);
+============ END FUNCTION ListenForHotbarUpdate ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu(1724);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu(1875);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEscapePressed ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu(1880);
+============ END FUNCTION OnEscapePressed ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_1_OnTextChanged__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C:ExecuteUbergraph_Widget_BuildMenu.K2Node_ComponentBoundEvent_Text1) = text;
+L18:           this->ExecuteUbergraph_Widget_BuildMenu(1885);
+============ END FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_1_OnTextChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_2_OnTextComitted__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C:ExecuteUbergraph_Widget_BuildMenu.K2Node_ComponentBoundEvent_Text) = text;
+L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C:ExecuteUbergraph_Widget_BuildMenu.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
+L36:           this->ExecuteUbergraph_Widget_BuildMenu(2062);
+============ END FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_2_OnTextComitted__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckSearchResultHover ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu(2476);
+============ END FUNCTION CheckSearchResultHover ==============
+
+
+
+
+
+============ BEGIN FUNCTION UnBlockMouse ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu(3020);
+============ END FUNCTION UnBlockMouse ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_MouseMoveChecker_K2Node_ComponentBoundEvent_0_OnMouseMoved__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu(3100);
+============ END FUNCTION BndEvt__Widget_MouseMoveChecker_K2Node_ComponentBoundEvent_0_OnMouseMoved__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BlockMouse ==============
+L0:            this->ExecuteUbergraph_Widget_BuildMenu(3115);
+============ END FUNCTION BlockMouse ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_6_OnInputBoxFocusReceived__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C:ExecuteUbergraph_Widget_BuildMenu.K2Node_ComponentBoundEvent_FocusEvent) = FocusEvent;
+L18:           this->ExecuteUbergraph_Widget_BuildMenu(3120);
+============ END FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_6_OnInputBoxFocusReceived__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_3_OnTabButtonClicked__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C:ExecuteUbergraph_Widget_BuildMenu.K2Node_ComponentBoundEvent_ButtonIndex) = ButtonIndex;
+L18:           this->ExecuteUbergraph_Widget_BuildMenu(3132);
+============ END FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_3_OnTabButtonClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mHotbarPresetEditor_K2Node_ComponentBoundEvent_4_OnPresetUpdated__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C:ExecuteUbergraph_Widget_BuildMenu.K2Node_ComponentBoundEvent_Name) = Name;
+L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C:ExecuteUbergraph_Widget_BuildMenu.K2Node_ComponentBoundEvent_IconIndex) = IconIndex;
+L36:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C:ExecuteUbergraph_Widget_BuildMenu.K2Node_ComponentBoundEvent_PresetIndex) = PresetIndex;
+L54:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C:ExecuteUbergraph_Widget_BuildMenu.K2Node_ComponentBoundEvent_ShouldOverwrite) = ShouldOverwrite;
+L72:           this->ExecuteUbergraph_Widget_BuildMenu(15);
+============ END FUNCTION BndEvt__mHotbarPresetEditor_K2Node_ComponentBoundEvent_4_OnPresetUpdated__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_BuildMenu ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->OnHotbarPresetUpdated(mFText, mint32, mint321, mbool);
+L65:           goto ExecutionFlow.Pop();
+L66:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L90:           this->SetUserFocus(mPlayerController);
+L109:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L133:          bool mbool1 = this->HasUserFocus(mPlayerController1);
+L162:          if (!mbool1) goto L177;
+L176:          goto ExecutionFlow.Pop();
+L177:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 66, UUID = -264114744, ExecutionFunction = "ExecuteUbergraph_Widget_BuildMenu", CallbackTarget = this));
+L253:          goto ExecutionFlow.Pop();
+L254:          goto ExecutionFlow.Pop();
+L255:          this->mShoppingList->isShoppingListInteractive = false;
+L288:          goto ExecutionFlow.Pop();
+L289:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L313:          Vector2D mVector2D = WidgetLayoutLibrary->GetViewportSize(this);
+L364:          BreakVector2D(mVector2D, [ref] mfloat, [ref] mfloat1);
+L401:          float mfloat2 = Divide_FloatFloat(mfloat1, 2);
+L443:          float mfloat3 = Divide_FloatFloat(mfloat, 2);
+L485:          int32 mint322 = FTrunc(mfloat2);
+L522:          int32 mint323 = FTrunc(mfloat3);
+L559:          mPlayerController2->SetMouseLocation(mint323, mint322);
+L609:          this->BlockMouse();
+L623:          goto L66;
+L628:          mFScriptDelegate->BindUFunction(this, OnScroll);
+L651:          this->Widget_Scrollbox->mScrollBox->OnUserScrolled.AddUnique(mFScriptDelegate);
+L714:          PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L738:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController3);
+L774:          bool mbool2 = mFGPlayerController;
+L803:          HUDHelpers->GetFGGameUI(mFGPlayerController, this, [ref] mFGGameUI);
+L858:          TScriptInterface<BPI_GameUI> mTScriptInterface<BPI_GameUI> = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Interface/UI/BPI_GameUI.BPI_GameUI_C>(mFGGameUI);
+L894:          bool mbool3 = mTScriptInterface<BPI_GameUI>;
+L923:          if (!mbool3) goto L1040;
+L937:          GetInterfaceUObject(mTScriptInterface<BPI_GameUI>)->GetShoppingList([ref] mWidget_ShoppingList);
+L983:          this->mShoppingList = mWidget_ShoppingList;
+L1002:         this->mShoppingList->isShoppingListInteractive = true;
+L1035:         goto L289;
+L1040:         Widget_ShoppingList* mWidget_ShoppingList = nullptr;
+L1051:         goto L983;
+L1056:         Pawn* mPawn = this->GetOwningPlayerPawn();
+L1076:         FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L1112:         bool mbool4 = mFGCharacterPlayer;
+L1141:         if (!mbool4) goto ExecutionFlow.Pop();
+L1151:         mFGCharacterPlayer->ToggleBuildGun();
+L1183:         goto ExecutionFlow.Pop();
+L1184:         this->RemoveHotbarUpdateListener();
+L1198:         goto L255;
+L1203:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
+L1227:         BPHUDHelpers->PopStackWidget(mPlayerController4, this, this);
+L1274:         goto L1056;
+L1279:         PlayerController* mPlayerController5 = this->GetOwningPlayer();
+L1303:         FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController5);
+L1339:         bool mbool5 = mFGPlayerController1;
+L1368:         if (!mbool5) goto ExecutionFlow.Pop();
+L1378:         mFScriptDelegate1->BindUFunction(this, UpdateShortcuts);
+L1401:         mFGPlayerController1->OnShortcutChanged.Remove(mFScriptDelegate1);
+L1442:         goto ExecutionFlow.Pop();
+L1443:         this->ListenForHotbarUpdate();
+L1457:         mFScriptDelegate2->BindUFunction(this, OnEscapePressed);
+L1480:         this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate2);
+L1521:         goto L628;
+L1526:         mPlayerController5 = this->GetOwningPlayer();
+L1550:         FGPlayerController* mFGPlayerController2 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController5);
+L1586:         bool mbool6 = mFGPlayerController2;
+L1615:         if (!mbool6) goto ExecutionFlow.Pop();
+L1625:         mFScriptDelegate1->BindUFunction(this, UpdateShortcuts);
+L1648:         mFGPlayerController2->OnShortcutChanged.AddUnique(mFScriptDelegate1);
+L1689:         goto ExecutionFlow.Pop();
+L1690:         goto L1526;
+L1695:         this->Destruct();
+L1705:         this->SaveCategories();
+L1719:         goto L1184;
+L1724:         goto L1695;
+L1729:         BP_BuildGunStateMenu* mBP_BuildGunStateMenu = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/BuildGun/BP_BuildGunStateMenu.BP_BuildGunStateMenu_C>(this->mInteractObject);
+L1765:         bool mbool7 = mBP_BuildGunStateMenu;
+L1794:         this->mOwningState = mBP_BuildGunStateMenu;
+L1813:         this->InitBuildMenu();
+L1827:         this->CreateCategoryButtons();
+L1841:         this->PopulateBuildings();
+L1855:         goto L1443;
+L1860:         this->Construct();
+L1870:         goto L1729;
+L1875:         goto L1860;
+L1880:         goto L1203;
+L1885:         FText mFText1 = KismetTextLibrary->Conv_StringToText(" ");
+L1938:         bool mbool8 = KismetTextLibrary->EqualEqual_TextText([ref] mFText2, [ref] mFText1);
+L1998:         if (!mbool8) goto L2038;
+L2012:         this->SetSearchbarUnfocused();
+L2026:         this->mSearchWaitForKeyUp = true;
+L2037:         goto ExecutionFlow.Pop();
+L2038:         this->OnSearchCreateResults(mFText2);
+L2061:         goto ExecutionFlow.Pop();
+L2062:         bool mbool9 = NotEqual_ByteByte(muint8, 1);
+L2093:         if (!mbool9) goto L2108;
+L2107:         goto ExecutionFlow.Pop();
+L2108:         Widget* mWidget = this->mSearchResultsContainer->GetChildAt(0);
+L2155:         bool mbool10 = KismetSystemLibrary->IsValid(mWidget);
+L2206:         if (!mbool10) goto L2388;
+L2220:         Widget* mWidget1 = this->mSearchResultsContainer->GetChildAt(0);
+L2267:         Widget_BuildMenuRecipeButton* mWidget_BuildMenuRecipeButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenuRecipeButton.Widget_BuildMenuRecipeButton_C>(mWidget1);
+L2303:         bool mbool11 = mWidget_BuildMenuRecipeButton;
+L2332:         if (!mbool11) goto ExecutionFlow.Pop();
+L2342:         this->OnRecipeClicked(mWidget_BuildMenuRecipeButton->mRecipe);
+L2387:         goto ExecutionFlow.Pop();
+L2388:         PlayerController* mPlayerController6 = this->GetOwningPlayer();
+L2412:         this->mSearchbar->mInputBox->SetUserFocus(mPlayerController6);
+L2475:         goto ExecutionFlow.Pop();
+L2476:         bool mbool12 = this->mSearchResultsContainer->HasAnyChildren();
+L2518:         if (!mbool12) goto ExecutionFlow.Pop();
+L2528:         Widget* mWidget2 = this->mSearchResultsContainer->GetChildAt(0);
+L2575:         bool mbool13 = this->mSearchResultsContainer->IsHovered();
+L2621:         bool mbool14 = mWidget2->IsHovered();
+L2667:         bool mbool15 = Not_PreBool(mbool14);
+L2696:         bool mbool16 = BooleanAND(mbool13, mbool15);
+L2734:         if (!mbool16) goto ExecutionFlow.Pop();
+L2744:         Widget* mWidget3 = this->mSearchResultsContainer->GetChildAt(0);
+L2791:         Widget_BuildMenuRecipeButton* mWidget_BuildMenuRecipeButton1 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenuRecipeButton.Widget_BuildMenuRecipeButton_C>(mWidget3);
+L2827:         bool mbool17 = mWidget_BuildMenuRecipeButton1;
+L2856:         if (!mbool17) goto ExecutionFlow.Pop();
+L2866:         mWidget_BuildMenuRecipeButton1->SimulateOnUnhovered();
+L2902:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->SearchResultHoveredTimerHandle);
+L2944:         goto ExecutionFlow.Pop();
+L2945:         this->mMouseHoverBlocker->SetVisibility(1);
+L2983:         this->Widget_MouseMoveChecker->StopCheckMouse();
+L3019:         goto ExecutionFlow.Pop();
+L3020:         goto L2945;
+L3025:         this->Widget_MouseMoveChecker->StartCheckMouse();
+L3061:         this->mMouseHoverBlocker->SetVisibility(0);
+L3099:         goto ExecutionFlow.Pop();
+L3100:         this->UnBlockMouse();
+L3114:         goto ExecutionFlow.Pop();
+L3115:         goto L3025;
+L3120:         this->mMouseMoved = false;
+L3131:         goto ExecutionFlow.Pop();
+L3132:         this->InitPresetHotbars();
+L3146:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_BuildMenu ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============

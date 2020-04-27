@@ -1,0 +1,52 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Service/BTS_IsEnemyInRange.BTS_IsEnemyInRange_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_IsEnemyInRange.BTS_IsEnemyInRange_C:ExecuteUbergraph_BTS_IsEnemyInRange.K2Node_Event_OwnerActor) = OwnerActor;
+L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_IsEnemyInRange.BTS_IsEnemyInRange_C:ExecuteUbergraph_BTS_IsEnemyInRange.K2Node_Event_DeltaSeconds) = DeltaSeconds;
+L36:           this->ExecuteUbergraph_BTS_IsEnemyInRange(10);
+============ END FUNCTION ReceiveTick ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveActivationAI ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_IsEnemyInRange.BTS_IsEnemyInRange_C:ExecuteUbergraph_BTS_IsEnemyInRange.K2Node_Event_OwnerController) = OwnerController;
+L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_IsEnemyInRange.BTS_IsEnemyInRange_C:ExecuteUbergraph_BTS_IsEnemyInRange.K2Node_Event_ControlledPawn) = ControlledPawn;
+L36:           this->ExecuteUbergraph_BTS_IsEnemyInRange(625);
+============ END FUNCTION ReceiveActivationAI ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BTS_IsEnemyInRange ==============
+L10:           FGEnemyController* mFGEnemyController = Cast<Class /Script/FactoryGame.FGEnemyController>(mActor);
+L46:           bool mbool = mFGEnemyController;
+L75:           if (!mbool) goto L728;
+L89:           this->mAIController = mFGEnemyController;
+L108:          BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->mIsInRangeBBKey, false);
+L151:          Object* mObject = BTFunctionLibrary->GetBlackboardValueAsObject(this, [ref] this->mEnemyBBKey);
+L203:          TScriptInterface<FGAggroTargetInterface> mTScriptInterface<FGAggroTargetInterface> = QueryInterface<Class /Script/FactoryGame.FGAggroTargetInterface>(mObject);
+L239:          bool mbool1 = mTScriptInterface<FGAggroTargetInterface>;
+L268:          if (!mbool1) goto L728;
+L282:          float mfloat = FGAttack->GetAttackActivationDistance(this->mAttackClass);
+L341:          Pawn* mPawn = this->mAIController->K2_GetPawn();
+L383:          mObject = BTFunctionLibrary->GetBlackboardValueAsObject(this, [ref] this->mEnemyBBKey);
+L435:          mTScriptInterface<FGAggroTargetInterface> = QueryInterface<Class /Script/FactoryGame.FGAggroTargetInterface>(mObject);
+L471:          mbool1 = mTScriptInterface<FGAggroTargetInterface>;
+L500:          bool mbool2 = FGCombatFunctionLibrary->IsWithinRange(mPawn, mTScriptInterface<FGAggroTargetInterface>, mfloat);
+L569:          BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->mIsInRangeBBKey, mbool2);
+L620:          <End of Inlined Event Graph Function>;
+L625:          FGEnemyController* mFGEnemyController1 = Cast<Class /Script/FactoryGame.FGEnemyController>(mAIController);
+L661:          bool mbool3 = mFGEnemyController1;
+L690:          if (!mbool3) goto L728;
+L704:          this->mAIController = mFGEnemyController1;
+L723:          goto L108;
+============ END FUNCTION ExecuteUbergraph_BTS_IsEnemyInRange ==============

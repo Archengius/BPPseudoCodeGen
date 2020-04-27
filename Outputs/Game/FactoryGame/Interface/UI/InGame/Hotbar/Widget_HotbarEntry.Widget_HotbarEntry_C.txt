@@ -1,0 +1,162 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Hotbar/Widget_HotbarEntry.Widget_HotbarEntry_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetIconVisibility ==============
+L0:            if (!this->CachedIsValid) goto L39;
+L14:           uint8 ReturnValue = 3;
+L34:           goto L59;
+L39:           ReturnValue = 2;
+============ END FUNCTION GetIconVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSlotTextColor ==============
+L0:            SlateColor mHotbarSlotTextActiveColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.05098000168800354, G = 0.05098000168800354, B = 0.05098000168800354, A = 1), ColorUseRule = 0);
+L68:           SlateColor mHotbarSlotTextDefaultColor = ScriptStruct /Script/SlateCore.SlateColor(SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), ColorUseRule = 0);
+L136:          if (!this->CachedIsActive) goto L182;
+L150:          SlateColor ReturnValue = mHotbarSlotTextActiveColor;
+L177:          goto L209;
+L182:          ReturnValue = mHotbarSlotTextDefaultColor;
+============ END FUNCTION GetSlotTextColor ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSlotBrush ==============
+L0:            Texture* mHotbarSlotDefault = hotbar_slot_default;
+L19:           Texture* mHotbarSlotActive = hotbar_slot_active;
+L38:           Texture* mHotbarSlotEmpty = hotbar_slot_empty;
+L57:           if (!this->CachedIsActive) goto L533;
+L71:           mSlateBrush.ImageSize = this->mHotbarSlot->Brush.ImageSize;
+L138:          mSlateBrush.Margin = this->mHotbarSlot->Brush.Margin;
+L205:          mSlateBrush.TintColor = this->mHotbarSlot->Brush.TintColor;
+L272:          mSlateBrush.ResourceObject = mHotbarSlotActive;
+L300:          mSlateBrush.DrawAs = this->mHotbarSlot->Brush.DrawAs;
+L367:          mSlateBrush.Tiling = this->mHotbarSlot->Brush.Tiling;
+L434:          mSlateBrush.Mirroring = this->mHotbarSlot->Brush.Mirroring;
+L501:          SlateBrush ReturnValue = mSlateBrush;
+L528:          goto L1466;
+L533:          if (!this->CachedIsValid) goto L1009;
+L547:          mSlateBrush1.ImageSize = this->mHotbarSlot->Brush.ImageSize;
+L614:          mSlateBrush1.Margin = this->mHotbarSlot->Brush.Margin;
+L681:          mSlateBrush1.TintColor = this->mHotbarSlot->Brush.TintColor;
+L748:          mSlateBrush1.ResourceObject = mHotbarSlotDefault;
+L776:          mSlateBrush1.DrawAs = this->mHotbarSlot->Brush.DrawAs;
+L843:          mSlateBrush1.Tiling = this->mHotbarSlot->Brush.Tiling;
+L910:          mSlateBrush1.Mirroring = this->mHotbarSlot->Brush.Mirroring;
+L977:          ReturnValue = mSlateBrush1;
+L1004:         goto L1466;
+L1009:         mSlateBrush2.ImageSize = this->mHotbarSlot->Brush.ImageSize;
+L1076:         mSlateBrush2.Margin = this->mHotbarSlot->Brush.Margin;
+L1143:         mSlateBrush2.TintColor = this->mHotbarSlot->Brush.TintColor;
+L1210:         mSlateBrush2.ResourceObject = mHotbarSlotEmpty;
+L1238:         mSlateBrush2.DrawAs = this->mHotbarSlot->Brush.DrawAs;
+L1305:         mSlateBrush2.Tiling = this->mHotbarSlot->Brush.Tiling;
+L1372:         mSlateBrush2.Mirroring = this->mHotbarSlot->Brush.Mirroring;
+L1439:         ReturnValue = mSlateBrush2;
+============ END FUNCTION GetSlotBrush ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetSlotText ==============
+L0:            bool mbool = BooleanOR(this->CachedIsActive, this->CachedIsValid);
+L38:           if (!mbool) goto L197;
+L52:           int32 mint32 = Add_IntInt(this->mShortcutIndex, 1);
+L94:           FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
+L165:          FText ReturnValue = mFText;
+L192:          goto L217;
+L197:          ReturnValue = ;
+============ END FUNCTION GetSlotText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetIcon ==============
+L0:            if (!this->CachedIsValid) goto L517;
+L14:           Texture2D* mTexture2D = this->mShortcut->GetDisplayImage();
+L60:           mSlateBrush.ImageSize = this->mIcon->Brush.ImageSize;
+L127:          mSlateBrush.Margin = this->mIcon->Brush.Margin;
+L194:          mSlateBrush.TintColor = this->mIcon->Brush.TintColor;
+L261:          mSlateBrush.ResourceObject = mTexture2D;
+L289:          mSlateBrush.DrawAs = this->mIcon->Brush.DrawAs;
+L356:          mSlateBrush.Tiling = this->mIcon->Brush.Tiling;
+L423:          mSlateBrush.Mirroring = this->mIcon->Brush.Mirroring;
+L490:          SlateBrush ReturnValue = mSlateBrush;
+============ END FUNCTION GetIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnHotbarUpdated ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Hotbar/Widget_HotbarEntry.Widget_HotbarEntry_C:ExecuteUbergraph_Widget_HotbarEntry.K2Node_CustomEvent_ShowNotification) = ShowNotification;
+L18:           this->ExecuteUbergraph_Widget_HotbarEntry(1407);
+============ END FUNCTION OnHotbarUpdated ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_HotbarEntry ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L39:           FGRecipeManager* mFGRecipeManager = FGRecipeManager->Get(mPlayerController);
+L90:           bool mbool = KismetSystemLibrary->IsValid(mFGRecipeManager);
+L141:          if (!mbool) goto L934;
+L155:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L179:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);
+L215:          bool mbool1 = mFGPlayerController;
+L244:          bool mbool2 = this->mShortcut->IsValidShortcut(mFGPlayerController);
+L299:          this->CachedIsValid = mbool2;
+L318:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L342:          FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController2);
+L378:          bool mbool3 = mFGPlayerController1;
+L407:          bool mbool4 = this->mShortcut->IsActive(mFGPlayerController1);
+L462:          this->CachedIsActive = mbool4;
+L481:          SlateBrush mSlateBrush = this->GetSlotBrush();
+L513:          this->mHotbarSlot->SetBrush([ref] mSlateBrush);
+L558:          SlateBrush mSlateBrush1 = this->GetIcon();
+L590:          this->mIcon->SetBrush([ref] mSlateBrush1);
+L635:          uint8 muint8 = this->GetIconVisibility();
+L667:          this->mIcon->SetVisibility(muint8);
+L712:          FText mFText = this->GetSlotText();
+L744:          this->mNumberText->SetText(mFText);
+L789:          SlateColor mSlateColor = this->GetSlotTextColor();
+L821:          this->mNumberText->SetColorAndOpacity(mSlateColor);
+L862:          if (!this->CachedIsActive) goto L1011;
+L876:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->FocusAnimation, 0, 1, 0, 1);
+L922:          this->WasActive = true;
+L933:          goto ExecutionFlow.Pop();
+L934:          KismetSystemLibrary->Delay(this, 0.05000000074505806, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -312706902, ExecutionFunction = "ExecuteUbergraph_Widget_HotbarEntry", CallbackTarget = this));
+L1010:         goto ExecutionFlow.Pop();
+L1011:         if (!this->WasActive) goto L1083;
+L1025:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->FocusAnimation, 0, 1, 1, 1);
+L1071:         this->WasActive = false;
+L1082:         goto ExecutionFlow.Pop();
+L1083:         if (!this->CachedIsValid) goto L1387;
+L1097:         Texture2D* mTexture2D = this->mShortcut->GetDisplayImage();
+L1143:         bool mbool5 = EqualEqual_ObjectObject(mTexture2D, this->LastShortcutTexture);
+L1181:         bool mbool6 = Not_PreBool(mbool5);
+L1210:         if (!mbool6) goto ExecutionFlow.Pop();
+L1220:         UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->SpawnAnimation, 0, 1, 0, 1);
+L1266:         Texture2D* mTexture2D1 = this->mShortcut->GetDisplayImage();
+L1312:         this->LastShortcutTexture = mTexture2D1;
+L1331:         if (!this->mShowNotification) goto ExecutionFlow.Pop();
+L1341:         this->mHotbarContainer->ShowNotification(this->mShortcutIndex);
+L1386:         goto ExecutionFlow.Pop();
+L1387:         this->LastShortcutTexture = 127_Grey;
+L1406:         goto ExecutionFlow.Pop();
+L1407:         this->mShowNotification = mbool7;
+L1426:         goto L15;
+============ END FUNCTION ExecuteUbergraph_Widget_HotbarEntry ==============

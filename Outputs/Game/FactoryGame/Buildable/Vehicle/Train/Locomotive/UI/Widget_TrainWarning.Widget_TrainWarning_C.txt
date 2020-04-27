@@ -1,0 +1,123 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_TrainWarning.Widget_TrainWarning_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ShouldForceWarning ==============
+L0:            bool mbool = NotEqual_BoolBool(ForceWarning, this->mForceWarning);
+L38:           bool mbool1 = KismetTextLibrary->NotEqual_TextText([ref] WarningText, [ref] this->mForcedWarningText);
+L98:           bool mbool2 = BooleanOR(mbool, mbool1);
+L136:          if (!mbool2) goto L293;
+L150:          this->mForceWarning = ForceWarning;
+L169:          this->mForcedWarningText = WarningText;
+L196:          KismetSystemLibrary->PrintString(this, "Warning", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0.3777419924736023, B = 0, A = 1), 2);
+L279:          this->UpdateWarning();
+============ END FUNCTION ShouldForceWarning ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateWarning ==============
+L0:            if (!this->mForceWarning) goto L123;
+L14:           KismetSystemLibrary->PrintString(this, "Hello", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L95:           this->ShowWarning(this->mForcedWarningText);
+L118:          <End of Inlined Event Graph Function>;
+L123:          uint8 muint8 = this->mTrain->GetSelfDrivingError();
+L173:          this->mCurrentWarning = muint8;
+L200:          bool mbool = NotEqual_ByteByte(this->mCurrentWarning, 0);
+L231:          if (!mbool) goto L475;
+L245:          mbool = NotEqual_ByteByte(this->mCurrentWarning, 1);
+L276:          if (!mbool) goto L494;
+L290:          mbool = NotEqual_ByteByte(this->mCurrentWarning, 2);
+L321:          if (!mbool) goto L588;
+L335:          mbool = NotEqual_ByteByte(this->mCurrentWarning, 3);
+L366:          if (!mbool) goto L664;
+L380:          mbool = NotEqual_ByteByte(this->mCurrentWarning, 4);
+L411:          if (!mbool) goto L744;
+L425:          mbool = NotEqual_ByteByte(this->mCurrentWarning, 5);
+L456:          if (!mbool) goto L835;
+L470:          <End of Inlined Event Graph Function>;
+L475:          this->HideWarning();
+L489:          <End of Inlined Event Graph Function>;
+L494:          FText WarningText = "[object Object]";
+L560:          this->ShowWarning(WarningText);
+L583:          <End of Inlined Event Graph Function>;
+L588:          WarningText = "[object Object]";
+L659:          goto L560;
+L664:          WarningText = "[object Object]";
+L739:          goto L560;
+L744:          WarningText = "[object Object]";
+L830:          goto L560;
+L835:          WarningText = "[object Object]";
+L918:          goto L560;
+============ END FUNCTION UpdateWarning ==============
+
+
+
+
+
+============ BEGIN FUNCTION HideWarning ==============
+L0:            this->mWarning->SetVisibility(1);
+L38:           this->StopAnimation(this->WarningPulse);
+============ END FUNCTION HideWarning ==============
+
+
+
+
+
+============ BEGIN FUNCTION ShowWarning ==============
+L0:            this->mWarningText->SetText(WarningText);
+L45:           this->mWarning->SetVisibility(0);
+L83:           bool mbool = this->IsAnimationPlaying(this->WarningPulse);
+L112:          bool mbool1 = Not_PreBool(mbool);
+L141:          if (!mbool1) goto L201;
+L155:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->WarningPulse, 0, 0, 0, 1);
+============ END FUNCTION ShowWarning ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_TrainWarning.Widget_TrainWarning_C:ExecuteUbergraph_Widget_TrainWarning.K2Node_CustomEvent_Train) = Train;
+L18:           this->ExecuteUbergraph_Widget_TrainWarning(10);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION CheckErrors ==============
+L0:            this->ExecuteUbergraph_Widget_TrainWarning(167);
+============ END FUNCTION CheckErrors ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_TrainWarning(288);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_TrainWarning ==============
+L10:           this->mTrain = mFGTrain;
+L29:           this->CheckErrors();
+L43:           mFScriptDelegate->BindUFunction(this, CheckErrors);
+L66:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mUpdateTime, true);
+L135:          this->mCheckErrorsTimer = mTimerHandle;
+L162:          <End of Inlined Event Graph Function>;
+L167:          uint8 muint8 = this->mTrain->GetSelfDrivingError();
+L217:          bool mbool = NotEqual_ByteByte(this->mCurrentWarning, muint8);
+L255:          if (!mbool) goto L330;
+L269:          this->UpdateWarning();
+L283:          <End of Inlined Event Graph Function>;
+L288:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mCheckErrorsTimer);
+============ END FUNCTION ExecuteUbergraph_Widget_TrainWarning ==============

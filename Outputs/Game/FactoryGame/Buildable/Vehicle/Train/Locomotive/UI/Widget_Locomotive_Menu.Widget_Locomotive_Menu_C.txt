@@ -1,0 +1,208 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Locomotive_Menu.Widget_Locomotive_Menu_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdatePowerStatus ==============
+L0:            bool mbool = KismetSystemLibrary->IsValid(this->FGLocomotive);
+L51:           if (!mbool) goto L317;
+L65:           FGPowerInfoComponent* mFGPowerInfoComponent = this->FGLocomotive->GetPowerInfo();
+L107:          bool mbool1 = mFGPowerInfoComponent->HasPower();
+L149:          bool LocalHasPower = mbool1;
+L168:          bool mbool2 = Not_PreBool(LocalHasPower);
+L197:          this->Widget_TrainStats->Widget_TrainWarning->ShouldForceWarning(mbool2, "[object Object]");
+L312:          <End of Inlined Event Graph Function>;
+L317:          LocalHasPower = this->mFakeHasPower;
+L336:          goto L168;
+============ END FUNCTION UpdatePowerStatus ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLocomotiveSpeed ==============
+L0:            FGLocomotiveMovementComponent* mFGLocomotiveMovementComponent = Locomotive->GetLocomotiveMovementComponent();
+L42:           float mfloat = mFGLocomotiveMovementComponent->GetForwardSpeed();
+L92:           float mfloat1 = FGBlueprintFunctionLibrary->CmS2KmH(mfloat);
+L151:          float mfloat2 = Abs(mfloat1);
+L188:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat2, 0, false, true, 1, 324, 0, 0);
+L271:          this->Widget_TrainStats->mTrainSpeedText->SetText(mFText);
+============ END FUNCTION GetLocomotiveSpeed ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetPowerConsumption ==============
+L0:            FGPowerInfoComponent* mFGPowerInfoComponent = Locomotive->GetPowerInfo();
+L42:           float mfloat = mFGPowerInfoComponent->GetTargetConsumption();
+L92:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 0, 0);
+L175:          this->Widget_TrainStats->mTrainPowerConsumptionText->SetText(mFText);
+============ END FUNCTION GetPowerConsumption ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_Menu(912);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION Init ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_Menu(1061);
+============ END FUNCTION Init ==============
+
+
+
+
+
+============ BEGIN FUNCTION Destruct ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_Menu(1156);
+============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateLocomotiveStats ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_Menu(1213);
+============ END FUNCTION UpdateLocomotiveStats ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnEscapePressed ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_Menu(1445);
+============ END FUNCTION OnEscapePressed ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnNameChanged ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Locomotive_Menu.Widget_Locomotive_Menu_C:ExecuteUbergraph_Widget_Locomotive_Menu.K2Node_CustomEvent_mName) = mName;
+L18:           this->ExecuteUbergraph_Widget_Locomotive_Menu(1450);
+============ END FUNCTION OnNameChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_TrainStats_K2Node_ComponentBoundEvent_1_OnAutopilotChanged__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Locomotive_Menu.Widget_Locomotive_Menu_C:ExecuteUbergraph_Widget_Locomotive_Menu.K2Node_ComponentBoundEvent_SelfDrivingEnabled) = SelfDrivingEnabled;
+L18:           this->ExecuteUbergraph_Widget_Locomotive_Menu(1603);
+============ END FUNCTION BndEvt__Widget_TrainStats_K2Node_ComponentBoundEvent_1_OnAutopilotChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__Widget_TrainStats_K2Node_ComponentBoundEvent_0_OnDockClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_Widget_Locomotive_Menu(1737);
+============ END FUNCTION BndEvt__Widget_TrainStats_K2Node_ComponentBoundEvent_0_OnDockClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnDockingStateChanged ==============
+L0:            PERSISTENT_FRAME(EnumProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Locomotive_Menu.Widget_Locomotive_Menu_C:ExecuteUbergraph_Widget_Locomotive_Menu.K2Node_CustomEvent_state) = State;
+L18:           this->ExecuteUbergraph_Widget_Locomotive_Menu(1862);
+============ END FUNCTION OnDockingStateChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_Locomotive_Menu ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           bool mbool = KismetSystemLibrary->IsValid(this->FGLocomotive);
+L66:           if (!mbool) goto L802;
+L80:           FGTrain* mFGTrain = this->FGLocomotive->GetTrain();
+L122:          this->mTrain = mFGTrain;
+L141:          this->Widget_Train_TimeTable->Init(this->mTrain);
+L186:          mFScriptDelegate->BindUFunction(this, OnEscapePressed);
+L209:          this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate);
+L250:          mFScriptDelegate1->BindUFunction(this, OnNameChanged);
+L273:          this->Widget_TrainStats->OnNameChanged.AddUnique(mFScriptDelegate1);
+L314:          mFScriptDelegate2->BindUFunction(this, UpdateLocomotiveStats);
+L337:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate2, 0.20000000298023224, true);
+L402:          this->mUpdateStatsTimer = mTimerHandle;
+L429:          FText mFText = this->mTrain->GetTrainName();
+L479:          this->Widget_TrainStats->SetTitle(mFText);
+L524:          this->Widget_TrainStats->Widget_TrainWarning->Init(this->mTrain);
+L591:          uint8 muint8 = this->mTrain->GetDockingState();
+L641:          bool mbool1 = this->mTrain->IsSelfDrivingEnabled();
+L683:          this->Widget_TrainStats->Init(mbool1, muint8);
+L737:          mFScriptDelegate3->BindUFunction(this, OnDockingStateChanged);
+L760:          this->mTrain->mOnDockingStateChanged.AddUnique(mFScriptDelegate3);
+L801:          goto ExecutionFlow.Pop();
+L802:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -57680593, ExecutionFunction = "ExecuteUbergraph_Widget_Locomotive_Menu", CallbackTarget = this));
+L878:          goto ExecutionFlow.Pop();
+L879:          this->mTrain->mOnDockingStateChanged->Clear();
+L911:          goto ExecutionFlow.Pop();
+L912:          bool mbool2 = KismetSystemLibrary->IsValid(this->mTrain);
+L963:          if (!mbool2) goto L15;
+L977:          this->mTrain = this->mTrain;
+L996:          this->Widget_TrainStats->mAddidtionalStatsContainer->SetVisibility(1);
+L1056:         goto L141;
+L1061:         FGLocomotive* mFGLocomotive = Cast<Class /Script/FactoryGame.FGLocomotive>(this->mInteractObject);
+L1097:         bool mbool3 = mFGLocomotive;
+L1126:         if (!mbool3) goto ExecutionFlow.Pop();
+L1136:         this->FGLocomotive = mFGLocomotive;
+L1155:         goto ExecutionFlow.Pop();
+L1156:         this->Destruct();
+L1166:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateStatsTimer);
+L1208:         goto L879;
+L1213:         this->UpdatePowerStatus();
+L1227:         bool mbool4 = KismetSystemLibrary->IsValid(this->FGLocomotive);
+L1278:         if (!mbool4) goto ExecutionFlow.Pop();
+L1288:         this->GetLocomotiveSpeed(this->FGLocomotive);
+L1311:         this->GetPowerConsumption(this->FGLocomotive);
+L1334:         goto ExecutionFlow.Pop();
+L1335:         bool mbool5 = KismetSystemLibrary->IsValid(this->FGLocomotive);
+L1386:         if (!mbool5) goto L1411;
+L1400:         this->OnEscapePressed();
+L1410:         goto ExecutionFlow.Pop();
+L1411:         this->OnClose->ProcessMulticastDelegate();
+L1430:         this->RemoveFromParent();
+L1444:         goto ExecutionFlow.Pop();
+L1445:         goto L1335;
+L1450:         PlayerController* mPlayerController = this->GetOwningPlayer();
+L1474:         BPHUDHelpers->GetDefaultRCO(mPlayerController, this, [ref] mBP_RemoteCallObject);
+L1529:         mBP_RemoteCallObject->Server_SetTrainName(this->mTrain, mFText1);
+L1583:         this->OnTrainNameChanged->ProcessMulticastDelegate();
+L1602:         goto ExecutionFlow.Pop();
+L1603:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1627:         BPHUDHelpers->GetDefaultRCO(mPlayerController1, this, [ref] mBP_RemoteCallObject1);
+L1682:         mBP_RemoteCallObject1->Server_SetTrainSelfDrivingEnabled(this->mTrain, mbool6);
+L1736:         goto ExecutionFlow.Pop();
+L1737:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1761:         BPHUDHelpers->GetDefaultRCO(mPlayerController2, this, [ref] mBP_RemoteCallObject2);
+L1816:         mBP_RemoteCallObject2->Server_DockTrain(this->mTrain);
+L1861:         goto ExecutionFlow.Pop();
+L1862:         this->Widget_TrainStats->UpdateDockingButton(muint81);
+L1907:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Widget_Locomotive_Menu ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnTrainNameChanged__DelegateSignature ==============
+============ END FUNCTION OnTrainNameChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClose__DelegateSignature ==============
+============ END FUNCTION OnClose__DelegateSignature ==============

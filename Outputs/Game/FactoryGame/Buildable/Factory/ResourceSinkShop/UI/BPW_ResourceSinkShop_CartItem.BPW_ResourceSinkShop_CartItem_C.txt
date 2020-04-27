@@ -1,0 +1,145 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop_CartItem.BPW_ResourceSinkShop_CartItem_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ChangeItemAmount ==============
+L0:            bool mbool = Less_IntInt(mNewAmount, 1);
+L34:           if (!mbool) goto L90;
+L48:           this->OnRemoveButtonClicked->ProcessMulticastDelegate(this->mCartItem.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668);
+L85:           <End of Inlined Event Graph Function>;
+L90:           this->OnItemAmountChanged->ProcessMulticastDelegate(this->mCartItem.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668, mNewAmount);
+============ END FUNCTION ChangeItemAmount ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateCartItem ==============
+L0:            this->mCartItem = mCartItem;
+L27:           SlateBrush mSlateBrush = FGSchematic->GetItemIcon(this->mCartItem.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668);
+L95:           this->mIcon->SetBrush([ref] mSlateBrush);
+L140:          FText mFText = KismetTextLibrary->Conv_IntToText(this->mCartItem.mCartItemAmount_6_93629BD24F75478DFED5F086C5732798, false, true, 1, 324);
+L220:          this->mInputNumberToAdd->SetText(mFText);
+L261:          FText mFText1 = FGSchematic->GetSchematicDisplayName(this->mCartItem.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668);
+L329:          this->mItemName->SetText(mFText1);
+L374:          TArray<ItemAmount> mTArray<ItemAmount> = FGSchematic->GetCost(this->mCartItem.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668);
+L442:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L497:          int32 mint32 = Multiply_IntInt(this->mCartItem.mCartItemAmount_6_93629BD24F75478DFED5F086C5732798, mItemAmount.amount);
+L561:          FText mFText2 = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
+L632:          mFormatArgumentData.ArgumentName = "amount";
+L667:          mFormatArgumentData.ArgumentValueType = 4;
+L696:          mFormatArgumentData.ArgumentValue = mFText2;
+L732:          mFormatArgumentData.ArgumentValueInt = 0;
+L764:          mFormatArgumentData.ArgumentValueFloat = 0;
+L796:          mFormatArgumentData.ArgumentValueGender = 0;
+L825:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
+L845:          FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L953:          this->mItemCost->SetText(mFText3);
+============ END FUNCTION UpdateCartItem ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_CartItem(10);
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mTrashButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_CartItem(193);
+============ END FUNCTION BndEvt__mTrashButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mRemoveFromCart_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_CartItem(235);
+============ END FUNCTION BndEvt__mRemoveFromCart_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mAddToCart_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
+L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_CartItem(314);
+============ END FUNCTION BndEvt__mAddToCart_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mInputNumberToAdd_K2Node_ComponentBoundEvent_3_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
+L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop_CartItem.BPW_ResourceSinkShop_CartItem_C:ExecuteUbergraph_BPW_ResourceSinkShop_CartItem.K2Node_ComponentBoundEvent_Text) = text;
+L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSinkShop_CartItem.BPW_ResourceSinkShop_CartItem_C:ExecuteUbergraph_BPW_ResourceSinkShop_CartItem.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
+L36:           this->ExecuteUbergraph_BPW_ResourceSinkShop_CartItem(393);
+============ END FUNCTION BndEvt__mInputNumberToAdd_K2Node_ComponentBoundEvent_3_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_ResourceSinkShop_CartItem ==============
+L10:           this->UpdateCartItem(this->mCartItem);
+L33:           bool mbool = FGSchematic->IsRepeatPurchasesAllowed(this->mCartItem.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668);
+L93:           if (!mbool) goto L150;
+L107:          this->mAddRemoveContainer->SetVisibility(0);
+L145:          <End of Inlined Event Graph Function>;
+L150:          this->mAddRemoveContainer->SetVisibility(2);
+L188:          <End of Inlined Event Graph Function>;
+L193:          this->OnRemoveButtonClicked->ProcessMulticastDelegate(this->mCartItem.mSchematic_2_F254EA0E48CE5A1D4DAD3296BA94D668);
+L230:          <End of Inlined Event Graph Function>;
+L235:          int32 mint32 = Subtract_IntInt(this->mCartItem.mCartItemAmount_6_93629BD24F75478DFED5F086C5732798, 1);
+L286:          this->ChangeItemAmount(mint32);
+L309:          <End of Inlined Event Graph Function>;
+L314:          int32 mint321 = Add_IntInt(this->mCartItem.mCartItemAmount_6_93629BD24F75478DFED5F086C5732798, 1);
+L365:          this->ChangeItemAmount(mint321);
+L388:          <End of Inlined Event Graph Function>;
+L393:          bool mbool1 = NotEqual_ByteByte(muint8, 0);
+L424:          if (!mbool1) goto L578;
+L438:          mbool1 = NotEqual_ByteByte(muint8, 1);
+L469:          if (!mbool1) goto L704;
+L483:          mbool1 = NotEqual_ByteByte(muint8, 2);
+L514:          if (!mbool1) goto L578;
+L528:          mbool1 = NotEqual_ByteByte(muint8, 3);
+L559:          if (!mbool1) goto L578;
+L573:          <End of Inlined Event Graph Function>;
+L578:          FText mFText = KismetTextLibrary->Conv_IntToText(this->mCartItem.mCartItemAmount_6_93629BD24F75478DFED5F086C5732798, false, true, 1, 324);
+L658:          this->mInputNumberToAdd->SetText(mFText);
+L699:          <End of Inlined Event Graph Function>;
+L704:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mconst FText);
+L763:          int32 mint322 = KismetStringLibrary->Conv_StringToInt(mFString);
+L822:          bool mbool2 = KismetStringLibrary->IsNumeric(mFString);
+L873:          bool mbool3 = Greater_IntInt(mint322, 0);
+L907:          bool mbool4 = BooleanAND(mbool2, mbool3);
+L945:          if (!mbool4) goto L578;
+L959:          mFString = KismetTextLibrary->Conv_TextToString([ref] mconst FText);
+L1018:         mint322 = KismetStringLibrary->Conv_StringToInt(mFString);
+L1077:         this->ChangeItemAmount(mint322);
+L1100:         mFString = KismetTextLibrary->Conv_TextToString([ref] mconst FText);
+L1159:         mint322 = KismetStringLibrary->Conv_StringToInt(mFString);
+L1218:         FText mFText1 = KismetTextLibrary->Conv_IntToText(mint322, false, true, 1, 324);
+L1289:         this->mInputNumberToAdd->SetText(mFText1);
+============ END FUNCTION ExecuteUbergraph_BPW_ResourceSinkShop_CartItem ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnItemAmountChanged__DelegateSignature ==============
+============ END FUNCTION OnItemAmountChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRemoveButtonClicked__DelegateSignature ==============
+============ END FUNCTION OnRemoveButtonClicked__DelegateSignature ==============

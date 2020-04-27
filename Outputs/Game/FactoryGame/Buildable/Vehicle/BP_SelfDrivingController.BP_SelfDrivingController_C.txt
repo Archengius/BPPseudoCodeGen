@@ -1,0 +1,59 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/BP_SelfDrivingController.BP_SelfDrivingController_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION ReceivePossess ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_SelfDrivingController.BP_SelfDrivingController_C:ExecuteUbergraph_BP_SelfDrivingController.K2Node_Event_PossessedPawn) = PossessedPawn;
+L18:           this->ExecuteUbergraph_BP_SelfDrivingController(668);
+============ END FUNCTION ReceivePossess ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveUnPossess ==============
+L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_SelfDrivingController.BP_SelfDrivingController_C:ExecuteUbergraph_BP_SelfDrivingController.K2Node_Event_UnpossessedPawn) = UnpossessedPawn;
+L18:           this->ExecuteUbergraph_BP_SelfDrivingController(10);
+============ END FUNCTION ReceiveUnPossess ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_SelfDrivingController ==============
+L10:           BP_WheeledVehicle* mBP_WheeledVehicle = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C>(mPawn);
+L46:           bool mbool = mBP_WheeledVehicle;
+L75:           if (!mbool) goto L1050;
+L89:           if (!mBP_WheeledVehicle->mIsFollowingPath) goto L226;
+L125:          mBP_WheeledVehicle->FlushNetDormancy();
+L157:          mBP_WheeledVehicle->mIsFollowingPath = false;
+L190:          mBP_WheeledVehicle->OnRep_mIsFollowingPath();
+L226:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] mBP_WheeledVehicle->mUpdateMovementHandle);
+L290:          FGTargetPointLinkedList* mFGTargetPointLinkedList = mBP_WheeledVehicle->GetTargetNodeLinkedList();
+L332:          mFGTargetPointLinkedList->SetCurrentTarget(nullptr);
+L365:          mBP_WheeledVehicle->ClientClearAIMovment();
+L401:          this->BrainComponent->StopLogic("");
+L439:          <End of Inlined Event Graph Function>;
+L444:          bool mbool1 = this->RunBehaviorTree(BT_SelfDrivingVehicle);
+L477:          mBP_WheeledVehicle1->FlushNetDormancy();
+L509:          mBP_WheeledVehicle1->mIsFollowingPath = true;
+L542:          mBP_WheeledVehicle1->OnRep_mIsFollowingPath();
+L578:          BlackboardComponent* mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(this);
+L621:          mBlackboardComponent->SetValueAsBool([ref] this->mWantsTargetBBKeyName, true);
+L663:          <End of Inlined Event Graph Function>;
+L668:          BP_WheeledVehicle* mBP_WheeledVehicle1 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C>(mPawn1);
+L704:          bool mbool2 = mBP_WheeledVehicle1;
+L733:          if (!mbool2) goto L1050;
+L747:          FGTargetPointLinkedList* mFGTargetPointLinkedList1 = mBP_WheeledVehicle1->GetTargetNodeLinkedList();
+L789:          FGTargetPoint* mFGTargetPoint = mFGTargetPointLinkedList1->GetFirstTarget();
+L831:          bool mbool3 = KismetSystemLibrary->IsValid(mFGTargetPoint);
+L882:          bool mbool4 = Not_PreBool(mBP_WheeledVehicle1->mIsRecordSessionActive);
+L933:          bool mbool5 = BooleanAND(mbool4, mbool3);
+L971:          bool mbool6 = BooleanAND(mbool5, mBP_WheeledVehicle1->mIsAutoPilotEnabled);
+L1031:         if (!mbool6) goto L1050;
+L1045:         goto L444;
+============ END FUNCTION ExecuteUbergraph_BP_SelfDrivingController ==============
