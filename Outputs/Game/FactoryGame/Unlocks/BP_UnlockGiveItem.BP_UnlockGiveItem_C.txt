@@ -26,14 +26,14 @@ L0:            TArray<UserWidget*> Widgets = ObjectProperty /Game/FactoryGame/Un
 L0:            ExecutionFlow.Push(L773);
 L5:            int32 Temp_int_Loop_Counter_Variable = 0;
 L28:           int32 Temp_int_Array_Index_Variable = 0;
-L51:           TArray<ItemAmount> mTArray<ItemAmount> = this->GetItemsToGive();
-L79:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
-L138:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L51:           TArray<ItemAmount> mTArrayItemAmount = this->GetItemsToGive();
+L79:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount);
+L138:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L176:          if (!mbool) goto L667;
 L190:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L217:          ExecutionFlow.Push(L699);
-L222:          mTArray<ItemAmount> = this->GetItemsToGive();
-L250:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L222:          mTArrayItemAmount = this->GetItemsToGive();
+L250:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable, [ref] mItemAmount);
 L309:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mItemAmount.ItemClass);
 L369:          FText mFText = FGItemDescriptor->GetItemName(mItemAmount.ItemClass);
 L437:          mFUnlockDataStruct.UnlockName_2_490383D6421D4A92D86E1F835769488A = mFText;
@@ -44,8 +44,8 @@ L578:          mFUnlockDataStruct.Unlock_29_06E6D017481991B0E94072A4F21FCC03 = t
 L598:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] localUnlockDataStruct, [ref] mFUnlockDataStruct);
 L666:          goto ExecutionFlow.Pop();
 L667:          TArray<FUnlockDataStruct> UnlockDataStruct = localUnlockDataStruct;
-L694:          <End of Inlined Event Graph Function>;
-L699:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L694:          // <End Inlined EventGraph Function>;
+L699:          int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L741:          Temp_int_Loop_Counter_Variable = mint322;
 L768:          goto L51;
 ============ END FUNCTION GetUnlockDataStruct ==============

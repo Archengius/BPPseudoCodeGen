@@ -7,7 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Message/Tutorial/IntroTuto
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_IntroTutorial_Complete(429);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_IntroTutorial_Complete, from label L429;
 ============ END FUNCTION Destruct ==============
 
 
@@ -16,21 +18,22 @@ L0:            this->ExecuteUbergraph_IntroTutorial_Complete(429);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_IntroTutorial_Complete ==============
 L5:            goto ComputedJump(EntryPoint);
-L15:           TArray<FGPlayerController*> mTArray<FGPlayerController> = [];
-L26:           GameplayStatics->GetAllActorsOfClass(this, FGPlayerController, [ref] mTArray<FGPlayerController>);
+L15:           TArray<FGPlayerController*> mTArrayFGPlayerController = [];
+L26:           GameplayStatics->GetAllActorsOfClass(this, ObjectConst(Class /Script/FactoryGame.FGPlayerController), [ref] mTArrayFGPlayerController);
 L77:           int32 Temp_int_Loop_Counter_Variable = 0;
 L100:          int32 Temp_int_Array_Index_Variable = 0;
-L123:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGPlayerController>);
-L182:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L123:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayFGPlayerController);
+L182:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L220:          if (!mbool) goto ExecutionFlow.Pop();
 L230:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L257:          ExecutionFlow.Push(L355);
-L262:          KismetArrayLibrary->Array_Get([ref] mTArray<FGPlayerController>, Temp_int_Array_Index_Variable, [ref] mFGPlayerController);
+L262:          KismetArrayLibrary->Array_Get([ref] mTArrayFGPlayerController, Temp_int_Array_Index_Variable, [ref] mFGPlayerController);
 L321:          mFGPlayerController->SetTutorialMode(false);
 L354:          goto ExecutionFlow.Pop();
-L355:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L355:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L397:          Temp_int_Loop_Counter_Variable = mint321;
 L424:          goto L123;
+L429:          // <Begin Inlined EventGraph Function Destruct>;
 L429:          this->Destruct();
 L439:          Pawn* mPawn = this->GetOwningPlayerPawn();
 L459:          bool mbool1 = mPawn->HasAuthority();

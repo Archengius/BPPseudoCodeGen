@@ -7,8 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBi
 
 
 ============ BEGIN FUNCTION ReceivePossess ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Controller_NonFlyingBird.Controller_NonFlyingBird_C:ExecuteUbergraph_Controller_NonFlyingBird.K2Node_Event_PossessedPawn) = PossessedPawn;
-L18:           this->ExecuteUbergraph_Controller_NonFlyingBird(87);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceivePossess;
+L18:           // Implementation: Function ExecuteUbergraph_Controller_NonFlyingBird, from label L87;
 ============ END FUNCTION ReceivePossess ==============
 
 
@@ -16,7 +17,9 @@ L18:           this->ExecuteUbergraph_Controller_NonFlyingBird(87);
 
 
 ============ BEGIN FUNCTION TryToJump ==============
-L0:            this->ExecuteUbergraph_Controller_NonFlyingBird(183);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: TryToJump;
+L0:            // Implementation: Function ExecuteUbergraph_Controller_NonFlyingBird, from label L183;
 ============ END FUNCTION TryToJump ==============
 
 
@@ -24,9 +27,9 @@ L0:            this->ExecuteUbergraph_Controller_NonFlyingBird(183);
 
 
 ============ BEGIN FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_0_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Controller_NonFlyingBird.Controller_NonFlyingBird_C:ExecuteUbergraph_Controller_NonFlyingBird.K2Node_ComponentBoundEvent_Actor) = Actor;
-L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Controller_NonFlyingBird.Controller_NonFlyingBird_C:ExecuteUbergraph_Controller_NonFlyingBird.K2Node_ComponentBoundEvent_Stimulus) = Stimulus;
-L36:           this->ExecuteUbergraph_Controller_NonFlyingBird(315);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_0_ActorPerceptionUpdatedDelegate__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Controller_NonFlyingBird, from label L315;
 ============ END FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_0_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
 
 
@@ -34,7 +37,9 @@ L36:           this->ExecuteUbergraph_Controller_NonFlyingBird(315);
 
 
 ============ BEGIN FUNCTION StartPanic ==============
-L0:            this->ExecuteUbergraph_Controller_NonFlyingBird(768);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StartPanic;
+L0:            // Implementation: Function ExecuteUbergraph_Controller_NonFlyingBird, from label L768;
 ============ END FUNCTION StartPanic ==============
 
 
@@ -43,12 +48,13 @@ L0:            this->ExecuteUbergraph_Controller_NonFlyingBird(768);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Controller_NonFlyingBird ==============
 L5:            goto ComputedJump(EntryPoint);
-L15:           bool mbool = this->UseBlackboard(BB_NonFlyingBird, [ref] mBlackboardComponent);
-L53:           bool mbool1 = this->RunBehaviorTree(BT_NonFlyingBird);
+L15:           bool mbool = this->UseBlackboard(ObjectConst(BlackboardData /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/AI/BB_NonFlyingBird.BB_NonFlyingBird), [ref] mBlackboardComponent);
+L53:           bool mbool1 = this->RunBehaviorTree(ObjectConst(BehaviorTree /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/AI/BT_NonFlyingBird.BT_NonFlyingBird));
 L86:           goto ExecutionFlow.Pop();
 L87:           this->ReceivePossess(mPawn);
 L106:          KismetSystemLibrary->Delay(this, 3, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -439682924, ExecutionFunction = "ExecuteUbergraph_Controller_NonFlyingBird", CallbackTarget = this));
 L182:          goto ExecutionFlow.Pop();
+L183:          // <Begin Inlined EventGraph Function TryToJump>;
 L183:          Pawn* mPawn1 = this->K2_GetPawn();
 L203:          Char_NonFlyingBird* mChar_NonFlyingBird = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Wildlife/NonFlyingBird/Char_NonFlyingBird.Char_NonFlyingBird_C>(mPawn1);
 L239:          bool mbool2 = mChar_NonFlyingBird;
@@ -57,11 +63,11 @@ L278:          mChar_NonFlyingBird->TryToJump();
 L314:          goto ExecutionFlow.Pop();
 L315:          BlackboardComponent* mBlackboardComponent1 = AIBlueprintHelperLibrary->GetBlackboard(this);
 L358:          bool mbool3 = KismetSystemLibrary->IsValid(mBlackboardComponent1);
-L409:          bool mbool4 = EqualEqual_NameName(mAIStimulus.Tag, "WeaponFire");
-L460:          bool mbool5 = EqualEqual_NameName(mAIStimulus.Tag, "PlayerSprinting");
-L511:          bool mbool6 = BooleanOR(mbool5, mbool4);
-L549:          bool mbool7 = BooleanAND(mAIStimulus.bSuccessfullySensed, mbool6);
-L596:          bool mbool8 = BooleanAND(mbool7, mbool3);
+L409:          bool mbool4 = mAIStimulus.Tag == "WeaponFire";
+L460:          bool mbool5 = mAIStimulus.Tag == "PlayerSprinting";
+L511:          bool mbool6 = mbool5 || mbool4;
+L549:          bool mbool7 = mAIStimulus.bSuccessfullySensed && mbool6;
+L596:          bool mbool8 = mbool7 && mbool3;
 L634:          if (!mbool8) goto ExecutionFlow.Pop();
 L644:          BlackboardComponent* mBlackboardComponent2 = AIBlueprintHelperLibrary->GetBlackboard(this);
 L687:          bool mbool9 = mBlackboardComponent2->GetValueAsBool([ref] this->mIsLuringBBKey);
@@ -69,6 +75,7 @@ L738:          if (!mbool9) goto L753;
 L752:          goto ExecutionFlow.Pop();
 L753:          this->StartPanic();
 L767:          goto ExecutionFlow.Pop();
+L768:          // <Begin Inlined EventGraph Function StartPanic>;
 L768:          this->StartPanic();
 L778:          BlackboardComponent* mBlackboardComponent3 = AIBlueprintHelperLibrary->GetBlackboard(this);
 L821:          mBlackboardComponent3->SetValueAsBool([ref] this->mPanicBBKeyName, true);

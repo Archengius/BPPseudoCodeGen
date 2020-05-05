@@ -7,18 +7,18 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/SpaceElevator/Widget_
 
 
 ============ BEGIN FUNCTION DropOntoInventorySlot ==============
-L0:            InventorySlot->GetItemClass([ref] mTSubclassOf<FGItemDescriptor>);
-L45:           bool mbool = Less_IntInt(this->mCurrentPaidOff, this->mItemAmount.amount);
-L92:           bool mbool1 = EqualEqual_ClassClass(mTSubclassOf<FGItemDescriptor>, this->mItemAmount.ItemClass);
-L139:          bool mbool2 = BooleanAND(mbool1, mbool);
+L0:            InventorySlot->GetItemClass([ref] mTSubclassOfFGItemDescriptor);
+L45:           bool mbool = this->mCurrentPaidOff < this->mItemAmount.amount;
+L92:           bool mbool1 = mTSubclassOfFGItemDescriptor == this->mItemAmount.ItemClass;
+L139:          bool mbool2 = mbool1 && mbool;
 L177:          if (!mbool2) goto L454;
 L191:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L215:          BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
 L251:          bool mbool3 = mBP_PlayerController;
-L280:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L280:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L331:          mBP_RemoteCallObject->Server_PayOffTowTruckUpgrade(this->mSpaceElevator, InventorySlot->mCachedInventoryComponent, InventorySlot->mSlotIdx);
 L438:          bool Result = true;
-L449:          <End of Inlined Event Graph Function>;
+L449:          // <End Inlined EventGraph Function>;
 L454:          Result = false;
 ============ END FUNCTION DropOntoInventorySlot ==============
 
@@ -28,7 +28,7 @@ L454:          Result = false;
 
 ============ BEGIN FUNCTION GetCustomTooltip ==============
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
-L24:           Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController);
+L24:           Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Tooltip.Widget_Tooltip_C), mPlayerController);
 L85:           KismetSystemLibrary->SetStructurePropertyByName(mWidget_Tooltip, "mItemDescriptor", [ref] this->mItemAmount);
 L148:          Widget* ReturnValue = mWidget_Tooltip;
 ============ END FUNCTION GetCustomTooltip ==============
@@ -38,7 +38,7 @@ L148:          Widget* ReturnValue = mWidget_Tooltip;
 
 
 ============ BEGIN FUNCTION GetPaidOffSlotVisibility ==============
-L0:            bool mbool = EqualEqual_IntInt(this->mItemAmount.amount, this->mCurrentPaidOff);
+L0:            bool mbool = this->mItemAmount.amount == this->mCurrentPaidOff;
 L47:           if (!mbool) goto L86;
 L61:           uint8 ReturnValue = 2;
 L81:           goto L106;
@@ -50,9 +50,9 @@ L86:           ReturnValue = 3;
 
 
 ============ BEGIN FUNCTION GetProgressBarVisibility ==============
-L0:            bool mbool = EqualEqual_IntInt(this->mItemAmount.amount, this->mCurrentPaidOff);
-L47:           bool mbool1 = LessEqual_IntInt(this->mCurrentPaidOff, 1);
-L81:           bool mbool2 = BooleanOR(mbool1, mbool);
+L0:            bool mbool = this->mItemAmount.amount == this->mCurrentPaidOff;
+L47:           bool mbool1 = this->mCurrentPaidOff <= 1;
+L81:           bool mbool2 = mbool1 || mbool;
 L119:          if (!mbool2) goto L158;
 L133:          uint8 ReturnValue = 2;
 L153:          goto L178;
@@ -77,7 +77,7 @@ L254:          SlateColor ReturnValue = mSlateColor;
 
 
 ============ BEGIN FUNCTION GetPaidOffFeedbackImage ==============
-L0:            bool mbool = EqualEqual_IntInt(this->mCurrentPaidOff, this->mItemAmount.amount);
+L0:            bool mbool = this->mCurrentPaidOff == this->mItemAmount.amount;
 L47:           if (!mbool) goto L86;
 L61:           uint8 ReturnValue = 3;
 L81:           goto L106;
@@ -91,7 +91,7 @@ L86:           ReturnValue = 2;
 ============ BEGIN FUNCTION GetProgressbarPercent ==============
 L0:            float mfloat = Conv_IntToFloat(this->mCurrentPaidOff);
 L37:           float mfloat1 = Conv_IntToFloat(this->mItemAmount.amount);
-L83:           float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L83:           float mfloat2 = mfloat / mfloat1;
 L129:          float mfloat3 = FClamp(mfloat2, 0, 1);
 L176:          float ReturnValue = mfloat3;
 ============ END FUNCTION GetProgressbarPercent ==============
@@ -121,7 +121,7 @@ L275:          ReturnValue = false;
 
 
 ============ BEGIN FUNCTION GetItemQuotaText ==============
-L0:            bool mbool = NotEqual_ClassClass(this->mItemAmount.ItemClass, Desc_SpaceElevatorBlocker);
+L0:            bool mbool = this->mItemAmount.ItemClass != ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/SpaceElevatorBlocker/Desc_SpaceElevatorBlocker.Desc_SpaceElevatorBlocker_C);
 L47:           if (!mbool) goto L609;
 L61:           mFormatArgumentData.ArgumentName = "1";
 L91:           mFormatArgumentData.ArgumentValueType = 0;
@@ -135,8 +135,8 @@ L314:          mFormatArgumentData1.ArgumentValue = ;
 L343:          mFormatArgumentData1.ArgumentValueInt = this->mCurrentPaidOff;
 L379:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L411:          mFormatArgumentData1.ArgumentValueGender = 0;
-L440:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
-L469:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L440:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData1, mFormatArgumentData];
+L469:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L577:          FText ReturnValue = mFText;
 L604:          goto L629;
 L609:          ReturnValue = ;
@@ -180,7 +180,9 @@ L596:          ReturnValue = ScriptStruct /Script/SlateCore.SlateBrush(ImageSize
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_SpaceElevatorPayOffSlot(747);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SpaceElevatorPayOffSlot, from label L747;
 ============ END FUNCTION Construct ==============
 
 
@@ -188,9 +190,9 @@ L0:            this->ExecuteUbergraph_Widget_SpaceElevatorPayOffSlot(747);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/SpaceElevator/Widget_SpaceElevatorPayOffSlot.Widget_SpaceElevatorPayOffSlot_C:ExecuteUbergraph_Widget_SpaceElevatorPayOffSlot.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/SpaceElevator/Widget_SpaceElevatorPayOffSlot.Widget_SpaceElevatorPayOffSlot_C:ExecuteUbergraph_Widget_SpaceElevatorPayOffSlot.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_SpaceElevatorPayOffSlot(882);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_SpaceElevatorPayOffSlot, from label L882;
 ============ END FUNCTION Tick ==============
 
 
@@ -198,7 +200,9 @@ L36:           this->ExecuteUbergraph_Widget_SpaceElevatorPayOffSlot(882);
 
 
 ============ BEGIN FUNCTION GlowTimer ==============
-L0:            this->ExecuteUbergraph_Widget_SpaceElevatorPayOffSlot(1216);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: GlowTimer;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SpaceElevatorPayOffSlot, from label L1216;
 ============ END FUNCTION GlowTimer ==============
 
 
@@ -217,17 +221,17 @@ L72:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this-
 L118:          goto ExecutionFlow.Pop();
 L119:          ExecutionFlow.Push(L441);
 L124:          KismetArrayLibrary->Array_Get([ref] this->mGamePhaseCost, Temp_int_Array_Index_Variable, [ref] mItemAmount);
-L183:          bool mbool = EqualEqual_ClassClass(mItemAmount.ItemClass, this->mItemAmount.ItemClass);
+L183:          bool mbool = mItemAmount.ItemClass == this->mItemAmount.ItemClass;
 L239:          if (!mbool) goto ExecutionFlow.Pop();
 L249:          KismetArrayLibrary->Array_Get([ref] this->mGamePhaseCost, Temp_int_Array_Index_Variable, [ref] mItemAmount);
-L308:          int32 mint32 = Subtract_IntInt(this->mItemAmount.amount, mItemAmount.amount);
+L308:          int32 mint32 = this->mItemAmount.amount - mItemAmount.amount;
 L372:          this->mCurrentPaidOff = mint32;
 L399:          KismetArrayLibrary->Array_Clear([ref] this->mGamePhaseCost);
 L440:          goto ExecutionFlow.Pop();
-L441:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L441:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L483:          int32 Temp_int_Loop_Counter_Variable = mint321;
 L510:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->mGamePhaseCost);
-L569:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint322);
+L569:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint322;
 L607:          if (!mbool1) goto ExecutionFlow.Pop();
 L617:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L644:          goto L119;
@@ -240,6 +244,7 @@ L716:          if (!Temp_bool_Variable1) goto L731;
 L730:          goto ExecutionFlow.Pop();
 L731:          Temp_bool_Variable1 = true;
 L742:          goto L15;
+L747:          // <Begin Inlined EventGraph Function Construct>;
 L747:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->AniDragDropSlot, 0, 0, 0, 1);
 L793:          mFScriptDelegate->BindUFunction(this, GlowTimer);
 L816:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.20000000298023224, true);
@@ -248,11 +253,12 @@ L882:          this->Tick(mGeometry, mfloat);
 L910:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
 L953:          FGGamePhaseManager* mFGGamePhaseManager = FGGamePhaseManager->Get(mGameStateBase);
 L1004:         uint8 muint8 = mFGGamePhaseManager->GetGamePhase();
-L1054:         uint8 muint81 = Add_ByteByte(muint8, 1);
-L1093:         uint8 muint82 = KismetNodeHelperLibrary->GetValidValue(EGamePhase, muint81);
+L1054:         uint8 muint81 = muint8 + 1;
+L1093:         uint8 muint82 = KismetNodeHelperLibrary->GetValidValue(ObjectConst(Enum /Script/FactoryGame.EGamePhase), muint81);
 L1161:         mFGGamePhaseManager->GetCostForGamePhase(muint82, [ref] this->mGamePhaseCost);
 L1211:         goto L649;
-L1216:         bool mbool2 = EqualEqual_IntInt(this->mCurrentPaidOff, this->mItemAmount.amount);
+L1216:         // <Begin Inlined EventGraph Function GlowTimer>;
+L1216:         bool mbool2 = this->mCurrentPaidOff == this->mItemAmount.amount;
 L1263:         if (!mbool2) goto L700;
 L1277:         goto L716;
 ============ END FUNCTION ExecuteUbergraph_Widget_SpaceElevatorPayOffSlot ==============

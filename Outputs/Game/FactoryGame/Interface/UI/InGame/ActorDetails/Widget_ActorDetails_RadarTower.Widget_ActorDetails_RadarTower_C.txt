@@ -21,17 +21,17 @@ L192:          FText Result = mFText;
 L0:            float mfloat = this->mRadarTower->GetTimeToNextExpansion();
 L50:           Timespan mTimespan = FromSeconds(mfloat);
 L87:           BreakTimespan(mTimespan, [ref] mint32, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324);
-L151:          int32 mint325 = Multiply_IntInt(mint32, 24);
+L151:          int32 mint325 = mint32 * 24;
 L193:          FText mFText = KismetTextLibrary->Conv_IntToText(mint323, false, true, 2, 324);
-L264:          int32 mint326 = Add_IntInt(mint325, mint321);
+L264:          int32 mint326 = mint325 + mint321;
 L310:          mFormatArgumentData.ArgumentName = "seconds";
 L346:          mFormatArgumentData.ArgumentValueType = 4;
 L375:          mFormatArgumentData.ArgumentValue = mFText;
 L411:          mFormatArgumentData.ArgumentValueInt = 0;
 L443:          mFormatArgumentData.ArgumentValueFloat = 0;
 L475:          mFormatArgumentData.ArgumentValueGender = 0;
-L504:          int32 mint327 = Multiply_IntInt(mint326, 60);
-L546:          int32 mint328 = Add_IntInt(mint327, mint322);
+L504:          int32 mint327 = mint326 * 60;
+L546:          int32 mint328 = mint327 + mint322;
 L592:          FText mFText1 = KismetTextLibrary->Conv_IntToText(mint328, false, true, 2, 324);
 L663:          mFormatArgumentData1.ArgumentName = "minutes";
 L699:          mFormatArgumentData1.ArgumentValueType = 4;
@@ -39,8 +39,8 @@ L728:          mFormatArgumentData1.ArgumentValue = mFText1;
 L764:          mFormatArgumentData1.ArgumentValueInt = 0;
 L796:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L828:          mFormatArgumentData1.ArgumentValueGender = 0;
-L857:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
-L886:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L857:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData1, mFormatArgumentData];
+L886:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L1004:         FText Result = mFText2;
 ============ END FUNCTION GetTimeLeftInText ==============
 
@@ -49,7 +49,9 @@ L1004:         FText Result = mFText2;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_ActorDetails_RadarTower(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ActorDetails_RadarTower, from label L10;
 ============ END FUNCTION Construct ==============
 
 
@@ -57,7 +59,9 @@ L0:            this->ExecuteUbergraph_Widget_ActorDetails_RadarTower(10);
 
 
 ============ BEGIN FUNCTION UpdateDetails ==============
-L0:            this->ExecuteUbergraph_Widget_ActorDetails_RadarTower(501);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: UpdateDetails;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ActorDetails_RadarTower, from label L501;
 ============ END FUNCTION UpdateDetails ==============
 
 
@@ -65,7 +69,9 @@ L0:            this->ExecuteUbergraph_Widget_ActorDetails_RadarTower(501);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_ActorDetails_RadarTower(986);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ActorDetails_RadarTower, from label L986;
 ============ END FUNCTION Destruct ==============
 
 
@@ -73,24 +79,26 @@ L0:            this->ExecuteUbergraph_Widget_ActorDetails_RadarTower(986);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_ActorDetails_RadarTower ==============
+L10:           // <Begin Inlined EventGraph Function Construct>;
 L10:           this->Construct();
 L20:           this->Widget_ActorDetails_Container->SetShowPointer(this->ShowPointer);
 L65:           FGBuildableRadarTower* mFGBuildableRadarTower = Cast<Class /Script/FactoryGame.FGBuildableRadarTower>(this->mActor);
 L101:          bool mbool = mFGBuildableRadarTower;
 L130:          if (!mbool) goto L1028;
 L144:          this->mRadarTower = mFGBuildableRadarTower;
-L163:          TScriptInterface<FGActorRepresentationInterface> mTScriptInterface<FGActorRepresentationInterface> = QueryInterface<Class /Script/FactoryGame.FGActorRepresentationInterface>(this->mRadarTower);
-L199:          bool mbool1 = mTScriptInterface<FGActorRepresentationInterface>;
+L163:          TScriptInterface<FGActorRepresentationInterface> mTScriptInterfaceFGActorRepresentationInterface = QueryInterface<Class /Script/FactoryGame.FGActorRepresentationInterface>(this->mRadarTower);
+L199:          bool mbool1 = mTScriptInterfaceFGActorRepresentationInterface;
 L228:          if (!mbool1) goto L476;
-L242:          FText mFText = GetInterfaceUObject(mTScriptInterface<FGActorRepresentationInterface>)->GetActorRepresentationText();
+L242:          FText mFText = GetInterfaceUObject(mTScriptInterfaceFGActorRepresentationInterface)->GetActorRepresentationText();
 L297:          this->Widget_ActorDetails_Container->SetTitle(mFText);
 L342:          this->UpdateDetails();
 L356:          mFScriptDelegate->BindUFunction(this, UpdateDetails);
 L379:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.5, true);
 L444:          this->mUpdateTimer = mTimerHandle;
-L471:          <End of Inlined Event Graph Function>;
+L471:          // <End Inlined EventGraph Function>;
 L476:          mFText = ;
 L496:          goto L297;
+L501:          // <Begin Inlined EventGraph Function UpdateDetails>;
 L501:          this->GetTimeLeftInText([ref] mFText1);
 L524:          this->mTimeLeft->SetText(mFText1);
 L569:          FText Temp_text_Variable = "[object Object]";
@@ -109,6 +117,7 @@ default -> mFText4;
 case true -> Temp_text_Variable1;
 default -> mFText3;
 });
-L981:          <End of Inlined Event Graph Function>;
+L981:          // <End Inlined EventGraph Function>;
+L986:          // <Begin Inlined EventGraph Function Destruct>;
 L986:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateTimer);
 ============ END FUNCTION ExecuteUbergraph_Widget_ActorDetails_RadarTower ==============

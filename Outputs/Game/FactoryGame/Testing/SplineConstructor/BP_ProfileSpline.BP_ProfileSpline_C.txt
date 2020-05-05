@@ -12,23 +12,23 @@ L5:            FString mFString = KismetSystemLibrary->GetCommandLine();
 L55:           FString OutString = "";
 L75:           int32 mint32 = KismetStringLibrary->Len(VariableName);
 L134:          int32 mint321 = KismetStringLibrary->FindSubstring(mFString, VariableName, false, false, -1);
-L209:          int32 mint322 = Add_IntInt(mint321, mint32);
+L209:          int32 mint322 = mint321 + mint32;
 L255:          int32 Temp_int_Variable = mint322;
 L282:          mint32 = KismetStringLibrary->Len(VariableName);
 L341:          mint321 = KismetStringLibrary->FindSubstring(mFString, VariableName, false, false, -1);
-L416:          mint322 = Add_IntInt(mint321, mint32);
+L416:          mint322 = mint321 + mint32;
 L462:          int32 mint323 = KismetStringLibrary->FindSubstring(mFString, " ", false, false, mint322);
-L535:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint323);
+L535:          bool mbool = Temp_int_Variable <= mint323;
 L573:          if (!mbool) goto L806;
 L587:          ExecutionFlow.Push(L838);
-L592:          TArray<FString> mTArray<FString> = KismetStringLibrary->GetCharacterArrayFromString(mFString);
-L651:          KismetArrayLibrary->Array_Get([ref] mTArray<FString>, Temp_int_Variable, [ref] mFString1);
+L592:          TArray<FString> mTArrayFString = KismetStringLibrary->GetCharacterArrayFromString(mFString);
+L651:          KismetArrayLibrary->Array_Get([ref] mTArrayFString, Temp_int_Variable, [ref] mFString1);
 L710:          FString mFString2 = KismetStringLibrary->Concat_StrStr(OutString, mFString1);
 L778:          OutString = mFString2;
 L805:          goto ExecutionFlow.Pop();
 L806:          FString VariableInput = OutString;
-L833:          <End of Inlined Event Graph Function>;
-L838:          int32 mint324 = Add_IntInt(Temp_int_Variable, 1);
+L833:          // <End Inlined EventGraph Function>;
+L838:          int32 mint324 = Temp_int_Variable + 1;
 L880:          Temp_int_Variable = mint324;
 L907:          goto L282;
 ============ END FUNCTION GetConsoleVariableByName ==============
@@ -41,7 +41,7 @@ L907:          goto L282;
 L0:            bool mbool = KismetSystemLibrary->IsValid(this->FGCharacter);
 L51:           if (!mbool) goto L155;
 L65:           bool mbool1 = this->FGCharacter->IsRespawning();
-L107:          bool mbool2 = Not_PreBool(mbool1);
+L107:          bool mbool2 = !mbool1;
 L136:          bool bDoneSpawning = mbool2;
 ============ END FUNCTION CheckDoneRespawning ==============
 
@@ -61,7 +61,9 @@ L118:          PlayerController* PlayerController = mPlayerController;
 
 
 ============ BEGIN FUNCTION StartProfile ==============
-L0:            this->ExecuteUbergraph_BP_ProfileSpline(3764);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StartProfile;
+L0:            // Implementation: Function ExecuteUbergraph_BP_ProfileSpline, from label L3764;
 ============ END FUNCTION StartProfile ==============
 
 
@@ -69,8 +71,9 @@ L0:            this->ExecuteUbergraph_BP_ProfileSpline(3764);
 
 
 ============ BEGIN FUNCTION ReceiveTick ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Testing/SplineConstructor/BP_ProfileSpline.BP_ProfileSpline_C:ExecuteUbergraph_BP_ProfileSpline.K2Node_Event_DeltaSeconds) = DeltaSeconds;
-L18:           this->ExecuteUbergraph_BP_ProfileSpline(3083);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveTick;
+L18:           // Implementation: Function ExecuteUbergraph_BP_ProfileSpline, from label L3083;
 ============ END FUNCTION ReceiveTick ==============
 
 
@@ -78,7 +81,9 @@ L18:           this->ExecuteUbergraph_BP_ProfileSpline(3083);
 
 
 ============ BEGIN FUNCTION FetchPlayerPawn ==============
-L0:            this->ExecuteUbergraph_BP_ProfileSpline(2227);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: FetchPlayerPawn;
+L0:            // Implementation: Function ExecuteUbergraph_BP_ProfileSpline, from label L2227;
 ============ END FUNCTION FetchPlayerPawn ==============
 
 
@@ -86,7 +91,9 @@ L0:            this->ExecuteUbergraph_BP_ProfileSpline(2227);
 
 
 ============ BEGIN FUNCTION EnsurePlayerDoneSpawning ==============
-L0:            this->ExecuteUbergraph_BP_ProfileSpline(547);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: EnsurePlayerDoneSpawning;
+L0:            // Implementation: Function ExecuteUbergraph_BP_ProfileSpline, from label L547;
 ============ END FUNCTION EnsurePlayerDoneSpawning ==============
 
 
@@ -94,7 +101,9 @@ L0:            this->ExecuteUbergraph_BP_ProfileSpline(547);
 
 
 ============ BEGIN FUNCTION DebugStart ==============
-L0:            this->ExecuteUbergraph_BP_ProfileSpline(3769);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: DebugStart;
+L0:            // Implementation: Function ExecuteUbergraph_BP_ProfileSpline, from label L3769;
 ============ END FUNCTION DebugStart ==============
 
 
@@ -121,11 +130,12 @@ L431:          mFScriptDelegate->BindUFunction(this, EnsurePlayerDoneSpawning);
 L454:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.5, true);
 L519:          this->FinalizeSpawningPlayer = mTimerHandle;
 L546:          goto ExecutionFlow.Pop();
+L547:          // <Begin Inlined EventGraph Function EnsurePlayerDoneSpawning>;
 L547:          this->CheckDoneRespawning([ref] mbool);
 L570:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->FinalizeSpawningPlayer);
 L612:          if (!mbool) goto ExecutionFlow.Pop();
 L622:          Transform mTransform = this->Spline->GetTransformAtSplinePoint(0, 0, false);
-L680:          Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, CameraActor, [ref] mTransform, 0, this);
+L680:          Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, ObjectConst(Class /Script/Engine.CameraActor), [ref] mTransform, 0, this);
 L744:          mTransform = this->Spline->GetTransformAtSplinePoint(0, 0, false);
 L802:          CameraActor* mCameraActor = GameplayStatics->FinishSpawningActor(mActor, [ref] mTransform);
 L862:          this->CameraActor = mCameraActor;
@@ -138,24 +148,24 @@ L1112:         KismetSystemLibrary->ExecuteConsoleCommand(this, "t.StorageWithNo
 L1193:         int32 Temp_int_Loop_Counter_Variable = 0;
 L1216:         int32 Temp_int_Array_Index_Variable = 0;
 L1239:         Pawn* mPawn = this->FGCharacter->K2_GetPawn();
-L1281:         TArray<PrimitiveComponent*> mTArray<PrimitiveComponent> = mPawn->GetComponentsByClass(PrimitiveComponent);
-L1340:         int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<PrimitiveComponent>);
-L1399:         bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L1281:         TArray<PrimitiveComponent*> mTArrayPrimitiveComponent = mPawn->GetComponentsByClass(ObjectConst(Class /Script/Engine.PrimitiveComponent));
+L1340:         int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayPrimitiveComponent);
+L1399:         bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L1437:         if (!mbool1) goto L1752;
 L1451:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L1478:         ExecutionFlow.Push(L1678);
 L1483:         mPawn = this->FGCharacter->K2_GetPawn();
-L1525:         mTArray<PrimitiveComponent> = mPawn->GetComponentsByClass(PrimitiveComponent);
-L1584:         KismetArrayLibrary->Array_Get([ref] mTArray<PrimitiveComponent>, Temp_int_Array_Index_Variable, [ref] mPrimitiveComponent);
+L1525:         mTArrayPrimitiveComponent = mPawn->GetComponentsByClass(ObjectConst(Class /Script/Engine.PrimitiveComponent));
+L1584:         KismetArrayLibrary->Array_Get([ref] mTArrayPrimitiveComponent, Temp_int_Array_Index_Variable, [ref] mPrimitiveComponent);
 L1643:         mPrimitiveComponent->SetVisibility(false, false);
 L1677:         goto ExecutionFlow.Pop();
-L1678:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1678:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L1720:         Temp_int_Loop_Counter_Variable = mint321;
 L1747:         goto L1239;
-L1752:         CharacterMovementComponent* mCharacterMovementComponent = this->FGCharacter->GetComponentByClass(CharacterMovementComponent);
+L1752:         CharacterMovementComponent* mCharacterMovementComponent = this->FGCharacter->GetComponentByClass(ObjectConst(Class /Script/Engine.CharacterMovementComponent));
 L1803:         bool mbool2 = KismetSystemLibrary->IsValid(mCharacterMovementComponent);
 L1854:         if (!mbool2) goto L431;
-L1868:         mCharacterMovementComponent = this->FGCharacter->GetComponentByClass(CharacterMovementComponent);
+L1868:         mCharacterMovementComponent = this->FGCharacter->GetComponentByClass(ObjectConst(Class /Script/Engine.CharacterMovementComponent));
 L1919:         mCharacterMovementComponent->SetMovementMode(5, 0);
 L1959:         goto L431;
 L1964:         mFScriptDelegate1->BindUFunction(this, FetchPlayerPawn);
@@ -167,6 +177,7 @@ L2128:         KismetSystemLibrary->ExecuteConsoleCommand(this, "God", mPlayerCo
 L2175:         goto L1064;
 L2180:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->FindControllerTimer);
 L2222:         goto L2080;
+L2227:         // <Begin Inlined EventGraph Function FetchPlayerPawn>;
 L2227:         this->GetPlayerController([ref] mbool3, [ref] mPlayerController3);
 L2259:         if (!mbool3) goto ExecutionFlow.Pop();
 L2269:         FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController3);
@@ -177,14 +188,14 @@ L2363:         goto L2180;
 L2368:         PlayerController* mPlayerController4 = GameplayStatics->GetPlayerController(this, 0);
 L2416:         mPlayerController4->SetViewTargetWithBlend(this->CameraActor, 0, 0, 0, false);
 L2474:         if (!this->IsFactory) goto ExecutionFlow.Pop();
-L2484:         float mfloat = Multiply_FloatFloat(this->Duration, 60);
+L2484:         float mfloat = this->Duration * 60;
 L2526:         Pawn* mPawn1 = this->FGCharacter->K2_GetPawn();
-L2568:         float mfloat1 = Divide_FloatFloat(this->CurrenTime, mfloat);
+L2568:         float mfloat1 = this->CurrenTime / mfloat;
 L2614:         Transform mTransform1 = this->Spline->GetTransformAtTime(mfloat1, 1, true, false);
 L2677:         BreakTransform([ref] mTransform1, [ref] mVector, [ref] mRotator, [ref] mVector1);
 L2723:         bool mbool5 = mPawn1->K2_SetActorLocation(mVector, false, [ref] mHitResult, true);
-L2785:         mfloat = Multiply_FloatFloat(this->Duration, 60);
-L2827:         mfloat1 = Divide_FloatFloat(this->CurrenTime, mfloat);
+L2785:         mfloat = this->Duration * 60;
+L2827:         mfloat1 = this->CurrenTime / mfloat;
 L2873:         mTransform1 = this->Spline->GetTransformAtTime(mfloat1, 1, true, false);
 L2936:         BreakTransform([ref] mTransform1, [ref] mVector, [ref] mRotator, [ref] mVector1);
 L2982:         bool mbool6 = this->FGCharacter->K2_SetActorLocation(mVector, false, [ref] mHitResult1, true);
@@ -192,11 +203,11 @@ L3044:         goto ExecutionFlow.Pop();
 L3045:         KismetSystemLibrary->QuitGame(this, nullptr, 0, false);
 L3082:         goto ExecutionFlow.Pop();
 L3083:         if (!this->bInitialized) goto ExecutionFlow.Pop();
-L3093:         float mfloat2 = Add_FloatFloat(this->CurrenTime, mfloat3);
+L3093:         float mfloat2 = this->CurrenTime + mfloat3;
 L3139:         this->CurrenTime = mfloat2;
-L3166:         mfloat = Multiply_FloatFloat(this->Duration, 60);
-L3208:         mfloat1 = Divide_FloatFloat(this->CurrenTime, mfloat);
-L3254:         bool mbool7 = GreaterEqual_FloatFloat(mfloat1, 1);
+L3166:         mfloat = this->Duration * 60;
+L3208:         mfloat1 = this->CurrenTime / mfloat;
+L3254:         bool mbool7 = mfloat1 >= 1;
 L3288:         if (!mbool7) goto L3514;
 L3302:         PlayerController* mPlayerController5 = GameplayStatics->GetPlayerController(this, 0);
 L3350:         KismetSystemLibrary->ExecuteConsoleCommand(this, "StopFPSChart", mPlayerController5);
@@ -204,11 +215,13 @@ L3406:         mPlayerController5 = GameplayStatics->GetPlayerController(this, 0
 L3454:         KismetSystemLibrary->ExecuteConsoleCommand(this, "StopCollect", mPlayerController5);
 L3509:         goto L3045;
 L3514:         SceneComponent* mSceneComponent = this->CameraActor->K2_GetRootComponent();
-L3556:         mfloat = Multiply_FloatFloat(this->Duration, 60);
-L3598:         mfloat1 = Divide_FloatFloat(this->CurrenTime, mfloat);
+L3556:         mfloat = this->Duration * 60;
+L3598:         mfloat1 = this->CurrenTime / mfloat;
 L3644:         mTransform1 = this->Spline->GetTransformAtTime(mfloat1, 1, true, false);
 L3707:         mSceneComponent->K2_SetWorldTransform([ref] mTransform1, false, [ref] mHitResult2, false);
 L3759:         goto L2368;
+L3764:         // <Begin Inlined EventGraph Function StartProfile>;
 L3764:         goto L1964;
+L3769:         // <Begin Inlined EventGraph Function DebugStart>;
 L3769:         goto L1964;
 ============ END FUNCTION ExecuteUbergraph_BP_ProfileSpline ==============

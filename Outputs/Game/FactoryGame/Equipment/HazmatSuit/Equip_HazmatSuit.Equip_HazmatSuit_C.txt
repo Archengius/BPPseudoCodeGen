@@ -22,11 +22,11 @@ L91:           const BP_DamageType* mconst BP_DamageType = Cast<BlueprintGenerat
 L127:          bool mbool = mconst BP_DamageType;
 L156:          if (!mbool) goto L409;
 L170:          bool mbool1 = this->IsEquipped();
-L190:          bool mbool2 = BooleanAND(mconst BP_DamageType->mFromRadiation, mbool1);
-L250:          bool mbool3 = BooleanAND(mbool2, this->mIsWorking);
+L190:          bool mbool2 = mconst BP_DamageType->mFromRadiation && mbool1;
+L250:          bool mbool3 = mbool2 && this->mIsWorking;
 L288:          if (!mbool3) goto L409;
 L302:          this->mHasNegatedDamage = true;
-L313:          float mfloat1 = Add_FloatFloat(local_damage, this->mDamageNegated);
+L313:          float mfloat1 = local_damage + this->mDamageNegated;
 L359:          this->mDamageNegated = mfloat1;
 L386:          local_damage = 0;
 L409:          float ReturnValue = local_damage;
@@ -37,7 +37,9 @@ L409:          float ReturnValue = local_damage;
 
 
 ============ BEGIN FUNCTION WasUnEquipped ==============
-L0:            this->ExecuteUbergraph_Equip_HazmatSuit(491);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasUnEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_HazmatSuit, from label L491;
 ============ END FUNCTION WasUnEquipped ==============
 
 
@@ -45,8 +47,9 @@ L0:            this->ExecuteUbergraph_Equip_HazmatSuit(491);
 
 
 ============ BEGIN FUNCTION ReceiveTick ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/HazmatSuit/Equip_HazmatSuit.Equip_HazmatSuit_C:ExecuteUbergraph_Equip_HazmatSuit.K2Node_Event_DeltaSeconds) = DeltaSeconds;
-L18:           this->ExecuteUbergraph_Equip_HazmatSuit(597);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveTick;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_HazmatSuit, from label L597;
 ============ END FUNCTION ReceiveTick ==============
 
 
@@ -54,7 +57,9 @@ L18:           this->ExecuteUbergraph_Equip_HazmatSuit(597);
 
 
 ============ BEGIN FUNCTION WasEquipped ==============
-L0:            this->ExecuteUbergraph_Equip_HazmatSuit(1331);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_HazmatSuit, from label L1331;
 ============ END FUNCTION WasEquipped ==============
 
 
@@ -64,7 +69,7 @@ L0:            this->ExecuteUbergraph_Equip_HazmatSuit(1331);
 ============ BEGIN FUNCTION ExecuteUbergraph_Equip_HazmatSuit ==============
 L10:           FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
 L30:           mFGCharacterPlayer->SetRadiationImmunity(1);
-L67:           <End of Inlined Event Graph Function>;
+L67:           // <End Inlined EventGraph Function>;
 L72:           bool mbool = this->HasAuthority();
 L92:           if (!mbool) goto L295;
 L106:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
@@ -78,30 +83,31 @@ L295:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorChara
 L315:          mFGCharacterPlayer1->SetRadiationImmunity(1);
 L352:          this->mCountdown = this->mFilterDuration;
 L379:          this->mIsWorking = true;
-L390:          <End of Inlined Event Graph Function>;
+L390:          // <End Inlined EventGraph Function>;
 L395:          this->ChargeForUse();
 L405:          KismetSystemLibrary->PrintString(this, "Hello", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
 L486:          goto L284;
+L491:          // <Begin Inlined EventGraph Function WasUnEquipped>;
 L491:          this->WasUnEquipped();
 L501:          bool mbool3 = this->HasAuthority();
 L521:          if (!mbool3) goto L1417;
 L535:          FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
 L555:          mFGCharacterPlayer2->SetRadiationImmunity(0);
-L592:          <End of Inlined Event Graph Function>;
+L592:          // <End Inlined EventGraph Function>;
 L597:          this->ReceiveTick(mfloat);
 L616:          bool mbool4 = this->IsEquipped();
-L636:          bool mbool5 = BooleanAND(this->mHasNegatedDamage, mbool4);
+L636:          bool mbool5 = this->mHasNegatedDamage && mbool4;
 L674:          if (!mbool5) goto L1010;
-L688:          bool mbool6 = LessEqual_FloatFloat(this->mDisableEffectTimer, 0);
+L688:          bool mbool6 = this->mDisableEffectTimer <= 0;
 L722:          if (!mbool6) goto L751;
 L736:          this->EnablePostProcessing(false);
 L751:          this->mDisableEffectTimer = 6;
-L774:          float mfloat1 = Subtract_FloatFloat(this->mCountdown, this->mDamageNegated);
+L774:          float mfloat1 = this->mCountdown - this->mDamageNegated;
 L820:          float mfloat2 = FMax(mfloat1, 0);
 L862:          this->mCountdown = mfloat2;
 L889:          this->mDamageNegated = 0;
 L912:          this->mHasNegatedDamage = false;
-L923:          bool mbool7 = LessEqual_FloatFloat(this->mCountdown, 0);
+L923:          bool mbool7 = this->mCountdown <= 0;
 L957:          if (!mbool7) goto L1417;
 L971:          bool mbool8 = this->CanAffordUse();
 L991:          if (!mbool8) goto L1277;
@@ -110,22 +116,23 @@ L1010:         mbool4 = this->IsEquipped();
 L1030:         if (!mbool4) goto L1417;
 L1044:         bool mbool9 = this->CanAffordUse();
 L1064:         this->mIsWorking = mbool9;
-L1083:         bool mbool10 = LessEqual_FloatFloat(this->mDisableEffectTimer, 0);
+L1083:         bool mbool10 = this->mDisableEffectTimer <= 0;
 L1117:         if (!mbool10) goto L1136;
-L1131:         <End of Inlined Event Graph Function>;
-L1136:         float mfloat3 = Subtract_FloatFloat(this->mDisableEffectTimer, mfloat);
+L1131:         // <End Inlined EventGraph Function>;
+L1136:         float mfloat3 = this->mDisableEffectTimer - mfloat;
 L1182:         this->mDisableEffectTimer = mfloat3;
-L1209:         bool mbool11 = LessEqual_FloatFloat(this->mDisableEffectTimer, 0);
+L1209:         bool mbool11 = this->mDisableEffectTimer <= 0;
 L1243:         if (!mbool11) goto L1417;
 L1257:         this->EnablePostProcessing(false);
-L1272:         <End of Inlined Event Graph Function>;
+L1272:         // <End Inlined EventGraph Function>;
 L1277:         this->mIsWorking = false;
 L1288:         this->EnablePostProcessing(false);
 L1303:         this->mDisableEffectTimer = -1;
-L1326:         <End of Inlined Event Graph Function>;
+L1326:         // <End Inlined EventGraph Function>;
+L1331:         // <Begin Inlined EventGraph Function WasEquipped>;
 L1331:         this->WasEquipped();
 L1341:         this->mDisableEffectTimer = -1;
-L1364:         bool mbool12 = Greater_FloatFloat(this->mCountdown, 0);
+L1364:         bool mbool12 = this->mCountdown > 0;
 L1398:         if (!mbool12) goto L1417;
 L1412:         goto L10;
 ============ END FUNCTION ExecuteUbergraph_Equip_HazmatSuit ==============

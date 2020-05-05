@@ -7,9 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBa
 
 
 ============ BEGIN FUNCTION GatherBackgrounds ==============
-L0:            TArray<Widget_SubMenuBackground*> mTArray<Widget_SubMenuBackground> = [];
-L11:           WidgetBlueprintLibrary->GetAllWidgetsOfClass(this, [ref] mTArray<Widget_SubMenuBackground>, Widget_SubMenuBackground, false);
-L63:           this->mSubmenusToAnimate = mTArray<Widget_SubMenuBackground>;
+L0:            TArray<Widget_SubMenuBackground*> mTArrayWidget_SubMenuBackground = [];
+L11:           WidgetBlueprintLibrary->GetAllWidgetsOfClass(this, [ref] mTArrayWidget_SubMenuBackground, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_SubMenuBackground.Widget_SubMenuBackground_C), false);
+L63:           this->mSubmenusToAnimate = mTArrayWidget_SubMenuBackground;
 ============ END FUNCTION GatherBackgrounds ==============
 
 
@@ -19,20 +19,20 @@ L63:           this->mSubmenusToAnimate = mTArray<Widget_SubMenuBackground>;
 ============ BEGIN FUNCTION PlayBackgroundEnterAnimation ==============
 L0:            ExecutionFlow.Push(L549);
 L5:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mSubmenusToAnimate);
-L64:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L64:           int32 mint321 = mint32 - 1;
 L106:          int32 Temp_int_Loop_Counter_Variable = mint321;
 L133:          mint32 = KismetArrayLibrary->Array_Length([ref] this->mSubmenusToAnimate);
-L192:          mint321 = Subtract_IntInt(mint32, 1);
+L192:          mint321 = mint32 - 1;
 L234:          int32 mint322 = Max(0, mint321);
 L276:          int32 Temp_int_Array_Index_Variable = mint322;
-L303:          bool mbool = GreaterEqual_IntInt(Temp_int_Loop_Counter_Variable, 0);
+L303:          bool mbool = Temp_int_Loop_Counter_Variable >= 0;
 L337:          if (!mbool) goto ExecutionFlow.Pop();
 L347:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L374:          ExecutionFlow.Push(L475);
 L379:          KismetArrayLibrary->Array_Get([ref] this->mSubmenusToAnimate, Temp_int_Array_Index_Variable, [ref] mWidget_SubMenuBackground);
 L438:          mWidget_SubMenuBackground->PlayBackgroundSpawnAnim();
 L474:          goto ExecutionFlow.Pop();
-L475:          int32 mint323 = Subtract_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L475:          int32 mint323 = Temp_int_Loop_Counter_Variable - 1;
 L517:          Temp_int_Loop_Counter_Variable = mint323;
 L544:          goto L303;
 ============ END FUNCTION PlayBackgroundEnterAnimation ==============
@@ -48,7 +48,7 @@ L65:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this-
 L111:          this->ShouldAnimateBackground(prevMenu, [ref] mbool1);
 L143:          if (!mbool1) goto L210;
 L157:          this->PlayBackgroundEnterAnimation();
-L171:          <End of Inlined Event Graph Function>;
+L171:          // <End Inlined EventGraph Function>;
 L176:          if (!this->mNeedCustomEnterDone) goto L195;
 L190:          goto L111;
 L195:          this->OnMenuEnterDone();
@@ -65,7 +65,7 @@ L36:           bool mbool = mBP_MenuBase;
 L65:           if (!mbool) goto L131;
 L79:           if (!mBP_MenuBase->UsesSubmenuBackground) goto L131;
 L115:          bool Animate = false;
-L126:          <End of Inlined Event Graph Function>;
+L126:          // <End Inlined EventGraph Function>;
 L131:          Animate = true;
 ============ END FUNCTION ShouldAnimateBackground ==============
 
@@ -85,7 +85,7 @@ L24:           this->mFocusWidget->SetUserFocus(mPlayerController);
 ============ BEGIN FUNCTION OnKeyDown ==============
 L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
 L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Escape"));
-L137:          bool mbool1 = BooleanAND(mbool, this->mHandleEscape);
+L137:          bool mbool1 = mbool && this->mHandleEscape;
 L175:          if (!mbool1) goto L285;
 L189:          this->OnEscape();
 L203:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
@@ -110,7 +110,9 @@ L65:           this->mOwningMenu->OnEscape();
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_BP_MenuBase(29);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MenuBase, from label L29;
 ============ END FUNCTION Destruct ==============
 
 
@@ -118,7 +120,9 @@ L0:            this->ExecuteUbergraph_BP_MenuBase(29);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_BP_MenuBase(59);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MenuBase, from label L59;
 ============ END FUNCTION Construct ==============
 
 
@@ -126,8 +130,9 @@ L0:            this->ExecuteUbergraph_BP_MenuBase(59);
 
 
 ============ BEGIN FUNCTION SpawnAnim ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C:ExecuteUbergraph_BP_MenuBase.K2Node_CustomEvent_PlayBackgroundAnim) = PlayBackgroundAnim;
-L18:           this->ExecuteUbergraph_BP_MenuBase(64);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: SpawnAnim;
+L18:           // Implementation: Function ExecuteUbergraph_BP_MenuBase, from label L64;
 ============ END FUNCTION SpawnAnim ==============
 
 
@@ -135,8 +140,9 @@ L18:           this->ExecuteUbergraph_BP_MenuBase(64);
 
 
 ============ BEGIN FUNCTION OnMenuEnter ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C:ExecuteUbergraph_BP_MenuBase.K2Node_Event_prevMenu1) = prevMenu;
-L18:           this->ExecuteUbergraph_BP_MenuBase(69);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnMenuEnter;
+L18:           // Implementation: Function ExecuteUbergraph_BP_MenuBase, from label L69;
 ============ END FUNCTION OnMenuEnter ==============
 
 
@@ -144,8 +150,9 @@ L18:           this->ExecuteUbergraph_BP_MenuBase(69);
 
 
 ============ BEGIN FUNCTION OnAnimationFinished ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C:ExecuteUbergraph_BP_MenuBase.K2Node_Event_Animation) = Animation;
-L18:           this->ExecuteUbergraph_BP_MenuBase(97);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnAnimationFinished;
+L18:           // Implementation: Function ExecuteUbergraph_BP_MenuBase, from label L97;
 ============ END FUNCTION OnAnimationFinished ==============
 
 
@@ -153,9 +160,9 @@ L18:           this->ExecuteUbergraph_BP_MenuBase(97);
 
 
 ============ BEGIN FUNCTION OnMenuExit ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C:ExecuteUbergraph_BP_MenuBase.K2Node_Event_prevMenu) = prevMenu;
-L18:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/BP_MenuBase.BP_MenuBase_C:ExecuteUbergraph_BP_MenuBase.K2Node_Event_noAnimation) = noAnimation;
-L36:           this->ExecuteUbergraph_BP_MenuBase(164);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: OnMenuExit;
+L36:           // Implementation: Function ExecuteUbergraph_BP_MenuBase, from label L164;
 ============ END FUNCTION OnMenuExit ==============
 
 
@@ -164,18 +171,20 @@ L36:           this->ExecuteUbergraph_BP_MenuBase(164);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_BP_MenuBase ==============
 L10:           this->GatherBackgrounds();
-L24:           <End of Inlined Event Graph Function>;
+L24:           // <End Inlined EventGraph Function>;
+L29:           // <Begin Inlined EventGraph Function Destruct>;
 L29:           this->Destruct();
-L39:           <End of Inlined Event Graph Function>;
+L39:           // <End Inlined EventGraph Function>;
 L44:           this->Construct();
 L54:           goto L10;
+L59:           // <Begin Inlined EventGraph Function Construct>;
 L59:           goto L44;
-L64:           <End of Inlined Event Graph Function>;
+L64:           // <End Inlined EventGraph Function>;
 L69:           this->PlayEnterAnimation(mWidget);
-L92:           <End of Inlined Event Graph Function>;
-L97:           bool mbool = EqualEqual_ObjectObject(mconst WidgetAnimation, this->mOnEnterAnimation);
+L92:           // <End Inlined EventGraph Function>;
+L97:           bool mbool = mconst WidgetAnimation == this->mOnEnterAnimation;
 L135:          if (!mbool) goto L174;
 L149:          this->OnMenuEnterDone();
-L159:          <End of Inlined Event Graph Function>;
+L159:          // <End Inlined EventGraph Function>;
 L164:          this->OnMenuExitDone();
 ============ END FUNCTION ExecuteUbergraph_BP_MenuBase ==============

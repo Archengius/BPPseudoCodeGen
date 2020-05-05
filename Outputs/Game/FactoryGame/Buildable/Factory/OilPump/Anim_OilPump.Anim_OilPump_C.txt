@@ -1,0 +1,108 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/OilPump/Anim_OilPump.Anim_OilPump_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_BurnerFlareNotify ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_BurnerFlareNotify;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_OilPump, from label L401;
+============ END FUNCTION AnimNotify_BurnerFlareNotify ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_OilpumpEnteredProducingState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_OilpumpEnteredProducingState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_OilPump, from label L406;
+============ END FUNCTION AnimNotify_OilpumpEnteredProducingState ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_OilpumpLeftProducingState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_OilpumpLeftProducingState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_OilPump, from label L599;
+============ END FUNCTION AnimNotify_OilpumpLeftProducingState ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_OilpumpEnteredOfflineState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_OilpumpEnteredOfflineState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_OilPump, from label L792;
+============ END FUNCTION AnimNotify_OilpumpEnteredOfflineState ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_OilpumpLeftOfflineState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_OilpumpLeftOfflineState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_OilPump, from label L985;
+============ END FUNCTION AnimNotify_OilpumpLeftOfflineState ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Anim_OilPump ==============
+L10:           Actor* mActor = this->GetOwningActor();
+L30:           FGBuildableFactory* mFGBuildableFactory = Cast<Class /Script/FactoryGame.FGBuildableFactory>(mActor);
+L66:           bool mbool = mFGBuildableFactory;
+L95:           if (!mbool) goto L1173;
+L109:          bool mbool1 = mFGBuildableFactory->GetIsSignificant();
+L151:          if (!mbool1) goto L1173;
+L165:          SkeletalMeshComponent* mSkeletalMeshComponent = this->GetOwningComponent();
+L185:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(ObjectConst(ParticleSystem /Game/FactoryGame/Buildable/Factory/OilPump/Particle/BurnerFlare.BurnerFlare), mSkeletalMeshComponent, "burnerVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L302:          mSkeletalMeshComponent = this->GetOwningComponent();
+L322:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Factory/OilPump/Audio/Play_F_Pump_Oil_GasFire_Large.Play_F_Pump_Oil_GasFire_Large), mSkeletalMeshComponent, "burnerVfxSocket", true);
+L396:          // <End Inlined EventGraph Function>;
+L401:          // <Begin Inlined EventGraph Function AnimNotify_BurnerFlareNotify>;
+L401:          goto L10;
+L406:          // <Begin Inlined EventGraph Function AnimNotify_OilpumpEnteredProducingState>;
+L406:          Actor* mActor1 = this->GetOwningActor();
+L426:          FGBuildableFactory* mFGBuildableFactory1 = Cast<Class /Script/FactoryGame.FGBuildableFactory>(mActor1);
+L462:          bool mbool2 = mFGBuildableFactory1;
+L491:          if (!mbool2) goto L1173;
+L505:          bool mbool3 = mFGBuildableFactory1->GetIsSignificant();
+L547:          if (!mbool3) goto L1173;
+L561:          mFGBuildableFactory1->TryStartProductionLoopEffects(true);
+L594:          // <End Inlined EventGraph Function>;
+L599:          // <Begin Inlined EventGraph Function AnimNotify_OilpumpLeftProducingState>;
+L599:          Actor* mActor2 = this->GetOwningActor();
+L619:          FGBuildableFactory* mFGBuildableFactory2 = Cast<Class /Script/FactoryGame.FGBuildableFactory>(mActor2);
+L655:          bool mbool4 = mFGBuildableFactory2;
+L684:          if (!mbool4) goto L1173;
+L698:          bool mbool5 = mFGBuildableFactory2->GetIsSignificant();
+L740:          if (!mbool5) goto L1173;
+L754:          mFGBuildableFactory2->TryStopProductionLoopEffects(true);
+L787:          // <End Inlined EventGraph Function>;
+L792:          // <Begin Inlined EventGraph Function AnimNotify_OilpumpEnteredOfflineState>;
+L792:          Actor* mActor3 = this->GetOwningActor();
+L812:          FGBuildableFactory* mFGBuildableFactory3 = Cast<Class /Script/FactoryGame.FGBuildableFactory>(mActor3);
+L848:          bool mbool6 = mFGBuildableFactory3;
+L877:          if (!mbool6) goto L1173;
+L891:          bool mbool7 = mFGBuildableFactory3->GetIsSignificant();
+L933:          if (!mbool7) goto L1173;
+L947:          mFGBuildableFactory3->TryStopIdlingLoopEffects(true);
+L980:          // <End Inlined EventGraph Function>;
+L985:          // <Begin Inlined EventGraph Function AnimNotify_OilpumpLeftOfflineState>;
+L985:          Actor* mActor4 = this->GetOwningActor();
+L1005:         FGBuildableFactory* mFGBuildableFactory4 = Cast<Class /Script/FactoryGame.FGBuildableFactory>(mActor4);
+L1041:         bool mbool8 = mFGBuildableFactory4;
+L1070:         if (!mbool8) goto L1173;
+L1084:         bool mbool9 = mFGBuildableFactory4->GetIsSignificant();
+L1126:         if (!mbool9) goto L1173;
+L1140:         mFGBuildableFactory4->TryStartIdlingLoopEffects(true);
+============ END FUNCTION ExecuteUbergraph_Anim_OilPump ==============

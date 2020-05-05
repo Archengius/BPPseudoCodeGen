@@ -1,0 +1,65 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/Animation/FirstPerson/BPA_1pLadder.BPA_1pLadder_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CalculateAnimGraphValues ==============
+L0:            float mfloat = ClampAngle(this->mAimPitch, -45, 35);
+L47:           Rotator mRotator = MakeRotator(mfloat, 0, 0);
+L94:           Rotator mRotator1 = NegateRotator(mRotator);
+L131:          this->mAG_LadderAimPitch = mRotator1;
+L158:          bool mbool = this->mSpeedZ != 0;
+L192:          this->mAG_IsClimbing = mbool;
+L211:          bool mbool1 = this->mArmSlotType == 0;
+L242:          this->mAG_NothingEquiped = mbool1;
+L261:          Rotator mRotator2 = MakeRotator(0, 0, this->mMeshRotation);
+L308:          this->mAG_MeshRotator = mRotator2;
+============ END FUNCTION CalculateAnimGraphValues ==============
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintUpdateAnimation ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BlueprintUpdateAnimation;
+L18:           // Implementation: Function ExecuteUbergraph_BPA_1pLadder, from label L29;
+============ END FUNCTION BlueprintUpdateAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPA_1pLadder ==============
+L10:           this->CalculateAnimGraphValues();
+L24:           // <End Inlined EventGraph Function>;
+L29:           this->BlueprintUpdateAnimation(mfloat);
+L48:           FGCharacterMovementComponent* mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->mCharacter->CharacterMovement);
+L106:          bool mbool = mFGCharacterMovementComponent;
+L135:          FGLadderComponent* mFGLadderComponent = mFGCharacterMovementComponent->GetOnLadder();
+L177:          bool mbool1 = KismetSystemLibrary->IsValid(mFGLadderComponent);
+L228:          if (!mbool1) goto L1077;
+L242:          Rotator mRotator = this->mCharacter->GetControlRotation();
+L292:          BreakRotator(mRotator, [ref] mfloat1, [ref] mfloat2, [ref] mfloat3);
+L338:          mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->mCharacter->CharacterMovement);
+L396:          mbool = mFGCharacterMovementComponent;
+L425:          mFGLadderComponent = mFGCharacterMovementComponent->GetOnLadder();
+L467:          Rotator mRotator1 = mFGLadderComponent->K2_GetComponentRotation();
+L517:          BreakRotator(mRotator1, [ref] mfloat4, [ref] mfloat5, [ref] mfloat6);
+L563:          float mfloat7 = mfloat6 - mfloat3;
+L609:          this->mMeshRotation = mfloat7;
+L636:          Transform mTransform = this->mCharacter->GetTransform();
+L686:          mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->mCharacter->CharacterMovement);
+L744:          mbool = mFGCharacterMovementComponent;
+L773:          mFGLadderComponent = mFGCharacterMovementComponent->GetOnLadder();
+L815:          Vector mVector = mFGLadderComponent->GetForwardVector();
+L865:          Vector mVector1 = InverseTransformDirection([ref] mTransform, mVector);
+L911:          Vector mVector2 = Normal(mVector1, 0.00009999999747378752);
+L953:          BreakVector(mVector2, [ref] mfloat8, [ref] mfloat9, [ref] mfloat10);
+L999:          float mfloat11 = DegAtan2(mfloat9, mfloat8);
+L1045:         this->mLookYaw = mfloat11;
+L1072:         goto L10;
+============ END FUNCTION ExecuteUbergraph_BPA_1pLadder ==============

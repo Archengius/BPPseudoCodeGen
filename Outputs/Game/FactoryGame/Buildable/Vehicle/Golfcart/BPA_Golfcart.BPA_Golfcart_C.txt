@@ -1,0 +1,180 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Golfcart/BPA_Golfcart.BPA_Golfcart_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetBurnOutSoundParameters ==============
+L0:            Pawn* mPawn = this->TryGetPawnOwner();
+L24:           Vector mVector = mPawn->GetVelocity();
+L78:           float mfloat = VSize(mVector);
+L115:          bool mbool = mfloat < 700;
+L149:          bool mbool1 = mfloat > 5;
+L183:          bool mbool2 = mbool1 && mbool;
+L221:          if (!mbool2) goto L952;
+L235:          mPawn = this->TryGetPawnOwner();
+L259:          mVector = mPawn->GetVelocity();
+L313:          mfloat = VSize(mVector);
+L350:          bool mbool3 = mfloat >= this->mCheckValueForBurnOut;
+L388:          if (!mbool3) goto L952;
+L402:          mPawn = this->TryGetPawnOwner();
+L426:          mVector = mPawn->GetVelocity();
+L480:          mfloat = VSize(mVector);
+L517:          this->mCheckValueForBurnOut = mfloat;
+L544:          Pawn* mPawn1 = this->TryGetPawnOwner();
+L568:          mPawn = this->TryGetPawnOwner();
+L592:          mVector = mPawn->GetVelocity();
+L646:          mfloat = VSize(mVector);
+L683:          float mfloat1 = MapRangeClamped(mfloat, 0, 700, 0, 100);
+L740:          AkGameplayStatics->SetActorRTPCValue("RTPC_GolfCartBurnOut", mfloat1, 0, mPawn1);
+L808:          bool mbool4 = !this->mIsBurningOut;
+L837:          if (!mbool4) goto L1204;
+L851:          Pawn* mPawn2 = this->TryGetPawnOwner();
+L875:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Vehicle/Golfcart/Audio/Play_GolfCart_BurnOut.Play_GolfCart_BurnOut), mPawn2, true);
+L936:          this->mIsBurningOut = true;
+L947:          // <End Inlined EventGraph Function>;
+L952:          mPawn = this->TryGetPawnOwner();
+L976:          mVector = mPawn->GetVelocity();
+L1030:         mfloat = VSize(mVector);
+L1067:         this->mCheckValueForBurnOut = mfloat;
+L1094:         if (!this->mIsBurningOut) goto L1204;
+L1108:         mPawn2 = this->TryGetPawnOwner();
+L1132:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Vehicle/Golfcart/Audio/Stop_GolfCart_BurnOut.Stop_GolfCart_BurnOut), mPawn2, true);
+L1193:         this->mIsBurningOut = false;
+============ END FUNCTION SetBurnOutSoundParameters ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetDriftingSoundParameters ==============
+L0:            bool mbool = SteeringInput >= 15;
+L34:           Pawn* mPawn = this->TryGetPawnOwner();
+L58:           Vector mVector = mPawn->GetVelocity();
+L112:          float mfloat = VSize(mVector);
+L149:          bool mbool1 = mfloat > 1;
+L183:          bool mbool2 = mbool && mbool1;
+L221:          if (!mbool2) goto L643;
+L235:          Pawn* mPawn1 = this->TryGetPawnOwner();
+L259:          mPawn = this->TryGetPawnOwner();
+L283:          mVector = mPawn->GetVelocity();
+L337:          mfloat = VSize(mVector);
+L374:          float mfloat1 = MapRangeClamped(mfloat, 0, 1000, 0, 100);
+L431:          AkGameplayStatics->SetActorRTPCValue("RTPC_GolfCartDrift", mfloat1, 0, mPawn1);
+L499:          bool mbool3 = !this->mIsDrifting;
+L528:          if (!mbool3) goto L753;
+L542:          Pawn* mPawn2 = this->TryGetPawnOwner();
+L566:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Vehicle/Golfcart/Audio/Play_GolfCart_Drift.Play_GolfCart_Drift), mPawn2, true);
+L627:          this->mIsDrifting = true;
+L638:          // <End Inlined EventGraph Function>;
+L643:          if (!this->mIsDrifting) goto L753;
+L657:          mPawn2 = this->TryGetPawnOwner();
+L681:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Vehicle/Golfcart/Audio/Stop_GolfCart_Drift.Stop_GolfCart_Drift), mPawn2, true);
+L742:          this->mIsDrifting = false;
+============ END FUNCTION SetDriftingSoundParameters ==============
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintUpdateAnimation ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BlueprintUpdateAnimation;
+L18:           // Implementation: Function ExecuteUbergraph_BPA_Golfcart, from label L10;
+============ END FUNCTION BlueprintUpdateAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_Deactive ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_Deactive;
+L0:            // Implementation: Function ExecuteUbergraph_BPA_Golfcart, from label L820;
+============ END FUNCTION AnimNotify_Deactive ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_Activate ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_Activate;
+L0:            // Implementation: Function ExecuteUbergraph_BPA_Golfcart, from label L825;
+============ END FUNCTION AnimNotify_Activate ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_PlaySirenSound ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_PlaySirenSound;
+L0:            // Implementation: Function ExecuteUbergraph_BPA_Golfcart, from label L841;
+============ END FUNCTION AnimNotify_PlaySirenSound ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_StopGolfCartSirenSound ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_StopGolfCartSirenSound;
+L0:            // Implementation: Function ExecuteUbergraph_BPA_Golfcart, from label L931;
+============ END FUNCTION AnimNotify_StopGolfCartSirenSound ==============
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintBeginPlay ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BlueprintBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_BPA_Golfcart, from label L1021;
+============ END FUNCTION BlueprintBeginPlay ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPA_Golfcart ==============
+L10:           this->BlueprintUpdateAnimation(mfloat);
+L29:           Pawn* mPawn = this->TryGetPawnOwner();
+L53:           bool mbool = KismetSystemLibrary->IsValid(mPawn);
+L104:          if (!mbool) goto L1021;
+L118:          mPawn = this->TryGetPawnOwner();
+L142:          FGWheeledVehicle* mFGWheeledVehicle = Cast<Class /Script/FactoryGame.FGWheeledVehicle>(mPawn);
+L178:          bool mbool1 = mFGWheeledVehicle;
+L207:          if (!mbool1) goto L1021;
+L221:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = mFGWheeledVehicle->GetVehicleMovementComponent();
+L263:          bool mbool2 = KismetSystemLibrary->IsValid(mWheeledVehicleMovementComponent);
+L314:          if (!mbool2) goto L1021;
+L328:          mWheeledVehicleMovementComponent = mFGWheeledVehicle->GetVehicleMovementComponent();
+L370:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mWheeledVehicleMovementComponent->Wheels);
+L451:          bool mbool3 = mint32 > 0;
+L485:          if (!mbool3) goto L1021;
+L499:          mWheeledVehicleMovementComponent = mFGWheeledVehicle->GetVehicleMovementComponent();
+L541:          KismetArrayLibrary->Array_Get([ref] mWheeledVehicleMovementComponent->Wheels, 0, [ref] mVehicleWheel);
+L618:          float mfloat1 = mVehicleWheel->GetSteerAngle();
+L668:          float mfloat2 = MapRangeClamped(mfloat1, -35, 35, -110, 110);
+L725:          Rotator mRotator = MakeRotator(mfloat2, 0, 0);
+L772:          this->mSteerAngle = mRotator;
+L799:          // <End Inlined EventGraph Function>;
+L804:          this->mIsHonking = false;
+L815:          // <End Inlined EventGraph Function>;
+L820:          // <Begin Inlined EventGraph Function AnimNotify_Deactive>;
+L820:          goto L804;
+L825:          // <Begin Inlined EventGraph Function AnimNotify_Activate>;
+L825:          this->mIsHonking = true;
+L836:          // <End Inlined EventGraph Function>;
+L841:          // <Begin Inlined EventGraph Function AnimNotify_PlaySirenSound>;
+L841:          Pawn* mPawn1 = this->TryGetPawnOwner();
+L865:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Vehicle/Golfcart/Audio/Play_GolfCartSiren.Play_GolfCartSiren), mPawn1, true);
+L926:          // <End Inlined EventGraph Function>;
+L931:          // <Begin Inlined EventGraph Function AnimNotify_StopGolfCartSirenSound>;
+L931:          mPawn1 = this->TryGetPawnOwner();
+L955:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Vehicle/Golfcart/Audio/Stop_GolfCartSiren.Stop_GolfCartSiren), mPawn1, true);
+L1016:         // <End Inlined EventGraph Function>;
+============ END FUNCTION ExecuteUbergraph_BPA_Golfcart ==============

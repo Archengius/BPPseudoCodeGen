@@ -14,8 +14,8 @@ L118:          mFormatArgumentData.ArgumentValue = ;
 L147:          mFormatArgumentData.ArgumentValueInt = mint32;
 L183:          mFormatArgumentData.ArgumentValueFloat = 0;
 L215:          mFormatArgumentData.ArgumentValueGender = 0;
-L244:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L264:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L244:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L264:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L368:          this->mNumItemsInInventoryText->SetText(mFText);
 ============ END FUNCTION GetTotalNumItemsInPlayerInventory ==============
 
@@ -31,8 +31,8 @@ L130:          mFormatArgumentData.ArgumentValue = mFText;
 L166:          mFormatArgumentData.ArgumentValueInt = 0;
 L198:          mFormatArgumentData.ArgumentValueFloat = 0;
 L230:          mFormatArgumentData.ArgumentValueGender = 0;
-L259:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L279:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L259:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L279:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L382:          this->mNumItemsPickedUpText->SetText(mFText1);
 ============ END FUNCTION GetNumItemsPickedUp ==============
 
@@ -41,7 +41,7 @@ L382:          this->mNumItemsPickedUpText->SetText(mFText1);
 
 
 ============ BEGIN FUNCTION AddToNumItems ==============
-L0:            int32 mint32 = Add_IntInt(NumItems, this->mNumItems);
+L0:            int32 mint32 = NumItems + this->mNumItems;
 L46:           this->mNumItems = mint32;
 ============ END FUNCTION AddToNumItems ==============
 
@@ -50,7 +50,9 @@ L46:           this->mNumItems = mint32;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_ItemNotification(350);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ItemNotification, from label L350;
 ============ END FUNCTION Construct ==============
 
 
@@ -58,7 +60,9 @@ L0:            this->ExecuteUbergraph_Widget_ItemNotification(350);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_ItemNotification(355);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ItemNotification, from label L355;
 ============ END FUNCTION Destruct ==============
 
 
@@ -66,7 +70,9 @@ L0:            this->ExecuteUbergraph_Widget_ItemNotification(355);
 
 
 ============ BEGIN FUNCTION UpdatePickUpAmount ==============
-L0:            this->ExecuteUbergraph_Widget_ItemNotification(402);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: UpdatePickUpAmount;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ItemNotification, from label L402;
 ============ END FUNCTION UpdatePickUpAmount ==============
 
 
@@ -78,15 +84,18 @@ L10:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this-
 L56:           mFScriptDelegate->BindUFunction(this, UpdatePickUpAmount);
 L79:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
 L144:          this->mPickupTimer = mTimerHandle;
-L171:          <End of Inlined Event Graph Function>;
+L171:          // <End Inlined EventGraph Function>;
 L176:          bool mbool = KismetSystemLibrary->IsValidClass(this->mItemClass);
 L227:          if (!mbool) goto L430;
 L241:          FText mFText = FGItemDescriptor->GetItemName(this->mItemClass);
 L300:          this->mItemNameText->SetText(mFText);
 L345:          goto L10;
+L350:          // <Begin Inlined EventGraph Function Construct>;
 L350:          goto L176;
+L355:          // <Begin Inlined EventGraph Function Destruct>;
 L355:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mPickupTimer);
-L397:          <End of Inlined Event Graph Function>;
+L397:          // <End Inlined EventGraph Function>;
+L402:          // <Begin Inlined EventGraph Function UpdatePickUpAmount>;
 L402:          this->GetNumItemsPickedUp();
 L416:          this->GetTotalNumItemsInPlayerInventory();
 ============ END FUNCTION ExecuteUbergraph_Widget_ItemNotification ==============

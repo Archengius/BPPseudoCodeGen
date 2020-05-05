@@ -13,13 +13,13 @@ L28:           float ButtonSpacing = 20;
 L51:           int32 Temp_int_Loop_Counter_Variable = 0;
 L74:           int32 Temp_int_Array_Index_Variable = 0;
 L97:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mStartingLocations);
-L156:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L156:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L194:          if (!mbool) goto ExecutionFlow.Pop();
 L204:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L231:          ExecutionFlow.Push(L1697);
 L236:          int32 LocalIndex = Temp_int_Array_Index_Variable;
 L263:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L287:          Widget_AreaSelection_Button* mWidget_AreaSelection_Button = WidgetBlueprintLibrary->Create(this, Widget_AreaSelection_Button, mPlayerController);
+L287:          Widget_AreaSelection_Button* mWidget_AreaSelection_Button = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_AreaSelection_Button.Widget_AreaSelection_Button_C), mPlayerController);
 L348:          KismetArrayLibrary->Array_Get([ref] this->mStartingLocations, Temp_int_Array_Index_Variable, [ref] mStartingLocationsDataStruct);
 L407:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_AreaSelection_Button, "mStartingLocs", [ref] mStartingLocationsDataStruct);
 L470:          KismetSystemLibrary->SetFloatPropertyByName(mWidget_AreaSelection_Button, "mWidth", ButtonWidth);
@@ -32,27 +32,27 @@ L718:          mAnchors.Minimum = ScriptStruct /Script/CoreUObject.Vector2D(X = 
 L769:          mAnchors.Maximum = ScriptStruct /Script/CoreUObject.Vector2D(X = 0.5, Y = 0.5);
 L820:          localCanvasPanelSlot->SetAnchors(mAnchors);
 L861:          localCanvasPanelSlot->SetAlignment(ScriptStruct /Script/CoreUObject.Vector2D(X = 0.5, Y = 0.5));
-L917:          float mfloat = Multiply_FloatFloat(ButtonSpacing, 2);
-L959:          float mfloat1 = Add_FloatFloat(ButtonWidth, mfloat);
-L1005:         float mfloat2 = Multiply_FloatFloat(ButtonSpacing, 2);
-L1047:         float mfloat3 = Add_FloatFloat(ButtonWidth, mfloat2);
+L917:          float mfloat = ButtonSpacing * 2;
+L959:          float mfloat1 = ButtonWidth + mfloat;
+L1005:         float mfloat2 = ButtonSpacing * 2;
+L1047:         float mfloat3 = ButtonWidth + mfloat2;
 L1093:         int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mStartingLocations);
-L1152:         float mfloat4 = Multiply_IntFloat(LocalIndex, mfloat1);
-L1198:         int32 mint322 = Subtract_IntInt(mint321, 1);
-L1240:         float mfloat5 = Multiply_IntFloat(mint322, mfloat3);
-L1286:         float mfloat6 = Divide_FloatFloat(mfloat5, 2);
-L1328:         float mfloat7 = Subtract_FloatFloat(mfloat4, mfloat6);
+L1152:         float mfloat4 = LocalIndex * mfloat1;
+L1198:         int32 mint322 = mint321 - 1;
+L1240:         float mfloat5 = mint322 * mfloat3;
+L1286:         float mfloat6 = mfloat5 / 2;
+L1328:         float mfloat7 = mfloat4 - mfloat6;
 L1374:         Vector2D mVector2D = MakeVector2D(mfloat7, 0);
 L1416:         localCanvasPanelSlot->SetPosition(mVector2D);
 L1457:         mFScriptDelegate->BindUFunction(this, OnStartLocClicked);
 L1480:         localAreaSelectionButton->OnClicked.AddUnique(mFScriptDelegate);
-L1521:         bool mbool1 = EqualEqual_IntInt(this->mDefaultStartingLocation, LocalIndex);
+L1521:         bool mbool1 = this->mDefaultStartingLocation == LocalIndex;
 L1559:         if (!mbool1) goto L1771;
 L1573:         localAreaSelectionButton->SetSelected(true);
 L1610:         KismetArrayLibrary->Array_Get([ref] this->mStartingLocations, Temp_int_Array_Index_Variable, [ref] mStartingLocationsDataStruct);
 L1669:         this->mSelectedLocation = mStartingLocationsDataStruct;
 L1696:         goto ExecutionFlow.Pop();
-L1697:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1697:         int32 mint323 = Temp_int_Loop_Counter_Variable + 1;
 L1739:         Temp_int_Loop_Counter_Variable = mint323;
 L1766:         goto L97;
 L1771:         localAreaSelectionButton->mIsSelected = false;
@@ -65,7 +65,7 @@ L1804:         goto ExecutionFlow.Pop();
 
 ============ BEGIN FUNCTION SetStartButtonEnable ==============
 L0:            bool LocalIsEnabled = Enabled;
-L19:           bool mbool = NotEqual_BoolBool(LocalIsEnabled, this->mPlayButtonEnabled);
+L19:           bool mbool = LocalIsEnabled != this->mPlayButtonEnabled;
 L57:           if (!mbool) goto L414;
 L71:           this->mPlayButtonEnabled = LocalIsEnabled;
 L90:           uint8 Temp_byte_Variable = 0;
@@ -79,7 +79,7 @@ default -> muint8;
 L238:          if (!LocalIsEnabled) goto L349;
 L252:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->StartButtonPulseAnim, 0, 0, 0, 1);
 L298:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->StartButtonEnable, 0, 1, 0, 1);
-L344:          <End of Inlined Event Graph Function>;
+L344:          // <End Inlined EventGraph Function>;
 L349:          this->StopAnimation(this->StartButtonPulseAnim);
 L368:          UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->StartButtonEnable, 0, 1, 1, 1);
 ============ END FUNCTION SetStartButtonEnable ==============
@@ -93,7 +93,7 @@ L0:            FText mFText = this->mSessionNameInput->GetText();
 L50:           FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
 L109:          FString local_sessionName = mFString;
 L136:          int32 mint32 = KismetStringLibrary->Len(local_sessionName);
-L195:          bool mbool = Greater_IntInt(mint32, 2);
+L195:          bool mbool = mint32 > 2;
 L229:          if (!mbool) goto L574;
 L243:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L267:          FGSaveSystem* mFGSaveSystem = FGSaveSystem->Get(mPlayerController);
@@ -102,14 +102,14 @@ L369:          if (!mbool1) goto L680;
 L383:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L407:          FGSaveSystem* mFGSaveSystem1 = FGSaveSystem->Get(mPlayerController1);
 L458:          bool mbool2 = mFGSaveSystem1->IsSessionNameUsed(local_sessionName);
-L509:          bool mbool3 = Not_PreBool(mbool2);
+L509:          bool mbool3 = !mbool2;
 L538:          if (!mbool3) goto L793;
 L552:          this->SetPlayButtonError(false, );
-L569:          <End of Inlined Event Graph Function>;
+L569:          // <End Inlined EventGraph Function>;
 L574:          this->SetPlayButtonError(true, "[object Object]");
-L675:          <End of Inlined Event Graph Function>;
+L675:          // <End Inlined EventGraph Function>;
 L680:          this->SetPlayButtonError(true, "[object Object]");
-L788:          <End of Inlined Event Graph Function>;
+L788:          // <End Inlined EventGraph Function>;
 L793:          this->SetPlayButtonError(true, "[object Object]");
 ============ END FUNCTION CheckSessionNameForError ==============
 
@@ -120,12 +120,12 @@ L793:          this->SetPlayButtonError(true, "[object Object]");
 ============ BEGIN FUNCTION SetPlayButtonError ==============
 L0:            this->mPlayButtonError = Error;
 L19:           this->mPlayButtonErrorString = errorMessage;
-L46:           bool mbool = Not_PreBool(this->mPlayButtonError);
+L46:           bool mbool = !this->mPlayButtonError;
 L75:           this->SetStartButtonEnable(mbool);
 L98:           if (!this->mPlayButtonError) goto L200;
 L112:          this->mErrorLabel->SetVisibility(0);
 L150:          this->mErrorLabel->SetText(this->mPlayButtonErrorString);
-L195:          <End of Inlined Event Graph Function>;
+L195:          // <End Inlined EventGraph Function>;
 L200:          this->mErrorLabel->SetVisibility(2);
 ============ END FUNCTION SetPlayButtonError ==============
 
@@ -134,7 +134,9 @@ L200:          this->mErrorLabel->SetVisibility(2);
 
 
 ============ BEGIN FUNCTION OnEscape ==============
-L0:            this->ExecuteUbergraph_Widget_PlayMenu_Alpha(15);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnEscape;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Alpha, from label L15;
 ============ END FUNCTION OnEscape ==============
 
 
@@ -142,7 +144,9 @@ L0:            this->ExecuteUbergraph_Widget_PlayMenu_Alpha(15);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_PlayMenu_Alpha(609);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Alpha, from label L609;
 ============ END FUNCTION Construct ==============
 
 
@@ -150,8 +154,9 @@ L0:            this->ExecuteUbergraph_Widget_PlayMenu_Alpha(609);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_Options_DropdownBox_K2Node_ComponentBoundEvent_2_onSelectionChanged__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(StrProperty /Game/FactoryGame/Interface/UI/Menu/Widget_PlayMenu_Alpha.Widget_PlayMenu_Alpha_C:ExecuteUbergraph_Widget_PlayMenu_Alpha.K2Node_ComponentBoundEvent_SelectedOption) = SelectedOption;
-L18:           this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1256);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__Widget_Options_DropdownBox_K2Node_ComponentBoundEvent_2_onSelectionChanged__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Alpha, from label L1256;
 ============ END FUNCTION BndEvt__Widget_Options_DropdownBox_K2Node_ComponentBoundEvent_2_onSelectionChanged__DelegateSignature ==============
 
 
@@ -159,8 +164,9 @@ L18:           this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1256);
 
 
 ============ BEGIN FUNCTION OnStartLocClicked ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Menu/Widget_PlayMenu_Alpha.Widget_PlayMenu_Alpha_C:ExecuteUbergraph_Widget_PlayMenu_Alpha.K2Node_CustomEvent_mStartingLocs) = mStartingLocs;
-L18:           this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1737);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnStartLocClicked;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Alpha, from label L1737;
 ============ END FUNCTION OnStartLocClicked ==============
 
 
@@ -168,8 +174,9 @@ L18:           this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1737);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_PlayMenu_Alpha.Widget_PlayMenu_Alpha_C:ExecuteUbergraph_Widget_PlayMenu_Alpha.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1822);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Alpha, from label L1822;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -177,7 +184,9 @@ L18:           this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1822);
 
 
 ============ BEGIN FUNCTION BndEvt__mStartGame_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1837);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mStartGame_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Alpha, from label L1837;
 ============ END FUNCTION BndEvt__mStartGame_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -185,7 +194,9 @@ L0:            this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1837);
 
 
 ============ BEGIN FUNCTION BndEvt__mStartGame_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1876);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mStartGame_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Alpha, from label L1876;
 ============ END FUNCTION BndEvt__mStartGame_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -193,8 +204,9 @@ L0:            this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1876);
 
 
 ============ BEGIN FUNCTION BndEvt__EditableTextBox_0_K2Node_ComponentBoundEvent_6_OnEditableTextBoxChangedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/Menu/Widget_PlayMenu_Alpha.Widget_PlayMenu_Alpha_C:ExecuteUbergraph_Widget_PlayMenu_Alpha.K2Node_ComponentBoundEvent_Text) = text;
-L18:           this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1915);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__EditableTextBox_0_K2Node_ComponentBoundEvent_6_OnEditableTextBoxChangedEvent__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Alpha, from label L1915;
 ============ END FUNCTION BndEvt__EditableTextBox_0_K2Node_ComponentBoundEvent_6_OnEditableTextBoxChangedEvent__DelegateSignature ==============
 
 
@@ -202,7 +214,9 @@ L18:           this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1915);
 
 
 ============ BEGIN FUNCTION BndEvt__mStartGame_K2Node_ComponentBoundEvent_7_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1920);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mStartGame_K2Node_ComponentBoundEvent_7_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Alpha, from label L1920;
 ============ END FUNCTION BndEvt__mStartGame_K2Node_ComponentBoundEvent_7_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -210,8 +224,9 @@ L0:            this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1920);
 
 
 ============ BEGIN FUNCTION OnMenuEnter ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_PlayMenu_Alpha.Widget_PlayMenu_Alpha_C:ExecuteUbergraph_Widget_PlayMenu_Alpha.K2Node_Event_prevMenu) = prevMenu;
-L18:           this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1925);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnMenuEnter;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Alpha, from label L1925;
 ============ END FUNCTION OnMenuEnter ==============
 
 
@@ -220,12 +235,13 @@ L18:           this->ExecuteUbergraph_Widget_PlayMenu_Alpha(1925);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_PlayMenu_Alpha ==============
 L5:            goto ComputedJump(EntryPoint);
+L15:           // <Begin Inlined EventGraph Function OnEscape>;
 L15:           this->OnEscape();
 L25:           this->mOwningMenu->OnEscape();
 L61:           goto ExecutionFlow.Pop();
 L62:           int32 Temp_int_Array_Index_Variable = 0;
 L85:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mStartingLocations);
-L144:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L144:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L182:          if (!mbool) goto ExecutionFlow.Pop();
 L192:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L219:          ExecutionFlow.Push(L535);
@@ -238,16 +254,17 @@ L458:          bool mbool2 = mWidget_AreaSelection_Button;
 L487:          if (!mbool2) goto ExecutionFlow.Pop();
 L497:          mWidget_AreaSelection_Button->SetSelected(false);
 L534:          goto ExecutionFlow.Pop();
-L535:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L535:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L577:          int32 Temp_int_Loop_Counter_Variable = mint321;
 L604:          goto L85;
+L609:          // <Begin Inlined EventGraph Function Construct>;
 L609:          this->Construct();
 L619:          this->mOnEnterAnimation = this->Spawn;
 L638:          this->CheckSessionNameForError();
 L652:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ErrorPulse, 0, 0, 0, 1);
 L698:          goto ExecutionFlow.Pop();
 L699:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L723:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_LaunchGame, mPlayerController, true);
+L723:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_LaunchGame.Play_UI_MainMenu_LaunchGame), mPlayerController, true);
 L784:          GameInstance* mGameInstance = GameplayStatics->GetGameInstance(this);
 L827:          FGGameInstance* mFGGameInstance = Cast<Class /Script/FactoryGame.FGGameInstance>(mGameInstance);
 L863:          bool mbool3 = mFGGameInstance;
@@ -260,7 +277,7 @@ L1101:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFT
 L1160:         FGBlueprintFunctionLibrary->CreateSessionAndTravelToMap(mPlayerController1, "Persistent_Level", this->mSelectedLocation.StartLocString_11_9994B8C8428E92F9965D6BA3CB30CE96, mFString, this->mSelectedVisibility);
 L1255:         goto ExecutionFlow.Pop();
 L1256:         int32 mint322 = KismetStringLibrary->Len(mFString1);
-L1315:         bool mbool5 = Greater_IntInt(mint322, 0);
+L1315:         bool mbool5 = mint322 > 0;
 L1349:         if (!mbool5) goto ExecutionFlow.Pop();
 L1359:         if (!true) goto L1448;
 L1365:         BP_OnlineHelpers->SessionVisibilityStringToEnum(mFString1, this, [ref] muint8);
@@ -282,11 +299,14 @@ L1807:         this->CheckSessionNameForError();
 L1821:         goto ExecutionFlow.Pop();
 L1822:         this->InitStartingLocs();
 L1836:         goto ExecutionFlow.Pop();
+L1837:         // <Begin Inlined EventGraph Function BndEvt__mStartGame_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature>;
 L1837:         this->mStartButtonHover->SetVisibility(0);
 L1875:         goto ExecutionFlow.Pop();
+L1876:         // <Begin Inlined EventGraph Function BndEvt__mStartGame_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature>;
 L1876:         this->mStartButtonHover->SetVisibility(2);
 L1914:         goto ExecutionFlow.Pop();
 L1915:         goto L1792;
+L1920:         // <Begin Inlined EventGraph Function BndEvt__mStartGame_K2Node_ComponentBoundEvent_7_OnButtonClickedEvent__DelegateSignature>;
 L1920:         goto L1621;
 L1925:         this->OnMenuEnter(mWidget1);
 L1944:         goto L1807;

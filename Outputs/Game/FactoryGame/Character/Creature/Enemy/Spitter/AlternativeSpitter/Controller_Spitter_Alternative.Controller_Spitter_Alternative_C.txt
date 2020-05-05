@@ -7,9 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Spitter/Altern
 
 
 ============ BEGIN FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_0_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/AlternativeSpitter/Controller_Spitter_Alternative.Controller_Spitter_Alternative_C:ExecuteUbergraph_Controller_Spitter_Alternative.K2Node_ComponentBoundEvent_Actor) = Actor;
-L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/AlternativeSpitter/Controller_Spitter_Alternative.Controller_Spitter_Alternative_C:ExecuteUbergraph_Controller_Spitter_Alternative.K2Node_ComponentBoundEvent_Stimulus) = Stimulus;
-L36:           this->ExecuteUbergraph_Controller_Spitter_Alternative(10);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_0_ActorPerceptionUpdatedDelegate__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Controller_Spitter_Alternative, from label L10;
 ============ END FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_0_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
 
 
@@ -17,15 +17,15 @@ L36:           this->ExecuteUbergraph_Controller_Spitter_Alternative(10);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Controller_Spitter_Alternative ==============
-L10:           bool mbool = EqualEqual_NameName(mAIStimulus.Tag, "WeaponFire");
-L61:           bool mbool1 = BooleanAND(mbool, mAIStimulus.bSuccessfullySensed);
+L10:           bool mbool = mAIStimulus.Tag == "WeaponFire";
+L61:           bool mbool1 = mbool && mAIStimulus.bSuccessfullySensed;
 L108:          if (!mbool1) goto L376;
-L122:          TScriptInterface<FGAggroTargetInterface> mTScriptInterface<FGAggroTargetInterface> = QueryInterface<Class /Script/FactoryGame.FGAggroTargetInterface>(mActor);
-L158:          bool mbool2 = mTScriptInterface<FGAggroTargetInterface>;
+L122:          TScriptInterface<FGAggroTargetInterface> mTScriptInterfaceFGAggroTargetInterface = QueryInterface<Class /Script/FactoryGame.FGAggroTargetInterface>(mActor);
+L158:          bool mbool2 = mTScriptInterfaceFGAggroTargetInterface;
 L187:          if (!mbool2) goto L376;
-L201:          this->AddToAggroByTarget(mTScriptInterface<FGAggroTargetInterface>, 0.699999988079071);
+L201:          this->AddToAggroByTarget(mTScriptInterfaceFGAggroTargetInterface, 0.699999988079071);
 L225:          BlackboardComponent* mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(this);
 L268:          bool mbool3 = this->CanSeeActor(mActor);
-L297:          bool mbool4 = Not_PreBool(mbool3);
+L297:          bool mbool4 = !mbool3;
 L326:          mBlackboardComponent->SetValueAsBool([ref] this->mDoPanicName, mbool4);
 ============ END FUNCTION ExecuteUbergraph_Controller_Spitter_Alternative ==============

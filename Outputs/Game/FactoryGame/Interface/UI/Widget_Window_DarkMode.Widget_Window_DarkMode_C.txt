@@ -33,7 +33,7 @@ L328:          bool mbool3 = mFGPlayerController;
 L357:          int32 mint32 = mFGPlayerController->GetShortcutIndexFromKey([ref] KeyEvent);
 L416:          int32 LocalIndex = mint32;
 L443:          int32 mint321 = InventoryAddon->mRelevantInventory->GetChildrenCount();
-L515:          bool mbool4 = Less_IntInt(LocalIndex, mint321);
+L515:          bool mbool4 = LocalIndex < mint321;
 L553:          if (!mbool4) goto L1086;
 L567:          Widget* mWidget1 = InventoryAddon->mRelevantInventory->GetChildAt(LocalIndex);
 L640:          Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mWidget1);
@@ -82,11 +82,11 @@ L41:           EventReply ReturnValue = mEventReply;
 
 ============ BEGIN FUNCTION InitTabs ==============
 L0:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mTabs);
-L59:           bool mbool = Greater_IntInt(mint32, 0);
+L59:           bool mbool = mint32 > 0;
 L93:           if (!mbool) goto L462;
 L107:          this->Widget_TabsContainer->mButtons = this->mTabs;
 L156:          int32 mint321 = this->WindowBody->GetChildrenCount();
-L206:          bool mbool1 = Greater_IntInt(mint321, 0);
+L206:          bool mbool1 = mint321 > 0;
 L240:          if (!mbool1) goto L421;
 L254:          Widget* mWidget = this->WindowBody->GetChildAt(0);
 L301:          Widget_SlidingTabs* mWidget_SlidingTabs = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SlidingTabs.Widget_SlidingTabs_C>(mWidget);
@@ -94,7 +94,7 @@ L337:          bool mbool2 = mWidget_SlidingTabs;
 L366:          if (!mbool2) goto L421;
 L380:          this->Widget_TabsContainer->mSlidingTabsWidget = mWidget_SlidingTabs;
 L421:          this->Widget_TabsContainer->Init();
-L457:          <End of Inlined Event Graph Function>;
+L457:          // <End Inlined EventGraph Function>;
 L462:          mImageAndText.Texture_4_7082C106445A08AB1E68E496718E5427 = nullptr;
 L482:          mImageAndText.Text_5_FD671CE446AF05CA543E228C049AB0F9 = this->mTitleText;
 L518:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->mTabs, [ref] mImageAndText);
@@ -123,7 +123,7 @@ L347:          this->mStartLerpSize = this->mInventorySizeBox->WidthOverride;
 L396:          mFScriptDelegate->BindUFunction(this, LerpShowInventory);
 L419:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mLerpUpdateTime, true);
 L488:          this->mShowInventoryTimer = mTimerHandle;
-L515:          <End of Inlined Event Graph Function>;
+L515:          // <End Inlined EventGraph Function>;
 L520:          if (!LocalAnimate) goto L553;
 L534:          if (!this->mIsOverrideWidthSet) goto L1088;
 L548:          goto L272;
@@ -134,16 +134,16 @@ L655:          bool mbool1 = mFGHUD1;
 L684:          FGGameUI* mFGGameUI1 = mFGHUD1->GetGameUI();
 L726:          mFGGameUI1->SetShowInventory(false);
 L759:          this->mInventorySizeBox->SetWidthOverride(0);
-L796:          <End of Inlined Event Graph Function>;
+L796:          // <End Inlined EventGraph Function>;
 L801:          Vector2D mVector2D = this->InventorySlot->GetDesiredSize();
 L851:          BreakVector2D(mVector2D, [ref] mfloat, [ref] mfloat1);
-L888:          bool mbool2 = Greater_FloatFloat(mfloat, 0);
+L888:          bool mbool2 = mfloat > 0;
 L922:          this->mIsOverrideWidthSet = mbool2;
 L941:          if (!this->mIsOverrideWidthSet) goto L1232;
 L955:          Vector2D mVector2D1 = this->InventorySlot->GetDesiredSize();
 L1005:         BreakVector2D(mVector2D1, [ref] mfloat2, [ref] mfloat3);
 L1042:         this->mInventorySizeBox->SetWidthOverride(mfloat2);
-L1083:         <End of Inlined Event Graph Function>;
+L1083:         // <End Inlined EventGraph Function>;
 L1088:         Vector2D mVector2D2 = this->InventorySlot->GetDesiredSize();
 L1138:         BreakVector2D(mVector2D2, [ref] mfloat4, [ref] mfloat5);
 L1175:         this->mInventorySizeBox->SetWidthOverride(mfloat4);
@@ -194,8 +194,8 @@ L184:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L208:          HUDHelpers->GetFGGameUI(mPlayerController1, this, [ref] mFGGameUI1);
 L263:          bool mbool1 = mFGGameUI1->GetShowInventory();
 L305:          int32 mint32 = this->InventorySlot->GetChildrenCount();
-L355:          bool mbool2 = Greater_IntInt(mint32, 0);
-L389:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L355:          bool mbool2 = mint32 > 0;
+L389:          bool mbool3 = mbool2 && mbool1;
 L427:          bool Temp_bool_Variable = mbool3;
 L446:          uint8 ReturnValue = switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -234,7 +234,7 @@ L0:            bool ReturnValue = true;
 L0:            this->mTitleText = Title;
 L27:           this->Widget_TitleLabel_DarkMode->SetTitle(this->mTitleText);
 L72:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mTabs);
-L131:          bool mbool = EqualEqual_IntInt(mint32, 1);
+L131:          bool mbool = mint32 == 1;
 L165:          if (!mbool) goto L377;
 L179:          KismetArrayLibrary->Array_Get([ref] this->mTabs, 0, [ref] mImageAndText);
 L234:          mImageAndText1.Texture_4_7082C106445A08AB1E68E496718E5427 = mImageAndText.Texture_4_7082C106445A08AB1E68E496718E5427;
@@ -248,7 +248,9 @@ L363:          this->InitTabs();
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(944);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L944;
 ============ END FUNCTION Construct ==============
 
 
@@ -256,7 +258,9 @@ L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(944);
 
 
 ============ BEGIN FUNCTION OnEscapePressed ==============
-L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1099);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnEscapePressed;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L1099;
 ============ END FUNCTION OnEscapePressed ==============
 
 
@@ -264,7 +268,9 @@ L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1099);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1199);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L1199;
 ============ END FUNCTION Destruct ==============
 
 
@@ -272,9 +278,9 @@ L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1199);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Widget_Window_DarkMode.Widget_Window_DarkMode_C:ExecuteUbergraph_Widget_Window_DarkMode.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Widget_Window_DarkMode.Widget_Window_DarkMode_C:ExecuteUbergraph_Widget_Window_DarkMode.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_Window_DarkMode(1210);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L1210;
 ============ END FUNCTION Tick ==============
 
 
@@ -282,7 +288,9 @@ L36:           this->ExecuteUbergraph_Widget_Window_DarkMode(1210);
 
 
 ============ BEGIN FUNCTION OnConstructAnimFinished ==============
-L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1452);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnConstructAnimFinished;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L1452;
 ============ END FUNCTION OnConstructAnimFinished ==============
 
 
@@ -290,8 +298,9 @@ L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1452);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Widget_Window_DarkMode.Widget_Window_DarkMode_C:ExecuteUbergraph_Widget_Window_DarkMode.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_Window_DarkMode(1489);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L1489;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -299,7 +308,9 @@ L18:           this->ExecuteUbergraph_Widget_Window_DarkMode(1489);
 
 
 ============ BEGIN FUNCTION OnCloseButtonClicked ==============
-L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1966);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnCloseButtonClicked;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L1966;
 ============ END FUNCTION OnCloseButtonClicked ==============
 
 
@@ -307,7 +318,9 @@ L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1966);
 
 
 ============ BEGIN FUNCTION LerpShowInventory ==============
-L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1971);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: LerpShowInventory;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L1971;
 ============ END FUNCTION LerpShowInventory ==============
 
 
@@ -315,8 +328,9 @@ L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(1971);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_2_OnButtonClicked__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/Widget_Window_DarkMode.Widget_Window_DarkMode_C:ExecuteUbergraph_Widget_Window_DarkMode.K2Node_ComponentBoundEvent_ButtonIndex) = ButtonIndex;
-L18:           this->ExecuteUbergraph_Widget_Window_DarkMode(2750);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_2_OnButtonClicked__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L2750;
 ============ END FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_2_OnButtonClicked__DelegateSignature ==============
 
 
@@ -324,7 +338,9 @@ L18:           this->ExecuteUbergraph_Widget_Window_DarkMode(2750);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_0_OnNoTabsGenerated__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(2779);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_0_OnNoTabsGenerated__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L2779;
 ============ END FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_0_OnNoTabsGenerated__DelegateSignature ==============
 
 
@@ -332,7 +348,9 @@ L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(2779);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_1_OnTabsGenerated__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(2818);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_1_OnTabsGenerated__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L2818;
 ============ END FUNCTION BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_1_OnTabsGenerated__DelegateSignature ==============
 
 
@@ -340,8 +358,9 @@ L0:            this->ExecuteUbergraph_Widget_Window_DarkMode(2818);
 
 
 ============ BEGIN FUNCTION SetupRelevantInventory ==============
-L0:            PERSISTENT_FRAME(ArrayProperty /Game/FactoryGame/Interface/UI/Widget_Window_DarkMode.Widget_Window_DarkMode_C:ExecuteUbergraph_Widget_Window_DarkMode.K2Node_CustomEvent_RelevantClasses) = relevantClasses;
-L18:           this->ExecuteUbergraph_Widget_Window_DarkMode(2857);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: SetupRelevantInventory;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Window_DarkMode, from label L2857;
 ============ END FUNCTION SetupRelevantInventory ==============
 
 
@@ -356,18 +375,18 @@ L71:           Widget* mWidget = this->InventorySlot->GetChildAt(0);
 L118:          Widget_PlayerInventoryAddon* mWidget_PlayerInventoryAddon = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Character/Player/Widget_PlayerInventoryAddon.Widget_PlayerInventoryAddon_C>(mWidget);
 L154:          bool mbool1 = mWidget_PlayerInventoryAddon;
 L183:          if (!mbool1) goto L288;
-L197:          mWidget_PlayerInventoryAddon->SetupRelevantInventory([ref] mconst TArray<TSubclassOf<FGItemDescriptor>>);
+L197:          mWidget_PlayerInventoryAddon->SetupRelevantInventory([ref] mconst TArrayTSubclassOfFGItemDescriptor);
 L242:          mWidget_PlayerInventoryAddon->SetRelevantItemsText(this->mRelevantItemsText);
 L287:          goto ExecutionFlow.Pop();
 L288:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 611849551, ExecutionFunction = "ExecuteUbergraph_Widget_Window_DarkMode", CallbackTarget = this));
 L364:          goto ExecutionFlow.Pop();
 L365:          int32 mint32 = this->InventorySlot->GetChildrenCount();
-L415:          bool mbool2 = EqualEqual_IntInt(mint32, 0);
+L415:          bool mbool2 = mint32 == 0;
 L449:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L473:          HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
 L528:          bool mbool3 = mFGGameUI->GetWindowWantsInventoryAddon();
-L570:          bool mbool4 = BooleanAND(mbool3, mbool2);
-L608:          bool mbool5 = BooleanAND(mbool4, this->mCanShowInventory);
+L570:          bool mbool4 = mbool3 && mbool2;
+L608:          bool mbool5 = mbool4 && this->mCanShowInventory;
 L646:          if (!mbool5) goto L675;
 L660:          if (!Temp_bool_Variable) goto L713;
 L674:          goto ExecutionFlow.Pop();
@@ -385,17 +404,20 @@ L850:          bool mbool6 = mBP_GameUI;
 L879:          if (!mbool6) goto ExecutionFlow.Pop();
 L889:          mBP_GameUI->CreateAddOnPlayerInventory(this->InventorySlot, [ref] mWidget_PlayerInventoryAddon1);
 L943:          goto ExecutionFlow.Pop();
+L944:          // <Begin Inlined EventGraph Function Construct>;
 L944:          this->Construct();
 L954:          mFScriptDelegate->BindUFunction(this, OnConstructAnimFinished);
 L977:          this->Widget_Anim_Up_Slide->BindToAnimationFinished(this->Widget_Anim_Up_Slide->EnableAnim, mFScriptDelegate);
 L1049:         this->Widget_UI_ParticleManager->mParticleWidgets = this->mParticleWidgets;
 L1098:         goto ExecutionFlow.Pop();
-L1099:         bool mbool7 = Not_PreBool(this->mOverrideCloseButton);
+L1099:         // <Begin Inlined EventGraph Function OnEscapePressed>;
+L1099:         bool mbool7 = !this->mOverrideCloseButton;
 L1128:         if (!mbool7) goto L1179;
 L1142:         this->Widget_Anim_Up_Slide->CloseAnim();
 L1178:         goto ExecutionFlow.Pop();
 L1179:         this->OnClose->ProcessMulticastDelegate();
 L1198:         goto ExecutionFlow.Pop();
+L1199:         // <Begin Inlined EventGraph Function Destruct>;
 L1199:         this->Destruct();
 L1209:         goto ExecutionFlow.Pop();
 L1210:         uint8 muint8 = this->GetInventoryBodyVisibility();
@@ -407,6 +429,7 @@ L1417:         if (!mbool8) goto ExecutionFlow.Pop();
 L1427:         goto L365;
 L1432:         this->OnClose->ProcessMulticastDelegate();
 L1451:         goto ExecutionFlow.Pop();
+L1452:         // <Begin Inlined EventGraph Function OnConstructAnimFinished>;
 L1452:         if (!this->Widget_Anim_Up_Slide->CloseAnimStarted) goto ExecutionFlow.Pop();
 L1484:         goto L1432;
 L1489:         this->SetTitle(this->mTitleText);
@@ -421,7 +444,7 @@ L1621:         this->InitTabs();
 L1635:         goto ExecutionFlow.Pop();
 L1636:         if (!this->mShowCloseButton) goto ExecutionFlow.Pop();
 L1646:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
-L1670:         Widget_TitleButton_DarkMode* mWidget_TitleButton_DarkMode = WidgetBlueprintLibrary->Create(this, Widget_TitleButton_DarkMode, mPlayerController2);
+L1670:         Widget_TitleButton_DarkMode* mWidget_TitleButton_DarkMode = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_TitleButton_DarkMode.Widget_TitleButton_DarkMode_C), mPlayerController2);
 L1731:         mFScriptDelegate1->BindUFunction(this, OnCloseButtonClicked);
 L1754:         mWidget_TitleButton_DarkMode->OnClicked.AddUnique(mFScriptDelegate1);
 L1795:         OverlaySlot* mOverlaySlot = this->CloseButtonOverlay->AddChildToOverlay(mWidget_TitleButton_DarkMode);
@@ -431,9 +454,11 @@ L1881:         this->mHintContainer->SetKeybindingHints([ref] this->mKeyBindingH
 L1926:         goto ExecutionFlow.Pop();
 L1927:         this->FicsItLogo->SetVisibility(2);
 L1965:         goto ExecutionFlow.Pop();
+L1966:         // <Begin Inlined EventGraph Function OnCloseButtonClicked>;
 L1966:         goto L1099;
-L1971:         float mfloat = Divide_FloatFloat(this->mLerpUpdateTime, this->mLerpSlideTime);
-L2017:         float mfloat1 = Add_FloatFloat(mfloat, this->mShowInventoryT);
+L1971:         // <Begin Inlined EventGraph Function LerpShowInventory>;
+L1971:         float mfloat = this->mLerpUpdateTime / this->mLerpSlideTime;
+L2017:         float mfloat1 = mfloat + this->mShowInventoryT;
 L2063:         float mfloat2 = FClamp(mfloat1, 0, 1);
 L2110:         this->mShowInventoryT = mfloat2;
 L2137:         float Temp_float_Variable = 0;
@@ -446,10 +471,10 @@ case true -> mfloat3;
 default -> mfloat6;
 }, this->mShowInventoryT, 6, 4, 2);
 L2377:         this->mInventorySizeBox->SetWidthOverride(mfloat5);
-L2418:         bool mbool9 = GreaterEqual_FloatFloat(this->mShowInventoryT, 1);
+L2418:         bool mbool9 = this->mShowInventoryT >= 1;
 L2452:         if (!mbool9) goto ExecutionFlow.Pop();
 L2462:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mShowInventoryTimer);
-L2504:         bool mbool10 = Not_PreBool(this->mShowInventory);
+L2504:         bool mbool10 = !this->mShowInventory;
 L2533:         if (!mbool10) goto ExecutionFlow.Pop();
 L2543:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
 L2567:         HUD* mHUD = mPlayerController3->GetHUD();
@@ -460,8 +485,10 @@ L2716:         mFGGameUI2->SetShowInventory(false);
 L2749:         goto ExecutionFlow.Pop();
 L2750:         this->OnTabButtonClicked->ProcessMulticastDelegate(mint321);
 L2778:         goto ExecutionFlow.Pop();
+L2779:         // <Begin Inlined EventGraph Function BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_0_OnNoTabsGenerated__DelegateSignature>;
 L2779:         this->mTabsDivider->SetVisibility(1);
 L2817:         goto ExecutionFlow.Pop();
+L2818:         // <Begin Inlined EventGraph Function BndEvt__Widget_TabsContainer_K2Node_ComponentBoundEvent_1_OnTabsGenerated__DelegateSignature>;
 L2818:         this->mTabsDivider->SetVisibility(4);
 L2856:         goto ExecutionFlow.Pop();
 L2857:         goto L15;

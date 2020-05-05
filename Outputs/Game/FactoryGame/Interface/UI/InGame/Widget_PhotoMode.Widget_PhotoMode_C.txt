@@ -57,8 +57,8 @@ L0:            uint8 Temp_byte_Variable = 0;
 L20:           uint8 Temp_byte_Variable1 = 2;
 L40:           uint8 muint8 = this->GetVisibility();
 L68:           bool mbool = this->OwningPlayerController->GetIsPhotoMode();
-L110:          bool mbool1 = EqualEqual_ByteByte(muint8, 2);
-L141:          bool mbool2 = BooleanAND(mbool, mbool1);
+L110:          bool mbool1 = muint8 == 2;
+L141:          bool mbool2 = mbool && mbool1;
 L179:          bool Temp_bool_Variable = mbool2;
 L198:          this->SetVisibility(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -72,9 +72,9 @@ default -> muint81;
 
 
 ============ BEGIN FUNCTION FadePhotoTakenText ==============
-L0:            float mfloat = Multiply_FloatFloat(this->VirtualTakenPhotoOpacity, 2);
-L42:           float mfloat1 = Multiply_FloatFloat(DeltaTime, mfloat);
-L88:           float mfloat2 = Subtract_FloatFloat(this->VirtualTakenPhotoOpacity, mfloat1);
+L0:            float mfloat = this->VirtualTakenPhotoOpacity * 2;
+L42:           float mfloat1 = DeltaTime * mfloat;
+L88:           float mfloat2 = this->VirtualTakenPhotoOpacity - mfloat1;
 L134:          this->VirtualTakenPhotoOpacity = mfloat2;
 L161:          float mfloat3 = FMin(this->VirtualTakenPhotoOpacity, 1);
 L203:          this->photosavedtext->SetRenderOpacity(mfloat3);
@@ -93,7 +93,9 @@ L0:            this->VirtualTakenPhotoOpacity = this->TakePhotoTextDuration;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_PhotoMode(29);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PhotoMode, from label L29;
 ============ END FUNCTION Construct ==============
 
 
@@ -101,9 +103,9 @@ L0:            this->ExecuteUbergraph_Widget_PhotoMode(29);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_PhotoMode.Widget_PhotoMode_C:ExecuteUbergraph_Widget_PhotoMode.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Widget_PhotoMode.Widget_PhotoMode_C:ExecuteUbergraph_Widget_PhotoMode.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_PhotoMode(170);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_PhotoMode, from label L170;
 ============ END FUNCTION Tick ==============
 
 
@@ -112,14 +114,15 @@ L36:           this->ExecuteUbergraph_Widget_PhotoMode(170);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_PhotoMode ==============
 L10:           this->UpdateHiResToggle();
-L24:           <End of Inlined Event Graph Function>;
+L24:           // <End Inlined EventGraph Function>;
+L29:           // <Begin Inlined EventGraph Function Construct>;
 L29:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L53:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
 L89:           bool mbool = mFGPlayerController;
 L118:          if (!mbool) goto L212;
 L132:          this->OwningPlayerController = mFGPlayerController;
 L151:          this->SetInputKeyTexts();
-L165:          <End of Inlined Event Graph Function>;
+L165:          // <End Inlined EventGraph Function>;
 L170:          this->FadePhotoTakenText(mfloat);
 L193:          this->UpdateFOVSlider();
 L207:          goto L10;

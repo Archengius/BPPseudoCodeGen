@@ -1,0 +1,138 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/PortableMiner/Anim_PortableMiner.Anim_PortableMiner_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_PortableMiner_AnimGraphNode_TransitionResult_15450DBB48F88D37E85553A4CB1AD445 ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_PortableMiner_AnimGraphNode_TransitionResult_15450DBB48F88D37E85553A4CB1AD445;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_PortableMiner, from label L972;
+============ END FUNCTION EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_PortableMiner_AnimGraphNode_TransitionResult_15450DBB48F88D37E85553A4CB1AD445 ==============
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintUpdateAnimation ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BlueprintUpdateAnimation;
+L18:           // Implementation: Function ExecuteUbergraph_Anim_PortableMiner, from label L977;
+============ END FUNCTION BlueprintUpdateAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_StartMiningVfxNotify ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_StartMiningVfxNotify;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_PortableMiner, from label L1502;
+============ END FUNCTION AnimNotify_StartMiningVfxNotify ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_PortableMinerEnteredOfflineState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_PortableMinerEnteredOfflineState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_PortableMiner, from label L1964;
+============ END FUNCTION AnimNotify_PortableMinerEnteredOfflineState ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_PortableMinerLeftOfflineState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_PortableMinerLeftOfflineState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_PortableMiner, from label L1969;
+============ END FUNCTION AnimNotify_PortableMinerLeftOfflineState ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_StartBurnerVfxNotify ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_StartBurnerVfxNotify;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_PortableMiner, from label L1974;
+============ END FUNCTION AnimNotify_StartBurnerVfxNotify ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Anim_PortableMiner ==============
+L10:           SkeletalMeshComponent* mSkeletalMeshComponent = this->GetOwningComponent();
+L30:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/PortableMiner/Audio/Resume_PortablePersonalMiner_StartDrill.Resume_PortablePersonalMiner_StartDrill), mSkeletalMeshComponent, "Root", true);
+L104:          bool mbool = KismetSystemLibrary->IsValid(this->mBurnerVfx);
+L155:          if (!mbool) goto L174;
+L169:          // <End Inlined EventGraph Function>;
+L174:          bool mbool1 = KismetSystemLibrary->IsValid(this->mBurnerVfx);
+L225:          if (!mbool1) goto L244;
+L239:          // <End Inlined EventGraph Function>;
+L244:          SkeletalMeshComponent* mSkeletalMeshComponent1 = this->GetOwningComponent();
+L264:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(ObjectConst(ParticleSystem /Game/FactoryGame/VFX/Factory/Miner/P_PortableMiner_Smoke_01.P_PortableMiner_Smoke_01), mSkeletalMeshComponent1, "chimney_03", Vector(0, 0, 0), Rotator::FromPitchYawRoll(-90, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L381:          this->mBurnerVfx = mParticleSystemComponent;
+L400:          bool mbool2 = KismetSystemLibrary->IsValid(this->mMineVfx);
+L451:          if (!mbool2) goto L470;
+L465:          // <End Inlined EventGraph Function>;
+L470:          SkeletalMeshComponent* mSkeletalMeshComponent2 = this->GetOwningComponent();
+L490:          ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAttached(ObjectConst(ParticleSystem /Game/FactoryGame/VFX/Factory/Miner/P_PortableMining_01.P_PortableMining_01), mSkeletalMeshComponent2, "mineVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L607:          this->mMineVfx = mParticleSystemComponent1;
+L626:          // <End Inlined EventGraph Function>;
+L631:          mSkeletalMeshComponent = this->GetOwningComponent();
+L651:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/PortableMiner/Audio/Pause_PortablePersonalMiner_StartDrill.Pause_PortablePersonalMiner_StartDrill), mSkeletalMeshComponent, "Root", true);
+L725:          bool mbool3 = KismetSystemLibrary->IsValid(this->mBurnerVfx);
+L776:          if (!mbool3) goto L1979;
+L790:          this->mBurnerVfx->Deactivate();
+L826:          this->mMineVfx->Deactivate();
+L862:          // <End Inlined EventGraph Function>;
+L867:          float mfloat = this->GetRelevantAnimTimeRemaining(0, 0);
+L905:          bool mbool4 = mfloat < 0.20000000298023224;
+L939:          this->AnimGraphNode_TransitionResult_15450DBB48F88D37E85553A4CB1AD445.bCanEnterTransition = mbool4;
+L967:          // <End Inlined EventGraph Function>;
+L972:          // <Begin Inlined EventGraph Function EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_PortableMiner_AnimGraphNode_TransitionResult_15450DBB48F88D37E85553A4CB1AD445>;
+L972:          goto L867;
+L977:          this->mDeltaTime = mfloat1;
+L1004:         this->BlueprintUpdateAnimation(this->mDeltaTime);
+L1023:         Actor* mActor = this->GetOwningActor();
+L1043:         FGPortableMiner* mFGPortableMiner = Cast<Class /Script/FactoryGame.FGPortableMiner>(mActor);
+L1079:         bool mbool5 = mFGPortableMiner;
+L1108:         if (!mbool5) goto L1979;
+L1122:         bool mbool6 = mFGPortableMiner->IsProducing();
+L1164:         this->mIsProducing = mbool6;
+L1183:         int32 mint32 = SelectInt(1, -1, this->mIsProducing);
+L1230:         float mfloat2 = SelectFloat(this->mRampItUpTime, this->mRampDownTime, this->mIsProducing);
+L1285:         float mfloat3 = this->mDeltaTime / mfloat2;
+L1331:         float mfloat4 = mint32 * mfloat3;
+L1377:         float mfloat5 = mfloat4 + this->mAnimPlayRate;
+L1423:         float mfloat6 = FClamp(mfloat5, 0, 1);
+L1470:         this->mAnimPlayRate = mfloat6;
+L1497:         // <End Inlined EventGraph Function>;
+L1502:         // <Begin Inlined EventGraph Function AnimNotify_StartMiningVfxNotify>;
+L1502:         bool mbool7 = KismetSystemLibrary->IsValid(this->mMineVfx);
+L1553:         if (!mbool7) goto L1572;
+L1567:         // <End Inlined EventGraph Function>;
+L1572:         SkeletalMeshComponent* mSkeletalMeshComponent3 = this->GetOwningComponent();
+L1592:         ParticleSystemComponent* mParticleSystemComponent2 = GameplayStatics->SpawnEmitterAttached(ObjectConst(ParticleSystem /Game/FactoryGame/VFX/Factory/Miner/P_PortableMining_01.P_PortableMining_01), mSkeletalMeshComponent3, "mineVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1709:         this->mMineVfx = mParticleSystemComponent2;
+L1728:         // <End Inlined EventGraph Function>;
+L1733:         SkeletalMeshComponent* mSkeletalMeshComponent4 = this->GetOwningComponent();
+L1753:         ParticleSystemComponent* mParticleSystemComponent3 = GameplayStatics->SpawnEmitterAttached(ObjectConst(ParticleSystem /Game/FactoryGame/VFX/Factory/Miner/P_PortableMiner_Smoke_01.P_PortableMiner_Smoke_01), mSkeletalMeshComponent4, "chimney_03", Vector(0, 0, 0), Rotator::FromPitchYawRoll(-90, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L1870:         this->mBurnerVfx = mParticleSystemComponent3;
+L1889:         // <End Inlined EventGraph Function>;
+L1894:         bool mbool8 = KismetSystemLibrary->IsValid(this->mBurnerVfx);
+L1945:         if (!mbool8) goto L1733;
+L1959:         // <End Inlined EventGraph Function>;
+L1964:         // <Begin Inlined EventGraph Function AnimNotify_PortableMinerEnteredOfflineState>;
+L1964:         goto L631;
+L1969:         // <Begin Inlined EventGraph Function AnimNotify_PortableMinerLeftOfflineState>;
+L1969:         goto L10;
+L1974:         // <Begin Inlined EventGraph Function AnimNotify_StartBurnerVfxNotify>;
+L1974:         goto L1894;
+============ END FUNCTION ExecuteUbergraph_Anim_PortableMiner ==============

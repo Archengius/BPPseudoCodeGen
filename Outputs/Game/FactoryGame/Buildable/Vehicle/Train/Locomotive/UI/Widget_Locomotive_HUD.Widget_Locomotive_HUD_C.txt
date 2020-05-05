@@ -9,7 +9,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/W
 ============ BEGIN FUNCTION CheckHasPower ==============
 L0:            FGPowerInfoComponent* mFGPowerInfoComponent = this->BPLocomotive->GetPowerInfo();
 L42:           bool mbool = mFGPowerInfoComponent->HasPower();
-L84:           bool mbool1 = Not_PreBool(mbool);
+L84:           bool mbool1 = !mbool;
 L113:          this->Widget_TrainWarning->ShouldForceWarning(mbool1, "[object Object]");
 ============ END FUNCTION CheckHasPower ==============
 
@@ -22,9 +22,9 @@ L0:            bool mbool = KismetSystemLibrary->IsValid(this->BPLocomotive);
 L51:           if (!mbool) goto L388;
 L65:           float mfloat = this->BPLocomotive->mVehicleMovement->GetForwardSpeed();
 L137:          float mfloat1 = Abs(mfloat);
-L174:          float mfloat2 = Divide_FloatFloat(mfloat1, 28);
-L216:          float mfloat3 = Multiply_FloatFloat(mfloat2, 0.6000000238418579);
-L258:          float mfloat4 = Subtract_FloatFloat(mfloat3, 45);
+L174:          float mfloat2 = mfloat1 / 28;
+L216:          float mfloat3 = mfloat2 * 0.6000000238418579;
+L258:          float mfloat4 = mfloat3 - 45;
 L300:          float mfloat5 = FClamp(mfloat4, -45, 45);
 L347:          this->PointerContainer->SetRenderAngle(mfloat5);
 ============ END FUNCTION SetSpeedometerPosition ==============
@@ -59,9 +59,9 @@ L316:          FText ReturnValue = mFText;
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Locomotive_HUD.Widget_Locomotive_HUD_C:ExecuteUbergraph_Widget_Locomotive_HUD.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/Train/Locomotive/UI/Widget_Locomotive_HUD.Widget_Locomotive_HUD_C:ExecuteUbergraph_Widget_Locomotive_HUD.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_Locomotive_HUD(983);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Locomotive_HUD, from label L983;
 ============ END FUNCTION Tick ==============
 
 
@@ -69,7 +69,9 @@ L36:           this->ExecuteUbergraph_Widget_Locomotive_HUD(983);
 
 
 ============ BEGIN FUNCTION StartBrakeIndicatorAnim ==============
-L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1266);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StartBrakeIndicatorAnim;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Locomotive_HUD, from label L1266;
 ============ END FUNCTION StartBrakeIndicatorAnim ==============
 
 
@@ -77,7 +79,9 @@ L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1266);
 
 
 ============ BEGIN FUNCTION StopBrakeIndicatorAnim ==============
-L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1305);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StopBrakeIndicatorAnim;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Locomotive_HUD, from label L1305;
 ============ END FUNCTION StopBrakeIndicatorAnim ==============
 
 
@@ -85,7 +89,9 @@ L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1305);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1344);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Locomotive_HUD, from label L1344;
 ============ END FUNCTION Construct ==============
 
 
@@ -93,7 +99,9 @@ L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1344);
 
 
 ============ BEGIN FUNCTION CheckIsDocked ==============
-L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1359);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: CheckIsDocked;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Locomotive_HUD, from label L1359;
 ============ END FUNCTION CheckIsDocked ==============
 
 
@@ -101,7 +109,9 @@ L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1359);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1364);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Locomotive_HUD, from label L1364;
 ============ END FUNCTION Destruct ==============
 
 
@@ -109,7 +119,9 @@ L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1364);
 
 
 ============ BEGIN FUNCTION UpdateStats ==============
-L0:            this->ExecuteUbergraph_Widget_Locomotive_HUD(1407);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: UpdateStats;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Locomotive_HUD, from label L1407;
 ============ END FUNCTION UpdateStats ==============
 
 
@@ -169,20 +181,26 @@ L978:          goto L534;
 L983:          this->SetSpeedometerPosition();
 L997:          float mfloat = this->BPLocomotive->mVehicleMovement->GetAirBrake();
 L1069:         float mfloat1 = this->BPLocomotive->mVehicleMovement->GetDynamicBrake();
-L1141:         bool mbool2 = Greater_FloatFloat(mfloat, 0);
-L1175:         bool mbool3 = Greater_FloatFloat(mfloat1, 0);
-L1209:         bool mbool4 = BooleanOR(mbool3, mbool2);
+L1141:         bool mbool2 = mfloat > 0;
+L1175:         bool mbool3 = mfloat1 > 0;
+L1209:         bool mbool4 = mbool3 || mbool2;
 L1247:         if (!mbool4) goto L669;
 L1261:         goto L721;
+L1266:         // <Begin Inlined EventGraph Function StartBrakeIndicatorAnim>;
 L1266:         this->mBrakeIndicator->SetVisibility(3);
 L1304:         goto ExecutionFlow.Pop();
+L1305:         // <Begin Inlined EventGraph Function StopBrakeIndicatorAnim>;
 L1305:         this->mBrakeIndicator->SetVisibility(2);
 L1343:         goto ExecutionFlow.Pop();
+L1344:         // <Begin Inlined EventGraph Function Construct>;
 L1344:         this->Construct();
 L1354:         goto L30;
+L1359:         // <Begin Inlined EventGraph Function CheckIsDocked>;
 L1359:         goto L838;
+L1364:         // <Begin Inlined EventGraph Function Destruct>;
 L1364:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateStatsTimer);
 L1406:         goto ExecutionFlow.Pop();
+L1407:         // <Begin Inlined EventGraph Function UpdateStats>;
 L1407:         this->CheckIsDocked();
 L1421:         goto L15;
 ============ END FUNCTION ExecuteUbergraph_Widget_Locomotive_HUD ==============

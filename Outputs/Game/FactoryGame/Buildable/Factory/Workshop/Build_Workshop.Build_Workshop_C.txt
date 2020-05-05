@@ -7,7 +7,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/Workshop/Build_Worksh
 
 
 ============ BEGIN FUNCTION GetLookAtDecription ==============
-L0:            bool mbool = EqualEqual_ClassClass(State.State, UseState_WorkBench);
+L0:            bool mbool = State.State == ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/UseState_WorkBench.UseState_WorkBench_C);
 L47:           if (!mbool) goto L161;
 L61:           FText mFText = this->GetLookAtDecription(byCharacter, [ref] byCharacter->mCachedUseState);
 L129:          FText ReturnValue = mFText;
@@ -32,10 +32,10 @@ L0:            FGCharacterPlayer* mFGCharacterPlayer = this->WorkshopComponent->
 L42:           bool mbool = KismetSystemLibrary->IsValid(mFGCharacterPlayer);
 L93:           if (!mbool) goto L277;
 L107:          FGCharacterPlayer* mFGCharacterPlayer1 = this->WorkshopComponent->GetWorkBenchUser();
-L149:          bool mbool1 = EqualEqual_ObjectObject(byCharacter, mFGCharacterPlayer1);
-L187:          bool mbool2 = Not_PreBool(mbool1);
+L149:          bool mbool1 = byCharacter == mFGCharacterPlayer1;
+L187:          bool mbool2 = !mbool1;
 L216:          if (!mbool2) goto L277;
 L230:          FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, nullptr);
-L272:          <End of Inlined Event Graph Function>;
-L277:          FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, UseState_WorkBench);
+L272:          // <End Inlined EventGraph Function>;
+L277:          FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/UseState_WorkBench.UseState_WorkBench_C));
 ============ END FUNCTION UpdateUseState ==============

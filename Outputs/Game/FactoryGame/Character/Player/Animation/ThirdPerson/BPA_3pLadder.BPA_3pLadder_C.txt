@@ -1,0 +1,54 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/Animation/ThirdPerson/BPA_3pLadder.BPA_3pLadder_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintUpdateAnimation ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BlueprintUpdateAnimation;
+L18:           // Implementation: Function ExecuteUbergraph_BPA_3pLadder, from label L10;
+============ END FUNCTION BlueprintUpdateAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPA_3pLadder ==============
+L10:           this->BlueprintUpdateAnimation(mfloat);
+L29:           FGCharacterMovementComponent* mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->mCharacter->CharacterMovement);
+L87:           bool mbool = mFGCharacterMovementComponent;
+L116:          FGLadderComponent* mFGLadderComponent = mFGCharacterMovementComponent->GetOnLadder();
+L158:          bool mbool1 = KismetSystemLibrary->IsValid(mFGLadderComponent);
+L209:          if (!mbool1) goto L1362;
+L223:          Rotator mRotator = this->mCharacter->K2_GetActorRotation();
+L273:          BreakRotator(mRotator, [ref] mfloat1, [ref] mfloat2, [ref] mfloat3);
+L319:          mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->mCharacter->CharacterMovement);
+L377:          mbool = mFGCharacterMovementComponent;
+L406:          mFGLadderComponent = mFGCharacterMovementComponent->GetOnLadder();
+L448:          Rotator mRotator1 = mFGLadderComponent->K2_GetComponentRotation();
+L498:          BreakRotator(mRotator1, [ref] mfloat4, [ref] mfloat5, [ref] mfloat6);
+L544:          float mfloat7 = mfloat6 - mfloat3;
+L590:          this->mMeshRotation = mfloat7;
+L617:          Transform mTransform = this->mCharacter->GetTransform();
+L667:          mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->mCharacter->CharacterMovement);
+L725:          mbool = mFGCharacterMovementComponent;
+L754:          mFGLadderComponent = mFGCharacterMovementComponent->GetOnLadder();
+L796:          Vector mVector = mFGLadderComponent->GetForwardVector();
+L846:          Vector mVector1 = InverseTransformDirection([ref] mTransform, mVector);
+L892:          Vector mVector2 = Normal(mVector1, 0.00009999999747378752);
+L934:          BreakVector(mVector2, [ref] mfloat8, [ref] mfloat9, [ref] mfloat10);
+L980:          float mfloat11 = DegAtan2(mfloat9, mfloat8);
+L1026:         float mfloat12 = mfloat11 * -1;
+L1068:         this->mLookYaw = mfloat12;
+L1095:         bool mbool2 = this->mSpeedZ != 0;
+L1129:         this->mAG_IsClimbing = mbool2;
+L1148:         FGEquipment* mFGEquipment = this->mCharacter->GetEquipmentInSlot(1);
+L1192:         bool mbool3 = KismetSystemLibrary->IsValid(mFGEquipment);
+L1243:         if (!mbool3) goto L1362;
+L1257:         mFGEquipment = this->mCharacter->GetEquipmentInSlot(1);
+L1301:         AnimSequence* mAnimSequence = mFGEquipment->GetIdlePoseAnimation3p();
+L1343:         this->mAttachmentIdlePose = mAnimSequence;
+============ END FUNCTION ExecuteUbergraph_BPA_3pLadder ==============

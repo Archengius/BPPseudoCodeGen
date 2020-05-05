@@ -11,7 +11,7 @@ L0:            this->mCachedInventoryCompontent = mCachedInventoryComponent;
 L19:           this->mRequiredAmount = this->mRequiredAmount;
 L46:           this->mSlotIdx = mSlotIdx;
 L73:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L97:           Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, Widget_CostSlotWrapper, mPlayerController);
+L97:           Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C), mPlayerController);
 L158:          PanelSlot* mPanelSlot = this->mContainer->AddChild(mWidget_CostSlotWrapper);
 L209:          mItemAmount.ItemClass = nullptr;
 L229:          mItemAmount.amount = this->mRequiredAmount;
@@ -27,13 +27,13 @@ L337:          this->mInventorySlot = mWidget_CostSlotWrapper->Widget_InventoryS
 L0:            this->mContainer->ClearChildren();
 L36:           this->SetTitle(Title);
 L59:           this->mSlotType = slotType;
-L86:           bool mbool = NotEqual_ByteByte(this->mSlotType, 0);
+L86:           bool mbool = this->mSlotType != 0;
 L117:          if (!mbool) goto L181;
-L131:          mbool = NotEqual_ByteByte(this->mSlotType, 1);
+L131:          mbool = this->mSlotType != 1;
 L162:          if (!mbool) goto L218;
-L176:          <End of Inlined Event Graph Function>;
+L176:          // <End Inlined EventGraph Function>;
 L181:          this->SetupInventorySlot(mCachedInventoryComponent, mSlotIdx);
-L213:          <End of Inlined Event Graph Function>;
+L213:          // <End Inlined EventGraph Function>;
 L218:          this->SetupCostSlot(mCachedInventoryComponent, mSlotIdx, mRequiredAmount);
 ============ END FUNCTION UpdateSlot ==============
 
@@ -45,7 +45,7 @@ L218:          this->SetupCostSlot(mCachedInventoryComponent, mSlotIdx, mRequire
 L0:            this->mCachedInventoryCompontent = mCachedInventoryComponent;
 L19:           this->mSlotIdx = mSlotIdx;
 L46:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L70:           Widget_InventorySlot* mWidget_InventorySlot = WidgetBlueprintLibrary->Create(this, Widget_InventorySlot, mPlayerController);
+L70:           Widget_InventorySlot* mWidget_InventorySlot = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C), mPlayerController);
 L131:          KismetSystemLibrary->SetIntPropertyByName(mWidget_InventorySlot, "mSlotIdx", this->mSlotIdx);
 L194:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_InventorySlot, "mCachedInventoryComponent", this->mCachedInventoryCompontent);
 L257:          this->mInventorySlot = mWidget_InventorySlot;
@@ -66,7 +66,9 @@ L27:           this->mTitleObject->SetText(this->mTitle);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_BPW_OutputInventorySlot(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_OutputInventorySlot, from label L10;
 ============ END FUNCTION Construct ==============
 
 
@@ -74,5 +76,6 @@ L0:            this->ExecuteUbergraph_BPW_OutputInventorySlot(10);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_BPW_OutputInventorySlot ==============
+L10:           // <Begin Inlined EventGraph Function Construct>;
 L10:           this->UpdateSlot(this->mTitle, this->mCachedInventoryCompontent, this->mSlotIdx, this->mSlotType, this->mRequiredAmount);
 ============ END FUNCTION ExecuteUbergraph_BPW_OutputInventorySlot ==============

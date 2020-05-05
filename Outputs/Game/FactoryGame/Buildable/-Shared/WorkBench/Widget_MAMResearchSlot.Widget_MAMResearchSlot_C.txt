@@ -7,12 +7,12 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_MAMR
 
 
 ============ BEGIN FUNCTION DropOntoInventorySlot ==============
-L0:            InventorySlot->GetItemClass([ref] mTSubclassOf<FGItemDescriptor>);
-L45:           bool mbool = EqualEqual_ClassClass(mTSubclassOf<FGItemDescriptor>, this->mItemAmount.ItemClass);
-L92:           bool mbool1 = Less_IntInt(this->mCurrentPaidOff, this->mItemAmount.amount);
-L139:          bool mbool2 = BooleanAND(mbool, mbool1);
+L0:            InventorySlot->GetItemClass([ref] mTSubclassOfFGItemDescriptor);
+L45:           bool mbool = mTSubclassOfFGItemDescriptor == this->mItemAmount.ItemClass;
+L92:           bool mbool1 = this->mCurrentPaidOff < this->mItemAmount.amount;
+L139:          bool mbool2 = mbool && mbool1;
 L177:          if (!mbool2) goto L196;
-L191:          <End of Inlined Event Graph Function>;
+L191:          // <End Inlined EventGraph Function>;
 L196:          bool Result = false;
 ============ END FUNCTION DropOntoInventorySlot ==============
 
@@ -22,7 +22,7 @@ L196:          bool Result = false;
 
 ============ BEGIN FUNCTION GetCustomTooltip ==============
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
-L24:           Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController);
+L24:           Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Tooltip.Widget_Tooltip_C), mPlayerController);
 L85:           KismetSystemLibrary->SetStructurePropertyByName(mWidget_Tooltip, "mItemDescriptor", [ref] this->mItemAmount);
 L148:          Widget* ReturnValue = mWidget_Tooltip;
 ============ END FUNCTION GetCustomTooltip ==============
@@ -32,7 +32,7 @@ L148:          Widget* ReturnValue = mWidget_Tooltip;
 
 
 ============ BEGIN FUNCTION GetPaidOffSlotVisibility ==============
-L0:            bool mbool = EqualEqual_IntInt(this->mItemAmount.amount, this->mCurrentPaidOff);
+L0:            bool mbool = this->mItemAmount.amount == this->mCurrentPaidOff;
 L47:           if (!mbool) goto L86;
 L61:           uint8 ReturnValue = 2;
 L81:           goto L106;
@@ -44,9 +44,9 @@ L86:           ReturnValue = 3;
 
 
 ============ BEGIN FUNCTION GetProgressBarVisibility ==============
-L0:            bool mbool = EqualEqual_IntInt(this->mItemAmount.amount, this->mCurrentPaidOff);
-L47:           bool mbool1 = LessEqual_IntInt(this->mCurrentPaidOff, 1);
-L81:           bool mbool2 = BooleanOR(mbool1, mbool);
+L0:            bool mbool = this->mItemAmount.amount == this->mCurrentPaidOff;
+L47:           bool mbool1 = this->mCurrentPaidOff <= 1;
+L81:           bool mbool2 = mbool1 || mbool;
 L119:          if (!mbool2) goto L158;
 L133:          uint8 ReturnValue = 2;
 L153:          goto L178;
@@ -71,7 +71,7 @@ L254:          SlateColor ReturnValue = mSlateColor;
 
 
 ============ BEGIN FUNCTION GetPaidOffFeedbackImage ==============
-L0:            bool mbool = EqualEqual_IntInt(this->mCurrentPaidOff, this->mItemAmount.amount);
+L0:            bool mbool = this->mCurrentPaidOff == this->mItemAmount.amount;
 L47:           if (!mbool) goto L86;
 L61:           uint8 ReturnValue = 3;
 L81:           goto L106;
@@ -85,7 +85,7 @@ L86:           ReturnValue = 2;
 ============ BEGIN FUNCTION GetProgressbarPercent ==============
 L0:            float mfloat = Conv_IntToFloat(this->mCurrentPaidOff);
 L37:           float mfloat1 = Conv_IntToFloat(this->mItemAmount.amount);
-L83:           float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L83:           float mfloat2 = mfloat / mfloat1;
 L129:          float mfloat3 = FClamp(mfloat2, 0, 1);
 L176:          float ReturnValue = mfloat3;
 ============ END FUNCTION GetProgressbarPercent ==============
@@ -127,8 +127,8 @@ L244:          mFormatArgumentData1.ArgumentValue = ;
 L273:          mFormatArgumentData1.ArgumentValueInt = this->mItemAmount.amount;
 L318:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L350:          mFormatArgumentData1.ArgumentValueGender = 0;
-L379:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
-L408:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L379:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData, mFormatArgumentData1];
+L408:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L516:          FText ReturnValue = mFText;
 ============ END FUNCTION GetItemQuotaText ==============
 
@@ -156,7 +156,7 @@ L74:           mSlateColor.SpecifiedColor = ScriptStruct /Script/CoreUObject.Lin
 L135:          mSlateColor.ColorUseRule = 0;
 L164:          mSlateColor1.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1);
 L225:          mSlateColor1.ColorUseRule = 0;
-L254:          bool mbool1 = Greater_IntInt(this->mCurrentPaidOff, 0);
+L254:          bool mbool1 = this->mCurrentPaidOff > 0;
 L288:          bool Temp_bool_Variable = mbool1;
 L307:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(this->mItemAmount.ItemClass);
 L367:          mSlateBrush.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 64, Y = 64);
@@ -180,9 +180,9 @@ L706:          ReturnValue = ScriptStruct /Script/SlateCore.SlateBrush(ImageSize
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_MAMResearchSlot.Widget_MAMResearchSlot_C:ExecuteUbergraph_Widget_MAMResearchSlot.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_MAMResearchSlot.Widget_MAMResearchSlot_C:ExecuteUbergraph_Widget_MAMResearchSlot.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_MAMResearchSlot(394);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_MAMResearchSlot, from label L394;
 ============ END FUNCTION Tick ==============
 
 
@@ -191,11 +191,11 @@ L36:           this->ExecuteUbergraph_Widget_MAMResearchSlot(394);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_MAMResearchSlot ==============
 L5:            goto ComputedJump(EntryPoint);
-L15:           TArray<ItemAmount> mTArray<ItemAmount> = [];
-L26:           this->mResearchCost = mTArray<ItemAmount>;
+L15:           TArray<ItemAmount> mTArrayItemAmount = [];
+L26:           this->mResearchCost = mTArrayItemAmount;
 L53:           bool mbool = KismetArrayLibrary->Array_IsValidIndex([ref] this->mResearchCost, this->mItemIndex);
 L113:          if (!mbool) goto L229;
-L127:          int32 mint32 = Subtract_IntInt(this->mItemAmount.amount, this->mResearchCost[this->mItemIndex].amount);
+L127:          int32 mint32 = this->mItemAmount.amount - this->mResearchCost[this->mItemIndex].amount;
 L201:          this->mCurrentPaidOff = mint32;
 L228:          goto ExecutionFlow.Pop();
 L229:          this->mCurrentPaidOff = 0;
@@ -211,7 +211,7 @@ L347:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this-
 L393:          goto ExecutionFlow.Pop();
 L394:          this->Tick(mGeometry, mfloat);
 L422:          ExecutionFlow.Push(L15);
-L427:          bool mbool1 = GreaterEqual_IntInt(this->mCurrentPaidOff, this->mItemAmount.amount);
+L427:          bool mbool1 = this->mCurrentPaidOff >= this->mItemAmount.amount;
 L474:          if (!mbool1) goto L503;
 L488:          if (!Temp_bool_Variable1) goto L519;
 L502:          goto ExecutionFlow.Pop();

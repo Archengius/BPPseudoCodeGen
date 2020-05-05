@@ -14,7 +14,7 @@ L38:           this->LoadSessionWidget->mCurrentSave = this->mCurrentSave;
 L87:           int32 Temp_int_Variable = 0;
 L110:          PanelWidget* mPanelWidget = this->GetParent();
 L130:          int32 mint32 = mPanelWidget->GetChildrenCount();
-L180:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L180:          bool mbool = Temp_int_Variable <= mint32;
 L218:          if (!mbool) goto L602;
 L232:          ExecutionFlow.Push(L838);
 L237:          mPanelWidget = this->GetParent();
@@ -22,7 +22,7 @@ L257:          Widget* mWidget = mPanelWidget->GetChildAt(Temp_int_Variable);
 L308:          Widget_SessionSaveRow* mWidget_SessionSaveRow = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_SessionSaveRow.Widget_SessionSaveRow_C>(mWidget);
 L344:          bool mbool1 = mWidget_SessionSaveRow;
 L373:          if (!mbool1) goto ExecutionFlow.Pop();
-L383:          bool mbool2 = NotEqual_ObjectObject(mWidget_SessionSaveRow, this);
+L383:          bool mbool2 = mWidget_SessionSaveRow != this;
 L413:          if (!mbool2) goto ExecutionFlow.Pop();
 L423:          mWidget_SessionSaveRow->mIsSelected = false;
 L456:          goto ExecutionFlow.Pop();
@@ -30,12 +30,12 @@ L457:          this->LoadSessionWidget->mCurrentSave = ScriptStruct /Script/Fact
 L511:          UMGSequencePlayer* mUMGSequencePlayer = this->LoadSessionWidget->PlayAnimation(this->LoadSessionWidget->ShowLoadDeleteButtons, 0, 1, 1, 1);
 L601:          goto ExecutionFlow.Pop();
 L602:          float mfloat = this->LoadSessionWidget->LoadSave->GetRenderOpacity();
-L674:          bool mbool3 = Greater_FloatFloat(mfloat, 0);
-L708:          bool mbool4 = Not_PreBool(mbool3);
+L674:          bool mbool3 = mfloat > 0;
+L708:          bool mbool4 = !mbool3;
 L737:          if (!mbool4) goto ExecutionFlow.Pop();
 L747:          UMGSequencePlayer* mUMGSequencePlayer1 = this->LoadSessionWidget->PlayAnimation(this->LoadSessionWidget->ShowLoadDeleteButtons, 0, 1, 0, 1);
 L837:          goto ExecutionFlow.Pop();
-L838:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L838:          int32 mint321 = Temp_int_Variable + 1;
 L880:          Temp_int_Variable = mint321;
 L907:          goto L110;
 ============ END FUNCTION SetSelected ==============
@@ -149,14 +149,14 @@ L394:          LinearColor ReturnValue = mLinearColor4;
 L0:            int32 mint32 = FGSaveSession->GetPlayDurationSeconds([ref] this->mSaveHeader);
 L59:           Timespan mTimespan = MakeTimespan(0, 0, 0, mint32, 0);
 L116:          BreakTimespan(mTimespan, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324, [ref] mint325);
-L180:          int32 mint326 = Multiply_IntInt(mint321, 24);
+L180:          int32 mint326 = mint321 * 24;
 L222:          mFormatArgumentData.ArgumentName = "sec";
 L254:          mFormatArgumentData.ArgumentValueType = 0;
 L283:          mFormatArgumentData.ArgumentValue = ;
 L312:          mFormatArgumentData.ArgumentValueInt = mint324;
 L348:          mFormatArgumentData.ArgumentValueFloat = 0;
 L380:          mFormatArgumentData.ArgumentValueGender = 0;
-L409:          int32 mint327 = Add_IntInt(mint326, mint322);
+L409:          int32 mint327 = mint326 + mint322;
 L455:          mFormatArgumentData1.ArgumentName = "min";
 L487:          mFormatArgumentData1.ArgumentValueType = 0;
 L516:          mFormatArgumentData1.ArgumentValue = ;
@@ -169,8 +169,8 @@ L705:          mFormatArgumentData2.ArgumentValue = ;
 L734:          mFormatArgumentData2.ArgumentValueInt = mint327;
 L770:          mFormatArgumentData2.ArgumentValueFloat = 0;
 L802:          mFormatArgumentData2.ArgumentValueGender = 0;
-L831:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData2, mFormatArgumentData1, mFormatArgumentData];
-L869:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L831:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData2, mFormatArgumentData1, mFormatArgumentData];
+L869:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L1005:         this->mPlayDuration->SetText(mFText);
 ============ END FUNCTION GetPlayDuration ==============
 
@@ -199,7 +199,9 @@ L118:          this->mTitle->SetText(mFText);
 
 
 ============ BEGIN FUNCTION BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SessionSaveRow(15);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SessionSaveRow, from label L15;
 ============ END FUNCTION BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -207,7 +209,9 @@ L0:            this->ExecuteUbergraph_Widget_SessionSaveRow(15);
 
 
 ============ BEGIN FUNCTION BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SessionSaveRow(143);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SessionSaveRow, from label L143;
 ============ END FUNCTION BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -215,8 +219,9 @@ L0:            this->ExecuteUbergraph_Widget_SessionSaveRow(143);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SessionSaveRow.Widget_SessionSaveRow_C:ExecuteUbergraph_Widget_SessionSaveRow.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_SessionSaveRow(256);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_SessionSaveRow, from label L256;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -224,7 +229,9 @@ L18:           this->ExecuteUbergraph_Widget_SessionSaveRow(256);
 
 
 ============ BEGIN FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SessionSaveRow(537);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SessionSaveRow, from label L537;
 ============ END FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -232,7 +239,9 @@ L0:            this->ExecuteUbergraph_Widget_SessionSaveRow(537);
 
 
 ============ BEGIN FUNCTION ConfirmDeleteSavePopUp ==============
-L0:            this->ExecuteUbergraph_Widget_SessionSaveRow(552);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ConfirmDeleteSavePopUp;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SessionSaveRow, from label L552;
 ============ END FUNCTION ConfirmDeleteSavePopUp ==============
 
 
@@ -240,8 +249,9 @@ L0:            this->ExecuteUbergraph_Widget_SessionSaveRow(552);
 
 
 ============ BEGIN FUNCTION Event DeleteSave ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SessionSaveRow.Widget_SessionSaveRow_C:ExecuteUbergraph_Widget_SessionSaveRow.K2Node_CustomEvent_Confirm) = confirm;
-L18:           this->ExecuteUbergraph_Widget_SessionSaveRow(797);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: Event DeleteSave;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_SessionSaveRow, from label L797;
 ============ END FUNCTION Event DeleteSave ==============
 
 
@@ -249,7 +259,9 @@ L18:           this->ExecuteUbergraph_Widget_SessionSaveRow(797);
 
 
 ============ BEGIN FUNCTION BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_8_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SessionSaveRow(1250);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_8_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SessionSaveRow, from label L1250;
 ============ END FUNCTION BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_8_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -257,8 +269,9 @@ L0:            this->ExecuteUbergraph_Widget_SessionSaveRow(1250);
 
 
 ============ BEGIN FUNCTION OnDeleteSaveDone ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SessionSaveRow.Widget_SessionSaveRow_C:ExecuteUbergraph_Widget_SessionSaveRow.K2Node_CustomEvent_success) = success;
-L18:           this->ExecuteUbergraph_Widget_SessionSaveRow(1251);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnDeleteSaveDone;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_SessionSaveRow, from label L1251;
 ============ END FUNCTION OnDeleteSaveDone ==============
 
 
@@ -267,14 +280,16 @@ L18:           this->ExecuteUbergraph_Widget_SessionSaveRow(1251);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_SessionSaveRow ==============
 L5:            goto ComputedJump(EntryPoint);
+L15:           // <Begin Inlined EventGraph Function BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature>;
 L15:           this->mCurrentSave = this->mSaveHeader;
 L42:           this->SetSelected(true);
 L57:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L81:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Click, mPlayerController, true);
+L81:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_Click.Play_UI_MainMenu_Click), mPlayerController, true);
 L142:          goto ExecutionFlow.Pop();
+L143:          // <Begin Inlined EventGraph Function BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature>;
 L143:          this->mCurrentSave = this->mSaveHeader;
 L170:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L194:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_MouseOver, mPlayerController1, true);
+L194:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_MouseOver.Play_UI_MainMenu_MouseOver), mPlayerController1, true);
 L255:          goto ExecutionFlow.Pop();
 L256:          this->GetSaveNameText();
 L270:          this->GetSaveTimeText();
@@ -282,7 +297,7 @@ L284:          this->GetPlayDuration();
 L298:          uint8 Temp_byte_Variable = 0;
 L318:          uint8 Temp_byte_Variable1 = 2;
 L338:          uint8 muint8 = FGSaveSystem->GetSaveState([ref] this->mSaveHeader);
-L397:          bool mbool = NotEqual_ByteByte(muint8, 2);
+L397:          bool mbool = muint8 != 2;
 L428:          bool Temp_bool_Variable = mbool;
 L447:          this->mWarningIcon->SetVisibility(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -290,8 +305,10 @@ case true -> Temp_byte_Variable;
 default -> muint81;
 });
 L536:          goto ExecutionFlow.Pop();
+L537:          // <Begin Inlined EventGraph Function BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature>;
 L537:          this->ConfirmDeleteSavePopUp();
 L551:          goto ExecutionFlow.Pop();
+L552:          // <Begin Inlined EventGraph Function ConfirmDeleteSavePopUp>;
 L552:          mFScriptDelegate->BindUFunction(this, Event DeleteSave);
 L575:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L599:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", "[object Object]", [ref] mFScriptDelegate, 1, nullptr, nullptr);
@@ -312,6 +329,7 @@ L1138:         mFGAdminInterface->DeleteSaveFile(false, mFString, mFScriptDelega
 L1189:         goto ExecutionFlow.Pop();
 L1190:         this->LoadSessionWidget->mOwningMenu->RestoreFocusOnPopupClosed(false);
 L1249:         goto ExecutionFlow.Pop();
+L1250:         // <Begin Inlined EventGraph Function BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_8_OnButtonHoverEvent__DelegateSignature>;
 L1250:         goto ExecutionFlow.Pop();
 L1251:         if (!mbool4) goto ExecutionFlow.Pop();
 L1261:         this->mCurrentSave = mSaveHeader;

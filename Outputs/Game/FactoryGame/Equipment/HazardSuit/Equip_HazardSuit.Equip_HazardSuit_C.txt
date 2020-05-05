@@ -11,15 +11,15 @@ L0:            bool mbool = this->IsLocalInstigator();
 L20:           if (!mbool) goto L420;
 L34:           if (!mEnabled) goto L89;
 L48:           if (!this->PPComponent->bEnabled) goto L275;
-L84:           <End of Inlined Event Graph Function>;
+L84:           // <End Inlined EventGraph Function>;
 L89:           if (!this->PPComponent->bEnabled) goto L420;
 L125:          this->PPComponent->bEnabled = false;
-L158:          int32 mint32 = this->Ak->PostAkEvent(Stop_EQ_GasMask);
-L217:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Bus_LowPass_GasMask_Reset, this, true);
-L270:          <End of Inlined Event Graph Function>;
+L158:          int32 mint32 = this->Ak->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/GasMask/Audio/Stop_EQ_GasMask.Stop_EQ_GasMask));
+L217:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/GasMask/Audio/Bus_LowPass_GasMask_Reset.Bus_LowPass_GasMask_Reset), this, true);
+L270:          // <End Inlined EventGraph Function>;
 L275:          this->PPComponent->bEnabled = true;
-L308:          int32 mint321 = this->Ak->PostAkEvent(Play_EQ_GasMask);
-L367:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Bus_LowPass_GasMask, this, true);
+L308:          int32 mint321 = this->Ak->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/GasMask/Audio/Play_EQ_GasMask.Play_EQ_GasMask));
+L367:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/GasMask/Audio/Bus_LowPass_GasMask.Bus_LowPass_GasMask), this, true);
 ============ END FUNCTION EnablePostProcessing ==============
 
 
@@ -33,12 +33,12 @@ L91:           const BP_DamageType* mconst BP_DamageType = Cast<BlueprintGenerat
 L127:          bool mbool = mconst BP_DamageType;
 L156:          if (!mbool) goto L521;
 L170:          bool mbool1 = this->IsEquipped();
-L190:          bool mbool2 = BooleanAND(mconst BP_DamageType->mFromGas, this->mFuelConsumed);
-L250:          bool mbool3 = BooleanAND(mconst BP_DamageType->mFromHeat, mbool1);
-L310:          bool mbool4 = BooleanAND(mbool2, mbool1);
-L348:          bool mbool5 = BooleanAND(mconst BP_DamageType->mFromRadiation, mbool1);
-L408:          bool mbool6 = BooleanOR(mbool4, mbool5);
-L446:          bool mbool7 = BooleanOR(mbool6, mbool3);
+L190:          bool mbool2 = mconst BP_DamageType->mFromGas && this->mFuelConsumed;
+L250:          bool mbool3 = mconst BP_DamageType->mFromHeat && mbool1;
+L310:          bool mbool4 = mbool2 && mbool1;
+L348:          bool mbool5 = mconst BP_DamageType->mFromRadiation && mbool1;
+L408:          bool mbool6 = mbool4 || mbool5;
+L446:          bool mbool7 = mbool6 || mbool3;
 L484:          if (!mbool7) goto L521;
 L498:          local_damage = 0;
 L521:          float ReturnValue = local_damage;
@@ -49,7 +49,9 @@ L521:          float ReturnValue = local_damage;
 
 
 ============ BEGIN FUNCTION WasUnEquipped ==============
-L0:            this->ExecuteUbergraph_Equip_HazardSuit(1199);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasUnEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_HazardSuit, from label L1199;
 ============ END FUNCTION WasUnEquipped ==============
 
 
@@ -57,7 +59,9 @@ L0:            this->ExecuteUbergraph_Equip_HazardSuit(1199);
 
 
 ============ BEGIN FUNCTION WasEquipped ==============
-L0:            this->ExecuteUbergraph_Equip_HazardSuit(1194);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_HazardSuit, from label L1194;
 ============ END FUNCTION WasEquipped ==============
 
 
@@ -65,8 +69,9 @@ L0:            this->ExecuteUbergraph_Equip_HazardSuit(1194);
 
 
 ============ BEGIN FUNCTION ReceiveTick ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/HazardSuit/Equip_HazardSuit.Equip_HazardSuit_C:ExecuteUbergraph_Equip_HazardSuit.K2Node_Event_DeltaSeconds) = DeltaSeconds;
-L18:           this->ExecuteUbergraph_Equip_HazardSuit(1169);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveTick;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_HazardSuit, from label L1169;
 ============ END FUNCTION ReceiveTick ==============
 
 
@@ -75,7 +80,7 @@ L18:           this->ExecuteUbergraph_Equip_HazardSuit(1169);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Equip_HazardSuit ==============
 L5:            goto ComputedJump(EntryPoint);
-L15:           bool mbool = LessEqual_FloatFloat(this->mCountdown, 0);
+L15:           bool mbool = this->mCountdown <= 0;
 L49:           if (!mbool) goto L363;
 L63:           bool mbool1 = this->CanAffordUse();
 L83:           if (!mbool1) goto L479;
@@ -91,7 +96,7 @@ L309:          this->mCountdown = this->mFilterDuration;
 L336:          this->mFuelConsumed = true;
 L347:          this->EnablePostProcessing(true);
 L362:          goto ExecutionFlow.Pop();
-L363:          float mfloat = Subtract_FloatFloat(this->mCountdown, mfloat1);
+L363:          float mfloat = this->mCountdown - mfloat1;
 L409:          float mfloat2 = FMax(mfloat, 0);
 L451:          this->mCountdown = mfloat2;
 L478:          goto ExecutionFlow.Pop();
@@ -103,18 +108,18 @@ L516:          goto L309;
 L521:          FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
 L541:          SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
 L583:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
-L625:          float mfloat3 = mAnimInstance->Montage_Play(GasMaskEquip_01_Montage, 1, 0, 0, true);
+L625:          float mfloat3 = mAnimInstance->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/GasMaskEquip_01_Montage.GasMaskEquip_01_Montage), 1, 0, 0, true);
 L697:          Pawn* mPawn = this->GetInstigator();
 L717:          Controller* mController = mPawn->GetController();
 L759:          BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mController);
 L795:          bool mbool5 = mBP_PlayerController;
 L824:          if (!mbool5) goto ExecutionFlow.Pop();
-L834:          mBP_PlayerController->ClientPlayCameraAnim(GasMaskEquip_01_CameraAnim, 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L834:          mBP_PlayerController->ClientPlayCameraAnim(ObjectConst(CameraAnim /Game/FactoryGame/Character/Player/CameraShake/GasMaskEquip_01_CameraAnim.GasMaskEquip_01_CameraAnim), 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
 L916:          goto ExecutionFlow.Pop();
 L917:          mFGCharacterPlayer = this->GetInstigatorCharacter();
 L937:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
 L979:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
-L1021:         bool mbool6 = mAnimInstance->Montage_IsPlaying(GasMaskEquip_01_Montage);
+L1021:         bool mbool6 = mAnimInstance->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/GasMaskEquip_01_Montage.GasMaskEquip_01_Montage));
 L1072:         if (!mbool6) goto L521;
 L1086:         goto ExecutionFlow.Pop();
 L1087:         this->EnablePostProcessing(false);
@@ -130,6 +135,8 @@ L1169:         goto L1103;
 L1174:         this->WasEquipped();
 L1184:         ExecutionFlow.Push(L917);
 L1189:         goto L1154;
+L1194:         // <Begin Inlined EventGraph Function WasEquipped>;
 L1194:         goto L1174;
+L1199:         // <Begin Inlined EventGraph Function WasUnEquipped>;
 L1199:         goto L1087;
 ============ END FUNCTION ExecuteUbergraph_Equip_HazardSuit ==============

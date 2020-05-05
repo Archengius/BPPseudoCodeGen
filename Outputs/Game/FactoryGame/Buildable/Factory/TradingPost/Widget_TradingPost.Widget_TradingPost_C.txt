@@ -27,43 +27,43 @@ L54:           bool WasStackMoved = mbool;
 ============ BEGIN FUNCTION GetLowestNonFullyResearchedTier ==============
 L0:            ExecutionFlow.Push(L1068);
 L5:            int32 mint32 = this->mCachedSchematicManager->GetMaxAllowedTechTier();
-L55:           bool mbool = Less_IntInt(mint32, 1000);
+L55:           bool mbool = mint32 < 1000;
 L89:           if (!mbool) goto ExecutionFlow.Pop();
 L99:           bool Temp_bool_Variable = false;
 L110:          int32 Temp_int_Variable = 0;
-L133:          bool mbool1 = Not_PreBool(Temp_bool_Variable);
+L133:          bool mbool1 = !Temp_bool_Variable;
 L162:          mint32 = this->mCachedSchematicManager->GetMaxAllowedTechTier();
-L212:          bool mbool2 = LessEqual_IntInt(Temp_int_Variable, mint32);
-L250:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L212:          bool mbool2 = Temp_int_Variable <= mint32;
+L250:          bool mbool3 = mbool1 && mbool2;
 L288:          if (!mbool3) goto L490;
 L302:          ExecutionFlow.Push(L634);
 L307:          this->CheckIfTierIsFullyResearched(Temp_int_Variable, [ref] mbool4);
 L339:          if (!mbool4) goto L751;
 L353:          int32 mint321 = this->mCachedSchematicManager->GetMaxAllowedTechTier();
-L403:          bool mbool5 = EqualEqual_IntInt(mint321, Temp_int_Variable);
+L403:          bool mbool5 = mint321 == Temp_int_Variable;
 L441:          if (!mbool5) goto ExecutionFlow.Pop();
 L451:          int32 tier = 0;
 L474:          bool FoundTier = false;
-L485:          <End of Inlined Event Graph Function>;
+L485:          // <End Inlined EventGraph Function>;
 L490:          int32 mint322 = this->mCachedSchematicManager->GetMaxAllowedTechTier();
 L540:          int32 mint323 = Clamp(LocalTier, 0, mint322);
 L591:          tier = mint323;
 L618:          FoundTier = true;
-L629:          <End of Inlined Event Graph Function>;
-L634:          mbool1 = Not_PreBool(Temp_bool_Variable);
+L629:          // <End Inlined EventGraph Function>;
+L634:          mbool1 = !Temp_bool_Variable;
 L663:          if (!mbool1) goto L490;
-L677:          int32 mint324 = Add_IntInt(Temp_int_Variable, 1);
+L677:          int32 mint324 = Temp_int_Variable + 1;
 L719:          Temp_int_Variable = mint324;
 L746:          goto L133;
 L751:          FGGamePhaseManager* mFGGamePhaseManager = FGGamePhaseManager->Get(this);
 L794:          uint8 muint8 = mFGGamePhaseManager->GetGamePhase();
 L844:          uint8 muint81 = mFGGamePhaseManager->GetGamePhaseForTechTier(Temp_int_Variable);
-L903:          bool mbool6 = GreaterEqual_ByteByte(muint8, muint81);
+L903:          bool mbool6 = muint8 >= muint81;
 L941:          if (!mbool6) goto L994;
 L955:          int32 LocalTier = Temp_int_Variable;
 L982:          Temp_bool_Variable = true;
 L993:          goto ExecutionFlow.Pop();
-L994:          int32 mint325 = Subtract_IntInt(Temp_int_Variable, 1);
+L994:          int32 mint325 = Temp_int_Variable - 1;
 L1036:         LocalTier = mint325;
 L1063:         goto L982;
 ============ END FUNCTION GetLowestNonFullyResearchedTier ==============
@@ -77,26 +77,26 @@ L0:            ExecutionFlow.Push(L719);
 L5:            bool IsReasearched = true;
 L16:           bool mbool = KismetSystemLibrary->IsValid(this->mCachedSchematicManager);
 L67:           if (!mbool) goto ExecutionFlow.Pop();
-L77:           TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>> = [];
-L88:           this->mCachedSchematicManager->GetAvailableSchematics([ref] mTArray<TSubclassOf<FGSchematic>>);
+L77:           TArray<TSubclassOf<FGSchematic>> mTArrayTSubclassOfFGSchematic = [];
+L88:           this->mCachedSchematicManager->GetAvailableSchematics([ref] mTArrayTSubclassOfFGSchematic);
 L129:          int32 Temp_int_Loop_Counter_Variable = 0;
 L152:          int32 Temp_int_Array_Index_Variable = 0;
-L175:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGSchematic>>);
-L234:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L175:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGSchematic);
+L234:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L272:          if (!mbool1) goto L609;
 L286:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L313:          ExecutionFlow.Push(L633);
-L318:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGSchematic>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
-L377:          int32 mint321 = FGSchematic->GetTechTier(mTSubclassOf<FGSchematic>);
-L436:          bool mbool2 = EqualEqual_IntInt(tier, mint321);
+L318:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGSchematic, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGSchematic);
+L377:          int32 mint321 = FGSchematic->GetTechTier(mTSubclassOfFGSchematic);
+L436:          bool mbool2 = tier == mint321;
 L474:          if (!mbool2) goto ExecutionFlow.Pop();
-L484:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGSchematic>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
-L543:          bool mbool3 = this->mCachedSchematicManager->IsSchematicPurchased(mTSubclassOf<FGSchematic>);
+L484:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGSchematic, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGSchematic);
+L543:          bool mbool3 = this->mCachedSchematicManager->IsSchematicPurchased(mTSubclassOfFGSchematic);
 L594:          if (!mbool3) goto L707;
 L608:          goto ExecutionFlow.Pop();
 L609:          bool IsResearched = IsReasearched;
-L628:          <End of Inlined Event Graph Function>;
-L633:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L628:          // <End Inlined EventGraph Function>;
+L633:          int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L675:          Temp_int_Loop_Counter_Variable = mint322;
 L702:          goto L175;
 L707:          IsReasearched = false;
@@ -119,7 +119,7 @@ L76:           this->mSchematicList->CreateSchematicButtons();
 
 ============ BEGIN FUNCTION GetSchematicHintTextVisibility ==============
 L0:            uint8 muint8 = this->GetTierHintVisibility();
-L32:           bool mbool = NotEqual_ByteByte(muint8, 0);
+L32:           bool mbool = muint8 != 0;
 L63:           if (!mbool) goto L138;
 L77:           this->PuslingSchematic->mPlayPulseAnim();
 L113:          uint8 ReturnValue = 0;
@@ -148,7 +148,7 @@ L90:           ReturnValue = 0;
 L0:            bool mbool = KismetSystemLibrary->IsValid(this->mCachedSchematicManager);
 L51:           if (!mbool) goto L284;
 L65:           int32 mint32 = this->mCachedSchematicManager->GetHighestAvailableTechTier();
-L115:          bool mbool1 = LessEqual_IntInt(this->mActiveTier, mint32);
+L115:          bool mbool1 = this->mActiveTier <= mint32;
 L153:          if (!mbool1) goto L228;
 L167:          this->PuslingTier->mStopPulseAnim();
 L203:          uint8 ReturnValue = 2;
@@ -165,16 +165,16 @@ L264:          ReturnValue = 0;
 L0:            ExecutionFlow.Push(L397);
 L5:            int32 mint32 = this->mCachedSchematicManager->GetHighestAvailableTechTier();
 L55:           int32 Temp_int_Variable = 0;
-L78:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L78:           bool mbool = Temp_int_Variable <= mint32;
 L116:          if (!mbool) goto L318;
 L130:          ExecutionFlow.Push(L323);
 L135:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L159:          Widget_TradingPost_TierButton* mWidget_TradingPost_TierButton = WidgetBlueprintLibrary->Create(this, Widget_TradingPost_TierButton, mPlayerController);
+L159:          Widget_TradingPost_TierButton* mWidget_TradingPost_TierButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost_TierButton.Widget_TradingPost_TierButton_C), mPlayerController);
 L220:          mWidget_TradingPost_TierButton->SetTierNumber(Temp_int_Variable, this);
 L266:          HorizontalBoxSlot* mHorizontalBoxSlot = this->TierList->AddChildToHorizontalBox(mWidget_TradingPost_TierButton);
 L317:          goto ExecutionFlow.Pop();
-L318:          <End of Inlined Event Graph Function>;
-L323:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L318:          // <End Inlined EventGraph Function>;
+L323:          int32 mint321 = Temp_int_Variable + 1;
 L365:          Temp_int_Variable = mint321;
 L392:          goto L78;
 ============ END FUNCTION GenerateTierList ==============
@@ -194,8 +194,8 @@ L392:          goto L78;
 L0:            bool mbool = KismetSystemLibrary->IsValid(this->mCachedSchematicManager);
 L51:           if (!mbool) goto L205;
 L65:           bool mbool1 = this->mCachedSchematicManager->IsShipAtTradingPost();
-L107:          bool mbool2 = Not_PreBool(mbool1);
-L136:          bool mbool3 = BooleanAND(mbool2, false);
+L107:          bool mbool2 = !mbool1;
+L136:          bool mbool3 = mbool2 && false;
 L166:          if (!mbool3) goto L230;
 L180:          uint8 ReturnValue = 2;
 L200:          goto L250;
@@ -212,8 +212,8 @@ L230:          ReturnValue = 0;
 L0:            bool mbool = KismetSystemLibrary->IsValid(this->mCachedSchematicManager);
 L51:           if (!mbool) goto L301;
 L65:           bool mbool1 = this->mCachedSchematicManager->IsShipAtTradingPost();
-L107:          bool mbool2 = Not_PreBool(mbool1);
-L136:          bool mbool3 = BooleanAND(mbool2, true);
+L107:          bool mbool2 = !mbool1;
+L136:          bool mbool3 = mbool2 && true;
 L166:          uint8 Temp_byte_Variable = 3;
 L186:          bool Temp_bool_Variable = mbool3;
 L205:          uint8 Temp_byte_Variable1 = 1;
@@ -252,11 +252,11 @@ L926:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this-
 L0:            bool mbool = KismetSystemLibrary->IsValid(this->mCachedSchematicManager);
 L51:           if (!mbool) goto L376;
 L65:           bool mbool1 = this->mCachedSchematicManager->IsShipAtTradingPost();
-L107:          bool mbool2 = Not_PreBool(mbool1);
-L136:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = this->mCachedSchematicManager->GetActiveSchematic();
-L178:          bool mbool3 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L107:          bool mbool2 = !mbool1;
+L136:          TSubclassOf<FGSchematic> mTSubclassOfFGSchematic = this->mCachedSchematicManager->GetActiveSchematic();
+L178:          bool mbool3 = KismetSystemLibrary->IsValidClass(mTSubclassOfFGSchematic);
 L229:          bool Temp_bool_Variable1 = true;
-L240:          bool mbool4 = BooleanOR(mbool3, mbool2);
+L240:          bool mbool4 = mbool3 || mbool2;
 L278:          bool Temp_bool_Variable = mbool4;
 L297:          bool Temp_bool_Variable2 = false;
 L308:          bool ReturnValue = switch (Temp_bool_Variable) {
@@ -277,8 +277,8 @@ L0:            bool mbool = KismetSystemLibrary->IsValid(this->mCachedSchematicM
 L51:           if (!mbool) goto L416;
 L65:           bool mbool1 = this->mCachedSchematicManager->IsShipAtTradingPost();
 L107:          if (!mbool1) goto L374;
-L121:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = this->mCachedSchematicManager->GetActiveSchematic();
-L163:          bool mbool2 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L121:          TSubclassOf<FGSchematic> mTSubclassOfFGSchematic = this->mCachedSchematicManager->GetActiveSchematic();
+L163:          bool mbool2 = KismetSystemLibrary->IsValidClass(mTSubclassOfFGSchematic);
 L214:          int32 Temp_int_Variable = 1;
 L237:          bool Temp_bool_Variable = mbool2;
 L256:          int32 Temp_int_Variable1 = 0;
@@ -287,7 +287,7 @@ case false -> Temp_int_Variable1;
 case true -> Temp_int_Variable;
 default -> mint32;
 }, false);
-L369:          <End of Inlined Event Graph Function>;
+L369:          // <End Inlined EventGraph Function>;
 L374:          this->Widget_SlidingTabs->SetActiveIndex(1, false);
 ============ END FUNCTION SetActiveTab ==============
 
@@ -316,12 +316,12 @@ L65:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L89:           BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
 L125:          bool mbool1 = mBP_PlayerController;
 L154:          if (!mbool1) goto L474;
-L168:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L168:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L219:          mBP_RemoteCallObject->ServerSetActiveSchematic(this->mSelectedSchematic);
 L264:          this->mPayOffGrid->SetUpPayOffSlots(this->mSelectedSchematic);
 L309:          this->Widget_SlidingTabs->SetActiveIndex(1, true);
 L351:          this->mWindow->SetInventoryVisibility(true, true);
-L389:          <End of Inlined Event Graph Function>;
+L389:          // <End Inlined EventGraph Function>;
 L394:          this->Widget_SlidingTabs->SetActiveIndex(1, true);
 L436:          this->mWindow->SetInventoryVisibility(true, true);
 ============ END FUNCTION ActivateSelectedSchematic ==============
@@ -378,10 +378,10 @@ L213:          FText mFText = KismetTextLibrary->Conv_StringToText("");
 L265:          bool mbool1 = KismetTextLibrary->NotEqual_TextText([ref] Reward Widget->mTitle, [ref] mFText);
 L347:          if (!mbool1) goto L473;
 L361:          this->SetRewardInformation(Reward Widget->mTitle, Reward Widget->mDescription, Reward Widget->mBigIconBrush);
-L468:          <End of Inlined Event Graph Function>;
+L468:          // <End Inlined EventGraph Function>;
 L473:          KismetArrayLibrary->Array_Get([ref] mWidget_RewardProduct->mProducts, 0, [ref] mItemAmount);
 L550:          ItemAmount localProduct = mItemAmount;
-L577:          bool mbool2 = ClassIsChildOf(localProduct.ItemClass, FGItemDescriptor);
+L577:          bool mbool2 = ClassIsChildOf(localProduct.ItemClass, ObjectConst(Class /Script/FactoryGame.FGItemDescriptor));
 L624:          if (!mbool2) goto L1687;
 L638:          bool mbool3 = KismetSystemLibrary->IsValidClass(this->mSelectedSchematic);
 L689:          if (!mbool3) goto L1687;
@@ -403,7 +403,7 @@ L1347:         this->SetRewardInformation(mFText1, mFText2, mSlateBrush);
 L1388:         mFText1 = FGItemDescriptor->GetItemName(localProduct.ItemClass);
 L1456:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText1);
 L1515:         KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
-L1598:         <End of Inlined Event Graph Function>;
+L1598:         // <End Inlined EventGraph Function>;
 L1603:         Texture2D* mTexture2D1 = FGItemDescriptor->GetSmallIcon(localProduct.ItemClass);
 L1663:         localIcon = mTexture2D1;
 L1682:         goto L907;
@@ -417,19 +417,19 @@ L1682:         goto L907;
 L0:            ExecutionFlow.Push(L617);
 L5:            int32 Temp_int_Variable = 0;
 L28:           int32 mint32 = this->mWindow->ButtonSlot->GetChildrenCount();
-L100:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L100:          bool mbool = Temp_int_Variable <= mint32;
 L138:          if (!mbool) goto ExecutionFlow.Pop();
 L148:          ExecutionFlow.Push(L446);
 L153:          Widget* mWidget = this->mWindow->ButtonSlot->GetChildAt(Temp_int_Variable);
 L226:          Widget_ImageTabButton* mWidget_ImageTabButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_ImageTabButton.Widget_ImageTabButton_C>(mWidget);
 L262:          bool mbool1 = mWidget_ImageTabButton;
 L291:          if (!mbool1) goto ExecutionFlow.Pop();
-L301:          bool mbool2 = EqualEqual_IntInt(Temp_int_Variable, 0);
+L301:          bool mbool2 = Temp_int_Variable == 0;
 L335:          if (!mbool2) goto L520;
 L349:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
 L404:          mWidget_ImageTabButton->SetColorAndOpacity(mLinearColor);
 L445:          goto ExecutionFlow.Pop();
-L446:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L446:          int32 mint321 = Temp_int_Variable + 1;
 L488:          Temp_int_Variable = mint321;
 L515:          goto L28;
 L520:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
@@ -452,19 +452,19 @@ L201:          UMGSequencePlayer* mUMGSequencePlayer = this->Widget_TradingPost_
 L335:          KismetArrayLibrary->Array_Clear([ref] this->mRelevantItems);
 L376:          int32 Temp_int_Loop_Counter_Variable = 0;
 L399:          int32 Temp_int_Array_Index_Variable = 0;
-L422:          TArray<ItemAmount> mTArray<ItemAmount> = FGSchematic->GetCost(this->mSelectedSchematic);
-L481:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
-L540:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L422:          TArray<ItemAmount> mTArrayItemAmount = FGSchematic->GetCost(this->mSelectedSchematic);
+L481:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount);
+L540:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L578:          if (!mbool) goto L820;
 L592:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L619:          ExecutionFlow.Push(L866);
-L624:          mTArray<ItemAmount> = FGSchematic->GetCost(this->mSelectedSchematic);
-L683:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L624:          mTArrayItemAmount = FGSchematic->GetCost(this->mSelectedSchematic);
+L683:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable, [ref] mItemAmount);
 L742:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mRelevantItems, [ref] mItemAmount.ItemClass);
 L819:          goto ExecutionFlow.Pop();
 L820:          this->mWindow->SetupRelevantInventory([ref] this->mRelevantItems);
 L865:          goto ExecutionFlow.Pop();
-L866:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L866:          int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L908:          Temp_int_Loop_Counter_Variable = mint322;
 L935:          goto L422;
 ============ END FUNCTION OnSchematicClicked ==============
@@ -476,8 +476,8 @@ L935:          goto L422;
 ============ BEGIN FUNCTION GetActiveSchematicInfoVisibility ==============
 L0:            bool mbool = KismetSystemLibrary->IsValid(this->mCachedSchematicManager);
 L51:           if (!mbool) goto L293;
-L65:           TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = this->mCachedSchematicManager->GetActiveSchematic();
-L107:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L65:           TSubclassOf<FGSchematic> mTSubclassOfFGSchematic = this->mCachedSchematicManager->GetActiveSchematic();
+L107:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOfFGSchematic);
 L158:          bool Temp_bool_Variable = mbool1;
 L177:          uint8 Temp_byte_Variable = 0;
 L197:          uint8 Temp_byte_Variable1 = 2;
@@ -497,11 +497,11 @@ L293:          ReturnValue = 2;
 ============ BEGIN FUNCTION SetActiveSchematicInfo ==============
 L0:            bool mbool = KismetSystemLibrary->IsValid(this->mCachedSchematicManager);
 L51:           if (!mbool) goto L305;
-L65:           TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = this->mCachedSchematicManager->GetActiveSchematic();
-L107:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>);
+L65:           TSubclassOf<FGSchematic> mTSubclassOfFGSchematic = this->mCachedSchematicManager->GetActiveSchematic();
+L107:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOfFGSchematic);
 L158:          if (!mbool1) goto L330;
-L172:          mTSubclassOf<FGSchematic> = this->mCachedSchematicManager->GetActiveSchematic();
-L214:          FText mFText = FGSchematic->GetSchematicDisplayName(mTSubclassOf<FGSchematic>);
+L172:          mTSubclassOfFGSchematic = this->mCachedSchematicManager->GetActiveSchematic();
+L214:          FText mFText = FGSchematic->GetSchematicDisplayName(mTSubclassOfFGSchematic);
 L273:          FText ReturnValue = mFText;
 L300:          goto L350;
 L305:          ReturnValue = ;
@@ -523,7 +523,9 @@ L23:           this->mCachedSchematicManager->mOnActiveSchematicChanged.Remove(m
 
 
 ============ BEGIN FUNCTION CloseTradepost ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost(668);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: CloseTradepost;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost, from label L668;
 ============ END FUNCTION CloseTradepost ==============
 
 
@@ -531,7 +533,9 @@ L0:            this->ExecuteUbergraph_Widget_TradingPost(668);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost(697);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost, from label L697;
 ============ END FUNCTION Destruct ==============
 
 
@@ -539,7 +543,9 @@ L0:            this->ExecuteUbergraph_Widget_TradingPost(697);
 
 
 ============ BEGIN FUNCTION Init ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost(722);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Init;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost, from label L722;
 ============ END FUNCTION Init ==============
 
 
@@ -547,9 +553,9 @@ L0:            this->ExecuteUbergraph_Widget_TradingPost(722);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost.Widget_TradingPost_C:ExecuteUbergraph_Widget_TradingPost.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost.Widget_TradingPost_C:ExecuteUbergraph_Widget_TradingPost.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_TradingPost(2585);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_TradingPost, from label L2585;
 ============ END FUNCTION Tick ==============
 
 
@@ -557,8 +563,9 @@ L36:           this->ExecuteUbergraph_Widget_TradingPost(2585);
 
 
 ============ BEGIN FUNCTION OnActiveSchematicChanged ==============
-L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost.Widget_TradingPost_C:ExecuteUbergraph_Widget_TradingPost.K2Node_CustomEvent_Schematic) = schematic;
-L18:           this->ExecuteUbergraph_Widget_TradingPost(3221);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnActiveSchematicChanged;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_TradingPost, from label L3221;
 ============ END FUNCTION OnActiveSchematicChanged ==============
 
 
@@ -566,7 +573,9 @@ L18:           this->ExecuteUbergraph_Widget_TradingPost(3221);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost(3267);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost, from label L3267;
 ============ END FUNCTION Construct ==============
 
 
@@ -574,8 +583,9 @@ L0:            this->ExecuteUbergraph_Widget_TradingPost(3267);
 
 
 ============ BEGIN FUNCTION purchasedSchematic ==============
-L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost.Widget_TradingPost_C:ExecuteUbergraph_Widget_TradingPost.K2Node_CustomEvent_purchasedSchematic) = purchasedSchematic;
-L18:           this->ExecuteUbergraph_Widget_TradingPost(3621);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: purchasedSchematic;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_TradingPost, from label L3621;
 ============ END FUNCTION purchasedSchematic ==============
 
 
@@ -583,7 +593,9 @@ L18:           this->ExecuteUbergraph_Widget_TradingPost(3621);
 
 
 ============ BEGIN FUNCTION mShakeWindow ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost(3683);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: mShakeWindow;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost, from label L3683;
 ============ END FUNCTION mShakeWindow ==============
 
 
@@ -591,7 +603,9 @@ L0:            this->ExecuteUbergraph_Widget_TradingPost(3683);
 
 
 ============ BEGIN FUNCTION BndEvt__mWindow_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost(3688);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mWindow_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost, from label L3688;
 ============ END FUNCTION BndEvt__mWindow_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
 
 
@@ -599,7 +613,9 @@ L0:            this->ExecuteUbergraph_Widget_TradingPost(3688);
 
 
 ============ BEGIN FUNCTION CreateSmoke ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost(3693);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: CreateSmoke;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost, from label L3693;
 ============ END FUNCTION CreateSmoke ==============
 
 
@@ -607,8 +623,9 @@ L0:            this->ExecuteUbergraph_Widget_TradingPost(3693);
 
 
 ============ BEGIN FUNCTION BndEvt__mWindow_K2Node_ComponentBoundEvent_3_OnTabButtonClicked__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost.Widget_TradingPost_C:ExecuteUbergraph_Widget_TradingPost.K2Node_ComponentBoundEvent_ButtonIndex) = ButtonIndex;
-L18:           this->ExecuteUbergraph_Widget_TradingPost(4102);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__mWindow_K2Node_ComponentBoundEvent_3_OnTabButtonClicked__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_TradingPost, from label L4102;
 ============ END FUNCTION BndEvt__mWindow_K2Node_ComponentBoundEvent_3_OnTabButtonClicked__DelegateSignature ==============
 
 
@@ -618,17 +635,17 @@ L18:           this->ExecuteUbergraph_Widget_TradingPost(4102);
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_TradingPost ==============
 L5:            goto ComputedJump(EntryPoint);
 L15:           ExecutionFlow.Push(L258);
-L20:           TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = this->mCachedSchematicManager->GetActiveSchematic();
-L62:           TArray<ItemAmount> mTArray<ItemAmount> = FGSchematic->GetCost(mTSubclassOf<FGSchematic>);
-L121:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L20:           TSubclassOf<FGSchematic> mTSubclassOfFGSchematic = this->mCachedSchematicManager->GetActiveSchematic();
+L62:           TArray<ItemAmount> mTArrayItemAmount = FGSchematic->GetCost(mTSubclassOfFGSchematic);
+L121:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable, [ref] mItemAmount);
 L180:          int32 mint32 = KismetArrayLibrary->Array_Add([ref] this->mRelevantItems, [ref] mItemAmount.ItemClass);
 L257:          goto ExecutionFlow.Pop();
-L258:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L258:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L300:          int32 Temp_int_Loop_Counter_Variable = mint321;
-L327:          mTSubclassOf<FGSchematic> = this->mCachedSchematicManager->GetActiveSchematic();
-L369:          mTArray<ItemAmount> = FGSchematic->GetCost(mTSubclassOf<FGSchematic>);
-L428:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
-L487:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint322);
+L327:          mTSubclassOfFGSchematic = this->mCachedSchematicManager->GetActiveSchematic();
+L369:          mTArrayItemAmount = FGSchematic->GetCost(mTSubclassOfFGSchematic);
+L428:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount);
+L487:          bool mbool = Temp_int_Loop_Counter_Variable < mint322;
 L525:          if (!mbool) goto L571;
 L539:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L566:          goto L15;
@@ -637,11 +654,14 @@ L616:          goto ExecutionFlow.Pop();
 L617:          Temp_int_Loop_Counter_Variable = 0;
 L640:          Temp_int_Array_Index_Variable = 0;
 L663:          goto L327;
+L668:          // <Begin Inlined EventGraph Function CloseTradepost>;
 L668:          this->OnEscapePressed();
 L696:          goto ExecutionFlow.Pop();
+L697:          // <Begin Inlined EventGraph Function Destruct>;
 L697:          this->Destruct();
 L707:          this->Cleanup();
 L721:          goto ExecutionFlow.Pop();
+L722:          // <Begin Inlined EventGraph Function Init>;
 L722:          this->Init();
 L732:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
 L775:          FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
@@ -659,38 +679,38 @@ L1124:         this->mLaunchShipButton->mTradingPost = this->mTradingPost;
 L1165:         this->mLaunchShipButton->mTradingPostWidget = this;
 L1198:         this->mShipAwayFeedback->mTradingPost = this->mTradingPost;
 L1239:         this->mShipAwayFeedback->mTradingPostWidget = this;
-L1272:         TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic>1 = this->mCachedSchematicManager->GetActiveSchematic();
-L1314:         bool mbool3 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>1);
+L1272:         TSubclassOf<FGSchematic> mTSubclassOfFGSchematic1 = this->mCachedSchematicManager->GetActiveSchematic();
+L1314:         bool mbool3 = KismetSystemLibrary->IsValidClass(mTSubclassOfFGSchematic1);
 L1365:         if (!mbool3) goto L1489;
-L1379:         mTSubclassOf<FGSchematic>1 = this->mCachedSchematicManager->GetActiveSchematic();
-L1421:         this->SetSelectedSchematic(mTSubclassOf<FGSchematic>1);
+L1379:         mTSubclassOfFGSchematic1 = this->mCachedSchematicManager->GetActiveSchematic();
+L1421:         this->SetSelectedSchematic(mTSubclassOfFGSchematic1);
 L1444:         this->Widget_TradingPost_RecipePreview->SetupSchematicContents(this->mSelectedSchematic);
 L1489:         this->Widget_TradingPost_RecipePreview->Widget_TradingPostSchematicCostInfo->UpdateSchematicCosts(this->mSelectedSchematic);
 L1556:         this->SetDefaultDescriptionText(this->mSelectedSchematic);
-L1579:         TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic>2 = this->mCachedSchematicManager->GetActiveSchematic();
-L1621:         this->mPayOffGrid->SetUpPayOffSlots(mTSubclassOf<FGSchematic>2);
+L1579:         TSubclassOf<FGSchematic> mTSubclassOfFGSchematic2 = this->mCachedSchematicManager->GetActiveSchematic();
+L1621:         this->mPayOffGrid->SetUpPayOffSlots(mTSubclassOfFGSchematic2);
 L1666:         this->Widget_TradingPost_RecipePreview->mTradingPostWidget = this;
 L1699:         this->mSchematicList->mTradingPostWidget = this;
 L1732:         this->SetActiveTab();
 L1746:         this->mSchematicList->CreateSchematicButtons();
 L1782:         mFScriptDelegate->BindUFunction(this, OnActiveSchematicChanged);
 L1805:         this->mCachedSchematicManager->mOnActiveSchematicChanged.AddUnique(mFScriptDelegate);
-L1846:         bool mbool4 = EqualEqual_IntInt(this->Widget_SlidingTabs->mActiveIndex, 1);
+L1846:         bool mbool4 = this->Widget_SlidingTabs->mActiveIndex == 1;
 L1902:         this->mWindow->SetInventoryVisibility(mbool4, false);
-L1948:         TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic>3 = this->mCachedSchematicManager->GetActiveSchematic();
-L1990:         bool mbool5 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>3);
+L1948:         TSubclassOf<FGSchematic> mTSubclassOfFGSchematic3 = this->mCachedSchematicManager->GetActiveSchematic();
+L1990:         bool mbool5 = KismetSystemLibrary->IsValidClass(mTSubclassOfFGSchematic3);
 L2041:         if (!mbool5) goto L2284;
-L2055:         mTSubclassOf<FGSchematic>3 = this->mCachedSchematicManager->GetActiveSchematic();
-L2097:         int32 mint323 = FGSchematic->GetTechTier(mTSubclassOf<FGSchematic>3);
+L2055:         mTSubclassOfFGSchematic3 = this->mCachedSchematicManager->GetActiveSchematic();
+L2097:         int32 mint323 = FGSchematic->GetTechTier(mTSubclassOfFGSchematic3);
 L2156:         this->SetTierAndDeafultSchematic(mint323);
 L2179:         goto ExecutionFlow.Pop();
 L2180:         KismetSystemLibrary->PrintString(this, "did not cast to tradingpost", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
 L2283:         goto ExecutionFlow.Pop();
-L2284:         TArray<uint8> mTArray<uint8> = [2, 3];
-L2299:         TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>> = [];
-L2310:         this->mCachedSchematicManager->GetPurchasedSchematicsOfTypes(mTArray<uint8>, [ref] mTArray<TSubclassOf<FGSchematic>>);
-L2360:         int32 mint324 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGSchematic>>);
-L2419:         bool mbool6 = Greater_IntInt(mint324, 1);
+L2284:         TArray<uint8> mTArrayuint8 = [2, 3];
+L2299:         TArray<TSubclassOf<FGSchematic>> mTArrayTSubclassOfFGSchematic = [];
+L2310:         this->mCachedSchematicManager->GetPurchasedSchematicsOfTypes(mTArrayuint8, [ref] mTArrayTSubclassOfFGSchematic);
+L2360:         int32 mint324 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGSchematic);
+L2419:         bool mbool6 = mint324 > 1;
 L2453:         if (!mbool6) goto ExecutionFlow.Pop();
 L2463:         this->GetLowestNonFullyResearchedTier([ref] mint325, [ref] mbool7);
 L2495:         if (!mbool7) goto L2565;
@@ -705,12 +725,12 @@ L2656:         FGGameState* mFGGameState1 = Cast<Class /Script/FactoryGame.FGGam
 L2692:         bool mbool8 = mFGGameState1;
 L2721:         if (!mbool8) goto ExecutionFlow.Pop();
 L2731:         FGSchematicManager* mFGSchematicManager1 = FGSchematicManager->Get(mFGGameState1);
-L2782:         TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic>4 = mFGSchematicManager1->GetActiveSchematic();
-L2824:         bool mbool9 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGSchematic>4);
+L2782:         TSubclassOf<FGSchematic> mTSubclassOfFGSchematic4 = mFGSchematicManager1->GetActiveSchematic();
+L2824:         bool mbool9 = KismetSystemLibrary->IsValidClass(mTSubclassOfFGSchematic4);
 L2875:         if (!mbool9) goto ExecutionFlow.Pop();
 L2885:         mFGSchematicManager1 = FGSchematicManager->Get(mFGGameState1);
-L2936:         mTSubclassOf<FGSchematic>4 = mFGSchematicManager1->GetActiveSchematic();
-L2978:         bool mbool10 = mFGSchematicManager1->IsSchematicPaidOff(mTSubclassOf<FGSchematic>4);
+L2936:         mTSubclassOfFGSchematic4 = mFGSchematicManager1->GetActiveSchematic();
+L2978:         bool mbool10 = mFGSchematicManager1->IsSchematicPaidOff(mTSubclassOfFGSchematic4);
 L3029:         if (!mbool10) goto L3137;
 L3043:         if (!Temp_bool_Variable3) goto L3058;
 L3057:         goto ExecutionFlow.Pop();
@@ -725,8 +745,9 @@ L3162:         goto ExecutionFlow.Pop();
 L3163:         Temp_bool_Variable2 = true;
 L3174:         UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->GlowInputAnim, 0, 0, 0, 1);
 L3220:         goto ExecutionFlow.Pop();
-L3221:         this->mPayOffGrid->SetUpPayOffSlots(mTSubclassOf<FGSchematic>5);
+L3221:         this->mPayOffGrid->SetUpPayOffSlots(mTSubclassOfFGSchematic5);
 L3266:         goto ExecutionFlow.Pop();
+L3267:         // <Begin Inlined EventGraph Function Construct>;
 L3267:         this->Construct();
 L3277:         GameStateBase* mGameStateBase2 = GameplayStatics->GetGameState(this);
 L3320:         FGSchematicManager* mFGSchematicManager2 = FGSchematicManager->Get(mGameStateBase2);
@@ -743,16 +764,19 @@ L3621:         this->CloseTradepost();
 L3635:         goto ExecutionFlow.Pop();
 L3636:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->ShakeAnim, 0, 1, 0, 1);
 L3682:         goto ExecutionFlow.Pop();
+L3683:         // <Begin Inlined EventGraph Function mShakeWindow>;
 L3683:         goto L3636;
+L3688:         // <Begin Inlined EventGraph Function BndEvt__mWindow_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature>;
 L3688:         goto L668;
+L3693:         // <Begin Inlined EventGraph Function CreateSmoke>;
 L3693:         PlayerController* mPlayerController = this->GetOwningPlayer();
-L3717:         Widget_Smoke* mWidget_Smoke = WidgetBlueprintLibrary->Create(this, Widget_Smoke, mPlayerController);
+L3717:         Widget_Smoke* mWidget_Smoke = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Smoke.Widget_Smoke_C), mPlayerController);
 L3778:         PanelSlot* mPanelSlot = this->mSmokeContainer_BottomRight->AddChild(mWidget_Smoke);
 L3829:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L3853:         Widget_Smoke* mWidget_Smoke1 = WidgetBlueprintLibrary->Create(this, Widget_Smoke, mPlayerController1);
+L3853:         Widget_Smoke* mWidget_Smoke1 = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Smoke.Widget_Smoke_C), mPlayerController1);
 L3914:         PanelSlot* mPanelSlot1 = this->mSmokeContainer_BottomLeft->AddChild(mWidget_Smoke1);
 L3965:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
-L3989:         Widget_Smoke* mWidget_Smoke2 = WidgetBlueprintLibrary->Create(this, Widget_Smoke, mPlayerController2);
+L3989:         Widget_Smoke* mWidget_Smoke2 = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Smoke.Widget_Smoke_C), mPlayerController2);
 L4050:         PanelSlot* mPanelSlot2 = this->mSmokeContainer_TopCenter->AddChild(mWidget_Smoke2);
 L4101:         goto ExecutionFlow.Pop();
 L4102:         bool Temp_bool_Variable = true;

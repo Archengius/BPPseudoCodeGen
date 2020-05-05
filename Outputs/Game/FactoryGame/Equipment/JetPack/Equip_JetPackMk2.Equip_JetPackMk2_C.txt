@@ -7,8 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/JetPack/Equip_JetPackMk2.Equi
 
 
 ============ BEGIN FUNCTION ConsumeFuel ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/JetPack/Equip_JetPackMk2.Equip_JetPackMk2_C:ExecuteUbergraph_Equip_JetPackMk2.K2Node_Event_delta) = Delta;
-L18:           this->ExecuteUbergraph_Equip_JetPackMk2(276);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ConsumeFuel;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_JetPackMk2, from label L276;
 ============ END FUNCTION ConsumeFuel ==============
 
 
@@ -16,17 +17,17 @@ L18:           this->ExecuteUbergraph_Equip_JetPackMk2(276);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Equip_JetPackMk2 ==============
-L10:           this->mThrustCooldown = Equip_JetPack->ClassDefaultObject->mThrustCooldown;
-L59:           float mfloat = Multiply_FloatFloat(this->mMaxFuel, this->mFuelConsumeRate);
-L105:          float mfloat1 = Multiply_FloatFloat(mfloat2, mfloat);
-L151:          float mfloat3 = Subtract_FloatFloat(this->mCurrentFuel, mfloat1);
+L10:           this->mThrustCooldown = Equip_JetPack->mThrustCooldown;
+L59:           float mfloat = this->mMaxFuel * this->mFuelConsumeRate;
+L105:          float mfloat1 = mfloat2 * mfloat;
+L151:          float mfloat3 = this->mCurrentFuel - mfloat1;
 L197:          float mfloat4 = FClamp(mfloat3, 0, 1);
 L244:          this->mCurrentFuel = mfloat4;
-L271:          <End of Inlined Event Graph Function>;
-L276:          mfloat = Multiply_FloatFloat(this->mMaxFuel, this->mFuelConsumeRate);
-L322:          mfloat1 = Multiply_FloatFloat(mfloat2, mfloat);
-L368:          mfloat3 = Subtract_FloatFloat(this->mCurrentFuel, mfloat1);
-L414:          bool mbool = LessEqual_FloatFloat(mfloat3, 0);
+L271:          // <End Inlined EventGraph Function>;
+L276:          mfloat = this->mMaxFuel * this->mFuelConsumeRate;
+L322:          mfloat1 = mfloat2 * mfloat;
+L368:          mfloat3 = this->mCurrentFuel - mfloat1;
+L414:          bool mbool = mfloat3 <= 0;
 L448:          if (!mbool) goto L59;
 L462:          goto L10;
 ============ END FUNCTION ExecuteUbergraph_Equip_JetPackMk2 ==============

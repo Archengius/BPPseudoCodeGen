@@ -15,30 +15,30 @@ L90:           if (!mbool) goto ExecutionFlow.Pop();
 L100:          int32 Temp_int_Variable = 0;
 L123:          SplineComponent* mSplineComponent = mFGBuildableRailroadTrack->GetSplineComponent();
 L165:          float mfloat = mSplineComponent->GetSplineLength();
-L215:          float mfloat1 = Divide_FloatFloat(mfloat, this->mSplineMeshLength);
+L215:          float mfloat1 = mfloat / this->mSplineMeshLength;
 L261:          int32 mint32 = FCeil(mfloat1);
-L298:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, mint32);
+L298:          bool mbool1 = Temp_int_Variable <= mint32;
 L336:          if (!mbool1) goto L1044;
 L350:          ExecutionFlow.Push(L1056);
 L355:          int32 localLoopIndex = Temp_int_Variable;
 L382:          mSplineComponent = mFGBuildableRailroadTrack->GetSplineComponent();
 L424:          mfloat = mSplineComponent->GetSplineLength();
-L474:          mfloat1 = Divide_FloatFloat(mfloat, this->mSplineMeshLength);
+L474:          mfloat1 = mfloat / this->mSplineMeshLength;
 L520:          mint32 = FCeil(mfloat1);
-L557:          bool mbool2 = NotEqual_IntInt(localLoopIndex, mint32);
+L557:          bool mbool2 = localLoopIndex != mint32;
 L595:          if (!mbool2) goto L1130;
 L609:          mSplineComponent = mFGBuildableRailroadTrack->GetSplineComponent();
-L651:          float mfloat2 = Multiply_IntFloat(localLoopIndex, this->mSplineMeshLength);
+L651:          float mfloat2 = localLoopIndex * this->mSplineMeshLength;
 L697:          Vector mVector = mSplineComponent->GetLocationAtDistanceAlongSpline(mfloat2, 0);
 L758:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mSplinePointLocationArray, [ref] mVector);
 L826:          mSplineComponent = mFGBuildableRailroadTrack->GetSplineComponent();
-L868:          mfloat2 = Multiply_IntFloat(localLoopIndex, this->mSplineMeshLength);
+L868:          mfloat2 = localLoopIndex * this->mSplineMeshLength;
 L914:          Vector mVector1 = mSplineComponent->GetTangentAtDistanceAlongSpline(mfloat2, 1);
 L975:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->mSplinePointTangentArray, [ref] mVector1);
 L1043:         goto ExecutionFlow.Pop();
 L1044:         this->mSplineInitialized = true;
 L1055:         goto ExecutionFlow.Pop();
-L1056:         int32 mint323 = Add_IntInt(Temp_int_Variable, 1);
+L1056:         int32 mint323 = Temp_int_Variable + 1;
 L1098:         Temp_int_Variable = mint323;
 L1125:         goto L123;
 L1130:         mSplineComponent = mFGBuildableRailroadTrack->GetSplineComponent();
@@ -60,42 +60,42 @@ L1572:         goto ExecutionFlow.Pop();
 L0:            Vector mVector = this->DefaultSceneRoot->K2_GetComponentLocation();
 L50:           Rotator mRotator = this->Spline->GetRotationAtSplinePoint(LoopIndex, 1);
 L111:          KismetArrayLibrary->Array_Get([ref] this->mSplinePointLocationArray, LoopIndex, [ref] mVector1);
-L170:          Vector mVector2 = Add_VectorVector(mVector, mVector1);
+L170:          Vector mVector2 = mVector + mVector1;
 L216:          Transform mTransform = MakeTransform(mVector2, mRotator, Vector(1, 1, 1));
-L275:          Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_BuildEffect_TrainTrackSegment, [ref] mTransform, 1, nullptr);
+L275:          Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/-Shared/BP_BuildEffect_TrainTrackSegment.BP_BuildEffect_TrainTrackSegment_C), [ref] mTransform, 1, nullptr);
 L339:          mVector = this->DefaultSceneRoot->K2_GetComponentLocation();
 L389:          mRotator = this->Spline->GetRotationAtSplinePoint(LoopIndex, 1);
 L450:          KismetArrayLibrary->Array_Get([ref] this->mSplinePointLocationArray, LoopIndex, [ref] mVector1);
-L509:          mVector2 = Add_VectorVector(mVector, mVector1);
+L509:          mVector2 = mVector + mVector1;
 L555:          mTransform = MakeTransform(mVector2, mRotator, Vector(1, 1, 1));
 L614:          BP_BuildEffect_TrainTrackSegment* mBP_BuildEffect_TrainTrackSegment = GameplayStatics->FinishSpawningActor(mActor, [ref] mTransform);
-L674:          int32 mint32 = Add_IntInt(LoopIndex, 1);
-L716:          int32 mint321 = Percent_IntInt(mint32, SplineLength);
+L674:          int32 mint32 = LoopIndex + 1;
+L716:          int32 mint321 = mint32 % SplineLength;
 L762:          mVector = this->DefaultSceneRoot->K2_GetComponentLocation();
 L812:          KismetArrayLibrary->Array_Get([ref] this->mSplinePointLocationArray, mint321, [ref] mVector3);
-L871:          Vector mVector4 = Add_VectorVector(mVector, mVector3);
+L871:          Vector mVector4 = mVector + mVector3;
 L917:          mBP_BuildEffect_TrainTrackSegment->Spline->SetLocationAtSplinePoint(1, [ref] mVector4, 1, true);
 L988:          mBP_BuildEffect_TrainTrackSegment->mMesh = this->mMesh;
 L1029:         mBP_BuildEffect_TrainTrackSegment->mTrainMaterial = this->mTrainMaterial;
 L1070:         KismetArrayLibrary->Array_Get([ref] this->mSplinePointTangentArray, LoopIndex, [ref] mVector5);
 L1129:         float mfloat = VSize(mVector5);
-L1166:         bool mbool = Greater_FloatFloat(mfloat, this->mSplineMeshLength);
-L1204:         float mfloat1 = Divide_FloatFloat(this->mSplineMeshLength, mfloat);
-L1250:         Vector mVector6 = Multiply_VectorFloat(mVector5, mfloat1);
+L1166:         bool mbool = mfloat > this->mSplineMeshLength;
+L1204:         float mfloat1 = this->mSplineMeshLength / mfloat;
+L1250:         Vector mVector6 = mVector5 * mfloat1;
 L1296:         bool Temp_bool_Variable1 = mbool;
 L1315:         mBP_BuildEffect_TrainTrackSegment->mStartTangent = switch (Temp_bool_Variable1) {
 case false -> mVector5;
 case true -> mVector6;
 default -> mVector7;
 };
-L1408:         mint32 = Add_IntInt(LoopIndex, 1);
-L1450:         mint321 = Percent_IntInt(mint32, SplineLength);
+L1408:         mint32 = LoopIndex + 1;
+L1450:         mint321 = mint32 % SplineLength;
 L1496:         KismetArrayLibrary->Array_Get([ref] this->mSplinePointTangentArray, mint321, [ref] mVector8);
 L1555:         float mfloat2 = VSize(mVector8);
-L1592:         bool mbool1 = Greater_FloatFloat(mfloat2, this->mSplineMeshLength);
-L1630:         float mfloat3 = Divide_FloatFloat(this->mSplineMeshLength, mfloat2);
+L1592:         bool mbool1 = mfloat2 > this->mSplineMeshLength;
+L1630:         float mfloat3 = this->mSplineMeshLength / mfloat2;
 L1676:         bool Temp_bool_Variable = mbool1;
-L1695:         Vector mVector9 = Multiply_VectorFloat(mVector8, mfloat3);
+L1695:         Vector mVector9 = mVector8 * mfloat3;
 L1741:         mBP_BuildEffect_TrainTrackSegment->mEndTangent = switch (Temp_bool_Variable) {
 case false -> mVector8;
 case true -> mVector9;
@@ -114,8 +114,8 @@ L0:            ExecutionFlow.Push(L504);
 L5:            float local_TangentCap = 200;
 L28:           int32 Temp_int_Variable = 0;
 L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mSplinePointLocationArray);
-L110:          int32 mint321 = Subtract_IntInt(mint32, 1);
-L152:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L110:          int32 mint321 = mint32 - 1;
+L152:          bool mbool = Temp_int_Variable <= mint321;
 L190:          if (!mbool) goto ExecutionFlow.Pop();
 L200:          ExecutionFlow.Push(L430);
 L205:          KismetArrayLibrary->Array_Get([ref] this->mSplinePointLocationArray, Temp_int_Variable, [ref] mVector);
@@ -123,7 +123,7 @@ L264:          this->Spline->AddSplinePointAtIndex([ref] mVector, Temp_int_Varia
 L317:          KismetArrayLibrary->Array_Get([ref] this->mSplinePointTangentArray, Temp_int_Variable, [ref] mVector1);
 L376:          this->Spline->SetTangentAtSplinePoint(Temp_int_Variable, [ref] mVector1, 1, true);
 L429:          goto ExecutionFlow.Pop();
-L430:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L430:          int32 mint322 = Temp_int_Variable + 1;
 L472:          Temp_int_Variable = mint322;
 L499:          goto L51;
 ============ END FUNCTION InitiateSpline ==============
@@ -133,7 +133,9 @@ L499:          goto L51;
 
 
 ============ BEGIN FUNCTION MoveParticleEffect__FinishedFunc ==============
-L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrack(15);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: MoveParticleEffect__FinishedFunc;
+L0:            // Implementation: Function ExecuteUbergraph_BP_BuildEffect_TrainTrack, from label L15;
 ============ END FUNCTION MoveParticleEffect__FinishedFunc ==============
 
 
@@ -141,7 +143,9 @@ L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrack(15);
 
 
 ============ BEGIN FUNCTION MoveParticleEffect__UpdateFunc ==============
-L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrack(1446);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: MoveParticleEffect__UpdateFunc;
+L0:            // Implementation: Function ExecuteUbergraph_BP_BuildEffect_TrainTrack, from label L1446;
 ============ END FUNCTION MoveParticleEffect__UpdateFunc ==============
 
 
@@ -149,7 +153,9 @@ L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrack(1446);
 
 
 ============ BEGIN FUNCTION ReceiveBeginPlay ==============
-L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrack(1779);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_BP_BuildEffect_TrainTrack, from label L1779;
 ============ END FUNCTION ReceiveBeginPlay ==============
 
 
@@ -157,7 +163,9 @@ L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrack(1779);
 
 
 ============ BEGIN FUNCTION BeginEffect ==============
-L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrack(1861);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BeginEffect;
+L0:            // Implementation: Function ExecuteUbergraph_BP_BuildEffect_TrainTrack, from label L1861;
 ============ END FUNCTION BeginEffect ==============
 
 
@@ -165,8 +173,9 @@ L0:            this->ExecuteUbergraph_BP_BuildEffect_TrainTrack(1861);
 
 
 ============ BEGIN FUNCTION ReceiveTick ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/-Shared/BP_BuildEffect_TrainTrack.BP_BuildEffect_TrainTrack_C:ExecuteUbergraph_BP_BuildEffect_TrainTrack.K2Node_Event_DeltaSeconds) = DeltaSeconds;
-L18:           this->ExecuteUbergraph_BP_BuildEffect_TrainTrack(1941);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveTick;
+L18:           // Implementation: Function ExecuteUbergraph_BP_BuildEffect_TrainTrack, from label L1941;
 ============ END FUNCTION ReceiveTick ==============
 
 
@@ -175,22 +184,23 @@ L18:           this->ExecuteUbergraph_BP_BuildEffect_TrainTrack(1941);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_BP_BuildEffect_TrainTrack ==============
 L5:            goto ComputedJump(EntryPoint);
-L15:           int32 mint32 = Add_IntInt(this->mLoopIndex, 1);
+L15:           // <Begin Inlined EventGraph Function MoveParticleEffect__FinishedFunc>;
+L15:           int32 mint32 = this->mLoopIndex + 1;
 L57:           int32 Temp_int_Variable = mint32;
 L84:           this->mLoopIndex = Temp_int_Variable;
 L111:          int32 mint321 = this->Spline->GetNumberOfSplinePoints();
-L161:          int32 mint322 = Subtract_IntInt(mint321, 4);
-L203:          bool mbool = LessEqual_IntInt(this->mLoopIndex, mint322);
+L161:          int32 mint322 = mint321 - 4;
+L203:          bool mbool = this->mLoopIndex <= mint322;
 L241:          if (!mbool) goto L412;
 L255:          mint321 = this->Spline->GetNumberOfSplinePoints();
-L305:          int32 mint323 = Subtract_IntInt(mint321, 1);
+L305:          int32 mint323 = mint321 - 1;
 L347:          this->SpawnSplineSegment(this->mLoopIndex, mint323);
 L379:          this->MoveParticleEffect->PlayFromStart();
 L411:          goto ExecutionFlow.Pop();
 L412:          int32 Temp_int_Loop_Counter_Variable1 = 0;
 L435:          int32 Temp_int_Array_Index_Variable = 0;
 L458:          int32 mint324 = KismetArrayLibrary->Array_Length([ref] this->mSegmentListan);
-L517:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint324);
+L517:          bool mbool1 = Temp_int_Loop_Counter_Variable1 < mint324;
 L555:          if (!mbool1) goto L697;
 L569:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
 L596:          ExecutionFlow.Push(L1217);
@@ -206,7 +216,7 @@ L880:          mActor->SetActorHiddenInGame(false);
 L917:          int32 Temp_int_Loop_Counter_Variable = 0;
 L940:          int32 Temp_int_Array_Index_Variable1 = 0;
 L963:          int32 mint326 = KismetArrayLibrary->Array_Length([ref] this->mSegmentListan);
-L1022:         bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint326);
+L1022:         bool mbool2 = Temp_int_Loop_Counter_Variable < mint326;
 L1060:         if (!mbool2) goto L1202;
 L1074:         Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
 L1101:         ExecutionFlow.Push(L1291);
@@ -215,10 +225,10 @@ L1165:         mBP_BuildEffect_TrainTrackSegment1->K2_DestroyActor();
 L1201:         goto ExecutionFlow.Pop();
 L1202:         this->K2_DestroyActor();
 L1216:         goto ExecutionFlow.Pop();
-L1217:         int32 mint327 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1217:         int32 mint327 = Temp_int_Loop_Counter_Variable1 + 1;
 L1259:         Temp_int_Loop_Counter_Variable1 = mint327;
 L1286:         goto L458;
-L1291:         int32 mint328 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1291:         int32 mint328 = Temp_int_Loop_Counter_Variable + 1;
 L1333:         Temp_int_Loop_Counter_Variable = mint328;
 L1360:         goto L963;
 L1365:         bool Temp_bool_Has_Been_Initd_Variable = true;
@@ -232,17 +242,20 @@ L1419:         goto ExecutionFlow.Pop();
 L1420:         Temp_bool_IsClosed_Variable = true;
 L1431:         this->BeginEffect();
 L1445:         goto ExecutionFlow.Pop();
-L1446:         float mfloat = Multiply_FloatFloat(this->MoveParticleEffect_Time_82E420F745BD1A027C3D16B22990E87F, this->mSplineMeshLength);
+L1446:         // <Begin Inlined EventGraph Function MoveParticleEffect__UpdateFunc>;
+L1446:         float mfloat = this->MoveParticleEffect_Time_82E420F745BD1A027C3D16B22990E87F * this->mSplineMeshLength;
 L1492:         KismetArrayLibrary->Array_Get([ref] this->mSegmentListan, this->mLoopIndex, [ref] mBP_BuildEffect_TrainTrackSegment2);
 L1551:         Rotator mRotator = mBP_BuildEffect_TrainTrackSegment2->Spline->GetRotationAtDistanceAlongSpline(mfloat, 1);
 L1634:         Vector mVector = mBP_BuildEffect_TrainTrackSegment2->Spline->GetLocationAtDistanceAlongSpline(mfloat, 1);
 L1717:         this->MaterializeParticle->K2_SetWorldLocationAndRotation(mVector, mRotator, false, [ref] mHitResult, false);
 L1778:         goto ExecutionFlow.Pop();
+L1779:         // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L1779:         this->ReceiveBeginPlay();
 L1789:         Actor* mActor1 = this->GetOwner();
 L1809:         mActor1->SetActorHiddenInGame(true);
 L1846:         this->GetSplineData();
 L1860:         goto ExecutionFlow.Pop();
+L1861:         // <Begin Inlined EventGraph Function BeginEffect>;
 L1861:         ExecutionFlow.Push(L111);
 L1866:         this->InitiateSpline();
 L1880:         int32 mint329 = this->Ak_StartLoop->PostAssociatedAkEvent();
@@ -250,7 +263,7 @@ L1930:         goto ExecutionFlow.Pop();
 L1931:         ExecutionFlow.Push(L1405);
 L1936:         goto L1390;
 L1941:         this->ReceiveTick(mfloat1);
-L1960:         bool mbool3 = BooleanAND(this->mSplineInitialized, this->mWantToStartEffect);
+L1960:         bool mbool3 = this->mSplineInitialized && this->mWantToStartEffect;
 L1998:         if (!mbool3) goto ExecutionFlow.Pop();
 L2008:         goto L1931;
 ============ END FUNCTION ExecuteUbergraph_BP_BuildEffect_TrainTrack ==============

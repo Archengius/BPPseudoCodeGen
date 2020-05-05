@@ -11,14 +11,14 @@ L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
 L60:           bool mbool = mFGPlayerController;
 L89:           int32 mint32 = mFGPlayerController->GetNumPresetHotbars();
-L139:          bool mbool1 = Less_IntInt(this->mPresetIndex, mint32);
+L139:          bool mbool1 = this->mPresetIndex < mint32;
 L177:          if (!mbool1) goto L461;
 L191:          mPlayerController = this->GetOwningPlayer();
 L215:          mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
 L251:          mbool = mFGPlayerController;
 L280:          mFGPlayerController->GetPresetHotbar(this->mPresetIndex, [ref] mPresetHotbar);
 L330:          bool mbool2 = KismetArrayLibrary->Array_Identical([ref] mPresetHotbar.Hotbar.HotbarShortcuts, [ref] this->mShortcuts);
-L408:          bool mbool3 = Not_PreBool(mbool2);
+L408:          bool mbool3 = !mbool2;
 L437:          bool ReturnValue = mbool3;
 L456:          goto L472;
 L461:          ReturnValue = false;
@@ -33,17 +33,17 @@ L0:            ExecutionFlow.Push(L460);
 L5:            this->SetIconIndex(index);
 L28:           int32 Temp_int_Variable = 0;
 L51:           int32 mint32 = this->mSmallIconsContainer->GetChildrenCount();
-L101:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L101:          bool mbool = Temp_int_Variable <= mint32;
 L139:          if (!mbool) goto ExecutionFlow.Pop();
 L149:          ExecutionFlow.Push(L386);
 L154:          Widget* mWidget = this->mSmallIconsContainer->GetChildAt(Temp_int_Variable);
 L205:          BPW_HobarPreset_Editor_SmallIcon* mBPW_HobarPreset_Editor_SmallIcon = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/BPW_HobarPreset_Editor_SmallIcon.BPW_HobarPreset_Editor_SmallIcon_C>(mWidget);
 L241:          bool mbool1 = mBPW_HobarPreset_Editor_SmallIcon;
 L270:          if (!mbool1) goto ExecutionFlow.Pop();
-L280:          bool mbool2 = EqualEqual_IntInt(mBPW_HobarPreset_Editor_SmallIcon->mIndex, this->mIconIndex);
+L280:          bool mbool2 = mBPW_HobarPreset_Editor_SmallIcon->mIndex == this->mIconIndex;
 L340:          mBPW_HobarPreset_Editor_SmallIcon->mSetIsSelected(mbool2);
 L385:          goto ExecutionFlow.Pop();
-L386:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L386:          int32 mint321 = Temp_int_Variable + 1;
 L428:          Temp_int_Variable = mint321;
 L455:          goto L51;
 ============ END FUNCTION OnSmallIconClicked ==============
@@ -58,7 +58,7 @@ L5:            this->mSmallIconsContainer->ClearChildren();
 L41:           int32 Temp_int_Loop_Counter_Variable = 0;
 L64:           int32 Temp_int_Array_Index_Variable = 0;
 L87:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mShortcuts);
-L146:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L146:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L184:          if (!mbool) goto ExecutionFlow.Pop();
 L194:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L221:          ExecutionFlow.Push(L922);
@@ -68,18 +68,18 @@ L286:          bool mbool1 = mFGPlayerController;
 L315:          KismetArrayLibrary->Array_Get([ref] this->mShortcuts, Temp_int_Array_Index_Variable, [ref] mFGHotbarShortcut);
 L374:          bool mbool2 = mFGHotbarShortcut->IsValidShortcut(mFGPlayerController);
 L429:          if (!mbool2) goto ExecutionFlow.Pop();
-L439:          BPW_HobarPreset_Editor_SmallIcon* mBPW_HobarPreset_Editor_SmallIcon = WidgetBlueprintLibrary->Create(this, BPW_HobarPreset_Editor_SmallIcon, nullptr);
+L439:          BPW_HobarPreset_Editor_SmallIcon* mBPW_HobarPreset_Editor_SmallIcon = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/BPW_HobarPreset_Editor_SmallIcon.BPW_HobarPreset_Editor_SmallIcon_C), nullptr);
 L492:          KismetArrayLibrary->Array_Get([ref] this->mShortcuts, Temp_int_Array_Index_Variable, [ref] mFGHotbarShortcut);
 L551:          Texture2D* mTexture2D = mFGHotbarShortcut->GetDisplayImage();
 L597:          KismetSystemLibrary->SetObjectPropertyByName(mBPW_HobarPreset_Editor_SmallIcon, "mIcon", mTexture2D);
 L660:          KismetSystemLibrary->SetIntPropertyByName(mBPW_HobarPreset_Editor_SmallIcon, "mIndex", Temp_int_Array_Index_Variable);
 L723:          PanelSlot* mPanelSlot = this->mSmallIconsContainer->AddChild(mBPW_HobarPreset_Editor_SmallIcon);
-L774:          bool mbool3 = EqualEqual_IntInt(Temp_int_Array_Index_Variable, this->mIconIndex);
+L774:          bool mbool3 = Temp_int_Array_Index_Variable == this->mIconIndex;
 L812:          mBPW_HobarPreset_Editor_SmallIcon->mSetIsSelected(mbool3);
 L857:          mFScriptDelegate->BindUFunction(this, OnSmallIconClicked);
 L880:          mBPW_HobarPreset_Editor_SmallIcon->OnSmallIconClicked.AddUnique(mFScriptDelegate);
 L921:          goto ExecutionFlow.Pop();
-L922:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L922:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L964:          Temp_int_Loop_Counter_Variable = mint321;
 L991:          goto L87;
 ============ END FUNCTION GenerateSmallIcons ==============
@@ -130,7 +130,9 @@ L130:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this-
 
 
 ============ BEGIN FUNCTION BndEvt__mEditPresetCanel_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_HotbarPreset_Editor(31);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mEditPresetCanel_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_HotbarPreset_Editor, from label L31;
 ============ END FUNCTION BndEvt__mEditPresetCanel_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
 
 
@@ -138,7 +140,9 @@ L0:            this->ExecuteUbergraph_BPW_HotbarPreset_Editor(31);
 
 
 ============ BEGIN FUNCTION BndEvt__mEditPresetAccept_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_HotbarPreset_Editor(36);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mEditPresetAccept_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_HotbarPreset_Editor, from label L36;
 ============ END FUNCTION BndEvt__mEditPresetAccept_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
 
 
@@ -146,8 +150,9 @@ L0:            this->ExecuteUbergraph_BPW_HotbarPreset_Editor(36);
 
 
 ============ BEGIN FUNCTION BndEvt__mNameTextObject_K2Node_ComponentBoundEvent_2_OnEditableTextChangedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/BPW_HotbarPreset_Editor.BPW_HotbarPreset_Editor_C:ExecuteUbergraph_BPW_HotbarPreset_Editor.K2Node_ComponentBoundEvent_Text) = text;
-L18:           this->ExecuteUbergraph_BPW_HotbarPreset_Editor(136);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__mNameTextObject_K2Node_ComponentBoundEvent_2_OnEditableTextChangedEvent__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_HotbarPreset_Editor, from label L136;
 ============ END FUNCTION BndEvt__mNameTextObject_K2Node_ComponentBoundEvent_2_OnEditableTextChangedEvent__DelegateSignature ==============
 
 
@@ -155,7 +160,9 @@ L18:           this->ExecuteUbergraph_BPW_HotbarPreset_Editor(136);
 
 
 ============ BEGIN FUNCTION BndEvt__mWindow_K2Node_ComponentBoundEvent_3_OnClose__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_HotbarPreset_Editor(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mWindow_K2Node_ComponentBoundEvent_3_OnClose__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_HotbarPreset_Editor, from label L10;
 ============ END FUNCTION BndEvt__mWindow_K2Node_ComponentBoundEvent_3_OnClose__DelegateSignature ==============
 
 
@@ -163,13 +170,16 @@ L0:            this->ExecuteUbergraph_BPW_HotbarPreset_Editor(10);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_BPW_HotbarPreset_Editor ==============
+L10:           // <Begin Inlined EventGraph Function BndEvt__mWindow_K2Node_ComponentBoundEvent_3_OnClose__DelegateSignature>;
 L10:           this->SetVisibility(1);
-L26:           <End of Inlined Event Graph Function>;
+L26:           // <End Inlined EventGraph Function>;
+L31:           // <Begin Inlined EventGraph Function BndEvt__mEditPresetCanel_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature>;
 L31:           goto L10;
+L36:           // <Begin Inlined EventGraph Function BndEvt__mEditPresetAccept_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature>;
 L36:           bool mbool = this->GetShouldOverwriteBar();
 L60:           this->OnPresetUpdated->ProcessMulticastDelegate(this->mName, this->mIconIndex, this->mPresetIndex, mbool);
 L115:          this->SetVisibility(1);
-L131:          <End of Inlined Event Graph Function>;
+L131:          // <End Inlined EventGraph Function>;
 L136:          this->mName = mconst FText;
 ============ END FUNCTION ExecuteUbergraph_BPW_HotbarPreset_Editor ==============
 

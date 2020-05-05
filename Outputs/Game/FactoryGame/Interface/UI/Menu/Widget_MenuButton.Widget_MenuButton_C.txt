@@ -19,7 +19,7 @@ L303:          bool mbool1 = KismetSystemLibrary->IsValid(this->mCachedTabSwitch
 L354:          if (!mbool1) goto L625;
 L368:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor2, [ref] mLinearColor3);
 L423:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor4, [ref] mSlateColor3);
-L478:          bool mbool2 = EqualEqual_IntInt(this->mCachedTabSwitcher->ActiveWidgetIndex, this->mIndexAsChild);
+L478:          bool mbool2 = this->mCachedTabSwitcher->ActiveWidgetIndex == this->mIndexAsChild;
 L538:          LinearColor mLinearColor5 = SelectColor(mLinearColor4, mLinearColor3, mbool2);
 L593:          ReturnValue = mLinearColor5;
 L620:          goto L707;
@@ -44,7 +44,7 @@ L303:          bool mbool1 = KismetSystemLibrary->IsValid(this->mCachedTabSwitch
 L354:          if (!mbool1) goto L620;
 L368:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor2, [ref] mLinearColor3);
 L423:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor4, [ref] mSlateColor3);
-L478:          bool mbool2 = EqualEqual_IntInt(this->mCachedTabSwitcher->ActiveWidgetIndex, this->mIndexAsChild);
+L478:          bool mbool2 = this->mCachedTabSwitcher->ActiveWidgetIndex == this->mIndexAsChild;
 L538:          LinearColor mLinearColor5 = SelectColor(mLinearColor4, mLinearColor3, mbool2);
 L593:          ReturnValue = mLinearColor5;
 ============ END FUNCTION GetButtonColor ==============
@@ -79,7 +79,9 @@ L0:            this->MenuButton->SetVisibility(2);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_MenuButton(699);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MenuButton, from label L699;
 ============ END FUNCTION Construct ==============
 
 
@@ -87,7 +89,9 @@ L0:            this->ExecuteUbergraph_Widget_MenuButton(699);
 
 
 ============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_MenuButton(766);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MenuButton, from label L766;
 ============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -95,7 +99,9 @@ L0:            this->ExecuteUbergraph_Widget_MenuButton(766);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_MenuButton(846);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MenuButton, from label L846;
 ============ END FUNCTION Destruct ==============
 
 
@@ -103,7 +109,9 @@ L0:            this->ExecuteUbergraph_Widget_MenuButton(846);
 
 
 ============ BEGIN FUNCTION OnThisMenuButtonClicked ==============
-L0:            this->ExecuteUbergraph_Widget_MenuButton(851);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnThisMenuButtonClicked;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MenuButton, from label L851;
 ============ END FUNCTION OnThisMenuButtonClicked ==============
 
 
@@ -113,16 +121,16 @@ L0:            this->ExecuteUbergraph_Widget_MenuButton(851);
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_MenuButton ==============
 L5:            goto ComputedJump(EntryPoint);
 L15:           ExecutionFlow.Push(L110);
-L20:           KismetArrayLibrary->Array_Get([ref] mTArray<WidgetSwitcher>, Temp_int_Array_Index_Variable, [ref] mWidgetSwitcher);
+L20:           KismetArrayLibrary->Array_Get([ref] mTArrayWidgetSwitcher, Temp_int_Array_Index_Variable, [ref] mWidgetSwitcher);
 L79:           this->mCachedTabSwitcher = mWidgetSwitcher;
 L98:           bool Temp_bool_True_if_break_was_hit_Variable = true;
 L109:          goto ExecutionFlow.Pop();
-L110:          int32 mint32 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L110:          int32 mint32 = Temp_int_Loop_Counter_Variable + 1;
 L152:          int32 Temp_int_Loop_Counter_Variable = mint32;
-L179:          bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
-L208:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<WidgetSwitcher>);
-L267:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
-L305:          bool mbool2 = BooleanAND(mbool, mbool1);
+L179:          bool mbool = !Temp_bool_True_if_break_was_hit_Variable;
+L208:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArrayWidgetSwitcher);
+L267:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint321;
+L305:          bool mbool2 = mbool && mbool1;
 L343:          if (!mbool2) goto L389;
 L357:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L384:          goto L15;
@@ -140,15 +148,19 @@ L637:          Temp_bool_True_if_break_was_hit_Variable = false;
 L648:          Temp_int_Loop_Counter_Variable = 0;
 L671:          Temp_int_Array_Index_Variable = 0;
 L694:          goto L179;
-L699:          TArray<WidgetSwitcher*> mTArray<WidgetSwitcher> = [];
-L710:          FGBlueprintFunctionLibrary->GetAllWidgetsOfClassInHierarchy(this, WidgetSwitcher, [ref] mTArray<WidgetSwitcher>);
+L699:          // <Begin Inlined EventGraph Function Construct>;
+L699:          TArray<WidgetSwitcher*> mTArrayWidgetSwitcher = [];
+L710:          FGBlueprintFunctionLibrary->GetAllWidgetsOfClassInHierarchy(this, ObjectConst(Class /Script/UMG.WidgetSwitcher), [ref] mTArrayWidgetSwitcher);
 L761:          goto L637;
+L766:          // <Begin Inlined EventGraph Function BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature>;
 L766:          this->mCachedTabSwitcher->SetActiveWidgetIndex(this->mIndexAsChild);
 L811:          this->OnClicked->ProcessMulticastDelegate();
 L830:          goto ExecutionFlow.Pop();
 L831:          this->HideButton();
 L845:          goto ExecutionFlow.Pop();
+L846:          // <Begin Inlined EventGraph Function Destruct>;
 L846:          goto L831;
+L851:          // <Begin Inlined EventGraph Function OnThisMenuButtonClicked>;
 L851:          goto L530;
 ============ END FUNCTION ExecuteUbergraph_Widget_MenuButton ==============
 

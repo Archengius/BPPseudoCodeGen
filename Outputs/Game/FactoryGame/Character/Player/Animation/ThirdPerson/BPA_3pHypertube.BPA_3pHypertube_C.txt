@@ -1,0 +1,80 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/Animation/ThirdPerson/BPA_3pHypertube.BPA_3pHypertube_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintUpdateAnimation ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BlueprintUpdateAnimation;
+L18:           // Implementation: Function ExecuteUbergraph_BPA_3pHypertube, from label L10;
+============ END FUNCTION BlueprintUpdateAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPA_3pHypertube ==============
+L10:           this->BlueprintUpdateAnimation(mfloat);
+L29:           this->mDeltaTime = mfloat;
+L56:           bool mbool = this->mCachedMovementMode == 6;
+L87:           if (!mbool) goto L2292;
+L101:          FGCharacterMovementComponent* mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->mCharacter->CharacterMovement);
+L159:          bool mbool1 = mFGCharacterMovementComponent;
+L188:          float mfloat1 = mFGCharacterMovementComponent->GetPipeVelocity();
+L238:          float mfloat2 = Abs(mfloat1);
+L275:          this->mHypertubeSpeed = mfloat2;
+L302:          mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->mCharacter->CharacterMovement);
+L360:          mbool1 = mFGCharacterMovementComponent;
+L389:          Vector mVector = mFGCharacterMovementComponent->GetPipeTravelDirectionWorld();
+L439:          Vector mVector1 = InverseTransformDirection([ref] this->mActorTransform, mVector);
+L485:          Vector mVector2 = Normal(mVector1, 0.00009999999747378752);
+L527:          BreakVector(mVector2, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L573:          float mfloat6 = DegAtan2(mfloat4, mfloat3);
+L619:          this->mHypertubeLastDirection = mfloat6;
+L646:          mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->mCharacter->CharacterMovement);
+L704:          mbool1 = mFGCharacterMovementComponent;
+L733:          mVector = mFGCharacterMovementComponent->GetPipeTravelDirectionWorld();
+L783:          mVector1 = InverseTransformDirection([ref] this->mActorTransform, mVector);
+L829:          mVector2 = Normal(mVector1, 0.00009999999747378752);
+L871:          BreakVector(mVector2, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L917:          float mfloat7 = DegAtan(mfloat5);
+L954:          float mfloat8 = mfloat7 * 2;
+L996:          this->mHypertubeLastDirectionZ = mfloat8;
+L1023:         Rotator mRotator = MakeRotator(0, this->mRotationLagPitch, this->mRotationLagYaw);
+L1074:         Rotator mRotator1 = RInterpTo(mRotator, this->mHypertubeRotationDelta, this->mDeltaTime, 3.5);
+L1134:         BreakRotator(mRotator1, [ref] mfloat9, [ref] mfloat10, [ref] mfloat11);
+L1180:         this->mRotationLagPitch = mfloat10;
+L1207:         mRotator = MakeRotator(0, this->mRotationLagPitch, this->mRotationLagYaw);
+L1258:         mRotator1 = RInterpTo(mRotator, this->mHypertubeRotationDelta, this->mDeltaTime, 3.5);
+L1318:         BreakRotator(mRotator1, [ref] mfloat9, [ref] mfloat10, [ref] mfloat11);
+L1364:         this->mRotationLagYaw = mfloat11;
+L1391:         mFGCharacterMovementComponent = Cast<Class /Script/FactoryGame.FGCharacterMovementComponent>(this->mCharacter->CharacterMovement);
+L1449:         mbool1 = mFGCharacterMovementComponent;
+L1478:         mVector = mFGCharacterMovementComponent->GetPipeTravelDirectionWorld();
+L1528:         mVector1 = InverseTransformDirection([ref] this->mActorTransform, mVector);
+L1574:         mVector2 = Normal(mVector1, 0.00009999999747378752);
+L1616:         BreakVector(mVector2, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
+L1662:         mfloat7 = DegAtan(mfloat5);
+L1699:         mfloat6 = DegAtan2(mfloat4, mfloat3);
+L1745:         Rotator mRotator2 = MakeRotator(0, mfloat7, mfloat6);
+L1796:         this->mHypertubeRotation = mRotator2;
+L1823:         Rotator mRotator3 = NormalizedDeltaRotator(this->mHypertubeRotation, this->mHypertubeRotationLast);
+L1869:         this->mHypertubeRotationDelta = mRotator3;
+L1896:         this->mHypertubeRotationLast = this->mHypertubeRotation;
+L1923:         float mfloat12 = this->mCurrentTime + this->mDeltaTime;
+L1969:         this->mCurrentTime = mfloat12;
+L1996:         float mfloat13 = RandomFloatInRange(0.5, 3);
+L2034:         bool mbool2 = this->mCurrentTime >= mfloat13;
+L2072:         if (!mbool2) goto L2292;
+L2086:         this->mCurrentTime = 0;
+L2109:         bool mbool3 = this->mRandAngle >= 0;
+L2143:         if (!mbool3) goto L2227;
+L2157:         float mfloat14 = RandomFloatInRange(0, -5);
+L2195:         this->mRandAngle = mfloat14;
+L2222:         // <End Inlined EventGraph Function>;
+L2227:         float mfloat15 = RandomFloatInRange(1, 5);
+L2265:         this->mRandAngle = mfloat15;
+============ END FUNCTION ExecuteUbergraph_BPA_3pHypertube ==============

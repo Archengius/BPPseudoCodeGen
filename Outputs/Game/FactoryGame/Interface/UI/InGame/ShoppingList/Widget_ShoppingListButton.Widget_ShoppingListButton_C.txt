@@ -17,7 +17,7 @@ L50:           EventReply ReturnValue = mEventReply;
 
 ============ BEGIN FUNCTION GetMinusVisibility ==============
 L0:            this->GetAmount([ref] mint32);
-L23:           bool mbool = GreaterEqual_IntInt(mint32, 1);
+L23:           bool mbool = mint32 >= 1;
 L57:           if (!mbool) goto L96;
 L71:           uint8 ReturnValue = 4;
 L91:           goto L116;
@@ -30,7 +30,7 @@ L96:           ReturnValue = 2;
 
 ============ BEGIN FUNCTION GetInputNumberTooltip ==============
 L0:            FText mTooltipDescriptionText = "[object Object]";
-L110:          Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, nullptr);
+L110:          Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Tooltip.Widget_Tooltip_C), nullptr);
 L163:          mItemAmount.ItemClass = nullptr;
 L183:          mItemAmount.amount = 0;
 L215:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_Tooltip, "mItemDescriptor", [ref] mItemAmount);
@@ -43,8 +43,8 @@ L514:          mFormatArgumentData.ArgumentValue = mFText;
 L550:          mFormatArgumentData.ArgumentValueInt = 0;
 L582:          mFormatArgumentData.ArgumentValueFloat = 0;
 L614:          mFormatArgumentData.ArgumentValueGender = 0;
-L643:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L663:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L643:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L663:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L783:          KismetSystemLibrary->SetTextPropertyByName(mWidget_Tooltip, "mTitleText", [ref] mFText1);
 L846:          Widget* ReturnValue = mWidget_Tooltip;
 ============ END FUNCTION GetInputNumberTooltip ==============
@@ -56,7 +56,7 @@ L846:          Widget* ReturnValue = mWidget_Tooltip;
 ============ BEGIN FUNCTION GetButtonTooltip ==============
 L0:            FText mTooltipText = "[object Object]";
 L101:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L125:          Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController);
+L125:          Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Tooltip.Widget_Tooltip_C), mPlayerController);
 L186:          mItemAmount.ItemClass = nullptr;
 L206:          mItemAmount.amount = 0;
 L238:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_Tooltip, "mItemDescriptor", [ref] mItemAmount);
@@ -70,7 +70,7 @@ L364:          Widget* ReturnValue = mWidget_Tooltip;
 
 ============ BEGIN FUNCTION GetInputTextfieldVisibility ==============
 L0:            this->GetAmount([ref] mint32);
-L23:           bool mbool = Greater_IntInt(mint32, 0);
+L23:           bool mbool = mint32 > 0;
 L57:           if (!mbool) goto L96;
 L71:           uint8 ReturnValue = 0;
 L91:           goto L116;
@@ -109,17 +109,17 @@ L56:           if (!mbool) goto ExecutionFlow.Pop();
 L66:           int32 Temp_int_Loop_Counter_Variable = 0;
 L89:           int32 Temp_int_Array_Index_Variable = 0;
 L112:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mPlayerState->mShoppingList);
-L193:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L193:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L231:          if (!mbool1) goto ExecutionFlow.Pop();
 L241:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L268:          ExecutionFlow.Push(L533);
 L273:          KismetArrayLibrary->Array_Get([ref] this->mPlayerState->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
-L354:          bool mbool2 = EqualEqual_ClassClass(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903, this->mRecipe);
+L354:          bool mbool2 = mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903 == this->mRecipe;
 L401:          if (!mbool2) goto ExecutionFlow.Pop();
 L411:          KismetArrayLibrary->Array_Get([ref] this->mPlayerState->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
 L492:          int32 NumberRecipes = mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13;
-L528:          <End of Inlined Event Graph Function>;
-L533:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L528:          // <End Inlined EventGraph Function>;
+L533:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L575:          Temp_int_Loop_Counter_Variable = mint321;
 L602:          goto L112;
 ============ END FUNCTION GetAmount ==============
@@ -129,7 +129,7 @@ L602:          goto L112;
 
 
 ============ BEGIN FUNCTION GetAmountRecipesInListColor ==============
-L0:            bool mbool = Greater_IntInt(0, 0);
+L0:            bool mbool = 0 > 0;
 L30:           if (!mbool) goto L131;
 L44:           HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
 L99:           SlateColor ReturnValue = mSlateColor;
@@ -143,7 +143,9 @@ L186:          ReturnValue = mSlateColor1;
 
 
 ============ BEGIN FUNCTION BndEvt__Remove1_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ShoppingListButton(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Remove1_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ShoppingListButton, from label L10;
 ============ END FUNCTION BndEvt__Remove1_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -151,7 +153,9 @@ L0:            this->ExecuteUbergraph_Widget_ShoppingListButton(10);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_ShoppingListButton(576);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ShoppingListButton, from label L576;
 ============ END FUNCTION Construct ==============
 
 
@@ -159,7 +163,9 @@ L0:            this->ExecuteUbergraph_Widget_ShoppingListButton(576);
 
 
 ============ BEGIN FUNCTION BndEvt__Add1_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ShoppingListButton(725);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Add1_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ShoppingListButton, from label L725;
 ============ END FUNCTION BndEvt__Add1_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -167,9 +173,9 @@ L0:            this->ExecuteUbergraph_Widget_ShoppingListButton(725);
 
 
 ============ BEGIN FUNCTION BndEvt__mInputNumberToAdd_K2Node_ComponentBoundEvent_0_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/ShoppingList/Widget_ShoppingListButton.Widget_ShoppingListButton_C:ExecuteUbergraph_Widget_ShoppingListButton.K2Node_ComponentBoundEvent_Text) = text;
-L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/ShoppingList/Widget_ShoppingListButton.Widget_ShoppingListButton_C:ExecuteUbergraph_Widget_ShoppingListButton.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
-L36:           this->ExecuteUbergraph_Widget_ShoppingListButton(1049);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__mInputNumberToAdd_K2Node_ComponentBoundEvent_0_OnEditableTextBoxCommittedEvent__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_ShoppingListButton, from label L1049;
 ============ END FUNCTION BndEvt__mInputNumberToAdd_K2Node_ComponentBoundEvent_0_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
 
 
@@ -177,39 +183,42 @@ L36:           this->ExecuteUbergraph_Widget_ShoppingListButton(1049);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_ShoppingListButton ==============
+L10:           // <Begin Inlined EventGraph Function BndEvt__Remove1_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature>;
 L10:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L34:           bool mbool = mPlayerController->IsInputKeyDown(ScriptStruct /Script/InputCore.Key(KeyName = "RightShift"));
 L103:          bool mbool1 = mPlayerController->IsInputKeyDown(ScriptStruct /Script/InputCore.Key(KeyName = "LeftShift"));
-L172:          bool mbool2 = BooleanOR(mbool1, mbool);
+L172:          bool mbool2 = mbool1 || mbool;
 L210:          if (!mbool2) goto L279;
 L224:          this->mPlayerState->RemoveRecipeFromShoppingList(this->mRecipe, 10);
-L274:          <End of Inlined Event Graph Function>;
+L274:          // <End Inlined EventGraph Function>;
 L279:          this->mPlayerState->RemoveRecipeFromShoppingList(this->mRecipe, 1);
-L329:          <End of Inlined Event Graph Function>;
+L329:          // <End Inlined EventGraph Function>;
 L334:          bool mbool3 = KismetSystemLibrary->IsValid(this->mPlayerState);
 L385:          if (!mbool3) goto L1168;
 L399:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mconst FText);
 L458:          int32 mint32 = KismetStringLibrary->Conv_StringToInt(mFString);
 L517:          this->mPlayerState->SetNumRecipeInShoppingList(this->mRecipe, mint32);
-L571:          <End of Inlined Event Graph Function>;
+L571:          // <End Inlined EventGraph Function>;
+L576:          // <Begin Inlined EventGraph Function Construct>;
 L576:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L600:          BP_PlayerState* mBP_PlayerState = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C>(mPlayerController1->PlayerState);
 L658:          bool mbool4 = mBP_PlayerState;
 L687:          if (!mbool4) goto L1168;
 L701:          this->mPlayerState = mBP_PlayerState;
-L720:          <End of Inlined Event Graph Function>;
+L720:          // <End Inlined EventGraph Function>;
+L725:          // <Begin Inlined EventGraph Function BndEvt__Add1_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature>;
 L725:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L749:          bool mbool5 = mPlayerController2->IsInputKeyDown(ScriptStruct /Script/InputCore.Key(KeyName = "RightShift"));
 L818:          bool mbool6 = mPlayerController2->IsInputKeyDown(ScriptStruct /Script/InputCore.Key(KeyName = "LeftShift"));
-L887:          bool mbool7 = BooleanOR(mbool6, mbool5);
+L887:          bool mbool7 = mbool6 || mbool5;
 L925:          if (!mbool7) goto L994;
 L939:          this->mPlayerState->AddRecipeToShoppingList(this->mRecipe, 10);
-L989:          <End of Inlined Event Graph Function>;
+L989:          // <End Inlined EventGraph Function>;
 L994:          this->mPlayerState->AddRecipeToShoppingList(this->mRecipe, 1);
-L1044:         <End of Inlined Event Graph Function>;
-L1049:         bool mbool8 = EqualEqual_ByteByte(muint8, 1);
-L1080:         bool mbool9 = EqualEqual_ByteByte(muint8, 2);
-L1111:         bool mbool10 = BooleanOR(mbool8, mbool9);
+L1044:         // <End Inlined EventGraph Function>;
+L1049:         bool mbool8 = muint8 == 1;
+L1080:         bool mbool9 = muint8 == 2;
+L1111:         bool mbool10 = mbool8 || mbool9;
 L1149:         if (!mbool10) goto L1168;
 L1163:         goto L334;
 ============ END FUNCTION ExecuteUbergraph_Widget_ShoppingListButton ==============

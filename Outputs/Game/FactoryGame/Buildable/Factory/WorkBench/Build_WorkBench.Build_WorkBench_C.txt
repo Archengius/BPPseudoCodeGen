@@ -9,7 +9,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/WorkBench/Build_WorkB
 ============ BEGIN FUNCTION CanDismantle ==============
 L0:            FGCharacterPlayer* mFGCharacterPlayer = this->BP_WorkBenchComponent->GetWorkBenchUser();
 L42:           bool mbool = KismetSystemLibrary->IsValid(mFGCharacterPlayer);
-L93:           bool mbool1 = Not_PreBool(mbool);
+L93:           bool mbool1 = !mbool;
 L122:          bool ReturnValue = mbool1;
 ============ END FUNCTION CanDismantle ==============
 
@@ -18,7 +18,7 @@ L122:          bool ReturnValue = mbool1;
 
 
 ============ BEGIN FUNCTION GetLookAtDecription ==============
-L0:            bool mbool = EqualEqual_ClassClass(State.State, UseState_WorkBench);
+L0:            bool mbool = State.State == ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/UseState_WorkBench.UseState_WorkBench_C);
 L47:           if (!mbool) goto L161;
 L61:           FText mFText = this->GetLookAtDecription(byCharacter, [ref] byCharacter->mCachedUseState);
 L129:          FText ReturnValue = mFText;
@@ -43,8 +43,8 @@ L0:            FGCharacterPlayer* mFGCharacterPlayer = this->BP_WorkBenchCompone
 L42:           bool mbool = KismetSystemLibrary->IsValid(mFGCharacterPlayer);
 L93:           if (!mbool) goto L674;
 L107:          FGCharacterPlayer* mFGCharacterPlayer1 = this->BP_WorkBenchComponent->GetWorkBenchUser();
-L149:          bool mbool1 = EqualEqual_ObjectObject(mFGCharacterPlayer1, byCharacter);
-L187:          bool mbool2 = Not_PreBool(mbool1);
+L149:          bool mbool1 = mFGCharacterPlayer1 == byCharacter;
+L187:          bool mbool2 = !mbool1;
 L216:          if (!mbool2) goto L674;
 L230:          FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, nullptr);
 L272:          bool local_canUse = false;
@@ -64,8 +64,8 @@ case false -> Temp_byte_Variable;
 case true -> Temp_byte_Variable1;
 default -> muint8;
 });
-L669:          <End of Inlined Event Graph Function>;
-L674:          FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, UseState_WorkBench);
+L669:          // <End Inlined EventGraph Function>;
+L674:          FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/UseState_WorkBench.UseState_WorkBench_C));
 L724:          local_canUse = true;
 L735:          goto L283;
 ============ END FUNCTION UpdateUseState ==============

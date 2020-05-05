@@ -52,8 +52,8 @@ L88:           float mfloat = this->GetInstigatorAngle();
 L120:          LocalAngle = mfloat;
 L147:          uint8 Temp_byte_Variable2 = 0;
 L167:          uint8 Temp_byte_Variable3 = 2;
-L187:          float mfloat1 = Multiply_FloatFloat(this->mCenterSensititivity, -1);
-L229:          bool mbool1 = Less_FloatFloat(LocalAngle, mfloat1);
+L187:          float mfloat1 = this->mCenterSensititivity * -1;
+L229:          bool mbool1 = LocalAngle < mfloat1;
 L267:          bool Temp_bool_Variable1 = mbool1;
 L286:          this->mLeft->SetVisibility(switch (Temp_bool_Variable1) {
 case false -> Temp_byte_Variable3;
@@ -62,14 +62,14 @@ default -> muint8;
 });
 L375:          uint8 Temp_byte_Variable = 0;
 L395:          uint8 Temp_byte_Variable1 = 2;
-L415:          bool mbool2 = Greater_FloatFloat(LocalAngle, this->mCenterSensititivity);
+L415:          bool mbool2 = LocalAngle > this->mCenterSensititivity;
 L453:          bool Temp_bool_Variable = mbool2;
 L472:          this->mRight->SetVisibility(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
 case true -> Temp_byte_Variable;
 default -> muint81;
 });
-L561:          <End of Inlined Event Graph Function>;
+L561:          // <End Inlined EventGraph Function>;
 L566:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mDirectionTimer);
 L608:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->FadeOut, 0, 1, 0, 1);
 ============ END FUNCTION SetDirectionVisibility ==============
@@ -84,31 +84,31 @@ L20:           bool mbool = KismetSystemLibrary->IsValid(mPawn);
 L71:           if (!mbool) goto L1086;
 L85:           Pawn* mPawn1 = this->GetOwningPlayerPawn();
 L105:          Vector mVector = mPawn1->K2_GetActorLocation();
-L155:          Vector mVector1 = Multiply_VectorVector(mVector, Vector(1, 1, 0));
+L155:          Vector mVector1 = mVector * Vector(1, 1, 0);
 L205:          Pawn* mPawn2 = this->GetOwningPlayerPawn();
 L225:          Vector mVector2 = this->mInstigator->K2_GetActorLocation();
 L275:          Vector mVector3 = mPawn2->GetActorForwardVector();
-L325:          Vector mVector4 = Multiply_VectorVector(mVector2, Vector(1, 1, 0));
+L325:          Vector mVector4 = mVector2 * Vector(1, 1, 0);
 L375:          BreakVector(mVector3, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
-L421:          Vector mVector5 = Subtract_VectorVector(mVector4, mVector1);
+L421:          Vector mVector5 = mVector4 - mVector1;
 L467:          float mfloat3 = DegAtan2(mfloat1, mfloat);
 L513:          Vector mVector6 = Normal(mVector5, 0.00009999999747378752);
 L555:          BreakVector(mVector6, [ref] mfloat4, [ref] mfloat5, [ref] mfloat6);
 L601:          float mfloat7 = DegAtan2(mfloat5, mfloat4);
-L647:          float mfloat8 = Subtract_FloatFloat(mfloat7, mfloat3);
-L693:          float mfloat9 = Add_FloatFloat(mfloat8, 360);
-L735:          bool mbool1 = Less_FloatFloat(mfloat8, 0);
+L647:          float mfloat8 = mfloat7 - mfloat3;
+L693:          float mfloat9 = mfloat8 + 360;
+L735:          bool mbool1 = mfloat8 < 0;
 L769:          bool Temp_bool_Variable1 = mbool1;
-L788:          bool mbool2 = Greater_FloatFloat(switch (Temp_bool_Variable1) {
+L788:          bool mbool2 = switch (Temp_bool_Variable1) {
 case false -> mfloat8;
 case true -> mfloat9;
 default -> mfloat10;
-}, 180);
-L866:          float mfloat11 = Subtract_FloatFloat(switch (Temp_bool_Variable1) {
+} > 180;
+L866:          float mfloat11 = switch (Temp_bool_Variable1) {
 case false -> mfloat8;
 case true -> mfloat9;
 default -> mfloat10;
-}, 360);
+} - 360;
 L952:          bool Temp_bool_Variable = mbool2;
 L971:          float ReturnValue = switch (Temp_bool_Variable) {
 case false -> switch (Temp_bool_Variable1) {
@@ -126,7 +126,9 @@ default -> mfloat12;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_DirectionalSubtitles(302);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_DirectionalSubtitles, from label L302;
 ============ END FUNCTION Construct ==============
 
 
@@ -134,8 +136,9 @@ L0:            this->ExecuteUbergraph_Widget_DirectionalSubtitles(302);
 
 
 ============ BEGIN FUNCTION Event UpdateDestructionTimer ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/DirectionalSubtitles/Widget_DirectionalSubtitles.Widget_DirectionalSubtitles_C:ExecuteUbergraph_Widget_DirectionalSubtitles.K2Node_CustomEvent_Duration) = Duration;
-L18:           this->ExecuteUbergraph_Widget_DirectionalSubtitles(537);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: Event UpdateDestructionTimer;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_DirectionalSubtitles, from label L537;
 ============ END FUNCTION Event UpdateDestructionTimer ==============
 
 
@@ -143,7 +146,9 @@ L18:           this->ExecuteUbergraph_Widget_DirectionalSubtitles(537);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_DirectionalSubtitles(664);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_DirectionalSubtitles, from label L664;
 ============ END FUNCTION Destruct ==============
 
 
@@ -151,9 +156,9 @@ L0:            this->ExecuteUbergraph_Widget_DirectionalSubtitles(664);
 
 
 ============ BEGIN FUNCTION On Instigator End Play ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/DirectionalSubtitles/Widget_DirectionalSubtitles.Widget_DirectionalSubtitles_C:ExecuteUbergraph_Widget_DirectionalSubtitles.K2Node_CustomEvent_Actor) = Actor;
-L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/DirectionalSubtitles/Widget_DirectionalSubtitles.Widget_DirectionalSubtitles_C:ExecuteUbergraph_Widget_DirectionalSubtitles.K2Node_CustomEvent_EndPlayReason) = EndPlayReason;
-L36:           this->ExecuteUbergraph_Widget_DirectionalSubtitles(759);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: On Instigator End Play;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_DirectionalSubtitles, from label L759;
 ============ END FUNCTION On Instigator End Play ==============
 
 
@@ -162,11 +167,11 @@ L36:           this->ExecuteUbergraph_Widget_DirectionalSubtitles(759);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_DirectionalSubtitles ==============
 L5:            goto ComputedJump(EntryPoint);
-L15:           bool mbool = Not_PreBool(this->mForceDestroySubtitle);
+L15:           bool mbool = !this->mForceDestroySubtitle;
 L44:           if (!mbool) goto ExecutionFlow.Pop();
 L54:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->FadeOut, 0, 1, 0, 1);
 L100:          goto ExecutionFlow.Pop();
-L101:          bool mbool1 = Less_FloatFloat(this->mDuration, 3);
+L101:          bool mbool1 = this->mDuration < 3;
 L135:          bool Temp_bool_Variable = mbool1;
 L154:          float Temp_float_Variable = 3;
 L177:          KismetSystemLibrary->RetriggerableDelay(this, switch (Temp_bool_Variable) {
@@ -175,6 +180,7 @@ case true -> Temp_float_Variable;
 default -> mfloat;
 }, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -523131293, ExecutionFunction = "ExecuteUbergraph_Widget_DirectionalSubtitles", CallbackTarget = this));
 L301:          goto ExecutionFlow.Pop();
+L302:          // <Begin Inlined EventGraph Function Construct>;
 L302:          this->UpdateSubtitle(this->mSubtitle, this->mDuration, this->mUseDuration);
 L343:          this->SetDirectionVisibility();
 L357:          mFScriptDelegate->BindUFunction(this, SetDirectionVisibility);
@@ -184,11 +190,12 @@ L472:          mFScriptDelegate1->BindUFunction(this, On Instigator End Play);
 L495:          this->mInstigator->OnEndPlay.AddUnique(mFScriptDelegate1);
 L536:          goto ExecutionFlow.Pop();
 L537:          this->mDuration = mfloat1;
-L564:          bool mbool2 = Not_PreBool(this->mForceDestroySubtitle);
+L564:          bool mbool2 = !this->mForceDestroySubtitle;
 L593:          if (!mbool2) goto ExecutionFlow.Pop();
 L603:          this->StopAnimation(this->FadeOut);
 L622:          this->mContainer->SetRenderOpacity(1);
 L659:          goto L101;
+L664:          // <Begin Inlined EventGraph Function Destruct>;
 L664:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mDirectionTimer);
 L706:          this->mInstigator->OnEndPlay->Clear();
 L738:          this->OnDestruct->ProcessMulticastDelegate(this);

@@ -71,7 +71,7 @@ L152:          FText mFText = KismetTextLibrary->Conv_StringToText("Train Statio
 L217:          FText mFText1 = localStationIdentifier->GetStationName();
 L267:          bool mbool1 = KismetTextLibrary->TextIsEmpty([ref] mFText1);
 L318:          bool mbool2 = KismetTextLibrary->EqualEqual_IgnoreCase_TextText([ref] mFText1, [ref] mFText);
-L378:          bool mbool3 = BooleanOR(mbool1, mbool2);
+L378:          bool mbool3 = mbool1 || mbool2;
 L416:          if (!mbool3) goto L557;
 L430:          FText ReturnValue = this->mMapText;
 L457:          goto L1146;
@@ -90,8 +90,8 @@ L854:          mFormatArgumentData1.ArgumentValue = this->mMapText;
 L890:          mFormatArgumentData1.ArgumentValueInt = 0;
 L922:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L954:          mFormatArgumentData1.ArgumentValueGender = 0;
-L983:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
-L1012:         FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L983:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData1, mFormatArgumentData];
+L1012:         FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L1119:         ReturnValue = mFText3;
 ============ END FUNCTION GetActorRepresentationText ==============
 
@@ -100,7 +100,7 @@ L1119:         ReturnValue = mFText3;
 
 
 ============ BEGIN FUNCTION GetActorRepresentationTexture ==============
-L0:            Texture2D* ReturnValue = TrainStation;
+L0:            Texture2D* ReturnValue = ObjectConst(Texture2D /Game/FactoryGame/Buildable/Factory/TrainStation/UI/TrainStation.TrainStation);
 ============ END FUNCTION GetActorRepresentationTexture ==============
 
 
@@ -195,8 +195,9 @@ L145:          ReturnValue = false;
 
 
 ============ BEGIN FUNCTION SetActorRepresentationColor ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Factory/Train/Station/Build_TrainStation.Build_TrainStation_C:ExecuteUbergraph_Build_TrainStation.K2Node_Event_newColor) = NewColor;
-L18:           this->ExecuteUbergraph_Build_TrainStation(39);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: SetActorRepresentationColor;
+L18:           // Implementation: Function ExecuteUbergraph_Build_TrainStation, from label L39;
 ============ END FUNCTION SetActorRepresentationColor ==============
 
 
@@ -204,7 +205,9 @@ L18:           this->ExecuteUbergraph_Build_TrainStation(39);
 
 
 ============ BEGIN FUNCTION OnNameChanged ==============
-L0:            this->ExecuteUbergraph_Build_TrainStation(44);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnNameChanged;
+L0:            // Implementation: Function ExecuteUbergraph_Build_TrainStation, from label L44;
 ============ END FUNCTION OnNameChanged ==============
 
 
@@ -212,7 +215,9 @@ L0:            this->ExecuteUbergraph_Build_TrainStation(44);
 
 
 ============ BEGIN FUNCTION ReceiveBeginPlay ==============
-L0:            this->ExecuteUbergraph_Build_TrainStation(430);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_Build_TrainStation, from label L430;
 ============ END FUNCTION ReceiveBeginPlay ==============
 
 
@@ -220,8 +225,9 @@ L0:            this->ExecuteUbergraph_Build_TrainStation(430);
 
 
 ============ BEGIN FUNCTION ReceiveEndPlay ==============
-L0:            PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Buildable/Factory/Train/Station/Build_TrainStation.Build_TrainStation_C:ExecuteUbergraph_Build_TrainStation.K2Node_Event_EndPlayReason) = EndPlayReason;
-L18:           this->ExecuteUbergraph_Build_TrainStation(469);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveEndPlay;
+L18:           // Implementation: Function ExecuteUbergraph_Build_TrainStation, from label L469;
 ============ END FUNCTION ReceiveEndPlay ==============
 
 
@@ -230,8 +236,9 @@ L18:           this->ExecuteUbergraph_Build_TrainStation(469);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Build_TrainStation ==============
 L10:           bool mbool = this->UpdateRepresentation();
-L34:           <End of Inlined Event Graph Function>;
-L39:           <End of Inlined Event Graph Function>;
+L34:           // <End Inlined EventGraph Function>;
+L39:           // <End Inlined EventGraph Function>;
+L44:           // <Begin Inlined EventGraph Function OnNameChanged>;
 L44:           FText Temp_text_Variable = "[object Object]";
 L115:          FGTrainStationIdentifier* mFGTrainStationIdentifier = this->GetStationIdentifier();
 L135:          bool mbool1 = KismetSystemLibrary->IsValid(mFGTrainStationIdentifier);
@@ -248,9 +255,10 @@ case true -> mFText;
 default -> mFText1;
 });
 L425:          goto L10;
+L430:          // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L430:          this->ReceiveBeginPlay();
 L440:          bool mbool2 = this->AddAsRepresentation();
-L464:          <End of Inlined Event Graph Function>;
+L464:          // <End Inlined EventGraph Function>;
 L469:          this->ReceiveEndPlay(muint8);
 L488:          bool mbool3 = this->RemoveAsRepresentation();
 ============ END FUNCTION ExecuteUbergraph_Build_TrainStation ==============

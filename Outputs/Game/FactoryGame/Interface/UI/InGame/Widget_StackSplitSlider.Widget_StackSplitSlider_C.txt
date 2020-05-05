@@ -8,7 +8,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Widget_StackSplitSl
 
 ============ BEGIN FUNCTION ClampToValidRange ==============
 L0:            this->mSourceSlot->GetNumItems([ref] mint32);
-L45:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L45:           int32 mint321 = mint32 - 1;
 L87:           int32 mint322 = Clamp(Value, 1, mint321);
 L138:          int32 ReturnValue = mint322;
 ============ END FUNCTION ClampToValidRange ==============
@@ -27,15 +27,15 @@ L50:           EventReply ReturnValue = mEventReply;
 
 
 ============ BEGIN FUNCTION SetSliderAfterText ==============
-L0:            bool mbool = NotEqual_ByteByte(CommitMethod, 0);
+L0:            bool mbool = CommitMethod != 0;
 L31:           if (!mbool) goto L185;
-L45:           mbool = NotEqual_ByteByte(CommitMethod, 1);
+L45:           mbool = CommitMethod != 1;
 L76:           if (!mbool) goto L185;
-L90:           mbool = NotEqual_ByteByte(CommitMethod, 2);
+L90:           mbool = CommitMethod != 2;
 L121:          if (!mbool) goto L185;
-L135:          mbool = NotEqual_ByteByte(CommitMethod, 3);
+L135:          mbool = CommitMethod != 3;
 L166:          if (!mbool) goto L1118;
-L180:          <End of Inlined Event Graph Function>;
+L180:          // <End Inlined EventGraph Function>;
 L185:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] text);
 L244:          FString mFString1 = KismetStringLibrary->Replace(mFString, ",", ".", 1);
 L311:          bool mbool1 = KismetStringLibrary->IsNumeric(mFString1);
@@ -48,12 +48,12 @@ L588:          float Temp_float_Variable = 0;
 L611:          float Temp_float_Variable1 = 0;
 L634:          float Temp_float_Variable2 = 0;
 L657:          this->mSourceSlot->GetNumItems([ref] mint321);
-L702:          int32 mint322 = Subtract_IntInt(mint321, 1);
+L702:          int32 mint322 = mint321 - 1;
 L744:          float mfloat = Conv_IntToFloat(mint322);
 L781:          float mfloat1 = Conv_IntToFloat(mLocalNumItems);
 L818:          float mfloat2 = MapRangeClamped(mfloat1, 1, mfloat, 0, 1);
 L879:          uint8 Temp_byte_Variable = LeftOrRight;
-L906:          float mfloat3 = Subtract_FloatFloat(1, mfloat2);
+L906:          float mfloat3 = 1 - mfloat2;
 L948:          this->mSlider->SetValue(switch (Temp_byte_Variable) {
 case 0 -> Temp_float_Variable2;
 case 1 -> Temp_float_Variable1;
@@ -63,9 +63,9 @@ case 4 -> mfloat3;
 default -> mfloat4;
 });
 L1080:         this->UpdateText();
-L1094:         <End of Inlined Event Graph Function>;
+L1094:         // <End Inlined EventGraph Function>;
 L1099:         this->UpdateText();
-L1113:         <End of Inlined Event Graph Function>;
+L1113:         // <End Inlined EventGraph Function>;
 L1118:         this->UpdateText();
 ============ END FUNCTION SetSliderAfterText ==============
 
@@ -79,7 +79,7 @@ L23:           FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, t
 L94:           this->mLeftText->SetText(mFText);
 L135:          this->GetNumLeftAtSlot([ref] mint321);
 L158:          this->mSourceSlot->GetNumItems([ref] mint322);
-L203:          int32 mint323 = Subtract_IntInt(mint322, mint321);
+L203:          int32 mint323 = mint322 - mint321;
 L249:          FText mFText1 = KismetTextLibrary->Conv_IntToText(mint323, false, true, 1, 324);
 L320:          this->mRightText->SetText(mFText1);
 ============ END FUNCTION UpdateText ==============
@@ -91,15 +91,15 @@ L320:          this->mRightText->SetText(mFText1);
 ============ BEGIN FUNCTION SnapSliderValue ==============
 L0:            float Temp_float_Variable = 0.5;
 L23:           this->mSourceSlot->GetNumItems([ref] mint32);
-L68:           int32 mint321 = Subtract_IntInt(mint32, 2);
-L110:          bool mbool = EqualEqual_IntInt(mint32, 2);
+L68:           int32 mint321 = mint32 - 2;
+L110:          bool mbool = mint32 == 2;
 L144:          float mfloat = Conv_IntToFloat(mint321);
 L181:          bool Temp_bool_Variable = mbool;
 L200:          float mfloat1 = Conv_IntToFloat(mint321);
-L237:          float mfloat2 = Multiply_FloatFloat(NormalizedValue, mfloat1);
+L237:          float mfloat2 = NormalizedValue * mfloat1;
 L283:          int32 mint322 = FFloor(mfloat2);
 L320:          float mfloat3 = Conv_IntToFloat(mint322);
-L357:          float mfloat4 = Divide_FloatFloat(mfloat3, mfloat);
+L357:          float mfloat4 = mfloat3 / mfloat;
 L403:          float SnappedValue = switch (Temp_bool_Variable) {
 case false -> mfloat4;
 case true -> Temp_float_Variable;
@@ -138,7 +138,7 @@ L50:           float ReturnValue = mfloat;
 ============ BEGIN FUNCTION GetNumInNewStackText ==============
 L0:            this->GetNumLeftAtSlot([ref] mint32);
 L23:           this->mSourceSlot->GetNumItems([ref] mint321);
-L68:           int32 mint322 = Subtract_IntInt(mint321, mint32);
+L68:           int32 mint322 = mint321 - mint32;
 L114:          FText mFText = KismetTextLibrary->Conv_IntToText(mint322, false, true, 1, 324);
 L185:          FText ReturnValue = mFText;
 ============ END FUNCTION GetNumInNewStackText ==============
@@ -150,7 +150,7 @@ L185:          FText ReturnValue = mFText;
 ============ BEGIN FUNCTION GetNumLeftAtSlot ==============
 L0:            this->mSourceSlot->GetNumItems([ref] mint32);
 L45:           float mfloat = this->mSlider->GetValue();
-L95:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L95:           int32 mint321 = mint32 - 1;
 L137:          float mfloat1 = Conv_IntToFloat(mint321);
 L174:          float mfloat2 = MapRangeClamped(mfloat, 0, 1, 1, mfloat1);
 L235:          int32 mint322 = Round(mfloat2);
@@ -176,7 +176,7 @@ L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           BPHUDHelpers->GetDefaultRCO(mPlayerController, this, [ref] mBP_RemoteCallObject);
 L79:           this->GetNumLeftAtSlot([ref] mint32);
 L102:          this->mSourceSlot->GetNumItems([ref] mint321);
-L147:          int32 mint322 = Subtract_IntInt(mint321, mint32);
+L147:          int32 mint322 = mint321 - mint32;
 L193:          mBP_RemoteCallObject->Server_SplitResource(this->mSourceSlot->mCachedInventoryComponent, this->mSourceSlot->mSlotIdx, mint322);
 ============ END FUNCTION SplitResource ==============
 
@@ -185,7 +185,9 @@ L193:          mBP_RemoteCallObject->Server_SplitResource(this->mSourceSlot->mCa
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_StackSplitSlider(51);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_StackSplitSlider, from label L51;
 ============ END FUNCTION Construct ==============
 
 
@@ -193,8 +195,9 @@ L0:            this->ExecuteUbergraph_Widget_StackSplitSlider(51);
 
 
 ============ BEGIN FUNCTION BndEvt__mSlider_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Widget_StackSplitSlider.Widget_StackSplitSlider_C:ExecuteUbergraph_Widget_StackSplitSlider.K2Node_ComponentBoundEvent_Value) = Value;
-L18:           this->ExecuteUbergraph_Widget_StackSplitSlider(139);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__mSlider_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEvent__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_StackSplitSlider, from label L139;
 ============ END FUNCTION BndEvt__mSlider_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEvent__DelegateSignature ==============
 
 
@@ -202,7 +205,9 @@ L18:           this->ExecuteUbergraph_Widget_StackSplitSlider(139);
 
 
 ============ BEGIN FUNCTION BndEvt__mToSlot_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_StackSplitSlider(231);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mToSlot_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_StackSplitSlider, from label L231;
 ============ END FUNCTION BndEvt__mToSlot_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
 
 
@@ -210,7 +215,9 @@ L0:            this->ExecuteUbergraph_Widget_StackSplitSlider(231);
 
 
 ============ BEGIN FUNCTION BndEvt__mCancel_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_StackSplitSlider(304);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mCancel_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_StackSplitSlider, from label L304;
 ============ END FUNCTION BndEvt__mCancel_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
 
 
@@ -218,9 +225,9 @@ L0:            this->ExecuteUbergraph_Widget_StackSplitSlider(304);
 
 
 ============ BEGIN FUNCTION BndEvt__mLeftText_K2Node_ComponentBoundEvent_3_OnEditableTextCommittedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/Widget_StackSplitSlider.Widget_StackSplitSlider_C:ExecuteUbergraph_Widget_StackSplitSlider.K2Node_ComponentBoundEvent_Text1) = text;
-L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/Widget_StackSplitSlider.Widget_StackSplitSlider_C:ExecuteUbergraph_Widget_StackSplitSlider.K2Node_ComponentBoundEvent_CommitMethod1) = CommitMethod;
-L36:           this->ExecuteUbergraph_Widget_StackSplitSlider(309);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__mLeftText_K2Node_ComponentBoundEvent_3_OnEditableTextCommittedEvent__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_StackSplitSlider, from label L309;
 ============ END FUNCTION BndEvt__mLeftText_K2Node_ComponentBoundEvent_3_OnEditableTextCommittedEvent__DelegateSignature ==============
 
 
@@ -228,9 +235,9 @@ L36:           this->ExecuteUbergraph_Widget_StackSplitSlider(309);
 
 
 ============ BEGIN FUNCTION BndEvt__mRightText_K2Node_ComponentBoundEvent_4_OnEditableTextCommittedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/Widget_StackSplitSlider.Widget_StackSplitSlider_C:ExecuteUbergraph_Widget_StackSplitSlider.K2Node_ComponentBoundEvent_Text) = text;
-L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/Widget_StackSplitSlider.Widget_StackSplitSlider_C:ExecuteUbergraph_Widget_StackSplitSlider.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
-L36:           this->ExecuteUbergraph_Widget_StackSplitSlider(348);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__mRightText_K2Node_ComponentBoundEvent_4_OnEditableTextCommittedEvent__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_StackSplitSlider, from label L348;
 ============ END FUNCTION BndEvt__mRightText_K2Node_ComponentBoundEvent_4_OnEditableTextCommittedEvent__DelegateSignature ==============
 
 
@@ -238,7 +245,9 @@ L36:           this->ExecuteUbergraph_Widget_StackSplitSlider(348);
 
 
 ============ BEGIN FUNCTION CloseStackSplitSlider ==============
-L0:            this->ExecuteUbergraph_Widget_StackSplitSlider(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: CloseStackSplitSlider;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_StackSplitSlider, from label L10;
 ============ END FUNCTION CloseStackSplitSlider ==============
 
 
@@ -246,21 +255,25 @@ L0:            this->ExecuteUbergraph_Widget_StackSplitSlider(10);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_StackSplitSlider ==============
+L10:           // <Begin Inlined EventGraph Function CloseStackSplitSlider>;
 L10:           this->mSourceSlot->CloseSplitStack();
-L46:           <End of Inlined Event Graph Function>;
+L46:           // <End Inlined EventGraph Function>;
+L51:           // <Begin Inlined EventGraph Function Construct>;
 L51:           this->SnapSliderValue(0.5, [ref] mfloat);
 L79:           this->mSlider->SetValue(mfloat);
 L120:          this->UpdateText();
-L134:          <End of Inlined Event Graph Function>;
+L134:          // <End Inlined EventGraph Function>;
 L139:          this->SnapSliderValue(mfloat1, [ref] mfloat2);
 L171:          this->mSlider->SetValue(mfloat2);
 L212:          this->UpdateText();
-L226:          <End of Inlined Event Graph Function>;
+L226:          // <End Inlined EventGraph Function>;
+L231:          // <Begin Inlined EventGraph Function BndEvt__mToSlot_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature>;
 L231:          this->SplitResource();
 L245:          this->mSourceSlot->mSplitMenuAnchor->Close();
-L299:          <End of Inlined Event Graph Function>;
+L299:          // <End Inlined EventGraph Function>;
+L304:          // <Begin Inlined EventGraph Function BndEvt__mCancel_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature>;
 L304:          goto L10;
 L309:          this->SetSliderAfterText(mconst FText, muint8, 3);
-L343:          <End of Inlined Event Graph Function>;
+L343:          // <End Inlined EventGraph Function>;
 L348:          this->SetSliderAfterText(mconst FText1, muint81, 4);
 ============ END FUNCTION ExecuteUbergraph_Widget_StackSplitSlider ==============

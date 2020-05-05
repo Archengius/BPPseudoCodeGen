@@ -8,8 +8,8 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/BP_PlayerState.BP_Play
 
 ============ BEGIN FUNCTION ClearShoppingList ==============
 L0:            this->FlushNetDormancy();
-L10:           TArray<RecipeAmountStruct> mTArray<RecipeAmountStruct> = [];
-L21:           this->mShoppingList = mTArray<RecipeAmountStruct>;
+L10:           TArray<RecipeAmountStruct> mTArrayRecipeAmountStruct = [];
+L21:           this->mShoppingList = mTArrayRecipeAmountStruct;
 L48:           this->OnRep_mShoppingList();
 ============ END FUNCTION ClearShoppingList ==============
 
@@ -34,12 +34,12 @@ L0:            this->OnShoppingListUpdated->ProcessMulticastDelegate();
 
 
 ============ BEGIN FUNCTION GetShoppingListSortIndex ==============
-L0:            TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(RecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903, false);
+L0:            TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetProducts(RecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903, false);
 L69:           int32 Temp_int_Variable = 1;
-L92:           KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L92:           KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, 0, [ref] mItemAmount);
 L147:          int32 Temp_int_Variable1 = 2;
-L170:          bool mbool = ClassIsChildOf(mItemAmount.ItemClass, FGBuildDescriptor);
-L217:          bool mbool1 = ClassIsChildOf(mItemAmount.ItemClass, FGEquipmentDescriptor);
+L170:          bool mbool = ClassIsChildOf(mItemAmount.ItemClass, ObjectConst(Class /Script/FactoryGame.FGBuildDescriptor));
+L217:          bool mbool1 = ClassIsChildOf(mItemAmount.ItemClass, ObjectConst(Class /Script/FactoryGame.FGEquipmentDescriptor));
 L264:          bool Temp_bool_Variable = mbool1;
 L283:          bool Temp_bool_Variable1 = mbool;
 L302:          int32 Temp_int_Variable2 = 0;
@@ -62,19 +62,19 @@ default -> mint32;
 L0:            ExecutionFlow.Push(L868);
 L5:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] tempShoppingList);
 L64:           int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mShoppingList);
-L123:          bool mbool = NotEqual_IntInt(mint321, mint32);
+L123:          bool mbool = mint321 != mint32;
 L161:          if (!mbool) goto L645;
 L175:          ExecutionFlow.Push(L5);
 L180:          int32 Temp_int_Loop_Counter_Variable = 0;
 L203:          int32 Temp_int_Array_Index_Variable = 0;
 L226:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->mShoppingList);
-L285:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint322);
+L285:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint322;
 L323:          if (!mbool1) goto L697;
 L337:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L364:          ExecutionFlow.Push(L794);
 L369:          KismetArrayLibrary->Array_Get([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
 L428:          int32 mint323 = this->GetShoppingListSortIndex([ref] mRecipeAmountStruct);
-L469:          bool mbool2 = EqualEqual_IntInt(currentSortIndex, mint323);
+L469:          bool mbool2 = currentSortIndex == mint323;
 L507:          if (!mbool2) goto ExecutionFlow.Pop();
 L517:          KismetArrayLibrary->Array_Get([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
 L576:          int32 mint324 = KismetArrayLibrary->Array_Add([ref] tempShoppingList, [ref] mRecipeAmountStruct);
@@ -83,11 +83,11 @@ L645:          this->FlushNetDormancy();
 L655:          this->mShoppingList = tempShoppingList;
 L682:          this->OnRep_mShoppingList();
 L696:          goto ExecutionFlow.Pop();
-L697:          int32 mint325 = Add_IntInt(currentSortIndex, 1);
+L697:          int32 mint325 = currentSortIndex + 1;
 L739:          int32 Temp_int_Variable = mint325;
 L766:          int32 currentSortIndex = Temp_int_Variable;
 L793:          goto ExecutionFlow.Pop();
-L794:          int32 mint326 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L794:          int32 mint326 = Temp_int_Loop_Counter_Variable + 1;
 L836:          Temp_int_Loop_Counter_Variable = mint326;
 L863:          goto L226;
 ============ END FUNCTION SortShoppingList ==============
@@ -105,32 +105,32 @@ L62:           int32 mNumRecipesInput = NumRecipes;
 L89:           bool Temp_bool_True_if_break_was_hit_Variable = false;
 L100:          int32 Temp_int_Loop_Counter_Variable = 0;
 L123:          int32 Temp_int_Array_Index_Variable = 0;
-L146:          bool mbool1 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L146:          bool mbool1 = !Temp_bool_True_if_break_was_hit_Variable;
 L175:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mShoppingList);
-L234:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
-L272:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L234:          bool mbool2 = Temp_int_Loop_Counter_Variable < mint32;
+L272:          bool mbool3 = mbool1 && mbool2;
 L310:          if (!mbool3) goto L653;
 L324:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L351:          ExecutionFlow.Push(L848);
 L356:          mShoppingListArrayIndex = Temp_int_Array_Index_Variable;
 L383:          KismetArrayLibrary->Array_Get([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
-L442:          bool mbool4 = EqualEqual_ClassClass(Recipe, mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903);
+L442:          bool mbool4 = Recipe == mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903;
 L489:          if (!mbool4) goto ExecutionFlow.Pop();
-L499:          bool mbool5 = LessEqual_IntInt(mNumRecipesInput, 0);
+L499:          bool mbool5 = mNumRecipesInput <= 0;
 L533:          if (!mbool5) goto L922;
 L547:          KismetArrayLibrary->Array_Remove([ref] this->mShoppingList, mShoppingListArrayIndex);
 L597:          this->ShoppingListUpdated();
-L611:          <End of Inlined Event Graph Function>;
+L611:          // <End Inlined EventGraph Function>;
 L616:          this->Server_SetNumRecipesInShoppingList(Recipe, NumRecipes);
 L648:          goto L62;
-L653:          bool mbool6 = Greater_IntInt(mNumRecipesInput, 0);
+L653:          bool mbool6 = mNumRecipesInput > 0;
 L687:          if (!mbool6) goto ExecutionFlow.Pop();
 L697:          mRecipeAmountStruct1.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903 = Recipe;
 L725:          mRecipeAmountStruct1.Amount_6_262F181A4A294617FCD1F496A451BA13 = mNumRecipesInput;
 L761:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mShoppingList, [ref] mRecipeAmountStruct1);
 L829:          this->ShoppingListUpdated();
-L843:          <End of Inlined Event Graph Function>;
-L848:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L843:          // <End Inlined EventGraph Function>;
+L848:          int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L890:          Temp_int_Loop_Counter_Variable = mint322;
 L917:          goto L146;
 L922:          KismetArrayLibrary->Array_Get([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
@@ -149,19 +149,19 @@ L0:            ExecutionFlow.Push(L601);
 L5:            int32 Temp_int_Loop_Counter_Variable = 0;
 L28:           int32 Temp_int_Array_Index_Variable = 0;
 L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mShoppingList);
-L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L110:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L148:          if (!mbool) goto ExecutionFlow.Pop();
 L158:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L185:          ExecutionFlow.Push(L527);
 L190:          KismetArrayLibrary->Array_Get([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
-L249:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903, false);
-L318:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
-L373:          bool mbool1 = EqualEqual_ClassClass(mItemAmount.ItemClass, InputPin);
+L249:          TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetProducts(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903, false);
+L318:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, 0, [ref] mItemAmount);
+L373:          bool mbool1 = mItemAmount.ItemClass == InputPin;
 L420:          if (!mbool1) goto ExecutionFlow.Pop();
 L430:          KismetArrayLibrary->Array_Get([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
 L489:          this->RemoveRecipeFromShoppingList(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903, 1);
 L526:          goto ExecutionFlow.Pop();
-L527:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L527:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L569:          Temp_int_Loop_Counter_Variable = mint321;
 L596:          goto L51;
 ============ END FUNCTION PonderUpdatingShoppingList ==============
@@ -177,23 +177,23 @@ L25:           if (!mbool) goto L688;
 L39:           bool Temp_bool_True_if_break_was_hit_Variable = false;
 L50:           int32 Temp_int_Loop_Counter_Variable = 0;
 L73:           int32 Temp_int_Array_Index_Variable = 0;
-L96:           bool mbool1 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L96:           bool mbool1 = !Temp_bool_True_if_break_was_hit_Variable;
 L125:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mShoppingList);
-L184:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
-L222:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L184:          bool mbool2 = Temp_int_Loop_Counter_Variable < mint32;
+L222:          bool mbool3 = mbool1 && mbool2;
 L260:          if (!mbool3) goto L725;
 L274:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L301:          ExecutionFlow.Push(L890);
 L306:          KismetArrayLibrary->Array_Get([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
-L365:          bool mbool4 = EqualEqual_ClassClass(Recipe, mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903);
+L365:          bool mbool4 = Recipe == mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903;
 L412:          if (!mbool4) goto ExecutionFlow.Pop();
 L422:          KismetArrayLibrary->Array_Get([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
-L481:          int32 mint321 = Add_IntInt(mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13, NumRecipes);
+L481:          int32 mint321 = mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13 + NumRecipes;
 L536:          mRecipeAmountStruct1.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903 = mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903;
 L573:          mRecipeAmountStruct1.Amount_6_262F181A4A294617FCD1F496A451BA13 = mint321;
 L609:          KismetArrayLibrary->Array_Set([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct1, false);
 L669:          this->ShoppingListUpdated();
-L683:          <End of Inlined Event Graph Function>;
+L683:          // <End Inlined EventGraph Function>;
 L688:          this->Server_AddRecipeToShoppingList(Recipe, NumRecipes);
 L720:          goto L39;
 L725:          mRecipeAmountStruct2.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903 = Recipe;
@@ -201,8 +201,8 @@ L753:          mRecipeAmountStruct2.Amount_6_262F181A4A294617FCD1F496A451BA13 = 
 L789:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->mShoppingList, [ref] mRecipeAmountStruct2);
 L857:          this->SortShoppingList();
 L871:          this->ShoppingListUpdated();
-L885:          <End of Inlined Event Graph Function>;
-L890:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L885:          // <End Inlined EventGraph Function>;
+L890:          int32 mint323 = Temp_int_Loop_Counter_Variable + 1;
 L932:          Temp_int_Loop_Counter_Variable = mint323;
 L959:          goto L96;
 ============ END FUNCTION AddRecipeToShoppingList ==============
@@ -218,29 +218,29 @@ L25:           if (!mbool) goto L607;
 L39:           bool Temp_bool_True_if_break_was_hit_Variable = false;
 L50:           int32 Temp_int_Loop_Counter_Variable = 0;
 L73:           int32 Temp_int_Array_Index_Variable = 0;
-L96:           bool mbool1 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L96:           bool mbool1 = !Temp_bool_True_if_break_was_hit_Variable;
 L125:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mShoppingList);
-L184:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
-L222:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L184:          bool mbool2 = Temp_int_Loop_Counter_Variable < mint32;
+L222:          bool mbool3 = mbool1 && mbool2;
 L260:          if (!mbool3) goto ExecutionFlow.Pop();
 L270:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L297:          ExecutionFlow.Push(L644);
 L302:          KismetArrayLibrary->Array_Get([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
-L361:          bool mbool4 = EqualEqual_ClassClass(Recipe, mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903);
+L361:          bool mbool4 = Recipe == mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903;
 L408:          if (!mbool4) goto ExecutionFlow.Pop();
 L418:          KismetArrayLibrary->Array_Get([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
-L477:          bool mbool5 = LessEqual_IntInt(mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13, NumRecipes);
+L477:          bool mbool5 = mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13 <= NumRecipes;
 L524:          if (!mbool5) goto L718;
 L538:          KismetArrayLibrary->Array_Remove([ref] this->mShoppingList, Temp_int_Array_Index_Variable);
 L588:          this->ShoppingListUpdated();
-L602:          <End of Inlined Event Graph Function>;
+L602:          // <End Inlined EventGraph Function>;
 L607:          this->Server_RemoveRecupeFromShoppingList(Recipe, NumRecipes);
 L639:          goto L39;
-L644:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L644:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L686:          Temp_int_Loop_Counter_Variable = mint321;
 L713:          goto L96;
 L718:          KismetArrayLibrary->Array_Get([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
-L777:          int32 mint322 = Subtract_IntInt(mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13, NumRecipes);
+L777:          int32 mint322 = mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13 - NumRecipes;
 L832:          mRecipeAmountStruct1.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903 = mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903;
 L869:          mRecipeAmountStruct1.Amount_6_262F181A4A294617FCD1F496A451BA13 = mint322;
 L905:          KismetArrayLibrary->Array_Set([ref] this->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct1, false);
@@ -252,7 +252,9 @@ L965:          this->ShoppingListUpdated();
 
 
 ============ BEGIN FUNCTION ReceiveBeginPlay ==============
-L0:            this->ExecuteUbergraph_BP_PlayerState(705);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_BP_PlayerState, from label L705;
 ============ END FUNCTION ReceiveBeginPlay ==============
 
 
@@ -260,8 +262,9 @@ L0:            this->ExecuteUbergraph_BP_PlayerState(705);
 
 
 ============ BEGIN FUNCTION BroadcastChatMessage ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C:ExecuteUbergraph_BP_PlayerState.K2Node_CustomEvent_ChatMessageIn1) = ChatMessageIn;
-L18:           this->ExecuteUbergraph_BP_PlayerState(30);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BroadcastChatMessage;
+L18:           // Implementation: Function ExecuteUbergraph_BP_PlayerState, from label L30;
 ============ END FUNCTION BroadcastChatMessage ==============
 
 
@@ -269,9 +272,9 @@ L18:           this->ExecuteUbergraph_BP_PlayerState(30);
 
 
 ============ BEGIN FUNCTION ReceiveChatMessage ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C:ExecuteUbergraph_BP_PlayerState.K2Node_CustomEvent_ChatMessageIn) = ChatMessageIn;
-L18:           PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C:ExecuteUbergraph_BP_PlayerState.K2Node_CustomEvent_ChatSender) = ChatSender;
-L36:           this->ExecuteUbergraph_BP_PlayerState(667);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: ReceiveChatMessage;
+L36:           // Implementation: Function ExecuteUbergraph_BP_PlayerState, from label L667;
 ============ END FUNCTION ReceiveChatMessage ==============
 
 
@@ -279,8 +282,9 @@ L36:           this->ExecuteUbergraph_BP_PlayerState(667);
 
 
 ============ BEGIN FUNCTION OnBuildableConstructed ==============
-L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C:ExecuteUbergraph_BP_PlayerState.K2Node_CustomEvent_ItemDescriptor) = itemDescriptor;
-L18:           this->ExecuteUbergraph_BP_PlayerState(748);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnBuildableConstructed;
+L18:           // Implementation: Function ExecuteUbergraph_BP_PlayerState, from label L748;
 ============ END FUNCTION OnBuildableConstructed ==============
 
 
@@ -288,9 +292,9 @@ L18:           this->ExecuteUbergraph_BP_PlayerState(748);
 
 
 ============ BEGIN FUNCTION Server_AddRecipeToShoppingList ==============
-L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C:ExecuteUbergraph_BP_PlayerState.K2Node_CustomEvent_Recipe2) = Recipe;
-L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C:ExecuteUbergraph_BP_PlayerState.K2Node_CustomEvent_NumRecipes2) = NumRecipes;
-L36:           this->ExecuteUbergraph_BP_PlayerState(772);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Server_AddRecipeToShoppingList;
+L36:           // Implementation: Function ExecuteUbergraph_BP_PlayerState, from label L772;
 ============ END FUNCTION Server_AddRecipeToShoppingList ==============
 
 
@@ -298,9 +302,9 @@ L36:           this->ExecuteUbergraph_BP_PlayerState(772);
 
 
 ============ BEGIN FUNCTION Server_SetNumRecipesInShoppingList ==============
-L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C:ExecuteUbergraph_BP_PlayerState.K2Node_CustomEvent_Recipe1) = Recipe;
-L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C:ExecuteUbergraph_BP_PlayerState.K2Node_CustomEvent_NumRecipes1) = NumRecipes;
-L36:           this->ExecuteUbergraph_BP_PlayerState(805);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Server_SetNumRecipesInShoppingList;
+L36:           // Implementation: Function ExecuteUbergraph_BP_PlayerState, from label L805;
 ============ END FUNCTION Server_SetNumRecipesInShoppingList ==============
 
 
@@ -308,9 +312,9 @@ L36:           this->ExecuteUbergraph_BP_PlayerState(805);
 
 
 ============ BEGIN FUNCTION Server_RemoveRecupeFromShoppingList ==============
-L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C:ExecuteUbergraph_BP_PlayerState.K2Node_CustomEvent_Recipe) = Recipe;
-L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C:ExecuteUbergraph_BP_PlayerState.K2Node_CustomEvent_NumRecipes) = NumRecipes;
-L36:           this->ExecuteUbergraph_BP_PlayerState(838);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Server_RemoveRecupeFromShoppingList;
+L36:           // Implementation: Function ExecuteUbergraph_BP_PlayerState, from label L838;
 ============ END FUNCTION Server_RemoveRecupeFromShoppingList ==============
 
 
@@ -318,8 +322,9 @@ L36:           this->ExecuteUbergraph_BP_PlayerState(838);
 
 
 ============ BEGIN FUNCTION ReceiveTick ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C:ExecuteUbergraph_BP_PlayerState.K2Node_Event_DeltaSeconds) = DeltaSeconds;
-L18:           this->ExecuteUbergraph_BP_PlayerState(871);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveTick;
+L18:           // Implementation: Function ExecuteUbergraph_BP_PlayerState, from label L871;
 ============ END FUNCTION ReceiveTick ==============
 
 
@@ -327,7 +332,9 @@ L18:           this->ExecuteUbergraph_BP_PlayerState(871);
 
 
 ============ BEGIN FUNCTION Server_ClearShoppingList ==============
-L0:            this->ExecuteUbergraph_BP_PlayerState(891);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Server_ClearShoppingList;
+L0:            // Implementation: Function ExecuteUbergraph_BP_PlayerState, from label L891;
 ============ END FUNCTION Server_ClearShoppingList ==============
 
 
@@ -342,7 +349,7 @@ L30:           int32 Temp_int_Loop_Counter_Variable = 0;
 L53:           int32 Temp_int_Array_Index_Variable = 0;
 L76:           GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
 L119:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mGameStateBase->PlayerArray);
-L200:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L200:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L238:          if (!mbool) goto ExecutionFlow.Pop();
 L248:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L275:          ExecutionFlow.Push(L593);
@@ -354,24 +361,26 @@ L469:          if (!mbool1) goto ExecutionFlow.Pop();
 L479:          FText mFText = KismetTextLibrary->Conv_StringToText(this->PlayerName);
 L538:          mBP_PlayerState->ReceiveChatMessage(mFText1, mFText);
 L592:          goto ExecutionFlow.Pop();
-L593:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L593:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L635:          Temp_int_Loop_Counter_Variable = mint321;
 L662:          goto L76;
 L667:          this->ReceivedChatMessage->ProcessMulticastDelegate(mFText2, mFText3);
 L704:          goto ExecutionFlow.Pop();
+L705:          // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L705:          mFScriptDelegate->BindUFunction(this, OnBuildableConstructed);
 L728:          this->BuildableConstructedDelegate.AddUnique(mFScriptDelegate);
 L747:          goto ExecutionFlow.Pop();
-L748:          this->PonderUpdatingShoppingList(mTSubclassOf<FGItemDescriptor>);
+L748:          this->PonderUpdatingShoppingList(mTSubclassOfFGItemDescriptor);
 L771:          goto ExecutionFlow.Pop();
-L772:          this->AddRecipeToShoppingList(mTSubclassOf<FGRecipe>, mint322);
+L772:          this->AddRecipeToShoppingList(mTSubclassOfFGRecipe, mint322);
 L804:          goto ExecutionFlow.Pop();
-L805:          this->SetNumRecipeInShoppingList(mTSubclassOf<FGRecipe>1, mint323);
+L805:          this->SetNumRecipeInShoppingList(mTSubclassOfFGRecipe1, mint323);
 L837:          goto ExecutionFlow.Pop();
-L838:          this->RemoveRecipeFromShoppingList(mTSubclassOf<FGRecipe>2, mint324);
+L838:          this->RemoveRecipeFromShoppingList(mTSubclassOfFGRecipe2, mint324);
 L870:          goto ExecutionFlow.Pop();
 L871:          this->ReceiveTick(mfloat);
 L890:          goto ExecutionFlow.Pop();
+L891:          // <Begin Inlined EventGraph Function Server_ClearShoppingList>;
 L891:          goto L15;
 ============ END FUNCTION ExecuteUbergraph_BP_PlayerState ==============
 

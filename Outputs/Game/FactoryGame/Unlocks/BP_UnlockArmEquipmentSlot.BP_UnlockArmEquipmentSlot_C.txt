@@ -9,7 +9,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Unlocks/BP_UnlockArmEquipmentSlot.BP_Un
 ============ BEGIN FUNCTION GetUnlockDataStruct ==============
 L0:            int32 mint32 = this->GetNumArmEquipmentSlotsToUnlock();
 L28:           int32 mint321 = this->GetNumArmEquipmentSlotsToUnlock();
-L56:           bool mbool = Greater_IntInt(mint321, 1);
+L56:           bool mbool = mint321 > 1;
 L90:           mFormatArgumentData.ArgumentName = "amount";
 L125:          mFormatArgumentData.ArgumentValueType = 0;
 L154:          mFormatArgumentData.ArgumentValue = ;
@@ -17,27 +17,27 @@ L183:          mFormatArgumentData.ArgumentValueInt = mint321;
 L219:          mFormatArgumentData.ArgumentValueFloat = 0;
 L251:          mFormatArgumentData.ArgumentValueGender = 0;
 L280:          bool Temp_bool_Variable = mbool;
-L299:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L319:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L299:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L319:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L436:          mFormatArgumentData1.ArgumentName = "text";
 L469:          mFormatArgumentData1.ArgumentValueType = 4;
 L498:          mFormatArgumentData1.ArgumentValue = mFText;
 L534:          mFormatArgumentData1.ArgumentValueInt = 0;
 L566:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L598:          mFormatArgumentData1.ArgumentValueGender = 0;
-L627:          TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
-L647:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L627:          TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [mFormatArgumentData1];
+L647:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
 L753:          mFUnlockDataStruct.UnlockName_2_490383D6421D4A92D86E1F835769488A = switch (Temp_bool_Variable) {
 case false -> mFText;
 case true -> mFText1;
 default -> mFText2;
 };
-L833:          mFUnlockDataStruct.UnlockIcon_9_3E3B124C41C68907A6EB9FAD36C04BC4 = ThumbsUp_64;
+L833:          mFUnlockDataStruct.UnlockIcon_9_3E3B124C41C68907A6EB9FAD36C04BC4 = ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/Shared/ThumbsUp_64.ThumbsUp_64);
 L861:          mFUnlockDataStruct.UnlockAmount_13_F32234CC46ECA4C99973A28AA05BE30E = mint32;
 L897:          mFUnlockDataStruct.UnlockStructIndex_34_716E881C402D058998F7CDA17E1E4BF2 = 0;
 L929:          mFUnlockDataStruct.Unlock_29_06E6D017481991B0E94072A4F21FCC03 = this;
-L949:          TArray<FUnlockDataStruct> mTArray<FUnlockDataStruct> = [mFUnlockDataStruct];
-L969:          TArray<FUnlockDataStruct> UnlockDataStruct = mTArray<FUnlockDataStruct>;
+L949:          TArray<FUnlockDataStruct> mTArrayFUnlockDataStruct = [mFUnlockDataStruct];
+L969:          TArray<FUnlockDataStruct> UnlockDataStruct = mTArrayFUnlockDataStruct;
 ============ END FUNCTION GetUnlockDataStruct ==============
 
 
@@ -45,8 +45,8 @@ L969:          TArray<FUnlockDataStruct> UnlockDataStruct = mTArray<FUnlockDataS
 
 
 ============ BEGIN FUNCTION GetStingerWidgetRewardData ==============
-L0:            TSet<TSubclassOf<FGStingerWidgetRewardData>> mTSet<TSubclassOf<FGStingerWidgetRewardData>> = [RewardData_GeneralUpgrade];
-L24:           TSet<TSubclassOf<FGStingerWidgetRewardData>> StingerRewardTypes = mTSet<TSubclassOf<FGStingerWidgetRewardData>>;
+L0:            TSet<TSubclassOf<FGStingerWidgetRewardData>> mTSetTSubclassOfFGStingerWidgetRewardData = [ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Unlocks/RewardData/RewardData_GeneralUpgrade.RewardData_GeneralUpgrade_C)];
+L24:           TSet<TSubclassOf<FGStingerWidgetRewardData>> StingerRewardTypes = mTSetTSubclassOfFGStingerWidgetRewardData;
 ============ END FUNCTION GetStingerWidgetRewardData ==============
 
 
@@ -54,13 +54,13 @@ L24:           TSet<TSubclassOf<FGStingerWidgetRewardData>> StingerRewardTypes =
 
 
 ============ BEGIN FUNCTION GetUnlockRewardWidgets ==============
-L0:            Widget_RewardArmEquipmentSlot* mWidget_RewardArmEquipmentSlot = WidgetBlueprintLibrary->Create(this, Widget_RewardArmEquipmentSlot, OwningPlayer);
+L0:            Widget_RewardArmEquipmentSlot* mWidget_RewardArmEquipmentSlot = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_RewardArmEquipmentSlot.Widget_RewardArmEquipmentSlot_C), OwningPlayer);
 L61:           KismetSystemLibrary->SetClassPropertyByName(mWidget_RewardArmEquipmentSlot, "mSchematicClass", SchematicClass);
 L124:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_RewardArmEquipmentSlot, "mTradingPostWidget", TradingPostWidget);
 L187:          const FText Temp_text_Variable1 = "[object Object]";
 L254:          KismetSystemLibrary->SetTextPropertyByName(mWidget_RewardArmEquipmentSlot, "mTitle", [ref] Temp_text_Variable1);
 L317:          const FText Temp_text_Variable = "[object Object]";
 L486:          KismetSystemLibrary->SetTextPropertyByName(mWidget_RewardArmEquipmentSlot, "mDescription", [ref] Temp_text_Variable);
-L549:          TArray<UserWidget*> mTArray<UserWidget> = [mWidget_RewardArmEquipmentSlot];
-L569:          TArray<UserWidget*> Widgets = mTArray<UserWidget>;
+L549:          TArray<UserWidget*> mTArrayUserWidget = [mWidget_RewardArmEquipmentSlot];
+L569:          TArray<UserWidget*> Widgets = mTArrayUserWidget;
 ============ END FUNCTION GetUnlockRewardWidgets ==============

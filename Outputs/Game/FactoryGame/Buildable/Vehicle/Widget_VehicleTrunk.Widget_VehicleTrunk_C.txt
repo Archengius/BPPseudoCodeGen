@@ -7,12 +7,12 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Widget_VehicleTrunk.W
 
 
 ============ BEGIN FUNCTION UpdateRelevantClasses ==============
-L0:            const TArray<TSubclassOf<FGItemDescriptor>> mconst TArray<TSubclassOf<FGItemDescriptor>> = [Desc_Fuel];
+L0:            const TArray<TSubclassOf<FGItemDescriptor>> mconst TArrayTSubclassOfFGItemDescriptor = [ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/Fuel/Desc_Fuel.Desc_Fuel_C)];
 L20:           int32 Temp_int_Variable = this->Widget_Window_DarkMode->Widget_TabsContainer->mSlidingTabsWidget->mActiveIndex;
 L113:          this->Widget_Window_DarkMode->SetupRelevantInventory([ref] switch (Temp_int_Variable) {
 case 0 -> this->mCraftBenchRelevantClasses;
-case 1 -> mconst TArray<TSubclassOf<FGItemDescriptor>>;
-default -> mconst TArray<TSubclassOf<FGItemDescriptor>>1;
+case 1 -> mconst TArrayTSubclassOfFGItemDescriptor;
+default -> mconst TArrayTSubclassOfFGItemDescriptor1;
 });
 ============ END FUNCTION UpdateRelevantClasses ==============
 
@@ -51,7 +51,7 @@ L28:           this->mFuelSlot->OnMoveStack.AddUnique(mFScriptDelegate);
 L69:           int32 Temp_int_Loop_Counter_Variable = 0;
 L92:           int32 Temp_int_Array_Index_Variable = 0;
 L115:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mVehicleStorageWidget->mInventorySlots);
-L196:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L196:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L234:          if (!mbool) goto ExecutionFlow.Pop();
 L244:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L271:          ExecutionFlow.Push(L594);
@@ -63,7 +63,7 @@ L444:          this->mDumpAllButton->mButton->OnClicked.AddUnique(mFScriptDelega
 L507:          mFScriptDelegate3->BindUFunction(this, GrabAllFromVehicleStorage);
 L530:          this->mGrabAllButton->mButton->OnClicked.AddUnique(mFScriptDelegate3);
 L593:          goto ExecutionFlow.Pop();
-L594:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L594:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L636:          Temp_int_Loop_Counter_Variable = mint321;
 L663:          goto L115;
 ============ END FUNCTION InitCallbacks ==============
@@ -74,13 +74,13 @@ L663:          goto L115;
 
 ============ BEGIN FUNCTION DropInventorySlotStack ==============
 L0:            ExecutionFlow.Push(L423);
-L5:            bool mbool = NotEqual_IntInt(this->Widget_Window_DarkMode->Widget_TabsContainer->mSlidingTabsWidget->mActiveIndex, 0);
+L5:            bool mbool = this->Widget_Window_DarkMode->Widget_TabsContainer->mSlidingTabsWidget->mActiveIndex != 0;
 L105:          if (!mbool) goto L234;
-L119:          mbool = NotEqual_IntInt(this->Widget_Window_DarkMode->Widget_TabsContainer->mSlidingTabsWidget->mActiveIndex, 1);
+L119:          mbool = this->Widget_Window_DarkMode->Widget_TabsContainer->mSlidingTabsWidget->mActiveIndex != 1;
 L219:          if (!mbool) goto L250;
 L233:          goto ExecutionFlow.Pop();
 L234:          bool WasStackMoved = false;
-L245:          <End of Inlined Event Graph Function>;
+L245:          // <End Inlined EventGraph Function>;
 L250:          ExecutionFlow.Push(L404);
 L255:          this->mFuelSlot->DropOntoInventorySlot(InventorySlot, [ref] mbool1);
 L309:          bool LocalResult = mbool1;
@@ -99,10 +99,10 @@ L404:          WasStackMoved = LocalResult;
 ============ BEGIN FUNCTION SetWindowAlignment ==============
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
-L79:           TScriptInterface<BPI_GameUI> mTScriptInterface<BPI_GameUI> = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Interface/UI/BPI_GameUI.BPI_GameUI_C>(mFGGameUI);
-L115:          bool mbool = mTScriptInterface<BPI_GameUI>;
+L79:           TScriptInterface<BPI_GameUI> mTScriptInterfaceBPI_GameUI = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Interface/UI/BPI_GameUI.BPI_GameUI_C>(mFGGameUI);
+L115:          bool mbool = mTScriptInterfaceBPI_GameUI;
 L144:          if (!mbool) goto L468;
-L158:          GetInterfaceUObject(mTScriptInterface<BPI_GameUI>)->GetShoppingList([ref] mWidget_ShoppingList);
+L158:          GetInterfaceUObject(mTScriptInterfaceBPI_GameUI)->GetShoppingList([ref] mWidget_ShoppingList);
 L204:          bool mbool1 = mWidget_ShoppingList->mShoppingListIngredientContainer->HasAnyChildren();
 L268:          if (!mbool1) goto L484;
 L282:          this->SetDesiredHorizontalAlignment(1);
@@ -111,7 +111,7 @@ L326:          mMargin.Top = 0;
 L358:          mMargin.Right = 0;
 L390:          mMargin.Bottom = 0;
 L422:          this->Widget_Window_DarkMode->SetPadding(mMargin);
-L463:          <End of Inlined Event Graph Function>;
+L463:          // <End Inlined EventGraph Function>;
 L468:          Widget_ShoppingList* mWidget_ShoppingList = nullptr;
 L479:          goto L204;
 L484:          this->SetDesiredHorizontalAlignment(2);
@@ -137,7 +137,7 @@ L164:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L188:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
 L224:          bool mbool2 = mFGPlayerController;
 L253:          if (!mbool2) goto L372;
-L267:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L267:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L318:          mBP_RemoteCallObject->ServerCloseVehicleTrunk(this->mOwningVehicle, mFGCharacterPlayer);
 ============ END FUNCTION CloseVehicle ==============
 
@@ -156,7 +156,9 @@ L50:           this->Widget_Window_DarkMode->OnClose->Clear();
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(1304);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_VehicleTrunk, from label L1304;
 ============ END FUNCTION Destruct ==============
 
 
@@ -164,7 +166,9 @@ L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(1304);
 
 
 ============ BEGIN FUNCTION Init ==============
-L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(1299);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Init;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_VehicleTrunk, from label L1299;
 ============ END FUNCTION Init ==============
 
 
@@ -172,7 +176,9 @@ L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(1299);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(860);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_VehicleTrunk, from label L860;
 ============ END FUNCTION Construct ==============
 
 
@@ -180,7 +186,9 @@ L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(860);
 
 
 ============ BEGIN FUNCTION GrabAllFromVehicleStorage ==============
-L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(1728);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: GrabAllFromVehicleStorage;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_VehicleTrunk, from label L1728;
 ============ END FUNCTION GrabAllFromVehicleStorage ==============
 
 
@@ -188,7 +196,9 @@ L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(1728);
 
 
 ============ BEGIN FUNCTION StoreAllInVehicleStorage ==============
-L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(1733);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StoreAllInVehicleStorage;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_VehicleTrunk, from label L1733;
 ============ END FUNCTION StoreAllInVehicleStorage ==============
 
 
@@ -196,7 +206,9 @@ L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(1733);
 
 
 ============ BEGIN FUNCTION BndEvt__mSortButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(1738);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mSortButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_VehicleTrunk, from label L1738;
 ============ END FUNCTION BndEvt__mSortButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
 
 
@@ -204,8 +216,9 @@ L0:            this->ExecuteUbergraph_Widget_VehicleTrunk(1738);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_1_OnTabButtonClicked__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/Vehicle/Widget_VehicleTrunk.Widget_VehicleTrunk_C:ExecuteUbergraph_Widget_VehicleTrunk.K2Node_ComponentBoundEvent_ButtonIndex) = ButtonIndex;
-L18:           this->ExecuteUbergraph_Widget_VehicleTrunk(2018);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_1_OnTabButtonClicked__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_VehicleTrunk, from label L2018;
 ============ END FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_1_OnTabButtonClicked__DelegateSignature ==============
 
 
@@ -213,8 +226,9 @@ L18:           this->ExecuteUbergraph_Widget_VehicleTrunk(2018);
 
 
 ============ BEGIN FUNCTION BndEvt__mManualManufacturerWidget_K2Node_ComponentBoundEvent_2_OnRelevantClassesUpdated__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(ArrayProperty /Game/FactoryGame/Buildable/Vehicle/Widget_VehicleTrunk.Widget_VehicleTrunk_C:ExecuteUbergraph_Widget_VehicleTrunk.K2Node_ComponentBoundEvent_RelevantClasses) = relevantClasses;
-L18:           this->ExecuteUbergraph_Widget_VehicleTrunk(2037);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__mManualManufacturerWidget_K2Node_ComponentBoundEvent_2_OnRelevantClassesUpdated__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_VehicleTrunk, from label L2037;
 ============ END FUNCTION BndEvt__mManualManufacturerWidget_K2Node_ComponentBoundEvent_2_OnRelevantClassesUpdated__DelegateSignature ==============
 
 
@@ -223,7 +237,7 @@ L18:           this->ExecuteUbergraph_Widget_VehicleTrunk(2037);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_VehicleTrunk ==============
 L10:           this->UpdateRelevantClasses();
-L24:           <End of Inlined Event Graph Function>;
+L24:           // <End Inlined EventGraph Function>;
 L29:           this->Construct();
 L39:           this->Widget_SlidingTabs->SetActiveIndex(1, false);
 L81:           this->SetTitle();
@@ -231,9 +245,9 @@ L95:           mFScriptDelegate->BindUFunction(this, OnEscapePressed);
 L118:          this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate);
 L159:          this->SetWindowAlignment();
 L173:          int32 mint32 = KismetArrayLibrary->Array_Add([ref] this->Widget_InventorySlot_DropArea->mInventorySlots, [ref] this->mFuelSlot);
-L263:          <End of Inlined Event Graph Function>;
+L263:          // <End Inlined EventGraph Function>;
 L268:          this->Cleanup();
-L282:          <End of Inlined Event Graph Function>;
+L282:          // <End Inlined EventGraph Function>;
 L287:          this->Destruct();
 L297:          goto L268;
 L302:          bool mbool = KismetSystemLibrary->IsValid(this->mOwningVehicle);
@@ -246,7 +260,7 @@ L537:          this->InitCallbacks();
 L551:          this->Widget_Window_DarkMode->SetTitle(this->mOwningVehicle->mDisplayName);
 L618:          this->Widget_Window_DarkMode->SetInventoryVisibility(true, false);
 L656:          this->UpdateRelevantClasses();
-L670:          <End of Inlined Event Graph Function>;
+L670:          // <End Inlined EventGraph Function>;
 L675:          BP_WheeledVehicle* mBP_WheeledVehicle = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C>(this->mInteractObject);
 L711:          bool mbool1 = mBP_WheeledVehicle;
 L740:          if (!mbool1) goto L2069;
@@ -255,6 +269,7 @@ L773:          goto L302;
 L778:          this->mManualManufacturerWidget->mInteractObject = this->mInteractObject;
 L819:          this->mManualManufacturerWidget->Init();
 L855:          goto L675;
+L860:          // <Begin Inlined EventGraph Function Construct>;
 L860:          goto L29;
 L865:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L889:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
@@ -264,14 +279,16 @@ L968:          Pawn* mPawn = mFGPlayerController->K2_GetPawn();
 L1010:         FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
 L1046:         bool mbool3 = mFGCharacterPlayer;
 L1075:         if (!mbool3) goto L2069;
-L1089:         BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L1089:         BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L1140:         FGInventoryComponent* mFGInventoryComponent2 = this->mOwningVehicle->GetStorageInventory();
 L1182:         FGInventoryComponent* mFGInventoryComponent3 = mFGCharacterPlayer->GetInventory();
 L1224:         mBP_RemoteCallObject->Server_GrabAllItemsFromInventory(mFGInventoryComponent2, mFGInventoryComponent3, nullptr);
-L1279:         <End of Inlined Event Graph Function>;
+L1279:         // <End Inlined EventGraph Function>;
 L1284:         this->Init();
 L1294:         goto L778;
+L1299:         // <Begin Inlined EventGraph Function Init>;
 L1299:         goto L1284;
+L1304:         // <Begin Inlined EventGraph Function Destruct>;
 L1304:         goto L287;
 L1309:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L1333:         FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);
@@ -282,22 +299,25 @@ L1454:         FGCharacterPlayer* mFGCharacterPlayer1 = Cast<Class /Script/Facto
 L1490:         bool mbool5 = mFGCharacterPlayer1;
 L1519:         if (!mbool5) goto L2069;
 L1533:         FGInventoryComponent* mFGInventoryComponent4 = this->mOwningVehicle->GetStorageInventory();
-L1575:         BP_RemoteCallObject* mBP_RemoteCallObject1 = mFGPlayerController1->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L1575:         BP_RemoteCallObject* mBP_RemoteCallObject1 = mFGPlayerController1->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L1626:         FGInventoryComponent* mFGInventoryComponent5 = mFGCharacterPlayer1->GetInventory();
 L1668:         mBP_RemoteCallObject1->Server_GrabAllItemsFromInventory(mFGInventoryComponent5, mFGInventoryComponent4, nullptr);
-L1723:         <End of Inlined Event Graph Function>;
+L1723:         // <End Inlined EventGraph Function>;
+L1728:         // <Begin Inlined EventGraph Function GrabAllFromVehicleStorage>;
 L1728:         goto L865;
+L1733:         // <Begin Inlined EventGraph Function StoreAllInVehicleStorage>;
 L1733:         goto L1309;
+L1738:         // <Begin Inlined EventGraph Function BndEvt__mSortButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature>;
 L1738:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L1762:         FGPlayerController* mFGPlayerController2 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController2);
 L1798:         bool mbool6 = mFGPlayerController2;
 L1827:         if (!mbool6) goto L2069;
-L1841:         BP_RemoteCallObject* mBP_RemoteCallObject2 = mFGPlayerController2->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L1841:         BP_RemoteCallObject* mBP_RemoteCallObject2 = mFGPlayerController2->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L1892:         mBP_RemoteCallObject2->Server_SortInventory(this->mVehicleStorageWidget->mInventoryComponent);
 L1959:         this->Widget_Scrollbox->mScrollBox->ScrollToStart();
-L2013:         <End of Inlined Event Graph Function>;
+L2013:         // <End Inlined EventGraph Function>;
 L2018:         this->UpdateRelevantClasses();
-L2032:         <End of Inlined Event Graph Function>;
-L2037:         this->mCraftBenchRelevantClasses = mTArray<TSubclassOf<FGItemDescriptor>>;
+L2032:         // <End Inlined EventGraph Function>;
+L2037:         this->mCraftBenchRelevantClasses = mTArrayTSubclassOfFGItemDescriptor;
 L2064:         goto L10;
 ============ END FUNCTION ExecuteUbergraph_Widget_VehicleTrunk ==============

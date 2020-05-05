@@ -10,7 +10,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBo
 L0:            FGInventoryComponentEquipment* mFGInventoryComponentEquipment = this->mCharPlayer->GetEquipmentSlot(1);
 L44:           int32 mint32 = mFGInventoryComponentEquipment->GetActiveIndex();
 L94:           FGInventoryComponentEquipment* mFGInventoryComponentEquipment1 = this->mCharPlayer->GetEquipmentSlot(1);
-L138:          int32 mint321 = Add_IntInt(mint32, 1);
+L138:          int32 mint321 = mint32 + 1;
 L180:          int32 mint322 = mFGInventoryComponentEquipment1->GetSizeLinear();
 L230:          mFormatArgumentData.ArgumentName = "Active";
 L265:          mFormatArgumentData.ArgumentValueType = 0;
@@ -24,8 +24,8 @@ L483:          mFormatArgumentData1.ArgumentValue = ;
 L512:          mFormatArgumentData1.ArgumentValueInt = mint322;
 L548:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L580:          mFormatArgumentData1.ArgumentValueGender = 0;
-L609:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
-L638:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L609:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData, mFormatArgumentData1];
+L638:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L753:          this->Widget_EquipmentSlotDot->mEquipmentSlotText->SetText(mFText);
 ============ END FUNCTION SetEquipmentSlotText ==============
 
@@ -36,11 +36,11 @@ L753:          this->Widget_EquipmentSlotDot->mEquipmentSlotText->SetText(mFText
 ============ BEGIN FUNCTION GetEquipmentSlotVisibility ==============
 L0:            uint8 Temp_byte_Variable = 3;
 L20:           uint8 Temp_byte_Variable1 = 1;
-L40:           bool mbool = EqualEqual_ByteByte(this->mEquipmentSlot, 1);
+L40:           bool mbool = this->mEquipmentSlot == 1;
 L71:           FGInventoryComponentEquipment* mFGInventoryComponentEquipment = this->mCharPlayer->GetEquipmentSlot(1);
 L115:          int32 mint32 = mFGInventoryComponentEquipment->GetSizeLinear();
-L165:          bool mbool1 = Greater_IntInt(mint32, 1);
-L199:          bool mbool2 = BooleanAND(mbool1, mbool);
+L165:          bool mbool1 = mint32 > 1;
+L199:          bool mbool2 = mbool1 && mbool;
 L237:          bool Temp_bool_Variable = mbool2;
 L256:          this->Widget_EquipmentSlotDot->SetVisibility(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -62,41 +62,41 @@ L152:          if (!mbool1) goto L922;
 L166:          FGColorGun* mFGColorGun = Cast<Class /Script/FactoryGame.FGColorGun>(this->mEquipment);
 L202:          bool mbool2 = mFGColorGun;
 L231:          if (!mbool2) goto L903;
-L245:          this->mContentWidgetClass = Widget_HUDBox_ColorGun;
-L264:          <End of Inlined Event Graph Function>;
+L245:          this->mContentWidgetClass = ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBox_ColorGun.Widget_HUDBox_ColorGun_C);
+L264:          // <End Inlined EventGraph Function>;
 L269:          FGConsumableEquipment* mFGConsumableEquipment = Cast<Class /Script/FactoryGame.FGConsumableEquipment>(this->mEquipment);
 L305:          bool mbool3 = mFGConsumableEquipment;
 L334:          if (!mbool3) goto L372;
-L348:          this->mContentWidgetClass = Widget_HUDBox_Consumable;
-L367:          <End of Inlined Event Graph Function>;
+L348:          this->mContentWidgetClass = ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBox_Consumable.Widget_HUDBox_Consumable_C);
+L367:          // <End Inlined EventGraph Function>;
 L372:          FGJetPack* mFGJetPack = Cast<Class /Script/FactoryGame.FGJetPack>(this->mEquipment);
 L408:          bool mbool4 = mFGJetPack;
 L437:          if (!mbool4) goto L475;
-L451:          this->mContentWidgetClass = Widget_HUDBox_Jetpack;
-L470:          <End of Inlined Event Graph Function>;
+L451:          this->mContentWidgetClass = ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBOX_Jetpack.Widget_HUDBox_Jetpack_C);
+L470:          // <End Inlined EventGraph Function>;
 L475:          FGChainsaw* mFGChainsaw = Cast<Class /Script/FactoryGame.FGChainsaw>(this->mEquipment);
 L511:          bool mbool5 = mFGChainsaw;
 L540:          if (!mbool5) goto L578;
-L554:          this->mContentWidgetClass = Widget_HUDBox_Fuel;
-L573:          <End of Inlined Event Graph Function>;
+L554:          this->mContentWidgetClass = ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBox_Fuel.Widget_HUDBox_Fuel_C);
+L573:          // <End Inlined EventGraph Function>;
 L578:          FGGasMask* mFGGasMask = Cast<Class /Script/FactoryGame.FGGasMask>(this->mEquipment);
 L614:          bool mbool6 = mFGGasMask;
 L643:          if (!mbool6) goto L681;
-L657:          this->mContentWidgetClass = Widget_HUDBox_GasMask;
-L676:          <End of Inlined Event Graph Function>;
+L657:          this->mContentWidgetClass = ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBox_GasMask.Widget_HUDBox_GasMask_C);
+L676:          // <End Inlined EventGraph Function>;
 L681:          FGSuitBase* mFGSuitBase = Cast<Class /Script/FactoryGame.FGSuitBase>(this->mEquipment);
 L717:          bool mbool7 = mFGSuitBase;
 L746:          if (!mbool7) goto L784;
-L760:          this->mContentWidgetClass = Widget_HUDBox_GasMask;
-L779:          <End of Inlined Event Graph Function>;
+L760:          this->mContentWidgetClass = ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBox_GasMask.Widget_HUDBox_GasMask_C);
+L779:          // <End Inlined EventGraph Function>;
 L784:          FGObjectScanner* mFGObjectScanner = Cast<Class /Script/FactoryGame.FGObjectScanner>(this->mEquipment);
 L820:          bool mbool8 = mFGObjectScanner;
 L849:          if (!mbool8) goto L887;
-L863:          this->mContentWidgetClass = Widget_HUDBox_ObjectScanner;
-L882:          <End of Inlined Event Graph Function>;
+L863:          this->mContentWidgetClass = ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBox_ObjectScanner.Widget_HUDBox_ObjectScanner_C);
+L882:          // <End Inlined EventGraph Function>;
 L887:          this->mContentWidgetClass = nullptr;
-L898:          <End of Inlined Event Graph Function>;
-L903:          this->mContentWidgetClass = Widget_HUDBox_Weapon;
+L898:          // <End Inlined EventGraph Function>;
+L903:          this->mContentWidgetClass = ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBox_Weapon.Widget_HUDBox_Weapon_C);
 ============ END FUNCTION SetContentWidgetClass ==============
 
 
@@ -113,11 +113,11 @@ L51:           FGEquipment* equipment = mFGEquipment;
 
 
 ============ BEGIN FUNCTION UpdateTitle ==============
-L0:            this->GetEquipmentItemClass([ref] mTSubclassOf<FGItemDescriptor>);
-L23:           bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGItemDescriptor>);
+L0:            this->GetEquipmentItemClass([ref] mTSubclassOfFGItemDescriptor);
+L23:           bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOfFGItemDescriptor);
 L74:           if (!mbool) goto L237;
-L88:           this->GetEquipmentItemClass([ref] mTSubclassOf<FGItemDescriptor>1);
-L111:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGItemDescriptor>1);
+L88:           this->GetEquipmentItemClass([ref] mTSubclassOfFGItemDescriptor1);
+L111:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOfFGItemDescriptor1);
 L170:          this->Widget_HUDBox->mTitleObject->SetText(mFText);
 ============ END FUNCTION UpdateTitle ==============
 
@@ -126,11 +126,11 @@ L170:          this->Widget_HUDBox->mTitleObject->SetText(mFText);
 
 
 ============ BEGIN FUNCTION UpdateIcon ==============
-L0:            this->GetEquipmentItemClass([ref] mTSubclassOf<FGItemDescriptor>);
-L23:           bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGItemDescriptor>);
+L0:            this->GetEquipmentItemClass([ref] mTSubclassOfFGItemDescriptor);
+L23:           bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOfFGItemDescriptor);
 L74:           if (!mbool) goto L791;
-L88:           this->GetEquipmentItemClass([ref] mTSubclassOf<FGItemDescriptor>1);
-L111:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mTSubclassOf<FGItemDescriptor>1);
+L88:           this->GetEquipmentItemClass([ref] mTSubclassOfFGItemDescriptor1);
+L111:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mTSubclassOfFGItemDescriptor1);
 L162:          mSlateBrush.ImageSize = this->Widget_HUDBox->mIconObject->Brush.ImageSize;
 L251:          mSlateBrush.Margin = this->Widget_HUDBox->mIconObject->Brush.Margin;
 L340:          mSlateBrush.TintColor = this->Widget_HUDBox->mIconObject->Brush.TintColor;
@@ -147,13 +147,13 @@ L724:          this->Widget_HUDBox->mIconObject->SetBrush([ref] mSlateBrush);
 
 ============ BEGIN FUNCTION GetEquipmentItemClass ==============
 L0:            InventoryItem mInventoryItem = this->mCharPlayer->GetActiveEquipmentItem(this->mEquipmentSlot);
-L59:           FGInventoryLibrary->BreakInventoryItem([ref] mInventoryItem, [ref] mTSubclassOf<FGItemDescriptor>, [ref] mActor);
-L118:          bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGItemDescriptor>);
+L59:           FGInventoryLibrary->BreakInventoryItem([ref] mInventoryItem, [ref] mTSubclassOfFGItemDescriptor, [ref] mActor);
+L118:          bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOfFGItemDescriptor);
 L169:          if (!mbool) goto L325;
 L183:          mInventoryItem = this->mCharPlayer->GetActiveEquipmentItem(this->mEquipmentSlot);
-L242:          FGInventoryLibrary->BreakInventoryItem([ref] mInventoryItem, [ref] mTSubclassOf<FGItemDescriptor>, [ref] mActor);
-L301:          TSubclassOf<FGItemDescriptor> Class = mTSubclassOf<FGItemDescriptor>;
-L320:          <End of Inlined Event Graph Function>;
+L242:          FGInventoryLibrary->BreakInventoryItem([ref] mInventoryItem, [ref] mTSubclassOfFGItemDescriptor, [ref] mActor);
+L301:          TSubclassOf<FGItemDescriptor> Class = mTSubclassOfFGItemDescriptor;
+L320:          // <End Inlined EventGraph Function>;
 L325:          Class = nullptr;
 ============ END FUNCTION GetEquipmentItemClass ==============
 
@@ -162,7 +162,9 @@ L325:          Class = nullptr;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_HUDBox_Equipment(1862);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_HUDBox_Equipment, from label L1862;
 ============ END FUNCTION Construct ==============
 
 
@@ -170,9 +172,9 @@ L0:            this->ExecuteUbergraph_Widget_HUDBox_Equipment(1862);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBox_Equipment.Widget_HUDBox_Equipment_C:ExecuteUbergraph_Widget_HUDBox_Equipment.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBox_Equipment.Widget_HUDBox_Equipment_C:ExecuteUbergraph_Widget_HUDBox_Equipment.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_HUDBox_Equipment(1867);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_HUDBox_Equipment, from label L1867;
 ============ END FUNCTION Tick ==============
 
 
@@ -180,7 +182,9 @@ L36:           this->ExecuteUbergraph_Widget_HUDBox_Equipment(1867);
 
 
 ============ BEGIN FUNCTION HideWidget ==============
-L0:            this->ExecuteUbergraph_Widget_HUDBox_Equipment(1886);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: HideWidget;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_HUDBox_Equipment, from label L1886;
 ============ END FUNCTION HideWidget ==============
 
 
@@ -188,7 +192,9 @@ L0:            this->ExecuteUbergraph_Widget_HUDBox_Equipment(1886);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_HUDBox_Equipment(1961);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_HUDBox_Equipment, from label L1961;
 ============ END FUNCTION Destruct ==============
 
 
@@ -199,7 +205,7 @@ L0:            this->ExecuteUbergraph_Widget_HUDBox_Equipment(1961);
 L5:            goto ComputedJump(EntryPoint);
 L15:           this->SetEquipmentSlotText();
 L29:           this->GetEquipmentInSlot([ref] mFGEquipment);
-L52:           bool mbool = NotEqual_ObjectObject(mFGEquipment, this->mEquipment);
+L52:           bool mbool = mFGEquipment != this->mEquipment;
 L90:           if (!mbool) goto L207;
 L104:          this->GetEquipmentInSlot([ref] mFGEquipment1);
 L127:          FGBuildGun* mFGBuildGun = Cast<Class /Script/FactoryGame.FGBuildGun>(mFGEquipment1);
@@ -212,11 +218,11 @@ L272:          FGBuildGun* mFGBuildGun1 = Cast<Class /Script/FactoryGame.FGBuild
 L308:          bool mbool3 = mFGBuildGun1;
 L337:          if (!mbool3) goto L1337;
 L351:          bool mbool4 = this->Widget_HUDBox->IsAnimationPlaying(this->Widget_HUDBox->RemoveAnim);
-L424:          bool mbool5 = Not_PreBool(mbool4);
+L424:          bool mbool5 = !mbool4;
 L453:          uint8 muint8 = this->mHUDBoxOverlay->GetVisibility();
-L503:          bool mbool6 = EqualEqual_ByteByte(muint8, 1);
-L534:          bool mbool7 = Not_PreBool(mbool6);
-L563:          bool mbool8 = BooleanAND(mbool7, mbool5);
+L503:          bool mbool6 = muint8 == 1;
+L534:          bool mbool7 = !mbool6;
+L563:          bool mbool8 = mbool7 && mbool5;
 L601:          if (!mbool8) goto ExecutionFlow.Pop();
 L611:          this->HideWidget();
 L625:          goto ExecutionFlow.Pop();
@@ -255,7 +261,7 @@ L1535:         FGInventoryComponentEquipment* mFGInventoryComponentEquipment = t
 L1586:         this->mCachedInventoryComponent = mFGInventoryComponentEquipment;
 L1605:         uint8 Temp_byte_Variable = 1;
 L1625:         uint8 Temp_byte_Variable1 = 3;
-L1645:         bool mbool13 = EqualEqual_ByteByte(this->mEquipmentSlot, 1);
+L1645:         bool mbool13 = this->mEquipmentSlot == 1;
 L1676:         bool Temp_bool_Variable = mbool13;
 L1695:         this->Widget_EquipmentSlotDot->SetVisibility(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable;
@@ -265,12 +271,15 @@ default -> muint81;
 L1784:         goto ExecutionFlow.Pop();
 L1785:         KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 1417, UUID = 2041022721, ExecutionFunction = "ExecuteUbergraph_Widget_HUDBox_Equipment", CallbackTarget = this));
 L1861:         goto ExecutionFlow.Pop();
+L1862:         // <Begin Inlined EventGraph Function Construct>;
 L1862:         goto L1417;
 L1867:         this->GetEquipmentSlotVisibility();
 L1881:         goto L15;
+L1886:         // <Begin Inlined EventGraph Function HideWidget>;
 L1886:         this->mHUDBoxOverlay->SetVisibility(1);
 L1924:         this->mWContent->ClearChildren();
 L1960:         goto ExecutionFlow.Pop();
+L1961:         // <Begin Inlined EventGraph Function Destruct>;
 L1961:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->UpdateSlotTimerHandle);
 L2003:         goto ExecutionFlow.Pop();
 ============ END FUNCTION ExecuteUbergraph_Widget_HUDBox_Equipment ==============

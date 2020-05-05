@@ -7,7 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/ColorGun/Attach_ColorGun.Atta
 
 
 ============ BEGIN FUNCTION ClientPlayReloadEffect ==============
-L0:            this->ExecuteUbergraph_Attach_ColorGun(15);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ClientPlayReloadEffect;
+L0:            // Implementation: Function ExecuteUbergraph_Attach_ColorGun, from label L15;
 ============ END FUNCTION ClientPlayReloadEffect ==============
 
 
@@ -15,8 +17,9 @@ L0:            this->ExecuteUbergraph_Attach_ColorGun(15);
 
 
 ============ BEGIN FUNCTION PlayFireEffect ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/ColorGun/Attach_ColorGun.Attach_ColorGun_C:ExecuteUbergraph_Attach_ColorGun.K2Node_Event_flashLocation) = flashLocation;
-L18:           this->ExecuteUbergraph_Attach_ColorGun(661);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PlayFireEffect;
+L18:           // Implementation: Function ExecuteUbergraph_Attach_ColorGun, from label L661;
 ============ END FUNCTION PlayFireEffect ==============
 
 
@@ -24,7 +27,9 @@ L18:           this->ExecuteUbergraph_Attach_ColorGun(661);
 
 
 ============ BEGIN FUNCTION PlayAttachEffects3P ==============
-L0:            this->ExecuteUbergraph_Attach_ColorGun(1872);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: PlayAttachEffects3P;
+L0:            // Implementation: Function ExecuteUbergraph_Attach_ColorGun, from label L1872;
 ============ END FUNCTION PlayAttachEffects3P ==============
 
 
@@ -33,47 +38,48 @@ L0:            this->ExecuteUbergraph_Attach_ColorGun(1872);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Attach_ColorGun ==============
 L5:            goto ComputedJump(EntryPoint);
+L15:           // <Begin Inlined EventGraph Function ClientPlayReloadEffect>;
 L15:           this->ClientPlayReloadEffect();
 L25:           ExecutionFlow.Push(L204);
 L30:           FGCharacterPlayer* mFGCharacterPlayer = this->GetAttachedTo();
 L50:           SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
 L96:           AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
-L138:          bool mbool = mAnimInstance->Montage_IsPlaying(ColorgunReload_01_Montage);
+L138:          bool mbool = mAnimInstance->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/ThirdPerson/ColorgunReload_01_Montage.ColorgunReload_01_Montage));
 L189:          if (!mbool) goto L427;
 L203:          goto ExecutionFlow.Pop();
 L204:          AnimInstance* mAnimInstance1 = this->Colorgun_skl->GetAnimInstance();
-L246:          bool mbool1 = mAnimInstance1->Montage_IsPlaying(ColorgunReload_01_Montage);
+L246:          bool mbool1 = mAnimInstance1->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Equipment/ColorGun/Animation/Thirdperson/ColorgunReload_01_Montage.ColorgunReload_01_Montage));
 L297:          if (!mbool1) goto L312;
 L311:          goto ExecutionFlow.Pop();
 L312:          mAnimInstance1 = this->Colorgun_skl->GetAnimInstance();
-L354:          float mfloat = mAnimInstance1->Montage_Play(ColorgunReload_01_Montage, 1, 0, 0, true);
+L354:          float mfloat = mAnimInstance1->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Equipment/ColorGun/Animation/Thirdperson/ColorgunReload_01_Montage.ColorgunReload_01_Montage), 1, 0, 0, true);
 L426:          goto ExecutionFlow.Pop();
 L427:          mFGCharacterPlayer = this->GetAttachedTo();
 L447:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
 L493:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
-L535:          float mfloat1 = mAnimInstance->Montage_Play(ColorgunReload_01_Montage, 1, 0, 0, true);
-L607:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_3P_ColorGun_Reload, this, true);
+L535:          float mfloat1 = mAnimInstance->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/ThirdPerson/ColorgunReload_01_Montage.ColorgunReload_01_Montage), 1, 0, 0, true);
+L607:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/ColorGun/Audio/Play_3P_ColorGun_Reload.Play_3P_ColorGun_Reload), this, true);
 L660:          goto ExecutionFlow.Pop();
 L661:          this->PlayFireEffect(mVector);
-L680:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, ColorgunHit_01, mVector, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
-L770:          ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAttached(ColorgunMuzzleflash_01, this->Colorgun_skl, "muzzleVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L680:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, ObjectConst(ParticleSystem /Game/FactoryGame/Equipment/ColorGun/Particle/ColorgunHit_01.ColorgunHit_01), mVector, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L770:          ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAttached(ObjectConst(ParticleSystem /Game/FactoryGame/Equipment/ColorGun/Particle/ColorgunMuzzleflash_01.ColorgunMuzzleflash_01), this->Colorgun_skl, "muzzleVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
 L887:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetAttachedTo();
 L907:          SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh3P();
 L953:          AnimInstance* mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
-L995:          bool mbool2 = mAnimInstance2->Montage_IsPlaying(ColorgunPrimary_01_Montage);
+L995:          bool mbool2 = mAnimInstance2->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/ThirdPerson/ColorgunPrimary_01_Montage.ColorgunPrimary_01_Montage));
 L1046:         if (!mbool2) goto L1061;
 L1060:         goto ExecutionFlow.Pop();
 L1061:         mFGCharacterPlayer1 = this->GetAttachedTo();
 L1081:         mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh3P();
 L1127:         mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
-L1169:         float mfloat2 = mAnimInstance2->Montage_Play(ColorgunPrimary_01_Montage, 1, 0, 0, true);
-L1241:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_3P_ColorGun_Fire, this, true);
+L1169:         float mfloat2 = mAnimInstance2->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/ThirdPerson/ColorgunPrimary_01_Montage.ColorgunPrimary_01_Montage), 1, 0, 0, true);
+L1241:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/ColorGun/Audio/Play_3P_ColorGun_Fire.Play_3P_ColorGun_Fire), this, true);
 L1294:         goto ExecutionFlow.Pop();
 L1295:         FGCharacterPlayer* mFGCharacterPlayer2 = this->GetAttachedTo();
 L1315:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh3P();
 L1361:         AnimInstance* mAnimInstance3 = mSkeletalMeshComponent2->GetAnimInstance();
-L1403:         float mfloat3 = mAnimInstance3->Montage_Play(RebargunEquip_01_Montage, 1, 0, 0, true);
-L1475:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_3P_ColorGun_Equip, this, true);
+L1403:         float mfloat3 = mAnimInstance3->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/ThirdPerson/RebargunEquip_01_Montage.RebargunEquip_01_Montage), 1, 0, 0, true);
+L1475:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/ColorGun/Audio/Play_3P_ColorGun_Equip.Play_3P_ColorGun_Equip), this, true);
 L1528:         goto ExecutionFlow.Pop();
 L1529:         mFGCharacterPlayer2 = this->GetAttachedTo();
 L1549:         mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh3P();
@@ -83,9 +89,10 @@ L1688:         if (!mbool3) goto ExecutionFlow.Pop();
 L1698:         mFGCharacterPlayer2 = this->GetAttachedTo();
 L1718:         mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh3P();
 L1764:         mAnimInstance3 = mSkeletalMeshComponent2->GetAnimInstance();
-L1806:         bool mbool4 = mAnimInstance3->Montage_IsPlaying(RebargunEquip_01_Montage);
+L1806:         bool mbool4 = mAnimInstance3->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/ThirdPerson/RebargunEquip_01_Montage.RebargunEquip_01_Montage));
 L1857:         if (!mbool4) goto L1295;
 L1871:         goto ExecutionFlow.Pop();
+L1872:         // <Begin Inlined EventGraph Function PlayAttachEffects3P>;
 L1872:         this->PlayAttachEffects3P();
 L1882:         goto L1529;
 ============ END FUNCTION ExecuteUbergraph_Attach_ColorGun ==============

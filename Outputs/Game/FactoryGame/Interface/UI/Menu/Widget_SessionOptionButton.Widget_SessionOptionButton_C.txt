@@ -18,11 +18,11 @@ L39:           ReturnValue = 2;
 
 
 ============ BEGIN FUNCTION SetFontForButton ==============
-L0:            SlateFontInfo loadFont = ScriptStruct /Script/SlateCore.SlateFontInfo(FontObject = DescriptionText, FontMaterial = nullptr, OutlineSettings = ScriptStruct /Script/SlateCore.FontOutlineSettings(OutlineSize = 0, bSeparateFillAlpha = false, bApplyOutlineToDropShadows = false, OutlineMaterial = nullptr, OutlineColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 1)), TypefaceFontName = "Default", Size = 16);
-L116:          SlateFontInfo saveFont = ScriptStruct /Script/SlateCore.SlateFontInfo(FontObject = DescriptionText, FontMaterial = nullptr, OutlineSettings = ScriptStruct /Script/SlateCore.FontOutlineSettings(OutlineSize = 0, bSeparateFillAlpha = false, bApplyOutlineToDropShadows = false, OutlineMaterial = nullptr, OutlineColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 1)), TypefaceFontName = "Default", Size = 10);
+L0:            SlateFontInfo loadFont = ScriptStruct /Script/SlateCore.SlateFontInfo(FontObject = ObjectConst(Font /Game/FactoryGame/Interface/Font/DescriptionText.DescriptionText), FontMaterial = nullptr, OutlineSettings = ScriptStruct /Script/SlateCore.FontOutlineSettings(OutlineSize = 0, bSeparateFillAlpha = false, bApplyOutlineToDropShadows = false, OutlineMaterial = nullptr, OutlineColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 1)), TypefaceFontName = "Default", Size = 16);
+L116:          SlateFontInfo saveFont = ScriptStruct /Script/SlateCore.SlateFontInfo(FontObject = ObjectConst(Font /Game/FactoryGame/Interface/Font/DescriptionText.DescriptionText), FontMaterial = nullptr, OutlineSettings = ScriptStruct /Script/SlateCore.FontOutlineSettings(OutlineSize = 0, bSeparateFillAlpha = false, bApplyOutlineToDropShadows = false, OutlineMaterial = nullptr, OutlineColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 1)), TypefaceFontName = "Default", Size = 10);
 L232:          if (!this->isLoadButton) goto L292;
 L246:          this->mButtonText->SetFont(loadFont);
-L287:          <End of Inlined Event Graph Function>;
+L287:          // <End Inlined EventGraph Function>;
 L292:          this->mButtonText->SetFont(saveFont);
 ============ END FUNCTION SetFontForButton ==============
 
@@ -32,7 +32,7 @@ L292:          this->mButtonText->SetFont(saveFont);
 
 ============ BEGIN FUNCTION GetIconColor ==============
 L0:            bool mbool = this->MenuButton->IsHovered();
-L46:           bool mbool1 = BooleanAND(this->isLoadButton, mbool);
+L46:           bool mbool1 = this->isLoadButton && mbool;
 L84:           if (!mbool1) goto L185;
 L98:           HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor, [ref] mSlateColor);
 L153:          LinearColor ReturnValue = mLinearColor;
@@ -52,7 +52,7 @@ L387:          ReturnValue = mLinearColor2;
 
 ============ BEGIN FUNCTION GetButtonBorderColor ==============
 L0:            bool mbool = this->MenuButton->IsHovered();
-L46:           bool mbool1 = BooleanAND(this->isLoadButton, mbool);
+L46:           bool mbool1 = this->isLoadButton && mbool;
 L84:           if (!mbool1) goto L185;
 L98:           HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor, [ref] mSlateColor);
 L153:          LinearColor ReturnValue = mLinearColor;
@@ -73,7 +73,7 @@ L387:          ReturnValue = mLinearColor2;
 ============ BEGIN FUNCTION GetDeleteButtonColor ==============
 L0:            bool mbool = this->MenuButton->IsHovered();
 L46:           bool mbool1 = this->MenuButton->IsPressed();
-L88:           bool mbool2 = BooleanOR(mbool, mbool1);
+L88:           bool mbool2 = mbool || mbool1;
 L126:          if (!mbool2) goto L227;
 L140:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
 L195:          LinearColor ReturnValue = mLinearColor;
@@ -100,7 +100,7 @@ L85:           ReturnValue = 2;
 
 ============ BEGIN FUNCTION GetTextColor ==============
 L0:            bool mbool = this->MenuButton->IsHovered();
-L46:           bool mbool1 = BooleanAND(this->isLoadButton, mbool);
+L46:           bool mbool1 = this->isLoadButton && mbool;
 L84:           if (!mbool1) goto L185;
 L98:           HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor, [ref] mSlateColor);
 L153:          SlateColor ReturnValue = mSlateColor;
@@ -121,7 +121,7 @@ L387:          ReturnValue = mSlateColor2;
 ============ BEGIN FUNCTION GetLoadButtonColor ==============
 L0:            bool mbool = this->MenuButton->IsHovered();
 L46:           bool mbool1 = this->MenuButton->IsPressed();
-L88:           bool mbool2 = BooleanOR(mbool, mbool1);
+L88:           bool mbool2 = mbool || mbool1;
 L126:          if (!mbool2) goto L227;
 L140:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
 L195:          LinearColor ReturnValue = mLinearColor;
@@ -162,7 +162,9 @@ L0:            this->MenuButton->SetVisibility(2);
 
 
 ============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SessionOptionButton(100);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SessionOptionButton, from label L100;
 ============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -170,7 +172,9 @@ L0:            this->ExecuteUbergraph_Widget_SessionOptionButton(100);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_SessionOptionButton(228);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SessionOptionButton, from label L228;
 ============ END FUNCTION Destruct ==============
 
 
@@ -178,7 +182,9 @@ L0:            this->ExecuteUbergraph_Widget_SessionOptionButton(228);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_SessionOptionButton(233);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SessionOptionButton, from label L233;
 ============ END FUNCTION Construct ==============
 
 
@@ -186,7 +192,9 @@ L0:            this->ExecuteUbergraph_Widget_SessionOptionButton(233);
 
 
 ============ BEGIN FUNCTION BndEvt__MenuButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SessionOptionButton(252);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__MenuButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SessionOptionButton, from label L252;
 ============ END FUNCTION BndEvt__MenuButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -195,17 +203,21 @@ L0:            this->ExecuteUbergraph_Widget_SessionOptionButton(252);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_SessionOptionButton ==============
 L10:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L34:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_MouseOver, mPlayerController, true);
-L95:           <End of Inlined Event Graph Function>;
+L34:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_MouseOver.Play_UI_MainMenu_MouseOver), mPlayerController, true);
+L95:           // <End Inlined EventGraph Function>;
+L100:          // <Begin Inlined EventGraph Function BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature>;
 L100:          this->OnClicked->ProcessMulticastDelegate();
 L119:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L143:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Click, mPlayerController1, true);
-L204:          <End of Inlined Event Graph Function>;
+L143:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_Click.Play_UI_MainMenu_Click), mPlayerController1, true);
+L204:          // <End Inlined EventGraph Function>;
 L209:          this->HideButton();
-L223:          <End of Inlined Event Graph Function>;
+L223:          // <End Inlined EventGraph Function>;
+L228:          // <Begin Inlined EventGraph Function Destruct>;
 L228:          goto L209;
+L233:          // <Begin Inlined EventGraph Function Construct>;
 L233:          this->SetFontForButton();
-L247:          <End of Inlined Event Graph Function>;
+L247:          // <End Inlined EventGraph Function>;
+L252:          // <Begin Inlined EventGraph Function BndEvt__MenuButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature>;
 L252:          goto L10;
 ============ END FUNCTION ExecuteUbergraph_Widget_SessionOptionButton ==============
 

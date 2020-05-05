@@ -45,7 +45,7 @@ L154:          this->mCaptureInput = false;
 L0:            this->mKeyBindParent->mOwningWidget->mOwningMenu->RestoreFocusOnPopupClosed(false);
 L81:           if (!confirmed) goto L114;
 L95:           this->RebindKey();
-L109:          <End of Inlined Event Graph Function>;
+L109:          // <End Inlined EventGraph Function>;
 L114:          this->ShowKeyBindWidget();
 ============ END FUNCTION KeyBindingOverrideConfirmed ==============
 
@@ -57,7 +57,7 @@ L114:          this->ShowKeyBindWidget();
 L0:            HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
 L55:           HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor1, [ref] mSlateColor1);
 L110:          bool mbool = this->mButton->IsHovered();
-L156:          bool mbool1 = BooleanOR(mbool, this->mCaptureInput);
+L156:          bool mbool1 = mbool || this->mCaptureInput;
 L194:          LinearColor mLinearColor2 = SelectColor(mLinearColor1, mLinearColor, mbool1);
 L249:          LinearColor ReturnValue = mLinearColor2;
 ============ END FUNCTION GetHoverColor ==============
@@ -78,10 +78,10 @@ L266:          goto ExecutionFlow.Pop();
 L267:          bool Temp_bool_True_if_break_was_hit_Variable = false;
 L278:          int32 Temp_int_Loop_Counter_Variable = 0;
 L301:          int32 Temp_int_Array_Index_Variable = 0;
-L324:          bool mbool1 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L324:          bool mbool1 = !Temp_bool_True_if_break_was_hit_Variable;
 L353:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mKeyBindParent->mKeyInputsData);
-L434:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
-L472:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L434:          bool mbool2 = Temp_int_Loop_Counter_Variable < mint32;
+L472:          bool mbool3 = mbool1 && mbool2;
 L510:          if (!mbool3) goto ExecutionFlow.Pop();
 L520:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L547:          ExecutionFlow.Push(L1116);
@@ -90,14 +90,14 @@ L633:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L657:          FGKeyMapping mFGKeyMapping1 = FGInputLibrary->GetOverlappingKeyMapping(mPlayerController1, [ref] this->mCachedFGKeyMapping);
 L725:          bool Temp_bool_Variable1 = mFGKeyMapping1.IsAxisMapping;
 L753:          bool Temp_bool_Variable = mFGKeyMapping1.IsAxisMapping;
-L781:          bool mbool4 = Greater_FloatFloat(mFGKeyMapping1.AxisKeyMapping.Scale, 0);
-L833:          bool mbool5 = EqualEqual_BoolBool(mKeyBindData.PositiveAxisScale_10_3C123C154A1C495D35EE54B5CEA682C6, mbool4);
-L880:          bool mbool6 = EqualEqual_NameName(mKeyBindData.ActionName_4_C7B4F53E48A16B3F01376F97B2DA4885, switch (Temp_bool_Variable) {
+L781:          bool mbool4 = mFGKeyMapping1.AxisKeyMapping.Scale > 0;
+L833:          bool mbool5 = mKeyBindData.PositiveAxisScale_10_3C123C154A1C495D35EE54B5CEA682C6 == mbool4;
+L880:          bool mbool6 = mKeyBindData.ActionName_4_C7B4F53E48A16B3F01376F97B2DA4885 == switch (Temp_bool_Variable) {
 case false -> mFGKeyMapping1.ActionKeyMapping.ActionName;
 case true -> mFGKeyMapping1.AxisKeyMapping.AxisName;
 default -> mFName;
-});
-L1007:         bool mbool7 = BooleanAND(mbool6, mbool5);
+};
+L1007:         bool mbool7 = mbool6 && mbool5;
 L1045:         if (!switch (Temp_bool_Variable1) {
 case false -> mbool6;
 case true -> mbool7;
@@ -106,7 +106,7 @@ default -> mbool8;
 L1099:         ExecutionFlow.Push(L1190);
 L1104:         Temp_bool_True_if_break_was_hit_Variable = true;
 L1115:         goto ExecutionFlow.Pop();
-L1116:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1116:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L1158:         Temp_int_Loop_Counter_Variable = mint321;
 L1185:         goto L324;
 L1190:         KismetArrayLibrary->Array_Get([ref] this->mKeyBindParent->mKeyInputsData, Temp_int_Array_Index_Variable, [ref] mKeyBindData);
@@ -116,8 +116,8 @@ L1340:         mFormatArgumentData.ArgumentValue = mKeyBindData.DisplayName_5_0A
 L1385:         mFormatArgumentData.ArgumentValueInt = 0;
 L1417:         mFormatArgumentData.ArgumentValueFloat = 0;
 L1449:         mFormatArgumentData.ArgumentValueGender = 0;
-L1478:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L1498:         FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1478:         TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L1498:         FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L1661:         mFScriptDelegate->BindUFunction(this, KeyBindingOverrideConfirmed);
 L1684:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L1708:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", mFText, [ref] mFScriptDelegate, 1, nullptr, nullptr);
@@ -129,7 +129,9 @@ L1829:         goto ExecutionFlow.Pop();
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_KeybindButton(40);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_KeybindButton, from label L40;
 ============ END FUNCTION Construct ==============
 
 
@@ -137,7 +139,9 @@ L0:            this->ExecuteUbergraph_Widget_KeybindButton(40);
 
 
 ============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_25_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_KeybindButton(113);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_25_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_KeybindButton, from label L113;
 ============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_25_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -145,7 +149,9 @@ L0:            this->ExecuteUbergraph_Widget_KeybindButton(113);
 
 
 ============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_3_OnButtonReleasedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_KeybindButton(380);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_3_OnButtonReleasedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_KeybindButton, from label L380;
 ============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_3_OnButtonReleasedEvent__DelegateSignature ==============
 
 
@@ -153,7 +159,9 @@ L0:            this->ExecuteUbergraph_Widget_KeybindButton(380);
 
 
 ============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_KeybindButton(385);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_KeybindButton, from label L385;
 ============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -161,7 +169,9 @@ L0:            this->ExecuteUbergraph_Widget_KeybindButton(385);
 
 
 ============ BEGIN FUNCTION ShowKeyBindWidget ==============
-L0:            this->ExecuteUbergraph_Widget_KeybindButton(475);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ShowKeyBindWidget;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_KeybindButton, from label L475;
 ============ END FUNCTION ShowKeyBindWidget ==============
 
 
@@ -171,20 +181,25 @@ L0:            this->ExecuteUbergraph_Widget_KeybindButton(475);
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_KeybindButton ==============
 L10:           this->mCaptureInput = true;
 L21:           this->UpdateKeyMapping();
-L35:           <End of Inlined Event Graph Function>;
+L35:           // <End Inlined EventGraph Function>;
+L40:           // <Begin Inlined EventGraph Function Construct>;
 L40:           this->mLabel->SetText(this->mKeyBindData.DisplayName_5_0A86F675465E0C811D17A287BB986630);
 L94:           this->UpdateKeyMapping();
-L108:          <End of Inlined Event Graph Function>;
+L108:          // <End Inlined EventGraph Function>;
+L113:          // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_25_OnButtonClickedEvent__DelegateSignature>;
 L113:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L137:          Widget_KeyBindFocus* mWidget_KeyBindFocus = WidgetBlueprintLibrary->Create(this, Widget_KeyBindFocus, mPlayerController);
+L137:          Widget_KeyBindFocus* mWidget_KeyBindFocus = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_KeyBindFocus.Widget_KeyBindFocus_C), mPlayerController);
 L198:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_KeyBindFocus, "mKeyOwner", this);
 L253:          mWidget_KeyBindFocus->AddToViewport(0);
 L290:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L314:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Click, mPlayerController1, true);
+L314:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_Click.Play_UI_MainMenu_Click), mPlayerController1, true);
 L375:          goto L10;
-L380:          <End of Inlined Event Graph Function>;
+L380:          // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_3_OnButtonReleasedEvent__DelegateSignature>;
+L380:          // <End Inlined EventGraph Function>;
+L385:          // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature>;
 L385:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
-L409:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_MouseOver, mPlayerController2, true);
-L470:          <End of Inlined Event Graph Function>;
+L409:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_MouseOver.Play_UI_MainMenu_MouseOver), mPlayerController2, true);
+L470:          // <End Inlined EventGraph Function>;
+L475:          // <Begin Inlined EventGraph Function ShowKeyBindWidget>;
 L475:          goto L113;
 ============ END FUNCTION ExecuteUbergraph_Widget_KeybindButton ==============

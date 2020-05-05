@@ -25,7 +25,7 @@ default -> muint8;
 });
 L148:          if (!Show) goto L213;
 L162:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->KeyAnim, 0, 0, 0, 1);
-L208:          <End of Inlined Event Graph Function>;
+L208:          // <End Inlined EventGraph Function>;
 L213:          this->StopAnimation(this->KeyAnim);
 ============ END FUNCTION ShowHideKeyIcon ==============
 
@@ -34,19 +34,19 @@ L213:          this->StopAnimation(this->KeyAnim);
 
 
 ============ BEGIN FUNCTION ShowHideUnlockIcon ==============
-L0:            bool mbool = EqualEqual_BoolBool(Show, false);
+L0:            bool mbool = Show == false;
 L30:           if (!mbool) goto L55;
 L44:           this->mShowUnlockIcon = false;
 L55:           uint8 Temp_byte_Variable = 0;
 L75:           uint8 Temp_byte_Variable1 = 2;
-L95:           bool mbool1 = BooleanAND(Show, this->mShowUnlockIcon);
+L95:           bool mbool1 = Show && this->mShowUnlockIcon;
 L133:          bool Temp_bool_Variable = mbool1;
 L152:          this->mUnlockContainer->SetVisibility(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
 case true -> Temp_byte_Variable;
 default -> muint8;
 });
-L241:          bool mbool2 = BooleanAND(Show, this->mShowUnlockIcon);
+L241:          bool mbool2 = Show && this->mShowUnlockIcon;
 L279:          if (!mbool2) goto L339;
 L293:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->UnlockAnim, 0, 1, 0, 1);
 ============ END FUNCTION ShowHideUnlockIcon ==============
@@ -83,20 +83,20 @@ L1054:         this->mButton->SetStyle([ref] mButtonStyle);
 ============ BEGIN FUNCTION SetNodeState ==============
 L0:            if (!this->mIsEditor) goto L436;
 L14:           this->mNodeState = 0;
-L34:           FString mFString = KismetNodeHelperLibrary->GetEnumeratorUserFriendlyName(EMamTree_NodeStates, this->mNodeState);
+L34:           FString mFString = KismetNodeHelperLibrary->GetEnumeratorUserFriendlyName(ObjectConst(UserDefinedEnum /Game/FactoryGame/Interface/UI/InGame/MAMTree/EMamTree_NodeStates.EMamTree_NodeStates), this->mNodeState);
 L102:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
 L161:          this->mState->SetText(mFText);
-L206:          bool mbool = NotEqual_ByteByte(this->mNodeState, 0);
+L206:          bool mbool = this->mNodeState != 0;
 L237:          if (!mbool) goto L468;
-L251:          mbool = NotEqual_ByteByte(this->mNodeState, 1);
+L251:          mbool = this->mNodeState != 1;
 L282:          if (!mbool) goto L813;
-L296:          mbool = NotEqual_ByteByte(this->mNodeState, 2);
+L296:          mbool = this->mNodeState != 2;
 L327:          if (!mbool) goto L1234;
-L341:          mbool = NotEqual_ByteByte(this->mNodeState, 3);
+L341:          mbool = this->mNodeState != 3;
 L372:          if (!mbool) goto L1542;
-L386:          mbool = NotEqual_ByteByte(this->mNodeState, 4);
+L386:          mbool = this->mNodeState != 4;
 L417:          if (!mbool) goto L1860;
-L431:          <End of Inlined Event Graph Function>;
+L431:          // <End Inlined EventGraph Function>;
 L436:          this->mNodeState = State;
 L463:          goto L34;
 L468:          this->mIcon->SetVisibility(0);
@@ -107,7 +107,7 @@ L620:          this->mInProgressBackground->SetVisibility(2);
 L658:          this->mContainer->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = -1, Y = -1));
 L714:          this->SetButtonNormalColor(ScriptStruct /Script/CoreUObject.LinearColor(R = 0.6038280129432678, G = 0.5972020030021667, B = 0.5972020030021667, A = 1));
 L762:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->AvailableAnim, 0, 0, 0, 1);
-L808:          <End of Inlined Event Graph Function>;
+L808:          // <End Inlined EventGraph Function>;
 L813:          this->mIcon->SetVisibility(0);
 L851:          this->mNodeBorder->SetVisibility(0);
 L889:          this->mNodeShadow->SetVisibility(2);
@@ -120,7 +120,7 @@ L1123:         mLinearColor.B = 0.15000000596046448;
 L1155:         mLinearColor.A = 1;
 L1187:         this->SetButtonNormalColor(mLinearColor);
 L1210:         this->StopAnimation(this->AvailableAnim);
-L1229:         <End of Inlined Event Graph Function>;
+L1229:         // <End Inlined EventGraph Function>;
 L1234:         this->mButton->SetVisibility(2);
 L1272:         this->mGlow->SetVisibility(2);
 L1310:         this->mNodeShadow->SetVisibility(2);
@@ -129,7 +129,7 @@ L1386:         this->mInProgressBackground->SetVisibility(2);
 L1424:         this->mResearchedButton->SetVisibility(0);
 L1462:         this->mContainer->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0));
 L1518:         this->StopAnimation(this->AvailableAnim);
-L1537:         <End of Inlined Event Graph Function>;
+L1537:         // <End Inlined EventGraph Function>;
 L1542:         this->mIcon->SetVisibility(2);
 L1580:         this->mGlow->SetVisibility(2);
 L1618:         this->mNodeShadow->SetVisibility(2);
@@ -138,7 +138,7 @@ L1694:         this->mNodeBorder->SetVisibility(0);
 L1732:         this->mContainer->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0));
 L1788:         this->SetButtonNormalColor(ScriptStruct /Script/CoreUObject.LinearColor(R = 0.05729199945926666, G = 0.05666299909353256, B = 0.05666299909353256, A = 1));
 L1836:         this->StopAnimation(this->AvailableAnim);
-L1855:         <End of Inlined Event Graph Function>;
+L1855:         // <End Inlined EventGraph Function>;
 L1860:         this->mInProgressBackground->SetVisibility(0);
 L1898:         this->mNodeShadow->SetVisibility(0);
 L1936:         this->mIcon->SetVisibility(0);
@@ -155,7 +155,7 @@ L2128:         this->mContainer->SetRenderTranslation(ScriptStruct /Script/CoreU
 
 ============ BEGIN FUNCTION OnMenuOpen ==============
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
-L24:           Widget_MAMTree_NodeInfo* mWidget_MAMTree_NodeInfo = WidgetBlueprintLibrary->Create(this, Widget_MAMTree_NodeInfo, mPlayerController);
+L24:           Widget_MAMTree_NodeInfo* mWidget_MAMTree_NodeInfo = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/MAMTree/Widget_MAMTree_NodeInfo.Widget_MAMTree_NodeInfo_C), mPlayerController);
 L85:           KismetSystemLibrary->SetClassPropertyByName(mWidget_MAMTree_NodeInfo, "mSchematic", this->mNodeData.Schematic_27_3663A42446FDB4387D0C81AFC23E225B);
 L157:          KismetSystemLibrary->SetBytePropertyByName(mWidget_MAMTree_NodeInfo, "mNodeState", this->mNodeState);
 L220:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_MAMTree_NodeInfo, "mIsNodeSelected", this->mIsSelected);
@@ -189,7 +189,7 @@ case true -> Temp_byte_Variable;
 default -> muint81;
 });
 L315:          if (!this->mIsSelected) goto L334;
-L329:          <End of Inlined Event Graph Function>;
+L329:          // <End Inlined EventGraph Function>;
 L334:          this->CloseMenu();
 ============ END FUNCTION SetIsSelected ==============
 
@@ -211,7 +211,7 @@ L474:          mSlateBrush1.Tiling = this->mIcon->Brush.Tiling;
 L541:          mSlateBrush1.Mirroring = this->mIcon->Brush.Mirroring;
 L608:          this->mIcon->SetBrush([ref] mSlateBrush1);
 L653:          this->mIcon->SetVisibility(3);
-L691:          <End of Inlined Event Graph Function>;
+L691:          // <End Inlined EventGraph Function>;
 L696:          this->mIcon->SetVisibility(2);
 ============ END FUNCTION UpdateNodeIcon ==============
 
@@ -220,8 +220,9 @@ L696:          this->mIcon->SetVisibility(2);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/MAMTree/Widget_MAMTree_Node.Widget_MAMTree_Node_C:ExecuteUbergraph_Widget_MAMTree_Node.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_MAMTree_Node(570);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_MAMTree_Node, from label L570;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -229,7 +230,9 @@ L18:           this->ExecuteUbergraph_Widget_MAMTree_Node(570);
 
 
 ============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(65);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MAMTree_Node, from label L65;
 ============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -237,7 +240,9 @@ L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(65);
 
 
 ============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(347);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MAMTree_Node, from label L347;
 ============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -245,7 +250,9 @@ L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(347);
 
 
 ============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(499);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MAMTree_Node, from label L499;
 ============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -253,8 +260,9 @@ L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(499);
 
 
 ============ BEGIN FUNCTION BndEvt__mHoverMenuAnchor_K2Node_ComponentBoundEvent_3_OnMenuOpenChangedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/MAMTree/Widget_MAMTree_Node.Widget_MAMTree_Node_C:ExecuteUbergraph_Widget_MAMTree_Node.K2Node_ComponentBoundEvent_bIsOpen) = bIsOpen;
-L18:           this->ExecuteUbergraph_Widget_MAMTree_Node(575);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__mHoverMenuAnchor_K2Node_ComponentBoundEvent_3_OnMenuOpenChangedEvent__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_MAMTree_Node, from label L575;
 ============ END FUNCTION BndEvt__mHoverMenuAnchor_K2Node_ComponentBoundEvent_3_OnMenuOpenChangedEvent__DelegateSignature ==============
 
 
@@ -262,7 +270,9 @@ L18:           this->ExecuteUbergraph_Widget_MAMTree_Node(575);
 
 
 ============ BEGIN FUNCTION CloseMenu ==============
-L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(640);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: CloseMenu;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MAMTree_Node, from label L640;
 ============ END FUNCTION CloseMenu ==============
 
 
@@ -270,7 +280,9 @@ L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(640);
 
 
 ============ BEGIN FUNCTION OnResearchButtonPressed ==============
-L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(1042);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnResearchButtonPressed;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MAMTree_Node, from label L1042;
 ============ END FUNCTION OnResearchButtonPressed ==============
 
 
@@ -278,7 +290,9 @@ L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(1042);
 
 
 ============ BEGIN FUNCTION BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(1047);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MAMTree_Node, from label L1047;
 ============ END FUNCTION BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -286,7 +300,9 @@ L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(1047);
 
 
 ============ BEGIN FUNCTION BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(1052);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MAMTree_Node, from label L1052;
 ============ END FUNCTION BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -294,7 +310,9 @@ L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(1052);
 
 
 ============ BEGIN FUNCTION BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_6_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_MAMTree_Node(1057);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_6_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_MAMTree_Node, from label L1057;
 ============ END FUNCTION BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_6_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -307,9 +325,10 @@ L15:           this->SetNodeState(4);
 L31:           goto ExecutionFlow.Pop();
 L32:           this->mHoverMenuAnchor->Close();
 L64:           goto ExecutionFlow.Pop();
-L65:           bool mbool = EqualEqual_ByteByte(this->mNodeState, 0);
-L96:           bool mbool1 = EqualEqual_ByteByte(this->mNodeState, 4);
-L127:          bool mbool2 = BooleanOR(mbool, mbool1);
+L65:           // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature>;
+L65:           bool mbool = this->mNodeState == 0;
+L96:           bool mbool1 = this->mNodeState == 4;
+L127:          bool mbool2 = mbool || mbool1;
 L165:          if (!mbool2) goto ExecutionFlow.Pop();
 L175:          this->OnClicked->ProcessMulticastDelegate(this->mNodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292);
 L212:          this->mHoverMenuAnchor->Open(false);
@@ -318,13 +337,15 @@ L286:          this->mInfoWidget->UpdateState();
 L322:          goto ExecutionFlow.Pop();
 L323:          this->UpdateNodeIcon(this->mNodeData);
 L346:          goto ExecutionFlow.Pop();
-L347:          bool mbool3 = Not_PreBool(this->mIsOtherSelected);
+L347:          // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature>;
+L347:          bool mbool3 = !this->mIsOtherSelected;
 L376:          if (!mbool3) goto L461;
 L390:          this->mHoverMenuAnchor->Open(false);
 L423:          this->OnHovered->ProcessMulticastDelegate(this->mNodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292);
 L460:          goto ExecutionFlow.Pop();
 L461:          this->OnHovered->ProcessMulticastDelegate(this->mNodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292);
 L498:          goto ExecutionFlow.Pop();
+L499:          // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature>;
 L499:          if (!this->mIsSelected) goto L551;
 L513:          this->OnUnhovered->ProcessMulticastDelegate(this->mNodeData.Coordinates_23_5A3DE6C040C7026EDEA49E9CE8612292);
 L550:          goto ExecutionFlow.Pop();
@@ -338,6 +359,7 @@ L601:          goto ExecutionFlow.Pop();
 L602:          this->OnResearchStarted->ProcessMulticastDelegate();
 L621:          this->CloseMenu();
 L635:          goto L15;
+L640:          // <Begin Inlined EventGraph Function CloseMenu>;
 L640:          bool mbool5 = KismetSystemLibrary->IsValid(this->mInfoWidget);
 L691:          if (!mbool5) goto ExecutionFlow.Pop();
 L701:          this->mInfoWidget->OnClicked->Clear();
@@ -345,9 +367,13 @@ L733:          UMGSequencePlayer* mUMGSequencePlayer = this->mInfoWidget->BPW_MA
 L867:          float mfloat = this->mInfoWidget->BPW_MAMTreeInfoBox->SpawnAnim->GetEndTime();
 L961:          KismetSystemLibrary->Delay(this, mfloat, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 32, UUID = -1878934772, ExecutionFunction = "ExecuteUbergraph_Widget_MAMTree_Node", CallbackTarget = this));
 L1041:         goto ExecutionFlow.Pop();
+L1042:         // <Begin Inlined EventGraph Function OnResearchButtonPressed>;
 L1042:         goto L602;
+L1047:         // <Begin Inlined EventGraph Function BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature>;
 L1047:         goto L65;
+L1052:         // <Begin Inlined EventGraph Function BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature>;
 L1052:         goto L347;
+L1057:         // <Begin Inlined EventGraph Function BndEvt__mResearchedButton_K2Node_ComponentBoundEvent_6_OnButtonHoverEvent__DelegateSignature>;
 L1057:         goto L499;
 ============ END FUNCTION ExecuteUbergraph_Widget_MAMTree_Node ==============
 

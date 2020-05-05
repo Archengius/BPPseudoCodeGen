@@ -1,0 +1,130 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Hog/Anim_Hog.Anim_Hog_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CalculateAnimGraphVariables ==============
+L0:            float mfloat = this->mAimYaw * -1;
+L42:           this->mAG_InvertedAimYaw = mfloat;
+L69:           bool mbool = this->mSpeed > 0;
+L103:          this->mAG_IdleToWalkTransition = mbool;
+L122:          bool mbool1 = this->mCachedMovementMode == 3;
+L153:          this->mAGIsFalling = mbool1;
+L172:          bool mbool2 = this->mSpeed < 10;
+L206:          this->mAG_WalkToIdleTransition = mbool2;
+L225:          bool mbool3 = this->mSpeed > 450;
+L259:          this->mAG_WalkToRunTransition = mbool3;
+L278:          bool mbool4 = this->mSpeed < 400;
+L312:          this->mAG_RunToWalkTransition = mbool4;
+L331:          bool mbool5 = this->mCachedMovementMode == this->mCachedDefaultWalkMode;
+L369:          this->mAG_IsWalking = mbool5;
+L388:          bool mbool6 = this->mSpeed > 0;
+L422:          bool mbool7 = this->mCachedMovementMode == this->mCachedDefaultWalkMode;
+L460:          bool mbool8 = mbool7 && mbool6;
+L498:          this->mAG_LandToWalkTransition = mbool8;
+L517:          BreakRotator(this->mRootRotation, [ref] mfloat1, [ref] mfloat2, [ref] mfloat3);
+L563:          float mfloat4 = ClampAngle(mfloat2, -5, 5);
+L610:          float mfloat5 = ClampAngle(mfloat1, -25, 25);
+L657:          Rotator mRotator = MakeRotator(mfloat5, mfloat4, 0);
+L708:          this->mAG_SurfaceRotationClamp = mRotator;
+L735:          float mfloat6 = this->mYawDelta * 2;
+L777:          float mfloat7 = ClampAngle(mfloat6, -40, 40);
+L824:          Rotator mRotator1 = MakeRotator(0, mfloat7, 0);
+L871:          this->mAG_RunLeanRotationPelvis = mRotator1;
+L898:          float mfloat8 = ClampAngle(this->mYawDelta, -30, 30);
+L945:          Rotator mRotator2 = MakeRotator(0, 0, mfloat8);
+L992:          this->mAG_RunLeanRotationSpine = mRotator2;
+L1019:         float mfloat9 = ClampAngle(this->mYawDelta, -40, 40);
+L1066:         Rotator mRotator3 = MakeRotator(0, 0, mfloat9);
+L1113:         this->mAG_WalkLeanRotationSpine = mRotator3;
+============ END FUNCTION CalculateAnimGraphVariables ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPointDamageTaken ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnPointDamageTaken;
+L18:           // Implementation: Function ExecuteUbergraph_Anim_Hog, from label L54;
+============ END FUNCTION OnPointDamageTaken ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnAnyDamageTaken ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnAnyDamageTaken;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_Hog, from label L461;
+============ END FUNCTION OnAnyDamageTaken ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRadialDamageTaken ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnRadialDamageTaken;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_Hog, from label L462;
+============ END FUNCTION OnRadialDamageTaken ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_Notify_Hog_LeftIdle ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_Notify_Hog_LeftIdle;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_Hog, from label L550;
+============ END FUNCTION AnimNotify_Notify_Hog_LeftIdle ==============
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintUpdateAnimation ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BlueprintUpdateAnimation;
+L18:           // Implementation: Function ExecuteUbergraph_Anim_Hog, from label L645;
+============ END FUNCTION BlueprintUpdateAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Anim_Hog ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->CalculateAnimGraphVariables();
+L29:           goto ExecutionFlow.Pop();
+L30:           this->mPointDmgTaken = false;
+L41:           goto ExecutionFlow.Pop();
+L42:           this->mRadialDmgTaken = false;
+L53:           goto ExecutionFlow.Pop();
+L54:           Vector mVector = mVector1 * -1;
+L96:           FGCharacterBase* mFGCharacterBase = this->GetCachedCharacter();
+L116:          Transform mTransform = mFGCharacterBase->GetTransform();
+L166:          Vector mVector2 = InverseTransformDirection([ref] mTransform, mVector);
+L212:          Vector mVector3 = Normal(mVector2, 0.00009999999747378752);
+L254:          BreakVector(mVector3, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L300:          float mfloat3 = DegAtan2(mfloat1, mfloat);
+L346:          this->mHitDirection = mfloat3;
+L373:          this->mPointDmgTaken = true;
+L384:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 30, UUID = 868414668, ExecutionFunction = "ExecuteUbergraph_Anim_Hog", CallbackTarget = this));
+L460:          goto ExecutionFlow.Pop();
+L461:          // <Begin Inlined EventGraph Function OnAnyDamageTaken>;
+L461:          goto ExecutionFlow.Pop();
+L462:          // <Begin Inlined EventGraph Function OnRadialDamageTaken>;
+L462:          this->mRadialDmgTaken = true;
+L473:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 42, UUID = -1882522656, ExecutionFunction = "ExecuteUbergraph_Anim_Hog", CallbackTarget = this));
+L549:          goto ExecutionFlow.Pop();
+L550:          // <Begin Inlined EventGraph Function AnimNotify_Notify_Hog_LeftIdle>;
+L550:          SkeletalMeshComponent* mSkeletalMeshComponent = this->GetOwningComponent();
+L570:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(ObjectConst(AkAudioEvent /Game/FactoryGame/Character/Creature/Enemy/Hog/Audio/Stop_E_Hog_Aggro_Warning.Stop_E_Hog_Aggro_Warning), mSkeletalMeshComponent, "fronttoe_r", true);
+L644:          goto ExecutionFlow.Pop();
+L645:          this->BlueprintUpdateAnimation(mfloat4);
+L664:          goto L15;
+============ END FUNCTION ExecuteUbergraph_Anim_Hog ==============

@@ -6,12 +6,23 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/BPW_AutosaveNotific
 
 
 
+============ BEGIN FUNCTION UnMinimizeNotification ==============
+L0:            if (!this->mIsMinimized) goto L71;
+L14:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->animeMinimizeNotification, 0, 1, 1, 1);
+L60:           this->mIsMinimized = false;
+============ END FUNCTION UnMinimizeNotification ==============
+
+
+
+
+
 ============ BEGIN FUNCTION SetupTimeUntilAutosave ==============
 L0:            this->mTimeUntilAutosave = Time;
-L27:           this->UpdateAutosaveTimerText();
-L41:           mFScriptDelegate->BindUFunction(this, UpdateAutosaveTimerText);
-L64:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 1, true);
-L129:          this->mAutosaveUpdateTimer = mTimerHandle;
+L27:           this->mMaxTimeUntilAutosave = this->mTimeUntilAutosave;
+L54:           this->UpdateAutosaveTimerText();
+L68:           mFScriptDelegate->BindUFunction(this, UpdateAutosaveTimerText);
+L91:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 1, true);
+L156:          this->mAutosaveUpdateTimer = mTimerHandle;
 ============ END FUNCTION SetupTimeUntilAutosave ==============
 
 
@@ -26,6 +37,7 @@ L123:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this-
 L169:          this->mAutosaveText->SetTitle("AUTOSAVE COMPLETE!");
 L225:          this->mMessageText->SetText("[object Object]");
 L315:          this->CloseNotificationDelayed(4);
+L334:          this->UnMinimizeNotification();
 ============ END FUNCTION OnAutosaveFinished ==============
 
 
@@ -33,14 +45,15 @@ L315:          this->CloseNotificationDelayed(4);
 
 
 ============ BEGIN FUNCTION OnAutosaveInProgress ==============
-L0:            bool mbool = Not_PreBool(this->mAutosaveFinished);
-L29:           if (!mbool) goto L353;
+L0:            bool mbool = !this->mAutosaveFinished;
+L29:           if (!mbool) goto L367;
 L43:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->animAutosaveInProgress, 0, 1, 0, 1);
 L89:           UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->animSpinnerSpin, 0, 0, 0, 1);
-L135:          this->StopAnimation(this->animWarningBlink);
-L154:          this->mWarning->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 30));
-L210:          this->mAutosaveText->SetTitle("AUTOSAVE IN PROGRESS...");
-L271:          this->mMessageText->SetText("[object Object]");
+L135:          this->UnMinimizeNotification();
+L149:          this->StopAnimation(this->animWarningBlink);
+L168:          this->mWarning->SetRenderTranslation(ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 30));
+L224:          this->mAutosaveText->SetTitle("AUTOSAVE IN PROGRESS...");
+L285:          this->mMessageText->SetText("[object Object]");
 ============ END FUNCTION OnAutosaveInProgress ==============
 
 
@@ -62,7 +75,9 @@ L263:          this->SetupTimeUntilAutosave(TimeUntilAutosave);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_BPW_AutosaveNotification(801);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_AutosaveNotification, from label L400;
 ============ END FUNCTION Construct ==============
 
 
@@ -70,7 +85,9 @@ L0:            this->ExecuteUbergraph_BPW_AutosaveNotification(801);
 
 
 ============ BEGIN FUNCTION UpdateAutosaveTimerText ==============
-L0:            this->ExecuteUbergraph_BPW_AutosaveNotification(105);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: UpdateAutosaveTimerText;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_AutosaveNotification, from label L401;
 ============ END FUNCTION UpdateAutosaveTimerText ==============
 
 
@@ -78,8 +95,9 @@ L0:            this->ExecuteUbergraph_BPW_AutosaveNotification(105);
 
 
 ============ BEGIN FUNCTION CloseNotificationDelayed ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/BPW_AutosaveNotification.BPW_AutosaveNotification_C:ExecuteUbergraph_BPW_AutosaveNotification.K2Node_CustomEvent_Delay) = Delay;
-L18:           this->ExecuteUbergraph_BPW_AutosaveNotification(802);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: CloseNotificationDelayed;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_AutosaveNotification, from label L1044;
 ============ END FUNCTION CloseNotificationDelayed ==============
 
 
@@ -88,31 +106,51 @@ L18:           this->ExecuteUbergraph_BPW_AutosaveNotification(802);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_BPW_AutosaveNotification ==============
 L5:            goto ComputedJump(EntryPoint);
-L15:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->animShowNotification, 0, 1, 1, 1);
-L61:           goto ExecutionFlow.Pop();
-L62:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mAutosaveUpdateTimer);
-L104:          goto ExecutionFlow.Pop();
-L105:          bool mbool = Not_PreBool(this->mAutosaveFinished);
-L134:          if (!mbool) goto L62;
-L148:          FText mFText = KismetTextLibrary->Conv_FloatToText(this->mTimeUntilAutosave, 0, false, true, 1, 324, 0, 3);
-L231:          mFormatArgumentData.ArgumentName = "time";
-L264:          mFormatArgumentData.ArgumentValueType = 4;
-L293:          mFormatArgumentData.ArgumentValue = mFText;
-L329:          mFormatArgumentData.ArgumentValueInt = 0;
-L361:          mFormatArgumentData.ArgumentValueFloat = 0;
-L393:          mFormatArgumentData.ArgumentValueGender = 0;
-L422:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L442:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
-L559:          this->mMessageText->SetText(mFText1);
-L604:          float mfloat = Subtract_FloatFloat(this->mTimeUntilAutosave, 1);
-L646:          float Temp_float_Variable = mfloat;
-L673:          this->mTimeUntilAutosave = Temp_float_Variable;
-L700:          bool mbool1 = Less_FloatFloat(this->mTimeUntilAutosave, 0);
-L734:          if (!mbool1) goto ExecutionFlow.Pop();
-L744:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mAutosaveUpdateTimer);
-L786:          this->OnAutosaveInProgress();
-L800:          goto ExecutionFlow.Pop();
-L801:          goto ExecutionFlow.Pop();
-L802:          KismetSystemLibrary->Delay(this, mfloat1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -511997260, ExecutionFunction = "ExecuteUbergraph_BPW_AutosaveNotification", CallbackTarget = this));
-L882:          goto ExecutionFlow.Pop();
+L15:           this->mIsMinimized = true;
+L26:           goto ExecutionFlow.Pop();
+L27:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->animShowNotification, 0, 1, 1, 1);
+L73:           goto ExecutionFlow.Pop();
+L74:           ExecutionFlow.Push(L188);
+L79:           float mfloat = this->mMaxTimeUntilAutosave - 3;
+L121:          bool mbool = Temp_float_Variable < mfloat;
+L159:          if (!mbool) goto L289;
+L173:          if (!Temp_bool_Variable) goto L327;
+L187:          goto ExecutionFlow.Pop();
+L188:          bool mbool1 = this->mTimeUntilAutosave < 0;
+L222:          if (!mbool1) goto ExecutionFlow.Pop();
+L232:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mAutosaveUpdateTimer);
+L274:          this->OnAutosaveInProgress();
+L288:          goto ExecutionFlow.Pop();
+L289:          bool Temp_bool_Variable = false;
+L300:          if (!Temp_bool_Variable1) goto L315;
+L314:          goto ExecutionFlow.Pop();
+L315:          bool Temp_bool_Variable1 = true;
+L326:          goto ExecutionFlow.Pop();
+L327:          Temp_bool_Variable = true;
+L338:          Temp_bool_Variable1 = false;
+L349:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->animeMinimizeNotification, 0, 1, 0, 0.5);
+L395:          goto L15;
+L400:          // <Begin Inlined EventGraph Function Construct>;
+L400:          goto ExecutionFlow.Pop();
+L401:          // <Begin Inlined EventGraph Function UpdateAutosaveTimerText>;
+L401:          bool mbool2 = !this->mAutosaveFinished;
+L430:          if (!mbool2) goto L1001;
+L444:          FText mFText = KismetTextLibrary->Conv_FloatToText(this->mTimeUntilAutosave, 0, false, true, 1, 324, 0, 3);
+L527:          mFormatArgumentData.ArgumentName = "time";
+L560:          mFormatArgumentData.ArgumentValueType = 4;
+L589:          mFormatArgumentData.ArgumentValue = mFText;
+L625:          mFormatArgumentData.ArgumentValueInt = 0;
+L657:          mFormatArgumentData.ArgumentValueFloat = 0;
+L689:          mFormatArgumentData.ArgumentValueGender = 0;
+L718:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L738:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
+L855:          this->mMessageText->SetText(mFText1);
+L900:          float mfloat1 = this->mTimeUntilAutosave - 1;
+L942:          float Temp_float_Variable = mfloat1;
+L969:          this->mTimeUntilAutosave = Temp_float_Variable;
+L996:          goto L74;
+L1001:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mAutosaveUpdateTimer);
+L1043:         goto ExecutionFlow.Pop();
+L1044:         KismetSystemLibrary->Delay(this, mfloat2, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 27, UUID = -511997260, ExecutionFunction = "ExecuteUbergraph_BPW_AutosaveNotification", CallbackTarget = this));
+L1124:         goto ExecutionFlow.Pop();
 ============ END FUNCTION ExecuteUbergraph_BPW_AutosaveNotification ==============

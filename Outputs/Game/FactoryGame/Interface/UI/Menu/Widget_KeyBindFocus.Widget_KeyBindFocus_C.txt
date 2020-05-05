@@ -22,10 +22,10 @@ L283:          EventReply ReturnValue = mEventReply;
 
 ============ BEGIN FUNCTION HandleInput ==============
 L0:            bool mbool = KismetInputLibrary->Key_IsGamepadKey([ref] keyPressed);
-L51:           bool mbool1 = Not_PreBool(mbool);
+L51:           bool mbool1 = !mbool;
 L80:           if (!mbool1) goto L414;
 L94:           bool mbool2 = KismetInputLibrary->EqualEqual_KeyKey(keyPressed, ScriptStruct /Script/InputCore.Key(KeyName = "Escape"));
-L172:          bool mbool3 = Not_PreBool(mbool2);
+L172:          bool mbool3 = !mbool2;
 L201:          if (!mbool3) goto L269;
 L215:          this->mKeyOwner->HandleInput(InputEvent, keyPressed);
 L269:          this->mKeyOwner->mButton->SetKeyboardFocus();
@@ -41,7 +41,7 @@ L387:          EventReply Handled = mEventReply;
 ============ BEGIN FUNCTION OnMouseWheel ==============
 L0:            InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromPointerEvent([ref] MouseEvent);
 L59:           float mfloat = KismetInputLibrary->PointerEvent_GetWheelDelta([ref] MouseEvent);
-L118:          bool mbool = Greater_FloatFloat(mfloat, 0);
+L118:          bool mbool = mfloat > 0;
 L152:          Key Temp_struct_Variable = ScriptStruct /Script/InputCore.Key(KeyName = "MouseScrollUp");
 L197:          bool Temp_bool_Variable = mbool;
 L216:          Key Temp_struct_Variable1 = ScriptStruct /Script/InputCore.Key(KeyName = "MouseScrollDown");
@@ -64,8 +64,8 @@ L59:           mFormatArgumentData.ArgumentValue = this->mKeyOwner->mKeyBindData
 L126:          mFormatArgumentData.ArgumentValueInt = 0;
 L158:          mFormatArgumentData.ArgumentValueFloat = 0;
 L190:          mFormatArgumentData.ArgumentValueGender = 0;
-L219:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L239:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L219:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L239:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L363:          FText ReturnValue = mFText;
 ============ END FUNCTION GetKeyRebindText ==============
 
@@ -76,7 +76,7 @@ L363:          FText ReturnValue = mFText;
 ============ BEGIN FUNCTION OnKeyDown ==============
 L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
 L59:           bool mbool = KismetInputLibrary->Key_IsModifierKey([ref] mKey);
-L110:          bool mbool1 = Not_PreBool(mbool);
+L110:          bool mbool1 = !mbool;
 L139:          if (!mbool1) goto L339;
 L153:          mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
 L212:          InputEvent mInputEvent = WidgetBlueprintLibrary->GetInputEventFromKeyEvent([ref] InKeyEvent);
@@ -100,7 +100,9 @@ L159:          EventReply ReturnValue = mEventReply;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_KeyBindFocus(25);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_KeyBindFocus, from label L25;
 ============ END FUNCTION Construct ==============
 
 
@@ -109,6 +111,7 @@ L0:            this->ExecuteUbergraph_Widget_KeyBindFocus(25);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_KeyBindFocus ==============
 L10:           this->SetKeyboardFocus();
-L20:           <End of Inlined Event Graph Function>;
+L20:           // <End Inlined EventGraph Function>;
+L25:           // <Begin Inlined EventGraph Function Construct>;
 L25:           goto L10;
 ============ END FUNCTION ExecuteUbergraph_Widget_KeyBindFocus ==============

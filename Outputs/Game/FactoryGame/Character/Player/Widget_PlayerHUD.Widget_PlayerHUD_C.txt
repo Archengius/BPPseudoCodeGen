@@ -10,7 +10,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/Widget_PlayerHUD.Widge
 L0:            uint8 Temp_byte_Variable = 0;
 L20:           uint8 Temp_byte_Variable1 = 2;
 L40:           float mfloat = this->GetNobeliskBarPercent();
-L72:           bool mbool = Greater_FloatFloat(mfloat, 0.10000000149011612);
+L72:           bool mbool = mfloat > 0.10000000149011612;
 L106:          bool Temp_bool_Variable = mbool;
 L125:          uint8 ReturnValue = switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -89,22 +89,22 @@ L346:          ReturnValue = 2;
 
 
 ============ BEGIN FUNCTION OnToggleInteractUI ==============
-L0:            TSubclassOf<Widget_BuildMenu> mTSubclassOf<Widget_BuildMenu> = ClassCast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C>(InteractWidgetClass);
-L36:           bool mbool = mTSubclassOf<Widget_BuildMenu>;
+L0:            TSubclassOf<Widget_BuildMenu> mTSubclassOfWidget_BuildMenu = ClassCast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu.Widget_BuildMenu_C>(InteractWidgetClass);
+L36:           bool mbool = mTSubclassOfWidget_BuildMenu;
 L65:           if (!mbool) goto L79;
 L79:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L103:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
 L139:          bool mbool1 = mFGPlayerController;
 L168:          if (!mbool1) goto L530;
-L182:          bool mbool2 = KismetSystemLibrary->IsValidClass(mTSubclassOf<Widget_BuildMenu>);
-L233:          bool mbool3 = Not_PreBool(mbool2);
-L262:          bool mbool4 = BooleanAND(IsOpen, mbool3);
+L182:          bool mbool2 = KismetSystemLibrary->IsValidClass(mTSubclassOfWidget_BuildMenu);
+L233:          bool mbool3 = !mbool2;
+L262:          bool mbool4 = IsOpen && mbool3;
 L300:          DisabledInputGate mDisabledInputGate = mFGPlayerController->GetDisabledInputGate();
-L350:          bool mbool5 = BooleanOR(IsOpen, mDisabledInputGate.mHotbar);
-L397:          bool mbool6 = BooleanOR(mbool5, mbool4);
+L350:          bool mbool5 = IsOpen || mDisabledInputGate.mHotbar;
+L397:          bool mbool6 = mbool5 || mbool4;
 L435:          if (!mbool6) goto L492;
 L449:          this->Widget_HotbarContainer->SetVisibility(2);
-L487:          <End of Inlined Event Graph Function>;
+L487:          // <End Inlined EventGraph Function>;
 L492:          this->Widget_HotbarContainer->SetVisibility(0);
 ============ END FUNCTION OnToggleInteractUI ==============
 
@@ -118,10 +118,10 @@ L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/Fact
 L60:           bool mbool = mFGPlayerController;
 L89:           if (!mbool) goto L295;
 L103:          DisabledInputGate mDisabledInputGate = mFGPlayerController->GetDisabledInputGate();
-L153:          bool mbool1 = BooleanOR(IsOpen, mDisabledInputGate.mHotbar);
+L153:          bool mbool1 = IsOpen || mDisabledInputGate.mHotbar;
 L200:          if (!mbool1) goto L257;
 L214:          this->Widget_HotbarContainer->SetVisibility(2);
-L252:          <End of Inlined Event Graph Function>;
+L252:          // <End Inlined EventGraph Function>;
 L257:          this->Widget_HotbarContainer->SetVisibility(0);
 ============ END FUNCTION OnToggleInventory ==============
 
@@ -132,7 +132,7 @@ L257:          this->Widget_HotbarContainer->SetVisibility(0);
 ============ BEGIN FUNCTION SetImageVisibility ==============
 L0:            if (!Value) goto L57;
 L14:           Image->SetVisibility(0);
-L52:           <End of Inlined Event Graph Function>;
+L52:           // <End Inlined EventGraph Function>;
 L57:           Image->SetVisibility(2);
 ============ END FUNCTION SetImageVisibility ==============
 
@@ -149,28 +149,28 @@ L20:           ExecutionFlow.Push(L412);
 L25:           ExecutionFlow.Push(L319);
 L30:           ExecutionFlow.Push(L226);
 L35:           ExecutionFlow.Push(L133);
-L40:           bool mbool = Not_PreBool(NewValue.mBuildGun);
+L40:           bool mbool = !NewValue.mBuildGun;
 L78:           this->SetImageVisibility(mbool, this->Widget_KeyShortcuts->mBuildGun);
 L132:          goto ExecutionFlow.Pop();
-L133:          bool mbool1 = Not_PreBool(NewValue.mDismantle);
+L133:          bool mbool1 = !NewValue.mDismantle;
 L171:          this->SetImageVisibility(mbool1, this->Widget_KeyShortcuts->mDismantle);
 L225:          goto ExecutionFlow.Pop();
-L226:          bool mbool2 = Not_PreBool(NewValue.mFlashLight);
+L226:          bool mbool2 = !NewValue.mFlashLight;
 L264:          this->SetImageVisibility(mbool2, this->Widget_KeyShortcuts->mFlashLight);
 L318:          goto ExecutionFlow.Pop();
-L319:          bool mbool3 = Not_PreBool(NewValue.mResourceScanner);
+L319:          bool mbool3 = !NewValue.mResourceScanner;
 L357:          this->SetImageVisibility(mbool3, this->Widget_KeyShortcuts->mResourceScanner);
 L411:          goto ExecutionFlow.Pop();
-L412:          bool mbool4 = Not_PreBool(NewValue.mOpenCodex);
+L412:          bool mbool4 = !NewValue.mOpenCodex;
 L450:          this->SetImageVisibility(mbool4, this->Widget_KeyShortcuts->mCodex);
 L504:          goto ExecutionFlow.Pop();
-L505:          bool mbool5 = Not_PreBool(NewValue.mInventory);
+L505:          bool mbool5 = !NewValue.mInventory;
 L543:          this->SetImageVisibility(mbool5, this->Widget_KeyShortcuts->mInventory);
 L597:          goto ExecutionFlow.Pop();
-L598:          bool mbool6 = Not_PreBool(NewValue.mToggleMap);
+L598:          bool mbool6 = !NewValue.mToggleMap;
 L636:          this->SetImageVisibility(mbool6, this->Widget_KeyShortcuts->mMinimap);
 L690:          goto ExecutionFlow.Pop();
-L691:          bool mbool7 = Not_PreBool(NewValue.mHotbar);
+L691:          bool mbool7 = !NewValue.mHotbar;
 L729:          if (!mbool7) goto L782;
 L743:          this->Widget_HotbarContainer->SetVisibility(0);
 L781:          goto ExecutionFlow.Pop();
@@ -296,7 +296,9 @@ L678:          ReturnValue = 0;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_PlayerHUD(957);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayerHUD, from label L957;
 ============ END FUNCTION Construct ==============
 
 
@@ -304,7 +306,9 @@ L0:            this->ExecuteUbergraph_Widget_PlayerHUD(957);
 
 
 ============ BEGIN FUNCTION PlayRadiationAnimation ==============
-L0:            this->ExecuteUbergraph_Widget_PlayerHUD(30);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: PlayRadiationAnimation;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayerHUD, from label L30;
 ============ END FUNCTION PlayRadiationAnimation ==============
 
 
@@ -312,7 +316,9 @@ L0:            this->ExecuteUbergraph_Widget_PlayerHUD(30);
 
 
 ============ BEGIN FUNCTION StopRadiationAnimation ==============
-L0:            this->ExecuteUbergraph_Widget_PlayerHUD(91);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StopRadiationAnimation;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayerHUD, from label L91;
 ============ END FUNCTION StopRadiationAnimation ==============
 
 
@@ -320,7 +326,9 @@ L0:            this->ExecuteUbergraph_Widget_PlayerHUD(91);
 
 
 ============ BEGIN FUNCTION EventUpdateQuickslotBackgroundOpacity ==============
-L0:            this->ExecuteUbergraph_Widget_PlayerHUD(1099);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: EventUpdateQuickslotBackgroundOpacity;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayerHUD, from label L1099;
 ============ END FUNCTION EventUpdateQuickslotBackgroundOpacity ==============
 
 
@@ -328,7 +336,9 @@ L0:            this->ExecuteUbergraph_Widget_PlayerHUD(1099);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_PlayerHUD(1254);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayerHUD, from label L1254;
 ============ END FUNCTION Destruct ==============
 
 
@@ -339,8 +349,10 @@ L0:            this->ExecuteUbergraph_Widget_PlayerHUD(1254);
 L5:            goto ComputedJump(EntryPoint);
 L15:           this->EventUpdateQuickslotBackgroundOpacity();
 L29:           goto ExecutionFlow.Pop();
+L30:           // <Begin Inlined EventGraph Function PlayRadiationAnimation>;
 L30:           this->Widget_PlayerHealthBar->mRadiationDamageBox->SetVisibility(0);
 L90:           goto ExecutionFlow.Pop();
+L91:           // <Begin Inlined EventGraph Function StopRadiationAnimation>;
 L91:           this->Widget_PlayerHealthBar->mRadiationDamageBox->SetVisibility(1);
 L151:          goto ExecutionFlow.Pop();
 L152:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->PulseText, 0, 0, 0, 1);
@@ -352,7 +364,7 @@ L297:          mFScriptDelegate->BindUFunction(this, OnDisabledInputGateChanged)
 L320:          mFGPlayerController->mDisabledInputGateChanged.AddUnique(mFScriptDelegate);
 L361:          goto ExecutionFlow.Pop();
 L362:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L386:          Widget_DefaultCursor* mWidget_DefaultCursor = WidgetBlueprintLibrary->Create(this, Widget_DefaultCursor, mPlayerController1);
+L386:          Widget_DefaultCursor* mWidget_DefaultCursor = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Cursor/Widget_DefaultCursor.Widget_DefaultCursor_C), mPlayerController1);
 L447:          mPlayerController1 = this->GetOwningPlayer();
 L471:          mPlayerController1->SetMouseCursorWidget(1, mWidget_DefaultCursor);
 L514:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
@@ -371,16 +383,19 @@ L858:          bool mbool3 = KismetSystemLibrary->IsValid(mFGHUD);
 L909:          if (!mbool3) goto ExecutionFlow.Pop();
 L919:          mFGHUD->SetShowCrossHair(true);
 L952:          goto L152;
+L957:          // <Begin Inlined EventGraph Function Construct>;
 L957:          ExecutionFlow.Push(L967);
 L962:          goto L362;
 L967:          FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
 L1009:         mFScriptDelegate3->BindUFunction(this, EventUpdateQuickslotBackgroundOpacity);
 L1032:         mFGGameUserSettings->SubscribeToDynamicOptionUpdate("FG.CompassBGOpacity", [ref] mFScriptDelegate3);
 L1094:         goto L15;
+L1099:         // <Begin Inlined EventGraph Function EventUpdateQuickslotBackgroundOpacity>;
 L1099:         FGGameUserSettings* mFGGameUserSettings1 = FGGameUserSettings->GetFGGameUserSettings();
 L1141:         float mfloat = mFGGameUserSettings1->GetFloatOptionValue("FG.CompassBGOpacity");
 L1212:         this->mVisorBackground->SetRenderOpacity(mfloat);
 L1253:         goto ExecutionFlow.Pop();
+L1254:         // <Begin Inlined EventGraph Function Destruct>;
 L1254:         FGGameUserSettings* mFGGameUserSettings2 = FGGameUserSettings->GetFGGameUserSettings();
 L1296:         mFGGameUserSettings2->UnsubscribeToAllDynamicOptionUpdate(this);
 L1329:         goto ExecutionFlow.Pop();

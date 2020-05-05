@@ -13,16 +13,16 @@ L74:           Vector mVector1 = GetForwardVector(mRotator);
 L111:          BreakVector(mVector1, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
 L157:          Vector mVector2 = MakeVector(mfloat, mfloat1, 0);
 L208:          Vector mVector3 = Normal(mVector2, 0.00009999999747378752);
-L250:          Vector mVector4 = Multiply_VectorFloat(mVector3, 150);
-L292:          Vector mVector5 = Add_VectorVector(mVector, mVector4);
-L338:          Vector mVector6 = Subtract_VectorVector(mVector5, Vector(0, 0, 1000));
+L250:          Vector mVector4 = mVector3 * 150;
+L292:          Vector mVector5 = mVector + mVector4;
+L338:          Vector mVector6 = mVector5 - Vector(0, 0, 1000);
 L388:          bool mbool = KismetSystemLibrary->LineTraceSingle(this, mVector5, mVector6, 0, false, [ref] Temp_object_Variable, 0, [ref] mHitResult, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 1, B = 0, A = 1), 5);
 L546:          GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool1, [ref] mbool2, [ref] mfloat3, [ref] mfloat4, [ref] mVector7, [ref] mVector8, [ref] mVector9, [ref] mVector10, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint32, [ref] mint321, [ref] mVector11, [ref] mVector12);
 L731:          if (!mbool1) goto L1476;
 L745:          Pawn* mPawn = this->GetInstigator();
 L765:          GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool1, [ref] mbool2, [ref] mfloat3, [ref] mfloat4, [ref] mVector7, [ref] mVector8, [ref] mVector9, [ref] mVector10, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint32, [ref] mint321, [ref] mVector11, [ref] mVector12);
 L950:          Transform mTransform = MakeTransform(mVector7, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1));
-L1013:         Actor* mActor1 = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_Beacon, [ref] mTransform, 0, mPawn);
+L1013:         Actor* mActor1 = GameplayStatics->BeginDeferredActorSpawnFromClass(this, ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Equipment/Beacon/BP_Beacon.BP_Beacon_C), [ref] mTransform, 0, mPawn);
 L1085:         mPawn = this->GetInstigator();
 L1105:         KismetSystemLibrary->SetObjectPropertyByName(mActor1, "Instigator", mPawn);
 L1168:         GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool1, [ref] mbool2, [ref] mfloat3, [ref] mfloat4, [ref] mVector7, [ref] mVector8, [ref] mVector9, [ref] mVector10, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint32, [ref] mint321, [ref] mVector11, [ref] mVector12);
@@ -35,7 +35,9 @@ L1416:         BP_Beacon* mBP_Beacon = GameplayStatics->FinishSpawningActor(mAct
 
 
 ============ BEGIN FUNCTION WasEquipped ==============
-L0:            this->ExecuteUbergraph_Equip_Beacon(181);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_Beacon, from label L181;
 ============ END FUNCTION WasEquipped ==============
 
 
@@ -43,7 +45,9 @@ L0:            this->ExecuteUbergraph_Equip_Beacon(181);
 
 
 ============ BEGIN FUNCTION WasUnEquipped ==============
-L0:            this->ExecuteUbergraph_Equip_Beacon(1433);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasUnEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_Beacon, from label L1433;
 ============ END FUNCTION WasUnEquipped ==============
 
 
@@ -51,8 +55,9 @@ L0:            this->ExecuteUbergraph_Equip_Beacon(1433);
 
 
 ============ BEGIN FUNCTION PlayConsumeEffects ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/Beacon/Equip_Beacon.Equip_Beacon_C:ExecuteUbergraph_Equip_Beacon.K2Node_Event_consumable) = consumable;
-L18:           this->ExecuteUbergraph_Equip_Beacon(1900);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PlayConsumeEffects;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_Beacon, from label L1900;
 ============ END FUNCTION PlayConsumeEffects ==============
 
 
@@ -63,9 +68,10 @@ L18:           this->ExecuteUbergraph_Equip_Beacon(1900);
 L5:            goto ComputedJump(EntryPoint);
 L15:           this->OnPrimaryFire();
 L25:           Vector mVector = this->K2_GetActorLocation();
-L53:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAtLocation(this, Play_EQ_Beacon_Plant, mVector, Rotator::FromPitchYawRoll(0, 0, 0));
-L127:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_EQ_Beacon_Stinger, this, true);
+L53:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAtLocation(this, ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/Beacon/Audio/Play_EQ_Beacon_Plant.Play_EQ_Beacon_Plant), mVector, Rotator::FromPitchYawRoll(0, 0, 0));
+L127:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/Beacon/Audio/Stop_EQ_Beacon_Stinger.Stop_EQ_Beacon_Stinger), this, true);
 L180:          goto ExecutionFlow.Pop();
+L181:          // <Begin Inlined EventGraph Function WasEquipped>;
 L181:          this->WasEquipped();
 L191:          FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
 L211:          bool mbool = FGBlueprintFunctionLibrary->IsLocallyHumanControlled(mFGCharacterPlayer);
@@ -76,7 +82,7 @@ L306:          ExecutionFlow.Push(L980);
 L311:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
 L331:          SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer1->GetMesh1P();
 L373:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
-L415:          bool mbool2 = mAnimInstance->Montage_IsPlaying(BeaconStinger_02_Montage);
+L415:          bool mbool2 = mAnimInstance->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/BeaconStinger_02_Montage.BeaconStinger_02_Montage));
 L466:          if (!mbool2) goto L1203;
 L480:          goto ExecutionFlow.Pop();
 L481:          AnimInstance* mAnimInstance1 = this->Bacon_skl->GetAnimInstance();
@@ -86,28 +92,29 @@ L579:          goto ExecutionFlow.Pop();
 L580:          FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
 L600:          SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
 L642:          AnimInstance* mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
-L684:          bool mbool4 = mAnimInstance2->Montage_IsPlaying(OneHandEquipmentEquip_01_Montage);
+L684:          bool mbool4 = mAnimInstance2->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/OneHandEquipmentEquip_01_Montage.OneHandEquipmentEquip_01_Montage));
 L735:          if (!mbool4) goto L750;
 L749:          goto ExecutionFlow.Pop();
 L750:          mFGCharacterPlayer2 = this->GetInstigatorCharacter();
 L770:          mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
 L812:          mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
-L854:          float mfloat = mAnimInstance2->Montage_Play(OneHandEquipmentEquip_01_Montage, 1, 0, 0, true);
-L926:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_EQ_Beacon_Equip, this, true);
+L854:          float mfloat = mAnimInstance2->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/OneHandEquipmentEquip_01_Montage.OneHandEquipmentEquip_01_Montage), 1, 0, 0, true);
+L926:          AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/Beacon/Audio/Play_EQ_Beacon_Equip.Play_EQ_Beacon_Equip), this, true);
 L979:          goto ExecutionFlow.Pop();
 L980:          AnimInstance* mAnimInstance3 = this->Bacon_skl->GetAnimInstance();
-L1022:         bool mbool5 = mAnimInstance3->Montage_IsPlaying(BeaconStinger_02_Montage);
+L1022:         bool mbool5 = mAnimInstance3->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Equipment/Beacon/Animation/BeaconStinger_02_Montage.BeaconStinger_02_Montage));
 L1073:         if (!mbool5) goto L1088;
 L1087:         goto ExecutionFlow.Pop();
 L1088:         mAnimInstance3 = this->Bacon_skl->GetAnimInstance();
-L1130:         float mfloat1 = mAnimInstance3->Montage_Play(BeaconStinger_02_Montage, 1, 0, 0, true);
+L1130:         float mfloat1 = mAnimInstance3->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Equipment/Beacon/Animation/BeaconStinger_02_Montage.BeaconStinger_02_Montage), 1, 0, 0, true);
 L1202:         goto ExecutionFlow.Pop();
 L1203:         mFGCharacterPlayer1 = this->GetInstigatorCharacter();
 L1223:         mSkeletalMeshComponent = mFGCharacterPlayer1->GetMesh1P();
 L1265:         mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
-L1307:         float mfloat2 = mAnimInstance->Montage_Play(BeaconStinger_02_Montage, 1, 0, 0, true);
-L1379:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_EQ_Beacon_Stinger, this, true);
+L1307:         float mfloat2 = mAnimInstance->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/BeaconStinger_02_Montage.BeaconStinger_02_Montage), 1, 0, 0, true);
+L1379:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/Beacon/Audio/Play_EQ_Beacon_Stinger.Play_EQ_Beacon_Stinger), this, true);
 L1432:         goto ExecutionFlow.Pop();
+L1433:         // <Begin Inlined EventGraph Function WasUnEquipped>;
 L1433:         this->WasUnEquipped();
 L1443:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetInstigatorCharacter();
 L1463:         bool mbool6 = FGBlueprintFunctionLibrary->IsLocallyHumanControlled(mFGCharacterPlayer3);
@@ -120,7 +127,7 @@ L1670:         mAnimInstance4->Montage_Stop(0, mAnimMontage);
 L1716:         AnimInstance* mAnimInstance5 = this->Bacon_skl->GetAnimInstance();
 L1758:         AnimMontage* mAnimMontage1 = mAnimInstance5->GetCurrentActiveMontage();
 L1800:         mAnimInstance5->Montage_Stop(0, mAnimMontage1);
-L1846:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Stop_EQ_Beacon_Stinger, this, true);
+L1846:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/Beacon/Audio/Stop_EQ_Beacon_Stinger.Stop_EQ_Beacon_Stinger), this, true);
 L1899:         goto ExecutionFlow.Pop();
 L1900:         this->PlayConsumeEffects(mFGConsumableDescriptor);
 L1919:         goto L15;

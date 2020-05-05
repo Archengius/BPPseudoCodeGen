@@ -7,7 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Player/BP_AttentionPingActor.
 
 
 ============ BEGIN FUNCTION SpawnAttentionPingEffects ==============
-L0:            this->ExecuteUbergraph_BP_AttentionPingActor(669);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: SpawnAttentionPingEffects;
+L0:            // Implementation: Function ExecuteUbergraph_BP_AttentionPingActor, from label L669;
 ============ END FUNCTION SpawnAttentionPingEffects ==============
 
 
@@ -17,20 +19,21 @@ L0:            this->ExecuteUbergraph_BP_AttentionPingActor(669);
 ============ BEGIN FUNCTION ExecuteUbergraph_BP_AttentionPingActor ==============
 L10:           Vector mVector = this->K2_GetActorLocation();
 L38:           Rotator mRotator = this->K2_GetActorRotation();
-L66:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAtLocation(this, Play_EQ_Resource_Ping_Hit, mVector, mRotator);
+L66:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAtLocation(this, ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/ResourceScanner/Audio/Play_EQ_Resource_Ping_Hit.Play_EQ_Resource_Ping_Hit), mVector, mRotator);
 L136:          mVector = this->K2_GetActorLocation();
 L164:          FGActorRepresentationManager* mFGActorRepresentationManager = FGActorRepresentationManager->Get(this);
 L207:          FGPlayerState* mFGPlayerState = this->GetOwningPlayerState();
 L227:          LinearColor mLinearColor = mFGPlayerState->GetNametagColor();
-L277:          bool mbool = mFGActorRepresentationManager->CreateAndAddNewRepresentationNoActor(mVector, MapCompass_Icon_ping, mLinearColor, 4.800000190734863, true, true, 4, true);
-L356:          <End of Inlined Event Graph Function>;
+L277:          bool mbool = mFGActorRepresentationManager->CreateAndAddNewRepresentationNoActor(mVector, ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/Map/MapCompass_Icon_ping.MapCompass_Icon_ping), mLinearColor, 4.800000190734863, true, true, 4, true);
+L356:          // <End Inlined EventGraph Function>;
 L361:          mVector = this->K2_GetActorLocation();
 L389:          mRotator = this->K2_GetActorRotation();
-L417:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, P_PingAttention_01, mVector, mRotator, Vector(1, 1, 1), true, 0);
+L417:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, ObjectConst(ParticleSystem /Game/FactoryGame/VFX/Misc/Ping/P_PingAttention_01.P_PingAttention_01), mVector, mRotator, Vector(1, 1, 1), true, 0);
 L503:          FGPlayerState* mFGPlayerState1 = this->GetOwningPlayerState();
 L523:          LinearColor mLinearColor1 = mFGPlayerState1->GetPingColor();
 L573:          Vector mVector1 = Conv_LinearColorToVector(mLinearColor1);
 L610:          mParticleSystemComponent->SetVectorParameter("Color", mVector1);
 L664:          goto L10;
+L669:          // <Begin Inlined EventGraph Function SpawnAttentionPingEffects>;
 L669:          goto L361;
 ============ END FUNCTION ExecuteUbergraph_BP_AttentionPingActor ==============

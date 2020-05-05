@@ -17,22 +17,22 @@ L0:            this->UpdateTransferStatus();
 ============ BEGIN FUNCTION UpdateTransferStatus ==============
 L0:            ExecutionFlow.Push(L1026);
 L5:            ExecutionFlow.Push(L355);
-L10:           TArray<InventoryStack> mTArray<InventoryStack> = [];
-L21:           this->VehicleInventory->GetInventoryStacks([ref] mTArray<InventoryStack>);
-L62:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<InventoryStack>);
+L10:           TArray<InventoryStack> mTArrayInventoryStack = [];
+L21:           this->VehicleInventory->GetInventoryStacks([ref] mTArrayInventoryStack);
+L62:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayInventoryStack);
 L121:          float mfloat = Conv_IntToFloat(mint32);
 L158:          int32 mint321 = this->VehicleInventory->GetSizeLinear();
 L208:          float mfloat1 = Conv_IntToFloat(mint321);
-L245:          float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L245:          float mfloat2 = mfloat / mfloat1;
 L291:          this->mProgressBarLoadingUnloading->mProgressBar->SetPercent(mfloat2);
 L354:          goto ExecutionFlow.Pop();
 L355:          bool mbool = this->mTruckStationLoadingStatus->IsVisible();
-L397:          bool mbool1 = BooleanOR(this->BPVehicle->mIsUnloadingVehicle, this->BPVehicle->mIsLoadingVehicle);
-L479:          bool mbool2 = NotEqual_BoolBool(mbool, mbool1);
+L397:          bool mbool1 = this->BPVehicle->mIsUnloadingVehicle || this->BPVehicle->mIsLoadingVehicle;
+L479:          bool mbool2 = mbool != mbool1;
 L517:          if (!mbool2) goto ExecutionFlow.Pop();
 L527:          uint8 Temp_byte_Variable = 0;
 L547:          uint8 Temp_byte_Variable1 = 2;
-L567:          mbool1 = BooleanOR(this->BPVehicle->mIsUnloadingVehicle, this->BPVehicle->mIsLoadingVehicle);
+L567:          mbool1 = this->BPVehicle->mIsUnloadingVehicle || this->BPVehicle->mIsLoadingVehicle;
 L649:          bool Temp_bool_Variable = mbool1;
 L668:          this->mTruckStationLoadingStatus->SetVisibility(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -78,7 +78,7 @@ L85:           if (!mbool) goto L314;
 L99:           FGHealthComponent* mFGHealthComponent = mBP_WheeledVehicle->GetHealthComponent();
 L141:          float mfloat = mFGHealthComponent->GetCurrentHealth();
 L191:          float mfloat1 = mFGHealthComponent->GetMaxHealth();
-L241:          float mfloat2 = Divide_FloatFloat(mfloat, mfloat1);
+L241:          float mfloat2 = mfloat / mfloat1;
 L287:          float ReturnValue = mfloat2;
 ============ END FUNCTION GetVehicleHealthPercent ==============
 
@@ -93,7 +93,7 @@ L56:           bool mbool = mBP_WheeledVehicle;
 L85:           if (!mbool) goto L285;
 L99:           uint8 Temp_byte_Variable = 0;
 L119:          uint8 Temp_byte_Variable1 = 2;
-L139:          bool mbool1 = Greater_IntInt(mBP_WheeledVehicle->mSpeedInKMH, 0);
+L139:          bool mbool1 = mBP_WheeledVehicle->mSpeedInKMH > 0;
 L195:          bool Temp_bool_Variable = mbool1;
 L214:          uint8 ReturnValue = switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -113,7 +113,7 @@ L56:           bool mbool = mBP_WheeledVehicle;
 L85:           if (!mbool) goto L798;
 L99:           WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = mBP_WheeledVehicle->GetVehicleMovementComponent();
 L141:          int32 mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
-L191:          bool mbool1 = Greater_IntInt(mint32, 0);
+L191:          bool mbool1 = mint32 > 0;
 L225:          if (!mbool1) goto L434;
 L239:          mWheeledVehicleMovementComponent = mBP_WheeledVehicle->GetVehicleMovementComponent();
 L281:          mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
@@ -122,13 +122,13 @@ L402:          FText ReturnValue = mFText;
 L429:          goto L798;
 L434:          mWheeledVehicleMovementComponent = mBP_WheeledVehicle->GetVehicleMovementComponent();
 L476:          mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
-L526:          bool mbool2 = LessEqual_IntInt(mint32, -1);
+L526:          bool mbool2 = mint32 <= -1;
 L560:          if (!mbool2) goto L638;
 L574:          ReturnValue = "[object Object]";
 L633:          goto L798;
 L638:          mWheeledVehicleMovementComponent = mBP_WheeledVehicle->GetVehicleMovementComponent();
 L680:          mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
-L730:          bool mbool3 = EqualEqual_IntInt(mint32, 0);
+L730:          bool mbool3 = mint32 == 0;
 L764:          if (!mbool3) goto L798;
 L778:          ReturnValue = ;
 ============ END FUNCTION GetCurrentGearText ==============
@@ -209,7 +209,9 @@ L248:          this->StopAnimation(this->StopAnim);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_Vehicle(1382);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Vehicle, from label L1382;
 ============ END FUNCTION Construct ==============
 
 
@@ -217,9 +219,9 @@ L0:            this->ExecuteUbergraph_Widget_Vehicle(1382);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/UI/Widget_Vehicle.Widget_Vehicle_C:ExecuteUbergraph_Widget_Vehicle.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/-Shared/UI/Widget_Vehicle.Widget_Vehicle_C:ExecuteUbergraph_Widget_Vehicle.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_Vehicle(809);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Vehicle, from label L809;
 ============ END FUNCTION Tick ==============
 
 
@@ -227,7 +229,9 @@ L36:           this->ExecuteUbergraph_Widget_Vehicle(809);
 
 
 ============ BEGIN FUNCTION AutoPilotCheck ==============
-L0:            this->ExecuteUbergraph_Widget_Vehicle(1172);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AutoPilotCheck;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Vehicle, from label L1172;
 ============ END FUNCTION AutoPilotCheck ==============
 
 
@@ -268,12 +272,13 @@ L809:          bool mbool1 = KismetSystemLibrary->IsValid(this->BPVehicle);
 L860:          if (!mbool1) goto ExecutionFlow.Pop();
 L870:          float mfloat = this->BPVehicle->GetForwardSpeed();
 L920:          float mfloat1 = Abs(mfloat);
-L957:          float mfloat2 = Divide_FloatFloat(mfloat1, 28);
-L999:          float mfloat3 = Multiply_FloatFloat(mfloat2, 0.6000000238418579);
-L1041:         float mfloat4 = Subtract_FloatFloat(mfloat3, 45);
+L957:          float mfloat2 = mfloat1 / 28;
+L999:          float mfloat3 = mfloat2 * 0.6000000238418579;
+L1041:         float mfloat4 = mfloat3 - 45;
 L1083:         float mfloat5 = FClamp(mfloat4, -45, 45);
 L1130:         this->PointerContainer->SetRenderAngle(mfloat5);
 L1171:         goto ExecutionFlow.Pop();
+L1172:         // <Begin Inlined EventGraph Function AutoPilotCheck>;
 L1172:         if (!this->BPVehicle->mIsAutoPilotEnabled) goto L1288;
 L1208:         this->AutoPilotText->SetText("[object Object]");
 L1287:         goto ExecutionFlow.Pop();
@@ -281,5 +286,6 @@ L1288:         this->AutoPilotText->SetText("[object Object]");
 L1366:         goto ExecutionFlow.Pop();
 L1367:         this->Construct();
 L1377:         goto L228;
+L1382:         // <Begin Inlined EventGraph Function Construct>;
 L1382:         goto L1367;
 ============ END FUNCTION ExecuteUbergraph_Widget_Vehicle ==============

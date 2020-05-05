@@ -11,7 +11,7 @@ L0:            EventReply mEventReply = this->OnKeyDown(MyGeometry, InKeyEvent);
 L46:           Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
 L105:          bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "LeftControl"));
 L183:          if (!mbool) goto L271;
-L197:          bool mbool1 = Not_PreBool(this->mDidPressModifier);
+L197:          bool mbool1 = !this->mDidPressModifier;
 L226:          if (!mbool1) goto L271;
 L240:          this->mDidPressModifier = true;
 L251:          this->ModifierPressed->ProcessMulticastDelegate(this);
@@ -26,7 +26,7 @@ L271:          EventReply ReturnValue = mEventReply;
 L0:            EventReply mEventReply = this->OnKeyUp(MyGeometry, InKeyEvent);
 L46:           Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
 L105:          bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "LeftControl"));
-L183:          bool mbool1 = BooleanAND(mbool, this->mDidPressModifier);
+L183:          bool mbool1 = mbool && this->mDidPressModifier;
 L221:          if (!mbool1) goto L266;
 L235:          this->mDidPressModifier = false;
 L246:          this->ModifierReleased->ProcessMulticastDelegate(this);
@@ -45,10 +45,10 @@ L110:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L134:          BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
 L170:          bool mbool1 = mBP_PlayerController;
 L199:          if (!mbool1) goto L398;
-L213:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L213:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L264:          mBP_RemoteCallObject->Server_MoveItemIfSpace(InventorySlot->mCachedInventoryComponent, InventorySlot->mSlotIdx, inventoryComponent);
 L371:          bool Result = true;
-L382:          <End of Inlined Event Graph Function>;
+L382:          // <End Inlined EventGraph Function>;
 L387:          Result = false;
 ============ END FUNCTION DropInventoryStackOnInventoryComponent ==============
 
@@ -70,7 +70,7 @@ L0:            ExecutionFlow.Push(L432);
 L5:            int32 Temp_int_Loop_Counter_Variable = 0;
 L28:           int32 Temp_int_Array_Index_Variable = 0;
 L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] inventoryComponent->mInventorySlots);
-L132:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L132:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L170:          if (!mbool) goto ExecutionFlow.Pop();
 L180:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L207:          ExecutionFlow.Push(L358);
@@ -78,7 +78,7 @@ L212:          KismetArrayLibrary->Array_Get([ref] inventoryComponent->mInventor
 L293:          mFScriptDelegate->BindUFunction(this, OnInventorySlotStackMove);
 L316:          mWidget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate);
 L357:          goto ExecutionFlow.Pop();
-L358:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L358:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L400:          Temp_int_Loop_Counter_Variable = mint321;
 L427:          goto L51;
 ============ END FUNCTION InitInventoryWidgetCallbacks ==============
@@ -104,8 +104,8 @@ L178:          mFormatArgumentData.ArgumentValue = mFText;
 L214:          mFormatArgumentData.ArgumentValueInt = 0;
 L246:          mFormatArgumentData.ArgumentValueFloat = 0;
 L278:          mFormatArgumentData.ArgumentValueGender = 0;
-L307:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L327:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L307:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L327:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L482:          FString mFString1 = KismetTextLibrary->Conv_TextToString([ref] mFText1);
 L541:          KismetSystemLibrary->PrintString(this, mFString1, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 5);
 L624:          bool WasStackMoved = false;
@@ -133,9 +133,9 @@ L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
 L60:           bool mbool = mBP_PlayerController;
 L89:           if (!mbool) goto L178;
-L103:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L103:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L154:          BP_RemoteCallObject* RCO = mBP_RemoteCallObject;
-L173:          <End of Inlined Event Graph Function>;
+L173:          // <End Inlined EventGraph Function>;
 L178:          KismetSystemLibrary->PrintString(this, "Error: Failed to get default remote call object", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), 2);
 L301:          RCO = nullptr;
 ============ END FUNCTION GetDefaultRCO ==============
@@ -145,8 +145,9 @@ L301:          RCO = nullptr;
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Widget_UseableBase.Widget_UseableBase_C:ExecuteUbergraph_Widget_UseableBase.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_UseableBase(10);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_UseableBase, from label L10;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -154,7 +155,9 @@ L18:           this->ExecuteUbergraph_Widget_UseableBase(10);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_UseableBase(890);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_UseableBase, from label L890;
 ============ END FUNCTION Construct ==============
 
 
@@ -162,7 +165,9 @@ L0:            this->ExecuteUbergraph_Widget_UseableBase(890);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_UseableBase(1267);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_UseableBase, from label L1267;
 ============ END FUNCTION Destruct ==============
 
 
@@ -183,20 +188,21 @@ L326:          mbool = mFGHUD;
 L355:          mFGGameUI = mFGHUD->GetGameUI();
 L397:          mFGGameUI->SetShowInventory(this->mShouldOpenInventory);
 L438:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L462:          bool mbool1 = Not_PreBool(mPlayerController1->bShowMouseCursor);
-L513:          bool mbool2 = BooleanAND(this->mUseMouse, mbool1);
+L462:          bool mbool1 = !mPlayerController1->bShowMouseCursor;
+L513:          bool mbool2 = this->mUseMouse && mbool1;
 L551:          if (!mbool2) goto L1845;
 L565:          Vector2D mVector2D = WidgetLayoutLibrary->GetViewportSize(this);
 L616:          BreakVector2D(mVector2D, [ref] mfloat, [ref] mfloat1);
-L653:          float mfloat2 = Divide_FloatFloat(mfloat1, 2);
-L695:          float mfloat3 = Divide_FloatFloat(mfloat, 2);
+L653:          float mfloat2 = mfloat1 / 2;
+L695:          float mfloat3 = mfloat / 2;
 L737:          int32 mint32 = FTrunc(mfloat2);
 L774:          int32 mint321 = FTrunc(mfloat3);
 L811:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L835:          mPlayerController2->SetMouseLocation(mint321, mint32);
-L885:          <End of Inlined Event Graph Function>;
-L890:          TScriptInterface<FGUseableInterface> mTScriptInterface<FGUseableInterface> = QueryInterface<Class /Script/FactoryGame.FGUseableInterface>(this->mInteractObject);
-L926:          bool mbool3 = mTScriptInterface<FGUseableInterface>;
+L885:          // <End Inlined EventGraph Function>;
+L890:          // <Begin Inlined EventGraph Function Construct>;
+L890:          TScriptInterface<FGUseableInterface> mTScriptInterfaceFGUseableInterface = QueryInterface<Class /Script/FactoryGame.FGUseableInterface>(this->mInteractObject);
+L926:          bool mbool3 = mTScriptInterfaceFGUseableInterface;
 L955:          if (!mbool3) goto L1845;
 L969:          PlayerController* mPlayerController3 = this->GetOwningPlayer();
 L993:          BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController3);
@@ -205,17 +211,18 @@ L1058:         if (!mbool4) goto L1845;
 L1072:         Pawn* mPawn = this->GetOwningPlayerPawn();
 L1092:         FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
 L1128:         bool mbool5 = mFGCharacterPlayer;
-L1157:         BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L1157:         BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L1208:         mBP_RemoteCallObject->ServerRegisterInteractingPlayerOnUseInterface(this->mInteractObject, mFGCharacterPlayer);
-L1262:         <End of Inlined Event Graph Function>;
+L1262:         // <End Inlined EventGraph Function>;
+L1267:         // <Begin Inlined EventGraph Function Destruct>;
 L1267:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
 L1291:         HUD* mHUD1 = mPlayerController4->GetHUD();
 L1333:         FGHUD* mFGHUD1 = Cast<Class /Script/FactoryGame.FGHUD>(mHUD1);
 L1369:         bool mbool6 = mFGHUD1;
 L1398:         FGGameUI* mFGGameUI1 = mFGHUD1->GetGameUI();
 L1440:         mFGGameUI1->SetWindowWantsInventoryAddon(false);
-L1473:         TScriptInterface<FGUseableInterface> mTScriptInterface<FGUseableInterface>1 = QueryInterface<Class /Script/FactoryGame.FGUseableInterface>(this->mInteractObject);
-L1509:         bool mbool7 = mTScriptInterface<FGUseableInterface>1;
+L1473:         TScriptInterface<FGUseableInterface> mTScriptInterfaceFGUseableInterface1 = QueryInterface<Class /Script/FactoryGame.FGUseableInterface>(this->mInteractObject);
+L1509:         bool mbool7 = mTScriptInterfaceFGUseableInterface1;
 L1538:         if (!mbool7) goto L1845;
 L1552:         PlayerController* mPlayerController5 = this->GetOwningPlayer();
 L1576:         BP_PlayerController* mBP_PlayerController1 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController5);
@@ -224,7 +231,7 @@ L1641:         if (!mbool8) goto L1845;
 L1655:         Pawn* mPawn1 = this->GetOwningPlayerPawn();
 L1675:         FGCharacterPlayer* mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn1);
 L1711:         bool mbool9 = mFGCharacterPlayer1;
-L1740:         BP_RemoteCallObject* mBP_RemoteCallObject1 = mBP_PlayerController1->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L1740:         BP_RemoteCallObject* mBP_RemoteCallObject1 = mBP_PlayerController1->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L1791:         mBP_RemoteCallObject1->ServerUnregisterInteractingPlayerOnUseInterface(this->mInteractObject, mFGCharacterPlayer1);
 ============ END FUNCTION ExecuteUbergraph_Widget_UseableBase ==============
 

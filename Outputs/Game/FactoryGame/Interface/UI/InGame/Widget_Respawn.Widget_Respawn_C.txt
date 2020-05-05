@@ -19,7 +19,7 @@ L182:          this->mTipText->SetText(mFText);
 
 
 ============ BEGIN FUNCTION SetTipNumber ==============
-L0:            int32 mint32 = Add_IntInt(this->mTipIndex, 1);
+L0:            int32 mint32 = this->mTipIndex + 1;
 L42:           FString mFString = KismetStringLibrary->Conv_IntToString(mint32);
 L101:          FString mFString1 = KismetStringLibrary->Concat_StrStr(this->mTipTitle->mText, mFString);
 L191:          this->mTipTitle->SetTitle(mFString1);
@@ -32,11 +32,11 @@ L191:          this->mTipTitle->SetTitle(mFString1);
 ============ BEGIN FUNCTION UpdateProgressBlips ==============
 L0:            HorizontalBoxSlot* mHorizontalBoxSlot = WidgetLayoutLibrary->SlotAsHorizontalBoxSlot(this->Image);
 L51:           BreakVector2D(this->Image->Brush.ImageSize, [ref] mfloat, [ref] mfloat1);
-L119:          float mfloat2 = Add_FloatFloat(mHorizontalBoxSlot->padding.Right, mfloat);
+L119:          float mfloat2 = mHorizontalBoxSlot->padding.Right + mfloat;
 L196:          this->ProgressBarBlipWidth = mfloat2;
 L223:          int32 mint32 = this->mLoadingBar->GetChildrenCount();
-L273:          float mfloat3 = Multiply_IntFloat(mint32, this->ProgressBarBlipWidth);
-L319:          float mfloat4 = Multiply_FloatFloat(mfloat3, -1);
+L273:          float mfloat3 = mint32 * this->ProgressBarBlipWidth;
+L319:          float mfloat4 = mfloat3 * -1;
 L361:          Vector2D mVector2D = MakeVector2D(mfloat4, 0);
 L403:          this->mLoadingBar->SetRenderTranslation(mVector2D);
 L444:          mFScriptDelegate->BindUFunction(this, MoveProgressbar);
@@ -49,7 +49,9 @@ L532:          this->mProgressBarUpdate = mTimerHandle;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_Respawn(1038);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Respawn, from label L1038;
 ============ END FUNCTION Construct ==============
 
 
@@ -57,7 +59,9 @@ L0:            this->ExecuteUbergraph_Widget_Respawn(1038);
 
 
 ============ BEGIN FUNCTION SpawnRespawnMessage ==============
-L0:            this->ExecuteUbergraph_Widget_Respawn(1043);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: SpawnRespawnMessage;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Respawn, from label L1043;
 ============ END FUNCTION SpawnRespawnMessage ==============
 
 
@@ -65,7 +69,9 @@ L0:            this->ExecuteUbergraph_Widget_Respawn(1043);
 
 
 ============ BEGIN FUNCTION MoveProgressbar ==============
-L0:            this->ExecuteUbergraph_Widget_Respawn(2623);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: MoveProgressbar;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Respawn, from label L2623;
 ============ END FUNCTION MoveProgressbar ==============
 
 
@@ -83,24 +89,24 @@ L72:           this->SpawnRespawnMessage();
 L86:           goto ExecutionFlow.Pop();
 L87:           ExecutionFlow.Push(L581);
 L92:           int32 mint32 = this->mLoadingMessages->GetChildrenCount();
-L142:          int32 mint321 = Subtract_IntInt(this->MaxMessages, this->MessageFadeLength);
-L188:          int32 mint322 = Subtract_IntInt(mint32, mint321);
+L142:          int32 mint321 = this->MaxMessages - this->MessageFadeLength;
+L188:          int32 mint322 = mint32 - mint321;
 L234:          float mfloat = Conv_IntToFloat(this->MessageFadeLength);
-L271:          float mfloat1 = Divide_FloatFloat(1, mfloat);
+L271:          float mfloat1 = 1 / mfloat;
 L313:          Widget* mWidget = this->mLoadingMessages->GetChildAt(Temp_int_Variable);
-L364:          int32 mint323 = Subtract_IntInt(this->MessageFadeLength, mint322);
-L410:          int32 mint324 = Add_IntInt(mint323, Temp_int_Variable);
+L364:          int32 mint323 = this->MessageFadeLength - mint322;
+L410:          int32 mint324 = mint323 + Temp_int_Variable;
 L456:          float mfloat2 = Conv_IntToFloat(mint324);
-L493:          float mfloat3 = Multiply_FloatFloat(mfloat2, mfloat1);
+L493:          float mfloat3 = mfloat2 * mfloat1;
 L539:          mWidget->SetRenderOpacity(mfloat3);
 L580:          goto ExecutionFlow.Pop();
-L581:          int32 mint325 = Add_IntInt(Temp_int_Variable, 1);
+L581:          int32 mint325 = Temp_int_Variable + 1;
 L623:          int32 Temp_int_Variable = mint325;
 L650:          mint32 = this->mLoadingMessages->GetChildrenCount();
-L700:          mint321 = Subtract_IntInt(this->MaxMessages, this->MessageFadeLength);
-L746:          mint322 = Subtract_IntInt(mint32, mint321);
-L792:          int32 mint326 = Subtract_IntInt(mint322, 1);
-L834:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint326);
+L700:          mint321 = this->MaxMessages - this->MessageFadeLength;
+L746:          mint322 = mint32 - mint321;
+L792:          int32 mint326 = mint322 - 1;
+L834:          bool mbool = Temp_int_Variable <= mint326;
 L872:          if (!mbool) goto L891;
 L886:          goto L87;
 L891:          float mfloat4 = RandomFloatInRange(0.5, 3);
@@ -108,19 +114,21 @@ L929:          KismetSystemLibrary->Delay(this, mfloat4, ScriptStruct /Script/En
 L1009:         goto ExecutionFlow.Pop();
 L1010:         Temp_int_Variable = 0;
 L1033:         goto L650;
+L1038:         // <Begin Inlined EventGraph Function Construct>;
 L1038:         goto L15;
+L1043:         // <Begin Inlined EventGraph Function SpawnRespawnMessage>;
 L1043:         int32 mint327 = KismetArrayLibrary->Array_Length([ref] this->mRespawnMessages);
-L1102:         bool mbool1 = Greater_IntInt(mint327, 0);
+L1102:         bool mbool1 = mint327 > 0;
 L1136:         if (!mbool1) goto ExecutionFlow.Pop();
 L1146:         mint327 = KismetArrayLibrary->Array_Length([ref] this->mRespawnMessages);
 L1205:         int32 mint328 = RandomInteger(mint327);
 L1242:         this->mMessageInt = mint328;
 L1269:         PlayerController* mPlayerController = this->GetOwningPlayer();
-L1293:         Widget_LetterSpacedText* mWidget_LetterSpacedText = WidgetBlueprintLibrary->Create(this, Widget_LetterSpacedText, mPlayerController);
+L1293:         Widget_LetterSpacedText* mWidget_LetterSpacedText = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_LetterSpacedText.Widget_LetterSpacedText_C), mPlayerController);
 L1354:         KismetArrayLibrary->Array_Get([ref] this->mRespawnMessages, this->mMessageInt, [ref] mFText);
 L1413:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
 L1472:         KismetSystemLibrary->SetStringPropertyByName(mWidget_LetterSpacedText, "mText", mFString);
-L1535:         mSlateFontInfo.FontObject = DescriptionText;
+L1535:         mSlateFontInfo.FontObject = ObjectConst(Font /Game/FactoryGame/Interface/Font/DescriptionText.DescriptionText);
 L1563:         mSlateFontInfo.FontMaterial = nullptr;
 L1583:         mSlateFontInfo.OutlineSettings = ScriptStruct /Script/SlateCore.FontOutlineSettings(OutlineSize = 0, bSeparateFillAlpha = false, bApplyOutlineToDropShadows = false, OutlineMaterial = nullptr, OutlineColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 1));
 L1666:         mSlateFontInfo.TypefaceFontName = "SemiBold";
@@ -131,10 +139,10 @@ L1860:         PanelSlot* mPanelSlot = this->mLoadingMessages->AddChild(mWidget_
 L1911:         mWidget_LetterSpacedText->SetRenderScale(ScriptStruct /Script/CoreUObject.Vector2D(X = 1, Y = -1));
 L1967:         KismetArrayLibrary->Array_Remove([ref] this->mRespawnMessages, this->mMessageInt);
 L2017:         int32 mint329 = this->mLoadingMessages->GetChildrenCount();
-L2067:         bool mbool2 = Greater_IntInt(mint329, 1);
+L2067:         bool mbool2 = mint329 > 1;
 L2101:         if (!mbool2) goto L2468;
 L2115:         int32 mint3210 = this->mLoadingMessages->GetChildrenCount();
-L2165:         int32 mint3211 = Subtract_IntInt(mint3210, 2);
+L2165:         int32 mint3211 = mint3210 - 2;
 L2207:         Widget* mWidget1 = this->mLoadingMessages->GetChildAt(mint3211);
 L2258:         Widget_LetterSpacedText* mWidget_LetterSpacedText1 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_LetterSpacedText.Widget_LetterSpacedText_C>(mWidget1);
 L2294:         bool mbool3 = mWidget_LetterSpacedText1;
@@ -142,23 +150,24 @@ L2323:         if (!mbool3) goto L2468;
 L2337:         FString mFString1 = KismetStringLibrary->Concat_StrStr(mWidget_LetterSpacedText1->mText, " OK");
 L2423:         mWidget_LetterSpacedText1->SetTitle(mFString1);
 L2468:         int32 mint3212 = this->mLoadingMessages->GetChildrenCount();
-L2518:         bool mbool4 = Greater_IntInt(mint3212, this->MaxMessages);
+L2518:         bool mbool4 = mint3212 > this->MaxMessages;
 L2556:         if (!mbool4) goto L1010;
 L2570:         ExecutionFlow.Push(L2468);
 L2575:         bool mbool5 = this->mLoadingMessages->RemoveChildAt(0);
 L2622:         goto ExecutionFlow.Pop();
+L2623:         // <Begin Inlined EventGraph Function MoveProgressbar>;
 L2623:         BreakVector2D(this->mLoadingBar->RenderTransform.Translation, [ref] mfloat5, [ref] mfloat6);
-L2691:         float mfloat7 = Add_FloatFloat(this->ProgressBarBlipWidth, mfloat5);
+L2691:         float mfloat7 = this->ProgressBarBlipWidth + mfloat5;
 L2737:         Vector2D mVector2D = MakeVector2D(mfloat7, 0);
 L2779:         this->mLoadingBar->SetRenderTranslation(mVector2D);
 L2820:         BreakVector2D(this->mLoadingBar->RenderTransform.Translation, [ref] mfloat8, [ref] mfloat9);
-L2888:         float mfloat10 = Subtract_FloatFloat(this->mConsoleSizeBox->WidthOverride, this->ProgressBarBlipWidth);
-L2956:         bool mbool6 = Greater_FloatFloat(mfloat8, mfloat10);
+L2888:         float mfloat10 = this->mConsoleSizeBox->WidthOverride - this->ProgressBarBlipWidth;
+L2956:         bool mbool6 = mfloat8 > mfloat10;
 L2994:         if (!mbool6) goto ExecutionFlow.Pop();
 L3004:         int32 mint3213 = this->mLoadingBar->GetChildrenCount();
-L3054:         float mfloat11 = Multiply_IntFloat(mint3213, this->ProgressBarBlipWidth);
-L3100:         float mfloat12 = Subtract_FloatFloat(mfloat11, this->ProgressBarBlipWidth);
-L3146:         float mfloat13 = Multiply_FloatFloat(mfloat12, -1);
+L3054:         float mfloat11 = mint3213 * this->ProgressBarBlipWidth;
+L3100:         float mfloat12 = mfloat11 - this->ProgressBarBlipWidth;
+L3146:         float mfloat13 = mfloat12 * -1;
 L3188:         Vector2D mVector2D1 = MakeVector2D(mfloat13, 0);
 L3230:         this->mLoadingBar->SetRenderTranslation(mVector2D1);
 L3271:         goto ExecutionFlow.Pop();

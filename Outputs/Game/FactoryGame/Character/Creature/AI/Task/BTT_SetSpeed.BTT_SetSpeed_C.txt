@@ -7,9 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Task/BTT_SetSpeed
 
 
 ============ BEGIN FUNCTION ReceiveExecuteAI ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_SetSpeed.BTT_SetSpeed_C:ExecuteUbergraph_BTT_SetSpeed.K2Node_Event_OwnerController) = OwnerController;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_SetSpeed.BTT_SetSpeed_C:ExecuteUbergraph_BTT_SetSpeed.K2Node_Event_ControlledPawn) = ControlledPawn;
-L36:           this->ExecuteUbergraph_BTT_SetSpeed(10);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: ReceiveExecuteAI;
+L36:           // Implementation: Function ExecuteUbergraph_BTT_SetSpeed, from label L10;
 ============ END FUNCTION ReceiveExecuteAI ==============
 
 
@@ -20,13 +20,13 @@ L36:           this->ExecuteUbergraph_BTT_SetSpeed(10);
 L10:           FGCreature* mFGCreature = Cast<Class /Script/FactoryGame.FGCreature>(mPawn);
 L46:           bool mbool = mFGCreature;
 L75:           if (!mbool) goto L464;
-L89:           bool mbool1 = NotEqual_ByteByte(this->MoveSpeed, 0);
-L120:          bool mbool2 = Less_FloatFloat(this->Speed, 0);
-L154:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L89:           bool mbool1 = this->MoveSpeed != 0;
+L120:          bool mbool2 = this->Speed < 0;
+L154:          bool mbool3 = mbool1 && mbool2;
 L192:          if (!mbool3) goto L285;
 L206:          mFGCreature->SetMoveSpeed(this->MoveSpeed);
 L247:          this->FinishExecute(this->ForceSuccess);
-L280:          <End of Inlined Event Graph Function>;
+L280:          // <End Inlined EventGraph Function>;
 L285:          PawnMovementComponent* mPawnMovementComponent = mFGCreature->GetMovementComponent();
 L331:          CharacterMovementComponent* mCharacterMovementComponent = Cast<Class /Script/Engine.CharacterMovementComponent>(mPawnMovementComponent);
 L367:          bool mbool4 = mCharacterMovementComponent;

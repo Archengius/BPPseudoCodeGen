@@ -27,7 +27,7 @@ L142:          ExecutionFlow.Push(L788);
 L147:          int32 Temp_int_Loop_Counter_Variable = 0;
 L170:          int32 Temp_int_Array_Index_Variable = 0;
 L193:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mCachedSaves);
-L252:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L252:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L290:          if (!mbool) goto L803;
 L304:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L331:          ExecutionFlow.Push(L841);
@@ -46,7 +46,7 @@ L788:          this->PopulateSessions();
 L802:          goto ExecutionFlow.Pop();
 L803:          this->mSaves->OnSpawnAnim(nullptr);
 L840:          goto ExecutionFlow.Pop();
-L841:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L841:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L883:          Temp_int_Loop_Counter_Variable = mint321;
 L910:          goto L193;
 ============ END FUNCTION OnSavesUpdated ==============
@@ -73,7 +73,7 @@ default -> mFText;
 
 
 ============ BEGIN FUNCTION ConvertIntToTwoDidgitText ==============
-L0:            bool mbool = Less_IntInt(int, 10);
+L0:            bool mbool = int < 10;
 L34:           FString mFString = KismetStringLibrary->Conv_IntToString(int);
 L93:           bool Temp_bool_Variable = mbool;
 L112:          FString mFString1 = KismetStringLibrary->Concat_StrStr("0", mFString);
@@ -92,24 +92,24 @@ L277:          FText ReturnValue = mFText;
 ============ BEGIN FUNCTION ClearSaves ==============
 L0:            ExecutionFlow.Push(L647);
 L5:            int32 mint32 = this->mSavesVbox->GetChildrenCount();
-L55:           bool mbool = Greater_IntInt(mint32, 0);
+L55:           bool mbool = mint32 > 0;
 L89:           if (!mbool) goto ExecutionFlow.Pop();
 L99:           mint32 = this->mSavesVbox->GetChildrenCount();
-L149:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L149:          int32 mint321 = mint32 - 1;
 L191:          int32 TempChildCount = mint321;
 L218:          int32 Temp_int_Variable = 0;
-L241:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable, TempChildCount);
+L241:          bool mbool1 = Temp_int_Variable <= TempChildCount;
 L279:          if (!mbool1) goto ExecutionFlow.Pop();
 L289:          ExecutionFlow.Push(L573);
-L294:          int32 mint322 = Subtract_IntInt(TempChildCount, Temp_int_Variable);
+L294:          int32 mint322 = TempChildCount - Temp_int_Variable;
 L340:          Widget* mWidget = this->mSavesVbox->GetChildAt(mint322);
-L391:          bool mbool2 = NotEqual_ObjectObject(mWidget, this->Widget_SaveInputBox);
+L391:          bool mbool2 = mWidget != this->Widget_SaveInputBox;
 L429:          if (!mbool2) goto ExecutionFlow.Pop();
-L439:          mint322 = Subtract_IntInt(TempChildCount, Temp_int_Variable);
+L439:          mint322 = TempChildCount - Temp_int_Variable;
 L485:          mWidget = this->mSavesVbox->GetChildAt(mint322);
 L536:          mWidget->RemoveFromParent();
 L572:          goto ExecutionFlow.Pop();
-L573:          int32 mint323 = Add_IntInt(Temp_int_Variable, 1);
+L573:          int32 mint323 = Temp_int_Variable + 1;
 L615:          Temp_int_Variable = mint323;
 L642:          goto L241;
 ============ END FUNCTION ClearSaves ==============
@@ -122,27 +122,27 @@ L642:          goto L241;
 L0:            ExecutionFlow.Push(L1619);
 L5:            this->mSessionsVbox->ClearChildren();
 L41:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L65:           Widget_SessionRow* mWidget_SessionRow = WidgetBlueprintLibrary->Create(this, Widget_SessionRow, mPlayerController);
+L65:           Widget_SessionRow* mWidget_SessionRow = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_SessionRow.Widget_SessionRow_C), mPlayerController);
 L126:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_SessionRow, "mSaveSession", [ref] mSessionSaveStruct);
 L189:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_SessionRow, "mSetButtonInfoToCurrentSession", true);
 L244:          VerticalBoxSlot* mVerticalBoxSlot = this->mSessionsVbox->AddChildToVerticalBox(mWidget_SessionRow);
 L295:          Widget_SessionRow* NewSession = mWidget_SessionRow;
-L314:          TArray<SessionSaveStruct> mTArray<SessionSaveStruct> = [];
-L325:          FGSaveSystem->GroupSavesPerSession([ref] this->mCachedSaves, [ref] mTArray<SessionSaveStruct>);
-L375:          FGSaveSystem->SortSessions([ref] mTArray<SessionSaveStruct>, 1, 1);
+L314:          TArray<SessionSaveStruct> mTArraySessionSaveStruct = [];
+L325:          FGSaveSystem->GroupSavesPerSession([ref] this->mCachedSaves, [ref] mTArraySessionSaveStruct);
+L375:          FGSaveSystem->SortSessions([ref] mTArraySessionSaveStruct, 1, 1);
 L420:          int32 Temp_int_Loop_Counter_Variable = 0;
 L443:          int32 Temp_int_Array_Index_Variable = 0;
-L466:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<SessionSaveStruct>);
-L525:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L466:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArraySessionSaveStruct);
+L525:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L563:          if (!mbool) goto L1328;
 L577:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L604:          ExecutionFlow.Push(L1508);
 L609:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L633:          Widget_SessionRow* mWidget_SessionRow1 = WidgetBlueprintLibrary->Create(this, Widget_SessionRow, mPlayerController1);
-L694:          KismetArrayLibrary->Array_Get([ref] mTArray<SessionSaveStruct>, Temp_int_Array_Index_Variable, [ref] mSessionSaveStruct1);
+L633:          Widget_SessionRow* mWidget_SessionRow1 = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_SessionRow.Widget_SessionRow_C), mPlayerController1);
+L694:          KismetArrayLibrary->Array_Get([ref] mTArraySessionSaveStruct, Temp_int_Array_Index_Variable, [ref] mSessionSaveStruct1);
 L753:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_SessionRow1, "mSaveSession", [ref] mSessionSaveStruct1);
 L816:          VerticalBoxSlot* mVerticalBoxSlot1 = this->mSessionsVbox->AddChildToVerticalBox(mWidget_SessionRow1);
-L867:          KismetArrayLibrary->Array_Get([ref] mTArray<SessionSaveStruct>, Temp_int_Array_Index_Variable, [ref] mSessionSaveStruct1);
+L867:          KismetArrayLibrary->Array_Get([ref] mTArraySessionSaveStruct, Temp_int_Array_Index_Variable, [ref] mSessionSaveStruct1);
 L926:          FString mFString = FGSaveSession->GetSaveSessionName([ref] mSessionSaveStruct1);
 L985:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
 L1028:         FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
@@ -161,7 +161,7 @@ L1415:         goto ExecutionFlow.Pop();
 L1416:         NewSession->isSelected = true;
 L1449:         this->mSessionsScrollbox->mScrollBox->ScrollToStart();
 L1503:         goto L1378;
-L1508:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1508:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L1550:         Temp_int_Loop_Counter_Variable = mint321;
 L1577:         goto L466;
 L1582:         mWidget_SessionRow1->SetDisabled();
@@ -199,7 +199,7 @@ L421:          goto ExecutionFlow.Pop();
 ============ BEGIN FUNCTION GetDeleteButtonVisibility ==============
 L0:            uint8 Temp_byte_Variable = 2;
 L20:           uint8 Temp_byte_Variable1 = 0;
-L40:           bool mbool = EqualEqual_ObjectObject(this->mSelectedSave, this->mNewSaveGameSlot);
+L40:           bool mbool = this->mSelectedSave == this->mNewSaveGameSlot;
 L78:           bool Temp_bool_Variable = mbool;
 L97:           uint8 ReturnValue = switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -259,7 +259,7 @@ L0:            bool mbool = KismetSystemLibrary->IsValid(this->mSelectedSave);
 L51:           if (!mbool) goto L178;
 L65:           FString mFString = FGSaveSession->GetName([ref] this->mSelectedSave->mSaveHeader);
 L146:          FString saveName = mFString;
-L173:          <End of Inlined Event Graph Function>;
+L173:          // <End Inlined EventGraph Function>;
 L178:          DateTime mDateTime = Now();
 L206:          BreakDateTime(mDateTime, [ref] mint32, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324, [ref] mint325, [ref] mint326);
 L288:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
@@ -318,9 +318,9 @@ L2147:         mFormatArgumentData6.ArgumentValueInt = 0;
 L2179:         mFormatArgumentData6.ArgumentValueFloat = 0;
 L2211:         mFormatArgumentData6.ArgumentValueGender = 0;
 L2240:         FText mFText7 = this->Widget_SaveInputBox->mSaveInputBox->GetText();
-L2312:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData2, mFormatArgumentData4, mFormatArgumentData5, mFormatArgumentData6, mFormatArgumentData3, mFormatArgumentData1, mFormatArgumentData];
+L2312:         TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData2, mFormatArgumentData4, mFormatArgumentData5, mFormatArgumentData6, mFormatArgumentData3, mFormatArgumentData1, mFormatArgumentData];
 L2386:         FString mFString4 = KismetTextLibrary->Conv_TextToString([ref] mFText7);
-L2445:         FText mFText8 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L2445:         FText mFText8 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L2596:         bool mbool2 = KismetStringLibrary->NotEqual_StrStr(mFString4, "");
 L2649:         FString mFString5 = KismetTextLibrary->Conv_TextToString([ref] mFText8);
 L2708:         bool Temp_bool_Variable = mbool2;
@@ -376,7 +376,7 @@ L115:          int32 mint32 = KismetArrayLibrary->Array_Add([ref] this->mSaveRow
 
 ============ BEGIN FUNCTION InternalAddSaveGame ==============
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
-L24:           Widget_SaveListRow* mWidget_SaveListRow = WidgetBlueprintLibrary->Create(this, Widget_SaveListRow, mPlayerController);
+L24:           Widget_SaveListRow* mWidget_SaveListRow = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_SaveListRow.Widget_SaveListRow_C), mPlayerController);
 L85:           KismetSystemLibrary->SetStructurePropertyByName(mWidget_SaveListRow, "mSaveHeader", [ref] Header);
 L148:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_SaveListRow, "mIsNewSave", isNewGame);
 L211:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_SaveListRow, "mSaveList", this);
@@ -393,7 +393,7 @@ L0:            bool mbool = KismetSystemLibrary->IsValid(this->mNewSaveGameSlot)
 L51:           if (!mbool) goto L112;
 L65:           this->InternalSetupSaveGame(this->mNewSaveGameSlot);
 L88:           Widget_SaveListRow* newRow = this->mNewSaveGameSlot;
-L107:          <End of Inlined Event Graph Function>;
+L107:          // <End Inlined EventGraph Function>;
 L112:          this->InternalAddSaveGame(ScriptStruct /Script/FactoryGame.SaveHeader(), true, [ref] mWidget_SaveListRow);
 L150:          this->mNewSaveGameSlot = mWidget_SaveListRow;
 L169:          newRow = this->mNewSaveGameSlot;
@@ -405,23 +405,23 @@ L169:          newRow = this->mNewSaveGameSlot;
 
 ============ BEGIN FUNCTION OnSaveClickedEvent ==============
 L0:            ExecutionFlow.Push(L531);
-L5:            bool mbool = NotEqual_ObjectObject(clickedSave, this->mSelectedSave);
+L5:            bool mbool = clickedSave != this->mSelectedSave;
 L43:           if (!mbool) goto ExecutionFlow.Pop();
 L53:           this->mSelectedSave = clickedSave;
 L72:           int32 Temp_int_Loop_Counter_Variable = 0;
 L95:           int32 Temp_int_Array_Index_Variable = 0;
 L118:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mSaveRows);
-L177:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L177:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L215:          if (!mbool1) goto ExecutionFlow.Pop();
 L225:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L252:          ExecutionFlow.Push(L457);
 L257:          KismetArrayLibrary->Array_Get([ref] this->mSaveRows, Temp_int_Array_Index_Variable, [ref] mWidget_SaveListRow);
-L316:          bool mbool2 = NotEqual_ObjectObject(mWidget_SaveListRow, this->mSelectedSave);
+L316:          bool mbool2 = mWidget_SaveListRow != this->mSelectedSave;
 L354:          if (!mbool2) goto ExecutionFlow.Pop();
 L364:          KismetArrayLibrary->Array_Get([ref] this->mSaveRows, Temp_int_Array_Index_Variable, [ref] mWidget_SaveListRow);
 L423:          mWidget_SaveListRow->mIsSelected = false;
 L456:          goto ExecutionFlow.Pop();
-L457:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L457:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L499:          Temp_int_Loop_Counter_Variable = mint321;
 L526:          goto L118;
 ============ END FUNCTION OnSaveClickedEvent ==============
@@ -440,7 +440,9 @@ L33:           Widget_SaveListRow* rowWidget = mWidget_SaveListRow;
 
 
 ============ BEGIN FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_6_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SaveList(251);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_6_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveList, from label L251;
 ============ END FUNCTION BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_6_OnClicked__DelegateSignature ==============
 
 
@@ -448,7 +450,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveList(251);
 
 
 ============ BEGIN FUNCTION OnEscape ==============
-L0:            this->ExecuteUbergraph_Widget_SaveList(266);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnEscape;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveList, from label L266;
 ============ END FUNCTION OnEscape ==============
 
 
@@ -456,7 +460,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveList(266);
 
 
 ============ BEGIN FUNCTION ConfirmDeleteSessionPopUp ==============
-L0:            this->ExecuteUbergraph_Widget_SaveList(303);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ConfirmDeleteSessionPopUp;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveList, from label L303;
 ============ END FUNCTION ConfirmDeleteSessionPopUp ==============
 
 
@@ -464,7 +470,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveList(303);
 
 
 ============ BEGIN FUNCTION ConfirmOverwriteSavePopup ==============
-L0:            this->ExecuteUbergraph_Widget_SaveList(782);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ConfirmOverwriteSavePopup;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveList, from label L782;
 ============ END FUNCTION ConfirmOverwriteSavePopup ==============
 
 
@@ -472,9 +480,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveList(782);
 
 
 ============ BEGIN FUNCTION OnWorldSave ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveList.Widget_SaveList_C:ExecuteUbergraph_Widget_SaveList.K2Node_CustomEvent_WasSuccessful) = WasSuccessful;
-L18:           PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveList.Widget_SaveList_C:ExecuteUbergraph_Widget_SaveList.K2Node_CustomEvent_errorMessage) = errorMessage;
-L36:           this->ExecuteUbergraph_Widget_SaveList(1690);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: OnWorldSave;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_SaveList, from label L1690;
 ============ END FUNCTION OnWorldSave ==============
 
 
@@ -482,9 +490,9 @@ L36:           this->ExecuteUbergraph_Widget_SaveList(1690);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_SaveInputBox_K2Node_ComponentBoundEvent_7_OnTextCommited__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveList.Widget_SaveList_C:ExecuteUbergraph_Widget_SaveList.K2Node_ComponentBoundEvent_Text1) = text;
-L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveList.Widget_SaveList_C:ExecuteUbergraph_Widget_SaveList.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
-L36:           this->ExecuteUbergraph_Widget_SaveList(2533);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__Widget_SaveInputBox_K2Node_ComponentBoundEvent_7_OnTextCommited__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_SaveList, from label L2533;
 ============ END FUNCTION BndEvt__Widget_SaveInputBox_K2Node_ComponentBoundEvent_7_OnTextCommited__DelegateSignature ==============
 
 
@@ -492,8 +500,9 @@ L36:           this->ExecuteUbergraph_Widget_SaveList(2533);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_SaveInputBox_K2Node_ComponentBoundEvent_9_OnTextChanged__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveList.Widget_SaveList_C:ExecuteUbergraph_Widget_SaveList.K2Node_ComponentBoundEvent_Text) = text;
-L18:           this->ExecuteUbergraph_Widget_SaveList(2589);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__Widget_SaveInputBox_K2Node_ComponentBoundEvent_9_OnTextChanged__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_SaveList, from label L2589;
 ============ END FUNCTION BndEvt__Widget_SaveInputBox_K2Node_ComponentBoundEvent_9_OnTextChanged__DelegateSignature ==============
 
 
@@ -501,7 +510,9 @@ L18:           this->ExecuteUbergraph_Widget_SaveList(2589);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_11_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SaveList(2756);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_11_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveList, from label L2756;
 ============ END FUNCTION BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_11_OnClicked__DelegateSignature ==============
 
 
@@ -509,7 +520,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveList(2756);
 
 
 ============ BEGIN FUNCTION BndEvt__mDeleteSaveButton_K2Node_ComponentBoundEvent_12_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SaveList(2761);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mDeleteSaveButton_K2Node_ComponentBoundEvent_12_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveList, from label L2761;
 ============ END FUNCTION BndEvt__mDeleteSaveButton_K2Node_ComponentBoundEvent_12_OnClicked__DelegateSignature ==============
 
 
@@ -517,7 +530,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveList(2761);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_SaveInputBox_K2Node_ComponentBoundEvent_13_OnFocused__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SaveList(2776);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Widget_SaveInputBox_K2Node_ComponentBoundEvent_13_OnFocused__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveList, from label L2776;
 ============ END FUNCTION BndEvt__Widget_SaveInputBox_K2Node_ComponentBoundEvent_13_OnFocused__DelegateSignature ==============
 
 
@@ -525,8 +540,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveList(2776);
 
 
 ============ BEGIN FUNCTION OnMenuEnter ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveList.Widget_SaveList_C:ExecuteUbergraph_Widget_SaveList.K2Node_Event_prevMenu) = prevMenu;
-L18:           this->ExecuteUbergraph_Widget_SaveList(2804);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnMenuEnter;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_SaveList, from label L2804;
 ============ END FUNCTION OnMenuEnter ==============
 
 
@@ -543,10 +559,13 @@ L159:          this->RefreshSaveList();
 L173:          goto ExecutionFlow.Pop();
 L174:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -876024115, ExecutionFunction = "ExecuteUbergraph_Widget_SaveList", CallbackTarget = this));
 L250:          goto ExecutionFlow.Pop();
+L251:          // <Begin Inlined EventGraph Function BndEvt__mDeleteButton_K2Node_ComponentBoundEvent_6_OnClicked__DelegateSignature>;
 L251:          this->ConfirmDeleteSessionPopUp();
 L265:          goto ExecutionFlow.Pop();
+L266:          // <Begin Inlined EventGraph Function OnEscape>;
 L266:          this->mOwningMenu->OnEscape();
 L302:          goto ExecutionFlow.Pop();
+L303:          // <Begin Inlined EventGraph Function ConfirmDeleteSessionPopUp>;
 L303:          mFScriptDelegate->BindUFunction(this, DeleteSaveGame);
 L326:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L350:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController1, "[object Object]", "[object Object]", [ref] mFScriptDelegate, 1, nullptr, nullptr);
@@ -557,17 +576,18 @@ L604:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFT
 L663:          FString mFString1 = KismetStringLibrary->GetSubstring(mFString, 0, 25);
 L732:          this->mNewSaveGameSlot->mNewSaveFileName = mFString1;
 L781:          goto ExecutionFlow.Pop();
+L782:          // <Begin Inlined EventGraph Function ConfirmOverwriteSavePopup>;
 L782:          this->GetDesiredSaveGameName([ref] mFString2);
 L805:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
 L848:          FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
 L884:          bool mbool2 = mFGGameState;
 L913:          FString mFString3 = mFGGameState->GetSessionName();
 L963:          uint8 muint8 = FGSaveSystem->GetCachedSaveExists([ref] this->mCachedSaves, mFString2, mFString3);
-L1040:         bool mbool3 = NotEqual_ByteByte(muint8, 0);
+L1040:         bool mbool3 = muint8 != 0;
 L1071:         if (!mbool3) goto L1176;
-L1085:         mbool3 = NotEqual_ByteByte(muint8, 1);
+L1085:         mbool3 = muint8 != 1;
 L1116:         if (!mbool3) goto L1192;
-L1130:         mbool3 = NotEqual_ByteByte(muint8, 2);
+L1130:         mbool3 = muint8 != 2;
 L1161:         if (!mbool3) goto L1192;
 L1175:         goto ExecutionFlow.Pop();
 L1176:         this->SaveGame(true);
@@ -610,26 +630,29 @@ L2272:         bool mbool5 = mWidget_SaveListRow;
 L2301:         if (!mbool5) goto ExecutionFlow.Pop();
 L2311:         mWidget_SaveListRow->mIsSelected = false;
 L2344:         goto ExecutionFlow.Pop();
-L2345:         int32 mint32 = Add_IntInt(Temp_int_Variable, 1);
+L2345:         int32 mint32 = Temp_int_Variable + 1;
 L2387:         int32 Temp_int_Variable = mint32;
 L2414:         int32 mint321 = this->mSavesVbox->GetChildrenCount();
-L2464:         bool mbool6 = LessEqual_IntInt(Temp_int_Variable, mint321);
+L2464:         bool mbool6 = Temp_int_Variable <= mint321;
 L2502:         if (!mbool6) goto L2521;
 L2516:         goto L2180;
 L2521:         this->mSelectedSave = nullptr;
 L2532:         goto ExecutionFlow.Pop();
-L2533:         bool mbool7 = EqualEqual_ByteByte(muint81, 1);
+L2533:         bool mbool7 = muint81 == 1;
 L2564:         if (!mbool7) goto ExecutionFlow.Pop();
 L2574:         this->ConfirmOverwriteSavePopup();
 L2588:         goto ExecutionFlow.Pop();
 L2589:         mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
 L2648:         int32 mint322 = KismetStringLibrary->Len(mFString);
-L2707:         bool mbool8 = Less_IntInt(mint322, 25);
+L2707:         bool mbool8 = mint322 < 25;
 L2741:         if (!mbool8) goto ExecutionFlow.Pop();
 L2751:         goto L543;
+L2756:         // <Begin Inlined EventGraph Function BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_11_OnClicked__DelegateSignature>;
 L2756:         goto L1675;
+L2761:         // <Begin Inlined EventGraph Function BndEvt__mDeleteSaveButton_K2Node_ComponentBoundEvent_12_OnClicked__DelegateSignature>;
 L2761:         this->ConfirmDeleteSessionPopUp();
 L2775:         goto ExecutionFlow.Pop();
+L2776:         // <Begin Inlined EventGraph Function BndEvt__Widget_SaveInputBox_K2Node_ComponentBoundEvent_13_OnFocused__DelegateSignature>;
 L2776:         Temp_int_Variable = 0;
 L2799:         goto L2414;
 L2804:         this->OnMenuEnter(mWidget1);

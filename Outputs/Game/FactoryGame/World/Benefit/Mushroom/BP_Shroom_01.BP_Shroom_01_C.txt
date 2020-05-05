@@ -7,7 +7,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/World/Benefit/Mushroom/BP_Shroom_01.BP_
 
 
 ============ BEGIN FUNCTION GetDestroyAudioEvent ==============
-L0:            AkAudioEvent* ReturnValue = Play_W_Pickup_Consumable_Foliage_Leaf;
+L0:            AkAudioEvent* ReturnValue = ObjectConst(AkAudioEvent /Game/FactoryGame/World/Environment/Audio/Play_W_Pickup_Consumable_Foliage_Leaf.Play_W_Pickup_Consumable_Foliage_Leaf);
 ============ END FUNCTION GetDestroyAudioEvent ==============
 
 
@@ -15,7 +15,7 @@ L0:            AkAudioEvent* ReturnValue = Play_W_Pickup_Consumable_Foliage_Leaf
 
 
 ============ BEGIN FUNCTION GetDestroyEffect ==============
-L0:            ParticleSystem* ReturnValue = PickupFoliage;
+L0:            ParticleSystem* ReturnValue = ObjectConst(ParticleSystem /Game/FactoryGame/World/Environment/Particle/PickupFoliage.PickupFoliage);
 ============ END FUNCTION GetDestroyEffect ==============
 
 
@@ -37,8 +37,8 @@ L69:           int32 mint321 = RandomIntegerInRange(0, mint32);
 L111:          KismetArrayLibrary->Array_Get([ref] this->mMeshAlternatives, mint321, [ref] mStaticMesh);
 L170:          bool mbool = this->StaticMesh->SetStaticMesh(mStaticMesh);
 L225:          Vector mVector = this->K2_GetActorLocation();
-L253:          Vector mVector1 = Subtract_VectorVector(mVector, Vector(0, 0, 100));
-L303:          Vector mVector2 = Add_VectorVector(mVector, Vector(0, 0, 100));
+L253:          Vector mVector1 = mVector - Vector(0, 0, 100);
+L303:          Vector mVector2 = mVector + Vector(0, 0, 100);
 L353:          bool mbool1 = KismetSystemLibrary->LineTraceSingle(this, mVector2, mVector1, 0, false, [ref] Temp_object_Variable, 0, [ref] mHitResult, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 1, B = 0, A = 1), 5);
 L511:          if (!false) goto L573;
 L517:          this->StaticMesh->K2_SetWorldLocation(Vector(0, 0, 0), false, [ref] mHitResult1, false);

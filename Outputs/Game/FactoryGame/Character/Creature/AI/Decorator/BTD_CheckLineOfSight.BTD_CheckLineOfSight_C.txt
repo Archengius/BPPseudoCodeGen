@@ -7,14 +7,14 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Decorator/BTD_Che
 
 
 ============ BEGIN FUNCTION PerformConditionCheckAI ==============
-L0:            const TArray<Actor*> mconst TArray<Actor> = [ControlledPawn];
+L0:            const TArray<Actor*> mconst TArrayActor = [ControlledPawn];
 L20:           Vector mVector = ControlledPawn->GetActorForwardVector();
 L70:           Char_Spitter* mChar_Spitter = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Enemy/Spitter/Char_Spitter.Char_Spitter_C>(ControlledPawn);
 L106:          bool mbool = mChar_Spitter;
-L135:          Vector mVector1 = Multiply_VectorFloat(mVector, 2000);
+L135:          Vector mVector1 = mVector * 2000;
 L177:          Vector mVector2 = mChar_Spitter->Mesh->GetSocketLocation("head");
-L266:          Vector mVector3 = Add_VectorVector(mVector2, mVector1);
-L312:          bool mbool1 = KismetSystemLibrary->LineTraceSingle(this, mVector2, mVector3, 1, false, [ref] mconst TArray<Actor>, 0, [ref] mHitResult, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 1, B = 0, A = 1), 5);
+L266:          Vector mVector3 = mVector2 + mVector1;
+L312:          bool mbool1 = KismetSystemLibrary->LineTraceSingle(this, mVector2, mVector3, 1, false, [ref] mconst TArrayActor, 0, [ref] mHitResult, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 1, B = 0, A = 1), 5);
 L470:          GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool2, [ref] mbool3, [ref] mfloat, [ref] mfloat1, [ref] mVector4, [ref] mVector5, [ref] mVector6, [ref] mVector7, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint32, [ref] mint321, [ref] mVector8, [ref] mVector9);
 L655:          Char_Spitter* mChar_Spitter1 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Enemy/Spitter/Char_Spitter.Char_Spitter_C>(mActor);
 L691:          bool mbool4 = mChar_Spitter1;

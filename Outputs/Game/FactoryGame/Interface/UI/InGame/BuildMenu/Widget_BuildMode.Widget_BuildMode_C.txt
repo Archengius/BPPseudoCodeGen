@@ -9,9 +9,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Widget_Bu
 ============ BEGIN FUNCTION GetHasMultipleSplineModes ==============
 L0:            bool mbool = KismetSystemLibrary->IsValid(this->mOwningState);
 L51:           if (!mbool) goto L232;
-L65:           TArray<uint8> mTArray<uint8> = this->mOwningState->GetSupportedSplineModes();
-L115:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<uint8>);
-L174:          bool mbool1 = Greater_IntInt(mint32, 0);
+L65:           TArray<uint8> mTArrayuint8 = this->mOwningState->GetSupportedSplineModes();
+L115:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayuint8);
+L174:          bool mbool1 = mint32 > 0;
 L208:          bool ReturnValue = mbool1;
 L227:          goto L243;
 L232:          ReturnValue = false;
@@ -26,7 +26,7 @@ L0:            Struct_KeybindingHint LocalBuildModeHint = UserDefinedStruct /Gam
 L137:          bool mbool = KismetSystemLibrary->IsValid(this->mOwningState);
 L188:          if (!mbool) goto L600;
 L202:          bool mbool1 = this->GetHasMultipleSplineModes();
-L226:          bool mbool2 = NotEqual_BoolBool(this->mShouldShowBuildModesHint, mbool1);
+L226:          bool mbool2 = this->mShouldShowBuildModesHint != mbool1;
 L264:          if (!mbool2) goto L804;
 L278:          mbool1 = this->GetHasMultipleSplineModes();
 L302:          this->mShouldShowBuildModesHint = mbool1;
@@ -35,7 +35,7 @@ L335:          this->CurrentBuildModeOverlay->SetVisibility(4);
 L373:          KismetArrayLibrary->Array_Insert([ref] this->mBHints->mKeyBindingHints, [ref] LocalBuildModeHint, 4);
 L450:          KismetSystemLibrary->PrintString(this, "on", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
 L528:          this->mBHints->SetKeybindingHints([ref] this->mBHints->mKeyBindingHints);
-L595:          <End of Inlined Event Graph Function>;
+L595:          // <End Inlined EventGraph Function>;
 L600:          this->CurrentBuildModeOverlay->SetVisibility(1);
 L638:          bool mbool3 = KismetArrayLibrary->Array_RemoveItem([ref] this->mBHints->mKeyBindingHints, [ref] LocalBuildModeHint);
 L720:          KismetSystemLibrary->PrintString(this, "off", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
@@ -51,33 +51,33 @@ L0:            ExecutionFlow.Push(L1846);
 L5:            FGHologram* mFGHologram = this->mOwningState->GetHologram();
 L47:           bool mbool = KismetSystemLibrary->IsValid(mFGHologram);
 L98:           bool mbool1 = KismetSystemLibrary->IsValid(this->mOwningState);
-L149:          bool mbool2 = BooleanAND(mbool1, mbool);
+L149:          bool mbool2 = mbool1 && mbool;
 L187:          if (!mbool2) goto L1080;
-L201:          TArray<ItemAmount> mTArray<ItemAmount> = this->mOwningState->GetHologramCost();
-L251:          this->mCurrentHologramCost = mTArray<ItemAmount>;
+L201:          TArray<ItemAmount> mTArrayItemAmount = this->mOwningState->GetHologramCost();
+L251:          this->mCurrentHologramCost = mTArrayItemAmount;
 L278:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mCurrentHologramCost);
 L337:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mPrevHologramCost);
-L396:          bool mbool3 = NotEqual_IntInt(mint32, mint321);
+L396:          bool mbool3 = mint32 != mint321;
 L434:          FGHologram* mFGHologram1 = this->mOwningState->GetHologram();
-L476:          bool mbool4 = NotEqual_ObjectObject(this->mSetupCostHologram, mFGHologram1);
+L476:          bool mbool4 = this->mSetupCostHologram != mFGHologram1;
 L514:          bool mbool5 = KismetSystemLibrary->IsValid(mFGHologram1);
-L565:          bool mbool6 = BooleanAND(mbool4, mbool5);
-L603:          bool mbool7 = BooleanOR(mbool6, mbool3);
+L565:          bool mbool6 = mbool4 && mbool5;
+L603:          bool mbool7 = mbool6 || mbool3;
 L641:          this->mRebuildHologramCosts = mbool7;
 L660:          mint32 = KismetArrayLibrary->Array_Length([ref] this->mCurrentHologramCost);
 L719:          mint321 = KismetArrayLibrary->Array_Length([ref] this->mPrevHologramCost);
-L778:          mbool3 = NotEqual_IntInt(mint32, mint321);
+L778:          mbool3 = mint32 != mint321;
 L816:          mFGHologram1 = this->mOwningState->GetHologram();
-L858:          mbool4 = NotEqual_ObjectObject(this->mSetupCostHologram, mFGHologram1);
+L858:          mbool4 = this->mSetupCostHologram != mFGHologram1;
 L896:          mbool5 = KismetSystemLibrary->IsValid(mFGHologram1);
-L947:          mbool6 = BooleanAND(mbool4, mbool5);
-L985:          mbool7 = BooleanOR(mbool6, mbool3);
+L947:          mbool6 = mbool4 && mbool5;
+L985:          mbool7 = mbool6 || mbool3;
 L1023:         bool mShouldUpdate = mbool7;
 L1042:         if (!mShouldUpdate) goto L1282;
 L1056:         bool ReturnValue = mShouldUpdate;
 L1075:         goto L1846;
 L1080:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->mCurrentHologramCost);
-L1139:         bool mbool8 = Greater_IntInt(mint322, 0);
+L1139:         bool mbool8 = mint322 > 0;
 L1173:         if (!mbool8) goto L1255;
 L1187:         KismetArrayLibrary->Array_Clear([ref] this->mCurrentHologramCost);
 L1228:         this->mRebuildHologramCosts = true;
@@ -88,22 +88,22 @@ L1266:         mShouldUpdate = false;
 L1277:         goto L1056;
 L1282:         int32 Temp_int_Variable = 0;
 L1305:         int32 mint323 = KismetArrayLibrary->Array_Length([ref] this->mCurrentHologramCost);
-L1364:         int32 mint324 = Subtract_IntInt(mint323, 1);
-L1406:         bool mbool9 = LessEqual_IntInt(Temp_int_Variable, mint324);
+L1364:         int32 mint324 = mint323 - 1;
+L1406:         bool mbool9 = Temp_int_Variable <= mint324;
 L1444:         if (!mbool9) goto L1056;
 L1458:         ExecutionFlow.Push(L1772);
 L1463:         bool mbool10 = KismetArrayLibrary->Array_IsValidIndex([ref] this->mPrevHologramCost, Temp_int_Variable);
 L1523:         if (!mbool10) goto L1749;
-L1537:         bool mbool11 = NotEqual_IntInt(this->mCurrentHologramCost[Temp_int_Variable].amount, this->mPrevHologramCost[Temp_int_Variable].amount);
-L1613:         bool mbool12 = NotEqual_ClassClass(this->mCurrentHologramCost[Temp_int_Variable].ItemClass, this->mPrevHologramCost[Temp_int_Variable].ItemClass);
-L1689:         bool mbool13 = BooleanOR(mbool12, mbool11);
+L1537:         bool mbool11 = this->mCurrentHologramCost[Temp_int_Variable].amount != this->mPrevHologramCost[Temp_int_Variable].amount;
+L1613:         bool mbool12 = this->mCurrentHologramCost[Temp_int_Variable].ItemClass != this->mPrevHologramCost[Temp_int_Variable].ItemClass;
+L1689:         bool mbool13 = mbool12 || mbool11;
 L1727:         if (!mbool13) goto ExecutionFlow.Pop();
 L1737:         mShouldUpdate = true;
 L1748:         goto ExecutionFlow.Pop();
 L1749:         mShouldUpdate = true;
 L1760:         this->mRebuildHologramCosts = true;
 L1771:         goto ExecutionFlow.Pop();
-L1772:         int32 mint325 = Add_IntInt(Temp_int_Variable, 1);
+L1772:         int32 mint325 = Temp_int_Variable + 1;
 L1814:         Temp_int_Variable = mint325;
 L1841:         goto L1305;
 ============ END FUNCTION CheckHologramState ==============
@@ -136,33 +136,33 @@ L242:          ReturnValue = 2;
 L0:            ExecutionFlow.Push(L1534);
 L5:            bool mbool = KismetSystemLibrary->IsValid(this->mSetupCostHologram);
 L56:           if (!mbool) goto L1403;
-L70:           TArray<TSubclassOf<FGConstructDisqualifier>> mTArray<TSubclassOf<FGConstructDisqualifier>> = [];
-L81:           this->mSetupCostHologram->GetConstructDisqualifiers([ref] mTArray<TSubclassOf<FGConstructDisqualifier>>);
-L122:          TArray<TSubclassOf<FGConstructDisqualifier>> constructDisqualifiers = mTArray<TSubclassOf<FGConstructDisqualifier>>;
+L70:           TArray<TSubclassOf<FGConstructDisqualifier>> mTArrayTSubclassOfFGConstructDisqualifier = [];
+L81:           this->mSetupCostHologram->GetConstructDisqualifiers([ref] mTArrayTSubclassOfFGConstructDisqualifier);
+L122:          TArray<TSubclassOf<FGConstructDisqualifier>> constructDisqualifiers = mTArrayTSubclassOfFGConstructDisqualifier;
 L149:          int32 Temp_int_Loop_Counter_Variable = 0;
 L172:          int32 Temp_int_Array_Index_Variable = 0;
 L195:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] constructDisqualifiers);
-L254:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L254:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L292:          if (!mbool1) goto L1428;
 L306:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L333:          ExecutionFlow.Push(L1460);
-L338:          KismetArrayLibrary->Array_Get([ref] constructDisqualifiers, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGConstructDisqualifier>);
-L397:          FText mFText = FGConstructDisqualifier->GetDisqualifyingText(mTSubclassOf<FGConstructDisqualifier>);
+L338:          KismetArrayLibrary->Array_Get([ref] constructDisqualifiers, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGConstructDisqualifier);
+L397:          FText mFText = FGConstructDisqualifier->GetDisqualifyingText(mTSubclassOfFGConstructDisqualifier);
 L456:          mFormatArgumentData.ArgumentName = "0";
 L486:          mFormatArgumentData.ArgumentValueType = 4;
 L515:          mFormatArgumentData.ArgumentValue = mFText;
 L551:          mFormatArgumentData.ArgumentValueInt = 0;
 L583:          mFormatArgumentData.ArgumentValueFloat = 0;
 L615:          mFormatArgumentData.ArgumentValueGender = 0;
-L644:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L664:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L644:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L664:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L766:          mFormatArgumentData1.ArgumentName = "1";
 L796:          mFormatArgumentData1.ArgumentValueType = 4;
 L825:          mFormatArgumentData1.ArgumentValue = mFText1;
 L861:          mFormatArgumentData1.ArgumentValueInt = 0;
 L893:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L925:          mFormatArgumentData1.ArgumentValueGender = 0;
-L954:          bool mbool2 = Greater_IntInt(Temp_int_Array_Index_Variable, 0);
+L954:          bool mbool2 = Temp_int_Array_Index_Variable > 0;
 L988:          mFormatArgumentData2.ArgumentName = "0";
 L1018:         mFormatArgumentData2.ArgumentValueType = 4;
 L1047:         mFormatArgumentData2.ArgumentValue = finalText;
@@ -170,8 +170,8 @@ L1083:         mFormatArgumentData2.ArgumentValueInt = 0;
 L1115:         mFormatArgumentData2.ArgumentValueFloat = 0;
 L1147:         mFormatArgumentData2.ArgumentValueGender = 0;
 L1176:         bool Temp_bool_Variable = mbool2;
-L1195:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData2, mFormatArgumentData1];
-L1224:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L1195:         TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [mFormatArgumentData2, mFormatArgumentData1];
+L1224:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
 L1331:         FText finalText = switch (Temp_bool_Variable) {
 case false -> mFText1;
 case true -> mFText2;
@@ -182,7 +182,7 @@ L1403:         FText ReturnValue = ;
 L1423:         goto L1534;
 L1428:         ReturnValue = finalText;
 L1455:         goto L1534;
-L1460:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1460:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L1502:         Temp_int_Loop_Counter_Variable = mint321;
 L1529:         goto L195;
 ============ END FUNCTION GetBuildDisqualifiersText ==============
@@ -199,16 +199,16 @@ L55:           this->CreateCostSlots();
 L69:           int32 Temp_int_Loop_Counter_Variable = 0;
 L92:           int32 Temp_int_Array_Index_Variable = 0;
 L115:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mCurrentHologramCost);
-L174:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L174:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L212:          if (!mbool) goto ExecutionFlow.Pop();
 L222:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L249:          ExecutionFlow.Push(L1685);
 L254:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mCostSlots);
-L313:          bool mbool1 = Less_IntInt(Temp_int_Array_Index_Variable, mint321);
+L313:          bool mbool1 = Temp_int_Array_Index_Variable < mint321;
 L351:          if (!mbool1) goto ExecutionFlow.Pop();
 L361:          KismetArrayLibrary->Array_Get([ref] this->mCurrentHologramCost, Temp_int_Array_Index_Variable, [ref] mItemAmount);
 L420:          ItemAmount localCost = mItemAmount;
-L447:          bool mbool2 = Greater_IntInt(localCost.amount, 0);
+L447:          bool mbool2 = localCost.amount > 0;
 L490:          if (!mbool2) goto ExecutionFlow.Pop();
 L500:          Pawn* mPawn = this->GetOwningPlayerPawn();
 L520:          HUDHelpers->GetNumItemsFromPlayerInventory(mPawn, localCost.ItemClass, this, [ref] mint322);
@@ -216,11 +216,11 @@ L593:          KismetArrayLibrary->Array_Get([ref] this->mCostSlots, Temp_int_Ar
 L652:          mWidget_CostSlotWrapper->Setup CostIcon(nullptr, localCost, nullptr, 0, mint322, false, false, false);
 L716:          mPawn = this->GetOwningPlayerPawn();
 L736:          HUDHelpers->GetNumItemsFromPlayerInventory(mPawn, localCost.ItemClass, this, [ref] mint322);
-L809:          bool mbool3 = EqualEqual_IntInt(mint322, 0);
-L843:          bool mbool4 = BooleanAND(this->mRebuildHologramCosts, mbool3);
+L809:          bool mbool3 = mint322 == 0;
+L843:          bool mbool4 = this->mRebuildHologramCosts && mbool3;
 L881:          if (!mbool4) goto ExecutionFlow.Pop();
 L891:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L915:          Widget_Build_IngredientInfo* mWidget_Build_IngredientInfo = WidgetBlueprintLibrary->Create(this, Widget_Build_IngredientInfo, mPlayerController);
+L915:          Widget_Build_IngredientInfo* mWidget_Build_IngredientInfo = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Widget_Build_IngredientInfo.Widget_Build_IngredientInfo_C), mPlayerController);
 L976:          mFormatArgumentData.ArgumentName = "B";
 L1006:         mFormatArgumentData.ArgumentValueType = 0;
 L1035:         mFormatArgumentData.ArgumentValue = ;
@@ -234,12 +234,12 @@ L1297:         mFormatArgumentData1.ArgumentValue = mFText;
 L1333:         mFormatArgumentData1.ArgumentValueInt = 0;
 L1365:         mFormatArgumentData1.ArgumentValueFloat = 0;
 L1397:         mFormatArgumentData1.ArgumentValueGender = 0;
-L1426:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
-L1455:         FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1426:         TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData1, mFormatArgumentData];
+L1455:         FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L1570:         KismetSystemLibrary->SetTextPropertyByName(mWidget_Build_IngredientInfo, "mTitle", [ref] mFText1);
 L1633:         PanelSlot* mPanelSlot = this->VerticalBox_1->AddChild(mWidget_Build_IngredientInfo);
 L1684:         goto ExecutionFlow.Pop();
-L1685:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1685:         int32 mint323 = Temp_int_Loop_Counter_Variable + 1;
 L1727:         Temp_int_Loop_Counter_Variable = mint323;
 L1754:         goto L115;
 ============ END FUNCTION UpdateCost ==============
@@ -257,23 +257,23 @@ L133:          if (!mbool) goto ExecutionFlow.Pop();
 L143:          int32 Temp_int_Loop_Counter_Variable = 0;
 L166:          int32 Temp_int_Array_Index_Variable = 0;
 L189:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mCurrentHologramCost);
-L248:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L248:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L286:          if (!mbool1) goto L570;
 L300:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L327:          ExecutionFlow.Push(L778);
 L332:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L356:          Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, Widget_CostSlotWrapper, mPlayerController);
+L356:          Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C), mPlayerController);
 L417:          mWidget_CostSlotWrapper->mForceEmptyAnim = true;
 L450:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mCostSlots, [ref] mWidget_CostSlotWrapper);
 L518:          WrapBoxSlot* mWrapBoxSlot = this->mCostSlotsGrid->AddChildToWrapBox(mWidget_CostSlotWrapper);
 L569:          goto ExecutionFlow.Pop();
 L570:          FGHologram* mFGHologram = this->mOwningState->GetHologram();
 L612:          this->mSetupCostHologram = mFGHologram;
-L631:          TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = this->mOwningState->GetDescriptor();
-L673:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGItemDescriptor>);
+L631:          TSubclassOf<FGItemDescriptor> mTSubclassOfFGItemDescriptor = this->mOwningState->GetDescriptor();
+L673:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOfFGItemDescriptor);
 L732:          this->mBuildingName->SetText(mFText);
 L777:          goto ExecutionFlow.Pop();
-L778:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L778:          int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L820:          Temp_int_Loop_Counter_Variable = mint322;
 L847:          goto L189;
 ============ END FUNCTION CreateCostSlots ==============
@@ -292,7 +292,9 @@ L55:           SlateColor ReturnValue = mSlateColor;
 
 
 ============ BEGIN FUNCTION OnEscapePressed ==============
-L0:            this->ExecuteUbergraph_Widget_BuildMode(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnEscapePressed;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L10;
 ============ END FUNCTION OnEscapePressed ==============
 
 
@@ -300,7 +302,9 @@ L0:            this->ExecuteUbergraph_Widget_BuildMode(10);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_BuildMode(146);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L146;
 ============ END FUNCTION Construct ==============
 
 
@@ -308,7 +312,9 @@ L0:            this->ExecuteUbergraph_Widget_BuildMode(146);
 
 
 ============ BEGIN FUNCTION PlayDismantleAnimation ==============
-L0:            this->ExecuteUbergraph_Widget_BuildMode(1714);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: PlayDismantleAnimation;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L1714;
 ============ END FUNCTION PlayDismantleAnimation ==============
 
 
@@ -316,7 +322,9 @@ L0:            this->ExecuteUbergraph_Widget_BuildMode(1714);
 
 
 ============ BEGIN FUNCTION StopDismantleAnimation ==============
-L0:            this->ExecuteUbergraph_Widget_BuildMode(1803);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StopDismantleAnimation;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L1803;
 ============ END FUNCTION StopDismantleAnimation ==============
 
 
@@ -324,8 +332,9 @@ L0:            this->ExecuteUbergraph_Widget_BuildMode(1803);
 
 
 ============ BEGIN FUNCTION OnCustomTick ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Widget_BuildMode.Widget_BuildMode_C:ExecuteUbergraph_Widget_BuildMode.K2Node_Event_UpdateTime) = UpdateTime;
-L18:           this->ExecuteUbergraph_Widget_BuildMode(2316);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnCustomTick;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L2316;
 ============ END FUNCTION OnCustomTick ==============
 
 
@@ -333,8 +342,9 @@ L18:           this->ExecuteUbergraph_Widget_BuildMode(2316);
 
 
 ============ BEGIN FUNCTION PlayOnSplineModeChangedAnimation ==============
-L0:            PERSISTENT_FRAME(EnumProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Widget_BuildMode.Widget_BuildMode_C:ExecuteUbergraph_Widget_BuildMode.K2Node_CustomEvent_newSplineMode) = newSplineMode;
-L18:           this->ExecuteUbergraph_Widget_BuildMode(2321);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PlayOnSplineModeChangedAnimation;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L2321;
 ============ END FUNCTION PlayOnSplineModeChangedAnimation ==============
 
 
@@ -342,12 +352,14 @@ L18:           this->ExecuteUbergraph_Widget_BuildMode(2321);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_BuildMode ==============
+L10:           // <Begin Inlined EventGraph Function OnEscapePressed>;
 L10:           Pawn* mPawn = this->GetOwningPlayerPawn();
 L30:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
 L66:           bool mbool = mFGCharacterPlayer;
 L95:           if (!mbool) goto L3138;
 L109:          mFGCharacterPlayer->ToggleBuildGun();
-L141:          <End of Inlined Event Graph Function>;
+L141:          // <End Inlined EventGraph Function>;
+L146:          // <Begin Inlined EventGraph Function Construct>;
 L146:          this->Construct();
 L156:          FGBuildGunStateBuild* mFGBuildGunStateBuild = Cast<Class /Script/FactoryGame.FGBuildGunStateBuild>(this->mInteractObject);
 L192:          bool mbool1 = mFGBuildGunStateBuild;
@@ -400,24 +412,26 @@ case 6 -> Temp_text_Variable9;
 case 7 -> Temp_text_Variable8;
 default -> mFText;
 });
-L1709:         <End of Inlined Event Graph Function>;
+L1709:         // <End Inlined EventGraph Function>;
+L1714:         // <Begin Inlined EventGraph Function PlayDismantleAnimation>;
 L1714:         this->mDismantleText->SetVisibility(3);
 L1752:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->DismantleAnim, 0, 0, 0, 1);
-L1798:         <End of Inlined Event Graph Function>;
+L1798:         // <End Inlined EventGraph Function>;
+L1803:         // <Begin Inlined EventGraph Function StopDismantleAnimation>;
 L1803:         this->mDismantleText->SetVisibility(1);
 L1841:         this->StopAnimation(this->DismantleAnim);
-L1860:         <End of Inlined Event Graph Function>;
+L1860:         // <End Inlined EventGraph Function>;
 L1865:         this->UpdateCost();
 L1879:         bool mbool4 = KismetSystemLibrary->IsValid(this->mOwningState);
 L1930:         FGHologram* mFGHologram1 = this->mOwningState->GetHologram();
 L1972:         bool mbool5 = KismetSystemLibrary->IsValid(mFGHologram1);
-L2023:         bool mbool6 = BooleanAND(mbool4, mbool5);
+L2023:         bool mbool6 = mbool4 && mbool5;
 L2061:         if (!mbool6) goto L2157;
-L2075:         TArray<ItemAmount> mTArray<ItemAmount> = this->mOwningState->GetHologramCost();
-L2125:         this->mPrevHologramCost = mTArray<ItemAmount>;
-L2152:         <End of Inlined Event Graph Function>;
+L2075:         TArray<ItemAmount> mTArrayItemAmount = this->mOwningState->GetHologramCost();
+L2125:         this->mPrevHologramCost = mTArrayItemAmount;
+L2152:         // <End Inlined EventGraph Function>;
 L2157:         this->mPrevHologramCost = this->mCurrentHologramCost;
-L2184:         <End of Inlined Event Graph Function>;
+L2184:         // <End Inlined EventGraph Function>;
 L2189:         bool mbool7 = this->CheckHologramState();
 L2213:         if (!mbool7) goto L1879;
 L2227:         goto L1865;

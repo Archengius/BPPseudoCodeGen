@@ -8,28 +8,28 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/WorkBench/BPW_MAM.BPW
 
 ============ BEGIN FUNCTION WidgetFactory ==============
 L0:            ExecutionFlow.Push(L760);
-L5:            bool mbool = ClassIsChildOf(PopupClass, Widget_PopupToggleSelect);
+L5:            bool mbool = ClassIsChildOf(PopupClass, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_PopupToggleSelect.Widget_PopupToggleSelect_C));
 L43:           if (!mbool) goto ExecutionFlow.Pop();
 L53:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L77:           FGResearchManager* mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L128:          TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>> = [];
-L139:          mFGResearchManager->GetPendingRewards(this->CurrentCompletedResearch, [ref] mTArray<TSubclassOf<FGSchematic>>);
+L128:          TArray<TSubclassOf<FGSchematic>> mTArrayTSubclassOfFGSchematic = [];
+L139:          mFGResearchManager->GetPendingRewards(this->CurrentCompletedResearch, [ref] mTArrayTSubclassOfFGSchematic);
 L189:          int32 Temp_int_Loop_Counter_Variable = 0;
 L212:          int32 Temp_int_Array_Index_Variable = 0;
-L235:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGSchematic>>);
-L294:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L235:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGSchematic);
+L294:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L332:          if (!mbool1) goto L654;
 L346:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L373:          ExecutionFlow.Push(L686);
 L378:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L402:          Widget_PopupContentImageButton* mWidget_PopupContentImageButton = WidgetBlueprintLibrary->Create(this, Widget_PopupContentImageButton, mPlayerController1);
-L463:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGSchematic>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
-L522:          KismetSystemLibrary->SetClassPropertyByName(mWidget_PopupContentImageButton, "mSchematic", mTSubclassOf<FGSchematic>);
+L402:          Widget_PopupContentImageButton* mWidget_PopupContentImageButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_PopupContentImageButton.Widget_PopupContentImageButton_C), mPlayerController1);
+L463:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGSchematic, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGSchematic);
+L522:          KismetSystemLibrary->SetClassPropertyByName(mWidget_PopupContentImageButton, "mSchematic", mTSubclassOfFGSchematic);
 L585:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalWidgets, [ref] mWidget_PopupContentImageButton);
 L653:          goto ExecutionFlow.Pop();
 L654:          TArray<UserWidget*> out_widgets = LocalWidgets;
-L681:          <End of Inlined Event Graph Function>;
-L686:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L681:          // <End Inlined EventGraph Function>;
+L686:          int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L728:          Temp_int_Loop_Counter_Variable = mint322;
 L755:          goto L235;
 ============ END FUNCTION WidgetFactory ==============
@@ -41,8 +41,8 @@ L755:          goto L235;
 ============ BEGIN FUNCTION SchematicsPurchased ==============
 L0:            uint8 muint8 = FGSchematic->GetType(schematic);
 L59:           bool mbool = KismetSystemLibrary->IsValidClass(this->mCurrentTree);
-L110:          bool mbool1 = EqualEqual_ByteByte(muint8, 6);
-L141:          bool mbool2 = BooleanAND(mbool1, mbool);
+L110:          bool mbool1 = muint8 == 6;
+L141:          bool mbool2 = mbool1 && mbool;
 L179:          if (!mbool2) goto L238;
 L193:          this->BPW_MAMTree_Ingame->SelectResearchTree(this->mCurrentTree);
 ============ END FUNCTION SchematicsPurchased ==============
@@ -62,7 +62,7 @@ L231:          this->mCurrentTree = nullptr;
 L242:          this->mTreeScrollBox->SetVisibility(1);
 L280:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L304:          FGResearchManager* mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L355:          bool mbool1 = mFGResearchManager->IsResesearchTreeUnlocked(BPD_ResearchTree_HardDrive);
+L355:          bool mbool1 = mFGResearchManager->IsResesearchTreeUnlocked(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Schematics/Research/BPD_ResearchTree_HardDrive.BPD_ResearchTree_HardDrive_C));
 L406:          if (!mbool1) goto L458;
 L420:          this->BPW_MAM_HardDriveScanner->SetVisibility(0);
 ============ END FUNCTION OnHarddriveButtonClicked ==============
@@ -81,7 +81,7 @@ L196:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/Factor
 L232:          bool mbool = mFGCharacterPlayer;
 L261:          mBP_RemoteCallObject->ServerClaimResearchResults(mFGResearchManager, mFGCharacterPlayer, this->CurrentCompletedResearch, this->selectedRewardIndex);
 L333:          bool mbool1 = KismetSystemLibrary->IsValidClass(this->mCurrentTree);
-L384:          bool mbool2 = BooleanAND(this->mHasBeenResearchingSinceOpening, mbool1);
+L384:          bool mbool2 = this->mHasBeenResearchingSinceOpening && mbool1;
 L422:          if (!mbool2) goto L481;
 L436:          this->BPW_MAMTree_Ingame->SelectResearchTree(this->mCurrentTree);
 ============ END FUNCTION OnPopupClosed ==============
@@ -93,11 +93,11 @@ L436:          this->BPW_MAMTree_Ingame->SelectResearchTree(this->mCurrentTree);
 ============ BEGIN FUNCTION HandleCompletedResearch ==============
 L0:            this->CurrentCompletedResearch = schematic;
 L19:           uint8 muint8 = FGSchematic->GetType(this->CurrentCompletedResearch);
-L78:           bool mbool = NotEqual_ByteByte(muint8, 6);
+L78:           bool mbool = muint8 != 6;
 L109:          if (!mbool) goto L173;
-L123:          mbool = NotEqual_ByteByte(muint8, 8);
+L123:          mbool = muint8 != 8;
 L154:          if (!mbool) goto L867;
-L168:          <End of Inlined Event Graph Function>;
+L168:          // <End Inlined EventGraph Function>;
 L173:          TSubclassOf<UserWidget> LocalWidgetType = nullptr;
 L184:          FText mFText = FGSchematic->GetSchematicDisplayName(schematic);
 L243:          mFormatArgumentData.ArgumentName = "Schematic";
@@ -106,22 +106,22 @@ L310:          mFormatArgumentData.ArgumentValue = mFText;
 L346:          mFormatArgumentData.ArgumentValueInt = 0;
 L378:          mFormatArgumentData.ArgumentValueFloat = 0;
 L410:          mFormatArgumentData.ArgumentValueGender = 0;
-L439:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L459:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L439:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L459:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L659:          FText LocalTitleText = mFText1;
 L686:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L710:          mFScriptDelegate->BindUFunction(this, OnPopupClosed);
 L733:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController, "[object Object]", LocalTitleText, [ref] mFScriptDelegate, 0, LocalWidgetType, this);
-L862:          <End of Inlined Event Graph Function>;
+L862:          // <End Inlined EventGraph Function>;
 L867:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L891:          FGResearchManager* mFGResearchManager = FGResearchManager->Get(mPlayerController1);
-L942:          TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>> = [];
-L953:          mFGResearchManager->GetPendingRewards(schematic, [ref] mTArray<TSubclassOf<FGSchematic>>);
-L1003:         TArray<TSubclassOf<FGSchematic>> LocalPendingRewards = mTArray<TSubclassOf<FGSchematic>>;
+L942:          TArray<TSubclassOf<FGSchematic>> mTArrayTSubclassOfFGSchematic = [];
+L953:          mFGResearchManager->GetPendingRewards(schematic, [ref] mTArrayTSubclassOfFGSchematic);
+L1003:         TArray<TSubclassOf<FGSchematic>> LocalPendingRewards = mTArrayTSubclassOfFGSchematic;
 L1030:         int32 mint32 = KismetArrayLibrary->Array_Length([ref] LocalPendingRewards);
-L1089:         bool mbool1 = Greater_IntInt(mint32, 0);
+L1089:         bool mbool1 = mint32 > 0;
 L1123:         if (!mbool1) goto L1807;
-L1137:         LocalWidgetType = Widget_PopupToggleSelect;
+L1137:         LocalWidgetType = ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_PopupToggleSelect.Widget_PopupToggleSelect_C);
 L1156:         FText mFText2 = FGSchematic->GetSchematicDisplayName(schematic);
 L1215:         mFormatArgumentData1.ArgumentName = "Schematic";
 L1253:         mFormatArgumentData1.ArgumentValueType = 4;
@@ -129,14 +129,14 @@ L1282:         mFormatArgumentData1.ArgumentValue = mFText2;
 L1318:         mFormatArgumentData1.ArgumentValueInt = 0;
 L1350:         mFormatArgumentData1.ArgumentValueFloat = 0;
 L1382:         mFormatArgumentData1.ArgumentValueGender = 0;
-L1411:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
-L1431:         FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L1411:         TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [mFormatArgumentData1];
+L1431:         FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
 L1599:         LocalTitleText = mFText3;
 L1626:         mFScriptDelegate1->BindUFunction(this, OnPopupClosed);
 L1649:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L1673:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", LocalTitleText, [ref] mFScriptDelegate1, 0, LocalWidgetType, this);
-L1802:         <End of Inlined Event Graph Function>;
-L1807:         LocalWidgetType = Widget_PopupToggleSelect;
+L1802:         // <End Inlined EventGraph Function>;
+L1807:         LocalWidgetType = ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_PopupToggleSelect.Widget_PopupToggleSelect_C);
 L1826:         FGHardDriveSettings* mFGHardDriveSettings = FGGlobalSettings->GetHardDriveSettingsCDO();
 L1868:         ItemAmount mItemAmount = mFGHardDriveSettings->GetFallbackReturnItem();
 L1918:         FText mFText4 = FGItemDescriptor->GetItemName(mItemAmount.ItemClass);
@@ -153,8 +153,8 @@ L2303:         mFormatArgumentData3.ArgumentValue = mFText5;
 L2339:         mFormatArgumentData3.ArgumentValueInt = 0;
 L2371:         mFormatArgumentData3.ArgumentValueFloat = 0;
 L2403:         mFormatArgumentData3.ArgumentValueGender = 0;
-L2432:         TArray<FormatArgumentData> mTArray<FormatArgumentData>2 = [mFormatArgumentData3, mFormatArgumentData2];
-L2461:         FText mFText6 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>2);
+L2432:         TArray<FormatArgumentData> mTArrayFormatArgumentData2 = [mFormatArgumentData3, mFormatArgumentData2];
+L2461:         FText mFText6 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData2);
 L2709:         LocalTitleText = mFText6;
 L2736:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
 L2760:         mFScriptDelegate2->BindUFunction(this, OnPopupClosed);
@@ -168,25 +168,25 @@ L2783:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerCont
 ============ BEGIN FUNCTION OnResearchStateChanged ==============
 L0:            ExecutionFlow.Push(L888);
 L5:            this->mResearchState = researchState;
-L32:           bool mbool = NotEqual_ByteByte(this->mResearchState, 0);
+L32:           bool mbool = this->mResearchState != 0;
 L63:           if (!mbool) goto L123;
-L77:           mbool = NotEqual_ByteByte(this->mResearchState, 1);
+L77:           mbool = this->mResearchState != 1;
 L108:          if (!mbool) goto L673;
 L122:          goto ExecutionFlow.Pop();
 L123:          this->BPW_MAM_HardDriveScanner->ResetText();
 L159:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L183:          FGResearchManager* mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L234:          TArray<TSubclassOf<FGSchematic>> mTArray<TSubclassOf<FGSchematic>> = [];
-L245:          mFGResearchManager->GetAllCompletedResearch([ref] mTArray<TSubclassOf<FGSchematic>>);
+L234:          TArray<TSubclassOf<FGSchematic>> mTArrayTSubclassOfFGSchematic = [];
+L245:          mFGResearchManager->GetAllCompletedResearch([ref] mTArrayTSubclassOfFGSchematic);
 L286:          int32 Temp_int_Loop_Counter_Variable = 0;
 L309:          int32 Temp_int_Array_Index_Variable = 0;
-L332:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGSchematic>>);
-L391:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L332:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGSchematic);
+L391:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L429:          if (!mbool1) goto L558;
 L443:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L470:          ExecutionFlow.Push(L814);
-L475:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGSchematic>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGSchematic>);
-L534:          this->HandleCompletedResearch(mTSubclassOf<FGSchematic>);
+L475:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGSchematic, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGSchematic);
+L534:          this->HandleCompletedResearch(mTSubclassOfFGSchematic);
 L557:          goto ExecutionFlow.Pop();
 L558:          this->mCurrentResearchInfo->SetVisibility(1);
 L596:          this->mInProgressBackground->SetVisibility(1);
@@ -194,10 +194,10 @@ L634:          this->mBlueprintGrid->SetVisibility(0);
 L672:          goto ExecutionFlow.Pop();
 L673:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L697:          FGResearchManager* mFGResearchManager1 = FGResearchManager->Get(mPlayerController1);
-L748:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic>1 = mFGResearchManager1->GetResearchBeingConducted();
-L790:          this->OnResearchStarted(mTSubclassOf<FGSchematic>1);
+L748:          TSubclassOf<FGSchematic> mTSubclassOfFGSchematic1 = mFGResearchManager1->GetResearchBeingConducted();
+L790:          this->OnResearchStarted(mTSubclassOfFGSchematic1);
 L813:          goto ExecutionFlow.Pop();
-L814:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L814:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L856:          Temp_int_Loop_Counter_Variable = mint321;
 L883:          goto L332;
 ============ END FUNCTION OnResearchStateChanged ==============
@@ -209,9 +209,9 @@ L883:          goto L332;
 ============ BEGIN FUNCTION ConvertFloatTimeToText ==============
 L0:            Timespan mTimespan = FromSeconds(Seconds);
 L37:           BreakTimespan(mTimespan, [ref] mint32, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324);
-L101:          int32 mint325 = Multiply_IntInt(mint32, 24);
+L101:          int32 mint325 = mint32 * 24;
 L143:          FText mFText = KismetTextLibrary->Conv_IntToText(mint323, false, true, 2, 324);
-L214:          int32 mint326 = Add_IntInt(mint325, mint321);
+L214:          int32 mint326 = mint325 + mint321;
 L260:          mFormatArgumentData.ArgumentName = "s";
 L290:          mFormatArgumentData.ArgumentValueType = 4;
 L319:          mFormatArgumentData.ArgumentValue = mFText;
@@ -231,8 +231,8 @@ L763:          mFormatArgumentData2.ArgumentValue = mFText1;
 L799:          mFormatArgumentData2.ArgumentValueInt = 0;
 L831:          mFormatArgumentData2.ArgumentValueFloat = 0;
 L863:          mFormatArgumentData2.ArgumentValueGender = 0;
-L892:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData2, mFormatArgumentData];
-L930:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L892:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData1, mFormatArgumentData2, mFormatArgumentData];
+L930:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L1040:         FText Result = mFText2;
 ============ END FUNCTION ConvertFloatTimeToText ==============
 
@@ -247,29 +247,29 @@ L75:           bool mbool = mFGResearchManager->IsAnyResearchBeingConducted();
 L117:          if (!mbool) goto L2199;
 L131:          mPlayerController = this->GetOwningPlayer();
 L155:          mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L206:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = mFGResearchManager->GetResearchBeingConducted();
-L248:          float mfloat = FGSchematic->GetTimeToComplete(mTSubclassOf<FGSchematic>);
-L307:          float mfloat1 = mFGResearchManager->GetOngoingResearchTimeLeft(mTSubclassOf<FGSchematic>);
-L366:          float mfloat2 = Divide_FloatFloat(mfloat1, mfloat);
-L412:          float mfloat3 = Subtract_FloatFloat(1, mfloat2);
+L206:          TSubclassOf<FGSchematic> mTSubclassOfFGSchematic = mFGResearchManager->GetResearchBeingConducted();
+L248:          float mfloat = FGSchematic->GetTimeToComplete(mTSubclassOfFGSchematic);
+L307:          float mfloat1 = mFGResearchManager->GetOngoingResearchTimeLeft(mTSubclassOfFGSchematic);
+L366:          float mfloat2 = mfloat1 / mfloat;
+L412:          float mfloat3 = 1 - mfloat2;
 L454:          this->mResearchProgressBar->mProgressBar->SetPercent(mfloat3);
 L517:          mPlayerController = this->GetOwningPlayer();
 L541:          mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L592:          mTSubclassOf<FGSchematic> = mFGResearchManager->GetResearchBeingConducted();
-L634:          mfloat1 = mFGResearchManager->GetOngoingResearchTimeLeft(mTSubclassOf<FGSchematic>);
+L592:          mTSubclassOfFGSchematic = mFGResearchManager->GetResearchBeingConducted();
+L634:          mfloat1 = mFGResearchManager->GetOngoingResearchTimeLeft(mTSubclassOfFGSchematic);
 L693:          this->ConvertFloatTimeToText(mfloat1, [ref] mFText);
 L725:          this->mResearchTimeCurrent->SetText(mFText);
 L770:          FText Temp_text_Variable = "[object Object]";
 L850:          FText Temp_text_Variable1 = "[object Object]";
 L960:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L984:          FGResearchManager* mFGResearchManager1 = FGResearchManager->Get(mPlayerController1);
-L1035:         TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic>1 = mFGResearchManager1->GetResearchBeingConducted();
+L1035:         TSubclassOf<FGSchematic> mTSubclassOfFGSchematic1 = mFGResearchManager1->GetResearchBeingConducted();
 L1077:         mPlayerController = this->GetOwningPlayer();
-L1101:         uint8 muint8 = FGSchematic->GetType(mTSubclassOf<FGSchematic>1);
+L1101:         uint8 muint8 = FGSchematic->GetType(mTSubclassOfFGSchematic1);
 L1160:         mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L1211:         bool mbool1 = EqualEqual_ByteByte(muint8, 8);
+L1211:         bool mbool1 = muint8 == 8;
 L1242:         bool Temp_bool_Variable = mbool1;
-L1261:         mTSubclassOf<FGSchematic> = mFGResearchManager->GetResearchBeingConducted();
+L1261:         mTSubclassOfFGSchematic = mFGResearchManager->GetResearchBeingConducted();
 L1303:         mFormatArgumentData.ArgumentName = "text";
 L1336:         mFormatArgumentData.ArgumentValueType = 4;
 L1365:         mFormatArgumentData.ArgumentValue = switch (Temp_bool_Variable) {
@@ -280,10 +280,10 @@ default -> mFText1;
 L1445:         mFormatArgumentData.ArgumentValueInt = 0;
 L1477:         mFormatArgumentData.ArgumentValueFloat = 0;
 L1509:         mFormatArgumentData.ArgumentValueGender = 0;
-L1538:         mfloat = FGSchematic->GetTimeToComplete(mTSubclassOf<FGSchematic>);
-L1597:         mfloat1 = mFGResearchManager->GetOngoingResearchTimeLeft(mTSubclassOf<FGSchematic>);
-L1656:         mfloat2 = Divide_FloatFloat(mfloat1, mfloat);
-L1702:         mfloat3 = Subtract_FloatFloat(1, mfloat2);
+L1538:         mfloat = FGSchematic->GetTimeToComplete(mTSubclassOfFGSchematic);
+L1597:         mfloat1 = mFGResearchManager->GetOngoingResearchTimeLeft(mTSubclassOfFGSchematic);
+L1656:         mfloat2 = mfloat1 / mfloat;
+L1702:         mfloat3 = 1 - mfloat2;
 L1744:         FText mFText2 = KismetTextLibrary->AsPercent_Float(mfloat3, 0, false, true, 1, 324, 0, 0);
 L1827:         mFormatArgumentData1.ArgumentName = "%";
 L1857:         mFormatArgumentData1.ArgumentValueType = 4;
@@ -291,8 +291,8 @@ L1886:         mFormatArgumentData1.ArgumentValue = mFText2;
 L1922:         mFormatArgumentData1.ArgumentValueInt = 0;
 L1954:         mFormatArgumentData1.ArgumentValueFloat = 0;
 L1986:         mFormatArgumentData1.ArgumentValueGender = 0;
-L2015:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
-L2044:         FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L2015:         TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData, mFormatArgumentData1];
+L2044:         FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L2154:         this->BPW_MAM_HardDriveScanner->SetText(mFText3);
 ============ END FUNCTION UpdateResearchTimer ==============
 
@@ -301,12 +301,12 @@ L2154:         this->BPW_MAM_HardDriveScanner->SetText(mFText3);
 
 
 ============ BEGIN FUNCTION OnGetTreeInfoWidget ==============
-L0:            bool mbool = NotEqual_IntInt(this->mCurrentHoveredButton, -1);
+L0:            bool mbool = this->mCurrentHoveredButton != -1;
 L34:           if (!mbool) goto L312;
 L48:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L72:           BPW_MAMTree_ListButtonInfo* mBPW_MAMTree_ListButtonInfo = WidgetBlueprintLibrary->Create(this, BPW_MAMTree_ListButtonInfo, mPlayerController);
-L133:          KismetArrayLibrary->Array_Get([ref] this->mAllResearchTrees, this->mCurrentHoveredButton, [ref] mTSubclassOf<FGResearchTree>);
-L192:          KismetSystemLibrary->SetClassPropertyByName(mBPW_MAMTree_ListButtonInfo, "mResearchTree", mTSubclassOf<FGResearchTree>);
+L72:           BPW_MAMTree_ListButtonInfo* mBPW_MAMTree_ListButtonInfo = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/MAMTree/BPW_MAMTree_ListButtonInfo.BPW_MAMTree_ListButtonInfo_C), mPlayerController);
+L133:          KismetArrayLibrary->Array_Get([ref] this->mAllResearchTrees, this->mCurrentHoveredButton, [ref] mTSubclassOfFGResearchTree);
+L192:          KismetSystemLibrary->SetClassPropertyByName(mBPW_MAMTree_ListButtonInfo, "mResearchTree", mTSubclassOfFGResearchTree);
 L255:          mBPW_MAMTree_ListButtonInfo->SetVisibility(0);
 L293:          Widget* ReturnValue = mBPW_MAMTree_ListButtonInfo;
 ============ END FUNCTION OnGetTreeInfoWidget ==============
@@ -328,19 +328,19 @@ L32:           this->mCurrentHoveredButton = -1;
 L0:            const Geometry mconst Geometry = ListButton->GetCachedGeometry();
 L50:           Vector2D mVector2D = SlateBlueprintLibrary->GetLocalSize([ref] mconst Geometry);
 L109:          BreakVector2D(mVector2D, [ref] mfloat, [ref] mfloat1);
-L146:          float mfloat2 = Divide_FloatFloat(mfloat1, 2);
+L146:          float mfloat2 = mfloat1 / 2;
 L188:          SlateBlueprintLibrary->LocalToViewport(this, [ref] mconst Geometry, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D1, [ref] mVector2D2);
 L272:          CanvasPanelSlot* mCanvasPanelSlot = WidgetLayoutLibrary->SlotAsCanvasSlot(this->mListButtonInfoMover);
 L323:          const Geometry mconst Geometry1 = this->mResearchListContainer->GetCachedGeometry();
 L373:          SlateBlueprintLibrary->LocalToViewport(this, [ref] mconst Geometry1, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), [ref] mVector2D3, [ref] mVector2D4);
-L457:          Vector2D mVector2D5 = Subtract_Vector2DVector2D(mVector2D2, mVector2D4);
+L457:          Vector2D mVector2D5 = mVector2D2 - mVector2D4;
 L503:          BreakVector2D(mVector2D5, [ref] mfloat3, [ref] mfloat4);
-L540:          float mfloat5 = Add_FloatFloat(mfloat4, mfloat2);
+L540:          float mfloat5 = mfloat4 + mfloat2;
 L586:          Vector2D mVector2D6 = MakeVector2D(15, mfloat5);
 L628:          mCanvasPanelSlot->SetPosition(mVector2D6);
 L669:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mAllResearchTrees);
-L728:          int32 mint321 = Subtract_IntInt(mint32, 1);
-L770:          bool mbool = EqualEqual_ObjectObject(ListButton, this->mHardDriveListButton);
+L728:          int32 mint321 = mint32 - 1;
+L770:          bool mbool = ListButton == this->mHardDriveListButton;
 L808:          bool Temp_bool_Variable = mbool;
 L827:          this->mCurrentHoveredButton = switch (Temp_bool_Variable) {
 case false -> index;
@@ -383,8 +383,8 @@ L1170:         mFormatArgumentData.ArgumentValue = mFText1;
 L1206:         mFormatArgumentData.ArgumentValueInt = 0;
 L1238:         mFormatArgumentData.ArgumentValueFloat = 0;
 L1270:         mFormatArgumentData.ArgumentValueGender = 0;
-L1299:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L1319:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1299:         TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L1319:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L1427:         this->mResearchTimeTotal->SetText(mFText2);
 L1472:         this->mHasBeenResearchingSinceOpening = true;
 ============ END FUNCTION OnResearchStarted ==============
@@ -399,26 +399,26 @@ L5:            int32 Temp_int_Loop_Counter_Variable = 0;
 L28:           int32 Temp_int_Array_Index_Variable1 = 0;
 L51:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L75:           FGResearchManager* mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L126:          TArray<TSubclassOf<FGResearchTree>> mTArray<TSubclassOf<FGResearchTree>> = [];
-L137:          mFGResearchManager->GetAllResearchTrees([ref] mTArray<TSubclassOf<FGResearchTree>>);
-L178:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGResearchTree>>);
-L237:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L126:          TArray<TSubclassOf<FGResearchTree>> mTArrayTSubclassOfFGResearchTree = [];
+L137:          mFGResearchManager->GetAllResearchTrees([ref] mTArrayTSubclassOfFGResearchTree);
+L178:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGResearchTree);
+L237:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L275:          if (!mbool) goto L765;
 L289:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
 L316:          ExecutionFlow.Push(L2946);
 L321:          mPlayerController = this->GetOwningPlayer();
 L345:          mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L396:          mTArray<TSubclassOf<FGResearchTree>> = [];
-L407:          mFGResearchManager->GetAllResearchTrees([ref] mTArray<TSubclassOf<FGResearchTree>>);
-L448:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResearchTree>>, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGResearchTree>);
-L507:          bool mbool1 = EqualEqual_ClassClass(mTSubclassOf<FGResearchTree>, BPD_ResearchTree_HardDrive);
+L396:          mTArrayTSubclassOfFGResearchTree = [];
+L407:          mFGResearchManager->GetAllResearchTrees([ref] mTArrayTSubclassOfFGResearchTree);
+L448:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGResearchTree, Temp_int_Array_Index_Variable1, [ref] mTSubclassOfFGResearchTree);
+L507:          bool mbool1 = mTSubclassOfFGResearchTree == ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Schematics/Research/BPD_ResearchTree_HardDrive.BPD_ResearchTree_HardDrive_C);
 L545:          if (!mbool1) goto L3020;
 L559:          mPlayerController = this->GetOwningPlayer();
 L583:          mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L634:          mTArray<TSubclassOf<FGResearchTree>> = [];
-L645:          mFGResearchManager->GetAllResearchTrees([ref] mTArray<TSubclassOf<FGResearchTree>>);
-L686:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResearchTree>>, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGResearchTree>);
-L745:          TSubclassOf<FGResearchTree> LocalHardDriveClass = mTSubclassOf<FGResearchTree>;
+L634:          mTArrayTSubclassOfFGResearchTree = [];
+L645:          mFGResearchManager->GetAllResearchTrees([ref] mTArrayTSubclassOfFGResearchTree);
+L686:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGResearchTree, Temp_int_Array_Index_Variable1, [ref] mTSubclassOfFGResearchTree);
+L745:          TSubclassOf<FGResearchTree> LocalHardDriveClass = mTSubclassOfFGResearchTree;
 L764:          goto ExecutionFlow.Pop();
 L765:          KismetArrayLibrary->Array_Append([ref] LocalAvailableTrees, [ref] LocalLockedTrees);
 L815:          this->mAllResearchTrees = LocalAvailableTrees;
@@ -426,16 +426,16 @@ L842:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mAllRes
 L910:          int32 Temp_int_Loop_Counter_Variable1 = 0;
 L933:          int32 Temp_int_Array_Index_Variable = 0;
 L956:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->mAllResearchTrees);
-L1015:         bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint322);
+L1015:         bool mbool2 = Temp_int_Loop_Counter_Variable1 < mint322;
 L1053:         if (!mbool2) goto ExecutionFlow.Pop();
 L1063:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
 L1090:         ExecutionFlow.Push(L2872);
-L1095:         KismetArrayLibrary->Array_Get([ref] this->mAllResearchTrees, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGResearchTree>1);
-L1154:         TSubclassOf<FGResearchTree> LocalTree = mTSubclassOf<FGResearchTree>1;
+L1095:         KismetArrayLibrary->Array_Get([ref] this->mAllResearchTrees, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGResearchTree1);
+L1154:         TSubclassOf<FGResearchTree> LocalTree = mTSubclassOfFGResearchTree1;
 L1173:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L1197:         Widget_ListButton* mWidget_ListButton = WidgetBlueprintLibrary->Create(this, Widget_ListButton, mPlayerController1);
-L1258:         Texture* Temp_object_Variable = SchematicIcon_MAM;
-L1277:         Texture* Temp_object_Variable1 = Lock_Icon;
+L1197:         Widget_ListButton* mWidget_ListButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ListButton.Widget_ListButton_C), mPlayerController1);
+L1258:         Texture* Temp_object_Variable = ObjectConst(Texture2D /Game/FactoryGame/Buildable/Factory/TradingPost/UI/SchematicIcons/SchematicIcon_MAM.SchematicIcon_MAM);
+L1277:         Texture* Temp_object_Variable1 = ObjectConst(Texture2D /Game/FactoryGame/Buildable/Factory/TradingPost/UI/Lock_Icon.Lock_Icon);
 L1296:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L1320:         FGResearchManager* mFGResearchManager1 = FGResearchManager->Get(mPlayerController2);
 L1371:         bool mbool3 = mFGResearchManager1->IsResesearchTreeUnlocked(LocalTree);
@@ -458,9 +458,9 @@ default -> mFText2;
 });
 L1918:         uint8 muint8 = KismetSystemLibrary->MakeLiteralByte(1);
 L1970:         KismetSystemLibrary->SetBytePropertyByName(mWidget_ListButton, "iconVisibility", muint8);
-L2033:         bool mbool4 = NotEqual_ClassClass(LocalTree, LocalHardDriveClass);
+L2033:         bool mbool4 = LocalTree != LocalHardDriveClass;
 L2071:         if (!mbool4) goto L3856;
-L2085:         bool mbool5 = NotEqual_ClassClass(LocalTree, LocalHardDriveClass);
+L2085:         bool mbool5 = LocalTree != LocalHardDriveClass;
 L2123:         bool Temp_bool_Variable3 = mbool5;
 L2142:         PanelSlot* mPanelSlot = switch (Temp_bool_Variable3) {
 case false -> this->mHardDriveSlot;
@@ -469,7 +469,7 @@ default -> mPanelWidget;
 }->AddChild(mWidget_ListButton);
 L2237:         mFScriptDelegate->BindUFunction(this, OnHarddriveButtonClicked);
 L2260:         mFScriptDelegate1->BindUFunction(this, OnResearchListButtonClicked);
-L2283:         bool mbool6 = NotEqual_ClassClass(LocalTree, LocalHardDriveClass);
+L2283:         bool mbool6 = LocalTree != LocalHardDriveClass;
 L2321:         bool Temp_bool_Variable2 = mbool6;
 L2340:         mWidget_ListButton->OnClicked.AddUnique(switch (Temp_bool_Variable2) {
 case false -> mFScriptDelegate;
@@ -483,40 +483,40 @@ L2512:         mWidget_ListButton->OnUnhovered.AddUnique(mFScriptDelegate3);
 L2553:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
 L2577:         FGResearchManager* mFGResearchManager2 = FGResearchManager->Get(mPlayerController3);
 L2628:         bool mbool7 = mFGResearchManager2->IsResesearchTreeUnlocked(LocalTree);
-L2679:         bool mbool8 = Not_PreBool(mbool7);
+L2679:         bool mbool8 = !mbool7;
 L2708:         if (!mbool8) goto ExecutionFlow.Pop();
 L2718:         mSlateColor.SpecifiedColor = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.06770800054073334, G = 0.0669649988412857, B = 0.0669649988412857, A = 1);
 L2779:         mSlateColor.ColorUseRule = 0;
 L2808:         mWidget_ListButton->mButtonText->SetColorAndOpacity(mSlateColor);
 L2871:         goto ExecutionFlow.Pop();
-L2872:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L2872:         int32 mint323 = Temp_int_Loop_Counter_Variable1 + 1;
 L2914:         Temp_int_Loop_Counter_Variable1 = mint323;
 L2941:         goto L956;
-L2946:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2946:         int32 mint324 = Temp_int_Loop_Counter_Variable + 1;
 L2988:         Temp_int_Loop_Counter_Variable = mint324;
 L3015:         goto L51;
 L3020:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
 L3044:         mPlayerController = this->GetOwningPlayer();
 L3068:         FGResearchManager* mFGResearchManager3 = FGResearchManager->Get(mPlayerController4);
 L3119:         mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L3170:         mTArray<TSubclassOf<FGResearchTree>> = [];
-L3181:         mFGResearchManager->GetAllResearchTrees([ref] mTArray<TSubclassOf<FGResearchTree>>);
-L3222:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResearchTree>>, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGResearchTree>);
-L3281:         bool mbool9 = mFGResearchManager3->IsResesearchTreeUnlocked(mTSubclassOf<FGResearchTree>);
+L3170:         mTArrayTSubclassOfFGResearchTree = [];
+L3181:         mFGResearchManager->GetAllResearchTrees([ref] mTArrayTSubclassOfFGResearchTree);
+L3222:         KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGResearchTree, Temp_int_Array_Index_Variable1, [ref] mTSubclassOfFGResearchTree);
+L3281:         bool mbool9 = mFGResearchManager3->IsResesearchTreeUnlocked(mTSubclassOfFGResearchTree);
 L3332:         if (!mbool9) goto L3601;
 L3346:         mPlayerController = this->GetOwningPlayer();
 L3370:         mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L3421:         mTArray<TSubclassOf<FGResearchTree>> = [];
-L3432:         mFGResearchManager->GetAllResearchTrees([ref] mTArray<TSubclassOf<FGResearchTree>>);
-L3473:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResearchTree>>, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGResearchTree>);
-L3532:         int32 mint325 = KismetArrayLibrary->Array_Add([ref] LocalAvailableTrees, [ref] mTSubclassOf<FGResearchTree>);
+L3421:         mTArrayTSubclassOfFGResearchTree = [];
+L3432:         mFGResearchManager->GetAllResearchTrees([ref] mTArrayTSubclassOfFGResearchTree);
+L3473:         KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGResearchTree, Temp_int_Array_Index_Variable1, [ref] mTSubclassOfFGResearchTree);
+L3532:         int32 mint325 = KismetArrayLibrary->Array_Add([ref] LocalAvailableTrees, [ref] mTSubclassOfFGResearchTree);
 L3600:         goto ExecutionFlow.Pop();
 L3601:         mPlayerController = this->GetOwningPlayer();
 L3625:         mFGResearchManager = FGResearchManager->Get(mPlayerController);
-L3676:         mTArray<TSubclassOf<FGResearchTree>> = [];
-L3687:         mFGResearchManager->GetAllResearchTrees([ref] mTArray<TSubclassOf<FGResearchTree>>);
-L3728:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGResearchTree>>, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGResearchTree>);
-L3787:         int32 mint326 = KismetArrayLibrary->Array_Add([ref] LocalLockedTrees, [ref] mTSubclassOf<FGResearchTree>);
+L3676:         mTArrayTSubclassOfFGResearchTree = [];
+L3687:         mFGResearchManager->GetAllResearchTrees([ref] mTArrayTSubclassOfFGResearchTree);
+L3728:         KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGResearchTree, Temp_int_Array_Index_Variable1, [ref] mTSubclassOfFGResearchTree);
+L3787:         int32 mint326 = KismetArrayLibrary->Array_Add([ref] LocalLockedTrees, [ref] mTSubclassOfFGResearchTree);
 L3855:         goto ExecutionFlow.Pop();
 L3856:         this->mHardDriveListButton = mWidget_ListButton;
 L3875:         goto L2085;
@@ -552,7 +552,9 @@ L311:          mFGSchematicManager->PurchasedSchematicDelegate.Remove(mFScriptDe
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_BPW_MAM(447);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_MAM, from label L447;
 ============ END FUNCTION Destruct ==============
 
 
@@ -560,7 +562,9 @@ L0:            this->ExecuteUbergraph_BPW_MAM(447);
 
 
 ============ BEGIN FUNCTION Init ==============
-L0:            this->ExecuteUbergraph_BPW_MAM(476);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Init;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_MAM, from label L476;
 ============ END FUNCTION Init ==============
 
 
@@ -568,7 +572,9 @@ L0:            this->ExecuteUbergraph_BPW_MAM(476);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_BPW_MAM(670);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_MAM, from label L670;
 ============ END FUNCTION Construct ==============
 
 
@@ -576,9 +582,9 @@ L0:            this->ExecuteUbergraph_BPW_MAM(670);
 
 
 ============ BEGIN FUNCTION OnResearchListButtonClicked ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/BPW_MAM.BPW_MAM_C:ExecuteUbergraph_BPW_MAM.K2Node_CustomEvent_Index) = index;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/BPW_MAM.BPW_MAM_C:ExecuteUbergraph_BPW_MAM.K2Node_CustomEvent_ListButton) = ListButton;
-L36:           this->ExecuteUbergraph_BPW_MAM(1190);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: OnResearchListButtonClicked;
+L36:           // Implementation: Function ExecuteUbergraph_BPW_MAM, from label L1190;
 ============ END FUNCTION OnResearchListButtonClicked ==============
 
 
@@ -586,8 +592,9 @@ L36:           this->ExecuteUbergraph_BPW_MAM(1190);
 
 
 ============ BEGIN FUNCTION BndEvt__BPW_MAMTree_Ingame_K2Node_ComponentBoundEvent_1_OnResearchSelectedSchematic__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/BPW_MAM.BPW_MAM_C:ExecuteUbergraph_BPW_MAM.K2Node_ComponentBoundEvent_Schematic) = schematic;
-L18:           this->ExecuteUbergraph_BPW_MAM(1949);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__BPW_MAMTree_Ingame_K2Node_ComponentBoundEvent_1_OnResearchSelectedSchematic__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_MAM, from label L1949;
 ============ END FUNCTION BndEvt__BPW_MAMTree_Ingame_K2Node_ComponentBoundEvent_1_OnResearchSelectedSchematic__DelegateSignature ==============
 
 
@@ -595,9 +602,9 @@ L18:           this->ExecuteUbergraph_BPW_MAM(1949);
 
 
 ============ BEGIN FUNCTION NotifyPopupClosed ==============
-L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/BPW_MAM.BPW_MAM_C:ExecuteUbergraph_BPW_MAM.K2Node_Event_popupClass) = PopupClass;
-L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/BPW_MAM.BPW_MAM_C:ExecuteUbergraph_BPW_MAM.K2Node_Event_exitCode) = exitCode;
-L36:           this->ExecuteUbergraph_BPW_MAM(2253);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: NotifyPopupClosed;
+L36:           // Implementation: Function ExecuteUbergraph_BPW_MAM, from label L2253;
 ============ END FUNCTION NotifyPopupClosed ==============
 
 
@@ -605,7 +612,9 @@ L36:           this->ExecuteUbergraph_BPW_MAM(2253);
 
 
 ============ BEGIN FUNCTION BndEvt__BPW_MAM_HardDriveScanner_K2Node_ComponentBoundEvent_2_OnScanStarted__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_MAM(2285);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__BPW_MAM_HardDriveScanner_K2Node_ComponentBoundEvent_2_OnScanStarted__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_MAM, from label L2285;
 ============ END FUNCTION BndEvt__BPW_MAM_HardDriveScanner_K2Node_ComponentBoundEvent_2_OnScanStarted__DelegateSignature ==============
 
 
@@ -622,12 +631,14 @@ L187:          Pawn* mPawn = mPlayerController->K2_GetPawn();
 L229:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
 L265:          bool mbool = mFGCharacterPlayer;
 L294:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
-L336:          TSubclassOf<FGSchematic> mTSubclassOf<FGSchematic> = FGHardDriveSettings->GetHardDriveResearchSchematic();
-L378:          mBP_RemoteCallObject->ServerInitiateResearch(mFGResearchManager, mFGInventoryComponent, mTSubclassOf<FGSchematic>, nullptr);
-L442:          <End of Inlined Event Graph Function>;
+L336:          TSubclassOf<FGSchematic> mTSubclassOfFGSchematic = FGHardDriveSettings->GetHardDriveResearchSchematic();
+L378:          mBP_RemoteCallObject->ServerInitiateResearch(mFGResearchManager, mFGInventoryComponent, mTSubclassOfFGSchematic, nullptr);
+L442:          // <End Inlined EventGraph Function>;
+L447:          // <Begin Inlined EventGraph Function Destruct>;
 L447:          this->Destruct();
 L457:          this->Cleanup();
-L471:          <End of Inlined Event Graph Function>;
+L471:          // <End Inlined EventGraph Function>;
+L476:          // <Begin Inlined EventGraph Function Init>;
 L476:          this->Init();
 L486:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L510:          FGResearchManager* mFGResearchManager1 = FGResearchManager->Get(mPlayerController1);
@@ -635,9 +646,10 @@ L561:          bool mbool1 = mFGResearchManager1->IsAnyResearchBeingConducted();
 L603:          if (!mbool1) goto L649;
 L617:          this->OnResearchStateChanged(1);
 L633:          this->mHasBeenResearchingSinceOpening = true;
-L644:          <End of Inlined Event Graph Function>;
+L644:          // <End Inlined EventGraph Function>;
 L649:          this->OnResearchStateChanged(0);
-L665:          <End of Inlined Event Graph Function>;
+L665:          // <End Inlined EventGraph Function>;
+L670:          // <Begin Inlined EventGraph Function Construct>;
 L670:          this->Construct();
 L680:          this->InitResearchListButtons();
 L694:          mFScriptDelegate->BindUFunction(this, OnEscapePressed);
@@ -645,7 +657,7 @@ L717:          this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate)
 L758:          Actor* mActor = Cast<Class /Script/Engine.Actor>(this->mInteractObject);
 L794:          bool mbool2 = mActor;
 L823:          if (!mbool2) goto L2290;
-L837:          FGResearchMachine* mFGResearchMachine = mActor->GetComponentByClass(FGResearchMachine);
+L837:          FGResearchMachine* mFGResearchMachine = mActor->GetComponentByClass(ObjectConst(Class /Script/FactoryGame.FGResearchMachine));
 L888:          this->ResearchMachineComponent = mFGResearchMachine;
 L907:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L931:          FGResearchManager* mFGResearchManager2 = FGResearchManager->Get(mPlayerController2);
@@ -655,9 +667,9 @@ L1046:         mFScriptDelegate2->BindUFunction(this, SchematicsPurchased);
 L1069:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
 L1093:         FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController3);
 L1144:         mFGSchematicManager->PurchasedSchematicDelegate.AddUnique(mFScriptDelegate2);
-L1185:         <End of Inlined Event Graph Function>;
-L1190:         KismetArrayLibrary->Array_Get([ref] this->mAllResearchTrees, mint32, [ref] mTSubclassOf<FGResearchTree>);
-L1249:         this->mCurrentTree = mTSubclassOf<FGResearchTree>;
+L1185:         // <End Inlined EventGraph Function>;
+L1190:         KismetArrayLibrary->Array_Get([ref] this->mAllResearchTrees, mint32, [ref] mTSubclassOfFGResearchTree);
+L1249:         this->mCurrentTree = mTSubclassOfFGResearchTree;
 L1268:         this->BPW_MAMTree_Ingame->SelectResearchTree(this->mCurrentTree);
 L1313:         this->mTreeScrollBox->mScrollBox->ScrollToStart();
 L1367:         this->mTreeScrollBox->SetVisibility(4);
@@ -665,7 +677,7 @@ L1405:         bool mbool3 = KismetSystemLibrary->IsValid(this->mHardDriveListBu
 L1456:         if (!mbool3) goto L2290;
 L1470:         this->mHardDriveListButton->mIsSelected = false;
 L1503:         this->BPW_MAM_HardDriveScanner->SetVisibility(1);
-L1541:         <End of Inlined Event Graph Function>;
+L1541:         // <End Inlined EventGraph Function>;
 L1546:         this->selectedRewardIndex = -1;
 L1569:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
 L1593:         BPHUDHelpers->GetDefaultRCO(mPlayerController4, this, [ref] mBP_RemoteCallObject1);
@@ -675,19 +687,20 @@ L1723:         Pawn* mPawn1 = mPlayerController4->K2_GetPawn();
 L1765:         FGCharacterPlayer* mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn1);
 L1801:         bool mbool4 = mFGCharacterPlayer1;
 L1830:         FGInventoryComponent* mFGInventoryComponent1 = mFGCharacterPlayer1->GetInventory();
-L1872:         mBP_RemoteCallObject1->ServerInitiateResearch(mFGResearchManager3, mFGInventoryComponent1, mTSubclassOf<FGSchematic>1, this->mCurrentTree);
-L1944:         <End of Inlined Event Graph Function>;
+L1872:         mBP_RemoteCallObject1->ServerInitiateResearch(mFGResearchManager3, mFGInventoryComponent1, mTSubclassOfFGSchematic1, this->mCurrentTree);
+L1944:         // <End Inlined EventGraph Function>;
 L1949:         goto L1546;
-L1954:         mTSubclassOf<FGSchematic> = FGHardDriveSettings->GetHardDriveResearchSchematic();
+L1954:         mTSubclassOfFGSchematic = FGHardDriveSettings->GetHardDriveResearchSchematic();
 L1996:         Pawn* mPawn2 = this->GetOwningPlayerPawn();
 L2016:         FGCharacterPlayer* mFGCharacterPlayer2 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn2);
 L2052:         bool mbool5 = mFGCharacterPlayer2;
 L2081:         FGResearchManager* mFGResearchManager4 = FGResearchManager->Get(mFGCharacterPlayer2);
 L2132:         FGInventoryComponent* mFGInventoryComponent2 = mFGCharacterPlayer2->GetInventory();
-L2174:         bool mbool6 = mFGResearchManager4->CanAffordResearch(mFGInventoryComponent2, mTSubclassOf<FGSchematic>);
+L2174:         bool mbool6 = mFGResearchManager4->CanAffordResearch(mFGInventoryComponent2, mTSubclassOfFGSchematic);
 L2234:         if (!mbool6) goto L2290;
 L2248:         goto L10;
 L2253:         this->selectedRewardIndex = mint321;
-L2280:         <End of Inlined Event Graph Function>;
+L2280:         // <End Inlined EventGraph Function>;
+L2285:         // <Begin Inlined EventGraph Function BndEvt__BPW_MAM_HardDriveScanner_K2Node_ComponentBoundEvent_2_OnScanStarted__DelegateSignature>;
 L2285:         goto L1954;
 ============ END FUNCTION ExecuteUbergraph_BPW_MAM ==============

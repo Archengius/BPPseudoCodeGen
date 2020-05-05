@@ -9,7 +9,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_
 ============ BEGIN FUNCTION GetSliderValue ==============
 L0:            bool mbool = KismetSystemLibrary->IsValid(this->mColorPicker);
 L51:           if (!mbool) goto L161;
-L65:           float mfloat = Divide_FloatFloat(this->mColorPicker->mHueValue, 360);
+L65:           float mfloat = this->mColorPicker->mHueValue / 360;
 L129:          float ReturnValue = mfloat;
 L156:          goto L184;
 L161:          ReturnValue = 0;
@@ -37,20 +37,20 @@ L227:          ReturnValue = ;
 L0:            ExecutionFlow.Push(L682);
 L5:            int32 Temp_int_Variable = 0;
 L28:           int32 mint32 = FTrunc(this->mSliderSizeBox->WidthOverride);
-L87:           int32 mint321 = Subtract_IntInt(mint32, 1);
-L129:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L87:           int32 mint321 = mint32 - 1;
+L129:          bool mbool = Temp_int_Variable <= mint321;
 L167:          if (!mbool) goto ExecutionFlow.Pop();
 L177:          ExecutionFlow.Push(L608);
-L182:          float mfloat = Divide_FloatFloat(360, this->mSliderSizeBox->WidthOverride);
-L246:          float mfloat1 = Divide_FloatFloat(this->mSliderSizeBox->HeightOverride, 2);
-L310:          float mfloat2 = Multiply_IntFloat(Temp_int_Variable, mfloat);
+L182:          float mfloat = 360 / this->mSliderSizeBox->WidthOverride;
+L246:          float mfloat1 = this->mSliderSizeBox->HeightOverride / 2;
+L310:          float mfloat2 = Temp_int_Variable * mfloat;
 L356:          LinearColor mLinearColor = HSVToRGB(mfloat2, 1, 1, 1);
 L408:          float mfloat3 = Conv_IntToFloat(Temp_int_Variable);
 L445:          Vector2D mVector2D = MakeVector2D(mfloat3, 0);
 L487:          Vector2D mVector2D1 = MakeVector2D(mfloat3, mfloat1);
 L533:          WidgetBlueprintLibrary->DrawLine([ref] Context, mVector2D, mVector2D1, mLinearColor, true, 1);
 L607:          goto ExecutionFlow.Pop();
-L608:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L608:          int32 mint322 = Temp_int_Variable + 1;
 L650:          Temp_int_Variable = mint322;
 L677:          goto L28;
 ============ END FUNCTION OnPaint ==============
@@ -60,8 +60,9 @@ L677:          goto L28;
 
 
 ============ BEGIN FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_109_OnFloatValueChangedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_HueSlider.Widget_HueSlider_C:ExecuteUbergraph_Widget_HueSlider.K2Node_ComponentBoundEvent_Value) = Value;
-L18:           this->ExecuteUbergraph_Widget_HueSlider(10);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__Slider_0_K2Node_ComponentBoundEvent_109_OnFloatValueChangedEvent__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_HueSlider, from label L10;
 ============ END FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_109_OnFloatValueChangedEvent__DelegateSignature ==============
 
 
@@ -69,9 +70,9 @@ L18:           this->ExecuteUbergraph_Widget_HueSlider(10);
 
 
 ============ BEGIN FUNCTION BndEvt__mInputText_K2Node_ComponentBoundEvent_270_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_HueSlider.Widget_HueSlider_C:ExecuteUbergraph_Widget_HueSlider.K2Node_ComponentBoundEvent_Text) = text;
-L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_HueSlider.Widget_HueSlider_C:ExecuteUbergraph_Widget_HueSlider.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
-L36:           this->ExecuteUbergraph_Widget_HueSlider(106);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__mInputText_K2Node_ComponentBoundEvent_270_OnEditableTextBoxCommittedEvent__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_HueSlider, from label L106;
 ============ END FUNCTION BndEvt__mInputText_K2Node_ComponentBoundEvent_270_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
 
 
@@ -79,10 +80,10 @@ L36:           this->ExecuteUbergraph_Widget_HueSlider(106);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_HueSlider ==============
-L10:           float mfloat = Multiply_FloatFloat(mfloat1, 360);
+L10:           float mfloat = mfloat1 * 360;
 L52:           this->mColorPicker->mHueValue = mfloat;
-L101:          <End of Inlined Event Graph Function>;
-L106:          bool mbool = EqualEqual_ByteByte(muint8, 1);
+L101:          // <End Inlined EventGraph Function>;
+L106:          bool mbool = muint8 == 1;
 L137:          if (!mbool) goto L355;
 L151:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mconst FText);
 L210:          int32 mint32 = KismetStringLibrary->Conv_StringToInt(mFString);

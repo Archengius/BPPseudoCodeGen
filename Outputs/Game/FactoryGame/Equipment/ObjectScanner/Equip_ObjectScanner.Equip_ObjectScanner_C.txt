@@ -24,9 +24,9 @@ default -> mconst FText;
 });
 L614:          FString ObjectDisplayText = mFString;
 L641:          mfloat1 = Conv_IntToFloat(Width);
-L678:          float mfloat2 = Divide_FloatFloat(mfloat1, 2);
+L678:          float mfloat2 = mfloat1 / 2;
 L720:          Vector2D mVector2D1 = MakeVector2D(mfloat2, 7);
-L762:          Canvas->K2_DrawText(DescriptionMaterialText, ObjectDisplayText, mVector2D1, ScriptStruct /Script/CoreUObject.Vector2D(X = 0.6000000238418579, Y = 0.6000000238418579), ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), 0, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 1), ScriptStruct /Script/CoreUObject.Vector2D(X = 1, Y = 1), true, false, false, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 1));
+L762:          Canvas->K2_DrawText(ObjectConst(Font /Game/FactoryGame/Interface/Font/DescriptionMaterialText.DescriptionMaterialText), ObjectDisplayText, mVector2D1, ScriptStruct /Script/CoreUObject.Vector2D(X = 0.6000000238418579, Y = 0.6000000238418579), ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 1), 0, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 1), ScriptStruct /Script/CoreUObject.Vector2D(X = 1, Y = 1), true, false, false, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 1));
 ============ END FUNCTION OnUpdateTextMaterial ==============
 
 
@@ -34,7 +34,7 @@ L762:          Canvas->K2_DrawText(DescriptionMaterialText, ObjectDisplayText, m
 
 
 ============ BEGIN FUNCTION SetupTextMaterial ==============
-L0:            CanvasRenderTarget2D* mCanvasRenderTarget2D = CanvasRenderTarget2D->CreateCanvasRenderTarget2D(this, CanvasRenderTarget2D, 256, 64);
+L0:            CanvasRenderTarget2D* mCanvasRenderTarget2D = CanvasRenderTarget2D->CreateCanvasRenderTarget2D(this, ObjectConst(Class /Script/Engine.CanvasRenderTarget2D), 256, 64);
 L62:           this->mTextTexture = mCanvasRenderTarget2D;
 L81:           mFScriptDelegate->BindUFunction(this, OnUpdateTextMaterial);
 L104:          this->mTextTexture->OnCanvasRenderTargetUpdate.AddUnique(mFScriptDelegate);
@@ -54,28 +54,28 @@ L85:           Vector mVector = mActor->GetActorForwardVector();
 L135:          BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
 L181:          Vector mVector1 = this->mClosestObject->K2_GetActorLocation();
 L231:          float mfloat3 = DegAtan2(mfloat1, mfloat);
-L277:          Vector mVector2 = Multiply_VectorVector(mVector1, Vector(1, 1, 0));
+L277:          Vector mVector2 = mVector1 * Vector(1, 1, 0);
 L327:          Actor* mActor1 = this->GetOwner();
 L347:          Vector mVector3 = mActor1->K2_GetActorLocation();
-L397:          Vector mVector4 = Multiply_VectorVector(mVector3, Vector(1, 1, 0));
-L447:          Vector mVector5 = Subtract_VectorVector(mVector2, mVector4);
+L397:          Vector mVector4 = mVector3 * Vector(1, 1, 0);
+L447:          Vector mVector5 = mVector2 - mVector4;
 L493:          Vector mVector6 = Normal(mVector5, 0.00009999999747378752);
 L535:          BreakVector(mVector6, [ref] mfloat4, [ref] mfloat5, [ref] mfloat6);
 L581:          float mfloat7 = DegAtan2(mfloat5, mfloat4);
-L627:          float mfloat8 = Subtract_FloatFloat(mfloat7, mfloat3);
-L673:          bool mbool1 = Less_FloatFloat(mfloat8, 0);
-L707:          float mfloat9 = Add_FloatFloat(mfloat8, 360);
+L627:          float mfloat8 = mfloat7 - mfloat3;
+L673:          bool mbool1 = mfloat8 < 0;
+L707:          float mfloat9 = mfloat8 + 360;
 L749:          bool Temp_bool_Variable1 = mbool1;
-L768:          bool mbool2 = Greater_FloatFloat(switch (Temp_bool_Variable1) {
+L768:          bool mbool2 = switch (Temp_bool_Variable1) {
 case false -> mfloat8;
 case true -> mfloat9;
 default -> mfloat10;
-}, 180);
-L846:          float mfloat11 = Subtract_FloatFloat(360, switch (Temp_bool_Variable1) {
+} > 180;
+L846:          float mfloat11 = 360 - switch (Temp_bool_Variable1) {
 case false -> mfloat8;
 case true -> mfloat9;
 default -> mfloat10;
-});
+};
 L932:          bool Temp_bool_Variable = mbool2;
 L951:          float ReturnValue = switch (Temp_bool_Variable) {
 case false -> switch (Temp_bool_Variable1) {
@@ -95,8 +95,9 @@ L1071:         ReturnValue = 0;
 
 
 ============ BEGIN FUNCTION InpActEvt_SecondaryFire_K2Node_InputActionEvent_2 ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/ObjectScanner/Equip_ObjectScanner.Equip_ObjectScanner_C:ExecuteUbergraph_Equip_ObjectScanner.K2Node_InputActionEvent_Key2) = Key;
-L18:           this->ExecuteUbergraph_Equip_ObjectScanner(5686);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpActEvt_SecondaryFire_K2Node_InputActionEvent_2;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_ObjectScanner, from label L5686;
 ============ END FUNCTION InpActEvt_SecondaryFire_K2Node_InputActionEvent_2 ==============
 
 
@@ -104,8 +105,9 @@ L18:           this->ExecuteUbergraph_Equip_ObjectScanner(5686);
 
 
 ============ BEGIN FUNCTION InpActEvt_PrimaryFire_K2Node_InputActionEvent_1 ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/ObjectScanner/Equip_ObjectScanner.Equip_ObjectScanner_C:ExecuteUbergraph_Equip_ObjectScanner.K2Node_InputActionEvent_Key1) = Key;
-L18:           this->ExecuteUbergraph_Equip_ObjectScanner(2942);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpActEvt_PrimaryFire_K2Node_InputActionEvent_1;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_ObjectScanner, from label L2942;
 ============ END FUNCTION InpActEvt_PrimaryFire_K2Node_InputActionEvent_1 ==============
 
 
@@ -113,8 +115,9 @@ L18:           this->ExecuteUbergraph_Equip_ObjectScanner(2942);
 
 
 ============ BEGIN FUNCTION InpActEvt_PrimaryFire_K2Node_InputActionEvent_0 ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/ObjectScanner/Equip_ObjectScanner.Equip_ObjectScanner_C:ExecuteUbergraph_Equip_ObjectScanner.K2Node_InputActionEvent_Key) = Key;
-L18:           this->ExecuteUbergraph_Equip_ObjectScanner(2910);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpActEvt_PrimaryFire_K2Node_InputActionEvent_0;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_ObjectScanner, from label L2910;
 ============ END FUNCTION InpActEvt_PrimaryFire_K2Node_InputActionEvent_0 ==============
 
 
@@ -122,7 +125,9 @@ L18:           this->ExecuteUbergraph_Equip_ObjectScanner(2910);
 
 
 ============ BEGIN FUNCTION WasEquipped ==============
-L0:            this->ExecuteUbergraph_Equip_ObjectScanner(50);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_ObjectScanner, from label L50;
 ============ END FUNCTION WasEquipped ==============
 
 
@@ -130,7 +135,9 @@ L0:            this->ExecuteUbergraph_Equip_ObjectScanner(50);
 
 
 ============ BEGIN FUNCTION WasUnEquipped ==============
-L0:            this->ExecuteUbergraph_Equip_ObjectScanner(2344);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasUnEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_ObjectScanner, from label L2344;
 ============ END FUNCTION WasUnEquipped ==============
 
 
@@ -138,7 +145,9 @@ L0:            this->ExecuteUbergraph_Equip_ObjectScanner(2344);
 
 
 ============ BEGIN FUNCTION Event BlinkLight ==============
-L0:            this->ExecuteUbergraph_Equip_ObjectScanner(2974);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Event BlinkLight;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_ObjectScanner, from label L2974;
 ============ END FUNCTION Event BlinkLight ==============
 
 
@@ -146,7 +155,9 @@ L0:            this->ExecuteUbergraph_Equip_ObjectScanner(2974);
 
 
 ============ BEGIN FUNCTION ReceiveBeginPlay ==============
-L0:            this->ExecuteUbergraph_Equip_ObjectScanner(3480);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_ObjectScanner, from label L3480;
 ============ END FUNCTION ReceiveBeginPlay ==============
 
 
@@ -154,7 +165,9 @@ L0:            this->ExecuteUbergraph_Equip_ObjectScanner(3480);
 
 
 ============ BEGIN FUNCTION Event Update Screen ==============
-L0:            this->ExecuteUbergraph_Equip_ObjectScanner(3631);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Event Update Screen;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_ObjectScanner, from label L3631;
 ============ END FUNCTION Event Update Screen ==============
 
 
@@ -162,7 +175,9 @@ L0:            this->ExecuteUbergraph_Equip_ObjectScanner(3631);
 
 
 ============ BEGIN FUNCTION ReceiveDestroyed ==============
-L0:            this->ExecuteUbergraph_Equip_ObjectScanner(5477);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveDestroyed;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_ObjectScanner, from label L5477;
 ============ END FUNCTION ReceiveDestroyed ==============
 
 
@@ -170,8 +185,9 @@ L0:            this->ExecuteUbergraph_Equip_ObjectScanner(5477);
 
 
 ============ BEGIN FUNCTION UpdateScannerVisuals ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Equipment/ObjectScanner/Equip_ObjectScanner.Equip_ObjectScanner_C:ExecuteUbergraph_Equip_ObjectScanner.K2Node_Event_wasChange) = wasChange;
-L18:           this->ExecuteUbergraph_Equip_ObjectScanner(5651);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: UpdateScannerVisuals;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_ObjectScanner, from label L5651;
 ============ END FUNCTION UpdateScannerVisuals ==============
 
 
@@ -179,8 +195,9 @@ L18:           this->ExecuteUbergraph_Equip_ObjectScanner(5651);
 
 
 ============ BEGIN FUNCTION PlayBeep ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Equipment/ObjectScanner/Equip_ObjectScanner.Equip_ObjectScanner_C:ExecuteUbergraph_Equip_ObjectScanner.K2Node_Event_isObjectInRange) = isObjectInRange;
-L18:           this->ExecuteUbergraph_Equip_ObjectScanner(5691);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PlayBeep;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_ObjectScanner, from label L5691;
 ============ END FUNCTION PlayBeep ==============
 
 
@@ -191,17 +208,18 @@ L18:           this->ExecuteUbergraph_Equip_ObjectScanner(5691);
 L5:            goto ComputedJump(EntryPoint);
 L15:           this->PointLight->SetVisibility(false, false);
 L49:           goto ExecutionFlow.Pop();
+L50:           // <Begin Inlined EventGraph Function WasEquipped>;
 L50:           this->WasEquipped();
 L60:           FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
 L80:           SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
 L122:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
-L164:          bool mbool = mAnimInstance->Montage_IsPlaying(ObjectScannerEquip_01_Montage);
+L164:          bool mbool = mAnimInstance->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/ObjectScannerEquip_01_Montage.ObjectScannerEquip_01_Montage));
 L215:          if (!mbool) goto L230;
 L229:          goto ExecutionFlow.Pop();
 L230:          mFGCharacterPlayer = this->GetInstigatorCharacter();
 L250:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
 L292:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
-L334:          float mfloat = mAnimInstance->Montage_Play(ObjectScannerEquip_01_Montage, 1, 0, 0, true);
+L334:          float mfloat = mAnimInstance->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/ObjectScannerEquip_01_Montage.ObjectScannerEquip_01_Montage), 1, 0, 0, true);
 L406:          this->Event Update Screen();
 L420:          mFScriptDelegate->BindUFunction(this, Event Update Screen);
 L443:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mScreenUpdateTime, true);
@@ -212,42 +230,42 @@ L545:          ExecutionFlow.Push(L720);
 L550:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
 L570:          SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
 L612:          AnimInstance* mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
-L654:          bool mbool1 = mAnimInstance1->Montage_IsPlaying(ObjectScannerCycleLeft_01_Montage);
+L654:          bool mbool1 = mAnimInstance1->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/ObjectScannerCycleLeft_01_Montage.ObjectScannerCycleLeft_01_Montage));
 L705:          if (!mbool1) goto L980;
 L719:          goto ExecutionFlow.Pop();
 L720:          AnimInstance* mAnimInstance2 = this->CrystalScanner_skl->GetAnimInstance();
-L762:          bool mbool2 = mAnimInstance2->Montage_IsPlaying(ObjectScannerCycleLeft_01_Montage);
+L762:          bool mbool2 = mAnimInstance2->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Equipment/ObjectScanner/Animation/ObjectScannerCycleLeft_01_Montage.ObjectScannerCycleLeft_01_Montage));
 L813:          if (!mbool2) goto L828;
 L827:          goto ExecutionFlow.Pop();
 L828:          mAnimInstance2 = this->CrystalScanner_skl->GetAnimInstance();
-L870:          float mfloat1 = mAnimInstance2->Montage_Play(ObjectScannerCycleLeft_01_Montage, 1, 0, 0, true);
+L870:          float mfloat1 = mAnimInstance2->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Equipment/ObjectScanner/Animation/ObjectScannerCycleLeft_01_Montage.ObjectScannerCycleLeft_01_Montage), 1, 0, 0, true);
 L942:          goto ExecutionFlow.Pop();
 L943:          this->mTextTexture->UpdateResource();
 L979:          goto ExecutionFlow.Pop();
 L980:          mFGCharacterPlayer1 = this->GetInstigatorCharacter();
 L1000:         mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
 L1042:         mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
-L1084:         float mfloat2 = mAnimInstance1->Montage_Play(ObjectScannerCycleLeft_01_Montage, 1, 0, 0, true);
+L1084:         float mfloat2 = mAnimInstance1->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/ObjectScannerCycleLeft_01_Montage.ObjectScannerCycleLeft_01_Montage), 1, 0, 0, true);
 L1156:         goto ExecutionFlow.Pop();
 L1157:         ExecutionFlow.Push(L1562);
 L1162:         FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
 L1182:         SkeletalMeshComponent* mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
 L1224:         AnimInstance* mAnimInstance3 = mSkeletalMeshComponent2->GetAnimInstance();
-L1266:         bool mbool3 = mAnimInstance3->Montage_IsPlaying(ObjectScannerCycleRight_01_Montage);
+L1266:         bool mbool3 = mAnimInstance3->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/ObjectScannerCycleRight_01_Montage.ObjectScannerCycleRight_01_Montage));
 L1317:         if (!mbool3) goto L1332;
 L1331:         goto ExecutionFlow.Pop();
 L1332:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
 L1352:         mSkeletalMeshComponent2 = mFGCharacterPlayer2->GetMesh1P();
 L1394:         mAnimInstance3 = mSkeletalMeshComponent2->GetAnimInstance();
-L1436:         float mfloat3 = mAnimInstance3->Montage_Play(ObjectScannerCycleRight_01_Montage, 1, 0, 0, true);
-L1508:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_T_ObjectScanner_RotateTarget, this, true);
+L1436:         float mfloat3 = mAnimInstance3->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/ObjectScannerCycleRight_01_Montage.ObjectScannerCycleRight_01_Montage), 1, 0, 0, true);
+L1508:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/ObjectScanner/Audio/Play_T_ObjectScanner_RotateTarget.Play_T_ObjectScanner_RotateTarget), this, true);
 L1561:         goto ExecutionFlow.Pop();
 L1562:         AnimInstance* mAnimInstance4 = this->CrystalScanner_skl->GetAnimInstance();
-L1604:         bool mbool4 = mAnimInstance4->Montage_IsPlaying(ObjectScannerCycleRight_01_Montage);
+L1604:         bool mbool4 = mAnimInstance4->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Equipment/ObjectScanner/Animation/ObjectScannerCycleRight_01_Montage.ObjectScannerCycleRight_01_Montage));
 L1655:         if (!mbool4) goto L1670;
 L1669:         goto ExecutionFlow.Pop();
 L1670:         mAnimInstance4 = this->CrystalScanner_skl->GetAnimInstance();
-L1712:         float mfloat4 = mAnimInstance4->Montage_Play(ObjectScannerCycleRight_01_Montage, 1, 0, 0, true);
+L1712:         float mfloat4 = mAnimInstance4->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Equipment/ObjectScanner/Animation/ObjectScannerCycleRight_01_Montage.ObjectScannerCycleRight_01_Montage), 1, 0, 0, true);
 L1784:         goto ExecutionFlow.Pop();
 L1785:         bool mbool5 = KismetSystemLibrary->IsValid(this->mObjectScannerMenu);
 L1836:         if (!mbool5) goto ExecutionFlow.Pop();
@@ -259,13 +277,14 @@ L1964:         Pawn* mPawn1 = this->GetInstigator();
 L1984:         Controller* mController1 = mPawn1->GetInstigatorController();
 L2026:         PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController1);
 L2062:         bool mbool6 = mPlayerController;
-L2091:         Widget_ObjectScannerMenu* mWidget_ObjectScannerMenu = WidgetBlueprintLibrary->Create(this, Widget_ObjectScannerMenu, mPlayerController);
+L2091:         Widget_ObjectScannerMenu* mWidget_ObjectScannerMenu = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Equipment/ObjectScanner/Widget_ObjectScannerMenu.Widget_ObjectScannerMenu_C), mPlayerController);
 L2152:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_ObjectScannerMenu, "mObjectScanner", this);
 L2207:         Pawn* mPawn2 = this->GetInstigator();
 L2227:         Controller* mController2 = mPawn2->GetInstigatorController();
 L2269:         BPHUDHelpers->PushStackWidget(mController2, mWidget_ObjectScannerMenu, this);
 L2324:         this->mObjectScannerMenu = mWidget_ObjectScannerMenu;
 L2343:         goto ExecutionFlow.Pop();
+L2344:         // <Begin Inlined EventGraph Function WasUnEquipped>;
 L2344:         this->WasUnEquipped();
 L2354:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetInstigatorCharacter();
 L2374:         SkeletalMeshComponent* mSkeletalMeshComponent3 = mFGCharacterPlayer3->GetMesh1P();
@@ -274,7 +293,7 @@ L2458:         AnimMontage* mAnimMontage = mAnimInstance5->GetCurrentActiveMonta
 L2500:         mAnimInstance5->Montage_Stop(0, mAnimMontage);
 L2546:         bool mbool7 = KismetSystemLibrary->IsValid(this->mIsPlayingScannerStatic);
 L2597:         if (!mbool7) goto L2664;
-L2611:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_T_ObjectScanner_Static, this, true);
+L2611:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/ObjectScanner/Audio/Stop_T_ObjectScanner_Static.Stop_T_ObjectScanner_Static), this, true);
 L2664:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mScreenUpdateTimer);
 L2706:         bool mbool8 = KismetSystemLibrary->IsValid(this->mObjectScannerMenu);
 L2757:         if (!mbool8) goto ExecutionFlow.Pop();
@@ -288,8 +307,9 @@ L2910:         Key Temp_struct_Variable = mKey;
 L2937:         goto L1964;
 L2942:         Temp_struct_Variable = mKey1;
 L2969:         goto L1785;
+L2974:         // <Begin Inlined EventGraph Function Event BlinkLight>;
 L2974:         float mfloat5 = this->GetAngleToClosestTarget();
-L3006:         bool mbool10 = Less_FloatFloat(mfloat5, 50);
+L3006:         bool mbool10 = mfloat5 < 50;
 L3040:         this->PointLight->SetVisibility(mbool10, false);
 L3082:         this->mScanlineLerpT = 0;
 L3105:         this->mScreenMaterial->SetScalarParameterValue("ScanLinesOpacity", 1);
@@ -298,52 +318,54 @@ L3231:         goto ExecutionFlow.Pop();
 L3232:         this->Event BlinkLight();
 L3246:         bool mbool11 = KismetSystemLibrary->IsValid(this->mClosestObject);
 L3297:         Pawn* mPawn3 = this->GetInstigator();
-L3317:         bool mbool12 = BooleanAND(mbool11, mbool13);
+L3317:         bool mbool12 = mbool11 && mbool13;
 L3355:         bool Temp_bool_Variable1 = mbool12;
-L3374:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_T_ObjectScanner, switch (Temp_bool_Variable1) {
+L3374:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/ObjectScanner/Audio/Play_T_ObjectScanner.Play_T_ObjectScanner), switch (Temp_bool_Variable1) {
 case false -> mPawn3;
 case true -> this->mClosestObject;
 default -> mActor;
 }, true);
 L3479:         goto ExecutionFlow.Pop();
+L3480:         // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L3480:         this->ReceiveBeginPlay();
-L3490:         MaterialInstanceDynamic* mMaterialInstanceDynamic = this->CrystalScanner_skl->CreateDynamicMaterialInstance(2, Material_UI_ObjectScanner, "ScreenMaterial");
+L3490:         MaterialInstanceDynamic* mMaterialInstanceDynamic = this->CrystalScanner_skl->CreateDynamicMaterialInstance(2, ObjectConst(Material /Game/FactoryGame/Interface/UI/Material/Material_UI_ObjectScanner.Material_UI_ObjectScanner), "ScreenMaterial");
 L3563:         this->mScreenMaterial = mMaterialInstanceDynamic;
 L3582:         this->PointLight->SetVisibility(false, false);
 L3616:         this->SetupTextMaterial();
 L3630:         goto ExecutionFlow.Pop();
+L3631:         // <Begin Inlined EventGraph Function Event Update Screen>;
 L3631:         bool mbool14 = KismetSystemLibrary->IsValid(this->mScreenMaterial);
 L3682:         if (!mbool14) goto ExecutionFlow.Pop();
 L3692:         bool mbool15 = KismetSystemLibrary->IsValid(this->mClosestObject);
 L3743:         if (!mbool15) goto L5399;
 L3757:         Actor* mActor1 = this->GetOwner();
 L3777:         float mfloat6 = this->mClosestObject->GetDistanceTo(mActor1);
-L3836:         float mfloat7 = Divide_FloatFloat(mfloat6, this->mDetectionRange);
-L3882:         float mfloat8 = Subtract_FloatFloat(1, mfloat7);
+L3836:         float mfloat7 = mfloat6 / this->mDetectionRange;
+L3882:         float mfloat8 = 1 - mfloat7;
 L3924:         this->mNormalizedCloesnessToObject = mfloat8;
 L3951:         float mfloat9 = this->GetAngleToClosestTarget();
 L3983:         float mfloat10 = FClamp(mfloat9, 30, 70);
-L4030:         float mfloat11 = Subtract_FloatFloat(mfloat10, 30);
-L4072:         float mfloat12 = Divide_FloatFloat(mfloat11, 40);
+L4030:         float mfloat11 = mfloat10 - 30;
+L4072:         float mfloat12 = mfloat11 / 40;
 L4114:         float mfloat13 = Ease(1, 0, mfloat12, 7, 2, 2);
-L4173:         float mfloat14 = Multiply_FloatFloat(this->mNormalizedCloesnessToObject, mfloat13);
+L4173:         float mfloat14 = this->mNormalizedCloesnessToObject * mfloat13;
 L4219:         this->mScreenMaterial->SetScalarParameterValue("Value", mfloat14);
-L4273:         float mfloat15 = Divide_FloatFloat(this->mScreenUpdateTime, 0.30000001192092896);
-L4315:         float mfloat16 = Add_FloatFloat(this->mScanlineLerpT, mfloat15);
+L4273:         float mfloat15 = this->mScreenUpdateTime / 0.30000001192092896;
+L4315:         float mfloat16 = this->mScanlineLerpT + mfloat15;
 L4361:         this->mScanlineLerpT = mfloat16;
 L4388:         float mfloat17 = Lerp(0, 1, this->mScanlineLerpT);
-L4435:         float mfloat18 = Subtract_FloatFloat(1, mfloat17);
+L4435:         float mfloat18 = 1 - mfloat17;
 L4477:         this->mScreenMaterial->SetScalarParameterValue("ScanLinesOpacity", mfloat18);
 L4531:         mfloat17 = Lerp(0, 1, this->mScanlineLerpT);
-L4578:         float mfloat19 = Subtract_FloatFloat(4, mfloat17);
-L4620:         bool mbool16 = Greater_FloatFloat(mfloat17, 2);
+L4578:         float mfloat19 = 4 - mfloat17;
+L4620:         bool mbool16 = mfloat17 > 2;
 L4654:         bool Temp_bool_Variable = mbool16;
 L4673:         this->mScreenMaterial->SetScalarParameterValue("OutOfRangeOpacity", switch (Temp_bool_Variable) {
 case false -> mfloat17;
 case true -> mfloat19;
 default -> mfloat20;
 });
-L4771:         bool mbool17 = LessEqual_FloatFloat(this->mNormalizedCloesnessToObject, 0);
+L4771:         bool mbool17 = this->mNormalizedCloesnessToObject <= 0;
 L4805:         this->mObjectIsWithinRange = mbool17;
 L4824:         float Temp_float_Variable = 0;
 L4847:         float Temp_float_Variable1 = 1;
@@ -353,26 +375,27 @@ case false -> Temp_float_Variable;
 case true -> Temp_float_Variable1;
 default -> mfloat21;
 });
-L4987:         bool mbool18 = GreaterEqual_FloatFloat(this->mScanlineLerpT, 4);
-L5021:         bool mbool19 = BooleanAND(this->mObjectIsWithinRange, mbool18);
+L4987:         bool mbool18 = this->mScanlineLerpT >= 4;
+L5021:         bool mbool19 = this->mObjectIsWithinRange && mbool18;
 L5059:         if (!mbool19) goto L5097;
 L5073:         this->mScanlineLerpT = 0;
 L5096:         goto ExecutionFlow.Pop();
-L5097:         bool mbool20 = LessEqual_FloatFloat(this->mNormalizedCloesnessToObject, 0);
+L5097:         bool mbool20 = this->mNormalizedCloesnessToObject <= 0;
 L5131:         if (!mbool20) goto L5284;
 L5145:         bool mbool21 = KismetSystemLibrary->IsValid(this->mIsPlayingScannerStatic);
 L5196:         if (!mbool21) goto L5211;
 L5210:         goto ExecutionFlow.Pop();
-L5211:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Play_T_ObjectScanner_Static, this, true);
+L5211:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/ObjectScanner/Audio/Play_T_ObjectScanner_Static.Play_T_ObjectScanner_Static), this, true);
 L5264:         this->mIsPlayingScannerStatic = mAkComponent3;
 L5283:         goto ExecutionFlow.Pop();
 L5284:         bool mbool22 = KismetSystemLibrary->IsValid(this->mIsPlayingScannerStatic);
 L5335:         if (!mbool22) goto ExecutionFlow.Pop();
-L5345:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Stop_T_ObjectScanner_Static, this, true);
+L5345:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/ObjectScanner/Audio/Stop_T_ObjectScanner_Static.Stop_T_ObjectScanner_Static), this, true);
 L5398:         goto ExecutionFlow.Pop();
 L5399:         this->mNormalizedCloesnessToObject = 0;
 L5422:         this->mScreenMaterial->SetScalarParameterValue("Value", 0);
 L5472:         goto L4273;
+L5477:         // <Begin Inlined EventGraph Function ReceiveDestroyed>;
 L5477:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mScreenUpdateTimer);
 L5519:         goto ExecutionFlow.Pop();
 L5520:         ScannableDetails mScannableDetails = this->GetCurrentDetails();

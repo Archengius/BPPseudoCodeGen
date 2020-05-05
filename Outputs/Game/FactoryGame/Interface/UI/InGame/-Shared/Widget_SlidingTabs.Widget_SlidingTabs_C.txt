@@ -11,7 +11,7 @@ L0:            ExecutionFlow.Push(L646);
 L5:            int32 Temp_int_Loop_Counter_Variable = 0;
 L28:           int32 Temp_int_Array_Index_Variable = 0;
 L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mButtons);
-L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L110:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L148:          if (!mbool) goto ExecutionFlow.Pop();
 L158:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L185:          ExecutionFlow.Push(L572);
@@ -19,14 +19,14 @@ L190:          KismetArrayLibrary->Array_Get([ref] this->mButtons, Temp_int_Arra
 L249:          bool mbool1 = KismetSystemLibrary->IsValid(mWidget_SlidingTabs_Button->mTargetWidget);
 L322:          int32 mint321 = this->mHorizontalBox->GetChildIndex(mWidget_SlidingTabs_Button->mTargetWidget);
 L403:          bool Temp_bool_Variable = mbool1;
-L422:          bool mbool2 = EqualEqual_IntInt(this->mActiveIndex, switch (Temp_bool_Variable) {
+L422:          bool mbool2 = this->mActiveIndex == switch (Temp_bool_Variable) {
 case false -> mWidget_SlidingTabs_Button->mTargetIndex;
 case true -> mint321;
 default -> mint322;
-});
+};
 L526:          mWidget_SlidingTabs_Button->SetActive(mbool2);
 L571:          goto ExecutionFlow.Pop();
-L572:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L572:          int32 mint323 = Temp_int_Loop_Counter_Variable + 1;
 L614:          Temp_int_Loop_Counter_Variable = mint323;
 L641:          goto L51;
 ============ END FUNCTION SetActiveButton ==============
@@ -41,18 +41,18 @@ L5:            this->ForceLayoutPrepass();
 L15:           float LocalOffset = 0;
 L38:           int32 Temp_int_Variable = 0;
 L61:           int32 mint32 = this->mHorizontalBox->GetChildrenCount();
-L111:          int32 mint321 = Subtract_IntInt(mint32, 1);
-L153:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L111:          int32 mint321 = mint32 - 1;
+L153:          bool mbool = Temp_int_Variable <= mint321;
 L191:          if (!mbool) goto ExecutionFlow.Pop();
 L201:          ExecutionFlow.Push(L477);
 L206:          BlueprintMapLibrary->Map_Add([ref] this->mIndexOffset, [ref] Temp_int_Variable, [ref] LocalOffset);
 L265:          Widget* mWidget = this->mHorizontalBox->GetChildAt(Temp_int_Variable);
 L316:          Vector2D mVector2D = mWidget->GetDesiredSize();
 L366:          BreakVector2D(mVector2D, [ref] mfloat, [ref] mfloat1);
-L403:          float mfloat2 = Subtract_FloatFloat(LocalOffset, mfloat);
+L403:          float mfloat2 = LocalOffset - mfloat;
 L449:          LocalOffset = mfloat2;
 L476:          goto ExecutionFlow.Pop();
-L477:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L477:          int32 mint322 = Temp_int_Variable + 1;
 L519:          Temp_int_Variable = mint322;
 L546:          goto L61;
 ============ END FUNCTION SetupIndexOffset ==============
@@ -73,7 +73,7 @@ L237:          this->mLerpStartingPos = mfloat;
 L264:          mFScriptDelegate->BindUFunction(this, SlideLerp);
 L287:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mUpdateTime, true);
 L356:          this->mLerpTimer = mTimerHandle;
-L383:          <End of Inlined Event Graph Function>;
+L383:          // <End Inlined EventGraph Function>;
 L388:          Widget* mWidget = this->mHorizontalBox->GetChildAt(this->mActiveIndex);
 L439:          Vector2D mVector2D = mWidget->GetDesiredSize();
 L489:          BreakVector2D(mVector2D, [ref] mfloat2, [ref] mfloat3);
@@ -88,7 +88,9 @@ L678:          this->mContent->SetRenderTranslation(mVector2D1);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_SlidingTabs(15);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SlidingTabs, from label L15;
 ============ END FUNCTION Construct ==============
 
 
@@ -96,7 +98,9 @@ L0:            this->ExecuteUbergraph_Widget_SlidingTabs(15);
 
 
 ============ BEGIN FUNCTION SlideLerp ==============
-L0:            this->ExecuteUbergraph_Widget_SlidingTabs(460);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: SlideLerp;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SlidingTabs, from label L460;
 ============ END FUNCTION SlideLerp ==============
 
 
@@ -104,8 +108,9 @@ L0:            this->ExecuteUbergraph_Widget_SlidingTabs(460);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_SlidingTabs.Widget_SlidingTabs_C:ExecuteUbergraph_Widget_SlidingTabs.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_SlidingTabs(10);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_SlidingTabs, from label L10;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -113,7 +118,8 @@ L18:           this->ExecuteUbergraph_Widget_SlidingTabs(10);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_SlidingTabs ==============
-L10:           <End of Inlined Event Graph Function>;
+L10:           // <End Inlined EventGraph Function>;
+L15:           // <Begin Inlined EventGraph Function Construct>;
 L15:           Widget* mWidget = this->mContent->GetChildAt(0);
 L62:           bool mbool = KismetSystemLibrary->IsValid(mWidget);
 L113:          if (!mbool) goto L311;
@@ -124,11 +130,12 @@ L239:          if (!mbool1) goto L311;
 L253:          this->mHorizontalBox = mHorizontalBox;
 L272:          this->SetupIndexOffset();
 L286:          this->SetActiveIndex(0, false);
-L306:          <End of Inlined Event Graph Function>;
+L306:          // <End Inlined EventGraph Function>;
 L311:          KismetSystemLibrary->PrintString(this, "Horizontalbox not found - Put Horizontal Box into Widget_SlidingTabs", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), 4);
-L455:          <End of Inlined Event Graph Function>;
-L460:          float mfloat = Divide_FloatFloat(this->mUpdateTime, this->mSlideTime);
-L506:          float mfloat1 = Add_FloatFloat(mfloat, this->mLerpT);
+L455:          // <End Inlined EventGraph Function>;
+L460:          // <Begin Inlined EventGraph Function SlideLerp>;
+L460:          float mfloat = this->mUpdateTime / this->mSlideTime;
+L506:          float mfloat1 = mfloat + this->mLerpT;
 L552:          float mfloat2 = FClamp(mfloat1, 0, 1);
 L599:          this->mLerpT = mfloat2;
 L626:          bool mbool2 = BlueprintMapLibrary->Map_Find([ref] this->mIndexOffset, [ref] this->mActiveIndex, [ref] mfloat3);
@@ -140,7 +147,7 @@ L896:          Vector2D mVector2D1 = mWidget1->GetDesiredSize();
 L946:          BreakVector2D(mVector2D1, [ref] mfloat5, [ref] mfloat6);
 L983:          float mfloat7 = Ease(this->mLerpStartingWidth, mfloat5, this->mLerpT, 6, 4, 2);
 L1050:         this->mSizeBox->SetWidthOverride(mfloat7);
-L1091:         bool mbool3 = GreaterEqual_FloatFloat(this->mLerpT, 1);
+L1091:         bool mbool3 = this->mLerpT >= 1;
 L1125:         if (!mbool3) goto L1181;
 L1139:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpTimer);
 ============ END FUNCTION ExecuteUbergraph_Widget_SlidingTabs ==============

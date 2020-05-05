@@ -66,7 +66,7 @@ default -> muint82;
 L533:          uint8 Temp_byte_Variable4 = 4;
 L553:          uint8 Temp_byte_Variable5 = 2;
 L573:          this->IsLastMessageFresh([ref] mbool);
-L596:          bool mbool1 = BooleanOR(mbool, this->mChatInputVisible);
+L596:          bool mbool1 = mbool || this->mChatInputVisible;
 L634:          bool Temp_bool_Variable1 = mbool1;
 L653:          this->SetVisibility(switch (Temp_bool_Variable1) {
 case false -> Temp_byte_Variable5;
@@ -114,7 +114,7 @@ L176:          int32 mint32 = this->mMessageVBox->GetChildrenCount();
 L226:          mGameStateBase = GameplayStatics->GetGameState(this);
 L269:          mFGChatManager = FGChatManager->Get(mGameStateBase);
 L320:          int32 mint321 = mFGChatManager->GetMaxNumMessagesInHistory();
-L370:          bool mbool = EqualEqual_IntInt(mint32, mint321);
+L370:          bool mbool = mint32 == mint321;
 L408:          if (!mbool) goto L469;
 L422:          bool mbool1 = this->mMessageVBox->RemoveChildAt(0);
 ============ END FUNCTION CacheChatMessages ==============
@@ -125,7 +125,7 @@ L422:          bool mbool1 = this->mMessageVBox->RemoveChildAt(0);
 
 ============ BEGIN FUNCTION IsLastMessageFresh ==============
 L0:            int32 mint32 = this->mFreshMessageVBox->GetChildrenCount();
-L50:           bool mbool = Greater_IntInt(mint32, 0);
+L50:           bool mbool = mint32 > 0;
 L84:           bool IsFresh = mbool;
 ============ END FUNCTION IsLastMessageFresh ==============
 
@@ -135,7 +135,7 @@ L84:           bool IsFresh = mbool;
 
 ============ BEGIN FUNCTION RemoveMessageWidget ==============
 L0:            int32 mint32 = this->mMessageVBox->GetChildrenCount();
-L50:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L50:           int32 mint321 = mint32 - 1;
 L92:           int32 mint322 = Min(mint321, 0);
 L134:          bool mbool = this->mMessageVBox->RemoveChildAt(mint322);
 ============ END FUNCTION RemoveMessageWidget ==============
@@ -151,13 +151,13 @@ L55:           KismetArrayLibrary->Array_Get([ref] this->mCachedChatMessages, mi
 L114:          ChatMessageStruct newMessage = mChatMessageStruct;
 L141:          ExecutionFlow.Push(L401);
 L146:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L170:          Widget_ChatMessageRow* mWidget_ChatMessageRow = WidgetBlueprintLibrary->Create(this, Widget_ChatMessageRow, mPlayerController);
+L170:          Widget_ChatMessageRow* mWidget_ChatMessageRow = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatMessageRow.Widget_ChatMessageRow_C), mPlayerController);
 L231:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ChatMessageRow, "mChatWindow", this);
 L286:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ChatMessageRow, "mChatMessage", [ref] newMessage);
 L349:          VerticalBoxSlot* mVerticalBoxSlot = this->mMessageVBox->AddChildToVerticalBox(mWidget_ChatMessageRow);
 L400:          goto ExecutionFlow.Pop();
 L401:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L425:          Widget_ChatMessageRow* mWidget_ChatMessageRow1 = WidgetBlueprintLibrary->Create(this, Widget_ChatMessageRow, mPlayerController1);
+L425:          Widget_ChatMessageRow* mWidget_ChatMessageRow1 = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatMessageRow.Widget_ChatMessageRow_C), mPlayerController1);
 L486:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ChatMessageRow1, "mChatWindow", this);
 L541:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ChatMessageRow1, "mChatMessage", [ref] newMessage);
 L604:          VerticalBoxSlot* mVerticalBoxSlot1 = this->mFreshMessageVBox->AddChildToVerticalBox(mWidget_ChatMessageRow1);
@@ -176,12 +176,12 @@ L844:          goto ExecutionFlow.Pop();
 L0:            ExecutionFlow.Push(L427);
 L5:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mCachedChatMessages);
 L64:           int32 mint321 = this->mMessageVBox->GetChildrenCount();
-L114:          bool mbool = NotEqual_IntInt(mint321, mint32);
+L114:          bool mbool = mint321 != mint32;
 L152:          if (!mbool) goto L347;
 L166:          ExecutionFlow.Push(L5);
 L171:          mint32 = KismetArrayLibrary->Array_Length([ref] this->mCachedChatMessages);
 L230:          mint321 = this->mMessageVBox->GetChildrenCount();
-L280:          bool mbool1 = Less_IntInt(mint321, mint32);
+L280:          bool mbool1 = mint321 < mint32;
 L318:          if (!mbool1) goto L412;
 L332:          this->AddMessageWidget();
 L346:          goto ExecutionFlow.Pop();
@@ -197,8 +197,9 @@ L426:          goto ExecutionFlow.Pop();
 
 
 ============ BEGIN FUNCTION OnRemovedFromFocusPath ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatWindow.Widget_ChatWindow_C:ExecuteUbergraph_Widget_ChatWindow.K2Node_Event_InFocusEvent) = InFocusEvent;
-L18:           this->ExecuteUbergraph_Widget_ChatWindow(48);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnRemovedFromFocusPath;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ChatWindow, from label L48;
 ============ END FUNCTION OnRemovedFromFocusPath ==============
 
 
@@ -206,9 +207,9 @@ L18:           this->ExecuteUbergraph_Widget_ChatWindow(48);
 
 
 ============ BEGIN FUNCTION OnMouseEnter ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatWindow.Widget_ChatWindow_C:ExecuteUbergraph_Widget_ChatWindow.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatWindow.Widget_ChatWindow_C:ExecuteUbergraph_Widget_ChatWindow.K2Node_Event_MouseEvent1) = MouseEvent;
-L36:           this->ExecuteUbergraph_Widget_ChatWindow(124);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: OnMouseEnter;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_ChatWindow, from label L124;
 ============ END FUNCTION OnMouseEnter ==============
 
 
@@ -216,8 +217,9 @@ L36:           this->ExecuteUbergraph_Widget_ChatWindow(124);
 
 
 ============ BEGIN FUNCTION OnMouseLeave ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Chat/Widget_ChatWindow.Widget_ChatWindow_C:ExecuteUbergraph_Widget_ChatWindow.K2Node_Event_MouseEvent) = MouseEvent;
-L18:           this->ExecuteUbergraph_Widget_ChatWindow(140);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnMouseLeave;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ChatWindow, from label L140;
 ============ END FUNCTION OnMouseLeave ==============
 
 
@@ -225,7 +227,9 @@ L18:           this->ExecuteUbergraph_Widget_ChatWindow(140);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_ChatWindow(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ChatWindow, from label L10;
 ============ END FUNCTION Construct ==============
 
 
@@ -233,14 +237,15 @@ L0:            this->ExecuteUbergraph_Widget_ChatWindow(10);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_ChatWindow ==============
+L10:           // <Begin Inlined EventGraph Function Construct>;
 L10:           this->InputWindow->mChatWindow = this;
-L43:           <End of Inlined Event Graph Function>;
+L43:           // <End Inlined EventGraph Function>;
 L48:           if (!this->mChatInputVisible) goto L151;
-L62:           bool mbool = Not_PreBool(this->IsMouseHoveringChatWindow);
+L62:           bool mbool = !this->IsMouseHoveringChatWindow;
 L91:           if (!mbool) goto L151;
 L105:          this->ExitChat();
-L119:          <End of Inlined Event Graph Function>;
+L119:          // <End Inlined EventGraph Function>;
 L124:          this->IsMouseHoveringChatWindow = true;
-L135:          <End of Inlined Event Graph Function>;
+L135:          // <End Inlined EventGraph Function>;
 L140:          this->IsMouseHoveringChatWindow = false;
 ============ END FUNCTION ExecuteUbergraph_Widget_ChatWindow ==============

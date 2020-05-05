@@ -43,7 +43,7 @@ default -> muint8;
 });
 L126:          if (!IsVisibile) goto L159;
 L140:          this->OpenQuickSearch();
-L154:          <End of Inlined Event Graph Function>;
+L154:          // <End Inlined EventGraph Function>;
 L159:          this->CloseQuickSearch();
 ============ END FUNCTION SetQuickSearchVisibility ==============
 
@@ -64,12 +64,12 @@ L290:          mFormatArgumentData.ArgumentValue = mFText;
 L326:          mFormatArgumentData.ArgumentValueInt = 0;
 L358:          mFormatArgumentData.ArgumentValueFloat = 0;
 L390:          mFormatArgumentData.ArgumentValueGender = 0;
-L419:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L439:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L419:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L439:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L511:          this->mMathResult->SetText(mFText1);
-L556:          <End of Inlined Event Graph Function>;
+L556:          // <End Inlined EventGraph Function>;
 L561:          this->mMathResult->SetVisibility(1);
-L599:          <End of Inlined Event Graph Function>;
+L599:          // <End Inlined EventGraph Function>;
 L604:          this->mMathResult->SetText("[object Object]");
 ============ END FUNCTION GenerateMathAnswer ==============
 
@@ -82,7 +82,7 @@ L0:            ExecutionFlow.Push(L431);
 L5:            int32 Temp_int_Loop_Counter_Variable = 0;
 L28:           int32 Temp_int_Array_Index_Variable = 0;
 L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mMathSymbols);
-L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L110:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L148:          if (!mbool) goto L341;
 L162:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L189:          ExecutionFlow.Push(L357);
@@ -93,7 +93,7 @@ L325:          bool ReturnValue = true;
 L336:          goto L431;
 L341:          ReturnValue = false;
 L352:          goto L431;
-L357:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L357:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L399:          Temp_int_Loop_Counter_Variable = mint321;
 L426:          goto L51;
 ============ END FUNCTION IsMathExpression ==============
@@ -105,7 +105,7 @@ L426:          goto L51;
 ============ BEGIN FUNCTION OnPartSelected ==============
 L0:            this->SetQuickSearchVisibility(false);
 L15:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L39:           Widget_Codex_Container* mWidget_Codex_Container = WidgetBlueprintLibrary->Create(this, Widget_Codex_Container, mPlayerController);
+L39:           Widget_Codex_Container* mWidget_Codex_Container = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C), mPlayerController);
 L100:          KismetSystemLibrary->SetClassPropertyByName(mWidget_Codex_Container, "mOpenOnRecipe", product);
 L163:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L187:          BPHUDHelpers->PushStackWidget(mPlayerController1, mWidget_Codex_Container, this);
@@ -118,18 +118,18 @@ L187:          BPHUDHelpers->PushStackWidget(mPlayerController1, mWidget_Codex_C
 ============ BEGIN FUNCTION OnBuildingSelected ==============
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           FGRecipeManager* mFGRecipeManager = FGRecipeManager->Get(mPlayerController);
-L75:           TArray<TSubclassOf<FGRecipe>> mTArray<TSubclassOf<FGRecipe>> = mFGRecipeManager->FindRecipesByProduct(product);
+L75:           TArray<TSubclassOf<FGRecipe>> mTArrayTSubclassOfFGRecipe = mFGRecipeManager->FindRecipesByProduct(product);
 L134:          Pawn* mPawn = this->GetOwningPlayerPawn();
 L154:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
 L190:          bool mbool = mFGCharacterPlayer;
 L219:          if (!mbool) goto L484;
 L233:          bool mbool1 = mFGCharacterPlayer->IsBuildGunEquipped();
 L275:          if (!mbool1) goto L447;
-L289:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>, 0, [ref] mTSubclassOf<FGRecipe>);
+L289:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGRecipe, 0, [ref] mTSubclassOfFGRecipe);
 L344:          FGBuildGun* mFGBuildGun = mFGCharacterPlayer->GetBuildGun();
-L386:          mFGBuildGun->GotoBuildState(mTSubclassOf<FGRecipe>);
+L386:          mFGBuildGun->GotoBuildState(mTSubclassOfFGRecipe);
 L427:          this->SetQuickSearchVisibility(false);
-L442:          <End of Inlined Event Graph Function>;
+L442:          // <End Inlined EventGraph Function>;
 L447:          mFGCharacterPlayer->ToggleBuildGun();
 L479:          goto L289;
 ============ END FUNCTION OnBuildingSelected ==============
@@ -140,12 +140,12 @@ L479:          goto L289;
 
 ============ BEGIN FUNCTION OnIndexClicked ==============
 L0:            this->SetSelectedIndex(index);
-L23:           KismetArrayLibrary->Array_Get([ref] this->mSearchResults, index, [ref] mTSubclassOf<FGItemDescriptor>);
-L82:           TSubclassOf<FGItemDescriptor> SelectedProduct = mTSubclassOf<FGItemDescriptor>;
+L23:           KismetArrayLibrary->Array_Get([ref] this->mSearchResults, index, [ref] mTSubclassOfFGItemDescriptor);
+L82:           TSubclassOf<FGItemDescriptor> SelectedProduct = mTSubclassOfFGItemDescriptor;
 L101:          bool mbool = KismetArrayLibrary->Array_Contains([ref] this->mBuildings, [ref] SelectedProduct);
 L161:          if (!mbool) goto L203;
 L175:          this->OnBuildingSelected(SelectedProduct);
-L198:          <End of Inlined Event Graph Function>;
+L198:          // <End Inlined EventGraph Function>;
 L203:          bool mbool1 = KismetArrayLibrary->Array_Contains([ref] this->mProducts, [ref] SelectedProduct);
 L263:          if (!mbool1) goto L300;
 L277:          this->OnPartSelected(SelectedProduct);
@@ -157,7 +157,7 @@ L277:          this->OnPartSelected(SelectedProduct);
 
 ============ BEGIN FUNCTION SetSelectedIndex ==============
 L0:            int32 mint32 = this->mSearchResultsContainer->GetChildrenCount();
-L50:           bool mbool = Less_IntInt(this->mSelectedIndex, mint32);
+L50:           bool mbool = this->mSelectedIndex < mint32;
 L88:           if (!mbool) goto L265;
 L102:          Widget* mWidget = this->mSearchResultsContainer->GetChildAt(this->mSelectedIndex);
 L153:          Widget_ListButton* mWidget_ListButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ListButton.Widget_ListButton_C>(mWidget);
@@ -165,7 +165,7 @@ L189:          bool mbool1 = mWidget_ListButton;
 L218:          if (!mbool1) goto L265;
 L232:          mWidget_ListButton->mIsSelected = false;
 L265:          int32 mint321 = this->mSearchResultsContainer->GetChildrenCount();
-L315:          int32 mint322 = Subtract_IntInt(mint321, 1);
+L315:          int32 mint322 = mint321 - 1;
 L357:          int32 mint323 = Clamp(NewSelectedIndex, 0, mint322);
 L408:          this->mSelectedIndex = mint323;
 L435:          Widget* mWidget1 = this->mSearchResultsContainer->GetChildAt(this->mSelectedIndex);
@@ -183,7 +183,7 @@ L565:          mWidget_ListButton1->mIsSelected = true;
 L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
 L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Up"));
 L137:          if (!mbool) goto L286;
-L151:          int32 mint32 = Subtract_IntInt(this->mSelectedIndex, 1);
+L151:          int32 mint32 = this->mSelectedIndex - 1;
 L193:          this->SetSelectedIndex(mint32);
 L216:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L240:          this->mSearchField->SetUserFocus(mPlayerController);
@@ -191,7 +191,7 @@ L281:          goto L1000;
 L286:          mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
 L345:          bool mbool1 = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Down"));
 L423:          if (!mbool1) goto L572;
-L437:          int32 mint321 = Add_IntInt(this->mSelectedIndex, 1);
+L437:          int32 mint321 = this->mSelectedIndex + 1;
 L479:          this->SetSelectedIndex(mint321);
 L502:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L526:          this->mSearchField->SetUserFocus(mPlayerController1);
@@ -222,27 +222,27 @@ L64:           this->GenerateSearchResults(SearchWords);
 L87:           int32 Temp_int_Loop_Counter_Variable = 0;
 L110:          int32 Temp_int_Array_Index_Variable = 0;
 L133:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mSearchResults);
-L192:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L192:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L230:          if (!mbool) goto ExecutionFlow.Pop();
 L240:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L267:          ExecutionFlow.Push(L923);
 L272:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L296:          Widget_ListButton* mWidget_ListButton = WidgetBlueprintLibrary->Create(this, Widget_ListButton, mPlayerController);
-L357:          KismetArrayLibrary->Array_Get([ref] this->mSearchResults, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
-L416:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mTSubclassOf<FGItemDescriptor>);
+L296:          Widget_ListButton* mWidget_ListButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ListButton.Widget_ListButton_C), mPlayerController);
+L357:          KismetArrayLibrary->Array_Get([ref] this->mSearchResults, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGItemDescriptor);
+L416:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mTSubclassOfFGItemDescriptor);
 L467:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton, "mIcon", mTexture2D);
-L530:          KismetArrayLibrary->Array_Get([ref] this->mSearchResults, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
-L589:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGItemDescriptor>);
+L530:          KismetArrayLibrary->Array_Get([ref] this->mSearchResults, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGItemDescriptor);
+L589:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOfFGItemDescriptor);
 L648:          KismetSystemLibrary->SetTextPropertyByName(mWidget_ListButton, "mTitle", [ref] mFText);
 L711:          PanelSlot* mPanelSlot = this->mSearchResultsContainer->AddChild(mWidget_ListButton);
 L762:          mFScriptDelegate->BindUFunction(this, OnIndexClicked);
 L785:          mWidget_ListButton->OnClicked.AddUnique(mFScriptDelegate);
-L826:          bool mbool1 = EqualEqual_IntInt(Temp_int_Array_Index_Variable, 0);
+L826:          bool mbool1 = Temp_int_Array_Index_Variable == 0;
 L860:          if (!mbool1) goto ExecutionFlow.Pop();
 L870:          mWidget_ListButton->mIsSelected = true;
 L903:          this->SetSelectedIndex(0);
 L922:          goto ExecutionFlow.Pop();
-L923:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L923:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L965:          Temp_int_Loop_Counter_Variable = mint321;
 L992:          goto L133;
 ============ END FUNCTION CreateSearchResultList ==============
@@ -259,30 +259,30 @@ L99:           if (!mbool) goto ExecutionFlow.Pop();
 L109:          bool Temp_bool_True_if_break_was_hit_Variable = false;
 L120:          int32 Temp_int_Loop_Counter_Variable = 0;
 L143:          int32 Temp_int_Array_Index_Variable = 0;
-L166:          bool mbool1 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L166:          bool mbool1 = !Temp_bool_True_if_break_was_hit_Variable;
 L195:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mProducts);
-L254:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
-L292:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L254:          bool mbool2 = Temp_int_Loop_Counter_Variable < mint32;
+L292:          bool mbool3 = mbool1 && mbool2;
 L330:          if (!mbool3) goto L872;
 L344:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L371:          ExecutionFlow.Push(L904);
-L376:          KismetArrayLibrary->Array_Get([ref] this->mProducts, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
-L435:          TSubclassOf<FGItemDescriptor> localProduct = mTSubclassOf<FGItemDescriptor>;
+L376:          KismetArrayLibrary->Array_Get([ref] this->mProducts, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGItemDescriptor);
+L435:          TSubclassOf<FGItemDescriptor> localProduct = mTSubclassOfFGItemDescriptor;
 L454:          FText mFText = FGItemDescriptor->GetItemName(localProduct);
 L513:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
 L572:          bool mbool4 = BPHUDHelpers->DoesTextContainSearchWords(mFString, SearchWords, true, this);
 L638:          if (!mbool4) goto ExecutionFlow.Pop();
 L648:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalSearchResults, [ref] localProduct);
-L716:          int32 mint322 = Add_IntInt(LocalResultCounter, 1);
+L716:          int32 mint322 = LocalResultCounter + 1;
 L758:          int32 Temp_int_Variable = mint322;
 L785:          int32 LocalResultCounter = Temp_int_Variable;
-L812:          bool mbool5 = GreaterEqual_IntInt(Temp_int_Variable, this->mMaxAmountOfResults);
+L812:          bool mbool5 = Temp_int_Variable >= this->mMaxAmountOfResults;
 L850:          if (!mbool5) goto ExecutionFlow.Pop();
 L860:          Temp_bool_True_if_break_was_hit_Variable = true;
 L871:          goto ExecutionFlow.Pop();
 L872:          this->mSearchResults = LocalSearchResults;
-L899:          <End of Inlined Event Graph Function>;
-L904:          int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L899:          // <End Inlined EventGraph Function>;
+L904:          int32 mint323 = Temp_int_Loop_Counter_Variable + 1;
 L946:          Temp_int_Loop_Counter_Variable = mint323;
 L973:          goto L166;
 ============ END FUNCTION GenerateSearchResults ==============
@@ -295,50 +295,50 @@ L973:          goto L166;
 L0:            ExecutionFlow.Push(L1579);
 L5:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
 L48:           FGRecipeManager* mFGRecipeManager = FGRecipeManager->Get(mGameStateBase);
-L99:           TArray<TSubclassOf<FGRecipe>> mTArray<TSubclassOf<FGRecipe>> = [];
-L110:          mFGRecipeManager->GetAllAvailableRecipes([ref] mTArray<TSubclassOf<FGRecipe>>);
+L99:           TArray<TSubclassOf<FGRecipe>> mTArrayTSubclassOfFGRecipe = [];
+L110:          mFGRecipeManager->GetAllAvailableRecipes([ref] mTArrayTSubclassOfFGRecipe);
 L151:          int32 Temp_int_Loop_Counter_Variable = 0;
 L174:          int32 Temp_int_Array_Index_Variable1 = 0;
-L197:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGRecipe>>);
-L256:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L197:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGRecipe);
+L256:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L294:          if (!mbool) goto L930;
 L308:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
 L335:          ExecutionFlow.Push(L1066);
 L340:          int32 Temp_int_Loop_Counter_Variable1 = 0;
 L363:          int32 Temp_int_Array_Index_Variable = 0;
-L386:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGRecipe>);
-L445:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(mTSubclassOf<FGRecipe>, false);
-L505:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
-L564:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint321);
+L386:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGRecipe, Temp_int_Array_Index_Variable1, [ref] mTSubclassOfFGRecipe);
+L445:          TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetProducts(mTSubclassOfFGRecipe, false);
+L505:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount);
+L564:          bool mbool1 = Temp_int_Loop_Counter_Variable1 < mint321;
 L602:          if (!mbool1) goto ExecutionFlow.Pop();
 L612:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
 L639:          ExecutionFlow.Push(L1140);
-L644:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGRecipe>);
-L703:          mTArray<ItemAmount> = FGRecipe->GetProducts(mTSubclassOf<FGRecipe>, false);
-L763:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L644:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGRecipe, Temp_int_Array_Index_Variable1, [ref] mTSubclassOfFGRecipe);
+L703:          mTArrayItemAmount = FGRecipe->GetProducts(mTSubclassOfFGRecipe, false);
+L763:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable, [ref] mItemAmount);
 L822:          TSubclassOf<FGItemDescriptor> LocalClass = mItemAmount.ItemClass;
-L850:          TSubclassOf<FGResourceDescriptor> mTSubclassOf<FGResourceDescriptor> = ClassCast<Class /Script/FactoryGame.FGResourceDescriptor>(LocalClass);
-L886:          bool mbool2 = mTSubclassOf<FGResourceDescriptor>;
+L850:          TSubclassOf<FGResourceDescriptor> mTSubclassOfFGResourceDescriptor = ClassCast<Class /Script/FactoryGame.FGResourceDescriptor>(LocalClass);
+L886:          bool mbool2 = mTSubclassOfFGResourceDescriptor;
 L915:          if (!mbool2) goto L1214;
 L929:          goto ExecutionFlow.Pop();
 L930:          this->mBuildings = LocalBuildings;
 L957:          this->mParts = LocalParts;
 L984:          this->mProducts = LocalBuildings;
 L1011:         KismetArrayLibrary->Array_Append([ref] this->mProducts, [ref] LocalParts);
-L1061:         <End of Inlined Event Graph Function>;
-L1066:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1061:         // <End Inlined EventGraph Function>;
+L1066:         int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L1108:         Temp_int_Loop_Counter_Variable = mint322;
 L1135:         goto L197;
-L1140:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1140:         int32 mint323 = Temp_int_Loop_Counter_Variable1 + 1;
 L1182:         Temp_int_Loop_Counter_Variable1 = mint323;
 L1209:         goto L386;
-L1214:         TSubclassOf<FGBuildingDescriptor> mTSubclassOf<FGBuildingDescriptor> = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(LocalClass);
-L1250:         bool mbool3 = mTSubclassOf<FGBuildingDescriptor>;
+L1214:         TSubclassOf<FGBuildingDescriptor> mTSubclassOfFGBuildingDescriptor = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(LocalClass);
+L1250:         bool mbool3 = mTSubclassOfFGBuildingDescriptor;
 L1279:         if (!mbool3) goto L1362;
 L1293:         int32 mint324 = KismetArrayLibrary->Array_AddUnique([ref] LocalBuildings, [ref] LocalClass);
 L1361:         goto ExecutionFlow.Pop();
-L1362:         TSubclassOf<FGVehicleDescriptor> mTSubclassOf<FGVehicleDescriptor> = ClassCast<Class /Script/FactoryGame.FGVehicleDescriptor>(LocalClass);
-L1398:         bool mbool4 = mTSubclassOf<FGVehicleDescriptor>;
+L1362:         TSubclassOf<FGVehicleDescriptor> mTSubclassOfFGVehicleDescriptor = ClassCast<Class /Script/FactoryGame.FGVehicleDescriptor>(LocalClass);
+L1398:         bool mbool4 = mTSubclassOfFGVehicleDescriptor;
 L1427:         if (!mbool4) goto L1510;
 L1441:         int32 mint325 = KismetArrayLibrary->Array_AddUnique([ref] LocalBuildings, [ref] LocalClass);
 L1509:         goto ExecutionFlow.Pop();
@@ -351,7 +351,9 @@ L1578:         goto ExecutionFlow.Pop();
 
 
 ============ BEGIN FUNCTION BndEvt__mCloseButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_QuickSearch(116);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mCloseButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_QuickSearch, from label L116;
 ============ END FUNCTION BndEvt__mCloseButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -359,8 +361,9 @@ L0:            this->ExecuteUbergraph_BPW_QuickSearch(116);
 
 
 ============ BEGIN FUNCTION BndEvt__FGEditableText_357_K2Node_ComponentBoundEvent_3_OnEditableTextChangedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/QuickSearch/BPW_QuickSearch.BPW_QuickSearch_C:ExecuteUbergraph_BPW_QuickSearch.K2Node_ComponentBoundEvent_Text1) = text;
-L18:           this->ExecuteUbergraph_BPW_QuickSearch(198);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__FGEditableText_357_K2Node_ComponentBoundEvent_3_OnEditableTextChangedEvent__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_QuickSearch, from label L198;
 ============ END FUNCTION BndEvt__FGEditableText_357_K2Node_ComponentBoundEvent_3_OnEditableTextChangedEvent__DelegateSignature ==============
 
 
@@ -368,9 +371,9 @@ L18:           this->ExecuteUbergraph_BPW_QuickSearch(198);
 
 
 ============ BEGIN FUNCTION BndEvt__FGEditableText_357_K2Node_ComponentBoundEvent_4_OnEditableTextCommittedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/QuickSearch/BPW_QuickSearch.BPW_QuickSearch_C:ExecuteUbergraph_BPW_QuickSearch.K2Node_ComponentBoundEvent_Text) = text;
-L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/QuickSearch/BPW_QuickSearch.BPW_QuickSearch_C:ExecuteUbergraph_BPW_QuickSearch.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
-L36:           this->ExecuteUbergraph_BPW_QuickSearch(289);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__FGEditableText_357_K2Node_ComponentBoundEvent_4_OnEditableTextCommittedEvent__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_BPW_QuickSearch, from label L289;
 ============ END FUNCTION BndEvt__FGEditableText_357_K2Node_ComponentBoundEvent_4_OnEditableTextCommittedEvent__DelegateSignature ==============
 
 
@@ -383,6 +386,7 @@ L15:           this->CreateSearchResultList(this->mSearchWords);
 L38:           goto ExecutionFlow.Pop();
 L39:           KismetSystemLibrary->RetriggerableDelay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 1717044286, ExecutionFunction = "ExecuteUbergraph_BPW_QuickSearch", CallbackTarget = this));
 L115:          goto ExecutionFlow.Pop();
+L116:          // <Begin Inlined EventGraph Function BndEvt__mCloseButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature>;
 L116:          this->SetQuickSearchVisibility(false);
 L131:          goto ExecutionFlow.Pop();
 L132:          PlayerController* mPlayerController = this->GetOwningPlayer();
@@ -391,7 +395,7 @@ L197:          goto ExecutionFlow.Pop();
 L198:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mconst FText);
 L257:          this->mSearchWords = mFString;
 L284:          goto L39;
-L289:          bool mbool = NotEqual_ByteByte(muint8, 1);
+L289:          bool mbool = muint8 != 1;
 L320:          if (!mbool) goto L132;
 L334:          goto ExecutionFlow.Pop();
 ============ END FUNCTION ExecuteUbergraph_BPW_QuickSearch ==============

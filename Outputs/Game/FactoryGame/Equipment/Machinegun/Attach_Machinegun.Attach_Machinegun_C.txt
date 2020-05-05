@@ -7,8 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/Machinegun/Attach_Machinegun.
 
 
 ============ BEGIN FUNCTION PlayFireEffect ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/Machinegun/Attach_Machinegun.Attach_Machinegun_C:ExecuteUbergraph_Attach_Machinegun.K2Node_Event_flashLocation) = flashLocation;
-L18:           this->ExecuteUbergraph_Attach_Machinegun(471);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PlayFireEffect;
+L18:           // Implementation: Function ExecuteUbergraph_Attach_Machinegun, from label L471;
 ============ END FUNCTION PlayFireEffect ==============
 
 
@@ -16,7 +17,9 @@ L18:           this->ExecuteUbergraph_Attach_Machinegun(471);
 
 
 ============ BEGIN FUNCTION ClientPlayReloadEffect ==============
-L0:            this->ExecuteUbergraph_Attach_Machinegun(15);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ClientPlayReloadEffect;
+L0:            // Implementation: Function ExecuteUbergraph_Attach_Machinegun, from label L15;
 ============ END FUNCTION ClientPlayReloadEffect ==============
 
 
@@ -25,7 +28,8 @@ L0:            this->ExecuteUbergraph_Attach_Machinegun(15);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Attach_Machinegun ==============
 L5:            goto ComputedJump(EntryPoint);
-L15:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_EQ_Rifle_Reload, this, true);
+L15:           // <Begin Inlined EventGraph Function ClientPlayReloadEffect>;
+L15:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/Rifle/Audio/Play_EQ_Rifle_Reload.Play_EQ_Rifle_Reload), this, true);
 L68:           goto ExecutionFlow.Pop();
 L69:           FGCharacterPlayer* mFGCharacterPlayer = this->GetAttachedTo();
 L89:           SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh3P();
@@ -33,13 +37,13 @@ L135:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInst
 L177:          Anim_3p* mAnim_3p = Cast<AnimBlueprintGeneratedClass /Game/FactoryGame/Character/Player/Anim_3p.Anim_3p_C>(mAnimInstance);
 L213:          bool mbool = mAnim_3p;
 L242:          if (!mbool) goto ExecutionFlow.Pop();
-L252:          bool mbool1 = mAnim_3p->Montage_IsPlaying(RiflePrimary_Montage);
+L252:          bool mbool1 = mAnim_3p->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/ThirdPerson/RiflePrimary_Montage.RiflePrimary_Montage));
 L303:          if (!mbool1) goto L318;
 L317:          goto ExecutionFlow.Pop();
-L318:          float mfloat = mAnim_3p->Montage_Play(RiflePrimary_Montage, 1, 0, 0, true);
+L318:          float mfloat = mAnim_3p->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/ThirdPerson/RiflePrimary_Montage.RiflePrimary_Montage), 1, 0, 0, true);
 L390:          goto ExecutionFlow.Pop();
 L391:          ExecutionFlow.Push(L69);
-L396:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAtLocation(this, Play_EQ_Rifle_Fire, mVector, Rotator::FromPitchYawRoll(0, 0, 0));
+L396:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAtLocation(this, ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/Rifle/Audio/Play_EQ_Rifle_Fire.Play_EQ_Rifle_Fire), mVector, Rotator::FromPitchYawRoll(0, 0, 0));
 L470:          goto ExecutionFlow.Pop();
 L471:          goto L391;
 ============ END FUNCTION ExecuteUbergraph_Attach_Machinegun ==============

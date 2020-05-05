@@ -38,12 +38,12 @@ L752:          KismetArrayLibrary->Array_Append([ref] LocalAllRecipes, [ref] thi
 L802:          int32 Temp_int_Loop_Counter_Variable = 0;
 L825:          int32 Temp_int_Array_Index_Variable = 0;
 L848:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] LocalAllRecipes);
-L907:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L907:          bool mbool2 = Temp_int_Loop_Counter_Variable < mint32;
 L945:          if (!mbool2) goto ExecutionFlow.Pop();
 L955:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L982:          ExecutionFlow.Push(L1823);
-L987:          KismetArrayLibrary->Array_Get([ref] LocalAllRecipes, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
-L1046:         TSubclassOf<FGItemDescriptor> LoacalProduct = mTSubclassOf<FGItemDescriptor>;
+L987:          KismetArrayLibrary->Array_Get([ref] LocalAllRecipes, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGItemDescriptor);
+L1046:         TSubclassOf<FGItemDescriptor> LoacalProduct = mTSubclassOfFGItemDescriptor;
 L1065:         FText mFText2 = FGItemDescriptor->GetItemName(LoacalProduct);
 L1124:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText2);
 L1183:         FString mFString1 = KismetTextLibrary->Conv_TextToString([ref] LocalSearchText);
@@ -51,7 +51,7 @@ L1242:         bool mbool3 = BPHUDHelpers->DoesTextContainSearchWords(mFString, 
 L1308:         if (!mbool3) goto ExecutionFlow.Pop();
 L1318:         int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mSearchResults, [ref] LoacalProduct);
 L1386:         PlayerController* mPlayerController = this->GetOwningPlayer();
-L1410:         Widget_ListButton* mWidget_ListButton = WidgetBlueprintLibrary->Create(this, Widget_ListButton, mPlayerController);
+L1410:         Widget_ListButton* mWidget_ListButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ListButton.Widget_ListButton_C), mPlayerController);
 L1471:         Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(LoacalProduct);
 L1522:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton, "mIcon", mTexture2D);
 L1585:         FText mFText3 = FGItemDescriptor->GetItemName(LoacalProduct);
@@ -60,7 +60,7 @@ L1707:         mFScriptDelegate->BindUFunction(this, OnSearchResultClicked);
 L1730:         mWidget_ListButton->OnClicked.AddUnique(mFScriptDelegate);
 L1771:         PanelSlot* mPanelSlot = this->mItemSearchList->AddChild(mWidget_ListButton);
 L1822:         goto ExecutionFlow.Pop();
-L1823:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1823:         int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L1865:         Temp_int_Loop_Counter_Variable = mint322;
 L1892:         goto L848;
 ============ END FUNCTION PopulateSearchResults ==============
@@ -90,18 +90,18 @@ L796:          this->mRecipeProductList->ClearChildren();
 L832:          this->mRecipeIngredientList->ClearChildren();
 L868:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L892:          FGRecipeManager* mFGRecipeManager = FGRecipeManager->Get(mPlayerController);
-L943:          TArray<TSubclassOf<FGRecipe>> mTArray<TSubclassOf<FGRecipe>> = mFGRecipeManager->FindRecipesByProduct(localProduct);
+L943:          TArray<TSubclassOf<FGRecipe>> mTArrayTSubclassOfFGRecipe = mFGRecipeManager->FindRecipesByProduct(localProduct);
 L1002:         int32 Temp_int_Loop_Counter_Variable = 0;
 L1025:         int32 Temp_int_Array_Index_Variable1 = 0;
-L1048:         int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGRecipe>>);
-L1107:         bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L1048:         int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGRecipe);
+L1107:         bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L1145:         if (!mbool) goto L2174;
 L1159:         Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
 L1186:         ExecutionFlow.Push(L3255);
 L1191:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L1215:         BPW_Interactable_Recipe* mBPW_Interactable_Recipe = WidgetBlueprintLibrary->Create(this, BPW_Interactable_Recipe, mPlayerController1);
+L1215:         BPW_Interactable_Recipe* mBPW_Interactable_Recipe = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Codex/BPW_Interactable_Recipe.BPW_Interactable_Recipe_C), mPlayerController1);
 L1276:         FText Temp_text_Variable = "[object Object]";
-L1351:         bool mbool1 = Greater_IntInt(Temp_int_Array_Index_Variable1, 0);
+L1351:         bool mbool1 = Temp_int_Array_Index_Variable1 > 0;
 L1385:         bool Temp_bool_Variable = mbool1;
 L1404:         FString mFString = KismetStringLibrary->Conv_IntToString(Temp_int_Array_Index_Variable1);
 L1463:         FString mFString1 = KismetStringLibrary->Concat_StrStr("Alternate Recipe ", mFString);
@@ -112,50 +112,50 @@ case false -> Temp_text_Variable;
 case true -> mFText2;
 default -> mFText3;
 });
-L1769:         TSubclassOf<FGVehicleDescriptor> mTSubclassOf<FGVehicleDescriptor> = ClassCast<Class /Script/FactoryGame.FGVehicleDescriptor>(localProduct);
-L1805:         bool mbool2 = mTSubclassOf<FGVehicleDescriptor>;
-L1834:         TSubclassOf<FGBuildingDescriptor> mTSubclassOf<FGBuildingDescriptor> = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(localProduct);
-L1870:         bool mbool3 = mTSubclassOf<FGBuildingDescriptor>;
-L1899:         bool mbool4 = BooleanOR(mbool3, mbool2);
+L1769:         TSubclassOf<FGVehicleDescriptor> mTSubclassOfFGVehicleDescriptor = ClassCast<Class /Script/FactoryGame.FGVehicleDescriptor>(localProduct);
+L1805:         bool mbool2 = mTSubclassOfFGVehicleDescriptor;
+L1834:         TSubclassOf<FGBuildingDescriptor> mTSubclassOfFGBuildingDescriptor = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(localProduct);
+L1870:         bool mbool3 = mTSubclassOfFGBuildingDescriptor;
+L1899:         bool mbool4 = mbool3 || mbool2;
 L1937:         KismetSystemLibrary->SetBoolPropertyByName(mBPW_Interactable_Recipe, "mHideProductionInfo", mbool4);
-L2000:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGRecipe>);
-L2059:         KismetSystemLibrary->SetClassPropertyByName(mBPW_Interactable_Recipe, "mRecipe", mTSubclassOf<FGRecipe>);
+L2000:         KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGRecipe, Temp_int_Array_Index_Variable1, [ref] mTSubclassOfFGRecipe);
+L2059:         KismetSystemLibrary->SetClassPropertyByName(mBPW_Interactable_Recipe, "mRecipe", mTSubclassOfFGRecipe);
 L2122:         PanelSlot* mPanelSlot = this->mRecipeProductList->AddChild(mBPW_Interactable_Recipe);
 L2173:         goto ExecutionFlow.Pop();
 L2174:         if (!this->mShowRecipeIngredientList) goto L3216;
 L2188:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L2212:         FGRecipeManager* mFGRecipeManager1 = FGRecipeManager->Get(mPlayerController2);
-L2263:         TArray<TSubclassOf<FGRecipe>> mTArray<TSubclassOf<FGRecipe>>1 = mFGRecipeManager1->FindRecipesByIngredient(localProduct);
-L2322:         int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGRecipe>>1);
-L2381:         bool mbool5 = Greater_IntInt(mint321, 0);
+L2263:         TArray<TSubclassOf<FGRecipe>> mTArrayTSubclassOfFGRecipe1 = mFGRecipeManager1->FindRecipesByIngredient(localProduct);
+L2322:         int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGRecipe1);
+L2381:         bool mbool5 = mint321 > 0;
 L2415:         if (!mbool5) goto L3329;
 L2429:         this->mRecipeIngredientTitle->SetVisibility(0);
 L2467:         int32 Temp_int_Loop_Counter_Variable1 = 0;
 L2490:         int32 Temp_int_Array_Index_Variable = 0;
-L2513:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGRecipe>>1);
-L2572:         bool mbool6 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint322);
+L2513:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGRecipe1);
+L2572:         bool mbool6 = Temp_int_Loop_Counter_Variable1 < mint322;
 L2610:         if (!mbool6) goto ExecutionFlow.Pop();
 L2620:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
 L2647:         ExecutionFlow.Push(L3368);
 L2652:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
-L2676:         BPW_Interactable_Recipe* mBPW_Interactable_Recipe1 = WidgetBlueprintLibrary->Create(this, BPW_Interactable_Recipe, mPlayerController3);
-L2737:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>1, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGRecipe>1);
-L2796:         TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(mTSubclassOf<FGRecipe>1, false);
-L2856:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L2676:         BPW_Interactable_Recipe* mBPW_Interactable_Recipe1 = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Codex/BPW_Interactable_Recipe.BPW_Interactable_Recipe_C), mPlayerController3);
+L2737:         KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGRecipe1, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGRecipe1);
+L2796:         TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetProducts(mTSubclassOfFGRecipe1, false);
+L2856:         KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, 0, [ref] mItemAmount);
 L2911:         FText mFText4 = FGItemDescriptor->GetItemName(mItemAmount.ItemClass);
 L2979:         KismetSystemLibrary->SetTextPropertyByName(mBPW_Interactable_Recipe1, "mRecipeNameText", [ref] mFText4);
-L3042:         KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>1, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGRecipe>1);
-L3101:         KismetSystemLibrary->SetClassPropertyByName(mBPW_Interactable_Recipe1, "mRecipe", mTSubclassOf<FGRecipe>1);
+L3042:         KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGRecipe1, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGRecipe1);
+L3101:         KismetSystemLibrary->SetClassPropertyByName(mBPW_Interactable_Recipe1, "mRecipe", mTSubclassOfFGRecipe1);
 L3164:         PanelSlot* mPanelSlot1 = this->mRecipeIngredientList->AddChild(mBPW_Interactable_Recipe1);
 L3215:         goto ExecutionFlow.Pop();
 L3216:         this->mRecipeIngredientTitle->SetVisibility(1);
 L3254:         goto ExecutionFlow.Pop();
-L3255:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L3255:         int32 mint323 = Temp_int_Loop_Counter_Variable + 1;
 L3297:         Temp_int_Loop_Counter_Variable = mint323;
 L3324:         goto L1048;
 L3329:         this->mRecipeIngredientTitle->SetVisibility(1);
 L3367:         goto ExecutionFlow.Pop();
-L3368:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L3368:         int32 mint324 = Temp_int_Loop_Counter_Variable1 + 1;
 L3410:         Temp_int_Loop_Counter_Variable1 = mint324;
 L3437:         goto L2513;
 ============ END FUNCTION UpdateItemInfo ==============
@@ -168,55 +168,55 @@ L3437:         goto L2513;
 L0:            ExecutionFlow.Push(L1704);
 L5:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
 L48:           FGRecipeManager* mFGRecipeManager = FGRecipeManager->Get(mGameStateBase);
-L99:           TArray<TSubclassOf<FGRecipe>> mTArray<TSubclassOf<FGRecipe>> = [];
-L110:          mFGRecipeManager->GetAllAvailableRecipes([ref] mTArray<TSubclassOf<FGRecipe>>);
+L99:           TArray<TSubclassOf<FGRecipe>> mTArrayTSubclassOfFGRecipe = [];
+L110:          mFGRecipeManager->GetAllAvailableRecipes([ref] mTArrayTSubclassOfFGRecipe);
 L151:          int32 Temp_int_Loop_Counter_Variable = 0;
 L174:          int32 Temp_int_Array_Index_Variable1 = 0;
-L197:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGRecipe>>);
-L256:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L197:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGRecipe);
+L256:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L294:          if (!mbool) goto L930;
 L308:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
 L335:          ExecutionFlow.Push(L1043);
 L340:          int32 Temp_int_Loop_Counter_Variable1 = 0;
 L363:          int32 Temp_int_Array_Index_Variable = 0;
-L386:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGRecipe>);
-L445:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(mTSubclassOf<FGRecipe>, false);
-L505:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
-L564:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint321);
+L386:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGRecipe, Temp_int_Array_Index_Variable1, [ref] mTSubclassOfFGRecipe);
+L445:          TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetProducts(mTSubclassOfFGRecipe, false);
+L505:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount);
+L564:          bool mbool1 = Temp_int_Loop_Counter_Variable1 < mint321;
 L602:          if (!mbool1) goto ExecutionFlow.Pop();
 L612:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
 L639:          ExecutionFlow.Push(L1117);
-L644:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGRecipe>);
-L703:          mTArray<ItemAmount> = FGRecipe->GetProducts(mTSubclassOf<FGRecipe>, false);
-L763:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L644:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGRecipe, Temp_int_Array_Index_Variable1, [ref] mTSubclassOfFGRecipe);
+L703:          mTArrayItemAmount = FGRecipe->GetProducts(mTSubclassOfFGRecipe, false);
+L763:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable, [ref] mItemAmount);
 L822:          TSubclassOf<FGItemDescriptor> LocalClass = mItemAmount.ItemClass;
-L850:          TSubclassOf<FGResourceDescriptor> mTSubclassOf<FGResourceDescriptor> = ClassCast<Class /Script/FactoryGame.FGResourceDescriptor>(LocalClass);
-L886:          bool mbool2 = mTSubclassOf<FGResourceDescriptor>;
+L850:          TSubclassOf<FGResourceDescriptor> mTSubclassOfFGResourceDescriptor = ClassCast<Class /Script/FactoryGame.FGResourceDescriptor>(LocalClass);
+L886:          bool mbool2 = mTSubclassOfFGResourceDescriptor;
 L915:          if (!mbool2) goto L1191;
 L929:          goto ExecutionFlow.Pop();
 L930:          this->mBuildings = LocalBuildings;
 L957:          this->mEquipment = LocalEquipment;
 L984:          this->mVehicles = LocalVehicles;
 L1011:         this->mParts = LocalItems;
-L1038:         <End of Inlined Event Graph Function>;
-L1043:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1038:         // <End Inlined EventGraph Function>;
+L1043:         int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L1085:         Temp_int_Loop_Counter_Variable = mint322;
 L1112:         goto L197;
-L1117:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1117:         int32 mint323 = Temp_int_Loop_Counter_Variable1 + 1;
 L1159:         Temp_int_Loop_Counter_Variable1 = mint323;
 L1186:         goto L386;
-L1191:         TSubclassOf<FGBuildingDescriptor> mTSubclassOf<FGBuildingDescriptor> = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(LocalClass);
-L1227:         bool mbool3 = mTSubclassOf<FGBuildingDescriptor>;
+L1191:         TSubclassOf<FGBuildingDescriptor> mTSubclassOfFGBuildingDescriptor = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(LocalClass);
+L1227:         bool mbool3 = mTSubclassOfFGBuildingDescriptor;
 L1256:         if (!mbool3) goto L1339;
 L1270:         int32 mint324 = KismetArrayLibrary->Array_AddUnique([ref] LocalBuildings, [ref] LocalClass);
 L1338:         goto ExecutionFlow.Pop();
-L1339:         TSubclassOf<FGVehicleDescriptor> mTSubclassOf<FGVehicleDescriptor> = ClassCast<Class /Script/FactoryGame.FGVehicleDescriptor>(LocalClass);
-L1375:         bool mbool4 = mTSubclassOf<FGVehicleDescriptor>;
+L1339:         TSubclassOf<FGVehicleDescriptor> mTSubclassOfFGVehicleDescriptor = ClassCast<Class /Script/FactoryGame.FGVehicleDescriptor>(LocalClass);
+L1375:         bool mbool4 = mTSubclassOfFGVehicleDescriptor;
 L1404:         if (!mbool4) goto L1487;
 L1418:         int32 mint325 = KismetArrayLibrary->Array_AddUnique([ref] LocalVehicles, [ref] LocalClass);
 L1486:         goto ExecutionFlow.Pop();
-L1487:         TSubclassOf<FGEquipmentDescriptor> mTSubclassOf<FGEquipmentDescriptor> = ClassCast<Class /Script/FactoryGame.FGEquipmentDescriptor>(LocalClass);
-L1523:         bool mbool5 = mTSubclassOf<FGEquipmentDescriptor>;
+L1487:         TSubclassOf<FGEquipmentDescriptor> mTSubclassOfFGEquipmentDescriptor = ClassCast<Class /Script/FactoryGame.FGEquipmentDescriptor>(LocalClass);
+L1523:         bool mbool5 = mTSubclassOfFGEquipmentDescriptor;
 L1552:         if (!mbool5) goto L1635;
 L1566:         int32 mint326 = KismetArrayLibrary->Array_AddUnique([ref] LocalEquipment, [ref] LocalClass);
 L1634:         goto ExecutionFlow.Pop();
@@ -234,23 +234,23 @@ L5:            this->mItemList->ClearChildren();
 L41:           int32 Temp_int_Loop_Counter_Variable = 0;
 L64:           int32 Temp_int_Array_Index_Variable = 0;
 L87:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] InRecipes);
-L146:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L146:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L184:          if (!mbool) goto ExecutionFlow.Pop();
 L194:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L221:          ExecutionFlow.Push(L781);
 L226:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L250:          Widget_ListButton* mWidget_ListButton = WidgetBlueprintLibrary->Create(this, Widget_ListButton, mPlayerController);
-L311:          KismetArrayLibrary->Array_Get([ref] InRecipes, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
-L370:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mTSubclassOf<FGItemDescriptor>);
+L250:          Widget_ListButton* mWidget_ListButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ListButton.Widget_ListButton_C), mPlayerController);
+L311:          KismetArrayLibrary->Array_Get([ref] InRecipes, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGItemDescriptor);
+L370:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mTSubclassOfFGItemDescriptor);
 L421:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton, "mIcon", mTexture2D);
-L484:          KismetArrayLibrary->Array_Get([ref] InRecipes, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGItemDescriptor>);
-L543:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOf<FGItemDescriptor>);
+L484:          KismetArrayLibrary->Array_Get([ref] InRecipes, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGItemDescriptor);
+L543:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOfFGItemDescriptor);
 L602:          KismetSystemLibrary->SetTextPropertyByName(mWidget_ListButton, "mTitle", [ref] mFText);
 L665:          mFScriptDelegate->BindUFunction(this, OnRecipeButtonClicked);
 L688:          mWidget_ListButton->OnClicked.AddUnique(mFScriptDelegate);
 L729:          PanelSlot* mPanelSlot = this->mItemList->AddChild(mWidget_ListButton);
 L780:          goto ExecutionFlow.Pop();
-L781:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L781:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L823:          Temp_int_Loop_Counter_Variable = mint321;
 L850:          goto L87;
 ============ END FUNCTION GenerateReceipes ==============
@@ -270,26 +270,26 @@ L171:          bool mbool1 = mFGPlayerState;
 L200:          if (!mbool1) goto ExecutionFlow.Pop();
 L210:          int32 Temp_int_Loop_Counter_Variable = 0;
 L233:          int32 Temp_int_Array_Index_Variable = 0;
-L256:          TArray<MessageData> mTArray<MessageData> = mFGPlayerState->GetAllMessageData();
-L306:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<MessageData>);
-L365:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L256:          TArray<MessageData> mTArrayMessageData = mFGPlayerState->GetAllMessageData();
+L306:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayMessageData);
+L365:          bool mbool2 = Temp_int_Loop_Counter_Variable < mint32;
 L403:          if (!mbool2) goto L856;
 L417:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L444:          ExecutionFlow.Push(L1116);
-L449:          mTArray<MessageData> = mFGPlayerState->GetAllMessageData();
-L499:          KismetArrayLibrary->Array_Get([ref] mTArray<MessageData>, Temp_int_Array_Index_Variable, [ref] mMessageData);
-L558:          bool mbool3 = Not_PreBool(mMessageData.WasRead);
-L596:          bool mbool4 = EqualEqual_ByteByte(mMessageData.MessageClass->ClassDefaultObject->mType, localButton->mType);
-L687:          bool mbool5 = BooleanAND(mbool3, mbool4);
+L449:          mTArrayMessageData = mFGPlayerState->GetAllMessageData();
+L499:          KismetArrayLibrary->Array_Get([ref] mTArrayMessageData, Temp_int_Array_Index_Variable, [ref] mMessageData);
+L558:          bool mbool3 = !mMessageData.WasRead;
+L596:          bool mbool4 = mMessageData.MessageClass->mType == localButton->mType;
+L687:          bool mbool5 = mbool3 && mbool4;
 L725:          if (!mbool5) goto ExecutionFlow.Pop();
-L735:          int32 mint321 = Add_IntInt(LocalCounter, 1);
+L735:          int32 mint321 = LocalCounter + 1;
 L777:          int32 Temp_int_Variable = mint321;
 L804:          int32 LocalCounter = Temp_int_Variable;
 L831:          goto ExecutionFlow.Pop();
 L832:          localButton = this->mActiveButton;
 L851:          goto L89;
 L856:          FText mFText = KismetTextLibrary->Conv_IntToText(LocalCounter, false, true, 1, 324);
-L927:          bool mbool6 = Greater_IntInt(LocalCounter, 0);
+L927:          bool mbool6 = LocalCounter > 0;
 L961:          bool Temp_bool_Variable = mbool6;
 L980:          FText Temp_text_Variable = ;
 L1000:         localButton->mMessageNotification->mText = switch (Temp_bool_Variable) {
@@ -298,7 +298,7 @@ case true -> mFText;
 default -> mFText1;
 };
 L1115:         goto ExecutionFlow.Pop();
-L1116:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1116:         int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L1158:         Temp_int_Loop_Counter_Variable = mint322;
 L1185:         goto L256;
 ============ END FUNCTION UpdateNotifications ==============
@@ -322,21 +322,21 @@ L5:            TSubclassOf<FGMessageBase> LocalMessage = inMessage;
 L24:           bool Temp_bool_True_if_break_was_hit_Variable = false;
 L35:           int32 Temp_int_Loop_Counter_Variable = 0;
 L58:           int32 Temp_int_Array_Index_Variable = 0;
-L81:           bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L81:           bool mbool = !Temp_bool_True_if_break_was_hit_Variable;
 L110:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mButtons);
-L169:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
-L207:          bool mbool2 = BooleanAND(mbool, mbool1);
+L169:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
+L207:          bool mbool2 = mbool && mbool1;
 L245:          if (!mbool2) goto ExecutionFlow.Pop();
 L255:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L282:          ExecutionFlow.Push(L523);
 L287:          KismetArrayLibrary->Array_Get([ref] this->mButtons, Temp_int_Array_Index_Variable, [ref] mWidget_Codex_MessageButton);
-L346:          bool mbool3 = EqualEqual_ClassClass(mWidget_Codex_MessageButton->mMessage, LocalMessage);
+L346:          bool mbool3 = mWidget_Codex_MessageButton->mMessage == LocalMessage;
 L406:          if (!mbool3) goto ExecutionFlow.Pop();
 L416:          KismetArrayLibrary->Array_Get([ref] this->mButtons, Temp_int_Array_Index_Variable, [ref] mWidget_Codex_MessageButton);
 L475:          mWidget_Codex_MessageButton->MessageWasClicked();
 L511:          Temp_bool_True_if_break_was_hit_Variable = true;
 L522:          goto ExecutionFlow.Pop();
-L523:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L523:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L565:          Temp_int_Loop_Counter_Variable = mint321;
 L592:          goto L81;
 ============ END FUNCTION SelectButtonWithMessage ==============
@@ -348,17 +348,17 @@ L592:          goto L81;
 ============ BEGIN FUNCTION CheckShouldOpenMessage ==============
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
-L79:           TScriptInterface<BPI_GameUI> mTScriptInterface<BPI_GameUI> = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Interface/UI/BPI_GameUI.BPI_GameUI_C>(mFGGameUI);
-L115:          bool mbool = mTScriptInterface<BPI_GameUI>;
+L79:           TScriptInterface<BPI_GameUI> mTScriptInterfaceBPI_GameUI = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Interface/UI/BPI_GameUI.BPI_GameUI_C>(mFGGameUI);
+L115:          bool mbool = mTScriptInterfaceBPI_GameUI;
 L144:          if (!mbool) goto L422;
-L158:          GetInterfaceUObject(mTScriptInterface<BPI_GameUI>)->GetMessageBox([ref] mVerticalBox);
+L158:          GetInterfaceUObject(mTScriptInterfaceBPI_GameUI)->GetMessageBox([ref] mVerticalBox);
 L204:          bool mbool1 = mVerticalBox->HasAnyChildren();
 L246:          if (!mbool1) goto L438;
 L260:          Widget* mWidget = mVerticalBox->GetChildAt(0);
 L307:          Widget_MessageNotifier* mWidget_MessageNotifier = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_MessageNotifier.Widget_MessageNotifier_C>(mWidget);
 L343:          bool mbool2 = mWidget_MessageNotifier;
 L372:          this->SelectButtonWithMessage(mWidget_MessageNotifier->mMessage);
-L417:          <End of Inlined Event Graph Function>;
+L417:          // <End Inlined EventGraph Function>;
 L422:          VerticalBox* mVerticalBox = nullptr;
 L433:          goto L204;
 ============ END FUNCTION CheckShouldOpenMessage ==============
@@ -374,8 +374,8 @@ L59:           mFormatArgumentData.ArgumentValue = senderMail;
 L95:           mFormatArgumentData.ArgumentValueInt = 0;
 L127:          mFormatArgumentData.ArgumentValueFloat = 0;
 L159:          mFormatArgumentData.ArgumentValueGender = 0;
-L188:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L208:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L188:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L208:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L316:          this->mSenderEmailAdress->SetText(mFText);
 L361:          mFormatArgumentData1.ArgumentName = "A";
 L391:          mFormatArgumentData1.ArgumentValueType = 4;
@@ -383,8 +383,8 @@ L420:          mFormatArgumentData1.ArgumentValue = Title;
 L456:          mFormatArgumentData1.ArgumentValueInt = 0;
 L488:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L520:          mFormatArgumentData1.ArgumentValueGender = 0;
-L549:          TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
-L569:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L549:          TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [mFormatArgumentData1];
+L569:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
 L680:          this->mMessageNameText->SetText(mFText1);
 L725:          this->mSenderNameText->SetText(Sender);
 L770:          this->mMessageIsClicked = true;
@@ -402,36 +402,36 @@ L82:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L106:          FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(mPlayerController->PlayerState);
 L164:          bool mbool = mFGPlayerState;
 L193:          if (!mbool) goto ExecutionFlow.Pop();
-L203:          TArray<MessageData> mTArray<MessageData> = mFGPlayerState->GetAllMessageData();
-L253:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<MessageData>);
-L312:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L203:          TArray<MessageData> mTArrayMessageData = mFGPlayerState->GetAllMessageData();
+L253:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayMessageData);
+L312:          int32 mint321 = mint32 - 1;
 L354:          int32 Temp_int_Loop_Counter_Variable = mint321;
-L381:          mTArray<MessageData> = mFGPlayerState->GetAllMessageData();
-L431:          mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<MessageData>);
-L490:          mint321 = Subtract_IntInt(mint32, 1);
+L381:          mTArrayMessageData = mFGPlayerState->GetAllMessageData();
+L431:          mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayMessageData);
+L490:          mint321 = mint32 - 1;
 L532:          int32 mint322 = Max(0, mint321);
 L574:          int32 Temp_int_Array_Index_Variable = mint322;
-L601:          bool mbool1 = GreaterEqual_IntInt(Temp_int_Loop_Counter_Variable, 0);
+L601:          bool mbool1 = Temp_int_Loop_Counter_Variable >= 0;
 L635:          if (!mbool1) goto ExecutionFlow.Pop();
 L645:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L672:          ExecutionFlow.Push(L1487);
-L677:          mTArray<MessageData> = mFGPlayerState->GetAllMessageData();
-L727:          KismetArrayLibrary->Array_Get([ref] mTArray<MessageData>, Temp_int_Array_Index_Variable, [ref] mMessageData);
-L786:          bool mbool2 = EqualEqual_ByteByte(mMessageData.MessageClass->ClassDefaultObject->mType, this->mCurrentTab);
+L677:          mTArrayMessageData = mFGPlayerState->GetAllMessageData();
+L727:          KismetArrayLibrary->Array_Get([ref] mTArrayMessageData, Temp_int_Array_Index_Variable, [ref] mMessageData);
+L786:          bool mbool2 = mMessageData.MessageClass->mType == this->mCurrentTab;
 L855:          if (!mbool2) goto ExecutionFlow.Pop();
 L865:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L889:          Widget_Codex_MessageButton* mWidget_Codex_MessageButton = WidgetBlueprintLibrary->Create(this, Widget_Codex_MessageButton, mPlayerController1);
+L889:          Widget_Codex_MessageButton* mWidget_Codex_MessageButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_MessageButton.Widget_Codex_MessageButton_C), mPlayerController1);
 L950:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Codex_MessageButton, "mOwningCodex", this);
-L1005:         mTArray<MessageData> = mFGPlayerState->GetAllMessageData();
-L1055:         KismetArrayLibrary->Array_Get([ref] mTArray<MessageData>, Temp_int_Array_Index_Variable, [ref] mMessageData);
+L1005:         mTArrayMessageData = mFGPlayerState->GetAllMessageData();
+L1055:         KismetArrayLibrary->Array_Get([ref] mTArrayMessageData, Temp_int_Array_Index_Variable, [ref] mMessageData);
 L1114:         KismetSystemLibrary->SetClassPropertyByName(mWidget_Codex_MessageButton, "mMessage", mMessageData.MessageClass);
-L1186:         mTArray<MessageData> = mFGPlayerState->GetAllMessageData();
-L1236:         KismetArrayLibrary->Array_Get([ref] mTArray<MessageData>, Temp_int_Array_Index_Variable, [ref] mMessageData);
+L1186:         mTArrayMessageData = mFGPlayerState->GetAllMessageData();
+L1236:         KismetArrayLibrary->Array_Get([ref] mTArrayMessageData, Temp_int_Array_Index_Variable, [ref] mMessageData);
 L1295:         KismetSystemLibrary->SetBoolPropertyByName(mWidget_Codex_MessageButton, "mMessageHasBeenRead", mMessageData.WasRead);
 L1367:         int32 mint323 = KismetArrayLibrary->Array_Add([ref] this->mButtons, [ref] mWidget_Codex_MessageButton);
 L1435:         PanelSlot* mPanelSlot = this->Testetete->AddChild(mWidget_Codex_MessageButton);
 L1486:         goto ExecutionFlow.Pop();
-L1487:         int32 mint324 = Subtract_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1487:         int32 mint324 = Temp_int_Loop_Counter_Variable - 1;
 L1529:         Temp_int_Loop_Counter_Variable = mint324;
 L1556:         goto L601;
 ============ END FUNCTION PopulateList ==============
@@ -459,7 +459,9 @@ L39:           ReturnValue = 2;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_Codex_Container(674);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Codex_Container, from label L674;
 ============ END FUNCTION Construct ==============
 
 
@@ -467,7 +469,9 @@ L0:            this->ExecuteUbergraph_Widget_Codex_Container(674);
 
 
 ============ BEGIN FUNCTION CloseCodex ==============
-L0:            this->ExecuteUbergraph_Widget_Codex_Container(1284);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: CloseCodex;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Codex_Container, from label L1284;
 ============ END FUNCTION CloseCodex ==============
 
 
@@ -475,7 +479,9 @@ L0:            this->ExecuteUbergraph_Widget_Codex_Container(1284);
 
 
 ============ BEGIN FUNCTION MarkAllAsRead ==============
-L0:            this->ExecuteUbergraph_Widget_Codex_Container(1448);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: MarkAllAsRead;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Codex_Container, from label L1448;
 ============ END FUNCTION MarkAllAsRead ==============
 
 
@@ -483,8 +489,9 @@ L0:            this->ExecuteUbergraph_Widget_Codex_Container(1448);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnTabButtonClicked__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_ComponentBoundEvent_ButtonIndex) = ButtonIndex;
-L18:           this->ExecuteUbergraph_Widget_Codex_Container(1453);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnTabButtonClicked__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Codex_Container, from label L1453;
 ============ END FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnTabButtonClicked__DelegateSignature ==============
 
 
@@ -492,9 +499,9 @@ L18:           this->ExecuteUbergraph_Widget_Codex_Container(1453);
 
 
 ============ BEGIN FUNCTION OnRecipeButtonClicked ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_CustomEvent_Index1) = index;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_CustomEvent_ListButton1) = ListButton;
-L36:           this->ExecuteUbergraph_Widget_Codex_Container(2094);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: OnRecipeButtonClicked;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Codex_Container, from label L2094;
 ============ END FUNCTION OnRecipeButtonClicked ==============
 
 
@@ -502,8 +509,9 @@ L36:           this->ExecuteUbergraph_Widget_Codex_Container(2094);
 
 
 ============ BEGIN FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_1_OnTextChanged__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_ComponentBoundEvent_Text) = text;
-L18:           this->ExecuteUbergraph_Widget_Codex_Container(2177);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__mSearchBar_K2Node_ComponentBoundEvent_1_OnTextChanged__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Codex_Container, from label L2177;
 ============ END FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_1_OnTextChanged__DelegateSignature ==============
 
 
@@ -511,9 +519,9 @@ L18:           this->ExecuteUbergraph_Widget_Codex_Container(2177);
 
 
 ============ BEGIN FUNCTION OnSearchResultClicked ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_CustomEvent_Index) = index;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_CustomEvent_ListButton) = ListButton;
-L36:           this->ExecuteUbergraph_Widget_Codex_Container(2201);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: OnSearchResultClicked;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Codex_Container, from label L2201;
 ============ END FUNCTION OnSearchResultClicked ==============
 
 
@@ -521,9 +529,9 @@ L36:           this->ExecuteUbergraph_Widget_Codex_Container(2201);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_ListButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_ComponentBoundEvent_Index3) = index;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_ComponentBoundEvent_ListButton3) = ListButton;
-L36:           this->ExecuteUbergraph_Widget_Codex_Container(2284);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__Widget_ListButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Codex_Container, from label L2284;
 ============ END FUNCTION BndEvt__Widget_ListButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
 
 
@@ -531,9 +539,9 @@ L36:           this->ExecuteUbergraph_Widget_Codex_Container(2284);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_ListButton_C_0_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_ComponentBoundEvent_Index2) = index;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_ComponentBoundEvent_ListButton2) = ListButton;
-L36:           this->ExecuteUbergraph_Widget_Codex_Container(2335);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__Widget_ListButton_C_0_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Codex_Container, from label L2335;
 ============ END FUNCTION BndEvt__Widget_ListButton_C_0_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
 
 
@@ -541,9 +549,9 @@ L36:           this->ExecuteUbergraph_Widget_Codex_Container(2335);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_ListButton_C_1_K2Node_ComponentBoundEvent_4_OnClicked__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_ComponentBoundEvent_Index1) = index;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_ComponentBoundEvent_ListButton1) = ListButton;
-L36:           this->ExecuteUbergraph_Widget_Codex_Container(2367);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__Widget_ListButton_C_1_K2Node_ComponentBoundEvent_4_OnClicked__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Codex_Container, from label L2367;
 ============ END FUNCTION BndEvt__Widget_ListButton_C_1_K2Node_ComponentBoundEvent_4_OnClicked__DelegateSignature ==============
 
 
@@ -551,9 +559,9 @@ L36:           this->ExecuteUbergraph_Widget_Codex_Container(2367);
 
 
 ============ BEGIN FUNCTION BndEvt__mCategoryVehicles_K2Node_ComponentBoundEvent_5_OnClicked__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_ComponentBoundEvent_Index) = index;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Codex/Widget_Codex_Container.Widget_Codex_Container_C:ExecuteUbergraph_Widget_Codex_Container.K2Node_ComponentBoundEvent_ListButton) = ListButton;
-L36:           this->ExecuteUbergraph_Widget_Codex_Container(2399);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__mCategoryVehicles_K2Node_ComponentBoundEvent_5_OnClicked__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Codex_Container, from label L2399;
 ============ END FUNCTION BndEvt__mCategoryVehicles_K2Node_ComponentBoundEvent_5_OnClicked__DelegateSignature ==============
 
 
@@ -568,15 +576,15 @@ L92:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L116:          this->mSearchbar->mInputBox->SetUserFocus(mPlayerController);
 L179:          goto ExecutionFlow.Pop();
 L180:          ExecutionFlow.Push(L345);
-L185:          TArray<TSubclassOf<FGMessageBase>> mTArray<TSubclassOf<FGMessageBase>> = mFGPlayerState->GetAllMessages(this->mCurrentTab);
-L244:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGMessageBase>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGMessageBase>);
-L303:          mFGPlayerState->ReadMessage(mTSubclassOf<FGMessageBase>);
+L185:          TArray<TSubclassOf<FGMessageBase>> mTArrayTSubclassOfFGMessageBase = mFGPlayerState->GetAllMessages(this->mCurrentTab);
+L244:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGMessageBase, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGMessageBase);
+L303:          mFGPlayerState->ReadMessage(mTSubclassOfFGMessageBase);
 L344:          goto ExecutionFlow.Pop();
-L345:          int32 mint32 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L345:          int32 mint32 = Temp_int_Loop_Counter_Variable + 1;
 L387:          int32 Temp_int_Loop_Counter_Variable = mint32;
-L414:          mTArray<TSubclassOf<FGMessageBase>> = mFGPlayerState->GetAllMessages(this->mCurrentTab);
-L473:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGMessageBase>>);
-L532:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L414:          mTArrayTSubclassOfFGMessageBase = mFGPlayerState->GetAllMessages(this->mCurrentTab);
+L473:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGMessageBase);
+L532:          bool mbool = Temp_int_Loop_Counter_Variable < mint321;
 L570:          if (!mbool) goto L616;
 L584:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L611:          goto L180;
@@ -585,6 +593,7 @@ L630:          this->UpdateNotifications(nullptr);
 L645:          goto ExecutionFlow.Pop();
 L646:          Temp_int_Array_Index_Variable = 0;
 L669:          goto L414;
+L674:          // <Begin Inlined EventGraph Function Construct>;
 L674:          this->Construct();
 L684:          this->SetDefaultFocusWidget(this->mInboxButton);
 L703:          mFScriptDelegate->BindUFunction(this, CloseCodex);
@@ -609,6 +618,7 @@ L1195:         bool mbool1 = KismetSystemLibrary->IsValidClass(this->mOpenOnReci
 L1246:         if (!mbool1) goto L15;
 L1260:         this->UpdateItemInfo(this->mOpenOnRecipe);
 L1283:         goto ExecutionFlow.Pop();
+L1284:         // <Begin Inlined EventGraph Function CloseCodex>;
 L1284:         this->OnEscapePressed();
 L1298:         goto ExecutionFlow.Pop();
 L1299:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
@@ -617,12 +627,13 @@ L1381:         bool mbool2 = mFGPlayerState;
 L1410:         if (!mbool2) goto ExecutionFlow.Pop();
 L1420:         Temp_int_Loop_Counter_Variable = 0;
 L1443:         goto L646;
+L1448:         // <Begin Inlined EventGraph Function MarkAllAsRead>;
 L1448:         goto L1299;
-L1453:         bool mbool3 = NotEqual_IntInt(mint322, 0);
+L1453:         bool mbool3 = mint322 != 0;
 L1487:         if (!mbool3) goto L1598;
-L1501:         mbool3 = NotEqual_IntInt(mint322, 1);
+L1501:         mbool3 = mint322 != 1;
 L1535:         if (!mbool3) goto L1675;
-L1549:         mbool3 = NotEqual_IntInt(mint322, 2);
+L1549:         mbool3 = mint322 != 2;
 L1583:         if (!mbool3) goto L2051;
 L1597:         goto ExecutionFlow.Pop();
 L1598:         this->mCurrentTab = 0;
@@ -631,7 +642,7 @@ L1632:         this->Widget_SlidingTabs->SetActiveIndex(0, true);
 L1674:         goto ExecutionFlow.Pop();
 L1675:         this->mCurrentTab = 1;
 L1695:         this->PopulateList();
-L1709:         bool mbool4 = NotEqual_IntInt(this->Widget_SlidingTabs->mActiveIndex, 0);
+L1709:         bool mbool4 = this->Widget_SlidingTabs->mActiveIndex != 0;
 L1765:         if (!mbool4) goto ExecutionFlow.Pop();
 L1775:         this->Widget_SlidingTabs->SetActiveIndex(0, true);
 L1817:         Widget* mWidget = this->Widget_Window_DarkMode->Widget_TabsContainer->mContainer->GetChildAt(1);
@@ -642,13 +653,13 @@ L1983:         this->Widget_Window_DarkMode->Widget_TabsContainer->SetActiveButt
 L2050:         goto ExecutionFlow.Pop();
 L2051:         this->Widget_SlidingTabs->SetActiveIndex(2, true);
 L2093:         goto ExecutionFlow.Pop();
-L2094:         KismetArrayLibrary->Array_Get([ref] this->mCurrentList, mint323, [ref] mTSubclassOf<FGItemDescriptor>);
-L2153:         this->UpdateItemInfo(mTSubclassOf<FGItemDescriptor>);
+L2094:         KismetArrayLibrary->Array_Get([ref] this->mCurrentList, mint323, [ref] mTSubclassOfFGItemDescriptor);
+L2153:         this->UpdateItemInfo(mTSubclassOfFGItemDescriptor);
 L2176:         goto ExecutionFlow.Pop();
 L2177:         this->PopulateSearchResults(mFText);
 L2200:         goto ExecutionFlow.Pop();
-L2201:         KismetArrayLibrary->Array_Get([ref] this->mSearchResults, mint324, [ref] mTSubclassOf<FGItemDescriptor>1);
-L2260:         this->UpdateItemInfo(mTSubclassOf<FGItemDescriptor>1);
+L2201:         KismetArrayLibrary->Array_Get([ref] this->mSearchResults, mint324, [ref] mTSubclassOfFGItemDescriptor1);
+L2260:         this->UpdateItemInfo(mTSubclassOfFGItemDescriptor1);
 L2283:         goto ExecutionFlow.Pop();
 L2284:         this->mCurrentList = this->mParts;
 L2311:         this->GenerateReceipes([ref] this->mCurrentList);

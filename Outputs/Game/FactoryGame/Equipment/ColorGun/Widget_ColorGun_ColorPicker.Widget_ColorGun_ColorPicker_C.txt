@@ -7,9 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_Colo
 
 
 ============ BEGIN FUNCTION CompressValue ==============
-L0:            float mfloat = Subtract_FloatFloat(1, MinValue);
-L42:           float mfloat1 = Multiply_FloatFloat(Value, mfloat);
-L88:           float mfloat2 = Add_FloatFloat(mfloat1, MinValue);
+L0:            float mfloat = 1 - MinValue;
+L42:           float mfloat1 = Value * mfloat;
+L88:           float mfloat2 = mfloat1 + MinValue;
 L134:          float Out Value = mfloat2;
 ============ END FUNCTION CompressValue ==============
 
@@ -52,13 +52,13 @@ L5:            this->mColorGrid->ClearChildren();
 L41:           int32 Temp_int_Variable = 0;
 L64:           uint8 muint8 = this->mColorGun->GetNumColorSlotsExposedToPlayers();
 L114:          int32 mint32 = Conv_ByteToInt(muint8);
-L151:          int32 mint321 = Subtract_IntInt(mint32, 1);
-L193:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L151:          int32 mint321 = mint32 - 1;
+L193:          bool mbool = Temp_int_Variable <= mint321;
 L231:          if (!mbool) goto ExecutionFlow.Pop();
 L241:          ExecutionFlow.Push(L1214);
 L246:          int32 LocalIndex = Temp_int_Variable;
 L273:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L297:          Widget_ColorPicker_Slot* mWidget_ColorPicker_Slot = WidgetBlueprintLibrary->Create(this, Widget_ColorPicker_Slot, mPlayerController);
+L297:          Widget_ColorPicker_Slot* mWidget_ColorPicker_Slot = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_ColorPicker_Slot.Widget_ColorPicker_Slot_C), mPlayerController);
 L358:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ColorPicker_Slot, "mSize", [ref] this->mSlotSizes);
 L421:          uint8 muint81 = Conv_IntToByte(LocalIndex);
 L458:          LinearColor mLinearColor = this->mColorGun->GetPrimaryColorForSlot(muint81);
@@ -76,12 +76,12 @@ L981:          mFScriptDelegate2->BindUFunction(this, OnSlotUnhovered);
 L1004:         mWidget_ColorPicker_Slot->OnUnhovered.AddUnique(mFScriptDelegate2);
 L1045:         mFScriptDelegate3->BindUFunction(this, OnSlotEditClicked);
 L1068:         mWidget_ColorPicker_Slot->OnEditClicked.AddUnique(mFScriptDelegate3);
-L1109:         bool mbool1 = EqualEqual_IntInt(LocalIndex, this->SelectedIndex);
+L1109:         bool mbool1 = LocalIndex == this->SelectedIndex;
 L1147:         if (!mbool1) goto ExecutionFlow.Pop();
 L1157:         this->mSelectedSlot = mWidget_ColorPicker_Slot;
 L1176:         this->mSelectedSlot->SetIsSelected(true);
 L1213:         goto ExecutionFlow.Pop();
-L1214:         int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L1214:         int32 mint322 = Temp_int_Variable + 1;
 L1256:         Temp_int_Variable = mint322;
 L1283:         goto L64;
 ============ END FUNCTION SetupSlots ==============
@@ -91,7 +91,9 @@ L1283:         goto L64;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(315);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorGun_ColorPicker, from label L315;
 ============ END FUNCTION Construct ==============
 
 
@@ -99,8 +101,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(315);
 
 
 ============ BEGIN FUNCTION OnSlotClicked ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_Slot3) = Slot;
-L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(320);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnSlotClicked;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ColorGun_ColorPicker, from label L320;
 ============ END FUNCTION OnSlotClicked ==============
 
 
@@ -108,8 +111,9 @@ L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(320);
 
 
 ============ BEGIN FUNCTION OnSlotHovered ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_Slot2) = Slot;
-L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(525);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnSlotHovered;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ColorGun_ColorPicker, from label L525;
 ============ END FUNCTION OnSlotHovered ==============
 
 
@@ -117,8 +121,9 @@ L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(525);
 
 
 ============ BEGIN FUNCTION OnSlotUnhovered ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_Slot1) = Slot;
-L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(526);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnSlotUnhovered;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ColorGun_ColorPicker, from label L526;
 ============ END FUNCTION OnSlotUnhovered ==============
 
 
@@ -126,7 +131,9 @@ L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(526);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(527);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorGun_ColorPicker, from label L527;
 ============ END FUNCTION BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
 
 
@@ -134,7 +141,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(527);
 
 
 ============ BEGIN FUNCTION BndEvt__mCancel_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(625);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mCancel_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorGun_ColorPicker, from label L625;
 ============ END FUNCTION BndEvt__mCancel_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
 
 
@@ -142,8 +151,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(625);
 
 
 ============ BEGIN FUNCTION OnSlotEditClicked ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_Slot) = Slot;
-L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(645);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnSlotEditClicked;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ColorGun_ColorPicker, from label L645;
 ============ END FUNCTION OnSlotEditClicked ==============
 
 
@@ -151,9 +161,9 @@ L18:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(645);
 
 
 ============ BEGIN FUNCTION OnUpdatePreset ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_PrimaryColor) = PrimaryColor;
-L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/ColorGun/Widget_ColorGun_ColorPicker.Widget_ColorGun_ColorPicker_C:ExecuteUbergraph_Widget_ColorGun_ColorPicker.K2Node_CustomEvent_SecondaryColor) = SecondaryColor;
-L36:           this->ExecuteUbergraph_Widget_ColorGun_ColorPicker(1084);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: OnUpdatePreset;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_ColorGun_ColorPicker, from label L1084;
 ============ END FUNCTION OnUpdatePreset ==============
 
 
@@ -174,8 +184,9 @@ L223:          this->UpdatePreview();
 L237:          goto ExecutionFlow.Pop();
 L238:          KismetSystemLibrary->RetriggerableDelay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 30, UUID = -96541862, ExecutionFunction = "ExecuteUbergraph_Widget_ColorGun_ColorPicker", CallbackTarget = this));
 L314:          goto ExecutionFlow.Pop();
+L315:          // <Begin Inlined EventGraph Function Construct>;
 L315:          goto L30;
-L320:          bool mbool1 = NotEqual_ObjectObject(mWidget_ColorPicker_Slot, this->mSelectedSlot);
+L320:          bool mbool1 = mWidget_ColorPicker_Slot != this->mSelectedSlot;
 L358:          if (!mbool1) goto ExecutionFlow.Pop();
 L368:          this->mSelectedSlot->SetIsSelected(false);
 L405:          this->mSelectedSlot = mWidget_ColorPicker_Slot;
@@ -185,14 +196,16 @@ L510:          this->UpdatePreview();
 L524:          goto ExecutionFlow.Pop();
 L525:          goto ExecutionFlow.Pop();
 L526:          goto ExecutionFlow.Pop();
+L527:          // <Begin Inlined EventGraph Function BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature>;
 L527:          uint8 muint81 = Conv_IntToByte(this->SelectedIndex);
 L564:          this->mColorGun->SetColorSlot(muint81);
 L605:          this->OnAccept->ProcessMulticastDelegate();
 L624:          goto ExecutionFlow.Pop();
+L625:          // <Begin Inlined EventGraph Function BndEvt__mCancel_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature>;
 L625:          this->OnCancel->ProcessMulticastDelegate();
 L644:          goto ExecutionFlow.Pop();
 L645:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L669:          Widget_ColorPicker_EditPreset* mWidget_ColorPicker_EditPreset = WidgetBlueprintLibrary->Create(this, Widget_ColorPicker_EditPreset, mPlayerController);
+L669:          Widget_ColorPicker_EditPreset* mWidget_ColorPicker_EditPreset = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_ColorPicker_EditPreset.Widget_ColorPicker_EditPreset_C), mPlayerController);
 L730:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ColorPicker_EditPreset, "mPrimaryColor", [ref] mWidget_ColorPicker_Slot1->mPrimaryColor);
 L815:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_ColorPicker_EditPreset, "mSecondaryColor", [ref] mWidget_ColorPicker_Slot1->mSecondaryColor);
 L900:          OverlaySlot* mOverlaySlot = this->mEditPresetContainer->AddChildToOverlay(mWidget_ColorPicker_EditPreset);

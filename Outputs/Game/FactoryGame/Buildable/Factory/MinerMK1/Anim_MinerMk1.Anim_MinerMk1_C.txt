@@ -1,0 +1,135 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/MinerMK1/Anim_MinerMk1.Anim_MinerMk1_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetupReloadTimer ==============
+L0:            TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimer(this, "ReloadTimer", this->mReloadTimer, true);
+L74:           this->mTimer = mTimerHandle;
+============ END FUNCTION SetupReloadTimer ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReloadTimer ==============
+L0:            if (!this->mProxy.mIsProducing) goto L34;
+L23:           this->mReadyForReload = true;
+============ END FUNCTION ReloadTimer ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_MinerEnteredReloadState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_MinerEnteredReloadState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_MinerMk1, from label L109;
+============ END FUNCTION AnimNotify_MinerEnteredReloadState ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_StartDrillVFX ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_StartDrillVFX;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_MinerMk1, from label L125;
+============ END FUNCTION AnimNotify_StartDrillVFX ==============
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintInitializeAnimation ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BlueprintInitializeAnimation;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_MinerMk1, from label L412;
+============ END FUNCTION BlueprintInitializeAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_OnResumeProducing ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_OnResumeProducing;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_MinerMk1, from label L441;
+============ END FUNCTION AnimNotify_OnResumeProducing ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_OnStopProducing ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_OnStopProducing;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_MinerMk1, from label L634;
+============ END FUNCTION AnimNotify_OnStopProducing ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_StartEngineLoop ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_StartEngineLoop;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_MinerMk1, from label L827;
+============ END FUNCTION AnimNotify_StartEngineLoop ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Anim_MinerMk1 ==============
+L10:           SkeletalMeshComponent* mSkeletalMeshComponent = this->GetOwningComponent();
+L30:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Factory/MinerMK1/Audio/Play_Miner_MK1_StartUp_Engine.Play_Miner_MK1_StartUp_Engine), mSkeletalMeshComponent, "AudioSocket_Drill_StartStop", true);
+L104:          // <End Inlined EventGraph Function>;
+L109:          // <Begin Inlined EventGraph Function AnimNotify_MinerEnteredReloadState>;
+L109:          this->mReadyForReload = false;
+L120:          // <End Inlined EventGraph Function>;
+L125:          // <Begin Inlined EventGraph Function AnimNotify_StartDrillVFX>;
+L125:          Actor* mActor = this->GetOwningActor();
+L145:          FGBuildableFactory* mFGBuildableFactory = Cast<Class /Script/FactoryGame.FGBuildableFactory>(mActor);
+L181:          bool mbool = mFGBuildableFactory;
+L210:          if (!mbool) goto L987;
+L224:          bool mbool1 = mFGBuildableFactory->GetIsSignificant();
+L266:          if (!mbool1) goto L987;
+L280:          mFGBuildableFactory->TryStartProductionLoopEffects(true);
+L313:          SkeletalMeshComponent* mSkeletalMeshComponent1 = this->GetOwningComponent();
+L333:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEventAttached(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Factory/MinerMK1/Audio/Play_Miner_MK1_Startup_Dirt.Play_Miner_MK1_Startup_Dirt), mSkeletalMeshComponent1, "Root", true);
+L407:          // <End Inlined EventGraph Function>;
+L412:          // <Begin Inlined EventGraph Function BlueprintInitializeAnimation>;
+L412:          this->BlueprintInitializeAnimation();
+L422:          this->SetupReloadTimer();
+L436:          // <End Inlined EventGraph Function>;
+L441:          // <Begin Inlined EventGraph Function AnimNotify_OnResumeProducing>;
+L441:          Actor* mActor1 = this->GetOwningActor();
+L461:          FGBuildableFactory* mFGBuildableFactory1 = Cast<Class /Script/FactoryGame.FGBuildableFactory>(mActor1);
+L497:          bool mbool2 = mFGBuildableFactory1;
+L526:          if (!mbool2) goto L987;
+L540:          bool mbool3 = mFGBuildableFactory1->GetIsSignificant();
+L582:          if (!mbool3) goto L987;
+L596:          mFGBuildableFactory1->TryStartProductionLoopEffects(false);
+L629:          // <End Inlined EventGraph Function>;
+L634:          // <Begin Inlined EventGraph Function AnimNotify_OnStopProducing>;
+L634:          Actor* mActor2 = this->GetOwningActor();
+L654:          FGBuildableFactory* mFGBuildableFactory2 = Cast<Class /Script/FactoryGame.FGBuildableFactory>(mActor2);
+L690:          bool mbool4 = mFGBuildableFactory2;
+L719:          if (!mbool4) goto L987;
+L733:          bool mbool5 = mFGBuildableFactory2->GetIsSignificant();
+L775:          if (!mbool5) goto L987;
+L789:          mFGBuildableFactory2->TryStopProductionLoopEffects(true);
+L822:          // <End Inlined EventGraph Function>;
+L827:          // <Begin Inlined EventGraph Function AnimNotify_StartEngineLoop>;
+L827:          Actor* mActor3 = this->GetOwningActor();
+L847:          FGBuildableFactory* mFGBuildableFactory3 = Cast<Class /Script/FactoryGame.FGBuildableFactory>(mActor3);
+L883:          bool mbool6 = mFGBuildableFactory3;
+L912:          if (!mbool6) goto L987;
+L926:          bool mbool7 = mFGBuildableFactory3->GetIsSignificant();
+L968:          if (!mbool7) goto L987;
+L982:          goto L10;
+============ END FUNCTION ExecuteUbergraph_Anim_MinerMk1 ==============

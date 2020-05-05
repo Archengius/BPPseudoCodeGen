@@ -14,7 +14,7 @@ L117:          mActor = BTFunctionLibrary->GetBlackboardValueAsActor(this, [ref]
 L169:          Vector mVector = mActor->K2_GetActorLocation();
 L219:          Vector Local_Location = mVector;
 L246:          Vector Location = Local_Location;
-L273:          <End of Inlined Event Graph Function>;
+L273:          // <End Inlined EventGraph Function>;
 L278:          Vector mVector1 = BTFunctionLibrary->GetBlackboardValueAsVector(this, [ref] Key);
 L338:          Local_Location = mVector1;
 L365:          goto L246;
@@ -25,10 +25,9 @@ L365:          goto L246;
 
 
 ============ BEGIN FUNCTION ReceiveTickAI ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_TargetLedgeCheck.BTS_TargetLedgeCheck_C:ExecuteUbergraph_BTS_TargetLedgeCheck.K2Node_Event_OwnerController) = OwnerController;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_TargetLedgeCheck.BTS_TargetLedgeCheck_C:ExecuteUbergraph_BTS_TargetLedgeCheck.K2Node_Event_ControlledPawn) = ControlledPawn;
-L36:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/AI/Service/BTS_TargetLedgeCheck.BTS_TargetLedgeCheck_C:ExecuteUbergraph_BTS_TargetLedgeCheck.K2Node_Event_DeltaSeconds) = DeltaSeconds;
-L54:           this->ExecuteUbergraph_BTS_TargetLedgeCheck(10);
+L54:           // EventGraph implemented function stub;
+L54:           // Function Name: ReceiveTickAI;
+L54:           // Implementation: Function ExecuteUbergraph_BTS_TargetLedgeCheck, from label L10;
 ============ END FUNCTION ReceiveTickAI ==============
 
 
@@ -42,14 +41,14 @@ L83:           bool mbool = mFGEnemy;
 L112:          if (!mbool) goto L597;
 L126:          this->GetKeyLocation(this->mBBKeyA, [ref] mVector);
 L158:          this->GetKeyLocation(this->mBBKeyB, [ref] mVector1);
-L190:          Vector mVector2 = Subtract_VectorVector(mVector, mVector1);
+L190:          Vector mVector2 = mVector - mVector1;
 L236:          this->GetKeyLocation(this->mBBKeyA, [ref] mVector3);
 L268:          float mfloat1 = VSize(mVector2);
-L305:          bool mbool1 = Less_FloatFloat(mfloat1, this->mCanFallDistance);
+L305:          bool mbool1 = mfloat1 < this->mCanFallDistance;
 L343:          this->GetKeyLocation(this->mBBKeyC, [ref] mVector4);
-L375:          Vector mVector5 = Subtract_VectorVector(mVector3, mVector4);
+L375:          Vector mVector5 = mVector3 - mVector4;
 L421:          float mfloat2 = VSize(mVector5);
-L458:          bool mbool2 = Less_FloatFloat(mfloat2, this->mCanFallDistance);
-L496:          bool mbool3 = BooleanOR(mbool1, mbool2);
+L458:          bool mbool2 = mfloat2 < this->mCanFallDistance;
+L496:          bool mbool3 = mbool1 || mbool2;
 L534:          mFGEnemy->CharacterMovement->bCanWalkOffLedges = mbool3;
 ============ END FUNCTION ExecuteUbergraph_BTS_TargetLedgeCheck ==============

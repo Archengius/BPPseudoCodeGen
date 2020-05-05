@@ -14,8 +14,8 @@ L85:           uint8 Temp_byte_Variable1 = 0;
 L105:          bool mbool1 = NearlyEqual_FloatFloat(this->mLastClickedColorSquare->mDefaultColor.SpecifiedColor.R, this->mLastClickedColorSquare->mColor.SpecifiedColor.R, 9.999999974752427e-7);
 L228:          bool mbool2 = NearlyEqual_FloatFloat(this->mLastClickedColorSquare->mDefaultColor.SpecifiedColor.B, this->mLastClickedColorSquare->mColor.SpecifiedColor.B, 9.999999974752427e-7);
 L351:          bool mbool3 = NearlyEqual_FloatFloat(this->mLastClickedColorSquare->mDefaultColor.SpecifiedColor.G, this->mLastClickedColorSquare->mColor.SpecifiedColor.G, 9.999999974752427e-7);
-L474:          bool mbool4 = BooleanAND(mbool1, mbool3);
-L512:          bool mbool5 = BooleanAND(mbool4, mbool2);
+L474:          bool mbool4 = mbool1 && mbool3;
+L512:          bool mbool5 = mbool4 && mbool2;
 L550:          bool Temp_bool_Variable = mbool5;
 L569:          uint8 ReturnValue = switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -31,8 +31,8 @@ L645:          ReturnValue = 2;
 
 
 ============ BEGIN FUNCTION GetOneDimensionalIndex ==============
-L0:            int32 mint32 = Multiply_IntInt(ShadeIndex, this->mNumColors);
-L46:           int32 mint321 = Add_IntInt(ColorIndex, mint32);
+L0:            int32 mint32 = ShadeIndex * this->mNumColors;
+L46:           int32 mint321 = ColorIndex + mint32;
 L92:           int32 index = mint321;
 ============ END FUNCTION GetOneDimensionalIndex ==============
 
@@ -54,16 +54,16 @@ L187:          SlateColor SavedColor = mSlateColor;
 
 ============ BEGIN FUNCTION CalculateSaturationAndValueFromIndex ==============
 L0:            float mfloat = Conv_IntToFloat(index);
-L37:           float mfloat1 = Subtract_FloatFloat(1, this->mShadeExtremeCutoff);
-L79:           int32 mint32 = Subtract_IntInt(this->mNumShades, 1);
+L37:           float mfloat1 = 1 - this->mShadeExtremeCutoff;
+L79:           int32 mint32 = this->mNumShades - 1;
 L121:          float mfloat2 = Conv_IntToFloat(mint32);
-L158:          float mfloat3 = Divide_FloatFloat(mfloat, mfloat2);
+L158:          float mfloat3 = mfloat / mfloat2;
 L204:          float mfloat4 = Lerp(this->mShadeExtremeCutoff, mfloat1, mfloat3);
-L259:          float mfloat5 = Multiply_FloatFloat(mfloat4, 2);
+L259:          float mfloat5 = mfloat4 * 2;
 L301:          float mfloat6 = FClamp(mfloat5, 0, 1);
 L348:          float mfloat7 = FClamp(mfloat5, 1, 2);
-L395:          float mfloat8 = Subtract_FloatFloat(mfloat7, 1);
-L437:          float mfloat9 = Subtract_FloatFloat(1, mfloat8);
+L395:          float mfloat8 = mfloat7 - 1;
+L437:          float mfloat9 = 1 - mfloat8;
 L479:          float Saturation = mfloat6;
 L506:          float Value = mfloat9;
 ============ END FUNCTION CalculateSaturationAndValueFromIndex ==============
@@ -75,8 +75,8 @@ L506:          float Value = mfloat9;
 ============ BEGIN FUNCTION CalculateHueFromIndex ==============
 L0:            float mfloat = Conv_IntToFloat(index);
 L37:           float mfloat1 = Conv_IntToFloat(this->mNumColors);
-L74:           float mfloat2 = Divide_FloatFloat(360, mfloat1);
-L116:          float mfloat3 = Multiply_FloatFloat(mfloat, mfloat2);
+L74:           float mfloat2 = 360 / mfloat1;
+L116:          float mfloat3 = mfloat * mfloat2;
 L162:          float Hue = mfloat3;
 ============ END FUNCTION CalculateHueFromIndex ==============
 
@@ -87,13 +87,13 @@ L162:          float Hue = mfloat3;
 ============ BEGIN FUNCTION FirstTimeFillColors ==============
 L0:            ExecutionFlow.Push(L613);
 L5:            int32 Temp_int_Variable = 0;
-L28:           int32 mint32 = Subtract_IntInt(this->mNumShades, 1);
-L70:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L28:           int32 mint32 = this->mNumShades - 1;
+L70:           bool mbool = Temp_int_Variable <= mint32;
 L108:          if (!mbool) goto ExecutionFlow.Pop();
 L118:          ExecutionFlow.Push(L465);
 L123:          int32 Temp_int_Variable1 = 0;
-L146:          int32 mint321 = Subtract_IntInt(this->mNumColors, 1);
-L188:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable1, mint321);
+L146:          int32 mint321 = this->mNumColors - 1;
+L188:          bool mbool1 = Temp_int_Variable1 <= mint321;
 L226:          if (!mbool1) goto ExecutionFlow.Pop();
 L236:          ExecutionFlow.Push(L539);
 L241:          this->CalculateSaturationAndValueFromIndex(Temp_int_Variable, [ref] mfloat, [ref] mfloat1);
@@ -101,10 +101,10 @@ L282:          this->CalculateHueFromIndex(Temp_int_Variable1, [ref] mfloat2);
 L314:          LinearColor mLinearColor = HSVToRGB(mfloat2, mfloat, mfloat1, 1);
 L374:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->mPlayerState->mSavedColorPickerColors, [ref] mLinearColor);
 L464:          goto ExecutionFlow.Pop();
-L465:          int32 mint323 = Add_IntInt(Temp_int_Variable, 1);
+L465:          int32 mint323 = Temp_int_Variable + 1;
 L507:          Temp_int_Variable = mint323;
 L534:          goto L28;
-L539:          int32 mint324 = Add_IntInt(Temp_int_Variable1, 1);
+L539:          int32 mint324 = Temp_int_Variable1 + 1;
 L581:          Temp_int_Variable1 = mint324;
 L608:          goto L146;
 ============ END FUNCTION FirstTimeFillColors ==============
@@ -132,7 +132,9 @@ L24:           BPHUDHelpers->PopStackWidget(mPlayerController, this, this);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_ColorPicker(1538);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorPicker, from label L1538;
 ============ END FUNCTION Construct ==============
 
 
@@ -140,7 +142,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorPicker(1538);
 
 
 ============ BEGIN FUNCTION Init ==============
-L0:            this->ExecuteUbergraph_Widget_ColorPicker(2041);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Init;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorPicker, from label L2041;
 ============ END FUNCTION Init ==============
 
 
@@ -148,7 +152,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorPicker(2041);
 
 
 ============ BEGIN FUNCTION ExitColorPicker ==============
-L0:            this->ExecuteUbergraph_Widget_ColorPicker(2151);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ExitColorPicker;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorPicker, from label L2151;
 ============ END FUNCTION ExitColorPicker ==============
 
 
@@ -156,7 +162,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorPicker(2151);
 
 
 ============ BEGIN FUNCTION BndEvt__mCancelButton_K2Node_ComponentBoundEvent_36_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ColorPicker(2166);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mCancelButton_K2Node_ComponentBoundEvent_36_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorPicker, from label L2166;
 ============ END FUNCTION BndEvt__mCancelButton_K2Node_ComponentBoundEvent_36_OnClicked__DelegateSignature ==============
 
 
@@ -164,9 +172,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorPicker(2166);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_ColorPicker.Widget_ColorPicker_C:ExecuteUbergraph_Widget_ColorPicker.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_ColorPicker.Widget_ColorPicker_C:ExecuteUbergraph_Widget_ColorPicker.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_ColorPicker(2181);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_ColorPicker, from label L2181;
 ============ END FUNCTION Tick ==============
 
 
@@ -174,7 +182,9 @@ L36:           this->ExecuteUbergraph_Widget_ColorPicker(2181);
 
 
 ============ BEGIN FUNCTION BndEvt__mResetButton_K2Node_ComponentBoundEvent_31_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ColorPicker(2445);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mResetButton_K2Node_ComponentBoundEvent_31_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorPicker, from label L2445;
 ============ END FUNCTION BndEvt__mResetButton_K2Node_ComponentBoundEvent_31_OnClicked__DelegateSignature ==============
 
 
@@ -182,7 +192,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorPicker(2445);
 
 
 ============ BEGIN FUNCTION BndEvt__mAcceptButton_K2Node_ComponentBoundEvent_331_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ColorPicker(2846);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mAcceptButton_K2Node_ComponentBoundEvent_331_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorPicker, from label L2846;
 ============ END FUNCTION BndEvt__mAcceptButton_K2Node_ComponentBoundEvent_331_OnClicked__DelegateSignature ==============
 
 
@@ -190,7 +202,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorPicker(2846);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_Window_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ColorPicker(2851);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Widget_Window_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorPicker, from label L2851;
 ============ END FUNCTION BndEvt__Widget_Window_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
 
 
@@ -198,7 +212,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorPicker(2851);
 
 
 ============ BEGIN FUNCTION BndEvt__mCancel_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ColorPicker(2856);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mCancel_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorPicker, from label L2856;
 ============ END FUNCTION BndEvt__mCancel_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
 
 
@@ -206,7 +222,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorPicker(2856);
 
 
 ============ BEGIN FUNCTION BndEvt__mReset_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ColorPicker(2861);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mReset_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorPicker, from label L2861;
 ============ END FUNCTION BndEvt__mReset_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
 
 
@@ -214,7 +232,9 @@ L0:            this->ExecuteUbergraph_Widget_ColorPicker(2861);
 
 
 ============ BEGIN FUNCTION BndEvt__mAccept_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ColorPicker(15);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mAccept_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ColorPicker, from label L15;
 ============ END FUNCTION BndEvt__mAccept_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
 
 
@@ -223,10 +243,11 @@ L0:            this->ExecuteUbergraph_Widget_ColorPicker(15);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_ColorPicker ==============
 L5:            goto ComputedJump(EntryPoint);
+L15:           // <Begin Inlined EventGraph Function BndEvt__mAccept_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature>;
 L15:           int32 Temp_int_Variable = 0;
 L38:           int32 mint32 = this->mColorSquaresGrid->GetChildrenCount();
-L88:           int32 mint321 = Subtract_IntInt(mint32, 1);
-L130:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L88:           int32 mint321 = mint32 - 1;
+L130:          bool mbool = Temp_int_Variable <= mint321;
 L168:          if (!mbool) goto L449;
 L182:          ExecutionFlow.Push(L552);
 L187:          Widget* mWidget = this->mColorSquaresGrid->GetChildAt(Temp_int_Variable);
@@ -239,12 +260,12 @@ L449:          this->CloseColorPicker();
 L463:          LinearColor mLinearColor = HSVToRGB(this->mHueValue, this->mSaturationValue, this->mValueValue, 1);
 L523:          this->mOnColorPicked->ProcessMulticastDelegate(mLinearColor);
 L551:          goto ExecutionFlow.Pop();
-L552:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L552:          int32 mint322 = Temp_int_Variable + 1;
 L594:          Temp_int_Variable = mint322;
 L621:          goto L38;
 L626:          ExecutionFlow.Push(L1374);
 L631:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L655:          Widget_ColorSquare* mWidget_ColorSquare1 = WidgetBlueprintLibrary->Create(this, Widget_ColorSquare, mPlayerController);
+L655:          Widget_ColorSquare* mWidget_ColorSquare1 = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_ColorSquare.Widget_ColorSquare_C), mPlayerController);
 L716:          this->CalculateHueFromIndex(Temp_int_Variable1, [ref] mfloat);
 L748:          this->CalculateSaturationAndValueFromIndex(Temp_int_Variable2, [ref] mfloat1, [ref] mfloat2);
 L789:          LinearColor mLinearColor1 = HSVToRGB(mfloat, mfloat1, mfloat2, 1);
@@ -260,38 +281,42 @@ L1240:         UniformGridSlot* mUniformGridSlot = this->mColorSquaresGrid->AddC
 L1291:         mUniformGridSlot->SetColumn(Temp_int_Variable1);
 L1332:         mUniformGridSlot->SetRow(Temp_int_Variable2);
 L1373:         goto ExecutionFlow.Pop();
-L1374:         int32 mint324 = Add_IntInt(Temp_int_Variable1, 1);
+L1374:         int32 mint324 = Temp_int_Variable1 + 1;
 L1416:         int32 Temp_int_Variable1 = mint324;
-L1443:         int32 mint325 = Subtract_IntInt(this->mNumColors, 1);
-L1485:         bool mbool2 = LessEqual_IntInt(Temp_int_Variable1, mint325);
+L1443:         int32 mint325 = this->mNumColors - 1;
+L1485:         bool mbool2 = Temp_int_Variable1 <= mint325;
 L1523:         if (!mbool2) goto ExecutionFlow.Pop();
 L1533:         goto L626;
+L1538:         // <Begin Inlined EventGraph Function Construct>;
 L1538:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L1562:         BP_PlayerState* mBP_PlayerState = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C>(mPlayerController1->PlayerState);
 L1620:         bool mbool3 = mBP_PlayerState;
 L1649:         if (!mbool3) goto ExecutionFlow.Pop();
 L1659:         this->mPlayerState = mBP_PlayerState;
 L1678:         int32 mint326 = KismetArrayLibrary->Array_Length([ref] this->mPlayerState->mSavedColorPickerColors);
-L1759:         bool mbool4 = LessEqual_IntInt(mint326, 0);
+L1759:         bool mbool4 = mint326 <= 0;
 L1793:         if (!mbool4) goto L1821;
 L1807:         this->FirstTimeFillColors();
 L1821:         int32 Temp_int_Variable2 = 0;
-L1844:         int32 mint327 = Subtract_IntInt(this->mNumShades, 1);
-L1886:         bool mbool5 = LessEqual_IntInt(Temp_int_Variable2, mint327);
+L1844:         int32 mint327 = this->mNumShades - 1;
+L1886:         bool mbool5 = Temp_int_Variable2 <= mint327;
 L1924:         if (!mbool5) goto ExecutionFlow.Pop();
 L1934:         ExecutionFlow.Push(L1967);
 L1939:         Temp_int_Variable1 = 0;
 L1962:         goto L1443;
-L1967:         int32 mint328 = Add_IntInt(Temp_int_Variable2, 1);
+L1967:         int32 mint328 = Temp_int_Variable2 + 1;
 L2009:         Temp_int_Variable2 = mint328;
 L2036:         goto L1844;
+L2041:         // <Begin Inlined EventGraph Function Init>;
 L2041:         this->Init();
 L2051:         this->mHueSlider->mColorPicker = this;
 L2084:         this->mSaturationSlider->mColorPicker = this;
 L2117:         this->mValueSlider->mColorPicker = this;
 L2150:         goto ExecutionFlow.Pop();
+L2151:         // <Begin Inlined EventGraph Function ExitColorPicker>;
 L2151:         this->CloseColorPicker();
 L2165:         goto ExecutionFlow.Pop();
+L2166:         // <Begin Inlined EventGraph Function BndEvt__mCancelButton_K2Node_ComponentBoundEvent_36_OnClicked__DelegateSignature>;
 L2166:         this->OnEscapePressed();
 L2180:         goto ExecutionFlow.Pop();
 L2181:         this->Tick(mGeometry, mfloat3);
@@ -302,6 +327,7 @@ L2330:         mSlateColor2.SpecifiedColor = mLinearColor2;
 L2366:         mSlateColor2.ColorUseRule = 0;
 L2395:         this->mLastClickedColorSquare->mColor = mSlateColor2;
 L2444:         goto ExecutionFlow.Pop();
+L2445:         // <Begin Inlined EventGraph Function BndEvt__mResetButton_K2Node_ComponentBoundEvent_31_OnClicked__DelegateSignature>;
 L2445:         bool mbool7 = KismetSystemLibrary->IsValid(this->mLastClickedColorSquare);
 L2496:         if (!mbool7) goto ExecutionFlow.Pop();
 L2506:         RGBToHSV(this->mLastClickedColorSquare->mDefaultColor.SpecifiedColor, [ref] mfloat4, [ref] mfloat5, [ref] mfloat6, [ref] mfloat7);
@@ -311,9 +337,13 @@ L2705:         this->mSaturationValue = mfloat5;
 L2732:         RGBToHSV(this->mLastClickedColorSquare->mDefaultColor.SpecifiedColor, [ref] mfloat4, [ref] mfloat5, [ref] mfloat6, [ref] mfloat7);
 L2818:         this->mValueValue = mfloat6;
 L2845:         goto ExecutionFlow.Pop();
+L2846:         // <Begin Inlined EventGraph Function BndEvt__mAcceptButton_K2Node_ComponentBoundEvent_331_OnClicked__DelegateSignature>;
 L2846:         goto L15;
+L2851:         // <Begin Inlined EventGraph Function BndEvt__Widget_Window_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature>;
 L2851:         goto L2166;
+L2856:         // <Begin Inlined EventGraph Function BndEvt__mCancel_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature>;
 L2856:         goto L2166;
+L2861:         // <Begin Inlined EventGraph Function BndEvt__mReset_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature>;
 L2861:         goto L2445;
 ============ END FUNCTION ExecuteUbergraph_Widget_ColorPicker ==============
 

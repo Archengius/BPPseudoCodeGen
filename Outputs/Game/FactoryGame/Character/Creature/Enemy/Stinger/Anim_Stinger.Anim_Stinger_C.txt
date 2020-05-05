@@ -1,0 +1,124 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Stinger/Anim_Stinger.Anim_Stinger_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION CalculateAnimGraphVariables ==============
+L0:            bool mbool = this->mSpeed < 10;
+L34:           this->mAG_WalkToIdleTransition = mbool;
+L53:           bool mbool1 = this->mSpeed > 0;
+L87:           this->mAG_IdleToWalkTransition = mbool1;
+L106:          BreakRotator(this->mRootRotation, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L152:          float mfloat3 = ClampAngle(mfloat1, -90, 90);
+L199:          float mfloat4 = ClampAngle(mfloat, -90, 90);
+L246:          Rotator mRotator = MakeRotator(mfloat4, mfloat3, 0);
+L297:          this->mAG_SurfaceRotationClamp = mRotator;
+L324:          bool mbool2 = this->mSpeed > 600;
+L358:          this->mAG_IsRunning = mbool2;
+L377:          float mfloat5 = ClampAngle(this->mYawDelta, -20, 20);
+L424:          Rotator mRotator1 = MakeRotator(0, mfloat5, 0);
+L471:          this->mAG_RunLeanRotationPelvis = mRotator1;
+L498:          Rotator mRotator2 = MakeRotator(0, 0, this->mYawDelta);
+L545:          this->mAG_RunLeanRotationSpine = mRotator2;
+L572:          Rotator mRotator3 = MakeRotator(this->mYawDelta, 0, this->mYawDelta);
+L623:          this->mAG_RunLeanRotationHead = mRotator3;
+============ END FUNCTION CalculateAnimGraphVariables ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnRadialDamageTaken ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnRadialDamageTaken;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_Stinger, from label L456;
+============ END FUNCTION OnRadialDamageTaken ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnPointDamageTaken ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnPointDamageTaken;
+L18:           // Implementation: Function ExecuteUbergraph_Anim_Stinger, from label L461;
+============ END FUNCTION OnPointDamageTaken ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_Notify_Stinger_Entered_Idle ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_Notify_Stinger_Entered_Idle;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_Stinger, from label L785;
+============ END FUNCTION AnimNotify_Notify_Stinger_Entered_Idle ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_Notify_Stinger_Entered_Walk ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_Notify_Stinger_Entered_Walk;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_Stinger, from label L790;
+============ END FUNCTION AnimNotify_Notify_Stinger_Entered_Walk ==============
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintUpdateAnimation ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BlueprintUpdateAnimation;
+L18:           // Implementation: Function ExecuteUbergraph_Anim_Stinger, from label L882;
+============ END FUNCTION BlueprintUpdateAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Anim_Stinger ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           KismetSystemLibrary->RetriggerableDelay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 92, UUID = 249371895, ExecutionFunction = "ExecuteUbergraph_Anim_Stinger", CallbackTarget = this));
+L91:           goto ExecutionFlow.Pop();
+L92:           Actor* mActor = this->GetOwningActor();
+L112:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Character/Creature/Enemy/Stinger/Audio/Stop_Stinger_FootstepTest_Slither.Stop_Stinger_FootstepTest_Slither), mActor, true);
+L173:          goto ExecutionFlow.Pop();
+L174:          this->mPointDmgTaken = false;
+L185:          goto ExecutionFlow.Pop();
+L186:          this->mRadialDmgTaken = false;
+L197:          goto ExecutionFlow.Pop();
+L198:          mActor = this->GetOwningActor();
+L218:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Character/Creature/Enemy/Stinger/Audio/Play_Stinger_FootstepTest_Slither.Play_Stinger_FootstepTest_Slither), mActor, true);
+L279:          goto ExecutionFlow.Pop();
+L280:          this->mPointDmgTaken = true;
+L291:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 174, UUID = 1389735559, ExecutionFunction = "ExecuteUbergraph_Anim_Stinger", CallbackTarget = this));
+L367:          goto ExecutionFlow.Pop();
+L368:          this->mRadialDmgTaken = true;
+L379:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 186, UUID = 1924542669, ExecutionFunction = "ExecuteUbergraph_Anim_Stinger", CallbackTarget = this));
+L455:          goto ExecutionFlow.Pop();
+L456:          // <Begin Inlined EventGraph Function OnRadialDamageTaken>;
+L456:          goto L368;
+L461:          Vector mVector = mVector1 * -1;
+L503:          FGCharacterBase* mFGCharacterBase = this->GetCachedCharacter();
+L523:          Transform mTransform = mFGCharacterBase->GetTransform();
+L573:          Vector mVector2 = InverseTransformDirection([ref] mTransform, mVector);
+L619:          Vector mVector3 = Normal(mVector2, 0.00009999999747378752);
+L661:          BreakVector(mVector3, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
+L707:          float mfloat3 = DegAtan2(mfloat1, mfloat);
+L753:          this->mHitDirection = mfloat3;
+L780:          goto L280;
+L785:          // <Begin Inlined EventGraph Function AnimNotify_Notify_Stinger_Entered_Idle>;
+L785:          goto L15;
+L790:          // <Begin Inlined EventGraph Function AnimNotify_Notify_Stinger_Entered_Walk>;
+L790:          KismetSystemLibrary->RetriggerableDelay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 198, UUID = 639676793, ExecutionFunction = "ExecuteUbergraph_Anim_Stinger", CallbackTarget = this));
+L866:          goto ExecutionFlow.Pop();
+L867:          this->CalculateAnimGraphVariables();
+L881:          goto ExecutionFlow.Pop();
+L882:          this->BlueprintUpdateAnimation(mfloat4);
+L901:          goto L867;
+============ END FUNCTION ExecuteUbergraph_Anim_Stinger ==============

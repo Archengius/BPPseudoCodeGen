@@ -7,7 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/-Shared/BP_CostEffect
 
 
 ============ BEGIN FUNCTION ReceiveBeginPlay ==============
-L0:            this->ExecuteUbergraph_BP_CostEffectActor(2666);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_BP_CostEffectActor, from label L2666;
 ============ END FUNCTION ReceiveBeginPlay ==============
 
 
@@ -15,8 +17,9 @@ L0:            this->ExecuteUbergraph_BP_CostEffectActor(2666);
 
 
 ============ BEGIN FUNCTION ReceiveTick ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/-Shared/BP_CostEffectActor.BP_CostEffectActor_C:ExecuteUbergraph_BP_CostEffectActor.K2Node_Event_DeltaSeconds) = DeltaSeconds;
-L18:           this->ExecuteUbergraph_BP_CostEffectActor(2163);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveTick;
+L18:           // Implementation: Function ExecuteUbergraph_BP_CostEffectActor, from label L2163;
 ============ END FUNCTION ReceiveTick ==============
 
 
@@ -37,66 +40,66 @@ L110:          if (!Temp_bool_IsClosed_Variable) goto L125;
 L124:          goto ExecutionFlow.Pop();
 L125:          bool Temp_bool_IsClosed_Variable = true;
 L136:          Vector mVector = this->ItemMesh->K2_GetComponentLocation();
-L186:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, P_PartHitSparks_01, mVector, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L186:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, ObjectConst(ParticleSystem /Game/FactoryGame/VFX/Misc/BuildEffect/P_PartHitSparks_01.P_PartHitSparks_01), mVector, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
 L276:          goto L30;
 L281:          bool Temp_bool_Has_Been_Initd_Variable = true;
 L292:          if (!false) goto ExecutionFlow.Pop();
 L294:          Temp_bool_IsClosed_Variable = true;
 L305:          goto ExecutionFlow.Pop();
 L306:          Vector mVector1 = this->K2_GetActorLocation();
-L334:          Vector mVector2 = Subtract_VectorVector(mVector1, this->mTargetLocation);
+L334:          Vector mVector2 = mVector1 - this->mTargetLocation;
 L380:          float mfloat = VSize(mVector2);
 L417:          this->mTravelLength = mfloat;
 L444:          mVector1 = this->K2_GetActorLocation();
 L472:          Rotator mRotator = FindLookAtRotation([ref] mVector1, [ref] this->mTargetLocation);
 L518:          Rotator mRotator1 = RandomRotator(true);
 L547:          BreakRotator(mRotator1, [ref] mfloat1, [ref] mfloat2, [ref] mfloat3);
-L593:          float mfloat4 = Multiply_FloatFloat(mfloat1, 0.5);
-L635:          float mfloat5 = Subtract_FloatFloat(mfloat4, 90);
+L593:          float mfloat4 = mfloat1 * 0.5;
+L635:          float mfloat5 = mfloat4 - 90;
 L677:          Rotator mRotator2 = MakeRotator(mfloat5, 0, 0);
 L724:          Rotator mRotator3 = ComposeRotators(mRotator, mRotator2);
 L770:          bool mbool = this->K2_SetActorRotation(mRotator3, false);
 L800:          Vector mVector3 = this->ItemMesh->K2_GetComponentLocation();
-L850:          ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAtLocation(this, P_PartHitSparks_01, mVector3, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), false, 0);
+L850:          ParticleSystemComponent* mParticleSystemComponent1 = GameplayStatics->SpawnEmitterAtLocation(this, ObjectConst(ParticleSystem /Game/FactoryGame/VFX/Misc/BuildEffect/P_PartHitSparks_01.P_PartHitSparks_01), mVector3, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), false, 0);
 L940:          this->mTrailVfx = mParticleSystemComponent1;
 L959:          goto ExecutionFlow.Pop();
 L960:          float mfloat6 = FMax(this->mTargetExtent, 250);
 L1002:         Vector mVector4 = this->K2_GetActorLocation();
-L1030:         Vector mVector5 = Subtract_VectorVector(this->mTargetLocation, mVector4);
+L1030:         Vector mVector5 = this->mTargetLocation - mVector4;
 L1076:         float mfloat7 = VSizeSquared(mVector5);
-L1113:         bool mbool1 = Less_FloatFloat(mfloat7, mfloat6);
+L1113:         bool mbool1 = mfloat7 < mfloat6;
 L1151:         if (!mbool1) goto ExecutionFlow.Pop();
 L1161:         goto L71;
 L1166:         Rotator mRotator4 = RandomRotator(true);
 L1195:         this->mRotationRate = mRotator4;
 L1222:         goto L306;
 L1227:         Vector mVector6 = this->K2_GetActorLocation();
-L1255:         Vector mVector7 = Subtract_VectorVector(mVector6, this->mTargetLocation);
+L1255:         Vector mVector7 = mVector6 - this->mTargetLocation;
 L1301:         float mfloat8 = VSize(mVector7);
-L1338:         float mfloat9 = Divide_FloatFloat(mfloat8, this->mTravelLength);
+L1338:         float mfloat9 = mfloat8 / this->mTravelLength;
 L1384:         float mfloat10 = FGSkySphere->GetFloatCurveValue([ref] this->mArcCurveY, mfloat9);
-L1452:         Vector mVector8 = Multiply_VectorFloat(this->mArcOffset, mfloat10);
+L1452:         Vector mVector8 = this->mArcOffset * mfloat10;
 L1498:         this->ItemMesh->K2_SetRelativeLocation(mVector8, false, [ref] mHitResult, false);
-L1550:         Rotator mRotator5 = Multiply_RotatorFloat(this->mRotationRate, mfloat11);
+L1550:         Rotator mRotator5 = this->mRotationRate * mfloat11;
 L1596:         Rotator mRotator6 = ComposeRotators(this->ItemMesh->RelativeRotation, mRotator5);
 L1664:         this->ItemMesh->K2_SetRelativeRotation(mRotator6, false, [ref] mHitResult1, false);
 L1716:         mVector6 = this->K2_GetActorLocation();
-L1744:         mVector7 = Subtract_VectorVector(mVector6, this->mTargetLocation);
+L1744:         mVector7 = mVector6 - this->mTargetLocation;
 L1790:         mfloat8 = VSize(mVector7);
-L1827:         mfloat9 = Divide_FloatFloat(mfloat8, this->mTravelLength);
-L1873:         float mfloat12 = Subtract_FloatFloat(1, mfloat9);
-L1915:         Vector mVector9 = Multiply_VectorFloat(Vector(0.800000011920929, 0.800000011920929, 0.800000011920929), mfloat12);
-L1965:         Vector mVector10 = Add_VectorVector(Vector(0.20000000298023224, 0.20000000298023224, 0.20000000298023224), mVector9);
+L1827:         mfloat9 = mfloat8 / this->mTravelLength;
+L1873:         float mfloat12 = 1 - mfloat9;
+L1915:         Vector mVector9 = Vector(0.800000011920929, 0.800000011920929, 0.800000011920929) * mfloat12;
+L1965:         Vector mVector10 = Vector(0.20000000298023224, 0.20000000298023224, 0.20000000298023224) + mVector9;
 L2015:         this->ItemMesh->SetWorldScale3D(mVector10);
 L2056:         Vector mVector11 = this->ItemMesh->K2_GetComponentLocation();
 L2106:         this->mTrailVfx->K2_SetWorldLocation(mVector11, false, [ref] mHitResult2, false);
 L2158:         goto L960;
 L2163:         mVector6 = this->K2_GetActorLocation();
-L2191:         mVector7 = Subtract_VectorVector(mVector6, this->mTargetLocation);
+L2191:         mVector7 = mVector6 - this->mTargetLocation;
 L2237:         mfloat8 = VSize(mVector7);
-L2274:         mfloat9 = Divide_FloatFloat(mfloat8, this->mTravelLength);
-L2320:         mfloat12 = Subtract_FloatFloat(1, mfloat9);
-L2362:         float mfloat13 = Multiply_FloatFloat(8000, mfloat12);
+L2274:         mfloat9 = mfloat8 / this->mTravelLength;
+L2320:         mfloat12 = 1 - mfloat9;
+L2362:         float mfloat13 = 8000 * mfloat12;
 L2404:         float mfloat14 = FMax(mfloat13, 1000);
 L2446:         Vector mVector12 = VInterpTo_Constant(mVector6, this->mTargetLocation, mfloat11, mfloat14);
 L2510:         bool mbool2 = this->K2_SetActorLocation(mVector12, false, [ref] mHitResult3, false);
@@ -104,6 +107,7 @@ L2550:         goto L1227;
 L2555:         StaticMesh* mStaticMesh = FGItemDescriptor->GetItemMesh(this->mItemDescriptor);
 L2606:         bool mbool3 = this->ItemMesh->SetStaticMesh(mStaticMesh);
 L2661:         goto L1166;
+L2666:         // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L2666:         goto L2555;
 ============ END FUNCTION ExecuteUbergraph_BP_CostEffectActor ==============
 

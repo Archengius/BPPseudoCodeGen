@@ -27,7 +27,9 @@ L115:          this->PulseTimer = mTimerHandle;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_HUDBox_Jetpack(1238);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_HUDBox_Jetpack, from label L1238;
 ============ END FUNCTION Construct ==============
 
 
@@ -35,9 +37,9 @@ L0:            this->ExecuteUbergraph_Widget_HUDBox_Jetpack(1238);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBOX_Jetpack.Widget_HUDBox_Jetpack_C:ExecuteUbergraph_Widget_HUDBox_Jetpack.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/HudBox/Widget_HUDBOX_Jetpack.Widget_HUDBox_Jetpack_C:ExecuteUbergraph_Widget_HUDBox_Jetpack.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_HUDBox_Jetpack(1411);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_HUDBox_Jetpack, from label L1411;
 ============ END FUNCTION Tick ==============
 
 
@@ -45,7 +47,9 @@ L36:           this->ExecuteUbergraph_Widget_HUDBox_Jetpack(1411);
 
 
 ============ BEGIN FUNCTION BarPulse ==============
-L0:            this->ExecuteUbergraph_Widget_HUDBox_Jetpack(1416);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BarPulse;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_HUDBox_Jetpack, from label L1416;
 ============ END FUNCTION BarPulse ==============
 
 
@@ -62,21 +66,21 @@ L77:           bool mbool = KismetSystemLibrary->IsValid(this->mFGJetPack);
 L128:          if (!mbool) goto ExecutionFlow.Pop();
 L138:          float mfloat = this->mFGJetPack->GetMaxFuel();
 L192:          float mfloat1 = this->mFGJetPack->GetCurrentFuel();
-L246:          float mfloat2 = Divide_FloatFloat(mfloat1, mfloat);
+L246:          float mfloat2 = mfloat1 / mfloat;
 L292:          this->CurrentPercent = mfloat2;
 L319:          ExecutionFlow.Push(L435);
-L324:          bool mbool1 = Less_FloatFloat(this->CurrentPercent, this->Widget_ProgressBar->mProgressBar->Percent);
+L324:          bool mbool1 = this->CurrentPercent < this->Widget_ProgressBar->mProgressBar->Percent;
 L406:          if (!mbool1) goto L903;
 L420:          if (!Temp_bool_Variable1) goto L1070;
 L434:          goto ExecutionFlow.Pop();
 L435:          this->Widget_ProgressBar->mProgressBar->SetPercent(this->CurrentPercent);
 L498:          Pawn* mPawn = this->GetOwningPlayerPawn();
 L518:          HUDHelpers->GetNumItemsFromPlayerInventory(mPawn, this->mFuelClass, this, [ref] mint32);
-L582:          bool mbool2 = Greater_IntInt(mint32, 0);
+L582:          bool mbool2 = mint32 > 0;
 L616:          mItemAmount.ItemClass = this->mFuelClass;
 L644:          mItemAmount.amount = mint32;
 L680:          this->FuelSlot->Setup CostIcon(nullptr, mItemAmount, nullptr, 0, 0, false, false, mbool2);
-L748:          bool mbool3 = Less_FloatFloat(this->CurrentPercent, this->LowFuelThreshold);
+L748:          bool mbool3 = this->CurrentPercent < this->LowFuelThreshold;
 L786:          if (!mbool3) goto L815;
 L800:          if (!Temp_bool_Variable2) goto L1222;
 L814:          goto ExecutionFlow.Pop();
@@ -103,22 +107,24 @@ L1158:         this->Widget_ProgressBar->mProgressBar->SetFillColorAndOpacity(mL
 L1221:         goto ExecutionFlow.Pop();
 L1222:         Temp_bool_Variable2 = true;
 L1233:         goto L15;
+L1238:         // <Begin Inlined EventGraph Function Construct>;
 L1238:         FGJetPack* mFGJetPack = Cast<Class /Script/FactoryGame.FGJetPack>(this->mEquipment);
 L1274:         bool mbool4 = mFGJetPack;
 L1303:         if (!mbool4) goto ExecutionFlow.Pop();
 L1313:         this->mFGJetPack = mFGJetPack;
 L1332:         this->Widget_ProgressBar->mProgressBar->SetPercent(1);
-L1391:         this->mFuelClass = Desc_Fuel;
+L1391:         this->mFuelClass = ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/Fuel/Desc_Fuel.Desc_Fuel_C);
 L1410:         goto ExecutionFlow.Pop();
 L1411:         goto L77;
-L1416:         float mfloat3 = Divide_FloatFloat(this->PulseUpdate, this->PulseDuration);
-L1462:         float mfloat4 = Add_FloatFloat(mfloat3, this->PulseT);
+L1416:         // <Begin Inlined EventGraph Function BarPulse>;
+L1416:         float mfloat3 = this->PulseUpdate / this->PulseDuration;
+L1462:         float mfloat4 = mfloat3 + this->PulseT;
 L1508:         this->PulseT = mfloat4;
 L1535:         float mfloat5 = this->SineCurve->GetFloatValue(this->PulseT);
-L1594:         float mfloat6 = Subtract_FloatFloat(1, mfloat5);
-L1636:         float mfloat7 = Add_FloatFloat(Multiply_FloatFloat(mfloat6, Subtract_FloatFloat(1, 0.5)), 0.5);
+L1594:         float mfloat6 = 1 - mfloat5;
+L1636:         float mfloat7 = mfloat6 * 1 - 0.5 + 0.5;
 L1708:         this->Widget_ProgressBar->mProgressBar->SetRenderOpacity(mfloat7);
-L1771:         bool mbool5 = GreaterEqual_FloatFloat(this->PulseT, 1);
+L1771:         bool mbool5 = this->PulseT >= 1;
 L1805:         if (!mbool5) goto ExecutionFlow.Pop();
 L1815:         this->PulseT = 0;
 L1838:         goto ExecutionFlow.Pop();

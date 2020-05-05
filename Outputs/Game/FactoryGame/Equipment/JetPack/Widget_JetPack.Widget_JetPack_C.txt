@@ -26,8 +26,8 @@ L643:          mFormatArgumentData1.ArgumentValue = mFText1;
 L679:          mFormatArgumentData1.ArgumentValueInt = 0;
 L711:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L743:          mFormatArgumentData1.ArgumentValueGender = 0;
-L772:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
-L801:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L772:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData1, mFormatArgumentData];
+L801:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L910:          FText ReturnValue = mFText2;
 L937:          goto L962;
 L942:          ReturnValue = ;
@@ -45,22 +45,22 @@ L61:           bool mbool = mFGCharacterPlayer;
 L90:           if (!mbool) goto ExecutionFlow.Pop();
 L100:          int32 Temp_int_Loop_Counter_Variable = 0;
 L123:          int32 Temp_int_Array_Index_Variable = 0;
-L146:          TArray<FGEquipment*> mTArray<FGEquipment> = mFGCharacterPlayer->GetActiveEquipments();
-L196:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGEquipment>);
-L255:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L146:          TArray<FGEquipment*> mTArrayFGEquipment = mFGCharacterPlayer->GetActiveEquipments();
+L196:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayFGEquipment);
+L255:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L293:          if (!mbool1) goto L547;
 L307:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L334:          ExecutionFlow.Push(L563);
-L339:          mTArray<FGEquipment> = mFGCharacterPlayer->GetActiveEquipments();
-L389:          KismetArrayLibrary->Array_Get([ref] mTArray<FGEquipment>, Temp_int_Array_Index_Variable, [ref] mFGEquipment);
+L339:          mTArrayFGEquipment = mFGCharacterPlayer->GetActiveEquipments();
+L389:          KismetArrayLibrary->Array_Get([ref] mTArrayFGEquipment, Temp_int_Array_Index_Variable, [ref] mFGEquipment);
 L448:          Equip_JetPack* mEquip_JetPack = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/JetPack/Equip_JetPack.Equip_JetPack_C>(mFGEquipment);
 L484:          bool mbool2 = mEquip_JetPack;
 L513:          if (!mbool2) goto ExecutionFlow.Pop();
 L523:          Equip_JetPack* Jetpack = mEquip_JetPack;
-L542:          <End of Inlined Event Graph Function>;
+L542:          // <End Inlined EventGraph Function>;
 L547:          Jetpack = nullptr;
-L558:          <End of Inlined Event Graph Function>;
-L563:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L558:          // <End Inlined EventGraph Function>;
+L563:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L605:          Temp_int_Loop_Counter_Variable = mint321;
 L632:          goto L146;
 ============ END FUNCTION GetJetPack ==============
@@ -98,9 +98,9 @@ L142:          ReturnValue = 0;
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Equipment/JetPack/Widget_JetPack.Widget_JetPack_C:ExecuteUbergraph_Widget_JetPack.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/JetPack/Widget_JetPack.Widget_JetPack_C:ExecuteUbergraph_Widget_JetPack.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_JetPack(240);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_JetPack, from label L240;
 ============ END FUNCTION Tick ==============
 
 
@@ -114,9 +114,9 @@ L84:           if (!mbool) goto L197;
 L98:           bool mbool1 = mEquip_JetPack->IsEquipped();
 L140:          if (!mbool1) goto L197;
 L154:          this->Border1->SetVisibility(0);
-L192:          <End of Inlined Event Graph Function>;
+L192:          // <End Inlined EventGraph Function>;
 L197:          this->Border1->SetVisibility(2);
-L235:          <End of Inlined Event Graph Function>;
+L235:          // <End Inlined EventGraph Function>;
 L240:          this->Tick(mGeometry, mfloat);
 L268:          goto L10;
 ============ END FUNCTION ExecuteUbergraph_Widget_JetPack ==============

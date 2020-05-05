@@ -19,7 +19,7 @@ L225:          mFGInventoryComponent = this->mCachedOwningChar->GetInventory();
 L267:          mFScriptDelegate->BindUFunction(this, OnItemAdded);
 L290:          mFGInventoryComponent->OnItemAddedDelegate.AddUnique(mFScriptDelegate);
 L331:          this->mDelegateIsBound = true;
-L342:          <End of Inlined Event Graph Function>;
+L342:          // <End Inlined EventGraph Function>;
 L347:          this->mDelegateIsBound = false;
 ============ END FUNCTION BindOnInventoryAddAndCacheChar ==============
 
@@ -43,13 +43,13 @@ L171:          this->mDelegateIsBound = false;
 ============ BEGIN FUNCTION IsInteractWidgetOpen ==============
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           HUDHelpers->GetFGGameUI(mPlayerController, this, [ref] mFGGameUI);
-L79:           FGInteractWidget* mFGInteractWidget = mFGGameUI->FindWidgetByClass(FGInteractWidget);
+L79:           FGInteractWidget* mFGInteractWidget = mFGGameUI->FindWidgetByClass(ObjectConst(Class /Script/FactoryGame.FGInteractWidget));
 L130:          bool mbool = KismetSystemLibrary->IsValid(mFGInteractWidget);
-L181:          TSubclassOf<FGInteractWidget> mTSubclassOf<FGInteractWidget> = GameplayStatics->GetObjectClass(mFGInteractWidget);
-L232:          TSubclassOf<Widget_Crate> mTSubclassOf<Widget_Crate> = ClassCast<WidgetBlueprintGeneratedClass /Game/FactoryGame/-Shared/Crate/Widget_Crate.Widget_Crate_C>(mTSubclassOf<FGInteractWidget>);
-L268:          bool mbool1 = mTSubclassOf<Widget_Crate>;
-L297:          bool mbool2 = Not_PreBool(mbool1);
-L326:          bool mbool3 = BooleanAND(mbool, mbool2);
+L181:          TSubclassOf<FGInteractWidget> mTSubclassOfFGInteractWidget = GameplayStatics->GetObjectClass(mFGInteractWidget);
+L232:          TSubclassOf<Widget_Crate> mTSubclassOfWidget_Crate = ClassCast<WidgetBlueprintGeneratedClass /Game/FactoryGame/-Shared/Crate/Widget_Crate.Widget_Crate_C>(mTSubclassOfFGInteractWidget);
+L268:          bool mbool1 = mTSubclassOfWidget_Crate;
+L297:          bool mbool2 = !mbool1;
+L326:          bool mbool3 = mbool && mbool2;
 L364:          bool IsOpen = mbool3;
 ============ END FUNCTION IsInteractWidgetOpen ==============
 
@@ -67,12 +67,12 @@ L73:           this->SetVisibility(3);
 L103:          int32 Temp_int_Loop_Counter_Variable = 0;
 L126:          int32 Temp_int_Array_Index_Variable = 0;
 L149:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mItemsAddTimes);
-L208:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L208:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L246:          if (!mbool1) goto L1454;
 L260:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L287:          ExecutionFlow.Push(L2112);
 L292:          KismetArrayLibrary->Array_Get([ref] this->mItemsAddTimes, Temp_int_Array_Index_Variable, [ref] mInventoryAddTimes);
-L351:          bool mbool2 = EqualEqual_ClassClass(ItemClass, mInventoryAddTimes.ItemClass_2_7DB810DB420443F0B7D053A862489422);
+L351:          bool mbool2 = ItemClass == mInventoryAddTimes.ItemClass_2_7DB810DB420443F0B7D053A862489422;
 L398:          if (!mbool2) goto ExecutionFlow.Pop();
 L408:          float mfloat = GameplayStatics->GetTimeSeconds(this);
 L459:          KismetArrayLibrary->Array_Get([ref] this->mItemsAddTimes, Temp_int_Array_Index_Variable, [ref] mInventoryAddTimes1);
@@ -93,9 +93,9 @@ L1175:         mSlateBrush.DrawAs = this->Widget_InventoryAddNotificationIcon->R
 L1264:         mSlateBrush.Tiling = this->Widget_InventoryAddNotificationIcon->ResourceIcon->Brush.Tiling;
 L1353:         mSlateBrush.Mirroring = 0;
 L1382:         this->Widget_InventoryAddNotificationIcon->ResourceIcon->SetBrush([ref] mSlateBrush);
-L1449:         <End of Inlined Event Graph Function>;
+L1449:         // <End Inlined EventGraph Function>;
 L1454:         PlayerController* mPlayerController = this->GetOwningPlayer();
-L1478:         Widget_ItemNotification* mWidget_ItemNotification = WidgetBlueprintLibrary->Create(this, Widget_ItemNotification, mPlayerController);
+L1478:         Widget_ItemNotification* mWidget_ItemNotification = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventoryAddNotification/Widget_ItemNotification.Widget_ItemNotification_C), mPlayerController);
 L1539:         KismetSystemLibrary->SetClassPropertyByName(mWidget_ItemNotification, "mItemClass", ItemClass);
 L1602:         KismetSystemLibrary->SetIntPropertyByName(mWidget_ItemNotification, "mNumItems", numAdded);
 L1665:         FGInventoryComponent* mFGInventoryComponent = this->mCachedOwningChar->GetInventory();
@@ -110,7 +110,7 @@ L1983:         mInventoryAddTimes3.IsAnimatingOut_10_DBA94AC14B27887644CA6081B09
 L2003:         int32 mint321 = KismetArrayLibrary->Array_Add([ref] this->mItemsAddTimes, [ref] mInventoryAddTimes3);
 L2071:         this->Widget_InventoryAddNotificationIcon->Animate Icon();
 L2107:         goto L857;
-L2112:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L2112:         int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L2154:         Temp_int_Loop_Counter_Variable = mint322;
 L2181:         goto L149;
 ============ END FUNCTION OnItemAdded ==============
@@ -120,7 +120,9 @@ L2181:         goto L149;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_InventoryAddNotification(145);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_InventoryAddNotification, from label L145;
 ============ END FUNCTION Construct ==============
 
 
@@ -128,7 +130,9 @@ L0:            this->ExecuteUbergraph_Widget_InventoryAddNotification(145);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_InventoryAddNotification(150);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_InventoryAddNotification, from label L150;
 ============ END FUNCTION Destruct ==============
 
 
@@ -136,9 +140,9 @@ L0:            this->ExecuteUbergraph_Widget_InventoryAddNotification(150);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/InventoryAddNotification/Widget_InventoryAddNotification.Widget_InventoryAddNotification_C:ExecuteUbergraph_Widget_InventoryAddNotification.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/InventoryAddNotification/Widget_InventoryAddNotification.Widget_InventoryAddNotification_C:ExecuteUbergraph_Widget_InventoryAddNotification.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_InventoryAddNotification(174);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_InventoryAddNotification, from label L174;
 ============ END FUNCTION Tick ==============
 
 
@@ -148,42 +152,44 @@ L36:           this->ExecuteUbergraph_Widget_InventoryAddNotification(174);
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_InventoryAddNotification ==============
 L5:            goto ComputedJump(EntryPoint);
 L15:           this->BindOnInventoryAddAndCacheChar();
-L29:           bool mbool = Not_PreBool(this->mDelegateIsBound);
+L29:           bool mbool = !this->mDelegateIsBound;
 L58:           if (!mbool) goto ExecutionFlow.Pop();
 L68:           KismetSystemLibrary->Delay(this, 0.5, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -2037842536, ExecutionFunction = "ExecuteUbergraph_Widget_InventoryAddNotification", CallbackTarget = this));
 L144:          goto ExecutionFlow.Pop();
+L145:          // <Begin Inlined EventGraph Function Construct>;
 L145:          goto L15;
+L150:          // <Begin Inlined EventGraph Function Destruct>;
 L150:          this->UnbindOnInventoryAdd(this->mCachedOwningChar);
 L173:          goto ExecutionFlow.Pop();
 L174:          this->Tick(mGeometry, mfloat);
-L202:          bool mbool1 = Not_PreBool(this->mDelegateIsBound);
+L202:          bool mbool1 = !this->mDelegateIsBound;
 L231:          Pawn* mPawn = this->GetOwningPlayerPawn();
-L251:          bool mbool2 = NotEqual_ObjectObject(this->mCachedOwningChar, mPawn);
-L289:          bool mbool3 = BooleanOR(mbool2, mbool1);
+L251:          bool mbool2 = this->mCachedOwningChar != mPawn;
+L289:          bool mbool3 = mbool2 || mbool1;
 L327:          if (!mbool3) goto L378;
 L341:          this->UnbindOnInventoryAdd(this->mCachedOwningChar);
 L364:          this->BindOnInventoryAddAndCacheChar();
 L378:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mItemsAddTimes);
-L437:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L437:          int32 mint321 = mint32 - 1;
 L479:          int32 Temp_int_Loop_Counter_Variable = mint321;
 L506:          mint32 = KismetArrayLibrary->Array_Length([ref] this->mItemsAddTimes);
-L565:          mint321 = Subtract_IntInt(mint32, 1);
+L565:          mint321 = mint32 - 1;
 L607:          int32 mint322 = Max(0, mint321);
 L649:          int32 Temp_int_Array_Index_Variable = mint322;
-L676:          bool mbool4 = GreaterEqual_IntInt(Temp_int_Loop_Counter_Variable, 0);
+L676:          bool mbool4 = Temp_int_Loop_Counter_Variable >= 0;
 L710:          if (!mbool4) goto ExecutionFlow.Pop();
 L720:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L747:          ExecutionFlow.Push(L1135);
 L752:          float mfloat1 = GameplayStatics->GetTimeSeconds(this);
 L803:          KismetArrayLibrary->Array_Get([ref] this->mItemsAddTimes, Temp_int_Array_Index_Variable, [ref] mInventoryAddTimes);
-L862:          float mfloat2 = Subtract_FloatFloat(mfloat1, mInventoryAddTimes.TimeStamp_5_CC0FCA014A6FADACF5A9FCB6FAACC871);
-L917:          bool mbool5 = Greater_FloatFloat(mfloat2, this->mTimeWindow);
+L862:          float mfloat2 = mfloat1 - mInventoryAddTimes.TimeStamp_5_CC0FCA014A6FADACF5A9FCB6FAACC871;
+L917:          bool mbool5 = mfloat2 > this->mTimeWindow;
 L955:          if (!mbool5) goto ExecutionFlow.Pop();
 L965:          KismetArrayLibrary->Array_Get([ref] this->mItemsAddTimes, Temp_int_Array_Index_Variable, [ref] mInventoryAddTimes);
 L1024:         bool mbool6 = this->mVerticalBox->RemoveChild(mInventoryAddTimes.Widget_8_5F8B5CA8468B3EE4884636828A86531D);
 L1084:         KismetArrayLibrary->Array_Remove([ref] this->mItemsAddTimes, Temp_int_Array_Index_Variable);
 L1134:         goto ExecutionFlow.Pop();
-L1135:         int32 mint323 = Subtract_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1135:         int32 mint323 = Temp_int_Loop_Counter_Variable - 1;
 L1177:         Temp_int_Loop_Counter_Variable = mint323;
 L1204:         goto L676;
 ============ END FUNCTION ExecuteUbergraph_Widget_InventoryAddNotification ==============

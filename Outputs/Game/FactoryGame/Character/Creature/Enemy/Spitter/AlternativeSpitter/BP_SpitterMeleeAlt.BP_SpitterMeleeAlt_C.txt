@@ -9,7 +9,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Spitter/Altern
 ============ BEGIN FUNCTION GetNewTarget ==============
 L0:            ExecutionFlow.Push(L1080);
 L5:            int32 Temp_int_Variable = 0;
-L28:           bool mbool = LessEqual_IntInt(Temp_int_Variable, 8);
+L28:           bool mbool = Temp_int_Variable <= 8;
 L62:           if (!mbool) goto ExecutionFlow.Pop();
 L72:           ExecutionFlow.Push(L1006);
 L77:           Pawn* mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
@@ -18,27 +18,27 @@ L180:          if (!mbool1) goto ExecutionFlow.Pop();
 L190:          mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
 L242:          Vector mVector = mPawn->K2_GetActorLocation();
 L292:          Vector mVector1 = this->K2_GetActorLocation();
-L320:          Vector mVector2 = Subtract_VectorVector(mVector, mVector1);
+L320:          Vector mVector2 = mVector - mVector1;
 L366:          float mfloat = VSize(mVector2);
-L403:          bool mbool2 = LessEqual_FloatFloat(mfloat, 9999);
+L403:          bool mbool2 = mfloat <= 9999;
 L437:          if (!mbool2) goto ExecutionFlow.Pop();
 L447:          bool mbool3 = KismetSystemLibrary->IsValid(this->mTargetPawn);
 L498:          if (!mbool3) goto L934;
 L512:          Vector mVector3 = this->mTargetPawn->K2_GetActorLocation();
 L562:          Vector mVector4 = this->K2_GetActorLocation();
 L590:          mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
-L642:          Vector mVector5 = Subtract_VectorVector(mVector3, mVector4);
+L642:          Vector mVector5 = mVector3 - mVector4;
 L688:          float mfloat1 = VSize(mVector5);
 L725:          mVector = mPawn->K2_GetActorLocation();
 L775:          mVector1 = this->K2_GetActorLocation();
-L803:          mVector2 = Subtract_VectorVector(mVector, mVector1);
+L803:          mVector2 = mVector - mVector1;
 L849:          mfloat = VSize(mVector2);
-L886:          bool mbool4 = Less_FloatFloat(mfloat, mfloat1);
+L886:          bool mbool4 = mfloat < mfloat1;
 L924:          if (!mbool4) goto ExecutionFlow.Pop();
 L934:          mPawn = GameplayStatics->GetPlayerPawn(this, Temp_int_Variable);
 L986:          this->mTargetPawn = mPawn;
 L1005:         goto ExecutionFlow.Pop();
-L1006:         int32 mint32 = Add_IntInt(Temp_int_Variable, 1);
+L1006:         int32 mint32 = Temp_int_Variable + 1;
 L1048:         Temp_int_Variable = mint32;
 L1075:         goto L28;
 ============ END FUNCTION GetNewTarget ==============
@@ -48,7 +48,9 @@ L1075:         goto L28;
 
 
 ============ BEGIN FUNCTION ReceiveBeginPlay ==============
-L0:            this->ExecuteUbergraph_BP_SpitterMeleeAlt(144);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_BP_SpitterMeleeAlt, from label L144;
 ============ END FUNCTION ReceiveBeginPlay ==============
 
 
@@ -56,8 +58,9 @@ L0:            this->ExecuteUbergraph_BP_SpitterMeleeAlt(144);
 
 
 ============ BEGIN FUNCTION ReceiveActorBeginOverlap ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/AlternativeSpitter/BP_SpitterMeleeAlt.BP_SpitterMeleeAlt_C:ExecuteUbergraph_BP_SpitterMeleeAlt.K2Node_Event_OtherActor) = OtherActor;
-L18:           this->ExecuteUbergraph_BP_SpitterMeleeAlt(231);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveActorBeginOverlap;
+L18:           // Implementation: Function ExecuteUbergraph_BP_SpitterMeleeAlt, from label L231;
 ============ END FUNCTION ReceiveActorBeginOverlap ==============
 
 
@@ -65,8 +68,9 @@ L18:           this->ExecuteUbergraph_BP_SpitterMeleeAlt(231);
 
 
 ============ BEGIN FUNCTION DestroyOnParticleDone ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Spitter/AlternativeSpitter/BP_SpitterMeleeAlt.BP_SpitterMeleeAlt_C:ExecuteUbergraph_BP_SpitterMeleeAlt.K2Node_CustomEvent_PSystem) = PSystem;
-L18:           this->ExecuteUbergraph_BP_SpitterMeleeAlt(783);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: DestroyOnParticleDone;
+L18:           // Implementation: Function ExecuteUbergraph_BP_SpitterMeleeAlt, from label L783;
 ============ END FUNCTION DestroyOnParticleDone ==============
 
 
@@ -82,6 +86,7 @@ L87:           this->ParticleSystem->OnSystemFinished.AddUnique(mFScriptDelegate
 L128:          goto ExecutionFlow.Pop();
 L129:          if (!this->Triggered) goto L15;
 L143:          goto ExecutionFlow.Pop();
+L144:          // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L144:          this->ReceiveBeginPlay();
 L154:          KismetSystemLibrary->Delay(this, 0, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 129, UUID = -997467114, ExecutionFunction = "ExecuteUbergraph_BP_SpitterMeleeAlt", CallbackTarget = this));
 L230:          goto ExecutionFlow.Pop();
@@ -90,12 +95,12 @@ L250:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/Factor
 L286:          bool mbool = mFGCharacterPlayer;
 L315:          if (!mbool) goto ExecutionFlow.Pop();
 L325:          this->Triggered = true;
-L336:          float mfloat = GameplayStatics->ApplyDamage(mFGCharacterPlayer, 5, nullptr, nullptr, DamageType_SpitterMelee);
+L336:          float mfloat = GameplayStatics->ApplyDamage(mFGCharacterPlayer, 5, nullptr, nullptr, ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Enemy/Spitter/DamageType_SpitterMelee.DamageType_SpitterMelee_C));
 L411:          Vector mVector = mFGCharacterPlayer->K2_GetActorLocation();
 L461:          Actor* mActor1 = this->GetOwner();
 L481:          Vector mVector1 = mActor1->K2_GetActorLocation();
 L531:          Vector mVector2 = GetDirectionUnitVector(mVector1, mVector);
-L577:          Vector mVector3 = Multiply_VectorFloat(mVector2, 1500);
+L577:          Vector mVector3 = mVector2 * 1500;
 L619:          BreakVector(mVector3, [ref] mfloat1, [ref] mfloat2, [ref] mfloat3);
 L665:          Vector mVector4 = MakeVector(mfloat1, mfloat2, 1000);
 L716:          mFGCharacterPlayer->LaunchCharacter(mVector4, true, true);

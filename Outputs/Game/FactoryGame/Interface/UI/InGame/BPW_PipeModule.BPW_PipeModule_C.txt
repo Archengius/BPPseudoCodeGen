@@ -7,16 +7,16 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/BPW_PipeModule.BPW_
 
 
 ============ BEGIN FUNCTION InternalUpdateValues ==============
-L0:            float mfloat = Multiply_FloatFloat(FlowIn, 60);
+L0:            float mfloat = FlowIn * 60;
 L42:           FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat, 0, false, true, 1, 324, 0, 0);
 L125:          this->mFlowInText->SetText(mFText);
-L170:          float mfloat1 = Multiply_FloatFloat(FlowOut, 60);
+L170:          float mfloat1 = FlowOut * 60;
 L212:          FText mFText1 = KismetTextLibrary->Conv_FloatToText(mfloat1, 0, false, true, 1, 324, 0, 0);
 L295:          this->mFlowOutText->SetText(mFText1);
-L340:          float mfloat2 = Subtract_FloatFloat(FlowIn, FlowOut);
-L386:          float mfloat3 = Multiply_FloatFloat(mfloat2, 60);
+L340:          float mfloat2 = FlowIn - FlowOut;
+L386:          float mfloat3 = mfloat2 * 60;
 L428:          FText mFText2 = KismetTextLibrary->Conv_FloatToText(mfloat3, 0, false, true, 1, 324, 0, 0);
-L511:          bool mbool = Greater_FloatFloat(mfloat3, 0);
+L511:          bool mbool = mfloat3 > 0;
 L545:          mFormatArgumentData.ArgumentName = "value";
 L579:          mFormatArgumentData.ArgumentValueType = 4;
 L608:          mFormatArgumentData.ArgumentValue = mFText2;
@@ -24,8 +24,8 @@ L644:          mFormatArgumentData.ArgumentValueInt = 0;
 L676:          mFormatArgumentData.ArgumentValueFloat = 0;
 L708:          mFormatArgumentData.ArgumentValueGender = 0;
 L737:          bool Temp_bool_Variable = mbool;
-L756:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L776:          FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L756:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L776:          FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L883:          this->mNetFlow->SetText(switch (Temp_bool_Variable) {
 case false -> mFText2;
 case true -> mFText3;
@@ -36,7 +36,7 @@ L1055:         this->mMaxAmountInPipe->SetText(mFText5);
 L1100:         float mfloat4 = FClamp(CurrentStorage, 0, MaxStorage);
 L1151:         FText mFText6 = KismetTextLibrary->Conv_FloatToText(mfloat4, 0, false, true, 1, 324, 0, 1);
 L1234:         this->mCurrentAmountInPipeText->SetText(mFText6);
-L1279:         float mfloat5 = Divide_FloatFloat(CurrentStorage, MaxStorage);
+L1279:         float mfloat5 = CurrentStorage / MaxStorage;
 L1325:         this->UpdateTank(mfloat5);
 ============ END FUNCTION InternalUpdateValues ==============
 
@@ -100,7 +100,7 @@ L194:          EffectMaterial->SetVectorParameterValue("Tint", this->mTint);
 L0:            this->mCurrentStorage = CurrentStorage;
 L27:           this->mMaxStorage = MaxStorage;
 L54:           this->mMaxFlowRate = MaxFlowRate;
-L81:           bool mbool = Not_PreBool(this->mFlushing);
+L81:           bool mbool = !this->mFlushing;
 L110:          if (!mbool) goto L183;
 L124:          this->InternalUpdateValues(CurrentStorage, MaxStorage, FlowIn, FlowOut, MaxFlowRate);
 ============ END FUNCTION UpdateValues ==============
@@ -117,9 +117,9 @@ L120:          if (!mbool) goto L837;
 L134:          MaterialInstanceDynamic* mMaterialInstanceDynamic1 = this->mRetainBox->GetEffectMaterial();
 L176:          MaterialInstanceDynamic* EffectMaterial = mMaterialInstanceDynamic1;
 L195:          EffectMaterial->SetScalarParameterValue("FillAmount", mCurrentBarValue);
-L249:          float mfloat = Multiply_FloatFloat(mCurrentBarValue, 2);
-L291:          float mfloat1 = Subtract_FloatFloat(2, mfloat);
-L333:          bool mbool1 = Greater_FloatFloat(mfloat, 1);
+L249:          float mfloat = mCurrentBarValue * 2;
+L291:          float mfloat1 = 2 - mfloat;
+L333:          bool mbool1 = mfloat > 1;
 L367:          bool Temp_bool_Variable = mbool1;
 L386:          float mfloat2 = Ease(0, 1, switch (Temp_bool_Variable) {
 case false -> mfloat;
@@ -127,9 +127,9 @@ case true -> mfloat1;
 default -> mfloat3;
 }, 12, 2, 2);
 L489:          EffectMaterial->SetScalarParameterValue("XScale", mfloat2);
-L543:          mfloat = Multiply_FloatFloat(mCurrentBarValue, 2);
-L585:          mfloat1 = Subtract_FloatFloat(2, mfloat);
-L627:          mbool1 = Greater_FloatFloat(mfloat, 1);
+L543:          mfloat = mCurrentBarValue * 2;
+L585:          mfloat1 = 2 - mfloat;
+L627:          mbool1 = mfloat > 1;
 L661:          Temp_bool_Variable = mbool1;
 L680:          float mfloat4 = Ease(0.10000000149011612, 1, switch (Temp_bool_Variable) {
 case false -> mfloat;
@@ -144,8 +144,9 @@ L783:          EffectMaterial->SetScalarParameterValue("YScale", mfloat4);
 
 
 ============ BEGIN FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_1_OnFlush__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/BPW_PipeModule.BPW_PipeModule_C:ExecuteUbergraph_BPW_PipeModule.K2Node_ComponentBoundEvent_DrainDuration) = DrainDuration;
-L18:           this->ExecuteUbergraph_BPW_PipeModule(10);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_1_OnFlush__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_PipeModule, from label L10;
 ============ END FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_1_OnFlush__DelegateSignature ==============
 
 
@@ -153,7 +154,9 @@ L18:           this->ExecuteUbergraph_BPW_PipeModule(10);
 
 
 ============ BEGIN FUNCTION BndEvt__mPipeNetworkButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_PipeModule(79);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mPipeNetworkButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_PipeModule, from label L79;
 ============ END FUNCTION BndEvt__mPipeNetworkButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
 
 
@@ -161,7 +164,9 @@ L0:            this->ExecuteUbergraph_BPW_PipeModule(79);
 
 
 ============ BEGIN FUNCTION BndEvt__mPipeSegmentButton_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_PipeModule(169);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mPipeSegmentButton_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_PipeModule, from label L169;
 ============ END FUNCTION BndEvt__mPipeSegmentButton_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
 
 
@@ -169,7 +174,9 @@ L0:            this->ExecuteUbergraph_BPW_PipeModule(169);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_BPW_PipeModule(259);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_PipeModule, from label L259;
 ============ END FUNCTION Construct ==============
 
 
@@ -177,7 +184,9 @@ L0:            this->ExecuteUbergraph_BPW_PipeModule(259);
 
 
 ============ BEGIN FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_4_OnFluidFilledUp__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_PipeModule(301);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_4_OnFluidFilledUp__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_PipeModule, from label L301;
 ============ END FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_4_OnFluidFilledUp__DelegateSignature ==============
 
 
@@ -185,8 +194,9 @@ L0:            this->ExecuteUbergraph_BPW_PipeModule(301);
 
 
 ============ BEGIN FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_5_OnFluidLerp__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/BPW_PipeModule.BPW_PipeModule_C:ExecuteUbergraph_BPW_PipeModule.K2Node_ComponentBoundEvent_Alpha) = Alpha;
-L18:           this->ExecuteUbergraph_BPW_PipeModule(306);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_5_OnFluidLerp__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_PipeModule, from label L306;
 ============ END FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_5_OnFluidLerp__DelegateSignature ==============
 
 
@@ -194,8 +204,9 @@ L18:           this->ExecuteUbergraph_BPW_PipeModule(306);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/BPW_PipeModule.BPW_PipeModule_C:ExecuteUbergraph_BPW_PipeModule.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_BPW_PipeModule(425);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_PipeModule, from label L425;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -203,7 +214,9 @@ L18:           this->ExecuteUbergraph_BPW_PipeModule(425);
 
 
 ============ BEGIN FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_0_OnDrainCompleted__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_PipeModule(1031);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_0_OnDrainCompleted__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_PipeModule, from label L1031;
 ============ END FUNCTION BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_0_OnDrainCompleted__DelegateSignature ==============
 
 
@@ -213,23 +226,27 @@ L0:            this->ExecuteUbergraph_BPW_PipeModule(1031);
 ============ BEGIN FUNCTION ExecuteUbergraph_BPW_PipeModule ==============
 L10:           this->OnFlush->ProcessMulticastDelegate(this->mFlushNetwork, mfloat);
 L47:           this->mFlushing = true;
-L58:           <End of Inlined Event Graph Function>;
+L58:           // <End Inlined EventGraph Function>;
 L63:           this->mFlushing = false;
-L74:           <End of Inlined Event Graph Function>;
+L74:           // <End Inlined EventGraph Function>;
+L79:           // <Begin Inlined EventGraph Function BndEvt__mPipeNetworkButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature>;
 L79:           this->mPipeNetworkButton->SetIsSelected(true);
 L116:          this->mPipeSegmentButton->SetIsSelected(false);
 L153:          this->mFlushNetwork = true;
-L164:          <End of Inlined Event Graph Function>;
+L164:          // <End Inlined EventGraph Function>;
+L169:          // <Begin Inlined EventGraph Function BndEvt__mPipeSegmentButton_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature>;
 L169:          this->mPipeNetworkButton->SetIsSelected(false);
 L206:          this->mPipeSegmentButton->SetIsSelected(true);
 L243:          this->mFlushNetwork = false;
-L254:          <End of Inlined Event Graph Function>;
+L254:          // <End Inlined EventGraph Function>;
+L259:          // <Begin Inlined EventGraph Function Construct>;
 L259:          this->mPipeSegmentButton->SetIsSelected(true);
-L296:          <End of Inlined Event Graph Function>;
+L296:          // <End Inlined EventGraph Function>;
+L301:          // <Begin Inlined EventGraph Function BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_4_OnFluidFilledUp__DelegateSignature>;
 L301:          goto L63;
 L306:          float mfloat1 = Ease(this->mCurrentStorage, 0, mfloat2, 4, 2, 2);
 L369:          this->InternalUpdateValues(mfloat1, this->mMaxStorage, 0, 0, this->mMaxFlowRate);
-L420:          <End of Inlined Event Graph Function>;
+L420:          // <End Inlined EventGraph Function>;
 L425:          uint8 Temp_byte_Variable = 3;
 L445:          uint8 Temp_byte_Variable1 = 2;
 L465:          bool Temp_bool_Variable = this->mShowBorder;
@@ -238,7 +255,7 @@ case false -> Temp_byte_Variable1;
 case true -> Temp_byte_Variable;
 default -> muint8;
 });
-L573:          bool mbool = Not_PreBool(this->mAllowNetworkFlush);
+L573:          bool mbool = !this->mAllowNetworkFlush;
 L602:          this->mPipeNetworkButton->SetIsDisabled(mbool);
 L647:          mFormatArgumentData.ArgumentName = "Name";
 L680:          mFormatArgumentData.ArgumentValueType = 4;
@@ -246,10 +263,11 @@ L709:          mFormatArgumentData.ArgumentValue = this->mStorageName;
 L745:          mFormatArgumentData.ArgumentValueInt = 0;
 L777:          mFormatArgumentData.ArgumentValueFloat = 0;
 L809:          mFormatArgumentData.ArgumentValueGender = 0;
-L838:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L858:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L838:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L858:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L981:          this->mCurrentAmountLabel->SetText(mFText);
-L1026:         <End of Inlined Event Graph Function>;
+L1026:         // <End Inlined EventGraph Function>;
+L1031:         // <Begin Inlined EventGraph Function BndEvt__BPW_FlushHandle_K2Node_ComponentBoundEvent_0_OnDrainCompleted__DelegateSignature>;
 L1031:         this->OnDrainCompleted->ProcessMulticastDelegate();
 ============ END FUNCTION ExecuteUbergraph_BPW_PipeModule ==============
 

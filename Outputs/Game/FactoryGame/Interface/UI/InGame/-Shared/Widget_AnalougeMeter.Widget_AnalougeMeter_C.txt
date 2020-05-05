@@ -8,8 +8,8 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Anal
 
 ============ BEGIN FUNCTION SetValue ==============
 L0:            this->mValue = Value;
-L27:           float mfloat = Divide_FloatFloat(this->mIndicator->RenderTransform.Angle, 268);
-L100:          float mfloat1 = Add_FloatFloat(mfloat, 0.5);
+L27:           float mfloat = this->mIndicator->RenderTransform.Angle / 268;
+L100:          float mfloat1 = mfloat + 0.5;
 L142:          this->mStartValue = mfloat1;
 L169:          this->mLerpT = 0;
 L192:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->WobbleTimer);
@@ -24,8 +24,9 @@ L368:          this->LerpTimer = mTimerHandle;
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_AnalougeMeter.Widget_AnalougeMeter_C:ExecuteUbergraph_Widget_AnalougeMeter.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_AnalougeMeter(57);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_AnalougeMeter, from label L57;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -33,7 +34,9 @@ L18:           this->ExecuteUbergraph_Widget_AnalougeMeter(57);
 
 
 ============ BEGIN FUNCTION LerpMeter ==============
-L0:            this->ExecuteUbergraph_Widget_AnalougeMeter(638);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: LerpMeter;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_AnalougeMeter, from label L638;
 ============ END FUNCTION LerpMeter ==============
 
 
@@ -41,7 +44,9 @@ L0:            this->ExecuteUbergraph_Widget_AnalougeMeter(638);
 
 
 ============ BEGIN FUNCTION Wobble ==============
-L0:            this->ExecuteUbergraph_Widget_AnalougeMeter(1204);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Wobble;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_AnalougeMeter, from label L1204;
 ============ END FUNCTION Wobble ==============
 
 
@@ -49,7 +54,9 @@ L0:            this->ExecuteUbergraph_Widget_AnalougeMeter(1204);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_AnalougeMeter(1898);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_AnalougeMeter, from label L1898;
 ============ END FUNCTION Destruct ==============
 
 
@@ -58,7 +65,7 @@ L0:            this->ExecuteUbergraph_Widget_AnalougeMeter(1898);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_AnalougeMeter ==============
 L10:           KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->LerpTimer);
-L52:           <End of Inlined Event Graph Function>;
+L52:           // <End Inlined EventGraph Function>;
 L57:           mSlateBrush.ImageSize = this->mValuesImageObject->Brush.ImageSize;
 L124:          mSlateBrush.Margin = this->mValuesImageObject->Brush.Margin;
 L191:          mSlateBrush.TintColor = this->mValuesImageObject->Brush.TintColor;
@@ -70,40 +77,43 @@ L487:          this->mValuesImageObject->SetBrush([ref] mSlateBrush);
 L532:          this->mIndicator->SetColorAndOpacity(this->mIndicatorColor);
 L573:          this->mIndicatorShadow->SetColorAndOpacity(this->mIndicatorColor);
 L614:          this->SetValue(0);
-L633:          <End of Inlined Event Graph Function>;
-L638:          float mfloat = Divide_FloatFloat(this->mUpdateTime, this->mLerpDuration);
-L684:          float mfloat1 = Add_FloatFloat(mfloat, this->mLerpT);
+L633:          // <End Inlined EventGraph Function>;
+L638:          // <Begin Inlined EventGraph Function LerpMeter>;
+L638:          float mfloat = this->mUpdateTime / this->mLerpDuration;
+L684:          float mfloat1 = mfloat + this->mLerpT;
 L730:          this->mLerpT = mfloat1;
 L757:          float mfloat2 = Ease(this->mStartValue, this->mValue, this->mLerpT, 7, 2, 2);
-L824:          float mfloat3 = Subtract_FloatFloat(mfloat2, 0.5);
-L866:          float mfloat4 = Multiply_FloatFloat(mfloat3, 268);
+L824:          float mfloat3 = mfloat2 - 0.5;
+L866:          float mfloat4 = mfloat3 * 268;
 L908:          this->mIndicator->SetRenderAngle(mfloat4);
 L949:          this->mIndicatorShadow->SetRenderAngle(mfloat4);
-L990:          bool mbool = GreaterEqual_FloatFloat(this->mLerpT, 1);
+L990:          bool mbool = this->mLerpT >= 1;
 L1024:         if (!mbool) goto L1945;
 L1038:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->LerpTimer);
 L1080:         mFScriptDelegate->BindUFunction(this, Wobble);
 L1103:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mUpdateTime, true);
 L1172:         this->WobbleTimer = mTimerHandle;
-L1199:         <End of Inlined Event Graph Function>;
-L1204:         float mfloat5 = Divide_FloatFloat(this->mUpdateTime, this->mWobbleDuration);
-L1250:         float mfloat6 = Add_FloatFloat(mfloat5, this->mWobbleT);
+L1199:         // <End Inlined EventGraph Function>;
+L1204:         // <Begin Inlined EventGraph Function Wobble>;
+L1204:         float mfloat5 = this->mUpdateTime / this->mWobbleDuration;
+L1250:         float mfloat6 = mfloat5 + this->mWobbleT;
 L1296:         this->mWobbleT = mfloat6;
 L1323:         float mfloat7 = FGSkySphere->GetFloatCurveValue([ref] this->mWobbleCurve, this->mWobbleT);
-L1391:         float mfloat8 = Multiply_FloatFloat(mfloat7, 20);
-L1433:         float mfloat9 = Subtract_FloatFloat(this->mValue, 0.5);
+L1391:         float mfloat8 = mfloat7 * 20;
+L1433:         float mfloat9 = this->mValue - 0.5;
 L1475:         float mfloat10 = FClamp(mfloat9, 0, 1);
-L1522:         float mfloat11 = Multiply_FloatFloat(mfloat10, 2);
-L1564:         float mfloat12 = Multiply_FloatFloat(mfloat8, mfloat11);
-L1610:         float mfloat13 = Subtract_FloatFloat(this->mValue, 0.5);
-L1652:         float mfloat14 = Multiply_FloatFloat(mfloat13, 268);
-L1694:         float mfloat15 = Add_FloatFloat(mfloat12, mfloat14);
+L1522:         float mfloat11 = mfloat10 * 2;
+L1564:         float mfloat12 = mfloat8 * mfloat11;
+L1610:         float mfloat13 = this->mValue - 0.5;
+L1652:         float mfloat14 = mfloat13 * 268;
+L1694:         float mfloat15 = mfloat12 + mfloat14;
 L1740:         this->mIndicator->SetRenderAngle(mfloat15);
 L1781:         this->mIndicatorShadow->SetRenderAngle(mfloat15);
-L1822:         bool mbool1 = GreaterEqual_FloatFloat(this->mWobbleT, 1);
+L1822:         bool mbool1 = this->mWobbleT >= 1;
 L1856:         if (!mbool1) goto L1945;
 L1870:         this->mWobbleT = 0;
-L1893:         <End of Inlined Event Graph Function>;
+L1893:         // <End Inlined EventGraph Function>;
+L1898:         // <Begin Inlined EventGraph Function Destruct>;
 L1898:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->WobbleTimer);
 L1940:         goto L10;
 ============ END FUNCTION ExecuteUbergraph_Widget_AnalougeMeter ==============

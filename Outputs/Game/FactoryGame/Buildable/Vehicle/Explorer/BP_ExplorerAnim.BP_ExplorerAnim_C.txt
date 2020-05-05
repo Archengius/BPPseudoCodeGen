@@ -1,0 +1,41 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Explorer/BP_ExplorerAnim.BP_ExplorerAnim_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintUpdateAnimation ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BlueprintUpdateAnimation;
+L18:           // Implementation: Function ExecuteUbergraph_BP_ExplorerAnim, from label L10;
+============ END FUNCTION BlueprintUpdateAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BP_ExplorerAnim ==============
+L10:           this->BlueprintUpdateAnimation(mfloat);
+L29:           Pawn* mPawn = this->TryGetPawnOwner();
+L53:           bool mbool = KismetSystemLibrary->IsValid(mPawn);
+L104:          if (!mbool) goto L799;
+L118:          mPawn = this->TryGetPawnOwner();
+L142:          FGWheeledVehicle* mFGWheeledVehicle = Cast<Class /Script/FactoryGame.FGWheeledVehicle>(mPawn);
+L178:          bool mbool1 = mFGWheeledVehicle;
+L207:          if (!mbool1) goto L799;
+L221:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = mFGWheeledVehicle->GetVehicleMovementComponent();
+L263:          bool mbool2 = KismetSystemLibrary->IsValid(mWheeledVehicleMovementComponent);
+L314:          if (!mbool2) goto L799;
+L328:          mWheeledVehicleMovementComponent = mFGWheeledVehicle->GetVehicleMovementComponent();
+L370:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mWheeledVehicleMovementComponent->Wheels);
+L451:          bool mbool3 = mint32 > 0;
+L485:          if (!mbool3) goto L799;
+L499:          mWheeledVehicleMovementComponent = mFGWheeledVehicle->GetVehicleMovementComponent();
+L541:          KismetArrayLibrary->Array_Get([ref] mWheeledVehicleMovementComponent->Wheels, 0, [ref] mVehicleWheel);
+L618:          float mfloat1 = mVehicleWheel->GetSteerAngle();
+L668:          float mfloat2 = MapRangeClamped(mfloat1, -35, 35, -90, 90);
+L725:          Rotator mRotator = MakeRotator(0, 0, mfloat2);
+L772:          this->mSteerAngle = mRotator;
+============ END FUNCTION ExecuteUbergraph_BP_ExplorerAnim ==============

@@ -17,8 +17,8 @@ L0:            this->mTitleText->SetText(Title);
 ============ BEGIN FUNCTION GetShouldOkayBeEnabled ==============
 L0:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mSelectionWidgets);
 L59:           bool mbool = KismetArrayLibrary->Array_IsValidIndex([ref] this->mSelectionWidgets, this->mSelectedChild);
-L119:          bool mbool1 = LessEqual_IntInt(mint32, 0);
-L153:          bool mbool2 = BooleanOR(mbool, mbool1);
+L119:          bool mbool1 = mint32 <= 0;
+L153:          bool mbool2 = mbool || mbool1;
 L191:          bool ReturnValue = mbool2;
 ============ END FUNCTION GetShouldOkayBeEnabled ==============
 
@@ -27,8 +27,9 @@ L191:          bool ReturnValue = mbool2;
 
 
 ============ BEGIN FUNCTION SetInstigatorAndInitialize ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Widget_PopupToggleSelect.Widget_PopupToggleSelect_C:ExecuteUbergraph_Widget_PopupToggleSelect.K2Node_Event_Instigator) = Instigator;
-L18:           this->ExecuteUbergraph_Widget_PopupToggleSelect(793);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: SetInstigatorAndInitialize;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PopupToggleSelect, from label L793;
 ============ END FUNCTION SetInstigatorAndInitialize ==============
 
 
@@ -36,8 +37,9 @@ L18:           this->ExecuteUbergraph_Widget_PopupToggleSelect(793);
 
 
 ============ BEGIN FUNCTION OnChildSelected ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Widget_PopupToggleSelect.Widget_PopupToggleSelect_C:ExecuteUbergraph_Widget_PopupToggleSelect.K2Node_CustomEvent_ChildIndex) = ChildIndex;
-L18:           this->ExecuteUbergraph_Widget_PopupToggleSelect(817);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnChildSelected;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PopupToggleSelect, from label L817;
 ============ END FUNCTION OnChildSelected ==============
 
 
@@ -45,7 +47,9 @@ L18:           this->ExecuteUbergraph_Widget_PopupToggleSelect(817);
 
 
 ============ BEGIN FUNCTION NotifyPopupConfirmed ==============
-L0:            this->ExecuteUbergraph_Widget_PopupToggleSelect(845);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: NotifyPopupConfirmed;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PopupToggleSelect, from label L845;
 ============ END FUNCTION NotifyPopupConfirmed ==============
 
 
@@ -53,7 +57,9 @@ L0:            this->ExecuteUbergraph_Widget_PopupToggleSelect(845);
 
 
 ============ BEGIN FUNCTION NotifyPopupCanceled ==============
-L0:            this->ExecuteUbergraph_Widget_PopupToggleSelect(1080);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: NotifyPopupCanceled;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PopupToggleSelect, from label L1080;
 ============ END FUNCTION NotifyPopupCanceled ==============
 
 
@@ -72,34 +78,36 @@ L177:          mWidget_PopupContentImageButton->NotifyPopupContentIndexSelect.Ad
 L218:          KismetArrayLibrary->Array_Get([ref] this->mSelectionWidgets, Temp_int_Array_Index_Variable, [ref] mUserWidget);
 L277:          PanelSlot* mPanelSlot = this->mSlot->AddChild(mUserWidget);
 L328:          goto ExecutionFlow.Pop();
-L329:          int32 mint32 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L329:          int32 mint32 = Temp_int_Loop_Counter_Variable + 1;
 L371:          int32 Temp_int_Loop_Counter_Variable = mint32;
 L398:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mSelectionWidgets);
-L457:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L457:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint321;
 L495:          if (!mbool1) goto ExecutionFlow.Pop();
 L505:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L532:          goto L15;
 L537:          Temp_int_Array_Index_Variable = 0;
 L560:          goto L398;
-L565:          TScriptInterface<FGPopupInstigatorInterface> mTScriptInterface<FGPopupInstigatorInterface> = QueryInterface<Class /Script/FactoryGame.FGPopupInstigatorInterface>(this->mInstigator);
-L601:          bool mbool2 = mTScriptInterface<FGPopupInstigatorInterface>;
+L565:          TScriptInterface<FGPopupInstigatorInterface> mTScriptInterfaceFGPopupInstigatorInterface = QueryInterface<Class /Script/FactoryGame.FGPopupInstigatorInterface>(this->mInstigator);
+L601:          bool mbool2 = mTScriptInterfaceFGPopupInstigatorInterface;
 L630:          if (!mbool2) goto ExecutionFlow.Pop();
-L640:          TSubclassOf<Widget_PopupToggleSelect> mTSubclassOf<Widget_PopupToggleSelect> = GameplayStatics->GetObjectClass(this);
-L683:          GetInterfaceUObject(mTScriptInterface<FGPopupInstigatorInterface>)->WidgetFactory(mTSubclassOf<Widget_PopupToggleSelect>, [ref] mTArray<UserWidget>);
-L738:          this->mSelectionWidgets = mTArray<UserWidget>;
+L640:          TSubclassOf<Widget_PopupToggleSelect> mTSubclassOfWidget_PopupToggleSelect = GameplayStatics->GetObjectClass(this);
+L683:          GetInterfaceUObject(mTScriptInterfaceFGPopupInstigatorInterface)->WidgetFactory(mTSubclassOfWidget_PopupToggleSelect, [ref] mTArrayUserWidget);
+L738:          this->mSelectionWidgets = mTArrayUserWidget;
 L765:          Temp_int_Loop_Counter_Variable = 0;
 L788:          goto L537;
 L793:          this->mInstigator = mObject;
 L812:          goto L565;
 L817:          this->mSelectedChild = mint322;
 L844:          goto ExecutionFlow.Pop();
+L845:          // <Begin Inlined EventGraph Function NotifyPopupConfirmed>;
 L845:          bool mbool3 = KismetSystemLibrary->IsValid(this->mInstigator);
 L896:          if (!mbool3) goto ExecutionFlow.Pop();
-L906:          TScriptInterface<FGPopupInstigatorInterface> mTScriptInterface<FGPopupInstigatorInterface>1 = QueryInterface<Class /Script/FactoryGame.FGPopupInstigatorInterface>(this->mInstigator);
-L942:          bool mbool4 = mTScriptInterface<FGPopupInstigatorInterface>1;
+L906:          TScriptInterface<FGPopupInstigatorInterface> mTScriptInterfaceFGPopupInstigatorInterface1 = QueryInterface<Class /Script/FactoryGame.FGPopupInstigatorInterface>(this->mInstigator);
+L942:          bool mbool4 = mTScriptInterfaceFGPopupInstigatorInterface1;
 L971:          if (!mbool4) goto ExecutionFlow.Pop();
-L981:          TSubclassOf<Widget_PopupToggleSelect> mTSubclassOf<Widget_PopupToggleSelect>1 = GameplayStatics->GetObjectClass(this);
-L1024:         GetInterfaceUObject(mTScriptInterface<FGPopupInstigatorInterface>1)->NotifyPopupClosed(mTSubclassOf<Widget_PopupToggleSelect>1, this->mSelectedChild);
+L981:          TSubclassOf<Widget_PopupToggleSelect> mTSubclassOfWidget_PopupToggleSelect1 = GameplayStatics->GetObjectClass(this);
+L1024:         GetInterfaceUObject(mTScriptInterfaceFGPopupInstigatorInterface1)->NotifyPopupClosed(mTSubclassOfWidget_PopupToggleSelect1, this->mSelectedChild);
 L1079:         goto ExecutionFlow.Pop();
+L1080:         // <Begin Inlined EventGraph Function NotifyPopupCanceled>;
 L1080:         goto ExecutionFlow.Pop();
 ============ END FUNCTION ExecuteUbergraph_Widget_PopupToggleSelect ==============

@@ -7,7 +7,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_
 
 
 ============ BEGIN FUNCTION UpdateSliderValue ==============
-L0:            float mfloat = Divide_FloatFloat(Value, 360);
+L0:            float mfloat = Value / 360;
 L42:           uint8 Temp_byte_Variable = this->mSliderType;
 L69:           this->mSlider->SetValue(switch (Temp_byte_Variable) {
 case 0 -> mfloat;
@@ -34,11 +34,11 @@ L416:          this->mInputText->SetText(mFText);
 ============ BEGIN FUNCTION UpdateSliderMaterial ==============
 L0:            float LocalHue = Hue;
 L27:           float LocalSecondaryValue = SecondaryValue;
-L54:           bool mbool = NotEqual_ByteByte(this->mSliderType, 1);
+L54:           bool mbool = this->mSliderType != 1;
 L85:           if (!mbool) goto L149;
-L99:           mbool = NotEqual_ByteByte(this->mSliderType, 2);
+L99:           mbool = this->mSliderType != 2;
 L130:          if (!mbool) goto L149;
-L144:          <End of Inlined Event Graph Function>;
+L144:          // <End Inlined EventGraph Function>;
 L149:          MaterialInstanceDynamic* mMaterialInstanceDynamic = this->SliderBackground->GetDynamicMaterial();
 L191:          LinearColor mLinearColor = HSVToRGB(LocalHue, 1, 1, 1);
 L243:          mMaterialInstanceDynamic->SetVectorParameterValue("Color", mLinearColor);
@@ -50,8 +50,9 @@ L297:          mMaterialInstanceDynamic->SetScalarParameterValue("SecondaryValue
 
 
 ============ BEGIN FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_109_OnFloatValueChangedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_ColorPicker_SLider.Widget_ColorPicker_Slider_C:ExecuteUbergraph_Widget_ColorPicker_Slider.K2Node_ComponentBoundEvent_Value) = Value;
-L18:           this->ExecuteUbergraph_Widget_ColorPicker_Slider(10);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__Slider_0_K2Node_ComponentBoundEvent_109_OnFloatValueChangedEvent__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ColorPicker_Slider, from label L10;
 ============ END FUNCTION BndEvt__Slider_0_K2Node_ComponentBoundEvent_109_OnFloatValueChangedEvent__DelegateSignature ==============
 
 
@@ -59,9 +60,9 @@ L18:           this->ExecuteUbergraph_Widget_ColorPicker_Slider(10);
 
 
 ============ BEGIN FUNCTION BndEvt__mInputText_K2Node_ComponentBoundEvent_270_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_ColorPicker_SLider.Widget_ColorPicker_Slider_C:ExecuteUbergraph_Widget_ColorPicker_Slider.K2Node_ComponentBoundEvent_Text) = text;
-L18:           PERSISTENT_FRAME(ByteProperty /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_ColorPicker_SLider.Widget_ColorPicker_Slider_C:ExecuteUbergraph_Widget_ColorPicker_Slider.K2Node_ComponentBoundEvent_CommitMethod) = CommitMethod;
-L36:           this->ExecuteUbergraph_Widget_ColorPicker_Slider(575);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__mInputText_K2Node_ComponentBoundEvent_270_OnEditableTextBoxCommittedEvent__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_ColorPicker_Slider, from label L575;
 ============ END FUNCTION BndEvt__mInputText_K2Node_ComponentBoundEvent_270_OnEditableTextBoxCommittedEvent__DelegateSignature ==============
 
 
@@ -69,8 +70,9 @@ L36:           this->ExecuteUbergraph_Widget_ColorPicker_Slider(575);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/ColorPicker/Widget_ColorPicker_SLider.Widget_ColorPicker_Slider_C:ExecuteUbergraph_Widget_ColorPicker_Slider.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_ColorPicker_Slider(808);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ColorPicker_Slider, from label L808;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -78,7 +80,7 @@ L18:           this->ExecuteUbergraph_Widget_ColorPicker_Slider(808);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_ColorPicker_Slider ==============
-L10:           float mfloat = Multiply_FloatFloat(mfloat1, 360);
+L10:           float mfloat = mfloat1 * 360;
 L52:           int32 mint32 = Round(mfloat);
 L89:           float mfloat2 = Conv_IntToFloat(mint32);
 L126:          uint8 Temp_byte_Variable = this->mSliderType;
@@ -89,7 +91,7 @@ case 2 -> mfloat1;
 default -> mfloat3;
 }, 0, false, true, 1, 3, 0, 2);
 L297:          this->mInputText->SetText(mFText);
-L338:          mfloat = Multiply_FloatFloat(mfloat1, 360);
+L338:          mfloat = mfloat1 * 360;
 L380:          mint32 = Round(mfloat);
 L417:          mfloat2 = Conv_IntToFloat(mint32);
 L454:          Temp_byte_Variable = this->mSliderType;
@@ -99,17 +101,17 @@ case 1 -> mfloat1;
 case 2 -> mfloat1;
 default -> mfloat3;
 });
-L570:          <End of Inlined Event Graph Function>;
-L575:          bool mbool = EqualEqual_ByteByte(muint8, 1);
+L570:          // <End Inlined EventGraph Function>;
+L575:          bool mbool = muint8 == 1;
 L606:          if (!mbool) goto L998;
 L620:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mconst FText);
 L679:          int32 mint321 = KismetStringLibrary->Conv_StringToInt(mFString);
 L738:          float mfloat4 = Conv_IntToFloat(mint321);
 L775:          this->OnValueChanged->ProcessMulticastDelegate(mfloat4);
-L803:          <End of Inlined Event Graph Function>;
-L808:          MaterialInterface* Temp_object_Variable = Material_UI_ColorPicker_Brightness;
-L827:          MaterialInterface* Temp_object_Variable1 = Material_UI_ColorPicker_Saturation;
-L846:          MaterialInterface* Temp_object_Variable2 = Material_UI_ColorPicker_Hue;
+L803:          // <End Inlined EventGraph Function>;
+L808:          MaterialInterface* Temp_object_Variable = ObjectConst(Material /Game/FactoryGame/Interface/UI/Material/Material_UI_ColorPicker_Brightness.Material_UI_ColorPicker_Brightness);
+L827:          MaterialInterface* Temp_object_Variable1 = ObjectConst(Material /Game/FactoryGame/Interface/UI/Material/Material_UI_ColorPicker_Saturation.Material_UI_ColorPicker_Saturation);
+L846:          MaterialInterface* Temp_object_Variable2 = ObjectConst(Material /Game/FactoryGame/Interface/UI/Material/Material_UI_ColorPicker_Hue.Material_UI_ColorPicker_Hue);
 L865:          uint8 Temp_byte_Variable1 = this->mSliderType;
 L892:          this->SliderBackground->SetBrushFromMaterial(switch (Temp_byte_Variable1) {
 case 0 -> Temp_object_Variable2;

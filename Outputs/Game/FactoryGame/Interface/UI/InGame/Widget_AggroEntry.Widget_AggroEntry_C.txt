@@ -13,30 +13,30 @@ L28:           int32 indexToAdd = -1;
 L51:           int32 Temp_int_Loop_Counter_Variable = 0;
 L74:           int32 Temp_int_Array_Index_Variable = 0;
 L97:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] allEntries);
-L156:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L156:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L194:          if (!mbool) goto L669;
 L208:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L235:          ExecutionFlow.Push(L904);
 L240:          KismetArrayLibrary->Array_Get([ref] allEntries, Temp_int_Array_Index_Variable, [ref] mAggroEntry);
 L299:          float mfloat = this->AIController->GetTargetingDesireFromAggroEntry(mAggroEntry);
 L358:          int32 mint321 = KismetArrayLibrary->Array_Find([ref] indexesAdded, [ref] Temp_int_Array_Index_Variable);
-L426:          bool mbool1 = EqualEqual_IntInt(mint321, -1);
-L460:          bool mbool2 = Greater_FloatFloat(mfloat, maxAggro);
-L498:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L426:          bool mbool1 = mint321 == -1;
+L460:          bool mbool2 = mfloat > maxAggro;
+L498:          bool mbool3 = mbool2 && mbool1;
 L536:          if (!mbool3) goto ExecutionFlow.Pop();
 L546:          maxAggro = mfloat;
 L573:          indexToAdd = Temp_int_Array_Index_Variable;
 L600:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] indexesAdded, [ref] indexToAdd);
 L668:          goto ExecutionFlow.Pop();
-L669:          bool mbool4 = NotEqual_IntInt(indexToAdd, -1);
+L669:          bool mbool4 = indexToAdd != -1;
 L703:          if (!mbool4) goto L872;
 L717:          KismetArrayLibrary->Array_Get([ref] allEntries, indexToAdd, [ref] mAggroEntry1);
 L776:          int32 mint323 = KismetArrayLibrary->Array_Add([ref] localSortedEntries, [ref] mAggroEntry1);
 L844:          indexToAdd = -1;
 L867:          goto L51;
 L872:          TArray<AggroEntry> sortedEntries = localSortedEntries;
-L899:          <End of Inlined Event Graph Function>;
-L904:          int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L899:          // <End Inlined EventGraph Function>;
+L904:          int32 mint324 = Temp_int_Loop_Counter_Variable + 1;
 L946:          Temp_int_Loop_Counter_Variable = mint324;
 L973:          goto L97;
 ============ END FUNCTION GetSortedAggroEntries ==============
@@ -50,37 +50,37 @@ L0:            ExecutionFlow.Push(L1268);
 L5:            int32 Temp_int_Loop_Counter_Variable1 = 0;
 L28:           int32 Temp_int_Array_Index_Variable = 0;
 L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mEntries);
-L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint32);
+L110:          bool mbool = Temp_int_Loop_Counter_Variable1 < mint32;
 L148:          if (!mbool) goto L314;
 L162:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
 L189:          ExecutionFlow.Push(L1194);
 L194:          KismetArrayLibrary->Array_Get([ref] this->mEntries, Temp_int_Array_Index_Variable, [ref] mWidget_AggroText);
 L253:          mWidget_AggroText->text->SetText();
 L313:          goto ExecutionFlow.Pop();
-L314:          this->GetSortedAggroEntries([ref] this->AIController->mAggroEntries, [ref] mTArray<AggroEntry>);
+L314:          this->GetSortedAggroEntries([ref] this->AIController->mAggroEntries, [ref] mTArrayAggroEntry);
 L368:          int32 Temp_int_Loop_Counter_Variable = 0;
 L391:          int32 Temp_int_Array_Index_Variable1 = 0;
-L414:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<AggroEntry>);
-L473:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint321);
+L414:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArrayAggroEntry);
+L473:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint321;
 L511:          if (!mbool1) goto ExecutionFlow.Pop();
 L521:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
 L548:          ExecutionFlow.Push(L1120);
 L553:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->mEntries);
-L612:          bool mbool2 = Less_IntInt(Temp_int_Array_Index_Variable1, mint322);
+L612:          bool mbool2 = Temp_int_Array_Index_Variable1 < mint322;
 L650:          if (!mbool2) goto ExecutionFlow.Pop();
-L660:          KismetArrayLibrary->Array_Get([ref] mTArray<AggroEntry>, Temp_int_Array_Index_Variable1, [ref] mAggroEntry);
+L660:          KismetArrayLibrary->Array_Get([ref] mTArrayAggroEntry, Temp_int_Array_Index_Variable1, [ref] mAggroEntry);
 L719:          AggroEntry localEntry = mAggroEntry;
 L746:          float mfloat = this->AIController->GetTargetingDesireFromAggroEntry(localEntry);
 L805:          Actor* mActor = GetInterfaceUObject(localEntry.aggroTarget)->GetActor();
 L861:          KismetArrayLibrary->Array_Get([ref] this->mEntries, Temp_int_Array_Index_Variable1, [ref] mWidget_AggroText1);
-L920:          FString mFString = KismetNodeHelperLibrary->GetEnumeratorUserFriendlyName(EIgnore, localEntry.Ignore);
+L920:          FString mFString = KismetNodeHelperLibrary->GetEnumeratorUserFriendlyName(ObjectConst(Enum /Script/FactoryGame.EIgnore), localEntry.Ignore);
 L997:          FString mFString1 = KismetSystemLibrary->GetDisplayName(mActor);
 L1056:         mWidget_AggroText1->SetAggroData(mfloat, mFString1, mFString);
 L1119:         goto ExecutionFlow.Pop();
-L1120:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1120:         int32 mint323 = Temp_int_Loop_Counter_Variable + 1;
 L1162:         Temp_int_Loop_Counter_Variable = mint323;
 L1189:         goto L414;
-L1194:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1194:         int32 mint324 = Temp_int_Loop_Counter_Variable1 + 1;
 L1236:         Temp_int_Loop_Counter_Variable1 = mint324;
 L1263:         goto L51;
 ============ END FUNCTION UpdateAggroList ==============
@@ -90,7 +90,9 @@ L1263:         goto L51;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_AggroEntry(15);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_AggroEntry, from label L15;
 ============ END FUNCTION Construct ==============
 
 
@@ -98,9 +100,9 @@ L0:            this->ExecuteUbergraph_Widget_AggroEntry(15);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_AggroEntry.Widget_AggroEntry_C:ExecuteUbergraph_Widget_AggroEntry.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/Widget_AggroEntry.Widget_AggroEntry_C:ExecuteUbergraph_Widget_AggroEntry.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_AggroEntry(366);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_AggroEntry, from label L366;
 ============ END FUNCTION Tick ==============
 
 
@@ -109,16 +111,17 @@ L36:           this->ExecuteUbergraph_Widget_AggroEntry(366);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_AggroEntry ==============
 L5:            goto ComputedJump(EntryPoint);
+L15:           // <Begin Inlined EventGraph Function Construct>;
 L15:           int32 Temp_int_Variable = 0;
-L38:           bool mbool = LessEqual_IntInt(Temp_int_Variable, 4);
+L38:           bool mbool = Temp_int_Variable <= 4;
 L72:           if (!mbool) goto ExecutionFlow.Pop();
 L82:           ExecutionFlow.Push(L292);
 L87:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L111:          Widget_AggroText* mWidget_AggroText = WidgetBlueprintLibrary->Create(this, Widget_AggroText, mPlayerController);
-L172:          VerticalBoxSlot* mVerticalBoxSlot = this->VBox->AddChildToVerticalBox(mWidget_AggroText);
+L111:          Widget_AggroText* mWidget_AggroText = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_AggroText.Widget_AggroText_C), mPlayerController);
+L172:          VerticalBoxSlot* mVerticalBoxSlot = this->vBox->AddChildToVerticalBox(mWidget_AggroText);
 L223:          int32 mint32 = KismetArrayLibrary->Array_Add([ref] this->mEntries, [ref] mWidget_AggroText);
 L291:          goto ExecutionFlow.Pop();
-L292:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L292:          int32 mint321 = Temp_int_Variable + 1;
 L334:          Temp_int_Variable = mint321;
 L361:          goto L38;
 L366:          bool mbool1 = KismetSystemLibrary->IsValid(this->AIController);

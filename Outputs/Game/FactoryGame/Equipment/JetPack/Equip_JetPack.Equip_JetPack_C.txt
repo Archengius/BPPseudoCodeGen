@@ -27,11 +27,11 @@ L0:            float DeltaSeconds = Delta;
 L27:           Pawn* mPawn = this->GetInstigator();
 L47:           Vector mVector = mPawn->GetVelocity();
 L101:          BreakVector(mVector, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
-L147:          bool mbool = GreaterEqual_FloatFloat(mfloat2, this->mVelocityZExtreme);
+L147:          bool mbool = mfloat2 >= this->mVelocityZExtreme;
 L185:          if (!mbool) goto L439;
-L199:          float mfloat3 = Subtract_FloatFloat(1, this->mVelocityZExtremesDamper);
-L241:          float mfloat4 = Multiply_FloatFloat(this->mThrustPower, mfloat3);
-L287:          float mfloat5 = Multiply_FloatFloat(DeltaSeconds, mfloat4);
+L199:          float mfloat3 = 1 - this->mVelocityZExtremesDamper;
+L241:          float mfloat4 = this->mThrustPower * mfloat3;
+L287:          float mfloat5 = DeltaSeconds * mfloat4;
 L333:          float NewZ = mfloat5;
 L360:          Vector mVector1 = MakeVector(0, 0, NewZ);
 L407:          Vector ReturnValue = mVector1;
@@ -39,15 +39,15 @@ L434:          goto L897;
 L439:          Pawn* mPawn1 = this->GetInstigator();
 L459:          Vector mVector2 = mPawn1->GetVelocity();
 L513:          BreakVector(mVector2, [ref] mfloat6, [ref] mfloat7, [ref] mfloat8);
-L559:          float mfloat9 = Multiply_FloatFloat(this->mVelocityZExtreme, -1);
-L601:          bool mbool1 = LessEqual_FloatFloat(mfloat8, mfloat9);
+L559:          float mfloat9 = this->mVelocityZExtreme * -1;
+L601:          bool mbool1 = mfloat8 <= mfloat9;
 L639:          if (!mbool1) goto L819;
-L653:          float mfloat10 = Add_FloatFloat(1, this->mVelocityZExtremesDamper);
-L695:          float mfloat11 = Multiply_FloatFloat(this->mThrustPower, mfloat10);
-L741:          float mfloat12 = Multiply_FloatFloat(DeltaSeconds, mfloat11);
+L653:          float mfloat10 = 1 + this->mVelocityZExtremesDamper;
+L695:          float mfloat11 = this->mThrustPower * mfloat10;
+L741:          float mfloat12 = DeltaSeconds * mfloat11;
 L787:          NewZ = mfloat12;
 L814:          goto L360;
-L819:          float mfloat13 = Multiply_FloatFloat(this->mThrustPower, DeltaSeconds);
+L819:          float mfloat13 = this->mThrustPower * DeltaSeconds;
 L865:          NewZ = mfloat13;
 L892:          goto L360;
 ============ END FUNCTION GetNewVelocityWhenThrusting ==============
@@ -65,14 +65,14 @@ L96:           FGCharacterMovementComponent* mFGCharacterMovementComponent = Cas
 L154:          bool mbool1 = mFGCharacterMovementComponent;
 L183:          if (!mbool1) goto L622;
 L197:          float mfloat = KismetSystemLibrary->GetGameTimeInSeconds(this);
-L248:          bool mbool2 = LessEqual_FloatFloat(this->mThrustCooldown, 0);
-L282:          bool mbool3 = Greater_FloatFloat(this->mCurrentFuel, 0);
+L248:          bool mbool2 = this->mThrustCooldown <= 0;
+L282:          bool mbool3 = this->mCurrentFuel > 0;
 L316:          bool mbool4 = mFGCharacterMovementComponent->IsFalling();
-L362:          float mfloat1 = Subtract_FloatFloat(mfloat, mFGCharacterMovementComponent->mLastJumpTimeStamp);
-L430:          bool mbool5 = GreaterEqual_FloatFloat(mfloat1, this->mJumpBeforeThrustTime);
-L468:          bool mbool6 = BooleanAND(mbool5, mbool4);
-L506:          bool mbool7 = BooleanAND(mbool6, mbool3);
-L544:          bool mbool8 = BooleanAND(mbool7, mbool2);
+L362:          float mfloat1 = mfloat - mFGCharacterMovementComponent->mLastJumpTimeStamp;
+L430:          bool mbool5 = mfloat1 >= this->mJumpBeforeThrustTime;
+L468:          bool mbool6 = mbool5 && mbool4;
+L506:          bool mbool7 = mbool6 && mbool3;
+L544:          bool mbool8 = mbool7 && mbool2;
 L582:          bool ReturnValue = mbool8;
 L601:          goto L633;
 L606:          ReturnValue = false;
@@ -85,7 +85,9 @@ L622:          ReturnValue = false;
 
 
 ============ BEGIN FUNCTION OnStartThrusting ==============
-L0:            this->ExecuteUbergraph_Equip_JetPack(2906);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnStartThrusting;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_JetPack, from label L2906;
 ============ END FUNCTION OnStartThrusting ==============
 
 
@@ -93,7 +95,9 @@ L0:            this->ExecuteUbergraph_Equip_JetPack(2906);
 
 
 ============ BEGIN FUNCTION OnStopThrusting ==============
-L0:            this->ExecuteUbergraph_Equip_JetPack(2901);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnStopThrusting;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_JetPack, from label L2901;
 ============ END FUNCTION OnStopThrusting ==============
 
 
@@ -101,8 +105,9 @@ L0:            this->ExecuteUbergraph_Equip_JetPack(2901);
 
 
 ============ BEGIN FUNCTION ReceiveTick ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/JetPack/Equip_JetPack.Equip_JetPack_C:ExecuteUbergraph_Equip_JetPack.K2Node_Event_DeltaSeconds) = DeltaSeconds;
-L18:           this->ExecuteUbergraph_Equip_JetPack(10);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveTick;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_JetPack, from label L10;
 ============ END FUNCTION ReceiveTick ==============
 
 
@@ -110,8 +115,9 @@ L18:           this->ExecuteUbergraph_Equip_JetPack(10);
 
 
 ============ BEGIN FUNCTION ConsumeFuel ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/JetPack/Equip_JetPack.Equip_JetPack_C:ExecuteUbergraph_Equip_JetPack.K2Node_CustomEvent_delta1) = Delta;
-L18:           this->ExecuteUbergraph_Equip_JetPack(1174);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ConsumeFuel;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_JetPack, from label L1174;
 ============ END FUNCTION ConsumeFuel ==============
 
 
@@ -119,8 +125,9 @@ L18:           this->ExecuteUbergraph_Equip_JetPack(1174);
 
 
 ============ BEGIN FUNCTION RegenerateFuel ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Equipment/JetPack/Equip_JetPack.Equip_JetPack_C:ExecuteUbergraph_Equip_JetPack.K2Node_CustomEvent_Delta) = Delta;
-L18:           this->ExecuteUbergraph_Equip_JetPack(588);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: RegenerateFuel;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_JetPack, from label L588;
 ============ END FUNCTION RegenerateFuel ==============
 
 
@@ -128,7 +135,9 @@ L18:           this->ExecuteUbergraph_Equip_JetPack(588);
 
 
 ============ BEGIN FUNCTION ReceiveBeginPlay ==============
-L0:            this->ExecuteUbergraph_Equip_JetPack(1798);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_JetPack, from label L1798;
 ============ END FUNCTION ReceiveBeginPlay ==============
 
 
@@ -136,7 +145,9 @@ L0:            this->ExecuteUbergraph_Equip_JetPack(1798);
 
 
 ============ BEGIN FUNCTION WasEquipped ==============
-L0:            this->ExecuteUbergraph_Equip_JetPack(1969);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_JetPack, from label L1969;
 ============ END FUNCTION WasEquipped ==============
 
 
@@ -144,7 +155,9 @@ L0:            this->ExecuteUbergraph_Equip_JetPack(1969);
 
 
 ============ BEGIN FUNCTION WasUnEquipped ==============
-L0:            this->ExecuteUbergraph_Equip_JetPack(2896);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasUnEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_JetPack, from label L2896;
 ============ END FUNCTION WasUnEquipped ==============
 
 
@@ -155,68 +168,70 @@ L0:            this->ExecuteUbergraph_Equip_JetPack(2896);
 L10:           this->ReceiveTick(mfloat);
 L29:           bool mbool = this->IsEquipped();
 L49:           if (!mbool) goto L2911;
-L63:           float mfloat1 = Add_FloatFloat(this->mRTPCInterval, mfloat);
+L63:           float mfloat1 = this->mRTPCInterval + mfloat;
 L109:          this->mRTPCInterval = mfloat1;
-L136:          bool mbool1 = Greater_FloatFloat(this->mRTPCInterval, 0.10000000149011612);
+L136:          bool mbool1 = this->mRTPCInterval > 0.10000000149011612;
 L170:          if (!mbool1) goto L267;
 L184:          AkGameplayStatics->SetActorRTPCValue("FG_Tools_JetPack_Fuel", this->mCurrentFuel, 0, this);
 L244:          this->mRTPCInterval = 0;
-L267:          float mfloat2 = Subtract_FloatFloat(this->mThrustCooldown, mfloat);
+L267:          float mfloat2 = this->mThrustCooldown - mfloat;
 L313:          this->mThrustCooldown = mfloat2;
 L340:          if (!this->mIsThrusting) goto L382;
 L354:          this->ConsumeFuel(mfloat);
-L377:          <End of Inlined Event Graph Function>;
-L382:          bool mbool2 = Less_FloatFloat(this->mCurrentFuel, this->mMaxFuel);
+L377:          // <End Inlined EventGraph Function>;
+L382:          bool mbool2 = this->mCurrentFuel < this->mMaxFuel;
 L420:          FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
 L440:          bool mbool3 = mFGCharacterPlayer->CharacterMovement->IsMovingOnGround();
-L508:          bool mbool4 = BooleanAND(mbool3, mbool2);
+L508:          bool mbool4 = mbool3 && mbool2;
 L546:          if (!mbool4) goto L2911;
 L560:          this->RegenerateFuel(mfloat);
-L583:          <End of Inlined Event Graph Function>;
-L588:          bool mbool5 = Greater_FloatFloat(this->mPaidForFuel, 0);
+L583:          // <End Inlined EventGraph Function>;
+L588:          bool mbool5 = this->mPaidForFuel > 0;
 L622:          if (!mbool5) goto L1018;
-L636:          float mfloat3 = Multiply_FloatFloat(this->mMaxFuel, this->mFuelRegenRate);
-L682:          float mfloat4 = Multiply_FloatFloat(mfloat5, mfloat3);
-L728:          float mfloat6 = Subtract_FloatFloat(this->mPaidForFuel, mfloat4);
+L636:          float mfloat3 = this->mMaxFuel * this->mFuelRegenRate;
+L682:          float mfloat4 = mfloat5 * mfloat3;
+L728:          float mfloat6 = this->mPaidForFuel - mfloat4;
 L774:          this->mPaidForFuel = mfloat6;
-L801:          mfloat3 = Multiply_FloatFloat(this->mMaxFuel, this->mFuelRegenRate);
-L847:          mfloat4 = Multiply_FloatFloat(mfloat5, mfloat3);
-L893:          float mfloat7 = Add_FloatFloat(this->mCurrentFuel, mfloat4);
+L801:          mfloat3 = this->mMaxFuel * this->mFuelRegenRate;
+L847:          mfloat4 = mfloat5 * mfloat3;
+L893:          float mfloat7 = this->mCurrentFuel + mfloat4;
 L939:          float mfloat8 = FClamp(mfloat7, 0, 1);
 L986:          this->mCurrentFuel = mfloat8;
-L1013:         <End of Inlined Event Graph Function>;
+L1013:         // <End Inlined EventGraph Function>;
 L1018:         bool mbool6 = this->CanAffordUse();
 L1038:         if (!mbool6) goto L2911;
 L1052:         bool mbool7 = this->HasAuthority();
 L1072:         if (!mbool7) goto L636;
 L1086:         this->ChargeForUse();
-L1096:         float mfloat9 = Add_FloatFloat(this->mPaidForFuel, this->mFuelWorth);
+L1096:         float mfloat9 = this->mPaidForFuel + this->mFuelWorth;
 L1142:         this->mPaidForFuel = mfloat9;
 L1169:         goto L636;
-L1174:         float mfloat10 = Multiply_FloatFloat(this->mMaxFuel, this->mFuelConsumeRate);
-L1220:         float mfloat11 = Multiply_FloatFloat(mfloat12, mfloat10);
-L1266:         float mfloat13 = Subtract_FloatFloat(this->mCurrentFuel, mfloat11);
-L1312:         bool mbool8 = LessEqual_FloatFloat(mfloat13, 0);
+L1174:         float mfloat10 = this->mMaxFuel * this->mFuelConsumeRate;
+L1220:         float mfloat11 = mfloat12 * mfloat10;
+L1266:         float mfloat13 = this->mCurrentFuel - mfloat11;
+L1312:         bool mbool8 = mfloat13 <= 0;
 L1346:         if (!mbool8) goto L1409;
-L1360:         this->mThrustCooldown = Equip_JetPack->ClassDefaultObject->mThrustCooldown;
-L1409:         mfloat10 = Multiply_FloatFloat(this->mMaxFuel, this->mFuelConsumeRate);
-L1455:         mfloat11 = Multiply_FloatFloat(mfloat12, mfloat10);
-L1501:         mfloat13 = Subtract_FloatFloat(this->mCurrentFuel, mfloat11);
+L1360:         this->mThrustCooldown = Equip_JetPack->mThrustCooldown;
+L1409:         mfloat10 = this->mMaxFuel * this->mFuelConsumeRate;
+L1455:         mfloat11 = mfloat12 * mfloat10;
+L1501:         mfloat13 = this->mCurrentFuel - mfloat11;
 L1547:         float mfloat14 = FClamp(mfloat13, 0, 1);
 L1594:         this->mCurrentFuel = mfloat14;
-L1621:         <End of Inlined Event Graph Function>;
+L1621:         // <End Inlined EventGraph Function>;
 L1626:         Pawn* mPawn = this->GetInstigator();
-L1646:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_EQ_JetPack_Deactivate, mPawn, true);
-L1707:         <End of Inlined Event Graph Function>;
+L1646:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/JetPack/Audio/Play_EQ_JetPack_Deactivate.Play_EQ_JetPack_Deactivate), mPawn, true);
+L1707:         // <End Inlined EventGraph Function>;
 L1712:         mPawn = this->GetInstigator();
-L1732:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_EQ_JetPack_Activate, mPawn, true);
-L1793:         <End of Inlined Event Graph Function>;
+L1732:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/JetPack/Audio/Play_EQ_JetPack_Activate.Play_EQ_JetPack_Activate), mPawn, true);
+L1793:         // <End Inlined EventGraph Function>;
+L1798:         // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L1798:         this->ReceiveBeginPlay();
 L1808:         Actor* mActor = this->GetOwner();
 L1828:         FGCharacterPlayer* mFGCharacterPlayer1 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor);
 L1864:         bool mbool9 = mFGCharacterPlayer1;
 L1893:         this->mDefaultAirControl = mFGCharacterPlayer1->CharacterMovement->AirControl;
-L1964:         <End of Inlined Event Graph Function>;
+L1964:         // <End Inlined EventGraph Function>;
+L1969:         // <Begin Inlined EventGraph Function WasEquipped>;
 L1969:         Actor* mActor1 = this->GetOwner();
 L1989:         bool mbool10 = KismetSystemLibrary->IsValid(mActor1);
 L2040:         if (!mbool10) goto L2911;
@@ -232,7 +247,7 @@ L2309:         mActor1 = this->GetOwner();
 L2329:         mFGCharacterPlayer2 = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mActor1);
 L2365:         mbool11 = mFGCharacterPlayer2;
 L2394:         mFGCharacterPlayer2->CharacterMovement->AirControl = this->mThrustAirControl;
-L2465:         <End of Inlined Event Graph Function>;
+L2465:         // <End Inlined EventGraph Function>;
 L2470:         Actor* mActor2 = this->GetOwner();
 L2490:         bool mbool12 = KismetSystemLibrary->IsValid(mActor2);
 L2541:         if (!mbool12) goto L2810;
@@ -245,9 +260,12 @@ L2674:         mFGCharacterPlayer3 = Cast<Class /Script/FactoryGame.FGCharacterP
 L2710:         mbool13 = mFGCharacterPlayer3;
 L2739:         mFGCharacterPlayer3->CharacterMovement->AirControl = this->mDefaultAirControl;
 L2810:         Pawn* mPawn1 = this->GetInstigator();
-L2830:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_EQ_JetPack_Deactivate, mPawn1, true);
-L2891:         <End of Inlined Event Graph Function>;
+L2830:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Equipment/JetPack/Audio/Play_EQ_JetPack_Deactivate.Play_EQ_JetPack_Deactivate), mPawn1, true);
+L2891:         // <End Inlined EventGraph Function>;
+L2896:         // <Begin Inlined EventGraph Function WasUnEquipped>;
 L2896:         goto L2470;
+L2901:         // <Begin Inlined EventGraph Function OnStopThrusting>;
 L2901:         goto L1626;
+L2906:         // <Begin Inlined EventGraph Function OnStartThrusting>;
 L2906:         goto L1712;
 ============ END FUNCTION ExecuteUbergraph_Equip_JetPack ==============

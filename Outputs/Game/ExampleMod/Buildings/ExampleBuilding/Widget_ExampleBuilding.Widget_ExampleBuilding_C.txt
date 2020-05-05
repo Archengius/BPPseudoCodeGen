@@ -1,0 +1,95 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/ExampleMod/Buildings/ExampleBuilding/Widget_ExampleBuilding.Widget_ExampleBuilding_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION GetItemNamesText ==============
+L0:            ExecutionFlow.Push(L1159);
+L5:            Build_ExampleBuilding* mBuild_ExampleBuilding = Cast<BlueprintGeneratedClass /Game/ExampleMod/Buildings/ExampleBuilding/Build_ExampleBuilding.Build_ExampleBuilding_C>(this->mInteractObject);
+L41:           bool mbool = mBuild_ExampleBuilding;
+L70:           TArray<TSubclassOf<FGItemDescriptor>> mTArrayTSubclassOfFGItemDescriptor = [];
+L81:           BlueprintSetLibrary->Set_ToArray([ref] mBuild_ExampleBuilding->ItemTypes, [ref] mTArrayTSubclassOfFGItemDescriptor);
+L153:          int32 Temp_int_Loop_Counter_Variable = 0;
+L176:          int32 Temp_int_Array_Index_Variable = 0;
+L199:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGItemDescriptor);
+L258:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
+L296:          if (!mbool1) goto L588;
+L310:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L337:          ExecutionFlow.Push(L1085);
+L342:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGItemDescriptor, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGItemDescriptor);
+L401:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOfFGItemDescriptor);
+L460:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L519:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] ItemNames, [ref] mFString);
+L587:          goto ExecutionFlow.Pop();
+L588:          FString mFString1 = KismetStringLibrary->JoinStringArray([ref] ItemNames, ", ");
+L651:          FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString1);
+L710:          mFormatArgumentData.ArgumentName = "itemNames";
+L748:          mFormatArgumentData.ArgumentValueType = 4;
+L777:          mFormatArgumentData.ArgumentValue = mFText1;
+L813:          mFormatArgumentData.ArgumentValueInt = 0;
+L845:          mFormatArgumentData.ArgumentValueFloat = 0;
+L877:          mFormatArgumentData.ArgumentValueGender = 0;
+L906:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L926:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
+L1053:         FText ReturnValue = mFText2;
+L1080:         goto L1159;
+L1085:         int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
+L1127:         Temp_int_Loop_Counter_Variable = mint322;
+L1154:         goto L199;
+============ END FUNCTION GetItemNamesText ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetItemCountText ==============
+L0:            Build_ExampleBuilding* mBuild_ExampleBuilding = Cast<BlueprintGeneratedClass /Game/ExampleMod/Buildings/ExampleBuilding/Build_ExampleBuilding.Build_ExampleBuilding_C>(this->mInteractObject);
+L36:           bool mbool = mBuild_ExampleBuilding;
+L65:           mFormatArgumentData.ArgumentName = "itemCount";
+L103:          mFormatArgumentData.ArgumentValueType = 0;
+L132:          mFormatArgumentData.ArgumentValue = ;
+L161:          mFormatArgumentData.ArgumentValueInt = mBuild_ExampleBuilding->ItemAmount;
+L219:          mFormatArgumentData.ArgumentValueFloat = 0;
+L251:          mFormatArgumentData.ArgumentValueGender = 0;
+L280:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L300:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
+L428:          FText ReturnValue = mFText;
+============ END FUNCTION GetItemCountText ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ExampleBuilding, from label L29;
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnWindowClosed ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnWindowClosed;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ExampleBuilding, from label L98;
+============ END FUNCTION OnWindowClosed ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Widget_ExampleBuilding ==============
+L10:           this->OnEscapePressed();
+L24:           // <End Inlined EventGraph Function>;
+L29:           // <Begin Inlined EventGraph Function Construct>;
+L29:           mFScriptDelegate->BindUFunction(this, OnWindowClosed);
+L52:           this->Widget_Window_DarkMode->OnClose.AddUnique(mFScriptDelegate);
+L93:           // <End Inlined EventGraph Function>;
+L98:           // <Begin Inlined EventGraph Function OnWindowClosed>;
+L98:           goto L10;
+============ END FUNCTION ExecuteUbergraph_Widget_ExampleBuilding ==============

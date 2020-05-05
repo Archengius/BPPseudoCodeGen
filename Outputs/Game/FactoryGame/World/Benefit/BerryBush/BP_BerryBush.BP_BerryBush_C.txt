@@ -7,7 +7,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/World/Benefit/BerryBush/BP_BerryBush.BP
 
 
 ============ BEGIN FUNCTION GetDestroyAudioEvent ==============
-L0:            AkAudioEvent* ReturnValue = Play_W_Pickup_Consumable_Foliage_Leaf;
+L0:            AkAudioEvent* ReturnValue = ObjectConst(AkAudioEvent /Game/FactoryGame/World/Environment/Audio/Play_W_Pickup_Consumable_Foliage_Leaf.Play_W_Pickup_Consumable_Foliage_Leaf);
 ============ END FUNCTION GetDestroyAudioEvent ==============
 
 
@@ -15,7 +15,7 @@ L0:            AkAudioEvent* ReturnValue = Play_W_Pickup_Consumable_Foliage_Leaf
 
 
 ============ BEGIN FUNCTION GetDestroyEffect ==============
-L0:            ParticleSystem* ReturnValue = PickupFoliage;
+L0:            ParticleSystem* ReturnValue = ObjectConst(ParticleSystem /Game/FactoryGame/World/Environment/Particle/PickupFoliage.PickupFoliage);
 ============ END FUNCTION GetDestroyEffect ==============
 
 
@@ -57,7 +57,7 @@ L0:            bool ReturnValue = true;
 ============ BEGIN FUNCTION SetupNumBerries ==============
 L0:            bool mbool = this->HasAuthority();
 L20:           if (!mbool) goto L326;
-L34:           bool mbool1 = EqualEqual_IntInt(this->mBerryIndex, -1);
+L34:           bool mbool1 = this->mBerryIndex == -1;
 L68:           if (!mbool1) goto L307;
 L82:           this->FlushNetDormancy();
 L92:           int32 mint32 = KismetArrayLibrary->Array_LastIndex([ref] this->mBerryVariation);
@@ -66,8 +66,8 @@ L193:          this->mBerryIndex = mint321;
 L220:          KismetArrayLibrary->Array_Get([ref] this->mBerryVariation, this->mBerryIndex, [ref] mBerryAlternatives);
 L279:          this->SetNumItems(mBerryAlternatives.NumBerries_3_04E44FA44B4EA4BA85E390AD49D0182C);
 L307:          this->SetupMesh();
-L321:          <End of Inlined Event Graph Function>;
-L326:          bool mbool2 = NotEqual_IntInt(this->mBerryIndex, -1);
+L321:          // <End Inlined EventGraph Function>;
+L326:          bool mbool2 = this->mBerryIndex != -1;
 L360:          if (!mbool2) goto L379;
 L374:          goto L307;
 L379:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimer(this, "SetupNumBerries", 0.10000000149011612, false);
@@ -78,20 +78,22 @@ L379:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimer(this,
 
 
 ============ BEGIN FUNCTION SetupMesh ==============
-L0:            this->StaticMesh->SetMobility(2);
-L38:           this->BushMesh->SetMobility(2);
-L76:           KismetArrayLibrary->Array_Get([ref] this->mBerryVariation, this->mBerryIndex, [ref] mBerryAlternatives);
-L135:          uint8 muint8 = this->GetItemState();
-L163:          uint8 Temp_byte_Variable = muint8;
-L190:          bool mbool = this->BushMesh->SetStaticMesh(switch (Temp_byte_Variable) {
+L0:            bool mbool = this->mBerryIndex >= 0;
+L34:           if (!mbool) goto L547;
+L48:           this->StaticMesh->SetMobility(2);
+L86:           this->BushMesh->SetMobility(2);
+L124:          uint8 muint8 = this->GetItemState();
+L152:          uint8 Temp_byte_Variable = muint8;
+L179:          KismetArrayLibrary->Array_Get([ref] this->mBerryVariation, this->mBerryIndex, [ref] mBerryAlternatives);
+L238:          bool mbool1 = this->BushMesh->SetStaticMesh(switch (Temp_byte_Variable) {
 case 0 -> this->mSeedMesh;
 case 1 -> mBerryAlternatives.BushMesh_5_7036F8324BB7951F7ADED7B09E41EE3B;
 default -> mStaticMesh;
 });
-L300:          KismetArrayLibrary->Array_Get([ref] this->mBerryVariation, this->mBerryIndex, [ref] mBerryAlternatives1);
-L359:          bool mbool1 = this->StaticMesh->SetStaticMesh(mBerryAlternatives1.BerryMesh_7_592ECE8B4AB42BAD1230AEB74FF3C661);
-L423:          this->StaticMesh->SetMobility(0);
-L461:          this->BushMesh->SetMobility(0);
+L348:          KismetArrayLibrary->Array_Get([ref] this->mBerryVariation, this->mBerryIndex, [ref] mBerryAlternatives1);
+L407:          bool mbool2 = this->StaticMesh->SetStaticMesh(mBerryAlternatives1.BerryMesh_7_592ECE8B4AB42BAD1230AEB74FF3C661);
+L471:          this->StaticMesh->SetMobility(0);
+L509:          this->BushMesh->SetMobility(0);
 ============ END FUNCTION SetupMesh ==============
 
 
@@ -99,7 +101,9 @@ L461:          this->BushMesh->SetMobility(0);
 
 
 ============ BEGIN FUNCTION ReceiveBeginPlay ==============
-L0:            this->ExecuteUbergraph_BP_BerryBush(91);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_BP_BerryBush, from label L91;
 ============ END FUNCTION ReceiveBeginPlay ==============
 
 
@@ -107,7 +111,9 @@ L0:            this->ExecuteUbergraph_BP_BerryBush(91);
 
 
 ============ BEGIN FUNCTION UpdateVisiblityState ==============
-L0:            this->ExecuteUbergraph_BP_BerryBush(120);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: UpdateVisiblityState;
+L0:            // Implementation: Function ExecuteUbergraph_BP_BerryBush, from label L120;
 ============ END FUNCTION UpdateVisiblityState ==============
 
 
@@ -118,9 +124,11 @@ L0:            this->ExecuteUbergraph_BP_BerryBush(120);
 L10:           this->SetupMesh();
 L24:           bool mbool = this->IsPickedUp();
 L44:           this->StaticMesh->SetHiddenInGame(mbool, false);
-L86:           <End of Inlined Event Graph Function>;
+L86:           // <End Inlined EventGraph Function>;
+L91:           // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L91:           this->ReceiveBeginPlay();
 L101:          this->SetupNumBerries();
-L115:          <End of Inlined Event Graph Function>;
+L115:          // <End Inlined EventGraph Function>;
+L120:          // <Begin Inlined EventGraph Function UpdateVisiblityState>;
 L120:          goto L10;
 ============ END FUNCTION ExecuteUbergraph_BP_BerryBush ==============

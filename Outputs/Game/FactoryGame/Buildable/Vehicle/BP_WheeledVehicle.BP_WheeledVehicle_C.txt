@@ -71,7 +71,7 @@ L0:            FText ReturnValue = this->mMapText;
 
 
 ============ BEGIN FUNCTION GetActorRepresentationTexture ==============
-L0:            Texture2D* ReturnValue = MapCompass_Icon_tractor;
+L0:            Texture2D* ReturnValue = ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/Map/MapCompass_Icon_tractor.MapCompass_Icon_tractor);
 ============ END FUNCTION GetActorRepresentationTexture ==============
 
 
@@ -161,11 +161,11 @@ L85:           FGTargetPointLinkedList* mFGTargetPointLinkedList1 = this->GetTar
 L105:          FGTargetPoint* mFGTargetPoint = mFGTargetPointLinkedList1->GetCurrentTarget();
 L147:          bool mbool1 = KismetSystemLibrary->IsValid(mFGTargetPoint);
 L198:          bool mbool2 = this->IsSimulated();
-L218:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L218:          bool mbool3 = mbool2 && mbool1;
 L256:          if (!mbool3) goto L650;
 L270:          Vector mVector = this->K2_GetActorLocation();
 L298:          FGTargetPointLinkedList* mFGTargetPointLinkedList2 = this->GetTargetNodeLinkedList();
-L318:          float mfloat = Divide_FloatFloat(this->mTimeSpentOnTarget, this->mRecordInterval);
+L318:          float mfloat = this->mTimeSpentOnTarget / this->mRecordInterval;
 L364:          FGTargetPoint* mFGTargetPoint1 = mFGTargetPointLinkedList2->GetCurrentTarget();
 L406:          float mfloat1 = FClamp(mfloat, 0, 1);
 L453:          Vector mVector1 = mFGTargetPoint1->K2_GetActorLocation();
@@ -202,25 +202,25 @@ L0:            bool ReturnValue = false;
 ============ BEGIN FUNCTION UpdateAudioGear ==============
 L0:            WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
 L20:           int32 mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
-L70:           bool mbool = NotEqual_IntInt(mint32, this->mAudioCurrentGear);
+L70:           bool mbool = mint32 != this->mAudioCurrentGear;
 L108:          if (!mbool) goto L751;
 L122:          mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
 L142:          mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
 L192:          this->mAudioCurrentGear = mint32;
 L219:          if (!this->mIsAudioOnloading) goto L374;
 L233:          float mfloat = this->GetInputAxisValue("MoveForward");
-L274:          bool mbool1 = Less_FloatFloat(mfloat, 0);
+L274:          bool mbool1 = mfloat < 0;
 L308:          if (!mbool1) goto L476;
 L322:          AkGameplayStatics->SetActorRTPCValue(this->mAudioGearRTPC, -1, 0, this);
 L374:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent1 = this->GetVehicleMovementComponent();
 L394:          int32 mint321 = mWheeledVehicleMovementComponent1->GetCurrentGear();
 L444:          this->mAudioPreviousGear = mint321;
-L471:          <End of Inlined Event Graph Function>;
+L471:          // <End Inlined EventGraph Function>;
 L476:          float mfloat1 = Conv_IntToFloat(this->mAudioCurrentGear);
 L513:          AkGameplayStatics->SetActorRTPCValue(this->mAudioGearRTPC, mfloat1, 0, this);
-L569:          bool mbool2 = Greater_IntInt(this->mAudioCurrentGear, 1);
-L603:          bool mbool3 = Greater_IntInt(this->mAudioCurrentGear, this->mAudioPreviousGear);
-L641:          bool mbool4 = BooleanAND(mbool3, mbool2);
+L569:          bool mbool2 = this->mAudioCurrentGear > 1;
+L603:          bool mbool3 = this->mAudioCurrentGear > this->mAudioPreviousGear;
+L641:          bool mbool4 = mbool3 && mbool2;
 L679:          if (!mbool4) goto L374;
 L693:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(this->MPlayVehicleTransmission, this, true);
 L746:          goto L374;
@@ -254,7 +254,7 @@ L131:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent
 L151:          float mfloat1 = RandomFloatInRange(this->mMinSteeringAudioFlutter, this->mMaxSteeringAudioFlutter);
 L197:          float mfloat2 = mWheeledVehicleMovementComponent->GetSteering();
 L247:          float mfloat3 = Abs(mfloat2);
-L284:          bool mbool1 = EqualEqual_FloatFloat(mfloat3, 1);
+L284:          bool mbool1 = mfloat3 == 1;
 L318:          bool Temp_bool_Variable = mbool1;
 L337:          this->mAudioPeakFlutter = switch (Temp_bool_Variable) {
 case false -> mfloat;
@@ -299,7 +299,7 @@ case 15 -> Temp_name_Variable;
 default -> mFName;
 });
 L1288:         this->mTireSoundLoop->SetSwitch(this->mTireSoundSwitchGroup, mFString);
-L1338:         <End of Inlined Event Graph Function>;
+L1338:         // <End Inlined EventGraph Function>;
 L1343:         bool mbool2 = this->GetIsInAir();
 L1363:         if (!mbool2) goto L1435;
 L1377:         this->mTireSoundLoop->SetSwitch(this->mTireSoundSwitchGroup, "Surface_IsInAir");
@@ -313,27 +313,27 @@ L1377:         this->mTireSoundLoop->SetSwitch(this->mTireSoundSwitchGroup, "Sur
 L0:            ExecutionFlow.Push(L1514);
 L5:            ExecutionFlow.Push(L375);
 L10:           WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
-L30:           bool mbool = GreaterEqual_IntInt(this->mSpeedInKMH, 25);
+L30:           bool mbool = this->mSpeedInKMH >= 25;
 L64:           float mfloat = mWheeledVehicleMovementComponent->GetSteering();
 L114:          float mfloat1 = Abs(mfloat);
-L151:          bool mbool1 = EqualEqual_FloatFloat(mfloat1, 1);
-L185:          bool mbool2 = BooleanAND(mbool1, mbool);
+L151:          bool mbool1 = mfloat1 == 1;
+L185:          bool mbool2 = mbool1 && mbool;
 L223:          PhysicalMaterial* mPhysicalMaterial = this->GetCachedSurfaceMaterial();
 L243:          bool mbool3 = KismetSystemLibrary->IsValid(mPhysicalMaterial);
-L294:          bool mbool4 = BooleanAND(mbool2, mbool3);
+L294:          bool mbool4 = mbool2 && mbool3;
 L332:          if (!mbool4) goto L1173;
 L346:          if (!this->mIsUsingGolfCartRPM) goto L1248;
 L360:          if (!this->mIsTopDrifting) goto L1346;
 L374:          goto ExecutionFlow.Pop();
-L375:          bool mbool5 = Greater_FloatFloat(ForwardInputInput, 0);
+L375:          bool mbool5 = ForwardInputInput > 0;
 L409:          PhysicalMaterial* mPhysicalMaterial1 = this->GetCachedSurfaceMaterial();
 L429:          bool mbool6 = KismetSystemLibrary->IsValid(mPhysicalMaterial1);
-L480:          bool mbool7 = Less_IntInt(this->mSpeedInKMH, this->mBurnOutSpeedThres);
-L518:          bool mbool8 = BooleanAND(mbool5, mbool7);
-L556:          bool mbool9 = BooleanAND(mbool8, mbool6);
+L480:          bool mbool7 = this->mSpeedInKMH < this->mBurnOutSpeedThres;
+L518:          bool mbool8 = mbool5 && mbool7;
+L556:          bool mbool9 = mbool8 && mbool6;
 L594:          if (!mbool9) goto L971;
 L608:          float mfloat2 = Conv_IntToFloat(this->mSpeedInKMH);
-L645:          bool mbool10 = GreaterEqual_FloatFloat(mfloat2, this->mCheckValueForBurnOut);
+L645:          bool mbool10 = mfloat2 >= this->mCheckValueForBurnOut;
 L683:          if (!mbool10) goto L971;
 L697:          mfloat2 = Conv_IntToFloat(this->mSpeedInKMH);
 L734:          this->mCheckValueForBurnOut = mfloat2;
@@ -346,7 +346,7 @@ L970:          goto ExecutionFlow.Pop();
 L971:          mfloat2 = Conv_IntToFloat(this->mSpeedInKMH);
 L1008:         this->mCheckValueForBurnOut = mfloat2;
 L1035:         if (!this->mIsBurningOut) goto ExecutionFlow.Pop();
-L1045:         bool mbool11 = LessEqual_FloatFloat(ForwardInputInput, 0);
+L1045:         bool mbool11 = ForwardInputInput <= 0;
 L1079:         if (!mbool11) goto ExecutionFlow.Pop();
 L1089:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(this->mStopBurnOutSound, this, true);
 L1142:         this->StopIsBurningOut = mAkComponent;
@@ -387,7 +387,7 @@ L0:            WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent
 L20:           bool mbool = this->GetIsDrifting();
 L40:           float mfloat = mWheeledVehicleMovementComponent->GetThrottle();
 L90:           bool mbool1 = NearlyEqual_FloatFloat(mfloat, 0, 0.009999999776482582);
-L129:          bool mbool2 = BooleanAND(mbool, mbool1);
+L129:          bool mbool2 = mbool && mbool1;
 L167:          bool ShouldStop = mbool2;
 ============ END FUNCTION ShouldStopVehicle ==============
 
@@ -411,7 +411,7 @@ L0:            float local_throttle = Throttle;
 L27:           bool mbool = this->HasFuel();
 L47:           if (!mbool) goto L93;
 L61:           float adjustedThrottle = local_throttle;
-L88:           <End of Inlined Event Graph Function>;
+L88:           // <End Inlined EventGraph Function>;
 L93:           local_throttle = 0;
 L116:          goto L61;
 ============ END FUNCTION AdjustThrottle ==============
@@ -422,7 +422,7 @@ L116:          goto L61;
 
 ============ BEGIN FUNCTION TogglePathVisibility ==============
 L0:            bool mbool = this->GetPathVisibility();
-L20:           bool mbool1 = Not_PreBool(mbool);
+L20:           bool mbool1 = !mbool;
 L49:           this->SetPathVisibility(mbool1);
 L68:           bool mbool2 = this->GetPathVisibility();
 L88:           FGTargetPointLinkedList* mFGTargetPointLinkedList = this->GetTargetNodeLinkedList();
@@ -435,7 +435,7 @@ L108:          mFGTargetPointLinkedList->SetPathVisibility(mbool2);
 
 ============ BEGIN FUNCTION ToggleAutoPilot ==============
 L0:            this->FlushNetDormancy();
-L10:           bool mbool = Not_PreBool(this->mIsAutoPilotEnabled);
+L10:           bool mbool = !this->mIsAutoPilotEnabled;
 L39:           this->mIsAutoPilotEnabled = mbool;
 ============ END FUNCTION ToggleAutoPilot ==============
 
@@ -445,7 +445,7 @@ L39:           this->mIsAutoPilotEnabled = mbool;
 
 ============ BEGIN FUNCTION TogglePauseRecording ==============
 L0:            this->FlushNetDormancy();
-L10:           bool mbool = Not_PreBool(this->mIsRecording);
+L10:           bool mbool = !this->mIsRecording;
 L39:           this->mIsRecording = mbool;
 L58:           this->OnRep_mIsRecording();
 ============ END FUNCTION TogglePauseRecording ==============
@@ -458,18 +458,18 @@ L58:           this->OnRep_mIsRecording();
 L0:            bool mbool = this->HasFuel();
 L20:           bool mbool1 = KismetSystemLibrary->K2_IsValidTimerHandle(this->mUpdateMovementHandle);
 L71:           bool mbool2 = this->IsSimulated();
-L91:           bool mbool3 = BooleanAND(mbool1, mbool2);
-L129:          bool mbool4 = BooleanAND(mbool3, mbool);
+L91:           bool mbool3 = mbool1 && mbool2;
+L129:          bool mbool4 = mbool3 && mbool;
 L167:          if (!mbool4) goto L544;
 L181:          FloatingPawnMovement* mFloatingPawnMovement = this->GetSimulationComponent();
 L201:          Rotator mRotator = this->K2_GetActorRotation();
 L229:          Vector mVector = GetForwardVector(mRotator);
-L266:          Vector mVector1 = Multiply_VectorFloat(mVector, 800);
+L266:          Vector mVector1 = mVector * 800;
 L308:          mFloatingPawnMovement->AddInputVector(mVector1, false);
 L354:          FloatingPawnMovement* mFloatingPawnMovement1 = this->GetSimulationComponent();
 L374:          float mfloat = Conv_IntToFloat(this->mSpeedLimit);
-L411:          float mfloat1 = Divide_FloatFloat(mfloat, 3.5999999046325684);
-L453:          float mfloat2 = Multiply_FloatFloat(mfloat1, 100);
+L411:          float mfloat1 = mfloat / 3.5999999046325684;
+L453:          float mfloat2 = mfloat1 * 100;
 L495:          mFloatingPawnMovement1->MaxSpeed = mfloat2;
 ============ END FUNCTION TickSimulationMovement ==============
 
@@ -486,7 +486,7 @@ L140:          Rotator mRotator2 = NormalizedDeltaRotator(mRotator1, mRotator);
 L186:          BreakRotator(mRotator2, [ref] mfloat1, [ref] mfloat2, [ref] mfloat3);
 L232:          float mfloat4 = MapRangeUnclamped(mfloat3, -180, 180, 1, -1);
 L289:          float mfloat5 = Abs(mfloat4);
-L326:          bool mbool = Less_FloatFloat(mfloat5, 0.20000000298023224);
+L326:          bool mbool = mfloat5 < 0.20000000298023224;
 L360:          float mfloat6 = SelectFloat(mfloat, mfloat4, mbool);
 L415:          this->mReverseSteering = mfloat6;
 ============ END FUNCTION CalculateReverseSteering ==============
@@ -516,9 +516,9 @@ L113:          if (!mbool) goto L284;
 L127:          mFGTargetPointLinkedList = this->GetTargetNodeLinkedList();
 L147:          mFGTargetPoint = mFGTargetPointLinkedList->GetCurrentTarget();
 L189:          bool mbool1 = mFGTargetPoint->IsTargetSpeedStill();
-L231:          bool mbool2 = Not_PreBool(mbool1);
+L231:          bool mbool2 = !mbool1;
 L260:          bool canMove = mbool2;
-L279:          <End of Inlined Event Graph Function>;
+L279:          // <End Inlined EventGraph Function>;
 L284:          canMove = false;
 ============ END FUNCTION canMove ==============
 
@@ -527,13 +527,13 @@ L284:          canMove = false;
 
 
 ============ BEGIN FUNCTION UpdateEngineLoadSound ==============
-L0:            float mfloat = Multiply_FloatFloat(dt, 1);
-L42:           float mfloat1 = Multiply_FloatFloat(mfloat, this->mAudioSign);
-L88:           float mfloat2 = Add_FloatFloat(this->mEngineLoadTimer, mfloat1);
+L0:            float mfloat = dt * 1;
+L42:           float mfloat1 = mfloat * this->mAudioSign;
+L88:           float mfloat2 = this->mEngineLoadTimer + mfloat1;
 L134:          float mfloat3 = FMin(mfloat2, this->mEngineLoadTimerMax);
 L180:          float mfloat4 = FMax(mfloat3, 0);
 L222:          this->mEngineLoadTimer = mfloat4;
-L249:          bool mbool = EqualEqual_FloatFloat(this->mEngineLoadTimer, this->mEngineLoadTimerMax);
+L249:          bool mbool = this->mEngineLoadTimer == this->mEngineLoadTimerMax;
 L287:          if (!mbool) goto L315;
 L301:          this->DidGearUp();
 ============ END FUNCTION UpdateEngineLoadSound ==============
@@ -546,15 +546,15 @@ L301:          this->DidGearUp();
 L0:            if (!this->mDidSwitchThrottleState) goto L483;
 L14:           WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
 L34:           float mfloat = mWheeledVehicleMovementComponent->GetThrottle();
-L84:           bool mbool = Greater_FloatFloat(mfloat, 0);
+L84:           bool mbool = mfloat > 0;
 L118:          if (!mbool) goto L230;
 L132:          this->mAudioSign = 1;
 L155:          this->StartAccelerating();
 L169:          AkGameplayStatics->SetActorRTPCValue("RTPC_Industrial_Truck_AccelState", 1, 100, this);
-L225:          <End of Inlined Event Graph Function>;
+L225:          // <End Inlined EventGraph Function>;
 L230:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent1 = this->GetVehicleMovementComponent();
 L250:          float mfloat1 = mWheeledVehicleMovementComponent1->GetThrottle();
-L300:          bool mbool1 = Less_FloatFloat(mfloat1, 0);
+L300:          bool mbool1 = mfloat1 < 0;
 L334:          if (!mbool1) goto L390;
 L348:          this->mAudioSign = 1;
 L371:          this->StartAccelerating();
@@ -571,13 +571,13 @@ L427:          AkGameplayStatics->SetActorRTPCValue("RTPC_Industrial_Truck_Accel
 ============ BEGIN FUNCTION UpdateThrottleState ==============
 L0:            WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
 L20:           float mfloat = mWheeledVehicleMovementComponent->GetThrottle();
-L70:           bool mbool = NotEqual_FloatFloat(this->mPreviousThrottleValue, mfloat);
+L70:           bool mbool = this->mPreviousThrottleValue != mfloat;
 L108:          if (!mbool) goto L235;
 L122:          mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
 L142:          mfloat = mWheeledVehicleMovementComponent->GetThrottle();
 L192:          this->mPreviousThrottleValue = mfloat;
 L219:          this->mDidSwitchThrottleState = true;
-L230:          <End of Inlined Event Graph Function>;
+L230:          // <End Inlined EventGraph Function>;
 L235:          this->mDidSwitchThrottleState = false;
 ============ END FUNCTION UpdateThrottleState ==============
 
@@ -586,11 +586,11 @@ L235:          this->mDidSwitchThrottleState = false;
 
 
 ============ BEGIN FUNCTION DidGearDown ==============
-L0:            float mfloat = Multiply_FloatFloat(this->mEngineLoadTimer, 0.699999988079071);
+L0:            float mfloat = this->mEngineLoadTimer * 0.699999988079071;
 L42:           this->mEngineLoadTimer = mfloat;
 L69:           bool mbool = this->GetIsSignificant();
 L89:           bool mbool1 = this->HasFuel();
-L109:          bool mbool2 = BooleanAND(mbool1, mbool);
+L109:          bool mbool2 = mbool1 && mbool;
 L147:          if (!mbool2) goto L214;
 L161:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(this->mEngineRevDown, this, true);
 ============ END FUNCTION DidGearDown ==============
@@ -600,14 +600,14 @@ L161:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(this->
 
 
 ============ BEGIN FUNCTION DidGearUp ==============
-L0:            float mfloat = Multiply_FloatFloat(this->mEngineLoadTimer, 0.5);
-L42:           float mfloat1 = Multiply_FloatFloat(this->mEngineLoadTimerMax, 0.800000011920929);
-L84:           bool mbool = Greater_FloatFloat(this->mEngineLoadTimer, mfloat1);
+L0:            float mfloat = this->mEngineLoadTimer * 0.5;
+L42:           float mfloat1 = this->mEngineLoadTimerMax * 0.800000011920929;
+L84:           bool mbool = this->mEngineLoadTimer > mfloat1;
 L122:          float mfloat2 = SelectFloat(mfloat, this->mEngineLoadTimer, mbool);
 L177:          this->mEngineLoadTimer = mfloat2;
 L204:          bool mbool1 = this->GetIsSignificant();
 L224:          bool mbool2 = this->HasFuel();
-L244:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L244:          bool mbool3 = mbool2 && mbool1;
 L282:          if (!mbool3) goto L349;
 L296:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(this->mEngineRevUp, this, true);
 ============ END FUNCTION DidGearUp ==============
@@ -619,19 +619,19 @@ L296:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(this->
 ============ BEGIN FUNCTION CheckCurrentGear ==============
 L0:            WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
 L20:           int32 mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
-L70:           bool mbool = NotEqual_IntInt(mint32, 0);
-L104:          bool mbool1 = NotEqual_IntInt(mint32, this->mCachedGear);
-L142:          bool mbool2 = BooleanAND(mbool, mbool1);
+L70:           bool mbool = mint32 != 0;
+L104:          bool mbool1 = mint32 != this->mCachedGear;
+L142:          bool mbool2 = mbool && mbool1;
 L180:          if (!mbool2) goto L451;
 L194:          mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
 L214:          mint32 = mWheeledVehicleMovementComponent->GetCurrentGear();
-L264:          bool mbool3 = Greater_IntInt(mint32, this->mCachedGear);
+L264:          bool mbool3 = mint32 > this->mCachedGear;
 L302:          if (!mbool3) goto L432;
 L316:          this->DidGearUp();
 L330:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent1 = this->GetVehicleMovementComponent();
 L350:          int32 mint321 = mWheeledVehicleMovementComponent1->GetCurrentGear();
 L400:          this->mCachedGear = mint321;
-L427:          <End of Inlined Event Graph Function>;
+L427:          // <End Inlined EventGraph Function>;
 L432:          this->DidGearDown();
 L446:          goto L330;
 ============ END FUNCTION CheckCurrentGear ==============
@@ -659,7 +659,7 @@ L414:          AkGameplayStatics->StopAndDestroyComponent(this->mTireSoundLoop);
 
 ============ BEGIN FUNCTION StartSoundLoops ==============
 L0:            if (!this->mDidStartSoundLoops) goto L19;
-L14:           <End of Inlined Event Graph Function>;
+L14:           // <End Inlined EventGraph Function>;
 L19:           bool mbool = this->HasFuel();
 L39:           if (!mbool) goto L424;
 L53:           this->mDidStartSoundLoops = true;
@@ -679,7 +679,7 @@ L397:          this->mTireSoundTimer = mTimerHandle;
 
 
 ============ BEGIN FUNCTION ToggleFreeCamera ==============
-L0:            bool mbool = Not_PreBool(this->mIsFreeCamera);
+L0:            bool mbool = !this->mIsFreeCamera;
 L29:           this->mIsFreeCamera = mbool;
 ============ END FUNCTION ToggleFreeCamera ==============
 
@@ -688,7 +688,7 @@ L29:           this->mIsFreeCamera = mbool;
 
 
 ============ BEGIN FUNCTION GetLookAtDecription ==============
-L0:            bool mbool = EqualEqual_ClassClass(State.State, UseState_WorkBench);
+L0:            bool mbool = State.State == ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/UseState_WorkBench.UseState_WorkBench_C);
 L47:           if (!mbool) goto L484;
 L61:           Controller* mController = byCharacter->GetController();
 L103:          HUDHelpers->GetKeyNameForActionSimple(mController, "Use", this, [ref] mFText);
@@ -698,8 +698,8 @@ L235:          mFormatArgumentData.ArgumentValue = mFText;
 L271:          mFormatArgumentData.ArgumentValueInt = 0;
 L303:          mFormatArgumentData.ArgumentValueFloat = 0;
 L335:          mFormatArgumentData.ArgumentValueGender = 0;
-L364:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L384:          FText mFText1 = KismetTextLibrary->Format(this->mLookAtText, mTArray<FormatArgumentData>);
+L364:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L384:          FText mFText1 = KismetTextLibrary->Format(this->mLookAtText, mTArrayFormatArgumentData);
 L452:          FText ReturnValue = mFText1;
 L479:          goto L557;
 L484:          FText mFText2 = this->GetLookAtDecription(byCharacter, [ref] State);
@@ -716,7 +716,7 @@ L19:           Controller* mController = inCharacter->GetController();
 L61:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mController);
 L97:           bool mbool = mFGPlayerController;
 L126:          if (!mbool) goto L525;
-L140:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L140:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L191:          mBP_RemoteCallObject->ServerOpenVehicleTrunk(this, localCharacter);
 L237:          Controller* mController1 = localCharacter->GetController();
 L279:          FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController1);
@@ -736,13 +736,13 @@ L479:          mFGHUD->OpenInteractUI(this->mInteractWidget, this);
 ============ BEGIN FUNCTION PonderOpeningTrunk ==============
 L0:            FGCharacterPlayer* localCharacter = inCharacter;
 L19:           bool mbool = localCharacter->IsLocallyControlled();
-L65:           bool mbool1 = EqualEqual_ObjectObject(this->mTrunkUser, nullptr);
-L95:           bool mbool2 = EqualEqual_ObjectObject(this->mTrunkUser, localCharacter);
-L133:          bool mbool3 = BooleanOR(mbool2, mbool1);
-L171:          bool mbool4 = BooleanAND(mbool3, mbool);
+L65:           bool mbool1 = this->mTrunkUser == nullptr;
+L95:           bool mbool2 = this->mTrunkUser == localCharacter;
+L133:          bool mbool3 = mbool2 || mbool1;
+L171:          bool mbool4 = mbool3 && mbool;
 L209:          if (!mbool4) goto L265;
 L223:          if (!this->mIsInventoryOpen) goto L242;
-L237:          <End of Inlined Event Graph Function>;
+L237:          // <End Inlined EventGraph Function>;
 L242:          this->OpenVehicleUI(localCharacter);
 ============ END FUNCTION PonderOpeningTrunk ==============
 
@@ -751,9 +751,9 @@ L242:          this->OpenVehicleUI(localCharacter);
 
 
 ============ BEGIN FUNCTION UpdateUseState ==============
-L0:            bool mbool = EqualEqual_ObjectObject(componentHit, this->Box);
+L0:            bool mbool = componentHit == this->Box;
 L38:           if (!mbool) goto L458;
-L52:           FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, UseState_WorkBench);
+L52:           FGBlueprintFunctionLibrary->UpdateUseState([ref] out_useState, ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/UseState_WorkBench.UseState_WorkBench_C));
 L102:          bool mbool1 = byCharacter->IsLocallyControlled();
 L148:          if (!mbool1) goto L860;
 L162:          Controller* mController = byCharacter->GetController();
@@ -766,7 +766,7 @@ L361:          bool mbool3 = mFGHUD;
 L390:          if (!mbool3) goto L860;
 L404:          mFGHUD->SetCrosshairState(5);
 L438:          this->UpdateOutline(true);
-L453:          <End of Inlined Event Graph Function>;
+L453:          // <End Inlined EventGraph Function>;
 L458:          this->UpdateUseState(byCharacter, [ref] atLocation, componentHit, [ref] out_useState);
 L504:          mbool1 = byCharacter->IsLocallyControlled();
 L550:          if (!mbool1) goto L860;
@@ -790,10 +790,10 @@ L855:          goto L453;
 ============ BEGIN FUNCTION OnRep_mIsFollowingPath ==============
 L0:            if (!this->mIsFollowingPath) goto L33;
 L14:           this->StartSoundLoops();
-L28:           <End of Inlined Event Graph Function>;
+L28:           // <End Inlined EventGraph Function>;
 L33:           bool mbool = this->IsDriving();
 L53:           if (!mbool) goto L72;
-L67:           <End of Inlined Event Graph Function>;
+L67:           // <End Inlined EventGraph Function>;
 L72:           this->StopSoundLoops();
 ============ END FUNCTION OnRep_mIsFollowingPath ==============
 
@@ -808,7 +808,7 @@ L65:           this->FlushNetDormancy();
 L75:           int32 mint32 = TargetPoint->GetTargetSpeed();
 L125:          int32 mint321 = Max(mint32, 10);
 L167:          this->mSpeedLimit = mint321;
-L194:          <End of Inlined Event Graph Function>;
+L194:          // <End Inlined EventGraph Function>;
 L199:          this->FlushNetDormancy();
 L209:          this->mSpeedLimit = -1;
 ============ END FUNCTION UpdateSpeedLimit ==============
@@ -818,16 +818,16 @@ L209:          this->mSpeedLimit = -1;
 
 
 ============ BEGIN FUNCTION DoReverseToFreedom ==============
-L0:            float mfloat = Add_FloatFloat(this->mTimeSpentOnTarget, this->mUpdateDelta);
+L0:            float mfloat = this->mTimeSpentOnTarget + this->mUpdateDelta;
 L46:           this->mTimeSpentOnTarget = mfloat;
-L73:           bool mbool = Less_FloatFloat(this->mTimeSpentOnTarget, this->mMaxReverseTime);
+L73:           bool mbool = this->mTimeSpentOnTarget < this->mMaxReverseTime;
 L111:          if (!mbool) goto L280;
 L125:          this->AdjustThrottle(-0.699999988079071, [ref] mfloat1);
 L153:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
 L173:          mWheeledVehicleMovementComponent->SetThrottleInput(mfloat1);
 L214:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent1 = this->GetVehicleMovementComponent();
 L234:          mWheeledVehicleMovementComponent1->SetSteeringInput(this->mReverseSteering);
-L275:          <End of Inlined Event Graph Function>;
+L275:          // <End Inlined EventGraph Function>;
 L280:          this->StopVehicle();
 L294:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateMovementHandle);
 L336:          this->LocationReached->ProcessMulticastDelegate();
@@ -856,7 +856,7 @@ L289:          this->mUpdateMovementHandle = mTimerHandle;
 
 ============ BEGIN FUNCTION CacheSpeedInKMH ==============
 L0:            float mfloat = this->GetForwardSpeed();
-L28:           float mfloat1 = Multiply_FloatFloat(mfloat, 0.035999998450279236);
+L28:           float mfloat1 = mfloat * 0.035999998450279236;
 L70:           int32 mint32 = FTrunc(mfloat1);
 L107:          this->mSpeedInKMH = mint32;
 ============ END FUNCTION CacheSpeedInKMH ==============
@@ -868,7 +868,7 @@ L107:          this->mSpeedInKMH = mint32;
 ============ BEGIN FUNCTION OnRep_mIsRecording ==============
 L0:            if (!this->mIsRecording) goto L38;
 L14:           this->OnStartRecording->ProcessMulticastDelegate();
-L33:           <End of Inlined Event Graph Function>;
+L33:           // <End Inlined EventGraph Function>;
 L38:           this->OnStopRecording->ProcessMulticastDelegate();
 ============ END FUNCTION OnRep_mIsRecording ==============
 
@@ -888,14 +888,14 @@ L115:          this->mUpdateMovementHandle = mTimerHandle;
 
 
 ============ BEGIN FUNCTION TickRecording ==============
-L0:            bool mbool = Not_PreBool(this->mIsMenuOpen);
+L0:            bool mbool = !this->mIsMenuOpen;
 L29:           bool mbool1 = this->HasAuthority();
-L49:           bool mbool2 = BooleanAND(this->mIsRecording, mbool1);
-L87:           bool mbool3 = BooleanAND(mbool2, mbool);
+L49:           bool mbool2 = this->mIsRecording && mbool1;
+L87:           bool mbool3 = mbool2 && mbool;
 L125:          if (!mbool3) goto L301;
-L139:          float mfloat = Add_FloatFloat(this->mRecordCounter, dt);
+L139:          float mfloat = this->mRecordCounter + dt;
 L185:          this->mRecordCounter = mfloat;
-L212:          bool mbool4 = GreaterEqual_FloatFloat(this->mRecordCounter, this->mRecordInterval);
+L212:          bool mbool4 = this->mRecordCounter >= this->mRecordInterval;
 L250:          if (!mbool4) goto L301;
 L264:          this->mRecordCounter = 0;
 L287:          this->PlaceTargetPoint();
@@ -906,19 +906,19 @@ L287:          this->PlaceTargetPoint();
 
 
 ============ BEGIN FUNCTION UpdateVehicleMovement ==============
-L0:            float mfloat = Add_FloatFloat(this->mTimeSpentOnTarget, this->mUpdateDelta);
+L0:            float mfloat = this->mTimeSpentOnTarget + this->mUpdateDelta;
 L46:           this->mTimeSpentOnTarget = mfloat;
 L73:           FGCharacterPlayer* mFGCharacterPlayer = this->GetDriver();
 L93:           bool mbool = KismetSystemLibrary->IsValid(mFGCharacterPlayer);
 L144:          if (!mbool) goto L163;
-L158:          <End of Inlined Event Graph Function>;
+L158:          // <End Inlined EventGraph Function>;
 L163:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
 L183:          mWheeledVehicleMovementComponent->SetHandbrakeInput(false);
 L216:          bool mbool1 = this->HasFuel();
 L236:          bool mbool2 = this->IsSimulated();
-L256:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L256:          bool mbool3 = mbool2 && mbool1;
 L294:          if (!mbool3) goto L775;
-L308:          bool mbool4 = GreaterEqual_FloatFloat(this->mTimeSpentOnTarget, this->mRecordInterval);
+L308:          bool mbool4 = this->mTimeSpentOnTarget >= this->mRecordInterval;
 L346:          if (!mbool4) goto L822;
 L360:          FGTargetPointLinkedList* mFGTargetPointLinkedList = this->GetTargetNodeLinkedList();
 L380:          FGTargetPoint* mFGTargetPoint = mFGTargetPointLinkedList->GetCurrentTarget();
@@ -926,14 +926,14 @@ L422:          Vector mVector = mFGTargetPoint->K2_GetActorLocation();
 L472:          Rotator mRotator = mFGTargetPoint->K2_GetActorRotation();
 L522:          bool mbool5 = this->K2_SetActorLocationAndRotation(mVector, mRotator, false, [ref] mHitResult, true);
 L571:          this->GetTargetDistance([ref] mfloat1);
-L594:          bool mbool6 = Less_FloatFloat(mfloat1, 500);
+L594:          bool mbool6 = mfloat1 < 500;
 L628:          if (!mbool6) goto L822;
 L642:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent1 = this->GetVehicleMovementComponent();
 L662:          mWheeledVehicleMovementComponent1->SetHandbrakeInput(true);
 L695:          this->TargetReached();
 L709:          this->LocationReached->ProcessMulticastDelegate();
 L728:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateMovementHandle);
-L770:          <End of Inlined Event Graph Function>;
+L770:          // <End Inlined EventGraph Function>;
 L775:          this->GatherData();
 L789:          this->UpdateSteering();
 L803:          this->UpdateThrottle();
@@ -987,9 +987,9 @@ L426:          BreakRotator(mRotator2, [ref] mfloat, [ref] mfloat1, [ref] mfloat
 L472:          bool mbool = InRange_FloatFloat(mfloat2, -120, 120, true, true);
 L513:          this->mObjectInFront = mbool;
 L532:          this->GetTargetDistance([ref] mfloat4);
-L555:          bool mbool1 = Less_FloatFloat(mfloat4, this->mReverseMaxDistance);
-L593:          bool mbool2 = Not_PreBool(this->mObjectInFront);
-L622:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L555:          bool mbool1 = mfloat4 < this->mReverseMaxDistance;
+L593:          bool mbool2 = !this->mObjectInFront;
+L622:          bool mbool3 = mbool2 && mbool1;
 L660:          this->mCloseEnoughToReverse = mbool3;
 ============ END FUNCTION GatherData ==============
 
@@ -1018,15 +1018,15 @@ L127:          FGTargetPointLinkedList* mFGTargetPointLinkedList1 = this->GetTar
 L147:          FGTargetPoint* mFGTargetPoint1 = mFGTargetPointLinkedList1->GetLastTarget();
 L189:          bool mbool1 = mFGTargetPoint1->IsTargetSpeedStill();
 L231:          float mfloat = mFGTargetPoint1->GetDistanceTo(this);
-L282:          bool mbool2 = Less_FloatFloat(mfloat, 100);
-L316:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L282:          bool mbool2 = mfloat < 100;
+L316:          bool mbool3 = mbool1 && mbool2;
 L354:          if (!mbool3) goto L476;
 L368:          FGTargetPointLinkedList* mFGTargetPointLinkedList2 = this->GetTargetNodeLinkedList();
 L388:          FGTargetPoint* mFGTargetPoint2 = mFGTargetPointLinkedList2->GetLastTarget();
 L430:          mFGTargetPoint2->IncreaseWaitTime(this->mRecordInterval);
-L471:          <End of Inlined Event Graph Function>;
+L471:          // <End Inlined EventGraph Function>;
 L476:          Transform mTransform = this->GetTransform();
-L504:          Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_VehicleTargetPoint, [ref] mTransform, 0, nullptr);
+L504:          Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/BP_VehicleTargetPoint.BP_VehicleTargetPoint_C), [ref] mTransform, 0, nullptr);
 L568:          int32 mint32 = Abs_Int(this->mSpeedInKMH);
 L605:          KismetSystemLibrary->SetIntPropertyByName(mActor, "mTargetSpeed", mint32);
 L668:          KismetSystemLibrary->SetObjectPropertyByName(mActor, "Instigator", this);
@@ -1071,7 +1071,7 @@ L321:          BP_VehicleTargetPoint* newTarget = localElement;
 
 ============ BEGIN FUNCTION GetTargetDistance ==============
 L0:            Vector mVector = this->K2_GetActorLocation();
-L28:           Vector mVector1 = Subtract_VectorVector(mVector, this->mCurrentDestination);
+L28:           Vector mVector1 = mVector - this->mCurrentDestination;
 L74:           float mfloat = VSize(mVector1);
 L111:          float Distance = mfloat;
 ============ END FUNCTION GetTargetDistance ==============
@@ -1082,25 +1082,25 @@ L111:          float Distance = mfloat;
 
 ============ BEGIN FUNCTION UpdateThrottle ==============
 L0:            float mfloat = Abs(this->mDesiredSteering);
-L37:           bool mbool = Greater_FloatFloat(mfloat, 0.5);
-L71:           bool mbool1 = GreaterEqual_IntInt(this->mSpeedInKMH, 10);
-L105:          bool mbool2 = BooleanAND(mbool1, mbool);
+L37:           bool mbool = mfloat > 0.5;
+L71:           bool mbool1 = this->mSpeedInKMH >= 10;
+L105:          bool mbool2 = mbool1 && mbool;
 L143:          bool localSpeedToHighForTurn = mbool2;
-L162:          bool mbool3 = Greater_IntInt(this->mSpeedInKMH, this->mSpeedLimit);
-L200:          bool mbool4 = NotEqual_IntInt(this->mSpeedLimit, -1);
-L234:          bool mbool5 = BooleanAND(mbool4, mbool3);
+L162:          bool mbool3 = this->mSpeedInKMH > this->mSpeedLimit;
+L200:          bool mbool4 = this->mSpeedLimit != -1;
+L234:          bool mbool5 = mbool4 && mbool3;
 L272:          if (!mbool5) goto L529;
 L286:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
 L306:          mWheeledVehicleMovementComponent->SetThrottleInput(0);
-L343:          bool mbool6 = EqualEqual_IntInt(this->mSpeedLimit, 0);
-L377:          bool mbool7 = GreaterEqual_IntInt(this->mSpeedInKMH, this->mSpeedLimit);
-L415:          bool mbool8 = BooleanOR(mbool6, mbool7);
+L343:          bool mbool6 = this->mSpeedLimit == 0;
+L377:          bool mbool7 = this->mSpeedInKMH >= this->mSpeedLimit;
+L415:          bool mbool8 = mbool6 || mbool7;
 L453:          if (!mbool8) goto L994;
 L467:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent1 = this->GetVehicleMovementComponent();
 L487:          mWheeledVehicleMovementComponent1->SetBrakeInput(1);
-L524:          <End of Inlined Event Graph Function>;
-L529:          bool mbool9 = Not_PreBool(this->mObjectInFront);
-L558:          bool mbool10 = BooleanAND(mbool9, this->mCloseEnoughToReverse);
+L524:          // <End Inlined EventGraph Function>;
+L529:          bool mbool9 = !this->mObjectInFront;
+L558:          bool mbool10 = mbool9 && this->mCloseEnoughToReverse;
 L596:          float mfloat1 = SelectFloat(-1, 1, mbool10);
 L643:          this->AdjustThrottle(mfloat1, [ref] mfloat2);
 L675:          float localThrottle = mfloat2;
@@ -1125,8 +1125,8 @@ L953:          mWheeledVehicleMovementComponent2->SetHandbrakeInput(localSpeedTo
 
 ============ BEGIN FUNCTION UpdateSteering ==============
 L0:            WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = this->GetVehicleMovementComponent();
-L20:           bool mbool = Not_PreBool(this->mObjectInFront);
-L49:           bool mbool1 = BooleanAND(mbool, this->mCloseEnoughToReverse);
+L20:           bool mbool = !this->mObjectInFront;
+L49:           bool mbool1 = mbool && this->mCloseEnoughToReverse;
 L87:           float mfloat = SelectFloat(0, this->mDesiredSteering, mbool1);
 L138:          mWheeledVehicleMovementComponent->SetSteeringInput(mfloat);
 ============ END FUNCTION UpdateSteering ==============
@@ -1136,8 +1136,9 @@ L138:          mWheeledVehicleMovementComponent->SetSteeringInput(mfloat);
 
 
 ============ BEGIN FUNCTION InpActEvt_Use_K2Node_InputActionEvent_6 ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_InputActionEvent_Key6) = Key;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(7756);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpActEvt_Use_K2Node_InputActionEvent_6;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L7756;
 ============ END FUNCTION InpActEvt_Use_K2Node_InputActionEvent_6 ==============
 
 
@@ -1145,8 +1146,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(7756);
 
 
 ============ BEGIN FUNCTION InpActEvt_Reload_K2Node_InputActionEvent_5 ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_InputActionEvent_Key5) = Key;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(7103);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpActEvt_Reload_K2Node_InputActionEvent_5;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L7103;
 ============ END FUNCTION InpActEvt_Reload_K2Node_InputActionEvent_5 ==============
 
 
@@ -1154,8 +1156,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(7103);
 
 
 ============ BEGIN FUNCTION InpActEvt_Jump_Drift_K2Node_InputActionEvent_4 ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_InputActionEvent_Key4) = Key;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6462);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpActEvt_Jump_Drift_K2Node_InputActionEvent_4;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L6462;
 ============ END FUNCTION InpActEvt_Jump_Drift_K2Node_InputActionEvent_4 ==============
 
 
@@ -1163,8 +1166,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6462);
 
 
 ============ BEGIN FUNCTION InpActEvt_Jump_Drift_K2Node_InputActionEvent_3 ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_InputActionEvent_Key3) = Key;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6423);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpActEvt_Jump_Drift_K2Node_InputActionEvent_3;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L6423;
 ============ END FUNCTION InpActEvt_Jump_Drift_K2Node_InputActionEvent_3 ==============
 
 
@@ -1172,8 +1176,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6423);
 
 
 ============ BEGIN FUNCTION InpActEvt_ResourceScanner_ToggleVehicleRecording_K2Node_InputActionEvent_2 ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_InputActionEvent_Key2) = Key;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6156);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpActEvt_ResourceScanner_ToggleVehicleRecording_K2Node_InputActionEvent_2;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L6156;
 ============ END FUNCTION InpActEvt_ResourceScanner_ToggleVehicleRecording_K2Node_InputActionEvent_2 ==============
 
 
@@ -1181,8 +1186,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6156);
 
 
 ============ BEGIN FUNCTION InpActEvt_ResourceScanner_ToggleVehicleRecording_K2Node_InputActionEvent_1 ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_InputActionEvent_Key1) = Key;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(4698);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpActEvt_ResourceScanner_ToggleVehicleRecording_K2Node_InputActionEvent_1;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L4698;
 ============ END FUNCTION InpActEvt_ResourceScanner_ToggleVehicleRecording_K2Node_InputActionEvent_1 ==============
 
 
@@ -1190,8 +1196,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(4698);
 
 
 ============ BEGIN FUNCTION InpActEvt_PrimaryFire_K2Node_InputActionEvent_0 ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_InputActionEvent_Key) = Key;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(4003);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpActEvt_PrimaryFire_K2Node_InputActionEvent_0;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L4003;
 ============ END FUNCTION InpActEvt_PrimaryFire_K2Node_InputActionEvent_0 ==============
 
 
@@ -1199,8 +1206,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(4003);
 
 
 ============ BEGIN FUNCTION SetActorRepresentationColor ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_newColor) = NewColor;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6400);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: SetActorRepresentationColor;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L6400;
 ============ END FUNCTION SetActorRepresentationColor ==============
 
 
@@ -1208,7 +1216,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6400);
 
 
 ============ BEGIN FUNCTION ReceiveBeginPlay ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(6395);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L6395;
 ============ END FUNCTION ReceiveBeginPlay ==============
 
 
@@ -1216,8 +1226,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(6395);
 
 
 ============ BEGIN FUNCTION ReceiveTick ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_DeltaSeconds) = DeltaSeconds;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6371);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveTick;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L6371;
 ============ END FUNCTION ReceiveTick ==============
 
 
@@ -1225,8 +1236,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6371);
 
 
 ============ BEGIN FUNCTION TickVehicleSound ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_CustomEvent_dt) = dt;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(5035);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: TickVehicleSound;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L5035;
 ============ END FUNCTION TickVehicleSound ==============
 
 
@@ -1234,7 +1246,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(5035);
 
 
 ============ BEGIN FUNCTION ServerToggleRecording ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(3257);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ServerToggleRecording;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L3257;
 ============ END FUNCTION ServerToggleRecording ==============
 
 
@@ -1242,8 +1256,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(3257);
 
 
 ============ BEGIN FUNCTION ReceiveUnpossessed ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_OldController) = OldController;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(2163);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveUnpossessed;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L2163;
 ============ END FUNCTION ReceiveUnpossessed ==============
 
 
@@ -1251,15 +1266,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(2163);
 
 
 ============ BEGIN FUNCTION ReceiveHit ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_MyComp) = MyComp;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_Other) = Other;
-L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_OtherComp) = OtherComp;
-L54:           PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_bSelfMoved) = bSelfMoved;
-L72:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_HitLocation) = HitLocation;
-L90:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_HitNormal) = HitNormal;
-L108:          PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_NormalImpulse) = NormalImpulse;
-L126:          PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_Hit) = Hit;
-L144:          this->ExecuteUbergraph_BP_WheeledVehicle(830);
+L144:          // EventGraph implemented function stub;
+L144:          // Function Name: ReceiveHit;
+L144:          // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L830;
 ============ END FUNCTION ReceiveHit ==============
 
 
@@ -1267,7 +1276,9 @@ L144:          this->ExecuteUbergraph_BP_WheeledVehicle(830);
 
 
 ============ BEGIN FUNCTION ReceiveDestroyed ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(1532);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveDestroyed;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L1532;
 ============ END FUNCTION ReceiveDestroyed ==============
 
 
@@ -1275,7 +1286,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(1532);
 
 
 ============ BEGIN FUNCTION ResetImpactSound ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(1567);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ResetImpactSound;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L1567;
 ============ END FUNCTION ResetImpactSound ==============
 
 
@@ -1283,9 +1296,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(1567);
 
 
 ============ BEGIN FUNCTION OnUse ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_byCharacter) = byCharacter;
-L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_state) = State;
-L36:           this->ExecuteUbergraph_BP_WheeledVehicle(1807);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: OnUse;
+L36:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L1807;
 ============ END FUNCTION OnUse ==============
 
 
@@ -1293,7 +1306,9 @@ L36:           this->ExecuteUbergraph_BP_WheeledVehicle(1807);
 
 
 ============ BEGIN FUNCTION Multicast_OpenTrunk ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(2161);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Multicast_OpenTrunk;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L2161;
 ============ END FUNCTION Multicast_OpenTrunk ==============
 
 
@@ -1301,7 +1316,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(2161);
 
 
 ============ BEGIN FUNCTION Multicast_CloseTrunk ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(2162);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Multicast_CloseTrunk;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L2162;
 ============ END FUNCTION Multicast_CloseTrunk ==============
 
 
@@ -1309,8 +1326,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(2162);
 
 
 ============ BEGIN FUNCTION ReceivePossessed ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_NewController) = NewController;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(2399);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceivePossessed;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L2399;
 ============ END FUNCTION ReceivePossessed ==============
 
 
@@ -1318,7 +1336,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(2399);
 
 
 ============ BEGIN FUNCTION ClientClearAIMovment ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(2438);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ClientClearAIMovment;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L2438;
 ============ END FUNCTION ClientClearAIMovment ==============
 
 
@@ -1326,7 +1346,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(2438);
 
 
 ============ BEGIN FUNCTION StartAccelerating ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(2481);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StartAccelerating;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L2481;
 ============ END FUNCTION StartAccelerating ==============
 
 
@@ -1334,7 +1356,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(2481);
 
 
 ============ BEGIN FUNCTION StopAccelerating ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(2560);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StopAccelerating;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L2560;
 ============ END FUNCTION StopAccelerating ==============
 
 
@@ -1342,7 +1366,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(2560);
 
 
 ============ BEGIN FUNCTION UpdateCamera ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(3934);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: UpdateCamera;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L3934;
 ============ END FUNCTION UpdateCamera ==============
 
 
@@ -1350,8 +1376,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(3934);
 
 
 ============ BEGIN FUNCTION WasDocked ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_atStation) = atStation;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(3949);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: WasDocked;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L3949;
 ============ END FUNCTION WasDocked ==============
 
 
@@ -1359,8 +1386,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(3949);
 
 
 ============ BEGIN FUNCTION ServerSetMenuOpen ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_CustomEvent_menuOpen) = menuOpen;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(4079);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ServerSetMenuOpen;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L4079;
 ============ END FUNCTION ServerSetMenuOpen ==============
 
 
@@ -1368,7 +1396,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(4079);
 
 
 ============ BEGIN FUNCTION ServerClearPathRecording ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4421);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ServerClearPathRecording;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L4421;
 ============ END FUNCTION ServerClearPathRecording ==============
 
 
@@ -1376,7 +1406,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4421);
 
 
 ============ BEGIN FUNCTION WasUndocked ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4450);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasUndocked;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L4450;
 ============ END FUNCTION WasUndocked ==============
 
 
@@ -1384,7 +1416,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4450);
 
 
 ============ BEGIN FUNCTION ServerTogglePauseRecording ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4495);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ServerTogglePauseRecording;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L4495;
 ============ END FUNCTION ServerTogglePauseRecording ==============
 
 
@@ -1392,7 +1426,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4495);
 
 
 ============ BEGIN FUNCTION ServerToggleAutoPilot ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4510);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ServerToggleAutoPilot;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L4510;
 ============ END FUNCTION ServerToggleAutoPilot ==============
 
 
@@ -1400,7 +1436,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4510);
 
 
 ============ BEGIN FUNCTION ServerTogglePathVisibility ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4525);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ServerTogglePathVisibility;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L4525;
 ============ END FUNCTION ServerTogglePathVisibility ==============
 
 
@@ -1408,7 +1446,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4525);
 
 
 ============ BEGIN FUNCTION Server_Leave ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4913);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Server_Leave;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L4913;
 ============ END FUNCTION Server_Leave ==============
 
 
@@ -1416,7 +1456,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(4913);
 
 
 ============ BEGIN FUNCTION ReceiveOnVehicleStartup ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(6106);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveOnVehicleStartup;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L6106;
 ============ END FUNCTION ReceiveOnVehicleStartup ==============
 
 
@@ -1424,7 +1466,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(6106);
 
 
 ============ BEGIN FUNCTION ReceiveOnVehicleShutDown ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(6131);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveOnVehicleShutDown;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L6131;
 ============ END FUNCTION ReceiveOnVehicleShutDown ==============
 
 
@@ -1432,7 +1476,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(6131);
 
 
 ============ BEGIN FUNCTION ReceiveOnDriverEnter ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(6401);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveOnDriverEnter;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L6401;
 ============ END FUNCTION ReceiveOnDriverEnter ==============
 
 
@@ -1440,7 +1486,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(6401);
 
 
 ============ BEGIN FUNCTION ReceiveOnDriverLeave ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(6412);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveOnDriverLeave;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L6412;
 ============ END FUNCTION ReceiveOnDriverLeave ==============
 
 
@@ -1448,8 +1496,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(6412);
 
 
 ============ BEGIN FUNCTION InpAxisEvt_MoveForward_K2Node_InputAxisEvent_1 ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_InputAxisEvent_AxisValue1) = AxisValue;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6657);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpAxisEvt_MoveForward_K2Node_InputAxisEvent_1;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L6657;
 ============ END FUNCTION InpAxisEvt_MoveForward_K2Node_InputAxisEvent_1 ==============
 
 
@@ -1457,8 +1506,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(6657);
 
 
 ============ BEGIN FUNCTION InpAxisEvt_MoveRight_K2Node_InputAxisEvent_2 ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_InputAxisEvent_AxisValue) = AxisValue;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(7016);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpAxisEvt_MoveRight_K2Node_InputAxisEvent_2;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L7016;
 ============ END FUNCTION InpAxisEvt_MoveRight_K2Node_InputAxisEvent_2 ==============
 
 
@@ -1466,7 +1516,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(7016);
 
 
 ============ BEGIN FUNCTION Server_Honk ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(7108);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Server_Honk;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L7108;
 ============ END FUNCTION Server_Honk ==============
 
 
@@ -1474,7 +1526,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(7108);
 
 
 ============ BEGIN FUNCTION Multicast_Honk ==============
-L0:            this->ExecuteUbergraph_BP_WheeledVehicle(7123);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Multicast_Honk;
+L0:            // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L7123;
 ============ END FUNCTION Multicast_Honk ==============
 
 
@@ -1482,10 +1536,9 @@ L0:            this->ExecuteUbergraph_BP_WheeledVehicle(7123);
 
 
 ============ BEGIN FUNCTION Client_PlayFoliageDestroyedEffect ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_destroyEffect) = destroyEffect;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_destroyAudioEvent) = destroyAudioEvent;
-L36:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_location) = Location;
-L54:           this->ExecuteUbergraph_BP_WheeledVehicle(7741);
+L54:           // EventGraph implemented function stub;
+L54:           // Function Name: Client_PlayFoliageDestroyedEffect;
+L54:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L7741;
 ============ END FUNCTION Client_PlayFoliageDestroyedEffect ==============
 
 
@@ -1493,8 +1546,9 @@ L54:           this->ExecuteUbergraph_BP_WheeledVehicle(7741);
 
 
 ============ BEGIN FUNCTION OpenVehicleTrunk ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_player1) = Player;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(7746);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OpenVehicleTrunk;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L7746;
 ============ END FUNCTION OpenVehicleTrunk ==============
 
 
@@ -1502,8 +1556,9 @@ L18:           this->ExecuteUbergraph_BP_WheeledVehicle(7746);
 
 
 ============ BEGIN FUNCTION CloseVehicleTrunk ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/Vehicle/BP_WheeledVehicle.BP_WheeledVehicle_C:ExecuteUbergraph_BP_WheeledVehicle.K2Node_Event_player) = Player;
-L18:           this->ExecuteUbergraph_BP_WheeledVehicle(7751);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: CloseVehicleTrunk;
+L18:           // Implementation: Function ExecuteUbergraph_BP_WheeledVehicle, from label L7751;
 ============ END FUNCTION CloseVehicleTrunk ==============
 
 
@@ -1528,10 +1583,10 @@ L123:          goto ExecutionFlow.Pop();
 L124:          this->FlushNetDormancy();
 L134:          this->mIsAtStation = false;
 L145:          goto ExecutionFlow.Pop();
-L146:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L146:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L197:          bool mbool = KismetSystemLibrary->IsValid(mBP_RemoteCallObject);
 L248:          if (!mbool) goto L360;
-L262:          mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L262:          mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L313:          mBP_RemoteCallObject->Client_AddPawnHUD(this->mHUDClass, this);
 L359:          goto ExecutionFlow.Pop();
 L360:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 146, UUID = 1114818605, ExecutionFunction = "ExecuteUbergraph_BP_WheeledVehicle", CallbackTarget = this));
@@ -1549,7 +1604,7 @@ L583:          bool mbool3 = this->UpdateRepresentation();
 L607:          FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController1);
 L643:          bool mbool4 = mFGPlayerController1;
 L672:          if (!mbool4) goto ExecutionFlow.Pop();
-L682:          BP_RemoteCallObject* mBP_RemoteCallObject1 = mFGPlayerController1->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L682:          BP_RemoteCallObject* mBP_RemoteCallObject1 = mFGPlayerController1->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L733:          mBP_RemoteCallObject1->Client_RemovePawnHUD();
 L769:          goto ExecutionFlow.Pop();
 L770:          this->FlushNetDormancy();
@@ -1559,16 +1614,16 @@ L804:          this->FlushNetDormancy();
 L814:          this->mTrunkUser = nullptr;
 L825:          goto L66;
 L830:          int32 mint32 = Abs_Int(this->mSpeedInKMH);
-L867:          bool mbool5 = Greater_IntInt(mint32, 1);
+L867:          bool mbool5 = mint32 > 1;
 L901:          bool mbool6 = this->GetIsSignificant();
-L921:          bool mbool7 = BooleanAND(mbool5, mbool6);
+L921:          bool mbool7 = mbool5 && mbool6;
 L959:          if (!mbool7) goto ExecutionFlow.Pop();
 L969:          float mfloat = mPrimitiveComponent->GetMass();
 L1023:         int32 mint321 = Abs_Int(this->mSpeedInKMH);
 L1060:         float mfloat1 = Conv_IntToFloat(mint321);
 L1097:         Vector mVector = this->GetVelocity();
 L1129:         float mfloat2 = VSize(mVector);
-L1166:         float mfloat3 = Multiply_FloatFloat(mfloat2, mfloat);
+L1166:         float mfloat3 = mfloat2 * mfloat;
 L1212:         bool Temp_bool_Variable4 = this->mUseVehicleImpactForce;
 L1231:         AkGameplayStatics->SetActorRTPCValue(this->RTPCVehicleCrashSpeed, switch (Temp_bool_Variable4) {
 case false -> mfloat1;
@@ -1588,9 +1643,11 @@ L1507:         bool Temp_bool_Has_Been_Initd_Variable = true;
 L1518:         if (!false) goto ExecutionFlow.Pop();
 L1520:         Temp_bool_IsClosed_Variable = true;
 L1531:         goto ExecutionFlow.Pop();
+L1532:         // <Begin Inlined EventGraph Function ReceiveDestroyed>;
 L1532:         this->ReceiveDestroyed();
 L1542:         bool mbool8 = this->RemoveAsRepresentation();
 L1566:         goto ExecutionFlow.Pop();
+L1567:         // <Begin Inlined EventGraph Function ResetImpactSound>;
 L1567:         Temp_bool_IsClosed_Variable = false;
 L1578:         Temp_bool_Has_Been_Initd_Variable = true;
 L1589:         goto ExecutionFlow.Pop();
@@ -1598,7 +1655,7 @@ L1590:         this->UpdateCamera();
 L1604:         this->CacheSpeedInKMH();
 L1618:         this->CheckCurrentGear();
 L1632:         bool mbool9 = this->IsSelfDriving();
-L1652:         bool mbool10 = Not_PreBool(mbool9);
+L1652:         bool mbool10 = !mbool9;
 L1681:         if (!mbool10) goto ExecutionFlow.Pop();
 L1691:         this->ShouldStopVehicle([ref] mbool11);
 L1714:         if (!mbool11) goto L1743;
@@ -1611,11 +1668,11 @@ L1806:         goto ExecutionFlow.Pop();
 L1807:         Rotator mRotator = this->K2_GetActorRotation();
 L1835:         BreakRotator(mRotator, [ref] mfloat5, [ref] mfloat6, [ref] mfloat7);
 L1881:         float mfloat8 = Abs(mfloat5);
-L1918:         bool mbool12 = GreaterEqual_FloatFloat(mfloat8, 80);
+L1918:         bool mbool12 = mfloat8 >= 80;
 L1952:         if (!mbool12) goto L1981;
 L1966:         this->TurnOverVehicle();
 L1980:         goto ExecutionFlow.Pop();
-L1981:         bool mbool13 = EqualEqual_ClassClass(mconst UseState.State, UseState_WorkBench);
+L1981:         bool mbool13 = mconst UseState.State == ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/UseState_WorkBench.UseState_WorkBench_C);
 L2028:         if (!mbool13) goto L2066;
 L2042:         this->PonderOpeningTrunk(mFGCharacterPlayer1);
 L2065:         goto ExecutionFlow.Pop();
@@ -1624,7 +1681,9 @@ L2117:         if (!mbool14) goto L2132;
 L2131:         goto ExecutionFlow.Pop();
 L2132:         this->OnUse(mFGCharacterPlayer1, [ref] mconst UseState);
 L2160:         goto ExecutionFlow.Pop();
+L2161:         // <Begin Inlined EventGraph Function Multicast_OpenTrunk>;
 L2161:         goto ExecutionFlow.Pop();
+L2162:         // <Begin Inlined EventGraph Function Multicast_CloseTrunk>;
 L2162:         goto ExecutionFlow.Pop();
 L2163:         this->ReceiveUnpossessed(mController1);
 L2182:         goto L562;
@@ -1632,23 +1691,26 @@ L2187:         this->ReceiveBeginPlay();
 L2197:         bool mbool15 = this->AddAsRepresentation();
 L2221:         if (!this->mIsAutoPilotEnabled) goto L2260;
 L2235:         bool mbool16 = this->SelfDriverEnter(nullptr);
-L2260:         SpringArmComponent* mSpringArmComponent = this->GetComponentByClass(SpringArmComponent);
+L2260:         SpringArmComponent* mSpringArmComponent = this->GetComponentByClass(ObjectConst(Class /Script/Engine.SpringArmComponent));
 L2289:         bool mbool17 = KismetSystemLibrary->IsValid(mSpringArmComponent);
 L2340:         if (!mbool17) goto ExecutionFlow.Pop();
-L2350:         mSpringArmComponent = this->GetComponentByClass(SpringArmComponent);
+L2350:         mSpringArmComponent = this->GetComponentByClass(ObjectConst(Class /Script/Engine.SpringArmComponent));
 L2379:         this->mSpringArmComponent = mSpringArmComponent;
 L2398:         goto ExecutionFlow.Pop();
 L2399:         this->ReceivePossessed(mController);
 L2418:         goto L437;
 L2423:         this->ToggleFreeCamera();
 L2437:         goto ExecutionFlow.Pop();
+L2438:         // <Begin Inlined EventGraph Function ClientClearAIMovment>;
 L2438:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateMovementHandle);
 L2480:         goto ExecutionFlow.Pop();
+L2481:         // <Begin Inlined EventGraph Function StartAccelerating>;
 L2481:         if (!this->mIsAudioOnloading) goto L2496;
 L2495:         goto ExecutionFlow.Pop();
 L2496:         AkGameplayStatics->SetActorRTPCValue(this->mVehicleAccelerationStateRTPC, 1, 0, this);
 L2548:         this->mIsAudioOnloading = true;
 L2559:         goto ExecutionFlow.Pop();
+L2560:         // <Begin Inlined EventGraph Function StopAccelerating>;
 L2560:         if (!this->mIsUsingNewAudioGears) goto L2764;
 L2574:         AkGameplayStatics->SetActorRTPCValue(this->mVehicleAccelerationStateRTPC, -1, 0, this);
 L2626:         WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent1 = this->GetVehicleMovementComponent();
@@ -1681,16 +1743,17 @@ L3130:         goto L2843;
 L3135:         float mfloat13 = MapRangeUnclamped(this->mEngineLoadTimer, 0, this->mEngineLoadTimerMax, 0, 11);
 L3196:         AkGameplayStatics->SetActorRTPCValue(this->mEngineLoadRTPCName, mfloat13, 0, this);
 L3252:         goto L2858;
+L3257:         // <Begin Inlined EventGraph Function ServerToggleRecording>;
 L3257:         goto L3116;
 L3262:         bool mbool19 = this->IsLocallyControlled();
-L3286:         bool mbool20 = BooleanAND(this->mIsFreeCamera, mbool19);
+L3286:         bool mbool20 = this->mIsFreeCamera && mbool19;
 L3324:         if (!mbool20) goto L3820;
 L3338:         float mfloat14 = this->GetInputAxisValue("Turn");
 L3379:         float mfloat15 = this->GetInputAxisValue("LookUp");
-L3420:         float mfloat16 = Multiply_FloatFloat(mfloat15, -1);
+L3420:         float mfloat16 = mfloat15 * -1;
 L3462:         BreakRotator(this->mSpringArmComponent->RelativeRotation, [ref] mfloat17, [ref] mfloat18, [ref] mfloat19);
-L3530:         float mfloat20 = Add_FloatFloat(mfloat19, mfloat14);
-L3576:         float mfloat21 = Add_FloatFloat(mfloat16, mfloat18);
+L3530:         float mfloat20 = mfloat19 + mfloat14;
+L3576:         float mfloat21 = mfloat16 + mfloat18;
 L3622:         float mfloat22 = ClampAngle(mfloat20, -179, 179);
 L3669:         float mfloat23 = ClampAngle(mfloat21, -89, 89);
 L3716:         Rotator mRotator1 = MakeRotator(0, mfloat23, mfloat22);
@@ -1700,6 +1763,7 @@ L3820:         bool mbool21 = KismetSystemLibrary->IsValid(this->mSpringArmCompo
 L3871:         if (!mbool21) goto ExecutionFlow.Pop();
 L3881:         this->mSpringArmComponent->K2_SetRelativeRotation(this->mDefaultCameraRotation, false, [ref] mHitResult1, false);
 L3933:         goto ExecutionFlow.Pop();
+L3934:         // <Begin Inlined EventGraph Function UpdateCamera>;
 L3934:         if (!this->mIsMenuOpen) goto L3262;
 L3948:         goto ExecutionFlow.Pop();
 L3949:         this->WasDocked(mFGBuildableDockingStation);
@@ -1715,7 +1779,7 @@ L4098:         goto ExecutionFlow.Pop();
 L4099:         Controller* mController2 = this->GetController();
 L4119:         PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController2);
 L4155:         bool mbool25 = mPlayerController;
-L4184:         Widget_RecordMenu* mWidget_RecordMenu = WidgetBlueprintLibrary->Create(this, Widget_RecordMenu, mPlayerController);
+L4184:         Widget_RecordMenu* mWidget_RecordMenu = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/Widget_RecordMenu.Widget_RecordMenu_C), mPlayerController);
 L4245:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_RecordMenu, "mVehicle", this);
 L4300:         this->mRecordMenu = mWidget_RecordMenu;
 L4319:         Controller* mController3 = this->GetController();
@@ -1723,17 +1787,22 @@ L4339:         BPHUDHelpers->PushStackWidget(mController3, this->mRecordMenu, th
 L4394:         this->mIsMenuOpen = true;
 L4405:         this->ServerSetMenuOpen(true);
 L4420:         goto ExecutionFlow.Pop();
+L4421:         // <Begin Inlined EventGraph Function ServerClearPathRecording>;
 L4421:         this->StopRecording();
 L4435:         this->RemoveOldTargets();
 L4449:         goto ExecutionFlow.Pop();
+L4450:         // <Begin Inlined EventGraph Function WasUndocked>;
 L4450:         this->WasUndocked();
 L4460:         bool mbool26 = this->HasAuthority();
 L4480:         if (!mbool26) goto ExecutionFlow.Pop();
 L4490:         goto L124;
+L4495:         // <Begin Inlined EventGraph Function ServerTogglePauseRecording>;
 L4495:         this->TogglePauseRecording();
 L4509:         goto ExecutionFlow.Pop();
+L4510:         // <Begin Inlined EventGraph Function ServerToggleAutoPilot>;
 L4510:         this->ToggleAutoPilot();
 L4524:         goto ExecutionFlow.Pop();
+L4525:         // <Begin Inlined EventGraph Function ServerTogglePathVisibility>;
 L4525:         this->TogglePathVisibility();
 L4539:         goto ExecutionFlow.Pop();
 L4540:         if (!this->mIsMenuOpen) goto ExecutionFlow.Pop();
@@ -1748,11 +1817,12 @@ L4725:         Controller* mController5 = this->GetController();
 L4745:         FGPlayerController* mFGPlayerController2 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController5);
 L4781:         bool mbool28 = mFGPlayerController2;
 L4810:         DisabledInputGate mDisabledInputGate = mFGPlayerController2->GetDisabledInputGate();
-L4860:         bool mbool29 = Not_PreBool(mDisabledInputGate.mVehicleRecording);
+L4860:         bool mbool29 = !mDisabledInputGate.mVehicleRecording;
 L4898:         if (!mbool29) goto ExecutionFlow.Pop();
 L4908:         goto L4099;
+L4913:         // <Begin Inlined EventGraph Function Server_Leave>;
 L4913:         bool mbool30 = this->DriverLeave(this->mIsAutoPilotEnabled);
-L4946:         bool mbool31 = BooleanAND(mbool30, this->mIsAutoPilotEnabled);
+L4946:         bool mbool31 = mbool30 && this->mIsAutoPilotEnabled;
 L4984:         if (!mbool31) goto ExecutionFlow.Pop();
 L4994:         bool mbool32 = this->SelfDriverEnter(nullptr);
 L5019:         goto ExecutionFlow.Pop();
@@ -1762,19 +1832,19 @@ L5035:         bool mbool33 = this->GetIsSignificant();
 L5055:         if (!mbool33) goto ExecutionFlow.Pop();
 L5065:         PhysicalMaterial* mPhysicalMaterial = this->GetCachedSurfaceMaterial();
 L5085:         bool mbool34 = KismetSystemLibrary->IsValid(mPhysicalMaterial);
-L5136:         float mfloat24 = Subtract_FloatFloat(this->mSetMaxClampRangeSpeed, this->mAudioPeakFlutter);
-L5182:         bool mbool35 = Not_PreBool(mbool34);
+L5136:         float mfloat24 = this->mSetMaxClampRangeSpeed - this->mAudioPeakFlutter;
+L5182:         bool mbool35 = !mbool34;
 L5211:         float mfloat25 = Conv_IntToFloat(this->mSpeedInKMH);
-L5248:         bool mbool36 = Greater_FloatFloat(mfloat25, this->mThresholdForAudioFlutterKMH);
+L5248:         bool mbool36 = mfloat25 > this->mThresholdForAudioFlutterKMH;
 L5286:         float mfloat26 = Conv_IntToFloat(this->mSpeedInKMH);
-L5323:         float mfloat27 = Divide_FloatFloat(this->mSetMaxClampSpeed, 2);
+L5323:         float mfloat27 = this->mSetMaxClampSpeed / 2;
 L5365:         float mfloat28 = Conv_IntToFloat(this->mSpeedInKMH);
 L5402:         WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent2 = this->GetVehicleMovementComponent();
 L5422:         float mfloat29 = Abs(mfloat28);
 L5459:         float mfloat30 = mWheeledVehicleMovementComponent2->GetEngineRotationSpeed();
-L5509:         float mfloat31 = Divide_FloatFloat(mfloat29, 2);
+L5509:         float mfloat31 = mfloat29 / 2;
 L5551:         float mfloat32 = MapRangeClamped(mfloat30, 0, 5700, 0, mfloat27);
-L5612:         float mfloat33 = Add_FloatFloat(mfloat32, mfloat31);
+L5612:         float mfloat33 = mfloat32 + mfloat31;
 L5658:         bool Temp_bool_Variable = this->mIsUsingGolfCartRPM;
 L5677:         bool Temp_bool_Variable2 = mbool36;
 L5696:         WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent3 = this->GetVehicleMovementComponent();
@@ -1800,9 +1870,11 @@ case true -> mfloat34;
 default -> mfloat38;
 }, 0, this);
 L6101:         goto L3135;
+L6106:         // <Begin Inlined EventGraph Function ReceiveOnVehicleStartup>;
 L6106:         this->ReceiveOnVehicleStartup();
 L6116:         this->StartSoundLoops();
 L6130:         goto ExecutionFlow.Pop();
+L6131:         // <Begin Inlined EventGraph Function ReceiveOnVehicleShutDown>;
 L6131:         this->ReceiveOnVehicleShutDown();
 L6141:         this->StopSoundLoops();
 L6155:         goto ExecutionFlow.Pop();
@@ -1811,15 +1883,18 @@ L6183:         mController5 = this->GetController();
 L6203:         mFGPlayerController2 = Cast<Class /Script/FactoryGame.FGPlayerController>(mController5);
 L6239:         mbool28 = mFGPlayerController2;
 L6268:         mDisabledInputGate = mFGPlayerController2->GetDisabledInputGate();
-L6318:         mbool29 = Not_PreBool(mDisabledInputGate.mVehicleRecording);
+L6318:         mbool29 = !mDisabledInputGate.mVehicleRecording;
 L6356:         if (!mbool29) goto ExecutionFlow.Pop();
 L6366:         goto L4540;
 L6371:         this->ReceiveTick(mfloat12);
 L6390:         goto L3037;
+L6395:         // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L6395:         goto L2187;
 L6400:         goto ExecutionFlow.Pop();
+L6401:         // <Begin Inlined EventGraph Function ReceiveOnDriverEnter>;
 L6401:         this->ReceiveOnDriverEnter();
 L6411:         goto ExecutionFlow.Pop();
+L6412:         // <Begin Inlined EventGraph Function ReceiveOnDriverLeave>;
 L6412:         this->ReceiveOnDriverLeave();
 L6422:         goto ExecutionFlow.Pop();
 L6423:         Key Temp_struct_Variable1 = mKey2;
@@ -1857,8 +1932,10 @@ L7041:         WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent
 L7061:         mWheeledVehicleMovementComponent5->SetSteeringInput(mfloat42);
 L7102:         goto ExecutionFlow.Pop();
 L7103:         goto L2423;
+L7108:         // <Begin Inlined EventGraph Function Server_Honk>;
 L7108:         this->Multicast_Honk();
 L7122:         goto ExecutionFlow.Pop();
+L7123:         // <Begin Inlined EventGraph Function Multicast_Honk>;
 L7123:         bool mbool41 = this->GetIsSignificant();
 L7143:         if (!mbool41) goto ExecutionFlow.Pop();
 L7153:         if (!this->mCarShouldNotHonk) goto L7168;
@@ -1870,7 +1947,7 @@ L7242:         FGPlayerController* mFGPlayerController4 = Cast<Class /Script/Fac
 L7278:         bool mbool42 = mFGPlayerController4;
 L7307:         if (!mbool42) goto ExecutionFlow.Pop();
 L7317:         DisabledInputGate mDisabledInputGate1 = mFGPlayerController4->GetDisabledInputGate();
-L7367:         bool mbool43 = Not_PreBool(mDisabledInputGate1.mUse);
+L7367:         bool mbool43 = !mDisabledInputGate1.mUse;
 L7405:         if (!mbool43) goto ExecutionFlow.Pop();
 L7415:         goto L6501;
 L7420:         bool mbool44 = this->GetIsSignificant();

@@ -11,7 +11,7 @@ L0:            this->mShowSecondPartsPerMin = ShowSecondPartsPerMin;
 L19:           bool mbool = KismetSystemLibrary->IsValidClass(SecondaryItemDesc);
 L70:           uint8 Temp_byte_Variable = 3;
 L90:           uint8 Temp_byte_Variable1 = 1;
-L110:          bool mbool1 = BooleanAND(this->mShowSecondPartsPerMin, mbool);
+L110:          bool mbool1 = this->mShowSecondPartsPerMin && mbool;
 L148:          bool Temp_bool_Variable = mbool1;
 L167:          this->mSecondPartsPerMin->SetVisibility(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -30,12 +30,12 @@ L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mItemDescrip
 L51:           if (!mbool) goto L3746;
 L65:           uint8 muint8 = FGItemDescriptor->GetForm(this->mItemDescriptor);
 L124:          uint8 LocalForm = muint8;
-L151:          float mfloat = Divide_FloatFloat(60, cycletime);
+L151:          float mfloat = 60 / cycletime;
 L193:          float mfloat1 = FGInventoryLibrary->GetAmountConvertedByForm(NumPerCycle, LocalForm);
-L261:          float mfloat2 = Multiply_FloatFloat(mfloat1, mfloat);
+L261:          float mfloat2 = mfloat1 * mfloat;
 L307:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat2, 0, false, true, 1, 324, 1, 1);
 L390:          this->mNumPerSecond->SetText(mFText);
-L435:          bool mbool1 = NotEqual_ByteByte(LocalForm, 1);
+L435:          bool mbool1 = LocalForm != 1;
 L466:          FText mFText1 = FGInventoryLibrary->GetProductionSuffixFromFormType(LocalForm);
 L525:          mFormatArgumentData.ArgumentName = "suffix";
 L560:          mFormatArgumentData.ArgumentValueType = 4;
@@ -44,9 +44,9 @@ L625:          mFormatArgumentData.ArgumentValueInt = 0;
 L657:          mFormatArgumentData.ArgumentValueFloat = 0;
 L689:          mFormatArgumentData.ArgumentValueGender = 0;
 L718:          bool mbool2 = KismetSystemLibrary->IsValidClass(this->mSecondaryItemDesc);
-L769:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L789:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
-L902:          bool mbool3 = BooleanAND(this->mShowSecondPartsPerMin, mbool2);
+L769:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L789:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
+L902:          bool mbool3 = this->mShowSecondPartsPerMin && mbool2;
 L940:          bool Temp_bool_Variable = mbool3;
 L959:          bool Temp_bool_Variable2 = mbool1;
 L978:          mFormatArgumentData1.ArgumentName = "suffix";
@@ -59,8 +59,8 @@ default -> mFText3;
 L1122:         mFormatArgumentData1.ArgumentValueInt = 0;
 L1154:         mFormatArgumentData1.ArgumentValueFloat = 0;
 L1186:         mFormatArgumentData1.ArgumentValueGender = 0;
-L1215:         TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData1];
-L1235:         FText mFText4 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L1215:         TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [mFormatArgumentData1];
+L1235:         FText mFText4 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
 L1353:         FText mFText5 = FGInventoryLibrary->GetProductionSuffixFromFormType(LocalForm);
 L1412:         mFormatArgumentData2.ArgumentName = "suffix";
 L1447:         mFormatArgumentData2.ArgumentValueType = 4;
@@ -68,8 +68,8 @@ L1476:         mFormatArgumentData2.ArgumentValue = mFText5;
 L1512:         mFormatArgumentData2.ArgumentValueInt = 0;
 L1544:         mFormatArgumentData2.ArgumentValueFloat = 0;
 L1576:         mFormatArgumentData2.ArgumentValueGender = 0;
-L1605:         TArray<FormatArgumentData> mTArray<FormatArgumentData>2 = [mFormatArgumentData2];
-L1625:         FText mFText6 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>2);
+L1605:         TArray<FormatArgumentData> mTArrayFormatArgumentData2 = [mFormatArgumentData2];
+L1625:         FText mFText6 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData2);
 L1743:         this->mPerMinuteText->SetText(switch (Temp_bool_Variable) {
 case false -> mFText6;
 case true -> mFText4;
@@ -85,10 +85,10 @@ L2214:         FString mFString1 = KismetTextLibrary->Conv_TextToString([ref] mF
 L2273:         float mfloat4 = KismetStringLibrary->Conv_StringToFloat(mFString1);
 L2332:         this->mPowerConsumption->mManufacturingStat = mfloat4;
 L2381:         bool mbool4 = KismetSystemLibrary->IsValidClass(this->mSecondaryItemDesc);
-L2432:         bool mbool5 = BooleanAND(this->mShowSecondPartsPerMin, mbool4);
+L2432:         bool mbool5 = this->mShowSecondPartsPerMin && mbool4;
 L2470:         if (!mbool5) goto L3771;
 L2484:         uint8 muint81 = FGItemDescriptor->GetForm(this->mSecondaryItemDesc);
-L2543:         bool mbool6 = NotEqual_ByteByte(muint81, 1);
+L2543:         bool mbool6 = muint81 != 1;
 L2574:         bool Temp_bool_Variable1 = mbool6;
 L2593:         FText mFText10 = FGInventoryLibrary->GetProductionSuffixFromFormType(muint81);
 L2652:         mFormatArgumentData3.ArgumentName = "suffix";
@@ -97,8 +97,8 @@ L2716:         mFormatArgumentData3.ArgumentValue = mFText10;
 L2752:         mFormatArgumentData3.ArgumentValueInt = 0;
 L2784:         mFormatArgumentData3.ArgumentValueFloat = 0;
 L2816:         mFormatArgumentData3.ArgumentValueGender = 0;
-L2845:         TArray<FormatArgumentData> mTArray<FormatArgumentData>3 = [mFormatArgumentData3];
-L2865:         FText mFText11 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>3);
+L2845:         TArray<FormatArgumentData> mTArrayFormatArgumentData3 = [mFormatArgumentData3];
+L2865:         FText mFText11 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData3);
 L2978:         mFormatArgumentData4.ArgumentName = "suffix";
 L3013:         mFormatArgumentData4.ArgumentValueType = 4;
 L3042:         mFormatArgumentData4.ArgumentValue = switch (Temp_bool_Variable1) {
@@ -109,16 +109,16 @@ default -> mFText12;
 L3122:         mFormatArgumentData4.ArgumentValueInt = 0;
 L3154:         mFormatArgumentData4.ArgumentValueFloat = 0;
 L3186:         mFormatArgumentData4.ArgumentValueGender = 0;
-L3215:         TArray<FormatArgumentData> mTArray<FormatArgumentData>4 = [mFormatArgumentData4];
-L3235:         FText mFText13 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>4);
+L3215:         TArray<FormatArgumentData> mTArrayFormatArgumentData4 = [mFormatArgumentData4];
+L3235:         FText mFText13 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData4);
 L3353:         this->mSecondPerMinText->SetText(mFText13);
 L3398:         uint8 muint82 = FGItemDescriptor->GetForm(this->mSecondaryItemDesc);
 L3457:         float mfloat5 = FGInventoryLibrary->GetAmountConvertedByForm(SecondNumPerCycle, muint82);
-L3525:         float mfloat6 = Divide_FloatFloat(60, cycletime);
-L3567:         float mfloat7 = Multiply_FloatFloat(mfloat5, mfloat6);
+L3525:         float mfloat6 = 60 / cycletime;
+L3567:         float mfloat7 = mfloat5 * mfloat6;
 L3613:         FText mFText14 = KismetTextLibrary->Conv_FloatToText(mfloat7, 0, false, true, 1, 324, 1, 1);
 L3696:         this->mSecondNumPerSec->SetText(mFText14);
-L3741:         <End of Inlined Event Graph Function>;
+L3741:         // <End Inlined EventGraph Function>;
 L3746:         LocalForm = 1;
 L3766:         goto L151;
 ============ END FUNCTION UpdateProductionStats ==============
@@ -128,9 +128,9 @@ L3766:         goto L151;
 
 
 ============ BEGIN FUNCTION UpdateCycleProgress ==============
-L0:            float mfloat = Multiply_FloatFloat(CycleProgress, 10);
+L0:            float mfloat = CycleProgress * 10;
 L42:           int32 mint32 = FTrunc(mfloat);
-L79:           int32 mint321 = Multiply_IntInt(mint32, 10);
+L79:           int32 mint321 = mint32 * 10;
 L121:          FText mFText = KismetTextLibrary->Conv_IntToText(mint321, false, false, 1, 324);
 L192:          mFormatArgumentData.ArgumentName = "A";
 L222:          mFormatArgumentData.ArgumentValueType = 4;
@@ -138,8 +138,8 @@ L251:          mFormatArgumentData.ArgumentValue = mFText;
 L287:          mFormatArgumentData.ArgumentValueInt = 0;
 L319:          mFormatArgumentData.ArgumentValueFloat = 0;
 L351:          mFormatArgumentData.ArgumentValueGender = 0;
-L380:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L400:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L380:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L400:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L503:          this->mPercentageText->SetText(mFText1);
 L548:          this->mProgressBar->mProgressBar->SetPercent(CycleProgress);
 ============ END FUNCTION UpdateCycleProgress ==============
@@ -163,12 +163,12 @@ L5:            this->mSlotContainer->ClearChildren();
 L41:           int32 Temp_int_Loop_Counter_Variable = 0;
 L64:           int32 Temp_int_Array_Index_Variable = 0;
 L87:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] OutputCostSlotData);
-L146:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L146:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L184:          if (!mbool) goto ExecutionFlow.Pop();
 L194:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L221:          ExecutionFlow.Push(L1036);
 L226:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L250:          BPW_OutputInventorySlot* mBPW_OutputInventorySlot = WidgetBlueprintLibrary->Create(this, BPW_OutputInventorySlot, mPlayerController);
+L250:          BPW_OutputInventorySlot* mBPW_OutputInventorySlot = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/-Shared/Widgets/BPW_OutputInventorySlot.BPW_OutputInventorySlot_C), mPlayerController);
 L311:          KismetArrayLibrary->Array_Get([ref] OutputCostSlotData, Temp_int_Array_Index_Variable, [ref] mOutputCostSlotData_Struct);
 L370:          KismetSystemLibrary->SetTextPropertyByName(mBPW_OutputInventorySlot, "mTitle", [ref] mOutputCostSlotData_Struct.Title_3_16865392480E04744923368E818FDF9E);
 L442:          KismetArrayLibrary->Array_Get([ref] OutputCostSlotData, Temp_int_Array_Index_Variable, [ref] mOutputCostSlotData_Struct);
@@ -182,7 +182,7 @@ L878:          KismetSystemLibrary->SetIntPropertyByName(mBPW_OutputInventorySlo
 L950:          HorizontalBoxSlot* mHorizontalBoxSlot = this->mSlotContainer->AddChildToHorizontalBox(mBPW_OutputInventorySlot);
 L1001:         mHorizontalBoxSlot->SetVerticalAlignment(0);
 L1035:         goto ExecutionFlow.Pop();
-L1036:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1036:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L1078:         Temp_int_Loop_Counter_Variable = mint321;
 L1105:         goto L87;
 ============ END FUNCTION GenerateCostSlots ==============
@@ -193,7 +193,7 @@ L1105:         goto L87;
 
 ============ BEGIN FUNCTION GetSlot ==============
 L0:            int32 mint32 = this->mSlotContainer->GetChildrenCount();
-L50:           bool mbool = Less_IntInt(index, mint32);
+L50:           bool mbool = index < mint32;
 L88:           if (!mbool) goto L289;
 L102:          Widget* mWidget = this->mSlotContainer->GetChildAt(index);
 L153:          BPW_OutputInventorySlot* mBPW_OutputInventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/-Shared/Widgets/BPW_OutputInventorySlot.BPW_OutputInventorySlot_C>(mWidget);
@@ -201,7 +201,7 @@ L189:          bool mbool1 = mBPW_OutputInventorySlot;
 L218:          if (!mbool1) goto L289;
 L232:          Widget_InventorySlot* InventorySlot = mBPW_OutputInventorySlot->mInventorySlot;
 L273:          bool success = true;
-L284:          <End of Inlined Event Graph Function>;
+L284:          // <End Inlined EventGraph Function>;
 L289:          InventorySlot = nullptr;
 L300:          success = false;
 ============ END FUNCTION GetSlot ==============
@@ -216,12 +216,12 @@ L5:            this->mSlotContainer->ClearChildren();
 L41:           int32 Temp_int_Loop_Counter_Variable = 0;
 L64:           int32 Temp_int_Array_Index_Variable = 0;
 L87:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] OutputSlotData);
-L146:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L146:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L184:          if (!mbool) goto ExecutionFlow.Pop();
 L194:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L221:          ExecutionFlow.Push(L876);
 L226:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L250:          BPW_OutputInventorySlot* mBPW_OutputInventorySlot = WidgetBlueprintLibrary->Create(this, BPW_OutputInventorySlot, mPlayerController);
+L250:          BPW_OutputInventorySlot* mBPW_OutputInventorySlot = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/-Shared/Widgets/BPW_OutputInventorySlot.BPW_OutputInventorySlot_C), mPlayerController);
 L311:          KismetArrayLibrary->Array_Get([ref] OutputSlotData, Temp_int_Array_Index_Variable, [ref] mOutputSlotData_Struct);
 L370:          KismetSystemLibrary->SetTextPropertyByName(mBPW_OutputInventorySlot, "mTitle", [ref] mOutputSlotData_Struct.Title_3_16865392480E04744923368E818FDF9E);
 L442:          KismetArrayLibrary->Array_Get([ref] OutputSlotData, Temp_int_Array_Index_Variable, [ref] mOutputSlotData_Struct);
@@ -233,7 +233,7 @@ L755:          mHorizontalBoxSlot->SetVerticalAlignment(0);
 L789:          mFScriptDelegate->BindUFunction(this, OnInventorySlotStackMove);
 L812:          mBPW_OutputInventorySlot->mInventorySlot->OnMoveStack.AddUnique(mFScriptDelegate);
 L875:          goto ExecutionFlow.Pop();
-L876:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L876:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L918:          Temp_int_Loop_Counter_Variable = mint321;
 L945:          goto L87;
 ============ END FUNCTION GenerateOutputSlots ==============
@@ -271,7 +271,7 @@ default -> muint81;
 L0:            FText efficiencyDescriptionText = "[object Object]";
 L135:          FText efficiencyTitleText = "[object Object]";
 L203:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L227:          Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController);
+L227:          Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Tooltip.Widget_Tooltip_C), mPlayerController);
 L288:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_Tooltip, "mIsManufacturingStat", true);
 L343:          KismetSystemLibrary->SetTextPropertyByName(mWidget_Tooltip, "mDescriptionText", [ref] efficiencyDescriptionText);
 L406:          KismetSystemLibrary->SetTextPropertyByName(mWidget_Tooltip, "mTitleText", [ref] efficiencyTitleText);
@@ -286,7 +286,7 @@ L469:          Widget* ReturnValue = mWidget_Tooltip;
 L0:            FText productionDescriptionText = "[object Object]";
 L95:           FText productionTitleText = "[object Object]";
 L170:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L194:          Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController);
+L194:          Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Tooltip.Widget_Tooltip_C), mPlayerController);
 L255:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_Tooltip, "mIsManufacturingStat", true);
 L310:          Widget_Tooltip* localTooltip = mWidget_Tooltip;
 L329:          if (!this->isProductionSlot) goto L581;
@@ -307,7 +307,7 @@ L794:          ReturnValue = localTooltip;
 L0:            FText cycleTimeDescription = "[object Object]";
 L92:           FText cycleTimeTitle = "[object Object]";
 L165:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L189:          Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, Widget_Tooltip, mPlayerController);
+L189:          Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Tooltip.Widget_Tooltip_C), mPlayerController);
 L250:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_Tooltip, "mIsManufacturingStat", true);
 L305:          Widget_Tooltip* localTooltip = mWidget_Tooltip;
 L324:          if (!this->isProductionSlot) goto L571;
@@ -325,7 +325,9 @@ L801:          ReturnValue = localTooltip;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_Output_Slot(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Output_Slot, from label L10;
 ============ END FUNCTION Construct ==============
 
 
@@ -333,8 +335,9 @@ L0:            this->ExecuteUbergraph_Widget_Output_Slot(10);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_Output_Slot.Widget_Output_Slot_C:ExecuteUbergraph_Widget_Output_Slot.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_Output_Slot(1040);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Output_Slot, from label L1040;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -342,8 +345,9 @@ L18:           this->ExecuteUbergraph_Widget_Output_Slot(1040);
 
 
 ============ BEGIN FUNCTION OnInventorySlotStackMove ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/-Shared/Widgets/Widget_Output_Slot.Widget_Output_Slot_C:ExecuteUbergraph_Widget_Output_Slot.K2Node_Event_InventorySlot) = InventorySlot;
-L18:           this->ExecuteUbergraph_Widget_Output_Slot(1281);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnInventorySlotStackMove;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Output_Slot, from label L1281;
 ============ END FUNCTION OnInventorySlotStackMove ==============
 
 
@@ -351,6 +355,7 @@ L18:           this->ExecuteUbergraph_Widget_Output_Slot(1281);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_Output_Slot ==============
+L10:           // <Begin Inlined EventGraph Function Construct>;
 L10:           this->Construct();
 L20:           uint8 Temp_byte_Variable = 0;
 L40:           uint8 Temp_byte_Variable1 = 1;
@@ -363,7 +368,7 @@ case false -> Temp_byte_Variable1;
 case true -> Temp_byte_Variable;
 default -> muint8;
 });
-L285:          <End of Inlined Event Graph Function>;
+L285:          // <End Inlined EventGraph Function>;
 L290:          uint8 Temp_byte_Variable2 = 0;
 L310:          uint8 Temp_byte_Variable3 = 1;
 L330:          bool Temp_bool_Variable1 = this->isProductionSlot;
@@ -399,7 +404,7 @@ case false -> Temp_byte_Variable7;
 case true -> Temp_byte_Variable6;
 default -> muint82;
 });
-L1035:         <End of Inlined Event Graph Function>;
+L1035:         // <End Inlined EventGraph Function>;
 L1040:         uint8 Temp_byte_Variable4 = 0;
 L1060:         uint8 Temp_byte_Variable5 = 1;
 L1080:         bool Temp_bool_Variable3 = this->mUseCustomSlot;
@@ -409,7 +414,7 @@ case true -> Temp_byte_Variable4;
 default -> muint83;
 });
 L1188:         this->UpdateWasteSlotVisibility();
-L1202:         bool mbool1 = Not_PreBool(this->isProductionSlot);
+L1202:         bool mbool1 = !this->isProductionSlot;
 L1231:         this->mProgressBar->SetUseIconContainer(mbool1);
 L1276:         goto L290;
 L1281:         Pawn* mPawn = this->GetOwningPlayerPawn();

@@ -11,7 +11,7 @@ L0:            FString mFString = FGBlueprintFunctionLibrary->GetLanguage();
 L50:           bool mbool = KismetStringLibrary->NotEqual_StrStr(mFString, "en-US-POSIX");
 L114:          if (!mbool) goto L167;
 L128:          this->ScaleBox_2->SetStretch(0);
-L162:          <End of Inlined Event Graph Function>;
+L162:          // <End Inlined EventGraph Function>;
 L167:          this->ScaleBox_2->SetStretch(2);
 ============ END FUNCTION SetFontScaleForLanguage ==============
 
@@ -24,11 +24,11 @@ L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(mPlayerController->PlayerState);
 L82:           bool mbool = mFGPlayerState;
 L111:          if (!mbool) goto L385;
-L125:          TArray<TSubclassOf<FGRecipe>> mTArray<TSubclassOf<FGRecipe>> = [];
-L136:          mFGPlayerState->GetNewRecipes([ref] mTArray<TSubclassOf<FGRecipe>>);
+L125:          TArray<TSubclassOf<FGRecipe>> mTArrayTSubclassOfFGRecipe = [];
+L136:          mFGPlayerState->GetNewRecipes([ref] mTArrayTSubclassOfFGRecipe);
 L177:          uint8 Temp_byte_Variable = 4;
 L197:          uint8 Temp_byte_Variable1 = 2;
-L217:          bool mbool1 = KismetArrayLibrary->Array_Contains([ref] mTArray<TSubclassOf<FGRecipe>>, [ref] this->mRecipe);
+L217:          bool mbool1 = KismetArrayLibrary->Array_Contains([ref] mTArrayTSubclassOfFGRecipe, [ref] this->mRecipe);
 L277:          bool Temp_bool_Variable = mbool1;
 L296:          this->NewItemOverlay->SetVisibility(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -45,7 +45,7 @@ default -> muint8;
 L0:            Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
 L59:           bool mbool = this->mRecipeButton->IsHovered();
 L105:          bool mbool1 = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Add"));
-L183:          bool mbool2 = BooleanAND(mbool, mbool1);
+L183:          bool mbool2 = mbool && mbool1;
 L221:          if (!mbool2) goto L389;
 L235:          this->mShoppingListWidget->mPlayerState->AddRecipeToShoppingList(this->mRecipe, 1);
 L307:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
@@ -78,7 +78,7 @@ L81:           ReturnValue = 3;
 
 ============ BEGIN FUNCTION CreateRightClickMenu ==============
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
-L24:           Widget_BuildMenu_RightClickMenu* mWidget_BuildMenu_RightClickMenu = WidgetBlueprintLibrary->Create(this, Widget_BuildMenu_RightClickMenu, mPlayerController);
+L24:           Widget_BuildMenu_RightClickMenu* mWidget_BuildMenu_RightClickMenu = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenu_RightClickMenu.Widget_BuildMenu_RightClickMenu_C), mPlayerController);
 L85:           KismetSystemLibrary->SetClassPropertyByName(mWidget_BuildMenu_RightClickMenu, "mRecipe", this->mRecipe);
 L148:          Widget* ReturnValue = mWidget_BuildMenu_RightClickMenu;
 ============ END FUNCTION CreateRightClickMenu ==============
@@ -106,7 +106,7 @@ L316:          ReturnValue = mEventReply1;
 
 ============ BEGIN FUNCTION GetTextHoverColor ==============
 L0:            bool mbool = this->IsHovered();
-L24:           bool mbool1 = BooleanOR(mbool, this->mForceHover);
+L24:           bool mbool1 = mbool || this->mForceHover;
 L62:           if (!mbool1) goto L196;
 L76:           this->Widget_ShoppingListButton->mParentIsHovered = true;
 L109:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
@@ -123,7 +123,7 @@ L284:          ReturnValue = mSlateColor1;
 
 ============ BEGIN FUNCTION GetGraphicsHoverColor ==============
 L0:            bool mbool = this->IsHovered();
-L24:           bool mbool1 = BooleanOR(mbool, this->mForceHover);
+L24:           bool mbool1 = mbool || this->mForceHover;
 L62:           if (!mbool1) goto L163;
 L76:           HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor, [ref] mSlateColor);
 L131:          LinearColor ReturnValue = mLinearColor;
@@ -144,7 +144,7 @@ L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
 L60:           bool mbool = mFGPlayerController;
 L89:           int32 mint32 = mFGPlayerController->GetRecipeShortcutIndex(this->mRecipe);
-L148:          int32 mint321 = Add_IntInt(mint32, 1);
+L148:          int32 mint321 = mint32 + 1;
 L190:          this->mHotkeyIndex = mint321;
 L217:          FText mFText = KismetTextLibrary->Conv_IntToText(this->mHotkeyIndex, false, true, 1, 324);
 L288:          this->HotkeyText->SetText(mFText);
@@ -166,8 +166,8 @@ L41:           this->mShoppingListWidget = this->Widget_ShoppingListButton;
 ============ BEGIN FUNCTION GetBuildingIcon ==============
 L0:            bool mbool = KismetSystemLibrary->IsValidClass(this->mRecipe);
 L51:           if (!mbool) goto L715;
-L65:           TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(this->mRecipe, true);
-L125:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L65:           TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetProducts(this->mRecipe, true);
+L125:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, 0, [ref] mItemAmount);
 L180:          Texture2D* mTexture2D = FGItemDescriptor->GetSmallIcon(mItemAmount.ItemClass);
 L240:          mSlateBrush.ImageSize = this->mIcon->Brush.ImageSize;
 L307:          mSlateBrush.Margin = this->mIcon->Brush.Margin;
@@ -202,7 +202,9 @@ L59:           this->mProductName->SetText(mFText);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(15);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMenuRecipeButton, from label L15;
 ============ END FUNCTION Construct ==============
 
 
@@ -210,7 +212,9 @@ L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(15);
 
 
 ============ BEGIN FUNCTION BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_35_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(485);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_35_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMenuRecipeButton, from label L485;
 ============ END FUNCTION BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_35_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -218,7 +222,9 @@ L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(485);
 
 
 ============ BEGIN FUNCTION BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_439_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(706);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_439_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMenuRecipeButton, from label L706;
 ============ END FUNCTION BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_439_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -226,7 +232,9 @@ L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(706);
 
 
 ============ BEGIN FUNCTION BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_16_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(711);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_16_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMenuRecipeButton, from label L711;
 ============ END FUNCTION BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_16_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -234,7 +242,9 @@ L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(711);
 
 
 ============ BEGIN FUNCTION SimulateOnHovered ==============
-L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(888);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: SimulateOnHovered;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMenuRecipeButton, from label L888;
 ============ END FUNCTION SimulateOnHovered ==============
 
 
@@ -242,7 +252,9 @@ L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(888);
 
 
 ============ BEGIN FUNCTION SimulateOnUnhovered ==============
-L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(904);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: SimulateOnUnhovered;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMenuRecipeButton, from label L904;
 ============ END FUNCTION SimulateOnUnhovered ==============
 
 
@@ -250,8 +262,9 @@ L0:            this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(904);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype/Widget_BuildMenuRecipeButton.Widget_BuildMenuRecipeButton_C:ExecuteUbergraph_Widget_BuildMenuRecipeButton.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(920);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_BuildMenuRecipeButton, from label L920;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -260,6 +273,7 @@ L18:           this->ExecuteUbergraph_Widget_BuildMenuRecipeButton(920);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_BuildMenuRecipeButton ==============
 L5:            goto ComputedJump(EntryPoint);
+L15:           // <Begin Inlined EventGraph Function Construct>;
 L15:           this->Construct();
 L25:           this->CreateShoppingListButtons();
 L39:           this->ResolveHotkeyIndex();
@@ -280,21 +294,26 @@ L441:          this->UpdateNewItemOverlayVisibility();
 L455:          goto ExecutionFlow.Pop();
 L456:          this->OnRecipeClicked->ProcessMulticastDelegate(this->mRecipe);
 L484:          goto ExecutionFlow.Pop();
+L485:          // <Begin Inlined EventGraph Function BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_35_OnButtonHoverEvent__DelegateSignature>;
 L485:          this->mShoppingListWidget->mParentIsHovered = true;
 L518:          this->OnRecipeHovered->ProcessMulticastDelegate(this->mRecipe, this);
 L547:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->OnHover, 0, 1, 0, 1);
 L593:          this->Widget_AutoScrollingContainer->StartAutoScroll();
 L629:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 68, UUID = 1752585476, ExecutionFunction = "ExecuteUbergraph_Widget_BuildMenuRecipeButton", CallbackTarget = this));
 L705:          goto ExecutionFlow.Pop();
+L706:          // <Begin Inlined EventGraph Function BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_439_OnButtonClickedEvent__DelegateSignature>;
 L706:          goto L456;
+L711:          // <Begin Inlined EventGraph Function BndEvt__mRecipeOverlay_K2Node_ComponentBoundEvent_16_OnButtonHoverEvent__DelegateSignature>;
 L711:          this->mShoppingListWidget->mParentIsHovered = false;
 L744:          this->OnStopHoveringRecipe->ProcessMulticastDelegate(this->mRecipe, this);
 L773:          this->mRightClickMenu->Close();
 L805:          UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->OnHover, 0, 1, 1, 1);
 L851:          this->Widget_AutoScrollingContainer->StopAutoScroll();
 L887:          goto ExecutionFlow.Pop();
+L888:          // <Begin Inlined EventGraph Function SimulateOnHovered>;
 L888:          this->mForceHover = true;
 L899:          goto L518;
+L904:          // <Begin Inlined EventGraph Function SimulateOnUnhovered>;
 L904:          this->mForceHover = false;
 L915:          goto L744;
 L920:          this->GetRecipeName();

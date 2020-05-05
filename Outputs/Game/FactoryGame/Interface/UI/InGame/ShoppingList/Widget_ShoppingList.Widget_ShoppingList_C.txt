@@ -12,8 +12,8 @@ L20:           uint8 Temp_byte_Variable1 = 0;
 L40:           uint8 Temp_byte_Variable2 = 1;
 L60:           bool mbool = this->mShoppingListRecipeContainer->HasAnyChildren();
 L102:          bool Temp_bool_Variable1 = this->isShoppingListInteractive;
-L121:          bool mbool1 = Not_PreBool(mbool);
-L150:          bool mbool2 = BooleanAND(this->isShoppingListInteractive, mbool1);
+L121:          bool mbool1 = !mbool;
+L150:          bool mbool2 = this->isShoppingListInteractive && mbool1;
 L188:          bool Temp_bool_Variable = mbool2;
 L207:          uint8 ReturnValue = switch (Temp_bool_Variable1) {
 case false -> Temp_byte_Variable2;
@@ -43,8 +43,8 @@ L166:          uint8 Temp_byte_Variable2 = 1;
 L186:          uint8 Temp_byte_Variable3 = 3;
 L206:          uint8 Temp_byte_Variable4 = 1;
 L226:          bool mbool = this->mShoppingListRecipeContainer->HasAnyChildren();
-L268:          bool mbool1 = Not_PreBool(mbool);
-L297:          bool mbool2 = BooleanAND(this->isShoppingListInteractive, mbool1);
+L268:          bool mbool1 = !mbool;
+L297:          bool mbool2 = this->isShoppingListInteractive && mbool1;
 L335:          bool Temp_bool_Variable1 = mbool2;
 L354:          bool Temp_bool_Variable2 = this->isShoppingListInteractive;
 L373:          uint8 ReturnValue = switch (Temp_bool_Variable2) {
@@ -64,7 +64,7 @@ default -> muint81;
 
 ============ BEGIN FUNCTION GetDivVisibility ==============
 L0:            int32 mint32 = this->mShoppingListIngredientContainer->GetChildrenCount();
-L50:           bool mbool = Greater_IntInt(mint32, 0);
+L50:           bool mbool = mint32 > 0;
 L84:           if (!mbool) goto L123;
 L98:           uint8 ReturnValue = 0;
 L118:          goto L143;
@@ -79,12 +79,12 @@ L123:          ReturnValue = 2;
 L0:            ExecutionFlow.Push(L358);
 L5:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mTotalCost);
 L64:           int32 mint321 = this->mShoppingListIngredientContainer->GetChildrenCount();
-L114:          bool mbool = NotEqual_IntInt(mint32, mint321);
+L114:          bool mbool = mint32 != mint321;
 L152:          if (!mbool) goto ExecutionFlow.Pop();
 L162:          ExecutionFlow.Push(L5);
 L167:          mint32 = KismetArrayLibrary->Array_Length([ref] this->mTotalCost);
 L226:          mint321 = this->mShoppingListIngredientContainer->GetChildrenCount();
-L276:          bool mbool1 = Greater_IntInt(mint32, mint321);
+L276:          bool mbool1 = mint32 > mint321;
 L314:          if (!mbool1) goto L343;
 L328:          this->AddIngredientRow();
 L342:          goto ExecutionFlow.Pop();
@@ -106,33 +106,33 @@ L157:          if (!mbool) goto ExecutionFlow.Pop();
 L167:          int32 Temp_int_Loop_Counter_Variable = 0;
 L190:          int32 Temp_int_Array_Index_Variable = 0;
 L213:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mBP_PlayerState->mShoppingList);
-L294:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L294:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L332:          if (!mbool1) goto L1126;
 L346:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L373:          ExecutionFlow.Push(L1168);
 L378:          int32 Temp_int_Loop_Counter_Variable1 = 0;
 L401:          int32 Temp_int_Array_Index_Variable1 = 0;
 L424:          KismetArrayLibrary->Array_Get([ref] mBP_PlayerState->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
-L505:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetIngredients(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903);
-L573:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
-L632:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint321);
+L505:          TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetIngredients(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903);
+L573:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount);
+L632:          bool mbool2 = Temp_int_Loop_Counter_Variable1 < mint321;
 L670:          if (!mbool2) goto ExecutionFlow.Pop();
 L680:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable1;
 L707:          ExecutionFlow.Push(L1242);
 L712:          KismetArrayLibrary->Array_Get([ref] mBP_PlayerState->mShoppingList, Temp_int_Array_Index_Variable, [ref] mRecipeAmountStruct);
-L793:          mTArray<ItemAmount> = FGRecipe->GetIngredients(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903);
-L861:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable1, [ref] mItemAmount);
-L920:          int32 mint322 = Multiply_IntInt(mItemAmount.amount, mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13);
+L793:          mTArrayItemAmount = FGRecipe->GetIngredients(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903);
+L861:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable1, [ref] mItemAmount);
+L920:          int32 mint322 = mItemAmount.amount * mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13;
 L984:          mItemAmount1.ItemClass = mItemAmount.ItemClass;
 L1021:         mItemAmount1.amount = mint322;
 L1057:         int32 mint323 = KismetArrayLibrary->Array_Add([ref] this->mTotalCost, [ref] mItemAmount1);
 L1125:         goto ExecutionFlow.Pop();
 L1126:         FGInventoryLibrary->ConsolidateItemsAmount([ref] this->mTotalCost);
 L1167:         goto ExecutionFlow.Pop();
-L1168:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1168:         int32 mint324 = Temp_int_Loop_Counter_Variable + 1;
 L1210:         Temp_int_Loop_Counter_Variable = mint324;
 L1237:         goto L213;
-L1242:         int32 mint325 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1242:         int32 mint325 = Temp_int_Loop_Counter_Variable1 + 1;
 L1284:         Temp_int_Loop_Counter_Variable1 = mint325;
 L1311:         goto L424;
 ============ END FUNCTION CalculateIngredients ==============
@@ -143,7 +143,7 @@ L1311:         goto L424;
 
 ============ BEGIN FUNCTION RemoveIngredientRow ==============
 L0:            int32 mint32 = this->mShoppingListIngredientContainer->GetChildrenCount();
-L50:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L50:           int32 mint321 = mint32 - 1;
 L92:           int32 mint322 = Min(mint321, 0);
 L134:          bool mbool = this->mShoppingListIngredientContainer->RemoveChildAt(mint322);
 ============ END FUNCTION RemoveIngredientRow ==============
@@ -158,7 +158,7 @@ L24:           BP_PlayerState* mBP_PlayerState = Cast<BlueprintGeneratedClass /G
 L82:           bool mbool = mBP_PlayerState;
 L111:          if (!mbool) goto L379;
 L125:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L149:          Widget_ShoppingList_IngredientRow* mWidget_ShoppingList_IngredientRow = WidgetBlueprintLibrary->Create(this, Widget_ShoppingList_IngredientRow, mPlayerController1);
+L149:          Widget_ShoppingList_IngredientRow* mWidget_ShoppingList_IngredientRow = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/ShoppingList/Widget_ShoppingList_IngredientRow.Widget_ShoppingList_IngredientRow_C), mPlayerController1);
 L210:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ShoppingList_IngredientRow, "mPlayerState", mBP_PlayerState);
 L273:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ShoppingList_IngredientRow, "mShoppingListWidget", this);
 L328:          VerticalBoxSlot* mVerticalBoxSlot = this->mShoppingListIngredientContainer->AddChildToVerticalBox(mWidget_ShoppingList_IngredientRow);
@@ -170,7 +170,7 @@ L328:          VerticalBoxSlot* mVerticalBoxSlot = this->mShoppingListIngredient
 
 ============ BEGIN FUNCTION RemoveRecipeRow ==============
 L0:            int32 mint32 = this->mShoppingListRecipeContainer->GetChildrenCount();
-L50:           int32 mint321 = Subtract_IntInt(mint32, 1);
+L50:           int32 mint321 = mint32 - 1;
 L92:           int32 mint322 = Min(mint321, 0);
 L134:          bool mbool = this->mShoppingListRecipeContainer->RemoveChildAt(mint322);
 ============ END FUNCTION RemoveRecipeRow ==============
@@ -185,7 +185,7 @@ L24:           BP_PlayerState* mBP_PlayerState = Cast<BlueprintGeneratedClass /G
 L82:           bool mbool = mBP_PlayerState;
 L111:          if (!mbool) goto L379;
 L125:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L149:          Widget_ShoppingListRecipeRow* mWidget_ShoppingListRecipeRow = WidgetBlueprintLibrary->Create(this, Widget_ShoppingListRecipeRow, mPlayerController1);
+L149:          Widget_ShoppingListRecipeRow* mWidget_ShoppingListRecipeRow = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/ShoppingList/Widget_ShoppingListRecipeRow.Widget_ShoppingListRecipeRow_C), mPlayerController1);
 L210:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ShoppingListRecipeRow, "mPlayerState", mBP_PlayerState);
 L273:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_ShoppingListRecipeRow, "mShoppingListWidget", this);
 L328:          VerticalBoxSlot* mVerticalBoxSlot = this->mShoppingListRecipeContainer->AddChildToVerticalBox(mWidget_ShoppingListRecipeRow);
@@ -203,12 +203,12 @@ L87:           bool mbool = mBP_PlayerState;
 L116:          if (!mbool) goto ExecutionFlow.Pop();
 L126:          int32 mint32 = this->mShoppingListRecipeContainer->GetChildrenCount();
 L176:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mBP_PlayerState->mShoppingList);
-L257:          bool mbool1 = NotEqual_IntInt(mint321, mint32);
+L257:          bool mbool1 = mint321 != mint32;
 L295:          if (!mbool1) goto ExecutionFlow.Pop();
 L305:          ExecutionFlow.Push(L126);
 L310:          mint32 = this->mShoppingListRecipeContainer->GetChildrenCount();
 L360:          mint321 = KismetArrayLibrary->Array_Length([ref] mBP_PlayerState->mShoppingList);
-L441:          bool mbool2 = Greater_IntInt(mint321, mint32);
+L441:          bool mbool2 = mint321 > mint32;
 L479:          if (!mbool2) goto L508;
 L493:          this->AddRecipeRow();
 L507:          goto ExecutionFlow.Pop();
@@ -236,12 +236,12 @@ L311:          bool mbool2 = mFGCharacterPlayer;
 L340:          if (!mbool2) goto L2026;
 L354:          FGCharacterPlayer* localPawn = mFGCharacterPlayer;
 L373:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mBP_PlayerState->mShoppingList);
-L454:          bool mbool3 = Greater_IntInt(mint32, 0);
+L454:          bool mbool3 = mint32 > 0;
 L488:          if (!mbool3) goto L2026;
 L502:          int32 Temp_int_Loop_Counter_Variable1 = 0;
 L525:          int32 Temp_int_Array_Index_Variable2 = 0;
 L548:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mBP_PlayerState->mShoppingList);
-L629:          bool mbool4 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint321);
+L629:          bool mbool4 = Temp_int_Loop_Counter_Variable1 < mint321;
 L667:          if (!mbool4) goto L2051;
 L681:          Temp_int_Array_Index_Variable2 = Temp_int_Loop_Counter_Variable1;
 L708:          ExecutionFlow.Push(L3700);
@@ -258,43 +258,43 @@ L1251:         FString finalString = mFString5;
 L1278:         int32 Temp_int_Loop_Counter_Variable = 0;
 L1301:         int32 Temp_int_Array_Index_Variable = 0;
 L1324:         KismetArrayLibrary->Array_Get([ref] mBP_PlayerState->mShoppingList, Temp_int_Array_Index_Variable2, [ref] mRecipeAmountStruct);
-L1405:         TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetIngredients(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903);
-L1473:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
-L1532:         bool mbool5 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint322);
+L1405:         TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetIngredients(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903);
+L1473:         int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount);
+L1532:         bool mbool5 = Temp_int_Loop_Counter_Variable < mint322;
 L1570:         if (!mbool5) goto ExecutionFlow.Pop();
 L1580:         Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L1607:         ExecutionFlow.Push(L3774);
 L1612:         KismetArrayLibrary->Array_Get([ref] mBP_PlayerState->mShoppingList, Temp_int_Array_Index_Variable2, [ref] mRecipeAmountStruct);
-L1693:         mTArray<ItemAmount> = FGRecipe->GetIngredients(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903);
-L1761:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
-L1820:         int32 mint323 = Multiply_IntInt(mItemAmount.amount, mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13);
+L1693:         mTArrayItemAmount = FGRecipe->GetIngredients(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903);
+L1761:         KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L1820:         int32 mint323 = mItemAmount.amount * mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13;
 L1884:         mItemAmount1.ItemClass = mItemAmount.ItemClass;
 L1921:         mItemAmount1.amount = mint323;
-L1957:         int32 mint324 = KismetArrayLibrary->Array_Add([ref] totalCost, [ref] mItemAmount1);
+L1957:         int32 mint324 = KismetArrayLibrary->Array_Add([ref] TotalCost, [ref] mItemAmount1);
 L2025:         goto ExecutionFlow.Pop();
 L2026:         FText ReturnValue = ;
 L2046:         goto L3848;
-L2051:         FGInventoryLibrary->ConsolidateItemsAmount([ref] totalCost);
+L2051:         FGInventoryLibrary->ConsolidateItemsAmount([ref] TotalCost);
 L2092:         FString mFString6 = KismetStringLibrary->Concat_StrStr(finalString, "
 ---------------------------");
 L2182:         finalString = mFString6;
 L2209:         int32 Temp_int_Loop_Counter_Variable2 = 0;
 L2232:         int32 Temp_int_Array_Index_Variable1 = 0;
-L2255:         int32 mint325 = KismetArrayLibrary->Array_Length([ref] totalCost);
-L2314:         bool mbool6 = Less_IntInt(Temp_int_Loop_Counter_Variable2, mint325);
+L2255:         int32 mint325 = KismetArrayLibrary->Array_Length([ref] TotalCost);
+L2314:         bool mbool6 = Temp_int_Loop_Counter_Variable2 < mint325;
 L2352:         if (!mbool6) goto L3609;
 L2366:         Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable2;
 L2393:         ExecutionFlow.Push(L3535);
-L2398:         KismetArrayLibrary->Array_Get([ref] totalCost, Temp_int_Array_Index_Variable1, [ref] mItemAmount2);
+L2398:         KismetArrayLibrary->Array_Get([ref] TotalCost, Temp_int_Array_Index_Variable1, [ref] mItemAmount2);
 L2457:         bool mbool7 = KismetSystemLibrary->IsValidClass(mItemAmount2.ItemClass);
 L2517:         if (!mbool7) goto ExecutionFlow.Pop();
 L2527:         FGInventoryComponent* mFGInventoryComponent = localPawn->GetInventory();
 L2569:         FString mFString7 = KismetStringLibrary->Concat_StrStr(finalString, "
 ");
-L2632:         KismetArrayLibrary->Array_Get([ref] totalCost, Temp_int_Array_Index_Variable1, [ref] mItemAmount2);
+L2632:         KismetArrayLibrary->Array_Get([ref] TotalCost, Temp_int_Array_Index_Variable1, [ref] mItemAmount2);
 L2691:         FString mFString8 = KismetStringLibrary->Conv_IntToString(mItemAmount2.amount);
 L2759:         int32 mint326 = mFGInventoryComponent->GetNumItems(mItemAmount2.ItemClass);
-L2827:         bool mbool8 = GreaterEqual_IntInt(mint326, mItemAmount2.amount);
+L2827:         bool mbool8 = mint326 >= mItemAmount2.amount;
 L2874:         FString mFString9 = KismetStringLibrary->Conv_IntToString(mint326);
 L2933:         FString mFString10 = SelectString("[X] ", "[   ] ", mbool8);
 L2984:         FText mFText1 = FGItemDescriptor->GetItemName(mItemAmount2.ItemClass);
@@ -307,16 +307,16 @@ L3377:         FString mFString16 = KismetStringLibrary->Concat_StrStr(mFString1
 L3439:         FString mFString17 = KismetStringLibrary->Concat_StrStr(mFString16, mFString12);
 L3507:         finalString = mFString17;
 L3534:         goto ExecutionFlow.Pop();
-L3535:         int32 mint327 = Add_IntInt(Temp_int_Loop_Counter_Variable2, 1);
+L3535:         int32 mint327 = Temp_int_Loop_Counter_Variable2 + 1;
 L3577:         Temp_int_Loop_Counter_Variable2 = mint327;
 L3604:         goto L2255;
 L3609:         FText mFText2 = KismetTextLibrary->Conv_StringToText(finalString);
 L3668:         ReturnValue = mFText2;
 L3695:         goto L3848;
-L3700:         int32 mint328 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L3700:         int32 mint328 = Temp_int_Loop_Counter_Variable1 + 1;
 L3742:         Temp_int_Loop_Counter_Variable1 = mint328;
 L3769:         goto L548;
-L3774:         int32 mint329 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L3774:         int32 mint329 = Temp_int_Loop_Counter_Variable + 1;
 L3816:         Temp_int_Loop_Counter_Variable = mint329;
 L3843:         goto L1324;
 ============ END FUNCTION Get ShoppingListText ==============
@@ -326,7 +326,9 @@ L3843:         goto L1324;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_ShoppingList(454);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ShoppingList, from label L454;
 ============ END FUNCTION Construct ==============
 
 
@@ -334,7 +336,9 @@ L0:            this->ExecuteUbergraph_Widget_ShoppingList(454);
 
 
 ============ BEGIN FUNCTION UpdateShoppingListRows ==============
-L0:            this->ExecuteUbergraph_Widget_ShoppingList(502);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: UpdateShoppingListRows;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ShoppingList, from label L502;
 ============ END FUNCTION UpdateShoppingListRows ==============
 
 
@@ -342,7 +346,9 @@ L0:            this->ExecuteUbergraph_Widget_ShoppingList(502);
 
 
 ============ BEGIN FUNCTION BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ShoppingList(15);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ShoppingList, from label L15;
 ============ END FUNCTION BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
 
 
@@ -351,6 +357,7 @@ L0:            this->ExecuteUbergraph_Widget_ShoppingList(15);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_ShoppingList ==============
 L5:            goto ComputedJump(EntryPoint);
+L15:           // <Begin Inlined EventGraph Function BndEvt__Widget_StandardButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature>;
 L15:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L39:           BP_PlayerState* mBP_PlayerState = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C>(mPlayerController->PlayerState);
 L97:           bool mbool = mBP_PlayerState;
@@ -367,10 +374,12 @@ L362:          this->UpdateShoppingListRows();
 L376:          goto ExecutionFlow.Pop();
 L377:          KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 173, UUID = 984691511, ExecutionFunction = "ExecuteUbergraph_Widget_ShoppingList", CallbackTarget = this));
 L453:          goto ExecutionFlow.Pop();
+L454:          // <Begin Inlined EventGraph Function Construct>;
 L454:          goto L173;
 L459:          this->MatchWidgetsWithRecipes();
 L473:          this->CalculateIngredients();
 L487:          this->MatchWidgetWithIngredients();
 L501:          goto ExecutionFlow.Pop();
+L502:          // <Begin Inlined EventGraph Function UpdateShoppingListRows>;
 L502:          goto L459;
 ============ END FUNCTION ExecuteUbergraph_Widget_ShoppingList ==============

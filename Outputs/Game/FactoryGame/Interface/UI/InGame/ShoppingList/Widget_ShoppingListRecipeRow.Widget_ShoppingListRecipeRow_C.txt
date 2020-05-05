@@ -53,7 +53,7 @@ L0:            HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mL
 L55:           bool mbool = this->mButtonAdd->IsPressed();
 L97:           bool mbool1 = this->mButtonAdd->IsHovered();
 L143:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
-L198:          bool mbool2 = BooleanOR(mbool1, mbool);
+L198:          bool mbool2 = mbool1 || mbool;
 L236:          LinearColor mLinearColor2 = SelectColor(mLinearColor1, mLinearColor, mbool2);
 L291:          LinearColor ReturnValue = mLinearColor2;
 ============ END FUNCTION GetAddButtonColor ==============
@@ -79,7 +79,7 @@ L0:            HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mL
 L55:           bool mbool = this->mButtonRemove->IsPressed();
 L97:           bool mbool1 = this->mButtonRemove->IsHovered();
 L143:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
-L198:          bool mbool2 = BooleanOR(mbool1, mbool);
+L198:          bool mbool2 = mbool1 || mbool;
 L236:          LinearColor mLinearColor2 = SelectColor(mLinearColor1, mLinearColor, mbool2);
 L291:          LinearColor ReturnValue = mLinearColor2;
 ============ END FUNCTION GetRemoveButtonColor ==============
@@ -92,9 +92,9 @@ L291:          LinearColor ReturnValue = mLinearColor2;
 L0:            PanelWidget* mPanelWidget = this->GetParent();
 L20:           int32 mint32 = mPanelWidget->GetChildIndex(this);
 L71:           KismetArrayLibrary->Array_Get([ref] this->mPlayerState->mShoppingList, mint32, [ref] mRecipeAmountStruct);
-L152:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903, false);
-L221:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
-L276:          int32 mint321 = Multiply_IntInt(mItemAmount.amount, mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13);
+L152:          TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetProducts(mRecipeAmountStruct.Recipe_3_9675A43D4FEC0E33CE84EA9FCEF0E903, false);
+L221:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, 0, [ref] mItemAmount);
+L276:          int32 mint321 = mItemAmount.amount * mRecipeAmountStruct.Amount_6_262F181A4A294617FCD1F496A451BA13;
 L340:          int32 mAmount = mint321;
 ============ END FUNCTION GetAmount ==============
 
@@ -114,8 +114,8 @@ L152:          TSubclassOf<FGRecipe> Recipe = mRecipeAmountStruct.Recipe_3_9675A
 
 
 ============ BEGIN FUNCTION GetTitleText ==============
-L0:            this->GetRecipe([ref] mTSubclassOf<FGRecipe>);
-L23:           FText mFText = FGRecipe->GetRecipeName(mTSubclassOf<FGRecipe>);
+L0:            this->GetRecipe([ref] mTSubclassOfFGRecipe);
+L23:           FText mFText = FGRecipe->GetRecipeName(mTSubclassOfFGRecipe);
 L82:           FText ReturnValue = mFText;
 ============ END FUNCTION GetTitleText ==============
 
@@ -134,7 +134,9 @@ L94:           FText ReturnValue = mFText;
 
 
 ============ BEGIN FUNCTION BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ShoppingListRecipeRow(458);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ShoppingListRecipeRow, from label L458;
 ============ END FUNCTION BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -142,7 +144,9 @@ L0:            this->ExecuteUbergraph_Widget_ShoppingListRecipeRow(458);
 
 
 ============ BEGIN FUNCTION BndEvt__mButtonRemove_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ShoppingListRecipeRow(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButtonRemove_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ShoppingListRecipeRow, from label L10;
 ============ END FUNCTION BndEvt__mButtonRemove_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -150,26 +154,28 @@ L0:            this->ExecuteUbergraph_Widget_ShoppingListRecipeRow(10);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_ShoppingListRecipeRow ==============
+L10:           // <Begin Inlined EventGraph Function BndEvt__mButtonRemove_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature>;
 L10:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L34:           bool mbool = mPlayerController->IsInputKeyDown(ScriptStruct /Script/InputCore.Key(KeyName = "RightShift"));
 L103:          bool mbool1 = mPlayerController->IsInputKeyDown(ScriptStruct /Script/InputCore.Key(KeyName = "LeftShift"));
-L172:          bool mbool2 = BooleanOR(mbool1, mbool);
+L172:          bool mbool2 = mbool1 || mbool;
 L210:          if (!mbool2) goto L302;
-L224:          this->GetRecipe([ref] mTSubclassOf<FGRecipe>);
-L247:          this->mPlayerState->RemoveRecipeFromShoppingList(mTSubclassOf<FGRecipe>, 10);
-L297:          <End of Inlined Event Graph Function>;
-L302:          this->GetRecipe([ref] mTSubclassOf<FGRecipe>1);
-L325:          this->mPlayerState->RemoveRecipeFromShoppingList(mTSubclassOf<FGRecipe>1, 1);
-L375:          <End of Inlined Event Graph Function>;
-L380:          this->GetRecipe([ref] mTSubclassOf<FGRecipe>2);
-L403:          this->mPlayerState->AddRecipeToShoppingList(mTSubclassOf<FGRecipe>2, 10);
-L453:          <End of Inlined Event Graph Function>;
+L224:          this->GetRecipe([ref] mTSubclassOfFGRecipe);
+L247:          this->mPlayerState->RemoveRecipeFromShoppingList(mTSubclassOfFGRecipe, 10);
+L297:          // <End Inlined EventGraph Function>;
+L302:          this->GetRecipe([ref] mTSubclassOfFGRecipe1);
+L325:          this->mPlayerState->RemoveRecipeFromShoppingList(mTSubclassOfFGRecipe1, 1);
+L375:          // <End Inlined EventGraph Function>;
+L380:          this->GetRecipe([ref] mTSubclassOfFGRecipe2);
+L403:          this->mPlayerState->AddRecipeToShoppingList(mTSubclassOfFGRecipe2, 10);
+L453:          // <End Inlined EventGraph Function>;
+L458:          // <Begin Inlined EventGraph Function BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature>;
 L458:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L482:          bool mbool3 = mPlayerController1->IsInputKeyDown(ScriptStruct /Script/InputCore.Key(KeyName = "RightShift"));
 L551:          bool mbool4 = mPlayerController1->IsInputKeyDown(ScriptStruct /Script/InputCore.Key(KeyName = "LeftShift"));
-L620:          bool mbool5 = BooleanOR(mbool4, mbool3);
+L620:          bool mbool5 = mbool4 || mbool3;
 L658:          if (!mbool5) goto L677;
 L672:          goto L380;
-L677:          this->GetRecipe([ref] mTSubclassOf<FGRecipe>3);
-L700:          this->mPlayerState->AddRecipeToShoppingList(mTSubclassOf<FGRecipe>3, 1);
+L677:          this->GetRecipe([ref] mTSubclassOfFGRecipe3);
+L700:          this->mPlayerState->AddRecipeToShoppingList(mTSubclassOfFGRecipe3, 1);
 ============ END FUNCTION ExecuteUbergraph_Widget_ShoppingListRecipeRow ==============

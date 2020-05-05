@@ -23,7 +23,7 @@ default -> muint8;
 
 
 ============ BEGIN FUNCTION GetActorRepresentationTexture ==============
-L0:            Texture2D* ReturnValue = MapCompass_Icon_truck;
+L0:            Texture2D* ReturnValue = ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/Map/MapCompass_Icon_truck.MapCompass_Icon_truck);
 ============ END FUNCTION GetActorRepresentationTexture ==============
 
 
@@ -33,7 +33,7 @@ L0:            Texture2D* ReturnValue = MapCompass_Icon_truck;
 ============ BEGIN FUNCTION OnRep_mFlashlightOn ==============
 L0:            bool mbool = this->HasAuthority();
 L20:           if (!mbool) goto L39;
-L34:           <End of Inlined Event Graph Function>;
+L34:           // <End Inlined EventGraph Function>;
 L39:           this->SpotLight->SetVisibility(this->mFlashlightOn, false);
 ============ END FUNCTION OnRep_mFlashlightOn ==============
 
@@ -43,7 +43,7 @@ L39:           this->SpotLight->SetVisibility(this->mFlashlightOn, false);
 
 ============ BEGIN FUNCTION GetAttackLocation ==============
 L0:            Vector mVector = this->K2_GetActorLocation();
-L28:           Vector mVector1 = Add_VectorVector(mVector, Vector(0, 0, 200));
+L28:           Vector mVector1 = mVector + Vector(0, 0, 200);
 L78:           Vector ReturnValue = mVector1;
 ============ END FUNCTION GetAttackLocation ==============
 
@@ -68,8 +68,9 @@ L0:            bool ReturnValue = true;
 
 
 ============ BEGIN FUNCTION InpActEvt_Flashlight_K2Node_InputActionEvent_0 ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/Vehicle/Truck/BP_Truck.BP_Truck_C:ExecuteUbergraph_BP_Truck.K2Node_InputActionEvent_Key) = Key;
-L18:           this->ExecuteUbergraph_BP_Truck(995);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: InpActEvt_Flashlight_K2Node_InputActionEvent_0;
+L18:           // Implementation: Function ExecuteUbergraph_BP_Truck, from label L995;
 ============ END FUNCTION InpActEvt_Flashlight_K2Node_InputActionEvent_0 ==============
 
 
@@ -77,8 +78,9 @@ L18:           this->ExecuteUbergraph_BP_Truck(995);
 
 
 ============ BEGIN FUNCTION Server_SetFlashlightOn ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/Vehicle/Truck/BP_Truck.BP_Truck_C:ExecuteUbergraph_BP_Truck.K2Node_CustomEvent_FlashlightOn) = FlashlightOn;
-L18:           this->ExecuteUbergraph_BP_Truck(990);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: Server_SetFlashlightOn;
+L18:           // Implementation: Function ExecuteUbergraph_BP_Truck, from label L990;
 ============ END FUNCTION Server_SetFlashlightOn ==============
 
 
@@ -86,7 +88,9 @@ L18:           this->ExecuteUbergraph_BP_Truck(990);
 
 
 ============ BEGIN FUNCTION GainedSignificance ==============
-L0:            this->ExecuteUbergraph_BP_Truck(1000);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: GainedSignificance;
+L0:            // Implementation: Function ExecuteUbergraph_BP_Truck, from label L1000;
 ============ END FUNCTION GainedSignificance ==============
 
 
@@ -94,7 +98,9 @@ L0:            this->ExecuteUbergraph_BP_Truck(1000);
 
 
 ============ BEGIN FUNCTION LostSignificance ==============
-L0:            this->ExecuteUbergraph_BP_Truck(1090);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: LostSignificance;
+L0:            // Implementation: Function ExecuteUbergraph_BP_Truck, from label L1090;
 ============ END FUNCTION LostSignificance ==============
 
 
@@ -102,7 +108,9 @@ L0:            this->ExecuteUbergraph_BP_Truck(1090);
 
 
 ============ BEGIN FUNCTION Multicast_OpenTrunk ==============
-L0:            this->ExecuteUbergraph_BP_Truck(1180);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Multicast_OpenTrunk;
+L0:            // Implementation: Function ExecuteUbergraph_BP_Truck, from label L1180;
 ============ END FUNCTION Multicast_OpenTrunk ==============
 
 
@@ -110,7 +118,9 @@ L0:            this->ExecuteUbergraph_BP_Truck(1180);
 
 
 ============ BEGIN FUNCTION Multicast_CloseTrunk ==============
-L0:            this->ExecuteUbergraph_BP_Truck(15);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Multicast_CloseTrunk;
+L0:            // Implementation: Function ExecuteUbergraph_BP_Truck, from label L15;
 ============ END FUNCTION Multicast_CloseTrunk ==============
 
 
@@ -119,12 +129,13 @@ L0:            this->ExecuteUbergraph_BP_Truck(15);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_BP_Truck ==============
 L5:            goto ComputedJump(EntryPoint);
+L15:           // <Begin Inlined EventGraph Function Multicast_CloseTrunk>;
 L15:           AnimInstance* mAnimInstance = this->Workbench->GetAnimInstance();
-L57:           bool mbool = mAnimInstance->Montage_IsPlaying(CloseWorkbench_01_Montage);
-L108:          bool mbool1 = Not_PreBool(mbool);
+L57:           bool mbool = mAnimInstance->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Buildable/Vehicle/VehicleWorkbench/Animation/CloseWorkbench_01_Montage.CloseWorkbench_01_Montage));
+L108:          bool mbool1 = !mbool;
 L137:          if (!mbool1) goto ExecutionFlow.Pop();
 L147:          mAnimInstance = this->Workbench->GetAnimInstance();
-L189:          float mfloat = mAnimInstance->Montage_Play(CloseWorkbench_01_Montage, 1, 0, 0, true);
+L189:          float mfloat = mAnimInstance->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Buildable/Vehicle/VehicleWorkbench/Animation/CloseWorkbench_01_Montage.CloseWorkbench_01_Montage), 1, 0, 0, true);
 L261:          this->SpotLight->SetIntensity(0);
 L298:          goto ExecutionFlow.Pop();
 L299:          this->SpotLight->SetIntensity(100);
@@ -139,33 +150,36 @@ L428:          this->OnRep_mFlashlightOn();
 L442:          this->SpotLight->SetVisibility(this->mFlashlightOn, false);
 L484:          goto ExecutionFlow.Pop();
 L485:          this->FlushNetDormancy();
-L495:          bool mbool3 = Not_PreBool(this->mFlashlightOn);
+L495:          bool mbool3 = !this->mFlashlightOn;
 L524:          this->mFlashlightOn = mbool3;
 L543:          goto L428;
 L548:          mAnimInstance = this->Workbench->GetAnimInstance();
-L590:          float mfloat1 = mAnimInstance->Montage_Play(OpenWorkbench_01_Montage, 1, 1, 0, true);
+L590:          float mfloat1 = mAnimInstance->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Buildable/Vehicle/VehicleWorkbench/Animation/OpenWorkbench_01_Montage.OpenWorkbench_01_Montage), 1, 1, 0, true);
 L662:          KismetSystemLibrary->Delay(this, mfloat1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 299, UUID = 2070779011, ExecutionFunction = "ExecuteUbergraph_BP_Truck", CallbackTarget = this));
 L742:          goto ExecutionFlow.Pop();
 L743:          mAnimInstance = this->Workbench->GetAnimInstance();
-L785:          bool mbool4 = mAnimInstance->Montage_IsPlaying(OpenWorkbench_01_Montage);
-L836:          bool mbool5 = Not_PreBool(mbool4);
+L785:          bool mbool4 = mAnimInstance->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Buildable/Vehicle/VehicleWorkbench/Animation/OpenWorkbench_01_Montage.OpenWorkbench_01_Montage));
+L836:          bool mbool5 = !mbool4;
 L865:          if (!mbool5) goto ExecutionFlow.Pop();
 L875:          goto L548;
 L880:          bool mbool6 = this->HasAuthority();
 L900:          if (!mbool6) goto L919;
 L914:          goto L485;
-L919:          bool mbool7 = Not_PreBool(this->mFlashlightOn);
+L919:          bool mbool7 = !this->mFlashlightOn;
 L948:          this->Server_SetFlashlightOn(mbool7);
 L985:          goto L485;
 L990:          goto L394;
 L995:          goto L880;
+L1000:         // <Begin Inlined EventGraph Function GainedSignificance>;
 L1000:         this->GainedSignificance();
 L1010:         this->mMesh->VisibilityBasedAnimTickOption = 0;
 L1052:         this->mMesh->SetComponentTickEnabled(true);
 L1089:         goto ExecutionFlow.Pop();
+L1090:         // <Begin Inlined EventGraph Function LostSignificance>;
 L1090:         this->LostSignificance();
 L1100:         this->mMesh->VisibilityBasedAnimTickOption = 3;
 L1142:         this->mMesh->SetComponentTickEnabled(false);
 L1179:         goto ExecutionFlow.Pop();
+L1180:         // <Begin Inlined EventGraph Function Multicast_OpenTrunk>;
 L1180:         goto L743;
 ============ END FUNCTION ExecuteUbergraph_BP_Truck ==============

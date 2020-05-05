@@ -7,7 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Stinger/BigSti
 
 
 ============ BEGIN FUNCTION ReceiveBeginPlay ==============
-L0:            this->ExecuteUbergraph_Char_EliteStinger(594);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_Char_EliteStinger, from label L594;
 ============ END FUNCTION ReceiveBeginPlay ==============
 
 
@@ -15,7 +17,9 @@ L0:            this->ExecuteUbergraph_Char_EliteStinger(594);
 
 
 ============ BEGIN FUNCTION SpawnGas ==============
-L0:            this->ExecuteUbergraph_Char_EliteStinger(917);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: SpawnGas;
+L0:            // Implementation: Function ExecuteUbergraph_Char_EliteStinger, from label L917;
 ============ END FUNCTION SpawnGas ==============
 
 
@@ -23,12 +27,9 @@ L0:            this->ExecuteUbergraph_Char_EliteStinger(917);
 
 
 ============ BEGIN FUNCTION OnTakeAnyDamage_Event_0 ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Stinger/BigStinger/Char_EliteStinger.Char_EliteStinger_C:ExecuteUbergraph_Char_EliteStinger.K2Node_CustomEvent_damagedActor) = DamagedActor;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Enemy/Stinger/BigStinger/Char_EliteStinger.Char_EliteStinger_C:ExecuteUbergraph_Char_EliteStinger.K2Node_CustomEvent_Damage) = Damage;
-L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Stinger/BigStinger/Char_EliteStinger.Char_EliteStinger_C:ExecuteUbergraph_Char_EliteStinger.K2Node_CustomEvent_damageType) = DamageType;
-L54:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Stinger/BigStinger/Char_EliteStinger.Char_EliteStinger_C:ExecuteUbergraph_Char_EliteStinger.K2Node_CustomEvent_instigatedBy) = InstigatedBy;
-L72:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Stinger/BigStinger/Char_EliteStinger.Char_EliteStinger_C:ExecuteUbergraph_Char_EliteStinger.K2Node_CustomEvent_damageCauser) = DamageCauser;
-L90:           this->ExecuteUbergraph_Char_EliteStinger(948);
+L90:           // EventGraph implemented function stub;
+L90:           // Function Name: OnTakeAnyDamage_Event_0;
+L90:           // Implementation: Function ExecuteUbergraph_Char_EliteStinger, from label L948;
 ============ END FUNCTION OnTakeAnyDamage_Event_0 ==============
 
 
@@ -38,7 +39,7 @@ L90:           this->ExecuteUbergraph_Char_EliteStinger(948);
 ============ BEGIN FUNCTION ExecuteUbergraph_Char_EliteStinger ==============
 L5:            goto ComputedJump(EntryPoint);
 L15:           Transform mTransform = this->Scene->K2_GetComponentToWorld();
-L65:           Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_StingerGas, [ref] mTransform, 0, nullptr);
+L65:           Actor* mActor = GameplayStatics->BeginDeferredActorSpawnFromClass(this, ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Enemy/Stinger/BigStinger/BP_StingerGas.BP_StingerGas_C), [ref] mTransform, 0, nullptr);
 L129:          mTransform = this->Scene->K2_GetComponentToWorld();
 L179:          BP_StingerGas* mBP_StingerGas = GameplayStatics->FinishSpawningActor(mActor, [ref] mTransform);
 L239:          KismetSystemLibrary->Delay(this, 2, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 316, UUID = 1091680037, ExecutionFunction = "ExecuteUbergraph_Char_EliteStinger", CallbackTarget = this));
@@ -52,6 +53,7 @@ L505:          KismetSystemLibrary->Delay(this, 5, ScriptStruct /Script/Engine.L
 L581:          goto ExecutionFlow.Pop();
 L582:          this->OffCooldown = true;
 L593:          goto ExecutionFlow.Pop();
+L594:          // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L594:          this->ReceiveBeginPlay();
 L604:          mFScriptDelegate->BindUFunction(this, OnTakeAnyDamage_Event_0);
 L627:          this->OnTakeAnyDamage.AddUnique(mFScriptDelegate);
@@ -63,16 +65,17 @@ L766:          this->ParticleSystem3->Activate(true);
 L803:          this->ParticleSystem->Activate(true);
 L840:          KismetSystemLibrary->Delay(this, 1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -193545620, ExecutionFunction = "ExecuteUbergraph_Char_EliteStinger", CallbackTarget = this));
 L916:          goto ExecutionFlow.Pop();
+L917:          // <Begin Inlined EventGraph Function SpawnGas>;
 L917:          this->OffCooldown = false;
 L928:          goto L647;
 L933:          this->SpawnGas();
 L947:          goto ExecutionFlow.Pop();
 L948:          float mfloat = RandomFloat();
-L976:          bool mbool = GreaterEqual_FloatFloat(this->GasOnHitChance, mfloat);
-L1014:         bool mbool1 = BooleanAND(mbool, this->OffCooldown);
+L976:          bool mbool = this->GasOnHitChance >= mfloat;
+L1014:         bool mbool1 = mbool && this->OffCooldown;
 L1052:         float mfloat1 = this->mHealthComponent->GetCurrentHealth();
-L1102:         bool mbool2 = Greater_FloatFloat(mfloat1, 0);
-L1136:         bool mbool3 = BooleanAND(mbool1, mbool2);
+L1102:         bool mbool2 = mfloat1 > 0;
+L1136:         bool mbool3 = mbool1 && mbool2;
 L1174:         if (!mbool3) goto ExecutionFlow.Pop();
 L1184:         goto L933;
 ============ END FUNCTION ExecuteUbergraph_Char_EliteStinger ==============

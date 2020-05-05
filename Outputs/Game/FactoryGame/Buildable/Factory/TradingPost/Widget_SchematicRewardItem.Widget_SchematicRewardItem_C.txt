@@ -9,7 +9,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_Sc
 ============ BEGIN FUNCTION UpdateVisibility ==============
 L0:            uint8 Temp_byte_Variable2 = 1;
 L20:           uint8 Temp_byte_Variable3 = 0;
-L40:           bool mbool = BooleanOR(this->mIsSchematicPurchased, this->mIsSchematicLocked);
+L40:           bool mbool = this->mIsSchematicPurchased || this->mIsSchematicLocked;
 L78:           bool Temp_bool_Variable1 = mbool;
 L97:           this->Widget_ButtonSpotLight->SetVisibility(switch (Temp_bool_Variable1) {
 case false -> Temp_byte_Variable3;
@@ -32,7 +32,7 @@ default -> muint81;
 
 
 ============ BEGIN FUNCTION SetCategoryIconColor ==============
-L0:            bool mbool = BooleanOR(this->mIsSchematicLocked, this->mIsSchematicPurchased);
+L0:            bool mbool = this->mIsSchematicLocked || this->mIsSchematicPurchased;
 L38:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
 L93:           bool Temp_bool_Variable = mbool;
 L112:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
@@ -48,7 +48,7 @@ default -> mLinearColor2;
 
 
 ============ BEGIN FUNCTION GetLockedIcon ==============
-L0:            bool mbool = BooleanOR(this->mIsSchematicPurchased, this->mIsSchematicLocked);
+L0:            bool mbool = this->mIsSchematicPurchased || this->mIsSchematicLocked;
 L38:           if (!mbool) goto L109;
 L52:           LinearColor ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 1, B = 1, A = 0.5);
 L104:          goto L161;
@@ -60,47 +60,47 @@ L109:          ReturnValue = ScriptStruct /Script/CoreUObject.LinearColor(R = 1,
 
 
 ============ BEGIN FUNCTION SetCategoryTexture ==============
-L0:            TSubclassOf<FGBuildingDescriptor> mTSubclassOf<FGBuildingDescriptor> = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(ItemClass);
-L36:           bool mbool = mTSubclassOf<FGBuildingDescriptor>;
+L0:            TSubclassOf<FGBuildingDescriptor> mTSubclassOfFGBuildingDescriptor = ClassCast<Class /Script/FactoryGame.FGBuildingDescriptor>(ItemClass);
+L36:           bool mbool = mTSubclassOfFGBuildingDescriptor;
 L65:           if (!mbool) goto L103;
-L79:           this->mCategoryIconTexture = Recipe_Icon_Building;
-L98:           <End of Inlined Event Graph Function>;
-L103:          TSubclassOf<FGDecorDescriptor> mTSubclassOf<FGDecorDescriptor> = ClassCast<Class /Script/FactoryGame.FGDecorDescriptor>(ItemClass);
-L139:          bool mbool1 = mTSubclassOf<FGDecorDescriptor>;
+L79:           this->mCategoryIconTexture = ObjectConst(Texture2D /Game/FactoryGame/Buildable/Factory/TradingPost/UI/RecipeIcons/Recipe_Icon_Building.Recipe_Icon_Building);
+L98:           // <End Inlined EventGraph Function>;
+L103:          TSubclassOf<FGDecorDescriptor> mTSubclassOfFGDecorDescriptor = ClassCast<Class /Script/FactoryGame.FGDecorDescriptor>(ItemClass);
+L139:          bool mbool1 = mTSubclassOfFGDecorDescriptor;
 L168:          if (!mbool1) goto L206;
-L182:          this->mCategoryIconTexture = Recipe_Icon_Decor;
-L201:          <End of Inlined Event Graph Function>;
-L206:          TSubclassOf<FGEquipmentDescriptor> mTSubclassOf<FGEquipmentDescriptor> = ClassCast<Class /Script/FactoryGame.FGEquipmentDescriptor>(ItemClass);
-L242:          bool mbool2 = mTSubclassOf<FGEquipmentDescriptor>;
+L182:          this->mCategoryIconTexture = ObjectConst(Texture2D /Game/FactoryGame/Buildable/Factory/TradingPost/UI/RecipeIcons/Recipe_Icon_Decor.Recipe_Icon_Decor);
+L201:          // <End Inlined EventGraph Function>;
+L206:          TSubclassOf<FGEquipmentDescriptor> mTSubclassOfFGEquipmentDescriptor = ClassCast<Class /Script/FactoryGame.FGEquipmentDescriptor>(ItemClass);
+L242:          bool mbool2 = mTSubclassOfFGEquipmentDescriptor;
 L271:          if (!mbool2) goto L309;
-L285:          this->mCategoryIconTexture = Recipe_Icon_Equipment;
-L304:          <End of Inlined Event Graph Function>;
-L309:          TSubclassOf<FGItemDescriptor> mTSubclassOf<FGItemDescriptor> = ClassCast<Class /Script/FactoryGame.FGItemDescriptor>(ItemClass);
-L345:          bool mbool3 = mTSubclassOf<FGItemDescriptor>;
+L285:          this->mCategoryIconTexture = ObjectConst(Texture2D /Game/FactoryGame/Buildable/Factory/TradingPost/UI/RecipeIcons/Recipe_Icon_Equipment.Recipe_Icon_Equipment);
+L304:          // <End Inlined EventGraph Function>;
+L309:          TSubclassOf<FGItemDescriptor> mTSubclassOfFGItemDescriptor = ClassCast<Class /Script/FactoryGame.FGItemDescriptor>(ItemClass);
+L345:          bool mbool3 = mTSubclassOfFGItemDescriptor;
 L374:          if (!mbool3) goto L412;
-L388:          this->mCategoryIconTexture = Recipe_Icon_Item;
-L407:          <End of Inlined Event Graph Function>;
-L412:          TSubclassOf<FGMapAreaZoneDescriptor> mTSubclassOf<FGMapAreaZoneDescriptor> = ClassCast<Class /Script/FactoryGame.FGMapAreaZoneDescriptor>(ItemClass);
-L448:          bool mbool4 = mTSubclassOf<FGMapAreaZoneDescriptor>;
+L388:          this->mCategoryIconTexture = ObjectConst(Texture2D /Game/FactoryGame/Buildable/Factory/TradingPost/UI/RecipeIcons/Recipe_Icon_Item.Recipe_Icon_Item);
+L407:          // <End Inlined EventGraph Function>;
+L412:          TSubclassOf<FGMapAreaZoneDescriptor> mTSubclassOfFGMapAreaZoneDescriptor = ClassCast<Class /Script/FactoryGame.FGMapAreaZoneDescriptor>(ItemClass);
+L448:          bool mbool4 = mTSubclassOfFGMapAreaZoneDescriptor;
 L477:          if (!mbool4) goto L515;
-L491:          this->mCategoryIconTexture = Recipe_Icon_Map;
-L510:          <End of Inlined Event Graph Function>;
-L515:          TSubclassOf<FGPoleDescriptor> mTSubclassOf<FGPoleDescriptor> = ClassCast<Class /Script/FactoryGame.FGPoleDescriptor>(ItemClass);
-L551:          bool mbool5 = mTSubclassOf<FGPoleDescriptor>;
+L491:          this->mCategoryIconTexture = ObjectConst(Texture2D /Game/FactoryGame/Buildable/Factory/TradingPost/UI/RecipeIcons/Recipe_Icon_Map.Recipe_Icon_Map);
+L510:          // <End Inlined EventGraph Function>;
+L515:          TSubclassOf<FGPoleDescriptor> mTSubclassOfFGPoleDescriptor = ClassCast<Class /Script/FactoryGame.FGPoleDescriptor>(ItemClass);
+L551:          bool mbool5 = mTSubclassOfFGPoleDescriptor;
 L580:          if (!mbool5) goto L618;
-L594:          this->mCategoryIconTexture = Recipe_Icon_Building;
-L613:          <End of Inlined Event Graph Function>;
-L618:          TSubclassOf<FGResourceDescriptor> mTSubclassOf<FGResourceDescriptor> = ClassCast<Class /Script/FactoryGame.FGResourceDescriptor>(ItemClass);
-L654:          bool mbool6 = mTSubclassOf<FGResourceDescriptor>;
+L594:          this->mCategoryIconTexture = ObjectConst(Texture2D /Game/FactoryGame/Buildable/Factory/TradingPost/UI/RecipeIcons/Recipe_Icon_Building.Recipe_Icon_Building);
+L613:          // <End Inlined EventGraph Function>;
+L618:          TSubclassOf<FGResourceDescriptor> mTSubclassOfFGResourceDescriptor = ClassCast<Class /Script/FactoryGame.FGResourceDescriptor>(ItemClass);
+L654:          bool mbool6 = mTSubclassOfFGResourceDescriptor;
 L683:          if (!mbool6) goto L721;
-L697:          this->mCategoryIconTexture = Recipe_Icon_Resource;
-L716:          <End of Inlined Event Graph Function>;
-L721:          TSubclassOf<FGVehicleDescriptor> mTSubclassOf<FGVehicleDescriptor> = ClassCast<Class /Script/FactoryGame.FGVehicleDescriptor>(ItemClass);
-L757:          bool mbool7 = mTSubclassOf<FGVehicleDescriptor>;
+L697:          this->mCategoryIconTexture = ObjectConst(Texture2D /Game/FactoryGame/Buildable/Factory/TradingPost/UI/RecipeIcons/Recipe_Icon_Resource.Recipe_Icon_Resource);
+L716:          // <End Inlined EventGraph Function>;
+L721:          TSubclassOf<FGVehicleDescriptor> mTSubclassOfFGVehicleDescriptor = ClassCast<Class /Script/FactoryGame.FGVehicleDescriptor>(ItemClass);
+L757:          bool mbool7 = mTSubclassOfFGVehicleDescriptor;
 L786:          if (!mbool7) goto L824;
-L800:          this->mCategoryIconTexture = Recipe_Icon_Vehicle;
-L819:          <End of Inlined Event Graph Function>;
-L824:          this->mCategoryIconTexture = Cross;
+L800:          this->mCategoryIconTexture = ObjectConst(Texture2D /Game/FactoryGame/Buildable/Factory/TradingPost/UI/RecipeIcons/Recipe_Icon_Vehicle.Recipe_Icon_Vehicle);
+L819:          // <End Inlined EventGraph Function>;
+L824:          this->mCategoryIconTexture = ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/BuildMenu/Cross.Cross);
 ============ END FUNCTION SetCategoryTexture ==============
 
 
@@ -139,7 +139,7 @@ L180:          ReturnValue = mLinearColor1;
 ============ BEGIN FUNCTION GetButtonColor ==============
 L0:            bool mbool = this->IsHovered();
 L24:           if (!mbool) goto L344;
-L38:           bool mbool1 = BooleanOR(this->mIsSchematicPurchased, this->mIsSchematicLocked);
+L38:           bool mbool1 = this->mIsSchematicPurchased || this->mIsSchematicLocked;
 L76:           if (!mbool1) goto L401;
 L90:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
 L145:          mLinearColor1.R = mLinearColor.R;
@@ -159,7 +159,7 @@ L456:          ReturnValue = mLinearColor2;
 
 
 ============ BEGIN FUNCTION GetCategoryIconBackgroundColor ==============
-L0:            bool mbool = BooleanOR(this->mIsSchematicPurchased, this->mIsSchematicLocked);
+L0:            bool mbool = this->mIsSchematicPurchased || this->mIsSchematicLocked;
 L38:           if (!mbool) goto L306;
 L52:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor);
 L107:          mLinearColor1.R = mLinearColor.R;
@@ -181,7 +181,7 @@ L24:           if (!mbool) goto L125;
 L38:           HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
 L93:           SlateColor ReturnValue = mSlateColor;
 L120:          goto L346;
-L125:          bool mbool1 = BooleanOR(this->mIsSchematicPurchased, this->mIsSchematicLocked);
+L125:          bool mbool1 = this->mIsSchematicPurchased || this->mIsSchematicLocked;
 L163:          if (!mbool1) goto L264;
 L177:          HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
 L232:          ReturnValue = mSlateColor1;
@@ -226,7 +226,9 @@ L0:            SlateBrush ReturnValue = ScriptStruct /Script/SlateCore.SlateBrus
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_SchematicRewardItem(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SchematicRewardItem, from label L10;
 ============ END FUNCTION Construct ==============
 
 
@@ -234,7 +236,9 @@ L0:            this->ExecuteUbergraph_Widget_SchematicRewardItem(10);
 
 
 ============ BEGIN FUNCTION BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SchematicRewardItem(340);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SchematicRewardItem, from label L340;
 ============ END FUNCTION BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -242,7 +246,9 @@ L0:            this->ExecuteUbergraph_Widget_SchematicRewardItem(340);
 
 
 ============ BEGIN FUNCTION BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_19_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SchematicRewardItem(528);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_19_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SchematicRewardItem, from label L528;
 ============ END FUNCTION BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_19_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -250,6 +256,7 @@ L0:            this->ExecuteUbergraph_Widget_SchematicRewardItem(528);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_SchematicRewardItem ==============
+L10:           // <Begin Inlined EventGraph Function Construct>;
 L10:           this->TextBlock_0->SetText(this->mTitle);
 L55:           this->SetCategoryIconColor();
 L69:           PlayerController* mPlayerController = this->GetOwningPlayer();
@@ -260,13 +267,15 @@ L200:          FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get
 L251:          bool mbool1 = mFGSchematicManager->IsSchematicPurchased(this->mSchematicClass);
 L302:          this->mIsSchematicPurchased = mbool1;
 L321:          this->UpdateVisibility();
-L335:          <End of Inlined Event Graph Function>;
+L335:          // <End Inlined EventGraph Function>;
+L340:          // <Begin Inlined EventGraph Function BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature>;
 L340:          Widget_TradingPost* mWidget_TradingPost = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost.Widget_TradingPost_C>(this->mTradingPostWidget);
 L376:          bool mbool2 = mWidget_TradingPost;
 L405:          mWidget_TradingPost->UpdateRewardInfoFromProduct(this);
 L442:          Pawn* mPawn = this->GetOwningPlayerPawn();
-L462:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_MouseOver, mPawn, true);
-L523:          <End of Inlined Event Graph Function>;
+L462:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/WorkBench/Play_UI_WorkBench_MouseOver.Play_UI_WorkBench_MouseOver), mPawn, true);
+L523:          // <End Inlined EventGraph Function>;
+L528:          // <Begin Inlined EventGraph Function BndEvt__mSchematicRecipeButton_K2Node_ComponentBoundEvent_19_OnButtonHoverEvent__DelegateSignature>;
 L528:          Widget_TradingPost* mWidget_TradingPost1 = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/TradingPost/Widget_TradingPost.Widget_TradingPost_C>(this->mTradingPostWidget);
 L564:          bool mbool3 = mWidget_TradingPost1;
 L593:          mWidget_TradingPost1->SetDefaultDescriptionText(this->mSchematicClass);

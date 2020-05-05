@@ -27,14 +27,14 @@ L161:          int32 ReturnValue = mint321;
 
 
 ============ BEGIN FUNCTION GetWidth ==============
-L0:            float mfloat = Divide_FloatFloat(42, 64);
-L38:           bool mbool = Not_PreBool(this->mUseSmallSlots);
-L67:           float mfloat1 = Multiply_IntFloat(this->mOverrideWidth, mfloat);
-L113:          bool mbool1 = BooleanAND(this->mKeepWidthRegardlessOfSlotSize, mbool);
+L0:            float mfloat = 42 / 64;
+L38:           bool mbool = !this->mUseSmallSlots;
+L67:           float mfloat1 = this->mOverrideWidth * mfloat;
+L113:          bool mbool1 = this->mKeepWidthRegardlessOfSlotSize && mbool;
 L151:          int32 mint32 = FFloor(mfloat1);
 L188:          int32 mint321 = this->mInventoryComponent->GetSizeLinear();
 L238:          int32 mint322 = SelectInt(mint32, this->mOverrideWidth, mbool1);
-L293:          bool mbool2 = NotEqual_IntInt(this->mOverrideWidth, -1);
+L293:          bool mbool2 = this->mOverrideWidth != -1;
 L327:          int32 mint323 = this->GetSqrtOfLinearSize();
 L359:          int32 mint324 = Min(mint323, this->mMaxInventoryColumns);
 L405:          int32 mint325 = SelectInt(mint322, mint324, mbool2);
@@ -54,8 +54,8 @@ L97:           if (!mbool) goto L322;
 L111:          if (!this->mUseLinearSize) goto L446;
 L125:          int32 Temp_int_Variable3 = 0;
 L148:          int32 mint32 = this->GetWidth();
-L180:          int32 mint321 = Subtract_IntInt(mint32, 1);
-L222:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable3, mint321);
+L180:          int32 mint321 = mint32 - 1;
+L222:          bool mbool1 = Temp_int_Variable3 <= mint321;
 L260:          if (!mbool1) goto ExecutionFlow.Pop();
 L270:          ExecutionFlow.Push(L1754);
 L275:          this->CreateSlot(Temp_int_Variable3, 0, Temp_int_Variable3, [ref] mWidget_InventorySlot);
@@ -64,51 +64,51 @@ L322:          KismetSystemLibrary->PrintString(this, "no inventory component? t
 L445:          goto ExecutionFlow.Pop();
 L446:          int32 Temp_int_Variable = 0;
 L469:          int32 mint322 = this->GetWidth();
-L501:          int32 mint323 = Subtract_IntInt(mint322, 1);
-L543:          bool mbool2 = LessEqual_IntInt(Temp_int_Variable, mint323);
+L501:          int32 mint323 = mint322 - 1;
+L543:          bool mbool2 = Temp_int_Variable <= mint323;
 L581:          if (!mbool2) goto L957;
 L595:          ExecutionFlow.Push(L883);
 L600:          int32 Temp_int_Variable1 = 0;
 L623:          int32 mint324 = this->GetWidth();
-L655:          int32 mint325 = Subtract_IntInt(mint324, 1);
-L697:          bool mbool3 = LessEqual_IntInt(Temp_int_Variable1, mint325);
+L655:          int32 mint325 = mint324 - 1;
+L697:          bool mbool3 = Temp_int_Variable1 <= mint325;
 L735:          if (!mbool3) goto ExecutionFlow.Pop();
 L745:          ExecutionFlow.Push(L1828);
 L750:          int32 mint326 = this->GetWidth();
 L782:          this->CalcIndex(Temp_int_Variable1, Temp_int_Variable, mint326, [ref] mint327);
 L832:          this->CreateSlot(mint327, Temp_int_Variable, Temp_int_Variable1, [ref] mWidget_InventorySlot1);
 L882:          goto ExecutionFlow.Pop();
-L883:          int32 mint328 = Add_IntInt(Temp_int_Variable, 1);
+L883:          int32 mint328 = Temp_int_Variable + 1;
 L925:          Temp_int_Variable = mint328;
 L952:          goto L469;
 L957:          int32 mint329 = this->GetWidth();
 L989:          int32 mint3210 = this->GetWidth();
-L1021:         int32 mint3211 = Multiply_IntInt(mint3210, mint329);
+L1021:         int32 mint3211 = mint3210 * mint329;
 L1067:         int32 Temp_int_Variable2 = mint3211;
 L1094:         int32 mint3212 = this->mInventoryComponent->GetSizeLinear();
-L1144:         int32 mint3213 = Subtract_IntInt(mint3212, 1);
-L1186:         bool mbool4 = LessEqual_IntInt(Temp_int_Variable2, mint3213);
+L1144:         int32 mint3213 = mint3212 - 1;
+L1186:         bool mbool4 = Temp_int_Variable2 <= mint3213;
 L1224:         if (!mbool4) goto ExecutionFlow.Pop();
 L1234:         ExecutionFlow.Push(L1680);
 L1239:         mint329 = this->GetWidth();
 L1271:         int32 mint3214 = this->GetWidth();
 L1303:         int32 mint3215 = this->GetWidth();
 L1335:         int32 mint3216 = this->GetWidth();
-L1367:         int32 mint3217 = Percent_IntInt(Temp_int_Variable2, mint3215);
+L1367:         int32 mint3217 = Temp_int_Variable2 % mint3215;
 L1413:         mint3210 = this->GetWidth();
-L1445:         mint3211 = Multiply_IntInt(mint3210, mint329);
-L1491:         int32 mint3218 = Subtract_IntInt(Temp_int_Variable2, mint3211);
-L1537:         int32 mint3219 = Divide_IntInt(mint3218, mint3216);
-L1583:         int32 mint3220 = Add_IntInt(mint3214, mint3219);
+L1445:         mint3211 = mint3210 * mint329;
+L1491:         int32 mint3218 = Temp_int_Variable2 - mint3211;
+L1537:         int32 mint3219 = mint3218 / mint3216;
+L1583:         int32 mint3220 = mint3214 + mint3219;
 L1629:         this->CreateSlot(Temp_int_Variable2, mint3220, mint3217, [ref] mWidget_InventorySlot2);
 L1679:         goto ExecutionFlow.Pop();
-L1680:         int32 mint3221 = Add_IntInt(Temp_int_Variable2, 1);
+L1680:         int32 mint3221 = Temp_int_Variable2 + 1;
 L1722:         Temp_int_Variable2 = mint3221;
 L1749:         goto L1094;
-L1754:         int32 mint3222 = Add_IntInt(Temp_int_Variable3, 1);
+L1754:         int32 mint3222 = Temp_int_Variable3 + 1;
 L1796:         Temp_int_Variable3 = mint3222;
 L1823:         goto L148;
-L1828:         int32 mint3223 = Add_IntInt(Temp_int_Variable1, 1);
+L1828:         int32 mint3223 = Temp_int_Variable1 + 1;
 L1870:         Temp_int_Variable1 = mint3223;
 L1897:         goto L623;
 ============ END FUNCTION CreateAllSlots ==============
@@ -127,8 +127,8 @@ L36:           KismetArrayLibrary->Array_Clear([ref] this->mInventorySlots);
 
 
 ============ BEGIN FUNCTION CalcIndex ==============
-L0:            int32 mint32 = Multiply_IntInt(Y, Width);
-L46:           int32 mint321 = Add_IntInt(X, mint32);
+L0:            int32 mint32 = Y * Width;
+L46:           int32 mint321 = X + mint32;
 L92:           int32 idx = mint321;
 ============ END FUNCTION CalcIndex ==============
 
@@ -138,10 +138,10 @@ L92:           int32 idx = mint321;
 
 ============ BEGIN FUNCTION CreateSlot ==============
 L0:            int32 mint32 = this->mInventoryComponent->GetSizeLinear();
-L50:           bool mbool = Less_IntInt(index, mint32);
+L50:           bool mbool = index < mint32;
 L88:           if (!mbool) goto L637;
 L102:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L126:          Widget_InventorySlot* mWidget_InventorySlot = WidgetBlueprintLibrary->Create(this, Widget_InventorySlot, mPlayerController);
+L126:          Widget_InventorySlot* mWidget_InventorySlot = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C), mPlayerController);
 L187:          KismetSystemLibrary->SetIntPropertyByName(mWidget_InventorySlot, "mSlotIdx", index);
 L250:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_InventorySlot, "mCachedInventoryComponent", this->mInventoryComponent);
 L313:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_InventorySlot, "mIsLocked", this->mIsLockedInventory);
@@ -170,9 +170,9 @@ L97:           this->CreateAllSlots();
 
 
 ============ BEGIN FUNCTION OnInventoryResized ==============
-L0:            PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Widget_Inventory.Widget_Inventory_C:ExecuteUbergraph_Widget_Inventory.K2Node_CustomEvent_oldSize) = oldSize;
-L18:           PERSISTENT_FRAME(IntProperty /Game/FactoryGame/Interface/UI/InGame/Widget_Inventory.Widget_Inventory_C:ExecuteUbergraph_Widget_Inventory.K2Node_CustomEvent_newSize) = newSize;
-L36:           this->ExecuteUbergraph_Widget_Inventory(34);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: OnInventoryResized;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L34;
 ============ END FUNCTION OnInventoryResized ==============
 
 
@@ -180,7 +180,9 @@ L36:           this->ExecuteUbergraph_Widget_Inventory(34);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_Inventory(67);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L67;
 ============ END FUNCTION Destruct ==============
 
 
@@ -188,7 +190,9 @@ L0:            this->ExecuteUbergraph_Widget_Inventory(67);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_Inventory(201);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L201;
 ============ END FUNCTION Construct ==============
 
 
@@ -196,10 +200,9 @@ L0:            this->ExecuteUbergraph_Widget_Inventory(201);
 
 
 ============ BEGIN FUNCTION OnDragEnter ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_Inventory.Widget_Inventory_C:ExecuteUbergraph_Widget_Inventory.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_Inventory.Widget_Inventory_C:ExecuteUbergraph_Widget_Inventory.K2Node_Event_PointerEvent1) = PointerEvent;
-L36:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Widget_Inventory.Widget_Inventory_C:ExecuteUbergraph_Widget_Inventory.K2Node_Event_Operation1) = Operation;
-L54:           this->ExecuteUbergraph_Widget_Inventory(425);
+L54:           // EventGraph implemented function stub;
+L54:           // Function Name: OnDragEnter;
+L54:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L425;
 ============ END FUNCTION OnDragEnter ==============
 
 
@@ -207,9 +210,9 @@ L54:           this->ExecuteUbergraph_Widget_Inventory(425);
 
 
 ============ BEGIN FUNCTION OnDragLeave ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_Inventory.Widget_Inventory_C:ExecuteUbergraph_Widget_Inventory.K2Node_Event_PointerEvent) = PointerEvent;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/InGame/Widget_Inventory.Widget_Inventory_C:ExecuteUbergraph_Widget_Inventory.K2Node_Event_Operation) = Operation;
-L36:           this->ExecuteUbergraph_Widget_Inventory(449);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: OnDragLeave;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L449;
 ============ END FUNCTION OnDragLeave ==============
 
 
@@ -217,8 +220,9 @@ L36:           this->ExecuteUbergraph_Widget_Inventory(449);
 
 
 ============ BEGIN FUNCTION OnMouseLeave ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/Widget_Inventory.Widget_Inventory_C:ExecuteUbergraph_Widget_Inventory.K2Node_Event_MouseEvent) = MouseEvent;
-L18:           this->ExecuteUbergraph_Widget_Inventory(473);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnMouseLeave;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L473;
 ============ END FUNCTION OnMouseLeave ==============
 
 
@@ -227,30 +231,32 @@ L18:           this->ExecuteUbergraph_Widget_Inventory(473);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_Inventory ==============
 L10:           this->OnInventoryMouseLeave->ProcessMulticastDelegate();
-L29:           <End of Inlined Event Graph Function>;
+L29:           // <End Inlined EventGraph Function>;
 L34:           this->ClearAllSlots();
 L48:           this->CreateAllSlots();
-L62:           <End of Inlined Event Graph Function>;
+L62:           // <End Inlined EventGraph Function>;
+L67:           // <Begin Inlined EventGraph Function Destruct>;
 L67:           bool mbool = KismetSystemLibrary->IsValid(this->mInventoryComponent);
 L118:          if (!mbool) goto L478;
 L132:          mFScriptDelegate->BindUFunction(this, OnInventoryResized);
 L155:          this->mInventoryComponent->ResizeInventoryDelegate.Remove(mFScriptDelegate);
-L196:          <End of Inlined Event Graph Function>;
+L196:          // <End Inlined EventGraph Function>;
+L201:          // <Begin Inlined EventGraph Function Construct>;
 L201:          FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
 L243:          bool Temp_bool_Variable1 = false;
 L254:          bool mbool1 = mFGGameUserSettings->GetBoolOptionValue("FG.BigSlots");
 L309:          bool Temp_bool_Variable = this->mAlwaysBigSlot;
-L328:          bool mbool2 = Not_PreBool(mbool1);
+L328:          bool mbool2 = !mbool1;
 L357:          this->mUseSmallSlots = switch (Temp_bool_Variable) {
 case false -> mbool2;
 case true -> Temp_bool_Variable1;
 default -> mbool3;
 };
-L420:          <End of Inlined Event Graph Function>;
+L420:          // <End Inlined EventGraph Function>;
 L425:          this->OnInventoryDragEnter->ProcessMulticastDelegate();
-L444:          <End of Inlined Event Graph Function>;
+L444:          // <End Inlined EventGraph Function>;
 L449:          this->OnInventoryDragLeave->ProcessMulticastDelegate();
-L468:          <End of Inlined Event Graph Function>;
+L468:          // <End Inlined EventGraph Function>;
 L473:          goto L10;
 ============ END FUNCTION ExecuteUbergraph_Widget_Inventory ==============
 

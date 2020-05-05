@@ -8,7 +8,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/-Shared/BP_MaterialEf
 
 ============ BEGIN FUNCTION PlayThumpSound ==============
 L0:            Actor* mActor = this->GetOwner();
-L20:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_F_BuildEffect_Switch_Thump, mActor, true);
+L20:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/-Shared/Audio/BuildEffect_2018-08/Play_F_BuildEffect_Switch_Thump.Play_F_BuildEffect_Switch_Thump), mActor, true);
 ============ END FUNCTION PlayThumpSound ==============
 
 
@@ -32,12 +32,12 @@ L180:          this->SetMaterialScalarParameterValue("HeightZ", mfloat5);
 L0:            this->GetMeshesBounds(false, false, [ref] mVector, [ref] mVector1);
 L30:           BreakVector(mVector1, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
 L76:           BreakVector(mVector, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
-L122:          float mfloat6 = Subtract_FloatFloat(mfloat5, mfloat2);
+L122:          float mfloat6 = mfloat5 - mfloat2;
 L168:          Vector mVector2 = MakeVector(mfloat3, mfloat4, mfloat6);
 L223:          this->mOrigin = mVector2;
 L250:          BreakVector(mVector1, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
 L296:          Vector mVector3 = MakeVector(mfloat, mfloat1, mfloat2);
-L351:          Vector mVector4 = Multiply_VectorFloat(mVector3, 2);
+L351:          Vector mVector4 = mVector3 * 2;
 L393:          this->mBoxBounds = mVector4;
 L420:          Actor* mActor = this->GetOwner();
 L440:          FGBuildableSpaceElevator* mFGBuildableSpaceElevator = Cast<Class /Script/FactoryGame.FGBuildableSpaceElevator>(mActor);
@@ -47,10 +47,10 @@ L519:          this->mBoxBounds = Vector(5000, 5000, 6000);
 L550:          Vector mVector5 = mFGBuildableSpaceElevator->K2_GetActorLocation();
 L600:          this->mOrigin = mVector5;
 L627:          BreakVector(this->mBoxBounds, [ref] mfloat7, [ref] mfloat8, [ref] mfloat9);
-L673:          float mfloat10 = Multiply_FloatFloat(mfloat7, mfloat8);
-L719:          float mfloat11 = Multiply_FloatFloat(mfloat10, mfloat9);
-L765:          float mfloat12 = Multiply_FloatFloat(mfloat11, 0.000009999999747378752);
-L807:          float mfloat13 = Divide_FloatFloat(mfloat12, 2000);
+L673:          float mfloat10 = mfloat7 * mfloat8;
+L719:          float mfloat11 = mfloat10 * mfloat9;
+L765:          float mfloat12 = mfloat11 * 0.000009999999747378752;
+L807:          float mfloat13 = mfloat12 / 2000;
 L849:          this->mVolume = mfloat13;
 ============ END FUNCTION SetupBounds ==============
 
@@ -59,7 +59,7 @@ L849:          this->mVolume = mfloat13;
 
 
 ============ BEGIN FUNCTION GotoNextStep ==============
-L0:            int32 mint32 = Add_IntInt(this->mCurrentStep, 1);
+L0:            int32 mint32 = this->mCurrentStep + 1;
 L42:           int32 Temp_int_Variable = mint32;
 L69:           this->mCurrentStep = Temp_int_Variable;
 L96:           this->mElapsedTime = 0;
@@ -70,12 +70,12 @@ L96:           this->mElapsedTime = 0;
 
 
 ============ BEGIN FUNCTION CalcCostQueueNewLength ==============
-L0:            float mfloat = FMin(Divide_FloatFloat(this->mElapsedTime, this->mThrowDuration), 1);
+L0:            float mfloat = FMin(this->mElapsedTime / this->mThrowDuration, 1);
 L61:           float mfloat1 = FGSkySphere->GetFloatCurveValue([ref] this->mThrowCurve, mfloat);
-L129:          float mfloat2 = Subtract_FloatFloat(1, mfloat1);
-L171:          float mfloat3 = Divide_FloatFloat(mfloat2, this->mMaterializeAmountPerThrow);
+L129:          float mfloat2 = 1 - mfloat1;
+L171:          float mfloat3 = mfloat2 / this->mMaterializeAmountPerThrow;
 L217:          int32 mint32 = FCeil(mfloat3);
-L254:          int32 mint321 = Subtract_IntInt(mint32, 1);
+L254:          int32 mint321 = mint32 - 1;
 L296:          int32 mint322 = Max(mint321, 0);
 L338:          int32 NewLength = mint322;
 ============ END FUNCTION CalcCostQueueNewLength ==============
@@ -89,12 +89,12 @@ L0:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(thi
 L43:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mThrowQueue);
 L102:          FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
 L138:          bool mbool = mFGGameState;
-L167:          bool mbool1 = EqualEqual_IntInt(mint32, 0);
+L167:          bool mbool1 = mint32 == 0;
 L201:          bool mbool2 = mFGGameState->GetCheatNoCost();
-L243:          bool mbool3 = BooleanAND(mbool2, mbool1);
+L243:          bool mbool3 = mbool2 && mbool1;
 L281:          if (!mbool3) goto L590;
-L295:          const TArray<TSubclassOf<FGItemDescriptor>> mconst TArray<TSubclassOf<FGItemDescriptor>> = [Desc_IronIngot, Desc_IronPlate, Desc_IronScrew, Desc_AluminumPlate, Desc_Motor, Desc_Cement, Desc_Cement, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate, Desc_Cement, Desc_IronPlate, Desc_IronPlate, Desc_IronPlate];
-L540:          KismetArrayLibrary->Array_Append([ref] this->mThrowQueue, [ref] mconst TArray<TSubclassOf<FGItemDescriptor>>);
+L295:          const TArray<TSubclassOf<FGItemDescriptor>> mconst TArrayTSubclassOfFGItemDescriptor = [ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronIngot/Desc_IronIngot.Desc_IronIngot_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronScrew/Desc_IronScrew.Desc_IronScrew_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/AluminumPlate/Desc_AluminumPlate.Desc_AluminumPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/Motor/Desc_Motor.Desc_Motor_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/Cement/Desc_Cement.Desc_Cement_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/Cement/Desc_Cement.Desc_Cement_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/Cement/Desc_Cement.Desc_Cement_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C), ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/IronPlate/Desc_IronPlate.Desc_IronPlate_C)];
+L540:          KismetArrayLibrary->Array_Append([ref] this->mThrowQueue, [ref] mconst TArrayTSubclassOfFGItemDescriptor);
 ============ END FUNCTION DebugFillCostQueue ==============
 
 
@@ -102,7 +102,7 @@ L540:          KismetArrayLibrary->Array_Append([ref] this->mThrowQueue, [ref] m
 
 
 ============ BEGIN FUNCTION CalcDisplacementAmount ==============
-L0:            float mfloat = FMax(Divide_FloatFloat(Subtract_FloatFloat(this->mElapsedTime, this->mThrowDuration), this->mDisplacementDuration), 0);
+L0:            float mfloat = FMax(this->mElapsedTime - this->mThrowDuration / this->mDisplacementDuration, 0);
 L80:           float mfloat1 = FGSkySphere->GetFloatCurveValue([ref] this->mOffsetCurve_Drop, mfloat);
 L148:          float amount = mfloat1;
 ============ END FUNCTION CalcDisplacementAmount ==============
@@ -114,12 +114,12 @@ L148:          float amount = mfloat1;
 ============ BEGIN FUNCTION UpdateCostQueue ==============
 L0:            this->CalcCostQueueNewLength([ref] mint32);
 L23:           int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mThrowQueue);
-L82:           bool mbool = Greater_IntInt(mint321, mint32);
-L120:          bool mbool1 = Greater_IntInt(mint321, 0);
-L154:          bool mbool2 = BooleanAND(mbool, mbool1);
+L82:           bool mbool = mint321 > mint32;
+L120:          bool mbool1 = mint321 > 0;
+L154:          bool mbool2 = mbool && mbool1;
 L192:          if (!mbool2) goto L1904;
-L206:          KismetArrayLibrary->Array_Get([ref] this->mThrowQueue, 0, [ref] mTSubclassOf<FGItemDescriptor>);
-L261:          TSubclassOf<FGItemDescriptor> LocalItemDescriptor = mTSubclassOf<FGItemDescriptor>;
+L206:          KismetArrayLibrary->Array_Get([ref] this->mThrowQueue, 0, [ref] mTSubclassOfFGItemDescriptor);
+L261:          TSubclassOf<FGItemDescriptor> LocalItemDescriptor = mTSubclassOfFGItemDescriptor;
 L280:          KismetArrayLibrary->Array_Remove([ref] this->mThrowQueue, 0);
 L326:          Actor* mActor = this->GetInstigator();
 L346:          bool mbool3 = KismetSystemLibrary->IsValid(mActor);
@@ -128,18 +128,18 @@ L411:          Actor* mActor1 = this->GetInstigator();
 L431:          Transform mTransform = mActor1->GetTransform();
 L481:          BreakTransform([ref] mTransform, [ref] mVector, [ref] mRotator, [ref] mVector1);
 L527:          Transform mTransform1 = MakeTransform(mVector, mRotator, mVector1);
-L582:          Actor* mActor2 = GameplayStatics->BeginDeferredActorSpawnFromClass(this, BP_CostEffectActor, [ref] mTransform1, 1, nullptr);
+L582:          Actor* mActor2 = GameplayStatics->BeginDeferredActorSpawnFromClass(this, ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/-Shared/BP_CostEffectActor.BP_CostEffectActor_C), [ref] mTransform1, 1, nullptr);
 L646:          BreakVector(this->mBoxBounds, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
-L692:          float mfloat3 = Multiply_FloatFloat(mfloat1, 0.4000000059604645);
-L734:          float mfloat4 = Multiply_FloatFloat(mfloat, 0.4000000059604645);
+L692:          float mfloat3 = mfloat1 * 0.4000000059604645;
+L734:          float mfloat4 = mfloat * 0.4000000059604645;
 L776:          Vector mVector2 = MakeVector(mfloat4, mfloat3, 0);
-L827:          float mfloat5 = Multiply_IntFloat(this->mItemsThrown, this->mMaterializeAmountPerThrow);
-L873:          float mfloat6 = Multiply_FloatFloat(mfloat2, mfloat5);
+L827:          float mfloat5 = this->mItemsThrown * this->mMaterializeAmountPerThrow;
+L873:          float mfloat6 = mfloat2 * mfloat5;
 L919:          Vector mVector3 = MakeVector(0, 0, mfloat6);
 L966:          Vector mVector4 = RandomUnitVector();
-L994:          Vector mVector5 = Multiply_VectorVector(mVector4, mVector2);
-L1040:         Vector mVector6 = Add_VectorVector(mVector5, mVector3);
-L1086:         Vector mVector7 = Add_VectorVector(this->mOrigin, mVector6);
+L994:          Vector mVector5 = mVector4 * mVector2;
+L1040:         Vector mVector6 = mVector5 + mVector3;
+L1086:         Vector mVector7 = this->mOrigin + mVector6;
 L1132:         KismetSystemLibrary->SetVectorPropertyByName(mActor2, "mTargetLocation", [ref] mVector7);
 L1195:         BreakVector(this->mBoxBounds, [ref] mfloat, [ref] mfloat1, [ref] mfloat2);
 L1241:         float mfloat7 = FMin(mfloat, mfloat1);
@@ -152,12 +152,12 @@ L1529:         mTransform1 = MakeTransform(mVector, mRotator, mVector1);
 L1584:         BP_CostEffectActor* mBP_CostEffectActor = GameplayStatics->FinishSpawningActor(mActor2, [ref] mTransform1);
 L1644:         mFScriptDelegate->BindUFunction(this, OnCostActorReachedTarget);
 L1667:         mBP_CostEffectActor->OnReachedTarget.AddUnique(mFScriptDelegate);
-L1708:         int32 mint322 = Add_IntInt(this->mItemsThrown, 1);
+L1708:         int32 mint322 = this->mItemsThrown + 1;
 L1750:         int32 Temp_int_Variable = mint322;
 L1777:         this->mItemsThrown = Temp_int_Variable;
 L1804:         Actor* mActor3 = this->GetInstigator();
-L1824:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_BuildEffect_SwishComponents, mActor3, true);
-L1885:         <End of Inlined Event Graph Function>;
+L1824:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/-Shared/Audio/BuildEffect_2018-05/Play_BuildEffect_SwishComponents.Play_BuildEffect_SwishComponents), mActor3, true);
+L1885:         // <End Inlined EventGraph Function>;
 L1890:         this->OnCostActorReachedTarget();
 ============ END FUNCTION UpdateCostQueue ==============
 
@@ -171,68 +171,68 @@ L5:            int32 LocalPartThreshold = 40;
 L28:           Actor* mActor = this->GetInstigator();
 L48:           bool mbool = KismetSystemLibrary->IsValid(mActor);
 L99:           if (!mbool) goto L472;
-L113:          TArray<ItemAmount> mTArray<ItemAmount> = this->GetCost();
+L113:          TArray<ItemAmount> mTArrayItemAmount = this->GetCost();
 L141:          int32 Temp_int_Loop_Counter_Variable1 = 0;
 L164:          int32 Temp_int_Array_Index_Variable = 0;
-L187:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
-L246:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint32);
+L187:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount);
+L246:          bool mbool1 = Temp_int_Loop_Counter_Variable1 < mint32;
 L284:          if (!mbool1) goto L693;
 L298:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
 L325:          ExecutionFlow.Push(L2004);
-L330:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
-L389:          int32 mint321 = Add_IntInt(mItemAmount.amount, LocalCounter);
+L330:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L389:          int32 mint321 = mItemAmount.amount + LocalCounter;
 L444:          int32 LocalCounter = mint321;
 L471:          goto ExecutionFlow.Pop();
 L472:          this->DebugFillCostQueue();
 L486:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] this->mThrowQueue);
 L545:          float mfloat = Conv_IntToFloat(mint322);
-L582:          float mfloat1 = Divide_FloatFloat(1, mfloat);
+L582:          float mfloat1 = 1 / mfloat;
 L624:          this->mMaterializeAmountPerThrow = mfloat1;
 L651:          KismetArrayLibrary->Array_Shuffle([ref] this->mThrowQueue);
 L692:          goto ExecutionFlow.Pop();
-L693:          bool mbool2 = GreaterEqual_IntInt(LocalCounter, LocalPartThreshold);
+L693:          bool mbool2 = LocalCounter >= LocalPartThreshold;
 L731:          if (!mbool2) goto L1192;
 L745:          float mfloat2 = Conv_IntToFloat(LocalPartThreshold);
 L782:          float mfloat3 = Conv_IntToFloat(LocalCounter);
-L819:          float mfloat4 = Divide_FloatFloat(mfloat3, mfloat2);
+L819:          float mfloat4 = mfloat3 / mfloat2;
 L865:          int32 mint323 = FCeil(mfloat4);
 L902:          this->mCostAmountPerThrow = mint323;
-L929:          bool mbool3 = Greater_IntInt(this->mCostAmountPerThrow, 1);
+L929:          bool mbool3 = this->mCostAmountPerThrow > 1;
 L963:          if (!mbool3) goto L1192;
 L977:          float mfloat5 = Conv_IntToFloat(this->mCostAmountPerThrow);
 L1014:         float mfloat6 = FGSkySphere->GetFloatCurveValue([ref] this->mVolumeCurve, this->mVolume);
-L1082:         float mfloat7 = Divide_FloatFloat(mfloat5, mfloat6);
+L1082:         float mfloat7 = mfloat5 / mfloat6;
 L1128:         int32 mint324 = FCeil(mfloat7);
 L1165:         this->mCostAmountPerThrow = mint324;
 L1192:         int32 Temp_int_Loop_Counter_Variable = 0;
 L1215:         int32 Temp_int_Array_Index_Variable1 = 0;
-L1238:         int32 mint325 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
-L1297:         bool mbool4 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint325);
+L1238:         int32 mint325 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount);
+L1297:         bool mbool4 = Temp_int_Loop_Counter_Variable < mint325;
 L1335:         if (!mbool4) goto L472;
 L1349:         Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
 L1376:         ExecutionFlow.Push(L1930);
 L1381:         float mfloat8 = Conv_IntToFloat(this->mCostAmountPerThrow);
-L1418:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable1, [ref] mItemAmount1);
+L1418:         KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable1, [ref] mItemAmount1);
 L1477:         float mfloat9 = Conv_IntToFloat(mItemAmount1.amount);
-L1523:         float mfloat10 = Divide_FloatFloat(mfloat9, mfloat8);
+L1523:         float mfloat10 = mfloat9 / mfloat8;
 L1569:         int32 mint326 = FCeil(mfloat10);
 L1606:         int32 mint327 = Max(mint326, 1);
 L1648:         int32 LocalNumActors = mint327;
 L1675:         int32 Temp_int_Variable = 0;
-L1698:         int32 mint328 = Subtract_IntInt(LocalNumActors, 1);
-L1740:         bool mbool5 = LessEqual_IntInt(Temp_int_Variable, mint328);
+L1698:         int32 mint328 = LocalNumActors - 1;
+L1740:         bool mbool5 = Temp_int_Variable <= mint328;
 L1778:         if (!mbool5) goto ExecutionFlow.Pop();
 L1788:         ExecutionFlow.Push(L2078);
-L1793:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable1, [ref] mItemAmount1);
+L1793:         KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable1, [ref] mItemAmount1);
 L1852:         int32 mint329 = KismetArrayLibrary->Array_Add([ref] this->mThrowQueue, [ref] mItemAmount1.ItemClass);
 L1929:         goto ExecutionFlow.Pop();
-L1930:         int32 mint3210 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1930:         int32 mint3210 = Temp_int_Loop_Counter_Variable + 1;
 L1972:         Temp_int_Loop_Counter_Variable = mint3210;
 L1999:         goto L1238;
-L2004:         int32 mint3211 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L2004:         int32 mint3211 = Temp_int_Loop_Counter_Variable1 + 1;
 L2046:         Temp_int_Loop_Counter_Variable1 = mint3211;
 L2073:         goto L187;
-L2078:         int32 mint3212 = Add_IntInt(Temp_int_Variable, 1);
+L2078:         int32 mint3212 = Temp_int_Variable + 1;
 L2120:         Temp_int_Variable = mint3212;
 L2147:         goto L1698;
 ============ END FUNCTION SetupCostQueue ==============
@@ -243,7 +243,7 @@ L2147:         goto L1698;
 
 ============ BEGIN FUNCTION SetupDuration ==============
 L0:            int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mThrowQueue);
-L59:           float mfloat = Multiply_IntFloat(mint32, 0.10000000149011612);
+L59:           float mfloat = mint32 * 0.10000000149011612;
 L101:          this->mThrowDuration = mfloat;
 ============ END FUNCTION SetupDuration ==============
 
@@ -256,26 +256,26 @@ L0:            ExecutionFlow.Push(L782);
 L5:            int32 Temp_int_Loop_Counter_Variable = 0;
 L28:           int32 Temp_int_Array_Index_Variable = 0;
 L51:           Actor* mActor = this->GetOwner();
-L71:           TArray<MeshComponent*> mTArray<MeshComponent> = mActor->GetComponentsByClass(MeshComponent);
-L130:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<MeshComponent>);
-L189:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L71:           TArray<MeshComponent*> mTArrayMeshComponent = mActor->GetComponentsByClass(ObjectConst(Class /Script/Engine.MeshComponent));
+L130:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayMeshComponent);
+L189:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L227:          if (!mbool) goto L481;
 L241:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L268:          ExecutionFlow.Push(L501);
 L273:          mActor = this->GetOwner();
-L293:          mTArray<MeshComponent> = mActor->GetComponentsByClass(MeshComponent);
-L352:          KismetArrayLibrary->Array_Get([ref] mTArray<MeshComponent>, Temp_int_Array_Index_Variable, [ref] mMeshComponent);
+L293:          mTArrayMeshComponent = mActor->GetComponentsByClass(ObjectConst(Class /Script/Engine.MeshComponent));
+L352:          KismetArrayLibrary->Array_Get([ref] mTArrayMeshComponent, Temp_int_Array_Index_Variable, [ref] mMeshComponent);
 L411:          bool mbool1 = mMeshComponent->ComponentHasTag("CustomMaterial");
 L466:          if (!mbool1) goto L575;
 L480:          goto ExecutionFlow.Pop();
 L481:          this->SetMeshes(localMeshes);
 L500:          goto ExecutionFlow.Pop();
-L501:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L501:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L543:          Temp_int_Loop_Counter_Variable = mint321;
 L570:          goto L51;
 L575:          mActor = this->GetOwner();
-L595:          mTArray<MeshComponent> = mActor->GetComponentsByClass(MeshComponent);
-L654:          KismetArrayLibrary->Array_Get([ref] mTArray<MeshComponent>, Temp_int_Array_Index_Variable, [ref] mMeshComponent);
+L595:          mTArrayMeshComponent = mActor->GetComponentsByClass(ObjectConst(Class /Script/Engine.MeshComponent));
+L654:          KismetArrayLibrary->Array_Get([ref] mTArrayMeshComponent, Temp_int_Array_Index_Variable, [ref] mMeshComponent);
 L713:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] localMeshes, [ref] mMeshComponent);
 L781:          goto ExecutionFlow.Pop();
 ============ END FUNCTION SetupMeshes ==============
@@ -287,25 +287,25 @@ L781:          goto ExecutionFlow.Pop();
 ============ BEGIN FUNCTION SpawnFootEmitters ==============
 L0:            ExecutionFlow.Push(L1326);
 L5:            Actor* mActor = this->GetOwner();
-L25:           FGFactoryLegsComponent* mFGFactoryLegsComponent = mActor->GetComponentByClass(FGFactoryLegsComponent);
+L25:           FGFactoryLegsComponent* mFGFactoryLegsComponent = mActor->GetComponentByClass(ObjectConst(Class /Script/FactoryGame.FGFactoryLegsComponent));
 L76:           bool mbool = KismetSystemLibrary->IsValid(mFGFactoryLegsComponent);
 L127:          if (!mbool) goto ExecutionFlow.Pop();
 L137:          int32 Temp_int_Loop_Counter_Variable = 0;
 L160:          int32 Temp_int_Array_Index_Variable = 0;
 L183:          mActor = this->GetOwner();
-L203:          mFGFactoryLegsComponent = mActor->GetComponentByClass(FGFactoryLegsComponent);
-L254:          TArray<StaticMeshComponent*> mTArray<StaticMeshComponent> = mFGFactoryLegsComponent->GetFootMeshComponents();
-L304:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<StaticMeshComponent>);
-L363:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L203:          mFGFactoryLegsComponent = mActor->GetComponentByClass(ObjectConst(Class /Script/FactoryGame.FGFactoryLegsComponent));
+L254:          TArray<StaticMeshComponent*> mTArrayStaticMeshComponent = mFGFactoryLegsComponent->GetFootMeshComponents();
+L304:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayStaticMeshComponent);
+L363:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L401:          if (!mbool1) goto ExecutionFlow.Pop();
 L411:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L438:          ExecutionFlow.Push(L1252);
 L443:          mActor = this->GetOwner();
-L463:          mFGFactoryLegsComponent = mActor->GetComponentByClass(FGFactoryLegsComponent);
-L514:          mTArray<StaticMeshComponent> = mFGFactoryLegsComponent->GetFootMeshComponents();
-L564:          KismetArrayLibrary->Array_Get([ref] mTArray<StaticMeshComponent>, Temp_int_Array_Index_Variable, [ref] mStaticMeshComponent);
+L463:          mFGFactoryLegsComponent = mActor->GetComponentByClass(ObjectConst(Class /Script/FactoryGame.FGFactoryLegsComponent));
+L514:          mTArrayStaticMeshComponent = mFGFactoryLegsComponent->GetFootMeshComponents();
+L564:          KismetArrayLibrary->Array_Get([ref] mTArrayStaticMeshComponent, Temp_int_Array_Index_Variable, [ref] mStaticMeshComponent);
 L623:          Vector mVector = mStaticMeshComponent->K2_GetComponentLocation();
-L673:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, P_BuildImpactFoot_01, mVector, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L673:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, ObjectConst(ParticleSystem /Game/FactoryGame/VFX/Misc/BuildEffect/P_BuildImpactFoot_01.P_BuildImpactFoot_01), mVector, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
 L763:          float mfloat = FGSkySphere->GetFloatCurveValue([ref] this->mParticleCurve, this->mVolume);
 L831:          mParticleSystemComponent->SetFloatParameter("smoke_01_size", mfloat);
 L885:          mfloat = FGSkySphere->GetFloatCurveValue([ref] this->mParticleCurve, this->mVolume);
@@ -315,7 +315,7 @@ L1075:         mParticleSystemComponent->SetFloatParameter("smoke_01_acc", mfloa
 L1129:         mfloat1 = FGSkySphere->GetFloatCurveValue([ref] this->mParticleVeloCurve, this->mVolume);
 L1197:         mParticleSystemComponent->SetFloatParameter("smoke_02_acc", mfloat1);
 L1251:         goto ExecutionFlow.Pop();
-L1252:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1252:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L1294:         Temp_int_Loop_Counter_Variable = mint321;
 L1321:         goto L183;
 ============ END FUNCTION SpawnFootEmitters ==============
@@ -325,8 +325,9 @@ L1321:         goto L183;
 
 
 ============ BEGIN FUNCTION OnUpdate ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/Factory/-Shared/BP_MaterialEffect_Build.BP_MaterialEffect_Build_C:ExecuteUbergraph_BP_MaterialEffect_Build.K2Node_Event_deltaTime) = DeltaTime;
-L18:           this->ExecuteUbergraph_BP_MaterialEffect_Build(2651);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnUpdate;
+L18:           // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_Build, from label L2651;
 ============ END FUNCTION OnUpdate ==============
 
 
@@ -334,7 +335,9 @@ L18:           this->ExecuteUbergraph_BP_MaterialEffect_Build(2651);
 
 
 ============ BEGIN FUNCTION OnEnded ==============
-L0:            this->ExecuteUbergraph_BP_MaterialEffect_Build(4067);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnEnded;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_Build, from label L4067;
 ============ END FUNCTION OnEnded ==============
 
 
@@ -342,7 +345,9 @@ L0:            this->ExecuteUbergraph_BP_MaterialEffect_Build(4067);
 
 
 ============ BEGIN FUNCTION PreStarted ==============
-L0:            this->ExecuteUbergraph_BP_MaterialEffect_Build(4082);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: PreStarted;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_Build, from label L4082;
 ============ END FUNCTION PreStarted ==============
 
 
@@ -350,7 +355,9 @@ L0:            this->ExecuteUbergraph_BP_MaterialEffect_Build(4082);
 
 
 ============ BEGIN FUNCTION OnStarted ==============
-L0:            this->ExecuteUbergraph_BP_MaterialEffect_Build(4149);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnStarted;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_Build, from label L4149;
 ============ END FUNCTION OnStarted ==============
 
 
@@ -358,7 +365,9 @@ L0:            this->ExecuteUbergraph_BP_MaterialEffect_Build(4149);
 
 
 ============ BEGIN FUNCTION OnCostActorReachedTarget ==============
-L0:            this->ExecuteUbergraph_BP_MaterialEffect_Build(4446);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnCostActorReachedTarget;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_Build, from label L4446;
 ============ END FUNCTION OnCostActorReachedTarget ==============
 
 
@@ -372,11 +381,11 @@ L29:           KismetSystemLibrary->Delay(this, 0.4000000059604645, ScriptStruct
 L105:          goto ExecutionFlow.Pop();
 L106:          Actor* mActor = this->GetOwner();
 L126:          Vector mVector = mActor->K2_GetActorLocation();
-L176:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, P_BuildingComplete_01, mVector, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
+L176:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAtLocation(this, ObjectConst(ParticleSystem /Game/FactoryGame/VFX/Misc/BuildEffect/P_BuildingComplete_01.P_BuildingComplete_01), mVector, Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), true, 0);
 L266:          float mfloat = FGSkySphere->GetFloatCurveValue([ref] this->mParticleVeloCurve, this->mVolume);
 L334:          mParticleSystemComponent->SetFloatParameter("BurstScale", mfloat);
 L388:          float mfloat1 = FGSkySphere->GetFloatCurveValue([ref] this->mParticleVeloCurve, this->mVolume);
-L456:          float mfloat2 = Multiply_FloatFloat(mfloat1, 20);
+L456:          float mfloat2 = mfloat1 * 20;
 L498:          mParticleSystemComponent->SetFloatParameter("BurstScaleLight", mfloat2);
 L552:          Actor* mActor1 = this->GetOwner();
 L572:          FGBuildable* mFGBuildable = Cast<Class /Script/FactoryGame.FGBuildable>(mActor1);
@@ -387,11 +396,11 @@ L715:          bool mbool1 = mBoxComponent;
 L744:          if (!mbool1) goto ExecutionFlow.Pop();
 L754:          Vector mVector1 = mBoxComponent->GetScaledBoxExtent();
 L804:          BreakVector(mVector1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
-L850:          float mfloat6 = Multiply_FloatFloat(mfloat5, 2);
-L892:          float mfloat7 = Multiply_FloatFloat(mfloat4, -1.100000023841858);
-L934:          float mfloat8 = Multiply_FloatFloat(mfloat4, 1.100000023841858);
-L976:          float mfloat9 = Multiply_FloatFloat(mfloat3, -1.100000023841858);
-L1018:         float mfloat10 = Multiply_FloatFloat(mfloat3, 1.100000023841858);
+L850:          float mfloat6 = mfloat5 * 2;
+L892:          float mfloat7 = mfloat4 * -1.100000023841858;
+L934:          float mfloat8 = mfloat4 * 1.100000023841858;
+L976:          float mfloat9 = mfloat3 * -1.100000023841858;
+L1018:         float mfloat10 = mfloat3 * 1.100000023841858;
 L1060:         Vector mVector2 = MakeVector(mfloat9, mfloat7, 0);
 L1111:         Vector mVector3 = MakeVector(mfloat10, mfloat8, mfloat6);
 L1166:         mParticleSysParam.Name = "Location";
@@ -413,14 +422,14 @@ L1585:         goto ExecutionFlow.Pop();
 L1586:         bool Temp_bool_IsClosed_Variable2 = true;
 L1597:         this->SpawnFootEmitters();
 L1611:         BreakVector(this->mBoxBounds, [ref] mfloat11, [ref] mfloat12, [ref] mfloat13);
-L1657:         float mfloat14 = Add_FloatFloat(mfloat11, mfloat12);
-L1703:         float mfloat15 = Add_FloatFloat(mfloat14, mfloat13);
-L1749:         float mfloat16 = Divide_FloatFloat(mfloat15, 10);
-L1791:         bool mbool2 = LessEqual_FloatFloat(mfloat16, 1400);
+L1657:         float mfloat14 = mfloat11 + mfloat12;
+L1703:         float mfloat15 = mfloat14 + mfloat13;
+L1749:         float mfloat16 = mfloat15 / 10;
+L1791:         bool mbool2 = mfloat16 <= 1400;
 L1825:         if (!mbool2) goto L1844;
 L1839:         goto L15;
 L1844:         Actor* mActor2 = this->GetOwner();
-L1864:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_BuildEffect_MegaThump, mActor2, true);
+L1864:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/-Shared/Audio/Play_BuildEffect_MegaThump.Play_BuildEffect_MegaThump), mActor2, true);
 L1925:         goto L29;
 L1930:         bool Temp_bool_Has_Been_Initd_Variable1 = true;
 L1941:         if (!false) goto ExecutionFlow.Pop();
@@ -448,15 +457,15 @@ L2126:         goto ExecutionFlow.Pop();
 L2127:         bool Temp_bool_IsClosed_Variable1 = true;
 L2138:         this->mElapsedTimeCorrectionBuildup = this->mElapsedTime;
 L2165:         Actor* mActor3 = this->GetOwner();
-L2185:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Debug_ComponentCreator, mActor3, true);
+L2185:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/-Shared/Audio/DebugTools/Debug_ComponentCreator.Debug_ComponentCreator), mActor3, true);
 L2246:         BreakVector(this->mBoxBounds, [ref] mfloat17, [ref] mfloat18, [ref] mfloat19);
-L2292:         float mfloat20 = Add_FloatFloat(mfloat17, mfloat18);
-L2338:         float mfloat21 = Add_FloatFloat(mfloat20, mfloat19);
-L2384:         float mfloat22 = Divide_FloatFloat(mfloat21, 10);
+L2292:         float mfloat20 = mfloat17 + mfloat18;
+L2338:         float mfloat21 = mfloat20 + mfloat19;
+L2384:         float mfloat22 = mfloat21 / 10;
 L2426:         mActor3 = this->GetOwner();
 L2446:         AkGameplayStatics->SetActorRTPCValue("RTPC_BoxVector", mfloat22, 0, mActor3);
 L2514:         mActor3 = this->GetOwner();
-L2534:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_F_BuildEffect_Switch, mActor3, true);
+L2534:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/-Shared/Audio/BuildEffect_2018-08/Play_F_BuildEffect_Switch.Play_F_BuildEffect_Switch), mActor3, true);
 L2595:         goto ExecutionFlow.Pop();
 L2596:         Temp_bool_IsClosed_Variable1 = true;
 L2607:         goto ExecutionFlow.Pop();
@@ -468,66 +477,69 @@ L2640:         goto ExecutionFlow.Pop();
 L2641:         ExecutionFlow.Push(L2112);
 L2646:         goto L2626;
 L2651:         this->OnUpdate(mfloat23);
-L2670:         float mfloat24 = Add_FloatFloat(this->mElapsedTime, mfloat23);
+L2670:         float mfloat24 = this->mElapsedTime + mfloat23;
 L2716:         this->mElapsedTime = mfloat24;
 L2743:         ExecutionFlow.Push(L2753);
 L2748:         goto L2008;
-L2753:         bool mbool3 = NotEqual_IntInt(this->mCurrentStep, 0);
+L2753:         bool mbool3 = this->mCurrentStep != 0;
 L2787:         if (!mbool3) goto L3452;
-L2801:         mbool3 = NotEqual_IntInt(this->mCurrentStep, 1);
+L2801:         mbool3 = this->mCurrentStep != 1;
 L2835:         if (!mbool3) goto L2898;
-L2849:         mbool3 = NotEqual_IntInt(this->mCurrentStep, 2);
+L2849:         mbool3 = this->mCurrentStep != 2;
 L2883:         if (!mbool3) goto L4052;
 L2897:         goto ExecutionFlow.Pop();
-L2898:         float mfloat25 = FMin(Divide_FloatFloat(this->mElapsedTime, this->mDisplacementDuration), 1);
+L2898:         float mfloat25 = FMin(this->mElapsedTime / this->mDisplacementDuration, 1);
 L2959:         float mfloat26 = FGSkySphere->GetFloatCurveValue([ref] this->mGlowPowerCurve, mfloat25);
 L3027:         this->mGlowPower = mfloat26;
 L3054:         this->SetMaterialScalarParameterValue("Glow Power", this->mGlowPower);
 L3086:         ExecutionFlow.Push(L1551);
-L3091:         float mfloat27 = FMin(Divide_FloatFloat(this->mElapsedTime, this->mDisplacementDuration), 1);
+L3091:         float mfloat27 = FMin(this->mElapsedTime / this->mDisplacementDuration, 1);
 L3152:         float mfloat28 = FGSkySphere->GetFloatCurveValue([ref] this->mOffsetCurve_Drop, mfloat27);
 L3220:         float mfloat29 = FGSkySphere->GetFloatCurveValue([ref] this->mVolumeCurve, this->mVolume);
-L3288:         float mfloat30 = Multiply_FloatFloat(mfloat28, mfloat29);
+L3288:         float mfloat30 = mfloat28 * mfloat29;
 L3334:         this->mDisplacementAmount = mfloat30;
 L3361:         this->SetMaterialScalarParameterValue("BuildOffset", this->mDisplacementAmount);
-L3393:         bool mbool4 = LessEqual_FloatFloat(this->mGlowPower, 0.009999999776482582);
+L3393:         bool mbool4 = this->mGlowPower <= 0.009999999776482582;
 L3427:         if (!mbool4) goto ExecutionFlow.Pop();
 L3437:         this->GotoNextStep();
 L3451:         goto ExecutionFlow.Pop();
 L3452:         this->UpdateCostQueue();
 L3466:         ExecutionFlow.Push(L3874);
-L3471:         bool mbool5 = Greater_FloatFloat(this->mMaterializeAmount, 0);
+L3471:         bool mbool5 = this->mMaterializeAmount > 0;
 L3505:         if (!mbool5) goto ExecutionFlow.Pop();
 L3515:         ExecutionFlow.Push(L3525);
 L3520:         goto L2641;
-L3525:         float mfloat31 = Subtract_FloatFloat(this->mElapsedTime, this->mElapsedTimeCorrectionBuildup);
-L3571:         float mfloat32 = FMin(Divide_FloatFloat(mfloat31, this->mThrowDuration), 1);
+L3525:         float mfloat31 = this->mElapsedTime - this->mElapsedTimeCorrectionBuildup;
+L3571:         float mfloat32 = FMin(mfloat31 / this->mThrowDuration, 1);
 L3632:         float mfloat33 = FGSkySphere->GetFloatCurveValue([ref] this->mOffsetCurve_Buildup, mfloat32);
 L3700:         float mfloat34 = FGSkySphere->GetFloatCurveValue([ref] this->mVolumeCurve, this->mVolume);
-L3768:         float mfloat35 = Multiply_FloatFloat(mfloat33, mfloat34);
+L3768:         float mfloat35 = mfloat33 * mfloat34;
 L3814:         this->mDisplacementAmount = mfloat35;
 L3841:         this->SetMaterialScalarParameterValue("BuildOffset", this->mDisplacementAmount);
 L3873:         goto ExecutionFlow.Pop();
 L3874:         float mfloat36 = FInterpTo(this->mMaterializeAmountCurrent, this->mMaterializeAmount, mfloat23, 20);
 L3934:         this->mMaterializeAmountCurrent = mfloat36;
 L3961:         this->SetMaterialScalarParameterValue("MaterializeAmount", this->mMaterializeAmountCurrent);
-L3993:         bool mbool6 = GreaterEqual_FloatFloat(this->mMaterializeAmountCurrent, 0.9900000095367432);
+L3993:         bool mbool6 = this->mMaterializeAmountCurrent >= 0.9900000095367432;
 L4027:         if (!mbool6) goto ExecutionFlow.Pop();
 L4037:         this->GotoNextStep();
 L4051:         goto ExecutionFlow.Pop();
 L4052:         this->Deactivate();
 L4066:         goto ExecutionFlow.Pop();
+L4067:         // <Begin Inlined EventGraph Function OnEnded>;
 L4067:         this->OnEnded();
 L4077:         goto L1551;
+L4082:         // <Begin Inlined EventGraph Function PreStarted>;
 L4082:         this->PreStarted();
 L4092:         this->SetupMeshes();
 L4106:         this->SetupBounds();
 L4120:         this->SetupCostQueue();
 L4134:         this->SetupDuration();
 L4148:         goto ExecutionFlow.Pop();
+L4149:         // <Begin Inlined EventGraph Function OnStarted>;
 L4149:         this->OnStarted();
 L4159:         int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mThrowQueue);
-L4218:         bool mbool7 = Greater_IntInt(mint321, 0);
+L4218:         bool mbool7 = mint321 > 0;
 L4252:         if (!mbool7) goto L4395;
 L4266:         this->mCurrentStep = 0;
 L4289:         this->mElapsedTime = 0;
@@ -538,7 +550,8 @@ L4390:         goto L2079;
 L4395:         this->mCurrentStep = 1;
 L4418:         this->mMaterializeAmount = 1;
 L4441:         goto L2046;
-L4446:         float mfloat37 = Add_FloatFloat(this->mMaterializeAmount, this->mMaterializeAmountPerThrow);
+L4446:         // <Begin Inlined EventGraph Function OnCostActorReachedTarget>;
+L4446:         float mfloat37 = this->mMaterializeAmount + this->mMaterializeAmountPerThrow;
 L4492:         this->mMaterializeAmount = mfloat37;
 L4519:         goto ExecutionFlow.Pop();
 ============ END FUNCTION ExecuteUbergraph_BP_MaterialEffect_Build ==============

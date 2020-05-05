@@ -7,9 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Hog/Controller
 
 
 ============ BEGIN FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_2_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Controller_HogCharge.Controller_HogCharge_C:ExecuteUbergraph_Controller_HogCharge.K2Node_ComponentBoundEvent_Actor) = Actor;
-L18:           PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/Controller_HogCharge.Controller_HogCharge_C:ExecuteUbergraph_Controller_HogCharge.K2Node_ComponentBoundEvent_Stimulus) = Stimulus;
-L36:           this->ExecuteUbergraph_Controller_HogCharge(10);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_2_ActorPerceptionUpdatedDelegate__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Controller_HogCharge, from label L10;
 ============ END FUNCTION BndEvt__PerceptionComponent_K2Node_ComponentBoundEvent_2_ActorPerceptionUpdatedDelegate__DelegateSignature ==============
 
 
@@ -17,7 +17,9 @@ L36:           this->ExecuteUbergraph_Controller_HogCharge(10);
 
 
 ============ BEGIN FUNCTION StartPanic ==============
-L0:            this->ExecuteUbergraph_Controller_HogCharge(417);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StartPanic;
+L0:            // Implementation: Function ExecuteUbergraph_Controller_HogCharge, from label L417;
 ============ END FUNCTION StartPanic ==============
 
 
@@ -25,18 +27,19 @@ L0:            this->ExecuteUbergraph_Controller_HogCharge(417);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Controller_HogCharge ==============
-L10:           bool mbool = EqualEqual_NameName(mAIStimulus.Tag, "WeaponFire");
-L61:           bool mbool1 = BooleanAND(mbool, mAIStimulus.bSuccessfullySensed);
+L10:           bool mbool = mAIStimulus.Tag == "WeaponFire";
+L61:           bool mbool1 = mbool && mAIStimulus.bSuccessfullySensed;
 L108:          if (!mbool1) goto L512;
-L122:          TScriptInterface<FGAggroTargetInterface> mTScriptInterface<FGAggroTargetInterface> = QueryInterface<Class /Script/FactoryGame.FGAggroTargetInterface>(mActor);
-L158:          bool mbool2 = mTScriptInterface<FGAggroTargetInterface>;
+L122:          TScriptInterface<FGAggroTargetInterface> mTScriptInterfaceFGAggroTargetInterface = QueryInterface<Class /Script/FactoryGame.FGAggroTargetInterface>(mActor);
+L158:          bool mbool2 = mTScriptInterfaceFGAggroTargetInterface;
 L187:          if (!mbool2) goto L512;
-L201:          this->AddToAggroByTarget(mTScriptInterface<FGAggroTargetInterface>, 1);
+L201:          this->AddToAggroByTarget(mTScriptInterfaceFGAggroTargetInterface, 1);
 L225:          BlackboardComponent* mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(this);
 L268:          mBlackboardComponent->SetValueAsBool([ref] this->mHearNoiseKeyName, true);
 L310:          mBlackboardComponent = AIBlueprintHelperLibrary->GetBlackboard(this);
 L353:          mBlackboardComponent->SetValueAsVector([ref] this->mNoiseLocationKeyName, mAIStimulus.StimulusLocation);
-L412:          <End of Inlined Event Graph Function>;
+L412:          // <End Inlined EventGraph Function>;
+L417:          // <Begin Inlined EventGraph Function StartPanic>;
 L417:          this->StartPanic();
 L427:          BlackboardComponent* mBlackboardComponent1 = AIBlueprintHelperLibrary->GetBlackboard(this);
 L470:          mBlackboardComponent1->SetValueAsBool([ref] this->mDoPanicName, true);

@@ -24,11 +24,11 @@ L20:           FGInventoryComponentEquipment* mFGInventoryComponentEquipment = m
 L64:           int32 mint32 = mFGInventoryComponentEquipment->GetActiveIndex();
 L114:          bool mbool = mFGInventoryComponentEquipment->GetStackFromIndex(mint32, [ref] mInventoryStack);
 L174:          FGInventoryLibrary->BreakInventoryStack([ref] mInventoryStack, [ref] mint321, [ref] mInventoryItem);
-L233:          FGInventoryLibrary->BreakInventoryItem([ref] mInventoryItem, [ref] mTSubclassOf<FGItemDescriptor>, [ref] mActor);
-L292:          TSubclassOf<FGDecorationDescriptor> mTSubclassOf<FGDecorationDescriptor> = ClassCast<Class /Script/FactoryGame.FGDecorationDescriptor>(mTSubclassOf<FGItemDescriptor>);
-L328:          bool mbool1 = mTSubclassOf<FGDecorationDescriptor>;
+L233:          FGInventoryLibrary->BreakInventoryItem([ref] mInventoryItem, [ref] mTSubclassOfFGItemDescriptor, [ref] mActor);
+L292:          TSubclassOf<FGDecorationDescriptor> mTSubclassOfFGDecorationDescriptor = ClassCast<Class /Script/FactoryGame.FGDecorationDescriptor>(mTSubclassOfFGItemDescriptor);
+L328:          bool mbool1 = mTSubclassOfFGDecorationDescriptor;
 L357:          if (!mbool1) goto L390;
-L371:          this->mCachedDescriptorClass = mTSubclassOf<FGDecorationDescriptor>;
+L371:          this->mCachedDescriptorClass = mTSubclassOfFGDecorationDescriptor;
 ============ END FUNCTION CacheDescriptor ==============
 
 
@@ -36,7 +36,9 @@ L371:          this->mCachedDescriptorClass = mTSubclassOf<FGDecorationDescripto
 
 
 ============ BEGIN FUNCTION WasEquipped ==============
-L0:            this->ExecuteUbergraph_Equip_Decoration(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_Decoration, from label L10;
 ============ END FUNCTION WasEquipped ==============
 
 
@@ -44,7 +46,9 @@ L0:            this->ExecuteUbergraph_Equip_Decoration(10);
 
 
 ============ BEGIN FUNCTION SpawnDecoration ==============
-L0:            this->ExecuteUbergraph_Equip_Decoration(684);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: SpawnDecoration;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_Decoration, from label L684;
 ============ END FUNCTION SpawnDecoration ==============
 
 
@@ -52,6 +56,7 @@ L0:            this->ExecuteUbergraph_Equip_Decoration(684);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Equip_Decoration ==============
+L10:           // <Begin Inlined EventGraph Function WasEquipped>;
 L10:           this->WasEquipped();
 L20:           this->CacheDescriptor();
 L34:           bool mbool = this->IsLocalInstigator();
@@ -66,32 +71,33 @@ L329:          if (!mbool2) goto L2381;
 L343:          mFGCharacterPlayer = this->GetInstigatorCharacter();
 L363:          mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
 L405:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
-L447:          float mfloat = mAnimInstance->Montage_Play(DecorEquip_01_Montage, 1, 0, 0, true);
-L519:          <End of Inlined Event Graph Function>;
+L447:          float mfloat = mAnimInstance->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/DecorEquip_01_Montage.DecorEquip_01_Montage), 1, 0, 0, true);
+L519:          // <End Inlined EventGraph Function>;
 L524:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
 L544:          FGInventoryComponentEquipment* mFGInventoryComponentEquipment = mFGCharacterPlayer1->GetEquipmentSlot(1);
 L588:          int32 mint32 = mFGInventoryComponentEquipment->GetActiveIndex();
 L638:          mFGInventoryComponentEquipment->RemoveAllFromIndex(mint32);
-L679:          <End of Inlined Event Graph Function>;
-L684:          TSubclassOf<Actor> mTSubclassOf<Actor> = FGDecorationDescriptor->GetDecorationActorClass(this->mCachedDescriptorClass);
-L735:          bool mbool3 = KismetSystemLibrary->IsValidClass(mTSubclassOf<Actor>);
+L679:          // <End Inlined EventGraph Function>;
+L684:          // <Begin Inlined EventGraph Function SpawnDecoration>;
+L684:          TSubclassOf<Actor> mTSubclassOfActor = FGDecorationDescriptor->GetDecorationActorClass(this->mCachedDescriptorClass);
+L735:          bool mbool3 = KismetSystemLibrary->IsValidClass(mTSubclassOfActor);
 L786:          if (!mbool3) goto L2381;
 L800:          FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
 L820:          mFGCharacterPlayer2->GetActorEyesViewPoint([ref] mVector, [ref] mRotator);
 L874:          Vector mVector1 = GetForwardVector(mRotator);
-L911:          Vector mVector2 = Multiply_VectorFloat(mVector1, 3000);
-L953:          Vector mVector3 = Add_VectorVector(mVector, mVector2);
+L911:          Vector mVector2 = mVector1 * 3000;
+L953:          Vector mVector3 = mVector + mVector2;
 L999:          bool mbool4 = KismetSystemLibrary->LineTraceSingle(this, mVector, mVector3, 0, false, [ref] Temp_object_Variable, 0, [ref] mHitResult, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 1, G = 0, B = 0, A = 1), ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 1, B = 0, A = 1), 5);
 L1157:         GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool5, [ref] mbool6, [ref] mfloat1, [ref] mfloat2, [ref] mVector4, [ref] mVector5, [ref] mVector6, [ref] mVector7, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint321, [ref] mint322, [ref] mVector8, [ref] mVector9);
 L1342:         if (!mbool5) goto L2381;
 L1356:         GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool5, [ref] mbool6, [ref] mfloat1, [ref] mfloat2, [ref] mVector4, [ref] mVector5, [ref] mVector6, [ref] mVector7, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint321, [ref] mint322, [ref] mVector8, [ref] mVector9);
-L1541:         TSubclassOf<Actor> mTSubclassOf<Actor>1 = FGDecorationDescriptor->GetDecorationActorClass(this->mCachedDescriptorClass);
+L1541:         TSubclassOf<Actor> mTSubclassOfActor1 = FGDecorationDescriptor->GetDecorationActorClass(this->mCachedDescriptorClass);
 L1592:         FGCharacterPlayer* mFGCharacterPlayer3 = this->GetInstigatorCharacter();
 L1612:         mFGCharacterPlayer3->GetActorEyesViewPoint([ref] mVector10, [ref] mRotator1);
 L1666:         BreakRotator(mRotator1, [ref] mfloat3, [ref] mfloat4, [ref] mfloat5);
 L1712:         Rotator mRotator2 = MakeRotator(0, 0, mfloat5);
 L1759:         Transform mTransform = MakeTransform(mVector4, mRotator2, Vector(1, 1, 1));
-L1818:         Actor* mActor1 = GameplayStatics->BeginDeferredActorSpawnFromClass(this, mTSubclassOf<Actor>1, [ref] mTransform, 2, nullptr);
+L1818:         Actor* mActor1 = GameplayStatics->BeginDeferredActorSpawnFromClass(this, mTSubclassOfActor1, [ref] mTransform, 2, nullptr);
 L1882:         GameplayStatics->BreakHitResult([ref] mHitResult, [ref] mbool5, [ref] mbool6, [ref] mfloat1, [ref] mfloat2, [ref] mVector4, [ref] mVector5, [ref] mVector6, [ref] mVector7, [ref] mPhysicalMaterial, [ref] mActor, [ref] mPrimitiveComponent, [ref] mFName, [ref] mint321, [ref] mint322, [ref] mVector8, [ref] mVector9);
 L2067:         mFGCharacterPlayer3 = this->GetInstigatorCharacter();
 L2087:         mFGCharacterPlayer3->GetActorEyesViewPoint([ref] mVector10, [ref] mRotator1);

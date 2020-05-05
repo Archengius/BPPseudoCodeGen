@@ -1,0 +1,89 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/GeneratorCoal/Anim_GeneratorCoal.Anim_GeneratorCoal_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_steamVfxNotify ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_steamVfxNotify;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_GeneratorCoal, from label L444;
+============ END FUNCTION AnimNotify_steamVfxNotify ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_CoalGenEnteredProducingState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_CoalGenEnteredProducingState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_GeneratorCoal, from label L449;
+============ END FUNCTION AnimNotify_CoalGenEnteredProducingState ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_CoalGenLeftProducingState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_CoalGenLeftProducingState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_GeneratorCoal, from label L642;
+============ END FUNCTION AnimNotify_CoalGenLeftProducingState ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_CoalGenEnteredOfflineState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_CoalGenEnteredOfflineState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_GeneratorCoal, from label L647;
+============ END FUNCTION AnimNotify_CoalGenEnteredOfflineState ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_CoalGenLeftOfflineState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_CoalGenLeftOfflineState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_GeneratorCoal, from label L652;
+============ END FUNCTION AnimNotify_CoalGenLeftOfflineState ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Anim_GeneratorCoal ==============
+L10:           Actor* mActor = this->GetOwningActor();
+L30:           FGBuildableGeneratorFuel* mFGBuildableGeneratorFuel = Cast<Class /Script/FactoryGame.FGBuildableGeneratorFuel>(mActor);
+L66:           bool mbool = mFGBuildableGeneratorFuel;
+L95:           if (!mbool) goto L652;
+L109:          bool mbool1 = mFGBuildableGeneratorFuel->GetIsSignificant();
+L151:          if (!mbool1) goto L652;
+L165:          mFGBuildableGeneratorFuel->TryStopProductionLoopEffects(true);
+L198:          // <End Inlined EventGraph Function>;
+L203:          SkeletalMeshComponent* mSkeletalMeshComponent = this->GetOwningComponent();
+L223:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEventAttached(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Factory/GeneratorCoal/Audio/Play_F_Generator_Coal_SteamHiss.Play_F_Generator_Coal_SteamHiss), mSkeletalMeshComponent, "steamVfxSocket", true);
+L297:          // <End Inlined EventGraph Function>;
+L302:          mSkeletalMeshComponent = this->GetOwningComponent();
+L322:          ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(ObjectConst(ParticleSystem /Game/FactoryGame/Buildable/Factory/GeneratorCoal/Particle/Steam.Steam), mSkeletalMeshComponent, "steamVfxSocket", Vector(0, 0, 0), Rotator::FromPitchYawRoll(0, 0, 0), Vector(1, 1, 1), 0, true, 0);
+L439:          goto L203;
+L444:          // <Begin Inlined EventGraph Function AnimNotify_steamVfxNotify>;
+L444:          goto L302;
+L449:          // <Begin Inlined EventGraph Function AnimNotify_CoalGenEnteredProducingState>;
+L449:          Actor* mActor1 = this->GetOwningActor();
+L469:          FGBuildableGeneratorFuel* mFGBuildableGeneratorFuel1 = Cast<Class /Script/FactoryGame.FGBuildableGeneratorFuel>(mActor1);
+L505:          bool mbool2 = mFGBuildableGeneratorFuel1;
+L534:          if (!mbool2) goto L652;
+L548:          bool mbool3 = mFGBuildableGeneratorFuel1->GetIsSignificant();
+L590:          if (!mbool3) goto L652;
+L604:          mFGBuildableGeneratorFuel1->TryStartProductionLoopEffects(true);
+L637:          // <End Inlined EventGraph Function>;
+L642:          // <Begin Inlined EventGraph Function AnimNotify_CoalGenLeftProducingState>;
+L642:          goto L10;
+L647:          // <Begin Inlined EventGraph Function AnimNotify_CoalGenEnteredOfflineState>;
+L647:          // <End Inlined EventGraph Function>;
+============ END FUNCTION ExecuteUbergraph_Anim_GeneratorCoal ==============

@@ -7,7 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Smok
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_Smoke(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Smoke, from label L10;
 ============ END FUNCTION Construct ==============
 
 
@@ -15,7 +17,9 @@ L0:            this->ExecuteUbergraph_Widget_Smoke(10);
 
 
 ============ BEGIN FUNCTION OnAnimEnd ==============
-L0:            this->ExecuteUbergraph_Widget_Smoke(116);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnAnimEnd;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Smoke, from label L116;
 ============ END FUNCTION OnAnimEnd ==============
 
 
@@ -23,9 +27,9 @@ L0:            this->ExecuteUbergraph_Widget_Smoke(116);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Smoke.Widget_Smoke_C:ExecuteUbergraph_Widget_Smoke.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Smoke.Widget_Smoke_C:ExecuteUbergraph_Widget_Smoke.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_Smoke(135);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Smoke, from label L135;
 ============ END FUNCTION Tick ==============
 
 
@@ -33,8 +37,9 @@ L36:           this->ExecuteUbergraph_Widget_Smoke(135);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Smoke.Widget_Smoke_C:ExecuteUbergraph_Widget_Smoke.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_Smoke(1134);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Smoke, from label L1134;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -42,28 +47,30 @@ L18:           this->ExecuteUbergraph_Widget_Smoke(1134);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_Smoke ==============
+L10:           // <Begin Inlined EventGraph Function Construct>;
 L10:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->SpawnAnim, 0, 1, 0, this->TimeMultiplier);
 L60:           mFScriptDelegate->BindUFunction(this, OnAnimEnd);
 L83:           this->BindToAnimationFinished(this->SpawnAnim, mFScriptDelegate);
-L111:          <End of Inlined Event Graph Function>;
+L111:          // <End Inlined EventGraph Function>;
+L116:          // <Begin Inlined EventGraph Function OnAnimEnd>;
 L116:          this->RemoveFromParent();
-L130:          <End of Inlined Event Graph Function>;
-L135:          float mfloat = Divide_FloatFloat(mfloat1, this->TimeMultiplier);
-L181:          float mfloat2 = Add_FloatFloat(mfloat, this->T);
+L130:          // <End Inlined EventGraph Function>;
+L135:          float mfloat = mfloat1 / this->TimeMultiplier;
+L181:          float mfloat2 = mfloat + this->T;
 L227:          this->T = mfloat2;
 L254:          float mfloat3 = Lerp(0, 1, this->T);
-L301:          float mfloat4 = Multiply_FloatFloat(this->Smoke1RotateDeg, mfloat3);
-L347:          float mfloat5 = Add_FloatFloat(this->Smoke1StartDeg, mfloat4);
-L393:          this->Smoke_1->SetRenderAngle(mfloat5);
+L301:          float mfloat4 = this->Smoke1RotateDeg * mfloat3;
+L347:          float mfloat5 = this->Smoke1StartDeg + mfloat4;
+L393:          this->smoke_1->SetRenderAngle(mfloat5);
 L434:          mfloat3 = Lerp(0, 1, this->T);
-L481:          float mfloat6 = Multiply_FloatFloat(this->Smoke2RotateDeg, mfloat3);
-L527:          float mfloat7 = Add_FloatFloat(this->Smoke2StartDeg, mfloat6);
-L573:          this->Smoke_2->SetRenderAngle(mfloat7);
+L481:          float mfloat6 = this->Smoke2RotateDeg * mfloat3;
+L527:          float mfloat7 = this->Smoke2StartDeg + mfloat6;
+L573:          this->smoke_2->SetRenderAngle(mfloat7);
 L614:          mfloat3 = Lerp(0, 1, this->T);
-L661:          float mfloat8 = Multiply_FloatFloat(this->Smoke3RotateDeg, mfloat3);
-L707:          float mfloat9 = Add_FloatFloat(this->Smoke3StartDeg, mfloat8);
-L753:          this->Smoke_3->SetRenderAngle(mfloat9);
-L794:          <End of Inlined Event Graph Function>;
+L661:          float mfloat8 = this->Smoke3RotateDeg * mfloat3;
+L707:          float mfloat9 = this->Smoke3StartDeg + mfloat8;
+L753:          this->smoke_3->SetRenderAngle(mfloat9);
+L794:          // <End Inlined EventGraph Function>;
 L799:          float mfloat10 = RandomFloatInRange(-15, 15);
 L837:          this->Smoke3RotateDeg = mfloat10;
 L864:          float mfloat11 = RandomFloatInRange(0, 360);
@@ -72,7 +79,7 @@ L929:          float mfloat12 = RandomFloatInRange(0, 360);
 L967:          this->Smoke2StartDeg = mfloat12;
 L994:          float mfloat13 = RandomFloatInRange(0, 360);
 L1032:         this->Smoke3StartDeg = mfloat13;
-L1059:         <End of Inlined Event Graph Function>;
+L1059:         // <End Inlined EventGraph Function>;
 L1064:         float mfloat14 = RandomFloatInRange(-20, 20);
 L1102:         this->Smoke2RotateDeg = mfloat14;
 L1129:         goto L799;

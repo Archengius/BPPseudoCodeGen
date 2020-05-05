@@ -83,10 +83,9 @@ L212:          this->mProgressBar->SetFillColorAndOpacity(mLinearColor2);
 
 
 ============ BEGIN FUNCTION LerpBar ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ProgressBar.Widget_ProgressBar_C:ExecuteUbergraph_Widget_ProgressBar.K2Node_CustomEvent_StartValue) = StartValue;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ProgressBar.Widget_ProgressBar_C:ExecuteUbergraph_Widget_ProgressBar.K2Node_CustomEvent_EndValue) = EndValue;
-L36:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ProgressBar.Widget_ProgressBar_C:ExecuteUbergraph_Widget_ProgressBar.K2Node_CustomEvent_LerpTime) = LerpTime;
-L54:           this->ExecuteUbergraph_Widget_ProgressBar(758);
+L54:           // EventGraph implemented function stub;
+L54:           // Function Name: LerpBar;
+L54:           // Implementation: Function ExecuteUbergraph_Widget_ProgressBar, from label L758;
 ============ END FUNCTION LerpBar ==============
 
 
@@ -94,8 +93,9 @@ L54:           this->ExecuteUbergraph_Widget_ProgressBar(758);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ProgressBar.Widget_ProgressBar_C:ExecuteUbergraph_Widget_ProgressBar.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_ProgressBar(933);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ProgressBar, from label L933;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -105,14 +105,14 @@ L18:           this->ExecuteUbergraph_Widget_ProgressBar(933);
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_ProgressBar ==============
 L5:            goto ComputedJump(EntryPoint);
 L15:           ExecutionFlow.Push(L248);
-L20:           float mfloat = Divide_FloatFloat(this->SecondsPerLerpUpdate, mfloat1);
-L66:           float mfloat2 = Add_FloatFloat(this->T, mfloat);
+L20:           float mfloat = this->SecondsPerLerpUpdate / mfloat1;
+L66:           float mfloat2 = this->T + mfloat;
 L112:          this->T = mfloat2;
 L139:          float mfloat3 = Ease(this->LerpStartValue, this->LerpEndValue, this->T, 6, 2, 2);
 L206:          this->mProgressBar->SetPercent(mfloat3);
 L247:          goto ExecutionFlow.Pop();
-L248:          bool mbool = Less_FloatFloat(this->T, 1);
-L282:          bool mbool1 = BooleanAND(this->LerpActive, mbool);
+L248:          bool mbool = this->T < 1;
+L282:          bool mbool1 = this->LerpActive && mbool;
 L320:          if (!mbool1) goto L415;
 L334:          KismetSystemLibrary->Delay(this, this->SecondsPerLerpUpdate, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 79583239, ExecutionFunction = "ExecuteUbergraph_Widget_ProgressBar", CallbackTarget = this));
 L414:          goto ExecutionFlow.Pop();

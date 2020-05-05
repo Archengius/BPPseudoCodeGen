@@ -1,0 +1,126 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/GeneratorNuclear/Anim_GeneratorNuclear.Anim_GeneratorNuclear_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetupReloadTimer ==============
+L0:            TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimer(this, "ReloadTimer", this->mReloadTimer, true);
+L74:           this->mTimer = mTimerHandle;
+============ END FUNCTION SetupReloadTimer ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReloadTimer ==============
+L0:            Actor* mActor = this->GetOwningActor();
+L20:           FGBuildableGeneratorFuel* mFGBuildableGeneratorFuel = Cast<Class /Script/FactoryGame.FGBuildableGeneratorFuel>(mActor);
+L56:           bool mbool = mFGBuildableGeneratorFuel;
+L85:           if (!mbool) goto L189;
+L99:           bool mbool1 = mFGBuildableGeneratorFuel->GetIsSignificant();
+L141:          if (!mbool1) goto L189;
+L155:          if (!this->mProxy.mIsProducing) goto L189;
+L178:          this->mReadyForReload = true;
+============ END FUNCTION ReloadTimer ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_GenNuclearEnteredReloadState ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_GenNuclearEnteredReloadState;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_GeneratorNuclear, from label L10;
+============ END FUNCTION AnimNotify_GenNuclearEnteredReloadState ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_GenNuclearStartupVfx ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_GenNuclearStartupVfx;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_GeneratorNuclear, from label L162;
+============ END FUNCTION AnimNotify_GenNuclearStartupVfx ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_GenNuclearShutdownVfx ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_GenNuclearShutdownVfx;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_GeneratorNuclear, from label L355;
+============ END FUNCTION AnimNotify_GenNuclearShutdownVfx ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_GenNuclearEnteredProducing ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_GenNuclearEnteredProducing;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_GeneratorNuclear, from label L548;
+============ END FUNCTION AnimNotify_GenNuclearEnteredProducing ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_GenNuclearLeftProducing ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_GenNuclearLeftProducing;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_GeneratorNuclear, from label L741;
+============ END FUNCTION AnimNotify_GenNuclearLeftProducing ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Anim_GeneratorNuclear ==============
+L10:           // <Begin Inlined EventGraph Function AnimNotify_GenNuclearEnteredReloadState>;
+L10:           this->mReadyForReload = false;
+L21:           float mfloat = RandomFloat();
+L49:           bool mbool = mfloat <= 0.800000011920929;
+L83:           int32 mint32 = SelectInt(0, 1, mbool);
+L130:          this->mRandomReloadAnim = mint32;
+L157:          // <End Inlined EventGraph Function>;
+L162:          // <Begin Inlined EventGraph Function AnimNotify_GenNuclearStartupVfx>;
+L162:          Actor* mActor = this->GetOwningActor();
+L182:          FGBuildableGeneratorFuel* mFGBuildableGeneratorFuel = Cast<Class /Script/FactoryGame.FGBuildableGeneratorFuel>(mActor);
+L218:          bool mbool1 = mFGBuildableGeneratorFuel;
+L247:          if (!mbool1) goto L929;
+L261:          bool mbool2 = mFGBuildableGeneratorFuel->GetIsSignificant();
+L303:          if (!mbool2) goto L929;
+L317:          mFGBuildableGeneratorFuel->TryStartIdlingLoopEffects(true);
+L350:          // <End Inlined EventGraph Function>;
+L355:          // <Begin Inlined EventGraph Function AnimNotify_GenNuclearShutdownVfx>;
+L355:          Actor* mActor1 = this->GetOwningActor();
+L375:          FGBuildableGeneratorFuel* mFGBuildableGeneratorFuel1 = Cast<Class /Script/FactoryGame.FGBuildableGeneratorFuel>(mActor1);
+L411:          bool mbool3 = mFGBuildableGeneratorFuel1;
+L440:          if (!mbool3) goto L929;
+L454:          bool mbool4 = mFGBuildableGeneratorFuel1->GetIsSignificant();
+L496:          if (!mbool4) goto L929;
+L510:          mFGBuildableGeneratorFuel1->TryStopIdlingLoopEffects(true);
+L543:          // <End Inlined EventGraph Function>;
+L548:          // <Begin Inlined EventGraph Function AnimNotify_GenNuclearEnteredProducing>;
+L548:          Actor* mActor2 = this->GetOwningActor();
+L568:          FGBuildableGeneratorFuel* mFGBuildableGeneratorFuel2 = Cast<Class /Script/FactoryGame.FGBuildableGeneratorFuel>(mActor2);
+L604:          bool mbool5 = mFGBuildableGeneratorFuel2;
+L633:          if (!mbool5) goto L929;
+L647:          bool mbool6 = mFGBuildableGeneratorFuel2->GetIsSignificant();
+L689:          if (!mbool6) goto L929;
+L703:          mFGBuildableGeneratorFuel2->TryStartProductionLoopEffects(true);
+L736:          // <End Inlined EventGraph Function>;
+L741:          // <Begin Inlined EventGraph Function AnimNotify_GenNuclearLeftProducing>;
+L741:          Actor* mActor3 = this->GetOwningActor();
+L761:          FGBuildableGeneratorFuel* mFGBuildableGeneratorFuel3 = Cast<Class /Script/FactoryGame.FGBuildableGeneratorFuel>(mActor3);
+L797:          bool mbool7 = mFGBuildableGeneratorFuel3;
+L826:          if (!mbool7) goto L929;
+L840:          bool mbool8 = mFGBuildableGeneratorFuel3->GetIsSignificant();
+L882:          if (!mbool8) goto L929;
+L896:          mFGBuildableGeneratorFuel3->TryStopProductionLoopEffects(true);
+============ END FUNCTION ExecuteUbergraph_Anim_GeneratorNuclear ==============

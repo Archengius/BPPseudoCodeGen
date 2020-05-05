@@ -1,0 +1,88 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Tractor/Anim_Tractor.Anim_Tractor_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_Tractor_AnimGraphNode_ModifyBone_CADC6C414E31A4306180BFAF558AD876 ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_Tractor_AnimGraphNode_ModifyBone_CADC6C414E31A4306180BFAF558AD876;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_Tractor, from label L155;
+============ END FUNCTION EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_Tractor_AnimGraphNode_ModifyBone_CADC6C414E31A4306180BFAF558AD876 ==============
+
+
+
+
+
+============ BEGIN FUNCTION EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_Tractor_AnimGraphNode_ModifyBone_099B4C1F49B2CD259B77A6ACDF48E461 ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_Tractor_AnimGraphNode_ModifyBone_099B4C1F49B2CD259B77A6ACDF48E461;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_Tractor, from label L10;
+============ END FUNCTION EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_Tractor_AnimGraphNode_ModifyBone_099B4C1F49B2CD259B77A6ACDF48E461 ==============
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintUpdateAnimation ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BlueprintUpdateAnimation;
+L18:           // Implementation: Function ExecuteUbergraph_Anim_Tractor, from label L416;
+============ END FUNCTION BlueprintUpdateAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Anim_Tractor ==============
+L10:           // <Begin Inlined EventGraph Function EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_Tractor_AnimGraphNode_ModifyBone_099B4C1F49B2CD259B77A6ACDF48E461>;
+L10:           float mfloat = MapRangeClamped(this->mSteerAngle, -45, 45, -120, 120);
+L67:           Rotator mRotator = MakeRotator(0, 0, mfloat);
+L114:          this->AnimGraphNode_ModifyBone_099B4C1F49B2CD259B77A6ACDF48E461.Rotation = mRotator;
+L150:          // <End Inlined EventGraph Function>;
+L155:          // <Begin Inlined EventGraph Function EvaluateGraphExposedInputs_ExecuteUbergraph_Anim_Tractor_AnimGraphNode_ModifyBone_CADC6C414E31A4306180BFAF558AD876>;
+L155:          float mfloat1 = MapRangeClamped(this->mSpeed, -50, 400, -20, 70);
+L212:          Rotator mRotator1 = MakeRotator(0, mfloat1, 0);
+L259:          Rotator mRotator2 = NegateRotator(mRotator1);
+L296:          Vector mVector = MakeVector(0, 0, 0);
+L339:          this->AnimGraphNode_ModifyBone_CADC6C414E31A4306180BFAF558AD876.Translation = mVector;
+L375:          this->AnimGraphNode_ModifyBone_CADC6C414E31A4306180BFAF558AD876.Rotation = mRotator2;
+L411:          // <End Inlined EventGraph Function>;
+L416:          this->BlueprintUpdateAnimation(mfloat2);
+L435:          Pawn* mPawn = this->TryGetPawnOwner();
+L459:          bool mbool = KismetSystemLibrary->IsValid(mPawn);
+L510:          if (!mbool) goto L1715;
+L524:          mPawn = this->TryGetPawnOwner();
+L548:          FGWheeledVehicle* mFGWheeledVehicle = Cast<Class /Script/FactoryGame.FGWheeledVehicle>(mPawn);
+L584:          bool mbool1 = mFGWheeledVehicle;
+L613:          if (!mbool1) goto L1715;
+L627:          WheeledVehicleMovementComponent* mWheeledVehicleMovementComponent = mFGWheeledVehicle->GetVehicleMovementComponent();
+L669:          bool mbool2 = KismetSystemLibrary->IsValid(mWheeledVehicleMovementComponent);
+L720:          if (!mbool2) goto L1715;
+L734:          mWheeledVehicleMovementComponent = mFGWheeledVehicle->GetVehicleMovementComponent();
+L776:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mWheeledVehicleMovementComponent->Wheels);
+L857:          bool mbool3 = mint32 > 0;
+L891:          if (!mbool3) goto L1178;
+L905:          float mfloat3 = mFGWheeledVehicle->GetForwardSpeed();
+L955:          this->mSpeed = mfloat3;
+L982:          mWheeledVehicleMovementComponent = mFGWheeledVehicle->GetVehicleMovementComponent();
+L1024:         KismetArrayLibrary->Array_Get([ref] mWheeledVehicleMovementComponent->Wheels, 0, [ref] mVehicleWheel);
+L1101:         float mfloat4 = mVehicleWheel->GetSteerAngle();
+L1151:         this->mSteerAngle = mfloat4;
+L1178:         Vector mVector1 = mFGWheeledVehicle->GetVelocity();
+L1232:         BreakVector(mVector1, [ref] mfloat5, [ref] mfloat6, [ref] mfloat7);
+L1278:         Vector2D mVector2D = MakeVector2D(mfloat6, mfloat5);
+L1324:         float mfloat8 = VSize2D(mVector2D);
+L1361:         this->mVelocityXY = mfloat8;
+L1388:         mVector1 = mFGWheeledVehicle->GetVelocity();
+L1442:         BreakVector(mVector1, [ref] mfloat5, [ref] mfloat6, [ref] mfloat7);
+L1488:         this->mVelocityZ = mfloat7;
+L1515:         float mfloat9 = this->mVelocityXY - this->mVelocityXYLastTick;
+L1561:         this->mVelocityXYDiff = mfloat9;
+L1588:         float mfloat10 = this->mVelocityZ - this->mVelocityZLastTick;
+L1634:         this->mVelocityZDiff = mfloat10;
+L1661:         this->mVelocityXYLastTick = this->mVelocityXY;
+L1688:         this->mVelocityZLastTick = this->mVelocityZ;
+============ END FUNCTION ExecuteUbergraph_Anim_Tractor ==============

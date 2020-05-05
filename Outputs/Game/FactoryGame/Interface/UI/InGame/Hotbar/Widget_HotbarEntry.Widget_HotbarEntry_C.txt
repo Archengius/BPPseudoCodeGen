@@ -31,9 +31,9 @@ L182:          ReturnValue = mHotbarSlotTextDefaultColor;
 
 
 ============ BEGIN FUNCTION GetSlotBrush ==============
-L0:            Texture* mHotbarSlotDefault = hotbar_slot_default;
-L19:           Texture* mHotbarSlotActive = hotbar_slot_active;
-L38:           Texture* mHotbarSlotEmpty = hotbar_slot_empty;
+L0:            Texture* mHotbarSlotDefault = ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/Hotbar/hotbar_slot_default.hotbar_slot_default);
+L19:           Texture* mHotbarSlotActive = ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/Hotbar/hotbar_slot_active.hotbar_slot_active);
+L38:           Texture* mHotbarSlotEmpty = ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/Hotbar/hotbar_slot_empty.hotbar_slot_empty);
 L57:           if (!this->CachedIsActive) goto L533;
 L71:           mSlateBrush.ImageSize = this->mHotbarSlot->Brush.ImageSize;
 L138:          mSlateBrush.Margin = this->mHotbarSlot->Brush.Margin;
@@ -69,9 +69,9 @@ L1439:         ReturnValue = mSlateBrush2;
 
 
 ============ BEGIN FUNCTION GetSlotText ==============
-L0:            bool mbool = BooleanOR(this->CachedIsActive, this->CachedIsValid);
+L0:            bool mbool = this->CachedIsActive || this->CachedIsValid;
 L38:           if (!mbool) goto L197;
-L52:           int32 mint32 = Add_IntInt(this->mShortcutIndex, 1);
+L52:           int32 mint32 = this->mShortcutIndex + 1;
 L94:           FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
 L165:          FText ReturnValue = mFText;
 L192:          goto L217;
@@ -100,8 +100,9 @@ L490:          SlateBrush ReturnValue = mSlateBrush;
 
 
 ============ BEGIN FUNCTION OnHotbarUpdated ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/Hotbar/Widget_HotbarEntry.Widget_HotbarEntry_C:ExecuteUbergraph_Widget_HotbarEntry.K2Node_CustomEvent_ShowNotification) = ShowNotification;
-L18:           this->ExecuteUbergraph_Widget_HotbarEntry(1407);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnHotbarUpdated;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_HotbarEntry, from label L1407;
 ============ END FUNCTION OnHotbarUpdated ==============
 
 
@@ -146,8 +147,8 @@ L1071:         this->WasActive = false;
 L1082:         goto ExecutionFlow.Pop();
 L1083:         if (!this->CachedIsValid) goto L1387;
 L1097:         Texture2D* mTexture2D = this->mShortcut->GetDisplayImage();
-L1143:         bool mbool5 = EqualEqual_ObjectObject(mTexture2D, this->LastShortcutTexture);
-L1181:         bool mbool6 = Not_PreBool(mbool5);
+L1143:         bool mbool5 = mTexture2D == this->LastShortcutTexture;
+L1181:         bool mbool6 = !mbool5;
 L1210:         if (!mbool6) goto ExecutionFlow.Pop();
 L1220:         UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->SpawnAnimation, 0, 1, 0, 1);
 L1266:         Texture2D* mTexture2D1 = this->mShortcut->GetDisplayImage();
@@ -155,7 +156,7 @@ L1312:         this->LastShortcutTexture = mTexture2D1;
 L1331:         if (!this->mShowNotification) goto ExecutionFlow.Pop();
 L1341:         this->mHotbarContainer->ShowNotification(this->mShortcutIndex);
 L1386:         goto ExecutionFlow.Pop();
-L1387:         this->LastShortcutTexture = 127_Grey;
+L1387:         this->LastShortcutTexture = ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/Materials/127_Grey.127_Grey);
 L1406:         goto ExecutionFlow.Pop();
 L1407:         this->mShowNotification = mbool7;
 L1426:         goto L15;

@@ -13,9 +13,9 @@ L43:           BP_SchematicHelper->IsSchematicLockedByTutorial(mPlayerController
 L107:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L131:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L155:          BP_SchematicHelper->IsSchematicPhaseLocked(mPlayerController1, this->mSelectedSchematicClass, this, [ref] mbool1);
-L219:          bool mbool2 = BooleanOR(mbool1, mbool);
+L219:          bool mbool2 = mbool1 || mbool;
 L257:          BP_SchematicHelper->IsSchematicDependentLocked(mPlayerController2, this->mSelectedSchematicClass, this, [ref] mbool3);
-L321:          bool mbool4 = BooleanOR(mbool2, mbool3);
+L321:          bool mbool4 = mbool2 || mbool3;
 L359:          this->IsSelectedSchematicLocked = mbool4;
 L378:          PlayerController* mPlayerController3 = this->GetOwningPlayer();
 L402:          FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController3);
@@ -28,7 +28,7 @@ L504:          this->IsSelectedSchematicPurchased = mbool5;
 
 
 ============ BEGIN FUNCTION GetClickable ==============
-L0:            bool mbool = BooleanOR(this->IsSelectedSchematicLocked, this->IsSelectedSchematicPurchased);
+L0:            bool mbool = this->IsSelectedSchematicLocked || this->IsSelectedSchematicPurchased;
 L38:           if (!mbool) goto L77;
 L52:           uint8 ReturnValue = 3;
 L72:           goto L97;
@@ -57,7 +57,7 @@ L302:          ReturnValue = "[object Object]";
 
 
 ============ BEGIN FUNCTION GetColor ==============
-L0:            bool mbool = BooleanOR(this->IsSelectedSchematicLocked, this->IsSelectedSchematicPurchased);
+L0:            bool mbool = this->IsSelectedSchematicLocked || this->IsSelectedSchematicPurchased;
 L38:           if (!mbool) goto L139;
 L52:           HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor, [ref] mLinearColor);
 L107:          LinearColor ReturnValue = mLinearColor;
@@ -69,11 +69,11 @@ L232:          ReturnValue = mLinearColor1;
 L259:          goto L1077;
 L264:          if (!this->LerpGoingUp) goto L797;
 L278:          float mfloat = GameplayStatics->GetWorldDeltaSeconds(this);
-L329:          float mfloat1 = Divide_FloatFloat(mfloat, this->LerpSpeed);
-L375:          float mfloat2 = Add_FloatFloat(mfloat1, this->T);
+L329:          float mfloat1 = mfloat / this->LerpSpeed;
+L375:          float mfloat2 = mfloat1 + this->T;
 L421:          this->T = mfloat2;
-L448:          float mfloat3 = Add_FloatFloat(this->LerpHold, 1);
-L490:          bool mbool2 = Greater_FloatFloat(this->T, mfloat3);
+L448:          float mfloat3 = this->LerpHold + 1;
+L490:          bool mbool2 = this->T > mfloat3;
 L528:          if (!mbool2) goto L553;
 L542:          this->LerpGoingUp = false;
 L553:          float mfloat4 = FClamp(this->T, 0, 1);
@@ -83,11 +83,11 @@ L710:          LinearColor mLinearColor4 = LinearColorLerp(mLinearColor3, mLinea
 L765:          ReturnValue = mLinearColor4;
 L792:          goto L1077;
 L797:          float mfloat5 = GameplayStatics->GetWorldDeltaSeconds(this);
-L848:          float mfloat6 = Divide_FloatFloat(mfloat5, this->LerpSpeed);
-L894:          float mfloat7 = Subtract_FloatFloat(this->T, mfloat6);
+L848:          float mfloat6 = mfloat5 / this->LerpSpeed;
+L894:          float mfloat7 = this->T - mfloat6;
 L940:          this->T = mfloat7;
-L967:          float mfloat8 = Subtract_FloatFloat(0, this->LerpHold);
-L1009:         bool mbool3 = Less_FloatFloat(this->T, mfloat8);
+L967:          float mfloat8 = 0 - this->LerpHold;
+L1009:         bool mbool3 = this->T < mfloat8;
 L1047:         if (!mbool3) goto L553;
 L1061:         this->LerpGoingUp = true;
 L1072:         goto L553;
@@ -98,7 +98,9 @@ L1072:         goto L553;
 
 
 ============ BEGIN FUNCTION BndEvt__Button_26_K2Node_ComponentBoundEvent_100_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton(60);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Button_26_K2Node_ComponentBoundEvent_100_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton, from label L60;
 ============ END FUNCTION BndEvt__Button_26_K2Node_ComponentBoundEvent_100_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -106,7 +108,9 @@ L0:            this->ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton
 
 
 ============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton(166);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton, from label L166;
 ============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -114,7 +118,9 @@ L0:            this->ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton
 
 
 ============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton(297);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton, from label L297;
 ============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -122,16 +128,19 @@ L0:            this->ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton ==============
-L10:           this->Widget_SwitchingImage->SwitchImage(Launch_Icon);
-L55:           <End of Inlined Event Graph Function>;
+L10:           this->Widget_SwitchingImage->SwitchImage(ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/Shared/Launch_Icon.Launch_Icon));
+L55:           // <End Inlined EventGraph Function>;
+L60:           // <Begin Inlined EventGraph Function BndEvt__Button_26_K2Node_ComponentBoundEvent_100_OnButtonClickedEvent__DelegateSignature>;
 L60:           bool mbool = KismetSystemLibrary->IsValid(this->mTradingPost);
 L111:          if (!mbool) goto L302;
 L125:          this->mTradingPost->ActivateSelectedSchematic();
-L161:          <End of Inlined Event Graph Function>;
+L161:          // <End Inlined EventGraph Function>;
+L166:          // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature>;
 L166:          Pawn* mPawn = this->GetOwningPlayerPawn();
-L186:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_WorkBench_MouseOver, mPawn, true);
-L247:          this->Widget_SwitchingImage->SwitchImage(ficsit_checkmark_64);
-L292:          <End of Inlined Event Graph Function>;
+L186:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/WorkBench/Play_UI_WorkBench_MouseOver.Play_UI_WorkBench_MouseOver), mPawn, true);
+L247:          this->Widget_SwitchingImage->SwitchImage(ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/ShoppingList/ficsit_checkmark_64.ficsit_checkmark_64));
+L292:          // <End Inlined EventGraph Function>;
+L297:          // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature>;
 L297:          goto L10;
 ============ END FUNCTION ExecuteUbergraph_Widget_TradingPost_ActivateSchematicButton ==============
 

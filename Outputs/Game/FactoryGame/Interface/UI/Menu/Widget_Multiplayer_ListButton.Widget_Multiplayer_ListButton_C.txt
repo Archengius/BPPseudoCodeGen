@@ -45,8 +45,8 @@ L379:          mFormatArgumentData1.ArgumentValue = mFText1;
 L415:          mFormatArgumentData1.ArgumentValueInt = 0;
 L447:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L479:          mFormatArgumentData1.ArgumentValueGender = 0;
-L508:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
-L537:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L508:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData, mFormatArgumentData1];
+L537:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L794:          FText Tooltip = mFText2;
 ============ END FUNCTION GetHostingNATIsse ==============
 
@@ -69,8 +69,8 @@ L379:          mFormatArgumentData1.ArgumentValue = mFText1;
 L415:          mFormatArgumentData1.ArgumentValueInt = 0;
 L447:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L479:          mFormatArgumentData1.ArgumentValueGender = 0;
-L508:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
-L537:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L508:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData, mFormatArgumentData1];
+L537:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L786:          FText Tooltip = mFText2;
 ============ END FUNCTION GetConnectingNATIsse ==============
 
@@ -79,26 +79,26 @@ L786:          FText Tooltip = mFText2;
 
 
 ============ BEGIN FUNCTION IsNATIssue ==============
-L0:            bool mbool = NotEqual_ByteByte(HostNAT, 0);
+L0:            bool mbool = HostNAT != 0;
 L31:           if (!mbool) goto L185;
-L45:           mbool = NotEqual_ByteByte(HostNAT, 1);
+L45:           mbool = HostNAT != 1;
 L76:           if (!mbool) goto L201;
-L90:           mbool = NotEqual_ByteByte(HostNAT, 2);
+L90:           mbool = HostNAT != 2;
 L121:          if (!mbool) goto L386;
-L135:          mbool = NotEqual_ByteByte(HostNAT, 3);
+L135:          mbool = HostNAT != 3;
 L166:          if (!mbool) goto L386;
-L180:          <End of Inlined Event Graph Function>;
+L180:          // <End Inlined EventGraph Function>;
 L185:          bool isIssue = false;
-L196:          <End of Inlined Event Graph Function>;
-L201:          bool mbool1 = NotEqual_ByteByte(ClientNat, 0);
+L196:          // <End Inlined EventGraph Function>;
+L201:          bool mbool1 = ClientNat != 0;
 L232:          if (!mbool1) goto L185;
-L246:          mbool1 = NotEqual_ByteByte(ClientNat, 1);
+L246:          mbool1 = ClientNat != 1;
 L277:          if (!mbool1) goto L185;
-L291:          mbool1 = NotEqual_ByteByte(ClientNat, 2);
+L291:          mbool1 = ClientNat != 2;
 L322:          if (!mbool1) goto L386;
-L336:          mbool1 = NotEqual_ByteByte(ClientNat, 3);
+L336:          mbool1 = ClientNat != 3;
 L367:          if (!mbool1) goto L386;
-L381:          <End of Inlined Event Graph Function>;
+L381:          // <End Inlined EventGraph Function>;
 L386:          isIssue = true;
 ============ END FUNCTION IsNATIssue ==============
 
@@ -137,7 +137,7 @@ L115:          FString mFString = PlayerState->GetPlayerName();
 L165:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
 L224:          int32 mint32 = Conv_ByteToInt(PlayerState->Ping);
 L283:          UniqueNetIdRepl mUniqueNetIdRepl = PlayerState->GetUniqeNetId();
-L333:          int32 mint321 = Multiply_IntInt(mint32, 4);
+L333:          int32 mint321 = mint32 * 4;
 L375:          mFormatArgumentData.ArgumentName = "Ping";
 L408:          mFormatArgumentData.ArgumentValueType = 0;
 L437:          mFormatArgumentData.ArgumentValue = ;
@@ -154,15 +154,15 @@ L845:          BlueprintSessionResult mBlueprintSessionResult = FGPresenceLibrar
 L904:          FString mFString1 = FGPresenceLibrary->GetPresenceString([ref] mOnlinePresence);
 L963:          bool mbool2 = FGSessionLibrary->IsSessionValid(mBlueprintSessionResult);
 L1014:         FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString1);
-L1073:         bool mbool3 = Not_PreBool(mbool1);
+L1073:         bool mbool3 = !mbool1;
 L1102:         mFormatArgumentData1.ArgumentName = "Activity";
 L1139:         mFormatArgumentData1.ArgumentValueType = 4;
 L1168:         mFormatArgumentData1.ArgumentValue = mFText1;
 L1204:         mFormatArgumentData1.ArgumentValueInt = 0;
 L1236:         mFormatArgumentData1.ArgumentValueFloat = 0;
 L1268:         mFormatArgumentData1.ArgumentValueGender = 0;
-L1297:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
-L1326:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1297:         TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData1, mFormatArgumentData];
+L1326:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L1446:         this->Internal_UpdateButton(mFText, true, mFText2, 0, false, 0, "[object Object]", true, true, mbool, true, mbool3, switch (Temp_bool_Variable) {
 case false -> Temp_text_Variable1;
 case true -> Temp_text_Variable;
@@ -179,7 +179,7 @@ L0:            UniqueNetIdRepl mUniqueNetIdRepl = FGInviteLibrary->GetInviteSend
 L59:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L83:           BP_OnlineHelpers->CanJoinInvite(mPlayerController, invite, this, [ref] muint8);
 L147:          FText Temp_text_Variable = "[object Object]";
-L235:          bool mbool = NotEqual_ByteByte(muint8, 4);
+L235:          bool mbool = muint8 != 4;
 L266:          FText Temp_text_Variable1 = "[object Object]";
 L362:          FText Temp_text_Variable2 = "[object Object]";
 L455:          FText Temp_text_Variable3 = "[object Object]";
@@ -193,14 +193,14 @@ L877:          BlueprintSessionResult mBlueprintSessionResult = FGPresenceLibrar
 L936:          FString mFString1 = FGPresenceLibrary->GetPresenceString([ref] mOnlinePresence);
 L995:          bool mbool2 = FGSessionLibrary->IsSessionValid(mBlueprintSessionResult);
 L1046:         FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString1);
-L1105:         bool mbool3 = Not_PreBool(mbool2);
+L1105:         bool mbool3 = !mbool2;
 L1134:         uint8 muint81 = FGSessionLibrary->GetSessionVisibility([ref] mBlueprintSessionResult);
 L1193:         FGOnlineSessionSettings mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] mBlueprintSessionResult);
-L1252:         bool mbool4 = EqualEqual_ByteByte(muint81, 0);
+L1252:         bool mbool4 = muint81 == 0;
 L1283:         bool mbool5 = FGPresenceLibrary->IsPlayingThisGame([ref] mOnlinePresence);
 L1334:         bool mbool6 = FGPresenceLibrary->IsOnline([ref] mOnlinePresence);
-L1385:         bool mbool7 = Not_PreBool(mbool5);
-L1414:         bool mbool8 = BooleanOR(mbool7, mbool3);
+L1385:         bool mbool7 = !mbool5;
+L1414:         bool mbool8 = mbool7 || mbool3;
 L1452:         this->Internal_UpdateButton(mFText, mbool6, mFText1, mFGOnlineSessionSettings.NumConnectedPlayers, mbool4, mFGOnlineSessionSettings.PlayDuration, "[object Object]", mbool8, mbool5, false, true, mbool, switch (Temp_byte_Variable) {
 case 0 -> Temp_text_Variable;
 case 1 -> Temp_text_Variable1;
@@ -223,7 +223,7 @@ L98:           LocalPlayer* mLocalPlayer1 = this->GetOwningLocalPlayer();
 L122:          bool mbool1 = FGFriendsLibrary->GetFriendName(mLocalPlayer1, [ref] friend, [ref] mFString);
 L191:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
 L250:          this->Internal_UpdateButton(mFText, false, "[object Object]", 0, false, 0, "[object Object]", true, false, true, true, false, , false, ScriptStruct /Script/OnlineSubsystemUtils.BlueprintSessionResult(), false, false, 0, true, false, false);
-L407:          <End of Inlined Event Graph Function>;
+L407:          // <End Inlined EventGraph Function>;
 L412:          FText Temp_text_Variable = "[object Object]";
 L476:          FText Temp_text_Variable1 = "[object Object]";
 L547:          FText Temp_text_Variable2 = ;
@@ -234,8 +234,8 @@ L760:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L784:          BP_OnlineHelpers->CanSendInvite(mPlayerController, friend, this, [ref] muint8);
 L848:          BP_OnlineHelpers->IsFriendInOnlineSession(mPlayerController1, [ref] friend, this, [ref] mbool2);
 L912:          uint8 Temp_byte_Variable = muint8;
-L939:          bool mbool3 = Not_PreBool(mbool2);
-L968:          bool mbool4 = NotEqual_ByteByte(muint8, 3);
+L939:          bool mbool3 = !mbool2;
+L968:          bool mbool4 = muint8 != 3;
 L999:          FText Temp_text_Variable5 = "[object Object]";
 L1064:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L1088:         mLocalPlayer1 = this->GetOwningLocalPlayer();
@@ -243,16 +243,16 @@ L1112:         OnlinePresence mOnlinePresence = BP_OnlineHelpers->GetFriendPrese
 L1185:         mbool1 = FGFriendsLibrary->GetFriendName(mLocalPlayer1, [ref] friend, [ref] mFString);
 L1254:         BP_OnlineHelpers->GetCompactPresence(mOnlinePresence, this, [ref] mFCompactPresence);
 L1309:         mFText = KismetTextLibrary->Conv_StringToText(mFString);
-L1368:         bool mbool5 = BooleanOR(mFCompactPresence.IsPlayingThisGame_6_D07FB68E4051EB599EEFC5B695C2B0FA, mFCompactPresence.IsPlayingOtherGame_7_ED9DBFB84A164DABCD8A488B070BE8C3);
-L1424:         bool mbool6 = Not_PreBool(mFCompactPresence.IsPlayingThisGame_6_D07FB68E4051EB599EEFC5B695C2B0FA);
+L1368:         bool mbool5 = mFCompactPresence.IsPlayingThisGame_6_D07FB68E4051EB599EEFC5B695C2B0FA || mFCompactPresence.IsPlayingOtherGame_7_ED9DBFB84A164DABCD8A488B070BE8C3;
+L1424:         bool mbool6 = !mFCompactPresence.IsPlayingThisGame_6_D07FB68E4051EB599EEFC5B695C2B0FA;
 L1462:         bool Temp_bool_Variable = mbool5;
-L1481:         bool mbool7 = BooleanOR(mbool6, mbool3);
+L1481:         bool mbool7 = mbool6 || mbool3;
 L1519:         bool Temp_bool_Variable1 = mFCompactPresence.IsOnline_3_0B4A819747012DC786FA4097038402CD;
 L1547:         FText mFText1 = KismetTextLibrary->Conv_StringToText(mFCompactPresence.PresenceString_8_73B095B54A983F2391EE189D60CC1495);
 L1615:         BP_OnlineHelpers->GetFriendSession(friend, mLocalPlayer1, this, [ref] mBlueprintSessionResult);
 L1679:         FGOnlineSessionSettings mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] mBlueprintSessionResult);
 L1738:         uint8 muint81 = FGSessionLibrary->GetSessionVisibility([ref] mBlueprintSessionResult);
-L1797:         bool mbool8 = EqualEqual_ByteByte(muint81, 0);
+L1797:         bool mbool8 = muint81 == 0;
 L1828:         this->Internal_UpdateButton(mFText, mFCompactPresence.IsOnline_3_0B4A819747012DC786FA4097038402CD, switch (Temp_bool_Variable1) {
 case false -> Temp_text_Variable5;
 case true -> switch (Temp_bool_Variable) {
@@ -325,7 +325,7 @@ L1032:         BP_OnlineHelpers->GetFriendSession(friend, mPlayerController, thi
 L1096:         bool mbool = FGSessionLibrary->IsSessionValid(mBlueprintSessionResult1);
 L1147:         bool Temp_bool_Variable4 = false;
 L1158:         bool Temp_bool_Variable1 = mbool;
-L1177:         bool mbool1 = Not_PreBool(mbool);
+L1177:         bool mbool1 = !mbool;
 L1206:         bool Temp_bool_Variable5 = false;
 L1217:         bool Temp_bool_Variable6 = false;
 L1228:         bool Temp_bool_Variable7 = true;
@@ -336,21 +336,21 @@ L1285:         bool mbool2 = FGFriendsLibrary->GetFriendName(mLocalPlayer, [ref]
 L1354:         uint8 muint8 = FGFriendsLibrary->IsFriendJoinable(mLocalPlayer, [ref] friend);
 L1422:         FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
 L1481:         uint8 Temp_byte_Variable = muint8;
-L1508:         bool mbool3 = NotEqual_ByteByte(muint8, 6);
-L1539:         bool mbool4 = Not_PreBool(mbool3);
+L1508:         bool mbool3 = muint8 != 6;
+L1539:         bool mbool4 = !mbool3;
 L1568:         BP_OnlineHelpers->GetFriendSession(friend, mLocalPlayer, this, [ref] mBlueprintSessionResult);
 L1632:         OnlinePresence mOnlinePresence = BP_OnlineHelpers->GetFriendPresence([ref] friend, mLocalPlayer, this);
 L1705:         BP_OnlineHelpers->GetCompactPresence(mOnlinePresence, this, [ref] mFCompactPresence);
 L1760:         uint8 muint81 = FGSessionLibrary->GetSessionVisibility([ref] mBlueprintSessionResult);
-L1819:         bool mbool5 = BooleanOR(mFCompactPresence.IsPlayingThisGame_6_D07FB68E4051EB599EEFC5B695C2B0FA, mFCompactPresence.IsPlayingOtherGame_7_ED9DBFB84A164DABCD8A488B070BE8C3);
-L1875:         bool mbool6 = EqualEqual_ByteByte(muint81, 0);
+L1819:         bool mbool5 = mFCompactPresence.IsPlayingThisGame_6_D07FB68E4051EB599EEFC5B695C2B0FA || mFCompactPresence.IsPlayingOtherGame_7_ED9DBFB84A164DABCD8A488B070BE8C3;
+L1875:         bool mbool6 = muint81 == 0;
 L1906:         bool Temp_bool_Variable2 = mbool5;
-L1925:         bool mbool7 = Not_PreBool(mFCompactPresence.IsPlayingThisGame_6_D07FB68E4051EB599EEFC5B695C2B0FA);
+L1925:         bool mbool7 = !mFCompactPresence.IsPlayingThisGame_6_D07FB68E4051EB599EEFC5B695C2B0FA;
 L1963:         bool Temp_bool_Variable = mFCompactPresence.IsOnline_3_0B4A819747012DC786FA4097038402CD;
-L1991:         bool mbool8 = BooleanOR(mbool7, mbool1);
+L1991:         bool mbool8 = mbool7 || mbool1;
 L2029:         FText mFText1 = KismetTextLibrary->Conv_StringToText(mFCompactPresence.PresenceString_8_73B095B54A983F2391EE189D60CC1495);
 L2097:         uint8 Temp_byte_Variable1 = muint8;
-L2124:         bool mbool9 = BooleanOR(mbool8, switch (Temp_byte_Variable1) {
+L2124:         bool mbool9 = mbool8 || switch (Temp_byte_Variable1) {
 case 0 -> Temp_bool_Variable3;
 case 1 -> Temp_bool_Variable4;
 case 2 -> Temp_bool_Variable5;
@@ -359,7 +359,7 @@ case 4 -> Temp_bool_Variable7;
 case 5 -> Temp_bool_Variable8;
 case 6 -> Temp_bool_Variable9;
 default -> mbool10;
-});
+};
 L2283:         this->Internal_UpdateButton(mFText, mFCompactPresence.IsOnline_3_0B4A819747012DC786FA4097038402CD, switch (Temp_bool_Variable) {
 case false -> Temp_text_Variable;
 case true -> switch (Temp_bool_Variable2) {
@@ -426,20 +426,20 @@ L1054:         this->mButton->SetStyle([ref] mButtonStyle);
 L0:            ExecutionFlow.Push(L501);
 L5:            int32 Temp_int_Variable = 0;
 L28:           int32 mint32 = this->mParentWidget->GetChildrenCount();
-L78:           bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L78:           bool mbool = Temp_int_Variable <= mint32;
 L116:          if (!mbool) goto ExecutionFlow.Pop();
 L126:          ExecutionFlow.Push(L427);
 L131:          Widget* mWidget = this->mParentWidget->GetChildAt(Temp_int_Variable);
 L182:          Widget_Multiplayer_ListButton* mWidget_Multiplayer_ListButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_Multiplayer_ListButton.Widget_Multiplayer_ListButton_C>(mWidget);
 L218:          bool mbool1 = mWidget_Multiplayer_ListButton;
 L247:          if (!mbool1) goto ExecutionFlow.Pop();
-L257:          bool mbool2 = NotEqual_ObjectObject(mWidget_Multiplayer_ListButton, this);
+L257:          bool mbool2 = mWidget_Multiplayer_ListButton != this;
 L287:          if (!mbool2) goto ExecutionFlow.Pop();
 L297:          mWidget_Multiplayer_ListButton->mIsSelected = false;
 L330:          mWidget_Multiplayer_ListButton->UpdateButton();
 L366:          mWidget_Multiplayer_ListButton->ActionButtonContainer->SetVisibility(2);
 L426:          goto ExecutionFlow.Pop();
-L427:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L427:          int32 mint321 = Temp_int_Variable + 1;
 L469:          Temp_int_Variable = mint321;
 L496:          goto L28;
 ============ END FUNCTION ClearListSelection ==============
@@ -451,8 +451,8 @@ L496:          goto L28;
 ============ BEGIN FUNCTION UpdateButton ==============
 L0:            ExecutionFlow.Push(L4338);
 L5:            this->ActionButtonText->SetText(this->mActionButtonText);
-L50:           bool mbool = Not_PreBool(this->mHideSessionInfo);
-L79:           bool mbool1 = BooleanAND(mbool, this->mIsPlayingSatisfactory);
+L50:           bool mbool = !this->mHideSessionInfo;
+L79:           bool mbool1 = mbool && this->mIsPlayingSatisfactory;
 L117:          if (!mbool1) goto L3189;
 L131:          this->SessionInfo->SetVisibility(3);
 L169:          this->mTitleObject->SetTitle(this->mTitle);
@@ -464,7 +464,7 @@ L301:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mL
 L356:          mSlateBrush.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 64, Y = 64);
 L407:          mSlateBrush.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
 L468:          mSlateBrush.TintColor = mSlateColor;
-L504:          mSlateBrush.ResourceObject = Menu_PlayerIcon_Satisfactory;
+L504:          mSlateBrush.ResourceObject = ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/MainMenu/Multiplayer/Menu_PlayerIcon_Satisfactory.Menu_PlayerIcon_Satisfactory);
 L532:          mSlateBrush.DrawAs = 3;
 L561:          mSlateBrush.Tiling = 0;
 L590:          mSlateBrush.Mirroring = 0;
@@ -472,7 +472,7 @@ L619:          SlateBrush LocalIconBrush = mSlateBrush;
 L646:          this->mIcon->SetBrush([ref] LocalIconBrush);
 L691:          int32 Temp_int_Variable = 0;
 L714:          int32 mint32 = this->PlayersInSessionContainer->GetChildrenCount();
-L764:          bool mbool2 = LessEqual_IntInt(Temp_int_Variable, mint32);
+L764:          bool mbool2 = Temp_int_Variable <= mint32;
 L802:          if (!mbool2) goto ExecutionFlow.Pop();
 L812:          ExecutionFlow.Push(L3932);
 L817:          int32 LocalPlayerInt = Temp_int_Variable;
@@ -481,8 +481,8 @@ L895:          Image* mImage = Cast<Class /Script/UMG.Image>(mWidget);
 L931:          bool mbool3 = mImage;
 L960:          if (!mbool3) goto ExecutionFlow.Pop();
 L970:          int32 mint321 = this->PlayersInSessionContainer->GetChildrenCount();
-L1020:         int32 mint322 = Subtract_IntInt(mint321, this->mPlayersInSession);
-L1066:         bool mbool4 = Less_IntInt(LocalPlayerInt, mint322);
+L1020:         int32 mint322 = mint321 - this->mPlayersInSession;
+L1066:         bool mbool4 = LocalPlayerInt < mint322;
 L1104:         if (!mbool4) goto L4006;
 L1118:         HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
 L1173:         mImage->SetBrushTintColor(mSlateColor1);
@@ -494,18 +494,18 @@ L1400:         mFormatArgumentData.ArgumentValue = ;
 L1429:         mFormatArgumentData.ArgumentValueInt = mint325;
 L1465:         mFormatArgumentData.ArgumentValueFloat = 0;
 L1497:         mFormatArgumentData.ArgumentValueGender = 0;
-L1526:         int32 mint328 = Multiply_IntInt(mint323, 24);
-L1568:         int32 mint329 = Add_IntInt(mint328, mint324);
+L1526:         int32 mint328 = mint323 * 24;
+L1568:         int32 mint329 = mint328 + mint324;
 L1614:         mFormatArgumentData1.ArgumentName = "Hours";
 L1648:         mFormatArgumentData1.ArgumentValueType = 0;
 L1677:         mFormatArgumentData1.ArgumentValue = ;
 L1706:         mFormatArgumentData1.ArgumentValueInt = mint329;
 L1742:         mFormatArgumentData1.ArgumentValueFloat = 0;
 L1774:         mFormatArgumentData1.ArgumentValueGender = 0;
-L1803:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData1, mFormatArgumentData];
-L1832:         FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1803:         TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData1, mFormatArgumentData];
+L1832:         FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L1950:         this->TimePlayed->SetText(mFText);
-L1995:         bool mbool5 = Not_PreBool(this->mPrivateSession);
+L1995:         bool mbool5 = !this->mPrivateSession;
 L2024:         if (!mbool5) goto L4107;
 L2038:         this->playersInSession->SetVisibility(0);
 L2076:         this->LockIcon->SetVisibility(1);
@@ -531,7 +531,7 @@ case false -> Temp_byte_Variable;
 case true -> Temp_byte_Variable3;
 default -> muint81;
 });
-L2639:         bool mbool6 = Not_PreBool(this->mDisableActionButton);
+L2639:         bool mbool6 = !this->mDisableActionButton;
 L2668:         this->ActionButton->SetIsEnabled(mbool6);
 L2713:         this->ActionButtonContainer->SetIsEnabled(mbool6);
 L2758:         this->ActionButton->SetToolTipText([ref] this->mActionButtonTooltip);
@@ -560,7 +560,7 @@ L3232:         HUDHelpers->GetFactoryGameLightGray(this, [ref] mSlateColor4, [re
 L3287:         mSlateBrush1.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 64, Y = 64);
 L3338:         mSlateBrush1.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
 L3399:         mSlateBrush1.TintColor = mSlateColor4;
-L3435:         mSlateBrush1.ResourceObject = Menu_PlayerIcon_Offline;
+L3435:         mSlateBrush1.ResourceObject = ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/MainMenu/Multiplayer/Menu_PlayerIcon_Offline.Menu_PlayerIcon_Offline);
 L3463:         mSlateBrush1.DrawAs = 3;
 L3492:         mSlateBrush1.Tiling = 0;
 L3521:         mSlateBrush1.Mirroring = 0;
@@ -570,13 +570,13 @@ L3582:         HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor5, [ref] m
 L3637:         mSlateBrush2.ImageSize = ScriptStruct /Script/CoreUObject.Vector2D(X = 64, Y = 64);
 L3688:         mSlateBrush2.Margin = ScriptStruct /Script/SlateCore.Margin(Left = 0, Top = 0, Right = 0, Bottom = 0);
 L3749:         mSlateBrush2.TintColor = mSlateColor5;
-L3785:         mSlateBrush2.ResourceObject = Menu_PlayerIcon;
+L3785:         mSlateBrush2.ResourceObject = ObjectConst(Texture2D /Game/FactoryGame/Interface/UI/Assets/MainMenu/Multiplayer/Menu_PlayerIcon.Menu_PlayerIcon);
 L3813:         mSlateBrush2.DrawAs = 3;
 L3842:         mSlateBrush2.Tiling = 0;
 L3871:         mSlateBrush2.Mirroring = 0;
 L3900:         LocalIconBrush = mSlateBrush2;
 L3927:         goto L646;
-L3932:         int32 mint3210 = Add_IntInt(Temp_int_Variable, 1);
+L3932:         int32 mint3210 = Temp_int_Variable + 1;
 L3974:         Temp_int_Variable = mint3210;
 L4001:         goto L714;
 L4006:         HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor6, [ref] mLinearColor7);
@@ -602,8 +602,9 @@ L4337:         goto ExecutionFlow.Pop();
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_Multiplayer_ListButton.Widget_Multiplayer_ListButton_C:ExecuteUbergraph_Widget_Multiplayer_ListButton.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_Multiplayer_ListButton(10);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Multiplayer_ListButton, from label L10;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -611,7 +612,9 @@ L18:           this->ExecuteUbergraph_Widget_Multiplayer_ListButton(10);
 
 
 ============ BEGIN FUNCTION BndEvt__ActionButton_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_Multiplayer_ListButton(252);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__ActionButton_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Multiplayer_ListButton, from label L252;
 ============ END FUNCTION BndEvt__ActionButton_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -619,7 +622,9 @@ L0:            this->ExecuteUbergraph_Widget_Multiplayer_ListButton(252);
 
 
 ============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_Multiplayer_ListButton(296);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Multiplayer_ListButton, from label L296;
 ============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -627,7 +632,9 @@ L0:            this->ExecuteUbergraph_Widget_Multiplayer_ListButton(296);
 
 
 ============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_Multiplayer_ListButton(378);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Multiplayer_ListButton, from label L378;
 ============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -635,7 +642,9 @@ L0:            this->ExecuteUbergraph_Widget_Multiplayer_ListButton(378);
 
 
 ============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_Multiplayer_ListButton(464);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Multiplayer_ListButton, from label L464;
 ============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -644,9 +653,9 @@ L0:            this->ExecuteUbergraph_Widget_Multiplayer_ListButton(464);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_Multiplayer_ListButton ==============
 L10:           this->UpdateButton();
-L24:           <End of Inlined Event Graph Function>;
+L24:           // <End Inlined EventGraph Function>;
 L29:           this->mActionButtons->SetVisibility(1);
-L67:           <End of Inlined Event Graph Function>;
+L67:           // <End Inlined EventGraph Function>;
 L72:           this->ClearListSelection();
 L86:           this->mIsSelected = true;
 L97:           this->UpdateButton();
@@ -654,24 +663,28 @@ L111:          bool mbool = FGSessionLibrary->IsSessionValid(this->mSession);
 L162:          if (!mbool) goto L228;
 L176:          this->OnSessionSelected->ProcessMulticastDelegate(this->mSession);
 L204:          this->OnButtonClicked->ProcessMulticastDelegate();
-L223:          <End of Inlined Event Graph Function>;
+L223:          // <End Inlined EventGraph Function>;
 L228:          this->OnSessionDeselected->ProcessMulticastDelegate();
 L247:          goto L204;
+L252:          // <Begin Inlined EventGraph Function BndEvt__ActionButton_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature>;
 L252:          if (!this->mDisableActionButton) goto L271;
-L266:          <End of Inlined Event Graph Function>;
+L266:          // <End Inlined EventGraph Function>;
 L271:          this->OnActionButtonClicked->ProcessMulticastDelegate(this);
-L291:          <End of Inlined Event Graph Function>;
+L291:          // <End Inlined EventGraph Function>;
+L296:          // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature>;
 L296:          if (!this->mIsSelectable) goto L354;
 L310:          if (!this->mIsSelected) goto L72;
 L324:          this->mIsSelected = false;
 L335:          this->UpdateButton();
 L349:          goto L228;
 L354:          this->OnButtonClicked->ProcessMulticastDelegate();
-L373:          <End of Inlined Event Graph Function>;
-L378:          bool mbool1 = Not_PreBool(this->mHideActionButton);
+L373:          // <End Inlined EventGraph Function>;
+L378:          // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature>;
+L378:          bool mbool1 = !this->mHideActionButton;
 L407:          if (!mbool1) goto L469;
 L421:          this->mActionButtons->SetVisibility(0);
-L459:          <End of Inlined Event Graph Function>;
+L459:          // <End Inlined EventGraph Function>;
+L464:          // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature>;
 L464:          goto L29;
 ============ END FUNCTION ExecuteUbergraph_Widget_Multiplayer_ListButton ==============
 

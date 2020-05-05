@@ -7,8 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Task/BTT_CheckVal
 
 
 ============ BEGIN FUNCTION ReceiveExecute ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/AI/Task/BTT_CheckValidPath.BTT_CheckValidPath_C:ExecuteUbergraph_BTT_CheckValidPath.K2Node_Event_OwnerActor) = OwnerActor;
-L18:           this->ExecuteUbergraph_BTT_CheckValidPath(1156);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveExecute;
+L18:           // Implementation: Function ExecuteUbergraph_BTT_CheckValidPath, from label L1156;
 ============ END FUNCTION ReceiveExecute ==============
 
 
@@ -17,9 +18,9 @@ L18:           this->ExecuteUbergraph_BTT_CheckValidPath(1156);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_BTT_CheckValidPath ==============
 L10:           this->FinishExecute(true);
-L21:           <End of Inlined Event Graph Function>;
+L21:           // <End Inlined EventGraph Function>;
 L26:           this->FinishExecute(true);
-L37:           <End of Inlined Event Graph Function>;
+L37:           // <End Inlined EventGraph Function>;
 L42:           Actor* mActor = BTFunctionLibrary->GetBlackboardValueAsActor(this, [ref] this->mTargetObjectBBKey);
 L94:           bool mbool = KismetSystemLibrary->IsValid(mActor);
 L145:          if (!mbool) goto L836;
@@ -34,22 +35,22 @@ L410:          Pawn* mPawn = mAIController->K2_GetPawn();
 L452:          Vector mVector1 = mPawn->K2_GetActorLocation();
 L502:          NavigationPath* mNavigationPath = mNavigationSystemV1->FindPathToLocationSynchronously(this, [ref] mVector1, [ref] this->mPathEnd, mPawn, this->NavFilter);
 L581:          float mfloat = mNavigationPath->GetPathLength();
-L631:          bool mbool2 = LessEqual_FloatFloat(mfloat, 0);
+L631:          bool mbool2 = mfloat <= 0;
 L665:          bool mbool3 = mNavigationPath->IsPartial();
-L707:          bool mbool4 = BooleanOR(mbool3, mbool2);
-L745:          bool mbool5 = Not_PreBool(mbool4);
+L707:          bool mbool4 = mbool3 || mbool2;
+L745:          bool mbool5 = !mbool4;
 L774:          if (!mbool5) goto L1108;
 L788:          BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->mHasValidPath, true);
 L831:          goto L10;
 L836:          Vector mVector2 = BTFunctionLibrary->GetBlackboardValueAsVector(this, [ref] this->mTargetLocationBBKey);
-L896:          bool mbool6 = NotEqual_VectorVector(mVector2, Vector(0, 0, 0), 0.00009999999747378752);
+L896:          bool mbool6 = mVector2 != Vector(0, 0, 0);
 L943:          if (!mbool6) goto L1049;
 L957:          mVector2 = BTFunctionLibrary->GetBlackboardValueAsVector(this, [ref] this->mTargetLocationBBKey);
 L1017:         this->mPathEnd = mVector2;
 L1044:         goto L288;
 L1049:         BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->mHasValidPath, false);
 L1092:         this->FinishExecute(true);
-L1103:         <End of Inlined Event Graph Function>;
+L1103:         // <End Inlined EventGraph Function>;
 L1108:         BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->mHasValidPath, false);
 L1151:         goto L26;
 L1156:         goto L42;

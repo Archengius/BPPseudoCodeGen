@@ -1,0 +1,134 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/ResourceCollector/Anim_ResourceMiner.Anim_ResourceMiner_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_MineComplete ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_MineComplete;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_ResourceMiner, from label L786;
+============ END FUNCTION AnimNotify_MineComplete ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_StopMining ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_StopMining;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_ResourceMiner, from label L954;
+============ END FUNCTION AnimNotify_StopMining ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_MineVfx ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_MineVfx;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_ResourceMiner, from label L1082;
+============ END FUNCTION AnimNotify_MineVfx ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_StartCameraShake ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_StartCameraShake;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_ResourceMiner, from label L1214;
+============ END FUNCTION AnimNotify_StartCameraShake ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_PickRingSound ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_PickRingSound;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_ResourceMiner, from label L1346;
+============ END FUNCTION AnimNotify_PickRingSound ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_SecondMineVfx ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_SecondMineVfx;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_ResourceMiner, from label L1351;
+============ END FUNCTION AnimNotify_SecondMineVfx ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Anim_ResourceMiner ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L132);
+L20:           int32 mint32 = this->mNumSounds - 1;
+L62:           int32 mint321 = RandomIntegerInRange(0, mint32);
+L104:          this->mSoundToPlay = mint321;
+L131:          goto ExecutionFlow.Pop();
+L132:          bool mbool = KismetArrayLibrary->Array_Contains([ref] this->mListOfPlayedSounds, [ref] this->mSoundToPlay);
+L192:          if (!mbool) goto L211;
+L206:          goto L15;
+L211:          int32 mint322 = KismetArrayLibrary->Array_Add([ref] this->mListOfPlayedSounds, [ref] this->mSoundToPlay);
+L279:          int32 mint323 = KismetArrayLibrary->Array_Length([ref] this->mListOfPlayedSounds);
+L338:          int32 mint324 = this->mNumSounds / 2;
+L380:          bool mbool1 = mint323 > mint324;
+L418:          if (!mbool1) goto L478;
+L432:          KismetArrayLibrary->Array_Remove([ref] this->mListOfPlayedSounds, 0);
+L478:          float mfloat = Conv_IntToFloat(this->mSoundToPlay);
+L515:          AkGameplayStatics->SetGlobalRTPCValue("RTPC_ManualMining", mfloat, 0);
+L574:          goto ExecutionFlow.Pop();
+L575:          Actor* mActor = this->GetOwningActor();
+L595:          Equip_ResourceMiner* mEquip_ResourceMiner = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/ResourceCollector/Equip_ResourceMiner.Equip_ResourceMiner_C>(mActor);
+L631:          bool mbool2 = mEquip_ResourceMiner;
+L660:          if (!mbool2) goto ExecutionFlow.Pop();
+L670:          int32 mint325 = this->mNumSounds - 1;
+L712:          int32 mint326 = RandomIntegerInRange(0, mint325);
+L754:          this->mSoundToPlay = mint326;
+L781:          goto L132;
+L786:          // <Begin Inlined EventGraph Function AnimNotify_MineComplete>;
+L786:          Actor* mActor1 = this->GetOwningActor();
+L806:          Equip_ResourceMiner* mEquip_ResourceMiner1 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/ResourceCollector/Equip_ResourceMiner.Equip_ResourceMiner_C>(mActor1);
+L842:          bool mbool3 = mEquip_ResourceMiner1;
+L871:          if (!mbool3) goto ExecutionFlow.Pop();
+L881:          mEquip_ResourceMiner1->DoMine();
+L913:          mEquip_ResourceMiner1->PlayFinalEffects();
+L949:          goto L670;
+L954:          // <Begin Inlined EventGraph Function AnimNotify_StopMining>;
+L954:          Actor* mActor2 = this->GetOwningActor();
+L974:          Equip_ResourceMiner* mEquip_ResourceMiner2 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/ResourceCollector/Equip_ResourceMiner.Equip_ResourceMiner_C>(mActor2);
+L1010:         bool mbool4 = mEquip_ResourceMiner2;
+L1039:         if (!mbool4) goto ExecutionFlow.Pop();
+L1049:         mEquip_ResourceMiner2->RemoveEquipment();
+L1081:         goto ExecutionFlow.Pop();
+L1082:         // <Begin Inlined EventGraph Function AnimNotify_MineVfx>;
+L1082:         Actor* mActor3 = this->GetOwningActor();
+L1102:         Equip_ResourceMiner* mEquip_ResourceMiner3 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/ResourceCollector/Equip_ResourceMiner.Equip_ResourceMiner_C>(mActor3);
+L1138:         bool mbool5 = mEquip_ResourceMiner3;
+L1167:         if (!mbool5) goto ExecutionFlow.Pop();
+L1177:         mEquip_ResourceMiner3->PlayMiningEffect();
+L1213:         goto ExecutionFlow.Pop();
+L1214:         // <Begin Inlined EventGraph Function AnimNotify_StartCameraShake>;
+L1214:         Actor* mActor4 = this->GetOwningActor();
+L1234:         Equip_ResourceMiner* mEquip_ResourceMiner4 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/ResourceCollector/Equip_ResourceMiner.Equip_ResourceMiner_C>(mActor4);
+L1270:         bool mbool6 = mEquip_ResourceMiner4;
+L1299:         if (!mbool6) goto ExecutionFlow.Pop();
+L1309:         mEquip_ResourceMiner4->StartCameraShake();
+L1345:         goto ExecutionFlow.Pop();
+L1346:         // <Begin Inlined EventGraph Function AnimNotify_PickRingSound>;
+L1346:         goto L575;
+L1351:         // <Begin Inlined EventGraph Function AnimNotify_SecondMineVfx>;
+L1351:         Actor* mActor5 = this->GetOwningActor();
+L1371:         Equip_ResourceMiner* mEquip_ResourceMiner5 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/ResourceCollector/Equip_ResourceMiner.Equip_ResourceMiner_C>(mActor5);
+L1407:         bool mbool7 = mEquip_ResourceMiner5;
+L1436:         if (!mbool7) goto ExecutionFlow.Pop();
+L1446:         mEquip_ResourceMiner5->PlaySecondEffects();
+L1482:         goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Anim_ResourceMiner ==============

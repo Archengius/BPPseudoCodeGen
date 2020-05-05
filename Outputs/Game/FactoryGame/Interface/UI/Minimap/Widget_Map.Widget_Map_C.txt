@@ -45,19 +45,19 @@ L263:          InteractWidget->ListenForInputAction("PrimaryFire", 2, true, mFSc
 L0:            ExecutionFlow.Push(L480);
 L5:            int32 Temp_int_Variable = 0;
 L28:           int32 mint32 = this->mMapObjectPanel->GetChildrenCount();
-L78:           int32 mint321 = Subtract_IntInt(mint32, 1);
-L120:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L78:           int32 mint321 = mint32 - 1;
+L120:          bool mbool = Temp_int_Variable <= mint321;
 L158:          if (!mbool) goto ExecutionFlow.Pop();
 L168:          ExecutionFlow.Push(L406);
 L173:          Widget* mWidget = this->mMapObjectPanel->GetChildAt(Temp_int_Variable);
 L224:          FGMapObjectWidget* mFGMapObjectWidget = Cast<Class /Script/FactoryGame.FGMapObjectWidget>(mWidget);
 L260:          bool mbool1 = mFGMapObjectWidget;
 L289:          if (!mbool1) goto ExecutionFlow.Pop();
-L299:          bool mbool2 = EqualEqual_ObjectObject(mFGMapObjectWidget->mActorRepresentation, actorRepresentation);
+L299:          bool mbool2 = mFGMapObjectWidget->mActorRepresentation == actorRepresentation;
 L359:          if (!mbool2) goto ExecutionFlow.Pop();
 L369:          mFGMapObjectWidget->OnActorRepresentationUpdated();
 L405:          goto ExecutionFlow.Pop();
-L406:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L406:          int32 mint322 = Temp_int_Variable + 1;
 L448:          Temp_int_Variable = mint322;
 L475:          goto L28;
 ============ END FUNCTION UpdateObjectOnMap ==============
@@ -69,8 +69,8 @@ L475:          goto L28;
 ============ BEGIN FUNCTION CenterMapOnPlayer ==============
 L0:            BreakVector2D(normalizedWorldLocation, [ref] mfloat, [ref] mfloat1);
 L37:           Vector2D mVector2D = MakeVector2D(this->mMapSizeBox->WidthOverride, this->mMapSizeBox->HeightOverride);
-L127:          Vector2D mVector2D1 = Divide_Vector2DFloat(mVector2D, -2);
-L169:          Vector2D mVector2D2 = Divide_Vector2DFloat(mVector2D, 2);
+L127:          Vector2D mVector2D1 = mVector2D / -2;
+L169:          Vector2D mVector2D2 = mVector2D / 2;
 L211:          BreakVector2D(mVector2D1, [ref] mfloat2, [ref] mfloat3);
 L248:          BreakVector2D(mVector2D2, [ref] mfloat4, [ref] mfloat5);
 L285:          float mfloat6 = Lerp(mfloat4, mfloat2, mfloat);
@@ -104,7 +104,7 @@ L51:           mCanvasPanelSlot->SetZOrder(100);
 ============ BEGIN FUNCTION AddObjectToMap ==============
 L0:            FGActorRepresentation* LocalRepresenation = actorRepresentation;
 L19:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L43:           Widget_MapObject* mWidget_MapObject = WidgetBlueprintLibrary->Create(this, Widget_MapObject, mPlayerController);
+L43:           Widget_MapObject* mWidget_MapObject = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Minimap/Widget_MapObject.Widget_MapObject_C), mPlayerController);
 L104:          int32 Temp_int_Variable = 0;
 L127:          int32 Temp_int_Variable1 = 9;
 L150:          int32 Temp_int_Variable2 = 0;
@@ -190,20 +190,20 @@ L1774:         Widget_MapObject* WidgetMapObject = LocalWidget;
 L0:            ExecutionFlow.Push(L546);
 L5:            int32 Temp_int_Variable = 0;
 L28:           int32 mint32 = this->mMapObjectPanel->GetChildrenCount();
-L78:           int32 mint321 = Subtract_IntInt(mint32, 1);
-L120:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint321);
+L78:           int32 mint321 = mint32 - 1;
+L120:          bool mbool = Temp_int_Variable <= mint321;
 L158:          if (!mbool) goto ExecutionFlow.Pop();
 L168:          ExecutionFlow.Push(L472);
 L173:          Widget* mWidget = this->mMapObjectPanel->GetChildAt(Temp_int_Variable);
 L224:          FGMapObjectWidget* mFGMapObjectWidget = Cast<Class /Script/FactoryGame.FGMapObjectWidget>(mWidget);
 L260:          bool mbool1 = mFGMapObjectWidget;
 L289:          if (!mbool1) goto ExecutionFlow.Pop();
-L299:          bool mbool2 = EqualEqual_ObjectObject(mFGMapObjectWidget->mActorRepresentation, ActorRepresentationToRemove);
+L299:          bool mbool2 = mFGMapObjectWidget->mActorRepresentation == ActorRepresentationToRemove;
 L359:          if (!mbool2) goto ExecutionFlow.Pop();
 L369:          mWidget = this->mMapObjectPanel->GetChildAt(Temp_int_Variable);
 L420:          bool mbool3 = this->mMapObjectPanel->RemoveChild(mWidget);
 L471:          goto ExecutionFlow.Pop();
-L472:          int32 mint322 = Add_IntInt(Temp_int_Variable, 1);
+L472:          int32 mint322 = Temp_int_Variable + 1;
 L514:          Temp_int_Variable = mint322;
 L541:          goto L28;
 ============ END FUNCTION RemoveObjectFromMap ==============
@@ -224,9 +224,9 @@ L0:            this->mIsMapMoving = false;
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           bool mbool = WidgetLayoutLibrary->GetMousePositionScaledByDPI(mPlayerController, [ref] mfloat, [ref] mfloat1);
 L93:           Vector2D mVector2D = MakeVector2D(mfloat, mfloat1);
-L139:          Vector2D mVector2D1 = Subtract_Vector2DVector2D(MouseOrigin, mVector2D);
-L185:          Vector2D mVector2D2 = Divide_Vector2DVector2D(mVector2D1, this->mMapZoomContainer->RenderTransform.Scale);
-L262:          Vector2D mVector2D3 = Subtract_Vector2DVector2D(MapOrigin, mVector2D2);
+L139:          Vector2D mVector2D1 = MouseOrigin - mVector2D;
+L185:          Vector2D mVector2D2 = mVector2D1 / this->mMapZoomContainer->RenderTransform.Scale;
+L262:          Vector2D mVector2D3 = MapOrigin - mVector2D2;
 L308:          this->mMapScrollContainer->SetRenderTranslation(mVector2D3);
 ============ END FUNCTION ScrollMap ==============
 
@@ -249,10 +249,10 @@ L234:          this->ZoomChanged->ProcessMulticastDelegate();
 
 ============ BEGIN FUNCTION OnMouseWheel ==============
 L0:            float mfloat = KismetInputLibrary->PointerEvent_GetWheelDelta([ref] MouseEvent);
-L59:           bool mbool = Greater_FloatFloat(mfloat, 0);
+L59:           bool mbool = mfloat > 0;
 L93:           bool Temp_bool_Variable = mbool;
-L112:          Vector2D mVector2D = Multiply_Vector2DFloat(this->mMapZoomContainer->RenderTransform.Scale, 0.8999999761581421);
-L185:          Vector2D mVector2D1 = Multiply_Vector2DFloat(this->mMapZoomContainer->RenderTransform.Scale, 1.100000023841858);
+L112:          Vector2D mVector2D = this->mMapZoomContainer->RenderTransform.Scale * 0.8999999761581421;
+L185:          Vector2D mVector2D1 = this->mMapZoomContainer->RenderTransform.Scale * 1.100000023841858;
 L258:          this->ZoomMap(switch (Temp_bool_Variable) {
 case false -> mVector2D;
 case true -> mVector2D1;
@@ -267,8 +267,9 @@ L375:          EventReply ReturnValue = mEventReply;
 
 
 ============ BEGIN FUNCTION OnMouseLeave ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_Map.Widget_Map_C:ExecuteUbergraph_Widget_Map.K2Node_Event_MouseEvent) = MouseEvent;
-L18:           this->ExecuteUbergraph_Widget_Map(77);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnMouseLeave;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Map, from label L77;
 ============ END FUNCTION OnMouseLeave ==============
 
 
@@ -276,7 +277,9 @@ L18:           this->ExecuteUbergraph_Widget_Map(77);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_Map(82);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Map, from label L82;
 ============ END FUNCTION Construct ==============
 
 
@@ -284,8 +287,9 @@ L0:            this->ExecuteUbergraph_Widget_Map(82);
 
 
 ============ BEGIN FUNCTION OnFocusLost ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_Map.Widget_Map_C:ExecuteUbergraph_Widget_Map.K2Node_Event_InFocusEvent) = InFocusEvent;
-L18:           this->ExecuteUbergraph_Widget_Map(213);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnFocusLost;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Map, from label L213;
 ============ END FUNCTION OnFocusLost ==============
 
 
@@ -293,9 +297,9 @@ L18:           this->ExecuteUbergraph_Widget_Map(213);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_Map.Widget_Map_C:ExecuteUbergraph_Widget_Map.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_Map.Widget_Map_C:ExecuteUbergraph_Widget_Map.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_Map(232);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Map, from label L232;
 ============ END FUNCTION Tick ==============
 
 
@@ -303,8 +307,9 @@ L36:           this->ExecuteUbergraph_Widget_Map(232);
 
 
 ============ BEGIN FUNCTION OnObjectAddedToMap ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_Map.Widget_Map_C:ExecuteUbergraph_Widget_Map.K2Node_Event_actorRepresentation2) = actorRepresentation;
-L18:           this->ExecuteUbergraph_Widget_Map(237);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnObjectAddedToMap;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Map, from label L237;
 ============ END FUNCTION OnObjectAddedToMap ==============
 
 
@@ -312,8 +317,9 @@ L18:           this->ExecuteUbergraph_Widget_Map(237);
 
 
 ============ BEGIN FUNCTION OnObjectRemovedFromMap ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_Map.Widget_Map_C:ExecuteUbergraph_Widget_Map.K2Node_Event_actorRepresentation1) = actorRepresentation;
-L18:           this->ExecuteUbergraph_Widget_Map(311);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnObjectRemovedFromMap;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Map, from label L311;
 ============ END FUNCTION OnObjectRemovedFromMap ==============
 
 
@@ -321,7 +327,9 @@ L18:           this->ExecuteUbergraph_Widget_Map(311);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_Map(367);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Map, from label L367;
 ============ END FUNCTION Destruct ==============
 
 
@@ -329,8 +337,9 @@ L0:            this->ExecuteUbergraph_Widget_Map(367);
 
 
 ============ BEGIN FUNCTION OnObjectUpdatedOnMap ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_Map.Widget_Map_C:ExecuteUbergraph_Widget_Map.K2Node_Event_actorRepresentation) = actorRepresentation;
-L18:           this->ExecuteUbergraph_Widget_Map(418);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnObjectUpdatedOnMap;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Map, from label L418;
 ============ END FUNCTION OnObjectUpdatedOnMap ==============
 
 
@@ -338,8 +347,9 @@ L18:           this->ExecuteUbergraph_Widget_Map(418);
 
 
 ============ BEGIN FUNCTION OnMapCentered ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/Minimap/Widget_Map.Widget_Map_C:ExecuteUbergraph_Widget_Map.K2Node_Event_normalizedWorldLocation) = normalizedWorldLocation;
-L18:           this->ExecuteUbergraph_Widget_Map(474);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnMapCentered;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Map, from label L474;
 ============ END FUNCTION OnMapCentered ==============
 
 
@@ -348,31 +358,33 @@ L18:           this->ExecuteUbergraph_Widget_Map(474);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_Map ==============
 L10:           this->mIsMapMoving = false;
-L21:           <End of Inlined Event Graph Function>;
+L21:           // <End Inlined EventGraph Function>;
 L26:           if (!this->mIsMapMoving) goto L497;
 L40:           this->ScrollMap(this->mMouseOrigin, this->mMapOrigin);
-L72:           <End of Inlined Event Graph Function>;
-L77:           <End of Inlined Event Graph Function>;
+L72:           // <End Inlined EventGraph Function>;
+L77:           // <End Inlined EventGraph Function>;
+L82:           // <Begin Inlined EventGraph Function Construct>;
 L82:           this->Construct();
 L92:           MaterialInstanceDynamic* mMaterialInstanceDynamic = this->Image_0->GetDynamicMaterial();
 L134:          Texture2D* mTexture2D = this->GetFogOfWarTexture();
 L154:          mMaterialInstanceDynamic->SetTextureParameterValue("Content", mTexture2D);
-L208:          <End of Inlined Event Graph Function>;
+L208:          // <End Inlined EventGraph Function>;
 L213:          this->ClearScrollMap();
-L227:          <End of Inlined Event Graph Function>;
+L227:          // <End Inlined EventGraph Function>;
 L232:          goto L26;
 L237:          this->AddObjectToMap(mFGActorRepresentation, [ref] mWidget_MapObject);
 L269:          this->OnObjectAddedToMapDispatch->ProcessMulticastDelegate(mFGActorRepresentation, mWidget_MapObject);
-L306:          <End of Inlined Event Graph Function>;
+L306:          // <End Inlined EventGraph Function>;
 L311:          this->RemoveObjectFromMap(mFGActorRepresentation1);
 L334:          this->OnObjectRemovedFromMapDispatch->ProcessMulticastDelegate(mFGActorRepresentation1);
-L362:          <End of Inlined Event Graph Function>;
+L362:          // <End Inlined EventGraph Function>;
+L367:          // <Begin Inlined EventGraph Function Destruct>;
 L367:          this->mMapObjectPanel->ClearChildren();
 L403:          this->StopListeningForAllInputActions();
 L413:          goto L10;
 L418:          this->UpdateObjectOnMap(mFGActorRepresentation2);
 L441:          this->OnObjectUpdatedOnMapDispatch->ProcessMulticastDelegate(mFGActorRepresentation2);
-L469:          <End of Inlined Event Graph Function>;
+L469:          // <End Inlined EventGraph Function>;
 L474:          this->CenterMapOnPlayer(mVector2D);
 ============ END FUNCTION ExecuteUbergraph_Widget_Map ==============
 

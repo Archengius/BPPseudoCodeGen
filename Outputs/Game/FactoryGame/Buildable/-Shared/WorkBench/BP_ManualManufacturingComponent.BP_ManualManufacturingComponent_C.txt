@@ -13,9 +13,9 @@ L62:           FGPlayerController* mFGPlayerController = Cast<Class /Script/Fact
 L98:           bool mbool = mFGPlayerController;
 L127:          if (!mbool) goto L287;
 L141:          FGInventoryComponent* mFGInventoryComponent = this->GetInventory();
-L161:          TSubclassOf<FGRecipe> mTSubclassOf<FGRecipe> = this->GetCurrentRecipe();
-L181:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
-L232:          mBP_RemoteCallObject->Server_RemoveIngredientsAndAwardRewards(this, mFGInventoryComponent, mTSubclassOf<FGRecipe>);
+L161:          TSubclassOf<FGRecipe> mTSubclassOfFGRecipe = this->GetCurrentRecipe();
+L181:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
+L232:          mBP_RemoteCallObject->Server_RemoveIngredientsAndAwardRewards(this, mFGInventoryComponent, mTSubclassOfFGRecipe);
 ============ END FUNCTION AwardRewards ==============
 
 
@@ -23,7 +23,9 @@ L232:          mBP_RemoteCallObject->Server_RemoveIngredientsAndAwardRewards(thi
 
 
 ============ BEGIN FUNCTION CraftComplete ==============
-L0:            this->ExecuteUbergraph_BP_ManualManufacturingComponent(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: CraftComplete;
+L0:            // Implementation: Function ExecuteUbergraph_BP_ManualManufacturingComponent, from label L10;
 ============ END FUNCTION CraftComplete ==============
 
 
@@ -31,14 +33,15 @@ L0:            this->ExecuteUbergraph_BP_ManualManufacturingComponent(10);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_BP_ManualManufacturingComponent ==============
+L10:           // <Begin Inlined EventGraph Function CraftComplete>;
 L10:           this->AwardRewards();
 L24:           this->OnCraftCompleted->ProcessMulticastDelegate();
 L43:           FGCharacterPlayer* mFGCharacterPlayer = this->GetPlayerWorkingAtBench();
 L63:           BP_PlayerState* mBP_PlayerState = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerState.BP_PlayerState_C>(mFGCharacterPlayer->PlayerState);
 L121:          bool mbool = mBP_PlayerState;
 L150:          if (!mbool) goto L234;
-L164:          TSubclassOf<FGRecipe> mTSubclassOf<FGRecipe> = this->GetCurrentRecipe();
-L184:          mBP_PlayerState->RemoveRecipeFromShoppingList(mTSubclassOf<FGRecipe>, 1);
+L164:          TSubclassOf<FGRecipe> mTSubclassOfFGRecipe = this->GetCurrentRecipe();
+L184:          mBP_PlayerState->RemoveRecipeFromShoppingList(mTSubclassOfFGRecipe, 1);
 ============ END FUNCTION ExecuteUbergraph_BP_ManualManufacturingComponent ==============
 
 

@@ -1,0 +1,76 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/Chainsaw/Anim_Chainsaw.Anim_Chainsaw_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION UpdateAnimGraphValues ==============
+L0:            bool mbool = this->mIsEquipped || this->mIsAttached;
+L38:           this->mAG_IsEquippedOrAttached = mbool;
+============ END FUNCTION UpdateAnimGraphValues ==============
+
+
+
+
+
+============ BEGIN FUNCTION BlueprintUpdateAnimation ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BlueprintUpdateAnimation;
+L18:           // Implementation: Function ExecuteUbergraph_Anim_Chainsaw, from label L30;
+============ END FUNCTION BlueprintUpdateAnimation ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_ChainSawTransition_IdleToSawing ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_ChainSawTransition_IdleToSawing;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_Chainsaw, from label L534;
+============ END FUNCTION AnimNotify_ChainSawTransition_IdleToSawing ==============
+
+
+
+
+
+============ BEGIN FUNCTION AnimNotify_ChainSawTransition_SawingToIdle ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimNotify_ChainSawTransition_SawingToIdle;
+L0:            // Implementation: Function ExecuteUbergraph_Anim_Chainsaw, from label L535;
+============ END FUNCTION AnimNotify_ChainSawTransition_SawingToIdle ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_Anim_Chainsaw ==============
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->UpdateAnimGraphValues();
+L29:           goto ExecutionFlow.Pop();
+L30:           this->BlueprintUpdateAnimation(mfloat);
+L49:           ExecutionFlow.Push(L15);
+L54:           Actor* mActor = this->GetOwningActor();
+L74:           FGChainsaw* mFGChainsaw = Cast<Class /Script/FactoryGame.FGChainsaw>(mActor);
+L110:          bool mbool = mFGChainsaw;
+L139:          if (!mbool) goto L336;
+L153:          bool mbool1 = mFGChainsaw->IsSawing();
+L195:          this->mIsSawing = mbool1;
+L214:          bool mbool2 = mFGChainsaw->IsEquipped();
+L256:          this->mIsEquipped = mbool2;
+L275:          bool mbool3 = mFGChainsaw->HasAnyFuel();
+L317:          this->mHasFuel = mbool3;
+L336:          mActor = this->GetOwningActor();
+L356:          Attach_Chainsaw* mAttach_Chainsaw = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/Chainsaw/Attach_Chainsaw.Attach_Chainsaw_C>(mActor);
+L392:          bool mbool4 = mAttach_Chainsaw;
+L421:          if (!mbool4) goto ExecutionFlow.Pop();
+L431:          bool mbool5 = mAttach_Chainsaw->IsAttached();
+L473:          this->mIsAttached = mbool5;
+L492:          this->mIsSawingAttached = mAttach_Chainsaw->IsSawing;
+L533:          goto ExecutionFlow.Pop();
+L534:          // <Begin Inlined EventGraph Function AnimNotify_ChainSawTransition_IdleToSawing>;
+L534:          goto ExecutionFlow.Pop();
+L535:          // <Begin Inlined EventGraph Function AnimNotify_ChainSawTransition_SawingToIdle>;
+L535:          goto ExecutionFlow.Pop();
+============ END FUNCTION ExecuteUbergraph_Anim_Chainsaw ==============

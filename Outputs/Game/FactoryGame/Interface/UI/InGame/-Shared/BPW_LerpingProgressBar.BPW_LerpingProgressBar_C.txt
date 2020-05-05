@@ -23,8 +23,9 @@ L266:          this->mLerpTimerHandle = mTimerHandle;
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/BPW_LerpingProgressBar.BPW_LerpingProgressBar_C:ExecuteUbergraph_BPW_LerpingProgressBar.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_BPW_LerpingProgressBar(10);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_LerpingProgressBar, from label L10;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -32,7 +33,9 @@ L18:           this->ExecuteUbergraph_BPW_LerpingProgressBar(10);
 
 
 ============ BEGIN FUNCTION LerpBar ==============
-L0:            this->ExecuteUbergraph_BPW_LerpingProgressBar(105);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: LerpBar;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_LerpingProgressBar, from label L105;
 ============ END FUNCTION LerpBar ==============
 
 
@@ -40,7 +43,9 @@ L0:            this->ExecuteUbergraph_BPW_LerpingProgressBar(105);
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_BPW_LerpingProgressBar(727);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_LerpingProgressBar, from label L727;
 ============ END FUNCTION Destruct ==============
 
 
@@ -50,29 +55,31 @@ L0:            this->ExecuteUbergraph_BPW_LerpingProgressBar(727);
 ============ BEGIN FUNCTION ExecuteUbergraph_BPW_LerpingProgressBar ==============
 L10:           this->mProgressBar->WidgetStyle = this->mStyle;
 L59:           this->mProgressBar->SetPercent(this->mStartPercentage);
-L100:          <End of Inlined Event Graph Function>;
-L105:          float mfloat = Divide_FloatFloat(this->mLerpUpdateTime, this->mLerpDuration);
-L151:          float mfloat1 = Add_FloatFloat(this->mLerpT, mfloat);
+L100:          // <End Inlined EventGraph Function>;
+L105:          // <Begin Inlined EventGraph Function LerpBar>;
+L105:          float mfloat = this->mLerpUpdateTime / this->mLerpDuration;
+L151:          float mfloat1 = this->mLerpT + mfloat;
 L197:          this->mLerpT = mfloat1;
 L224:          bool Temp_bool_Variable = this->mForceProgressBarWrap;
 L243:          float mfloat2 = FGSkySphere->GetFloatCurveValue([ref] this->mCurve, this->mLerpT);
-L311:          float mfloat3 = Add_FloatFloat(this->mNewPercent, 1);
+L311:          float mfloat3 = this->mNewPercent + 1;
 L353:          float mfloat4 = Lerp(this->mLastPercent, switch (Temp_bool_Variable) {
 case false -> this->mNewPercent;
 case true -> mfloat3;
 default -> mfloat5;
 }, mfloat2);
-L452:          bool mbool = Greater_FloatFloat(mfloat4, 1);
-L486:          float mfloat6 = Subtract_FloatFloat(mfloat4, 1);
+L452:          bool mbool = mfloat4 > 1;
+L486:          float mfloat6 = mfloat4 - 1;
 L528:          bool Temp_bool_Variable1 = mbool;
 L547:          this->mProgressBar->SetPercent(switch (Temp_bool_Variable1) {
 case false -> mfloat4;
 case true -> mfloat6;
 default -> mfloat7;
 });
-L632:          bool mbool1 = GreaterEqual_FloatFloat(this->mLerpT, 1);
+L632:          bool mbool1 = this->mLerpT >= 1;
 L666:          if (!mbool1) goto L769;
 L680:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpTimerHandle);
-L722:          <End of Inlined Event Graph Function>;
+L722:          // <End Inlined EventGraph Function>;
+L727:          // <Begin Inlined EventGraph Function Destruct>;
 L727:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mLerpTimerHandle);
 ============ END FUNCTION ExecuteUbergraph_BPW_LerpingProgressBar ==============

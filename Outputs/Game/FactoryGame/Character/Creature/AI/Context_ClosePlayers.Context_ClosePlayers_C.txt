@@ -9,9 +9,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/AI/Context_ClosePlay
 ============ BEGIN FUNCTION ProvideSingleActor ==============
 L0:            FString mFString = KismetSystemLibrary->GetDisplayName(QuerierActor);
 L59:           KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
-L142:          TArray<FGCharacterPlayer*> mTArray<FGCharacterPlayer> = [];
-L153:          GameplayStatics->GetAllActorsOfClass(this, FGCharacterPlayer, [ref] mTArray<FGCharacterPlayer>);
-L204:          KismetArrayLibrary->Array_Get([ref] mTArray<FGCharacterPlayer>, 0, [ref] mFGCharacterPlayer);
+L142:          TArray<FGCharacterPlayer*> mTArrayFGCharacterPlayer = [];
+L153:          GameplayStatics->GetAllActorsOfClass(this, ObjectConst(Class /Script/FactoryGame.FGCharacterPlayer), [ref] mTArrayFGCharacterPlayer);
+L204:          KismetArrayLibrary->Array_Get([ref] mTArrayFGCharacterPlayer, 0, [ref] mFGCharacterPlayer);
 L259:          Actor* ResultingActor = mFGCharacterPlayer;
 ============ END FUNCTION ProvideSingleActor ==============
 
@@ -21,28 +21,28 @@ L259:          Actor* ResultingActor = mFGCharacterPlayer;
 
 ============ BEGIN FUNCTION ProvideActorsSet ==============
 L0:            ExecutionFlow.Push(L776);
-L5:            TArray<FGCharacterPlayer*> mTArray<FGCharacterPlayer> = [];
-L16:           GameplayStatics->GetAllActorsOfClass(this, FGCharacterPlayer, [ref] mTArray<FGCharacterPlayer>);
+L5:            TArray<FGCharacterPlayer*> mTArrayFGCharacterPlayer = [];
+L16:           GameplayStatics->GetAllActorsOfClass(this, ObjectConst(Class /Script/FactoryGame.FGCharacterPlayer), [ref] mTArrayFGCharacterPlayer);
 L67:           int32 Temp_int_Loop_Counter_Variable = 0;
 L90:           int32 Temp_int_Array_Index_Variable = 0;
-L113:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGCharacterPlayer>);
-L172:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L113:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayFGCharacterPlayer);
+L172:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L210:          if (!mbool) goto L670;
 L224:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L251:          ExecutionFlow.Push(L702);
 L256:          Vector mVector = QuerierActor->K2_GetActorLocation();
-L306:          KismetArrayLibrary->Array_Get([ref] mTArray<FGCharacterPlayer>, Temp_int_Array_Index_Variable, [ref] mActor);
+L306:          KismetArrayLibrary->Array_Get([ref] mTArrayFGCharacterPlayer, Temp_int_Array_Index_Variable, [ref] mActor);
 L365:          Vector mVector1 = mActor->K2_GetActorLocation();
-L415:          Vector mVector2 = Subtract_VectorVector(mVector, mVector1);
+L415:          Vector mVector2 = mVector - mVector1;
 L461:          float mfloat = VSize(mVector2);
-L498:          bool mbool1 = Less_FloatFloat(mfloat, 20000);
+L498:          bool mbool1 = mfloat < 20000;
 L532:          if (!mbool1) goto ExecutionFlow.Pop();
-L542:          KismetArrayLibrary->Array_Get([ref] mTArray<FGCharacterPlayer>, Temp_int_Array_Index_Variable, [ref] mActor);
+L542:          KismetArrayLibrary->Array_Get([ref] mTArrayFGCharacterPlayer, Temp_int_Array_Index_Variable, [ref] mActor);
 L601:          int32 mint321 = KismetArrayLibrary->Array_AddUnique([ref] closeCharacters, [ref] mActor);
 L669:          goto ExecutionFlow.Pop();
 L670:          TArray<Actor*> ResultingActorsSet = closeCharacters;
-L697:          <End of Inlined Event Graph Function>;
-L702:          int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L697:          // <End Inlined EventGraph Function>;
+L702:          int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L744:          Temp_int_Loop_Counter_Variable = mint322;
 L771:          goto L113;
 ============ END FUNCTION ProvideActorsSet ==============

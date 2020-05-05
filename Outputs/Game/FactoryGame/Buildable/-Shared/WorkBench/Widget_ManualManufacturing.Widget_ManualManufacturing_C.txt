@@ -10,34 +10,34 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_Manu
 L0:            ExecutionFlow.Push(L1072);
 L5:            int32 Temp_int_Loop_Counter_Variable = 0;
 L28:           int32 Temp_int_Array_Index_Variable = 0;
-L51:           TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mCurrentRecipe);
-L110:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
-L169:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L51:           TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetIngredients(this->mCurrentRecipe);
+L110:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount);
+L169:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L207:          if (!mbool) goto L449;
 L221:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L248:          ExecutionFlow.Push(L924);
-L253:          mTArray<ItemAmount> = FGRecipe->GetIngredients(this->mCurrentRecipe);
-L312:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L253:          mTArrayItemAmount = FGRecipe->GetIngredients(this->mCurrentRecipe);
+L312:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable, [ref] mItemAmount);
 L371:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalRelevantClasses, [ref] mItemAmount.ItemClass);
 L448:          goto ExecutionFlow.Pop();
 L449:          int32 Temp_int_Loop_Counter_Variable1 = 0;
 L472:          int32 Temp_int_Array_Index_Variable1 = 0;
-L495:          TArray<ItemAmount> mTArray<ItemAmount>1 = FGRecipe->GetProducts(this->mCurrentRecipe, false);
-L555:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>1);
-L614:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint322);
+L495:          TArray<ItemAmount> mTArrayItemAmount1 = FGRecipe->GetProducts(this->mCurrentRecipe, false);
+L555:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount1);
+L614:          bool mbool1 = Temp_int_Loop_Counter_Variable1 < mint322;
 L652:          if (!mbool1) goto L895;
 L666:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable1;
 L693:          ExecutionFlow.Push(L998);
-L698:          mTArray<ItemAmount>1 = FGRecipe->GetProducts(this->mCurrentRecipe, false);
-L758:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, Temp_int_Array_Index_Variable1, [ref] mItemAmount1);
+L698:          mTArrayItemAmount1 = FGRecipe->GetProducts(this->mCurrentRecipe, false);
+L758:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount1, Temp_int_Array_Index_Variable1, [ref] mItemAmount1);
 L817:          int32 mint323 = KismetArrayLibrary->Array_Add([ref] LocalRelevantClasses, [ref] mItemAmount1.ItemClass);
 L894:          goto ExecutionFlow.Pop();
 L895:          this->OnRelevantClassesUpdated->ProcessMulticastDelegate([ref] LocalRelevantClasses);
 L923:          goto ExecutionFlow.Pop();
-L924:          int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L924:          int32 mint324 = Temp_int_Loop_Counter_Variable + 1;
 L966:          Temp_int_Loop_Counter_Variable = mint324;
 L993:          goto L51;
-L998:          int32 mint325 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L998:          int32 mint325 = Temp_int_Loop_Counter_Variable1 + 1;
 L1040:         Temp_int_Loop_Counter_Variable1 = mint325;
 L1067:         goto L495;
 ============ END FUNCTION UpdateRelevantClasses ==============
@@ -58,16 +58,16 @@ L86:           EventReply ReturnValue = mEventReply;
 
 ============ BEGIN FUNCTION UpdateAffordableCategories ==============
 L0:            ExecutionFlow.Push(L795);
-L5:            TSubclassOf<FGWorkBench> mTSubclassOf<FGWorkBench> = GameplayStatics->GetObjectClass(this->mManualManufacturerComponent);
+L5:            TSubclassOf<FGWorkBench> mTSubclassOfFGWorkBench = GameplayStatics->GetObjectClass(this->mManualManufacturerComponent);
 L56:           Pawn* mPawn = this->GetOwningPlayerPawn();
 L76:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
 L112:          bool mbool = mFGCharacterPlayer;
-L141:          TArray<TSubclassOf<FGItemCategory>> mTArray<TSubclassOf<FGItemCategory>> = FGBlueprintFunctionLibrary->GetCategoriesWithAffordableRecipes(mFGCharacterPlayer, mTSubclassOf<FGWorkBench>);
-L209:          TArray<TSubclassOf<FGItemCategory>> AffordableRecipes = mTArray<TSubclassOf<FGItemCategory>>;
+L141:          TArray<TSubclassOf<FGItemCategory>> mTArrayTSubclassOfFGItemCategory = FGBlueprintFunctionLibrary->GetCategoriesWithAffordableRecipes(mFGCharacterPlayer, mTSubclassOfFGWorkBench);
+L209:          TArray<TSubclassOf<FGItemCategory>> AffordableRecipes = mTArrayTSubclassOfFGItemCategory;
 L236:          int32 Temp_int_Loop_Counter_Variable = 0;
 L259:          int32 Temp_int_Array_Index_Variable = 0;
 L282:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mCategorizedRecipes);
-L341:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L341:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L379:          if (!mbool1) goto ExecutionFlow.Pop();
 L389:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L416:          ExecutionFlow.Push(L721);
@@ -79,7 +79,7 @@ L547:          KismetArrayLibrary->Array_Get([ref] this->mCategorizedRecipes, Te
 L606:          bool mbool3 = KismetArrayLibrary->Array_Contains([ref] AffordableRecipes, [ref] mItemCategoryRecipeStruct.Category_5_48CE2A3C41089DC1E5DE39909CF17792);
 L675:          mWidget_CraftBench_Category->SetHasAffordableRecipes(mbool3);
 L720:          goto ExecutionFlow.Pop();
-L721:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L721:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L763:          Temp_int_Loop_Counter_Variable = mint321;
 L790:          goto L282;
 ============ END FUNCTION UpdateAffordableCategories ==============
@@ -94,18 +94,18 @@ L5:            int32 LocalIndex = -1;
 L28:           bool Temp_bool_True_if_break_was_hit_Variable = false;
 L39:           int32 Temp_int_Loop_Counter_Variable = 0;
 L62:           int32 Temp_int_Array_Index_Variable = 0;
-L85:           bool mbool = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L85:           bool mbool = !Temp_bool_True_if_break_was_hit_Variable;
 L114:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mCategorizedRecipes);
-L173:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
-L211:          bool mbool2 = BooleanAND(mbool, mbool1);
+L173:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
+L211:          bool mbool2 = mbool && mbool1;
 L249:          if (!mbool2) goto L625;
 L263:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L290:          ExecutionFlow.Push(L947);
-L295:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(Recipe, false);
-L355:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
-L410:          TSubclassOf<FGItemCategory> mTSubclassOf<FGItemCategory> = FGItemDescriptor->GetItemCategory(mItemAmount.ItemClass);
+L295:          TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetProducts(Recipe, false);
+L355:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, 0, [ref] mItemAmount);
+L410:          TSubclassOf<FGItemCategory> mTSubclassOfFGItemCategory = FGItemDescriptor->GetItemCategory(mItemAmount.ItemClass);
 L470:          KismetArrayLibrary->Array_Get([ref] this->mCategorizedRecipes, Temp_int_Array_Index_Variable, [ref] mItemCategoryRecipeStruct);
-L529:          bool mbool3 = EqualEqual_ClassClass(mItemCategoryRecipeStruct.Category_5_48CE2A3C41089DC1E5DE39909CF17792, mTSubclassOf<FGItemCategory>);
+L529:          bool mbool3 = mItemCategoryRecipeStruct.Category_5_48CE2A3C41089DC1E5DE39909CF17792 == mTSubclassOfFGItemCategory;
 L576:          if (!mbool3) goto ExecutionFlow.Pop();
 L586:          LocalIndex = Temp_int_Array_Index_Variable;
 L613:          Temp_bool_True_if_break_was_hit_Variable = true;
@@ -113,7 +113,7 @@ L624:          goto ExecutionFlow.Pop();
 L625:          Widget_CraftBench_Category* Temp_object_Variable = nullptr;
 L636:          Widget* Temp_object_Variable1 = nullptr;
 L647:          Widget* mWidget = this->mPhase0ScrollBox->GetChildAt(LocalIndex);
-L698:          bool mbool4 = NotEqual_IntInt(LocalIndex, -1);
+L698:          bool mbool4 = LocalIndex != -1;
 L732:          bool Temp_bool_Variable = mbool4;
 L751:          Widget_CraftBench_Category* mWidget_CraftBench_Category = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Assets/Shared/Widget_CraftBench_Category.Widget_CraftBench_Category_C>(switch (Temp_bool_Variable) {
 case false -> Temp_object_Variable1;
@@ -128,7 +128,7 @@ case true -> mWidget_CraftBench_Category;
 default -> mWidget_CraftBench_Category1;
 };
 L942:          goto L1021;
-L947:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L947:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L989:          Temp_int_Loop_Counter_Variable = mint321;
 L1016:         goto L85;
 ============ END FUNCTION GetCategoryWidgetFromRecipe ==============
@@ -139,47 +139,47 @@ L1016:         goto L85;
 
 ============ BEGIN FUNCTION AddUniqueRecipe ==============
 L0:            ExecutionFlow.Push(L1422);
-L5:            TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(Recipe, false);
-L65:           KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
-L120:          TSubclassOf<FGItemCategory> mTSubclassOf<FGItemCategory> = FGItemDescriptor->GetItemCategory(mItemAmount.ItemClass);
-L180:          bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGItemCategory>);
+L5:            TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetProducts(Recipe, false);
+L65:           KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, 0, [ref] mItemAmount);
+L120:          TSubclassOf<FGItemCategory> mTSubclassOfFGItemCategory = FGItemDescriptor->GetItemCategory(mItemAmount.ItemClass);
+L180:          bool mbool = KismetSystemLibrary->IsValidClass(mTSubclassOfFGItemCategory);
 L231:          if (!mbool) goto L1132;
-L245:          mTArray<ItemAmount> = FGRecipe->GetProducts(Recipe, false);
-L305:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
-L360:          mTSubclassOf<FGItemCategory> = FGItemDescriptor->GetItemCategory(mItemAmount.ItemClass);
-L420:          TSubclassOf<FGItemCategory> LocalCategory = mTSubclassOf<FGItemCategory>;
+L245:          mTArrayItemAmount = FGRecipe->GetProducts(Recipe, false);
+L305:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, 0, [ref] mItemAmount);
+L360:          mTSubclassOfFGItemCategory = FGItemDescriptor->GetItemCategory(mItemAmount.ItemClass);
+L420:          TSubclassOf<FGItemCategory> LocalCategory = mTSubclassOfFGItemCategory;
 L439:          bool Temp_bool_True_if_break_was_hit_Variable = false;
 L450:          int32 Temp_int_Loop_Counter_Variable = 0;
 L473:          int32 Temp_int_Array_Index_Variable = 0;
-L496:          bool mbool1 = Not_PreBool(Temp_bool_True_if_break_was_hit_Variable);
+L496:          bool mbool1 = !Temp_bool_True_if_break_was_hit_Variable;
 L525:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] CategorizedRecipes);
-L584:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
-L622:          bool mbool3 = BooleanAND(mbool1, mbool2);
+L584:          bool mbool2 = Temp_int_Loop_Counter_Variable < mint32;
+L622:          bool mbool3 = mbool1 && mbool2;
 L660:          if (!mbool3) goto L1156;
 L674:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L701:          ExecutionFlow.Push(L1348);
 L706:          KismetArrayLibrary->Array_Get([ref] CategorizedRecipes, Temp_int_Array_Index_Variable, [ref] mItemCategoryRecipeStruct);
-L765:          bool mbool4 = EqualEqual_ClassClass(LocalCategory, mItemCategoryRecipeStruct.Category_5_48CE2A3C41089DC1E5DE39909CF17792);
+L765:          bool mbool4 = LocalCategory == mItemCategoryRecipeStruct.Category_5_48CE2A3C41089DC1E5DE39909CF17792;
 L812:          if (!mbool4) goto ExecutionFlow.Pop();
 L822:          KismetArrayLibrary->Array_Get([ref] CategorizedRecipes, Temp_int_Array_Index_Variable, [ref] mItemCategoryRecipeStruct);
-L881:          TArray<TSubclassOf<FGRecipe>> localRecipeArray = mItemCategoryRecipeStruct.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736;
-L917:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] localRecipeArray, [ref] Recipe);
+L881:          TArray<TSubclassOf<FGRecipe>> LocalRecipeArray = mItemCategoryRecipeStruct.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736;
+L917:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalRecipeArray, [ref] Recipe);
 L985:          mItemCategoryRecipeStruct1.Category_5_48CE2A3C41089DC1E5DE39909CF17792 = LocalCategory;
-L1013:         mItemCategoryRecipeStruct1.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736 = localRecipeArray;
+L1013:         mItemCategoryRecipeStruct1.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736 = LocalRecipeArray;
 L1049:         KismetArrayLibrary->Array_Set([ref] CategorizedRecipes, Temp_int_Array_Index_Variable, [ref] mItemCategoryRecipeStruct1, false);
 L1109:         bool RecipeExists = true;
 L1120:         Temp_bool_True_if_break_was_hit_Variable = true;
 L1131:         goto ExecutionFlow.Pop();
-L1132:         LocalCategory = Cat_Other;
+L1132:         LocalCategory = ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/ItemCategories/Cat_Other.Cat_Other_C);
 L1151:         goto L439;
-L1156:         bool mbool5 = Not_PreBool(RecipeExists);
+L1156:         bool mbool5 = !RecipeExists;
 L1185:         if (!mbool5) goto ExecutionFlow.Pop();
-L1195:         TArray<TSubclassOf<FGRecipe>> mTArray<TSubclassOf<FGRecipe>> = [Recipe];
+L1195:         TArray<TSubclassOf<FGRecipe>> mTArrayTSubclassOfFGRecipe = [Recipe];
 L1215:         mItemCategoryRecipeStruct2.Category_5_48CE2A3C41089DC1E5DE39909CF17792 = LocalCategory;
-L1243:         mItemCategoryRecipeStruct2.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736 = mTArray<TSubclassOf<FGRecipe>>;
+L1243:         mItemCategoryRecipeStruct2.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736 = mTArrayTSubclassOfFGRecipe;
 L1279:         int32 mint322 = KismetArrayLibrary->Array_Add([ref] CategorizedRecipes, [ref] mItemCategoryRecipeStruct2);
 L1347:         goto ExecutionFlow.Pop();
-L1348:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1348:         int32 mint323 = Temp_int_Loop_Counter_Variable + 1;
 L1390:         Temp_int_Loop_Counter_Variable = mint323;
 L1417:         goto L496;
 ============ END FUNCTION AddUniqueRecipe ==============
@@ -207,15 +207,15 @@ L158:          this->mPhase0ScrollBox->SetVisibility(1);
 L196:          this->mSearchResultsBox->ClearChildren();
 L232:          int32 Temp_int_Loop_Counter_Variable = 0;
 L255:          int32 Temp_int_Array_Index_Variable = 0;
-L278:          this->GetAvailableRecipes([ref] mTArray<TSubclassOf<FGRecipe>>);
-L301:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGRecipe>>);
-L360:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L278:          this->GetAvailableRecipes([ref] mTArrayTSubclassOfFGRecipe);
+L301:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGRecipe);
+L360:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L398:          if (!mbool1) goto ExecutionFlow.Pop();
 L408:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L435:          ExecutionFlow.Push(L1216);
-L440:          this->GetAvailableRecipes([ref] mTArray<TSubclassOf<FGRecipe>>);
-L463:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>, Temp_int_Array_Index_Variable, [ref] mTSubclassOf<FGRecipe>);
-L522:          TSubclassOf<FGRecipe> localRecipe = mTSubclassOf<FGRecipe>;
+L440:          this->GetAvailableRecipes([ref] mTArrayTSubclassOfFGRecipe);
+L463:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGRecipe, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGRecipe);
+L522:          TSubclassOf<FGRecipe> localRecipe = mTSubclassOfFGRecipe;
 L541:          bool mbool2 = KismetSystemLibrary->IsValidClass(localRecipe);
 L592:          if (!mbool2) goto ExecutionFlow.Pop();
 L602:          FText mFText1 = FGRecipe->GetRecipeName(localRecipe);
@@ -223,17 +223,17 @@ L661:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFT
 L720:          FString mFString1 = KismetTextLibrary->Conv_TextToString([ref] localSearchResult);
 L779:          bool mbool3 = BPHUDHelpers->DoesTextContainSearchWords(mFString, mFString1, true, this);
 L845:          bool mbool4 = KismetStringLibrary->EqualEqual_StriStri(mFString1, "");
-L898:          bool mbool5 = BooleanOR(mbool3, mbool4);
+L898:          bool mbool5 = mbool3 || mbool4;
 L936:          if (!mbool5) goto ExecutionFlow.Pop();
 L946:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L970:          Widget_RecipeButton* mWidget_RecipeButton = WidgetBlueprintLibrary->Create(this, Widget_RecipeButton, mPlayerController);
+L970:          Widget_RecipeButton* mWidget_RecipeButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_RecipeButton.Widget_RecipeButton_C), mPlayerController);
 L1031:         KismetSystemLibrary->SetClassPropertyByName(mWidget_RecipeButton, "mRecipeClass", localRecipe);
 L1094:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_RecipeButton, "Workbench", this);
 L1149:         PanelSlot* mPanelSlot = this->mSearchResultsBox->AddChild(mWidget_RecipeButton);
 L1200:         goto ExecutionFlow.Pop();
 L1201:         this->ClearAndHideSearchResults();
 L1215:         goto ExecutionFlow.Pop();
-L1216:         int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1216:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L1258:         Temp_int_Loop_Counter_Variable = mint321;
 L1285:         goto L278;
 ============ END FUNCTION OnSearchCreateResults ==============
@@ -249,7 +249,7 @@ L10:           bool mbool = KismetSystemLibrary->IsValid(this->mPhase0ScrollBox)
 L61:           if (!mbool) goto ExecutionFlow.Pop();
 L71:           int32 Temp_int_Variable1 = 0;
 L94:           int32 mint32 = this->mPhase0ScrollBox->GetChildrenCount();
-L144:          bool mbool1 = LessEqual_IntInt(Temp_int_Variable1, mint32);
+L144:          bool mbool1 = Temp_int_Variable1 <= mint32;
 L182:          if (!mbool1) goto ExecutionFlow.Pop();
 L192:          ExecutionFlow.Push(L1131);
 L197:          Widget* mWidget = this->mPhase0ScrollBox->GetChildAt(Temp_int_Variable1);
@@ -259,7 +259,7 @@ L313:          if (!mbool2) goto ExecutionFlow.Pop();
 L323:          mWidget_CraftBench_Category->mHideIfUnaffordable = OnlyShowAffordable;
 L364:          int32 Temp_int_Variable2 = 0;
 L387:          int32 mint321 = mWidget_CraftBench_Category->mContentVertical->GetChildrenCount();
-L459:          bool mbool3 = LessEqual_IntInt(Temp_int_Variable2, mint321);
+L459:          bool mbool3 = Temp_int_Variable2 <= mint321;
 L497:          if (!mbool3) goto ExecutionFlow.Pop();
 L507:          ExecutionFlow.Push(L1205);
 L512:          Widget* mWidget1 = mWidget_CraftBench_Category->mContentVertical->GetChildAt(Temp_int_Variable2);
@@ -272,7 +272,7 @@ L702:          bool mbool5 = KismetSystemLibrary->IsValid(this->mSearchResultsBo
 L753:          if (!mbool5) goto ExecutionFlow.Pop();
 L763:          int32 Temp_int_Variable = 0;
 L786:          int32 mint322 = this->mSearchResultsBox->GetChildrenCount();
-L836:          bool mbool6 = LessEqual_IntInt(Temp_int_Variable, mint322);
+L836:          bool mbool6 = Temp_int_Variable <= mint322;
 L874:          if (!mbool6) goto ExecutionFlow.Pop();
 L884:          ExecutionFlow.Push(L1057);
 L889:          Widget* mWidget2 = this->mSearchResultsBox->GetChildAt(Temp_int_Variable);
@@ -281,13 +281,13 @@ L976:          bool mbool7 = mWidget_RecipeButton1;
 L1005:         if (!mbool7) goto ExecutionFlow.Pop();
 L1015:         mWidget_RecipeButton1->mHideIfUnaffordable = OnlyShowAffordable;
 L1056:         goto ExecutionFlow.Pop();
-L1057:         int32 mint323 = Add_IntInt(Temp_int_Variable, 1);
+L1057:         int32 mint323 = Temp_int_Variable + 1;
 L1099:         Temp_int_Variable = mint323;
 L1126:         goto L786;
-L1131:         int32 mint324 = Add_IntInt(Temp_int_Variable1, 1);
+L1131:         int32 mint324 = Temp_int_Variable1 + 1;
 L1173:         Temp_int_Variable1 = mint324;
 L1200:         goto L94;
-L1205:         int32 mint325 = Add_IntInt(Temp_int_Variable2, 1);
+L1205:         int32 mint325 = Temp_int_Variable2 + 1;
 L1247:         Temp_int_Variable2 = mint325;
 L1274:         goto L387;
 ============ END FUNCTION ShowOnlyAffordableRecipes ==============
@@ -333,7 +333,7 @@ L215:          EventReply ReturnValue = mEventReply;
 
 ============ BEGIN FUNCTION CreateCategoryHeader ==============
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
-L24:           Widget_CraftBench_Category* mWidget_CraftBench_Category = WidgetBlueprintLibrary->Create(this, Widget_CraftBench_Category, mPlayerController);
+L24:           Widget_CraftBench_Category* mWidget_CraftBench_Category = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Assets/Shared/Widget_CraftBench_Category.Widget_CraftBench_Category_C), mPlayerController);
 L85:           KismetSystemLibrary->SetTextPropertyByName(mWidget_CraftBench_Category, "mText", [ref] Name);
 L148:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_CraftBench_Category, "mIsCollapsed", mIsCollapsed);
 L211:          PanelSlot* mPanelSlot = InScrollbox->AddChild(mWidget_CraftBench_Category);
@@ -347,7 +347,7 @@ L262:          Widget_CraftBench_Category* Category Widget = mWidget_CraftBench_
 ============ BEGIN FUNCTION UpdateLeds ==============
 L0:            uint8 Temp_byte_Variable4 = 0;
 L20:           uint8 Temp_byte_Variable5 = 2;
-L40:           bool mbool = Greater_IntInt(this->DelayCounter, 0);
+L40:           bool mbool = this->DelayCounter > 0;
 L74:           bool Temp_bool_Variable2 = mbool;
 L93:           this->mLED_On_1L->SetVisibility(switch (Temp_bool_Variable2) {
 case false -> Temp_byte_Variable5;
@@ -361,7 +361,7 @@ default -> muint8;
 });
 L271:          uint8 Temp_byte_Variable2 = 0;
 L291:          uint8 Temp_byte_Variable3 = 2;
-L311:          bool mbool1 = Greater_IntInt(this->DelayCounter, 1);
+L311:          bool mbool1 = this->DelayCounter > 1;
 L345:          bool Temp_bool_Variable1 = mbool1;
 L364:          this->mLED_On_2R->SetVisibility(switch (Temp_bool_Variable1) {
 case false -> Temp_byte_Variable3;
@@ -375,7 +375,7 @@ default -> muint81;
 });
 L542:          uint8 Temp_byte_Variable = 0;
 L562:          uint8 Temp_byte_Variable1 = 2;
-L582:          bool mbool2 = Greater_IntInt(this->DelayCounter, 2);
+L582:          bool mbool2 = this->DelayCounter > 2;
 L616:          bool Temp_bool_Variable = mbool2;
 L635:          this->mLED_On_3L->SetVisibility(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
@@ -401,8 +401,8 @@ L70:           Pawn* mPawn = this->GetOwningPlayerPawn();
 L90:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
 L126:          bool mbool1 = mFGCharacterPlayer;
 L155:          if (!mbool1) goto ExecutionFlow.Pop();
-L165:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(this->mCurrentRecipe, false);
-L225:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, 0, [ref] mItemAmount);
+L165:          TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetProducts(this->mCurrentRecipe, false);
+L225:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, 0, [ref] mItemAmount);
 L280:          FGInventoryComponent* mFGInventoryComponent = mFGCharacterPlayer->GetInventory();
 L322:          InventoryItem mInventoryItem = FGInventoryLibrary->MakeInventoryItem(mItemAmount.ItemClass);
 L390:          InventoryStack mInventoryStack = FGInventoryLibrary->MakeInventoryStack(mItemAmount.amount, mInventoryItem);
@@ -410,17 +410,17 @@ L467:          bool mbool2 = mFGInventoryComponent->HasEnoughSpaceForStack([ref]
 L518:          if (!mbool2) goto L1177;
 L532:          int32 Temp_int_Loop_Counter_Variable = 0;
 L555:          int32 Temp_int_Array_Index_Variable = 0;
-L578:          TArray<ItemAmount> mTArray<ItemAmount>1 = FGRecipe->GetIngredients(this->mCurrentRecipe);
-L637:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>1);
-L696:          bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L578:          TArray<ItemAmount> mTArrayItemAmount1 = FGRecipe->GetIngredients(this->mCurrentRecipe);
+L637:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount1);
+L696:          bool mbool3 = Temp_int_Loop_Counter_Variable < mint32;
 L734:          if (!mbool3) goto L1297;
 L748:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L775:          ExecutionFlow.Push(L1458);
-L780:          mTArray<ItemAmount>1 = FGRecipe->GetIngredients(this->mCurrentRecipe);
-L839:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, Temp_int_Array_Index_Variable, [ref] mItemAmount1);
+L780:          mTArrayItemAmount1 = FGRecipe->GetIngredients(this->mCurrentRecipe);
+L839:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount1, Temp_int_Array_Index_Variable, [ref] mItemAmount1);
 L898:          Pawn* mPawn1 = this->GetOwningPlayerPawn();
 L918:          HUDHelpers->GetNumItemsFromPlayerInventory(mPawn1, mItemAmount1.ItemClass, this, [ref] mint321);
-L991:          bool mbool4 = Less_IntInt(mint321, mItemAmount1.amount);
+L991:          bool mbool4 = mint321 < mItemAmount1.amount;
 L1038:         if (!mbool4) goto ExecutionFlow.Pop();
 L1048:         bool LocalCantAfford = true;
 L1059:         goto ExecutionFlow.Pop();
@@ -435,7 +435,7 @@ L1406:         goto ExecutionFlow.Pop();
 L1407:         this->Widget_Manufacturing_Warning->HideWarning();
 L1443:         this->GetCraftButtonFeedback();
 L1457:         goto ExecutionFlow.Pop();
-L1458:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1458:         int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L1500:         Temp_int_Loop_Counter_Variable = mint322;
 L1527:         goto L578;
 ============ END FUNCTION UpdateWarningWidget ==============
@@ -455,31 +455,31 @@ L138:          bool mbool2 = KismetSystemLibrary->IsValid(this->mProgressBarEndC
 L189:          float mfloat = this->mManualManufacturerComponent->GetManufacturingProgress();
 L239:          float mfloat1 = this->mManualManufacturerComponent->GetManufacturingSpeed();
 L289:          float mfloat2 = FGRecipe->GetManufacturingDuration(this->mCurrentRecipe);
-L348:          float mfloat3 = Divide_FloatFloat(mfloat2, mfloat1);
-L394:          float mfloat4 = Multiply_FloatFloat(mfloat, mfloat3);
-L440:          float mfloat5 = Subtract_FloatFloat(mfloat4, 0.5);
+L348:          float mfloat3 = mfloat2 / mfloat1;
+L394:          float mfloat4 = mfloat * mfloat3;
+L440:          float mfloat5 = mfloat4 - 0.5;
 L482:          int32 mint32 = Round(mfloat5);
 L519:          float mfloat6 = Conv_IntToFloat(mint32);
-L556:          float mfloat7 = Subtract_FloatFloat(mfloat3, mfloat6);
-L602:          bool mbool3 = Greater_FloatFloat(mfloat7, 1);
-L636:          bool mbool4 = Not_PreBool(mbool3);
-L665:          bool mbool5 = BooleanAND(mbool2, mbool4);
+L556:          float mfloat7 = mfloat3 - mfloat6;
+L602:          bool mbool3 = mfloat7 > 1;
+L636:          bool mbool4 = !mbool3;
+L665:          bool mbool5 = mbool2 && mbool4;
 L703:          bool EndCurve = mbool5;
 L722:          mfloat = this->mManualManufacturerComponent->GetManufacturingProgress();
 L772:          mfloat1 = this->mManualManufacturerComponent->GetManufacturingSpeed();
 L822:          mfloat2 = FGRecipe->GetManufacturingDuration(this->mCurrentRecipe);
-L881:          mfloat3 = Divide_FloatFloat(mfloat2, mfloat1);
-L927:          mfloat4 = Multiply_FloatFloat(mfloat, mfloat3);
-L973:          mfloat5 = Subtract_FloatFloat(mfloat4, 0.5);
+L881:          mfloat3 = mfloat2 / mfloat1;
+L927:          mfloat4 = mfloat * mfloat3;
+L973:          mfloat5 = mfloat4 - 0.5;
 L1015:         mint32 = Round(mfloat5);
-L1052:         bool mbool6 = Less_IntInt(this->ProgressbarStep, mint32);
+L1052:         bool mbool6 = this->ProgressbarStep < mint32;
 L1090:         if (!mbool6) goto L1475;
 L1104:         mfloat = this->mManualManufacturerComponent->GetManufacturingProgress();
 L1154:         mfloat1 = this->mManualManufacturerComponent->GetManufacturingSpeed();
 L1204:         mfloat2 = FGRecipe->GetManufacturingDuration(this->mCurrentRecipe);
-L1263:         mfloat3 = Divide_FloatFloat(mfloat2, mfloat1);
-L1309:         mfloat4 = Multiply_FloatFloat(mfloat, mfloat3);
-L1355:         mfloat5 = Subtract_FloatFloat(mfloat4, 0.5);
+L1263:         mfloat3 = mfloat2 / mfloat1;
+L1309:         mfloat4 = mfloat * mfloat3;
+L1355:         mfloat5 = mfloat4 - 0.5;
 L1397:         mint32 = Round(mfloat5);
 L1434:         this->ProgressbarStep = mint32;
 L1461:         this->OnCraftingProgressbarAnimationLoop();
@@ -488,24 +488,24 @@ L1489:         CurveFloat* CurrentCurve = this->mProgressBarEndCurve;
 L1508:         mfloat = this->mManualManufacturerComponent->GetManufacturingProgress();
 L1558:         mfloat1 = this->mManualManufacturerComponent->GetManufacturingSpeed();
 L1608:         mfloat2 = FGRecipe->GetManufacturingDuration(this->mCurrentRecipe);
-L1667:         mfloat3 = Divide_FloatFloat(mfloat2, mfloat1);
-L1713:         mfloat4 = Multiply_FloatFloat(mfloat, mfloat3);
-L1759:         mfloat5 = Subtract_FloatFloat(mfloat4, 0.5);
+L1667:         mfloat3 = mfloat2 / mfloat1;
+L1713:         mfloat4 = mfloat * mfloat3;
+L1759:         mfloat5 = mfloat4 - 0.5;
 L1801:         mint32 = Round(mfloat5);
 L1838:         float mfloat8 = Conv_IntToFloat(mint32);
-L1875:         float mfloat9 = Divide_FloatFloat(mfloat8, mfloat3);
-L1921:         float mfloat10 = Subtract_FloatFloat(mfloat4, mfloat8);
+L1875:         float mfloat9 = mfloat8 / mfloat3;
+L1921:         float mfloat10 = mfloat4 - mfloat8;
 L1967:         float mfloat11 = CurrentCurve->GetFloatValue(mfloat10);
-L2026:         float mfloat12 = Divide_FloatFloat(mfloat11, mfloat3);
-L2072:         float mfloat13 = Add_FloatFloat(mfloat12, mfloat9);
+L2026:         float mfloat12 = mfloat11 / mfloat3;
+L2072:         float mfloat13 = mfloat12 + mfloat9;
 L2118:         float Output = mfloat13;
-L2145:         <End of Inlined Event Graph Function>;
+L2145:         // <End Inlined EventGraph Function>;
 L2150:         float mfloat14 = this->mManualManufacturerComponent->GetManufacturingProgress();
 L2200:         float mfloat15 = this->mProgressBarCurve->GetFloatValue(mfloat14);
 L2259:         Output = mfloat15;
-L2286:         <End of Inlined Event Graph Function>;
+L2286:         // <End Inlined EventGraph Function>;
 L2291:         this->ProgressbarStep = -1;
-L2314:         <End of Inlined Event Graph Function>;
+L2314:         // <End Inlined EventGraph Function>;
 L2319:         CurrentCurve = this->mProgressBarCurve;
 L2338:         goto L1508;
 ============ END FUNCTION GetCalculatedCurve ==============
@@ -531,10 +531,10 @@ L0:            bool mbool = KismetSystemLibrary->IsValid(this->mManualManufactur
 L51:           if (!mbool) goto L533;
 L65:           float mfloat = this->mManualManufacturerComponent->GetCurrentFatigue();
 L115:          float mfloat1 = this->mManualManufacturerComponent->GetManufacturingSpeed();
-L165:          float mfloat2 = Multiply_FloatFloat(mfloat1, mfloat);
+L165:          float mfloat2 = mfloat1 * mfloat;
 L211:          float mfloat3 = FGRecipe->GetManualManufacturingDuration(this->mCurrentRecipe);
-L270:          float mfloat4 = Divide_FloatFloat(mfloat3, mfloat2);
-L316:          float mfloat5 = Divide_FloatFloat(mfloat4, 0.25);
+L270:          float mfloat4 = mfloat3 / mfloat2;
+L316:          float mfloat5 = mfloat4 / 0.25;
 L358:          int32 mint32 = Round(mfloat5);
 L395:          FText mFText = KismetTextLibrary->Conv_IntToText(mint32, false, true, 1, 324);
 L466:          this->Widget_SmallManufacturingScreen->CraftAmount->SetText(mFText);
@@ -547,16 +547,16 @@ L466:          this->Widget_SmallManufacturingScreen->CraftAmount->SetText(mFTex
 ============ BEGIN FUNCTION UpdateProgressBar ==============
 L0:            bool mbool = KismetSystemLibrary->IsValid(this->mManualManufacturerComponent);
 L51:           if (!mbool) goto L484;
-L65:           TSubclassOf<FGRecipe> mTSubclassOf<FGRecipe> = this->mManualManufacturerComponent->GetCurrentRecipe();
-L107:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGRecipe>);
+L65:           TSubclassOf<FGRecipe> mTSubclassOfFGRecipe = this->mManualManufacturerComponent->GetCurrentRecipe();
+L107:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOfFGRecipe);
 L158:          if (!mbool1) goto L484;
 L172:          float OldPercent = this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mProgressBar->Percent;
 L265:          float mfloat = this->mManualManufacturerComponent->GetManufacturingProgress();
 L315:          float NewPercent = mfloat;
-L342:          bool mbool2 = NotEqual_FloatFloat(OldPercent, NewPercent);
+L342:          bool mbool2 = OldPercent != NewPercent;
 L380:          if (!mbool2) goto L565;
 L394:          this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mProgressBar->SetPercent(NewPercent);
-L479:          <End of Inlined Event Graph Function>;
+L479:          // <End Inlined EventGraph Function>;
 L484:          this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mProgressBar->SetPercent(0);
 ============ END FUNCTION UpdateProgressBar ==============
 
@@ -568,11 +568,11 @@ L484:          this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mProgr
 L0:            bool mbool = KismetSystemLibrary->IsValid(this->mManualManufacturerComponent);
 L51:           if (!mbool) goto L302;
 L65:           FGInventoryComponent* mFGInventoryComponent = this->mManualManufacturerComponent->GetInventory();
-L107:          TSubclassOf<FGRecipe> mTSubclassOf<FGRecipe> = this->mManualManufacturerComponent->GetCurrentRecipe();
-L149:          bool mbool1 = this->mManualManufacturerComponent->CanProduce(mTSubclassOf<FGRecipe>, mFGInventoryComponent);
+L107:          TSubclassOf<FGRecipe> mTSubclassOfFGRecipe = this->mManualManufacturerComponent->GetCurrentRecipe();
+L149:          bool mbool1 = this->mManualManufacturerComponent->CanProduce(mTSubclassOfFGRecipe, mFGInventoryComponent);
 L209:          if (!mbool1) goto L265;
 L223:          this->mCraftButton->SetEnabled(true);
-L260:          <End of Inlined Event Graph Function>;
+L260:          // <End Inlined EventGraph Function>;
 L265:          this->mCraftButton->SetEnabled(false);
 ============ END FUNCTION GetCraftButtonFeedback ==============
 
@@ -591,7 +591,7 @@ L156:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L180:          BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
 L216:          bool mbool2 = mBP_PlayerController;
 L245:          if (!mbool2) goto L356;
-L259:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L259:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L310:          mBP_RemoteCallObject->ServerCloseVehicleTrunk(nullptr, mFGCharacterPlayer);
 ============ END FUNCTION CloseVehicle ==============
 
@@ -630,7 +630,7 @@ L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController);
 L60:           bool mbool = mBP_PlayerController;
 L89:           if (!mbool) goto L208;
-L103:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(BP_RemoteCallObject);
+L103:          BP_RemoteCallObject* mBP_RemoteCallObject = mBP_PlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L154:          mBP_RemoteCallObject->ServerSetWorkingAtBench(FGPlayerController, this->mManualManufacturerComponent);
 ============ END FUNCTION SetWorkingAtWorkbenchOnServer ==============
 
@@ -663,36 +663,36 @@ L200:          bool mbool = KismetSystemLibrary->IsValidClass(localRecipe);
 L251:          if (!mbool) goto ExecutionFlow.Pop();
 L261:          int32 Temp_int_Loop_Counter_Variable = 0;
 L284:          int32 Temp_int_Array_Index_Variable = 0;
-L307:          TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetIngredients(localRecipe);
-L366:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<ItemAmount>);
-L425:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L307:          TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetIngredients(localRecipe);
+L366:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayItemAmount);
+L425:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L463:          if (!mbool1) goto L995;
 L477:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L504:          ExecutionFlow.Push(L1563);
-L509:          mTArray<ItemAmount> = FGRecipe->GetIngredients(localRecipe);
-L568:          KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>, Temp_int_Array_Index_Variable, [ref] mItemAmount);
+L509:          mTArrayItemAmount = FGRecipe->GetIngredients(localRecipe);
+L568:          KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount, Temp_int_Array_Index_Variable, [ref] mItemAmount);
 L627:          ItemAmount localCost = mItemAmount;
 L654:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L678:          Widget_SmallCostSlot* mWidget_SmallCostSlot = WidgetBlueprintLibrary->Create(this, Widget_SmallCostSlot, mPlayerController);
+L678:          Widget_SmallCostSlot* mWidget_SmallCostSlot = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Widget_SmallCostslot.Widget_SmallCostSlot_C), mPlayerController);
 L739:          KismetSystemLibrary->SetStructurePropertyByName(mWidget_SmallCostSlot, "mCost", [ref] localCost);
 L802:          mWidget_SmallCostSlot->Widget_CostSlotWrapper->Setup CostIcon(nullptr, localCost, nullptr, Temp_int_Array_Index_Variable, 0, true, false, false);
 L888:          mWidget_SmallCostSlot->Widget_CostSlotWrapper->mForceEmptyAnim = true;
 L943:          WrapBoxSlot* mWrapBoxSlot = this->InputVBox->AddChildToWrapBox(mWidget_SmallCostSlot);
 L994:          goto ExecutionFlow.Pop();
-L995:          TArray<ItemAmount> mTArray<ItemAmount>1 = FGRecipe->GetProducts(this->mCurrentRecipe, true);
-L1055:         KismetArrayLibrary->Array_Get([ref] mTArray<ItemAmount>1, 0, [ref] mItemAmount1);
+L995:          TArray<ItemAmount> mTArrayItemAmount1 = FGRecipe->GetProducts(this->mCurrentRecipe, true);
+L1055:         KismetArrayLibrary->Array_Get([ref] mTArrayItemAmount1, 0, [ref] mItemAmount1);
 L1110:         this->Widget_CostSlotWrapper->Setup CostIcon(nullptr, mItemAmount1, nullptr, 0, 0, false, false, false);
 L1170:         FText mFText = FGRecipe->GetRecipeName(this->mCurrentRecipe);
 L1229:         this->Widget_SmallManufacturingScreen->mName->SetText(mFText);
 L1296:         int32 mint321 = this->InputVBox->GetChildrenCount();
-L1346:         bool mbool2 = EqualEqual_IntInt(mint321, 4);
+L1346:         bool mbool2 = mint321 == 4;
 L1380:         if (!mbool2) goto ExecutionFlow.Pop();
 L1390:         Widget* mWidget = this->InputVBox->GetChildAt(3);
 L1437:         Widget_CostSlot* mWidget_CostSlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlot.Widget_CostSlot_C>(mWidget);
 L1473:         bool mbool3 = mWidget_CostSlot;
 L1502:         mWidget_CostSlot->mDividerBottom->SetVisibility(1);
 L1562:         goto ExecutionFlow.Pop();
-L1563:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1563:         int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L1605:         Temp_int_Loop_Counter_Variable = mint322;
 L1632:         goto L307;
 ============ END FUNCTION CreateInfoBox ==============
@@ -724,16 +724,16 @@ L0:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(thi
 L43:           FGRecipeManager* mFGRecipeManager = FGRecipeManager->Get(mGameStateBase);
 L94:           bool mbool = KismetSystemLibrary->IsValid(mFGRecipeManager);
 L145:          if (!mbool) goto L513;
-L159:          TSubclassOf<FGWorkBench> mTSubclassOf<FGWorkBench> = GameplayStatics->GetObjectClass(this->mManualManufacturerComponent);
-L210:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOf<FGWorkBench>);
+L159:          TSubclassOf<FGWorkBench> mTSubclassOfFGWorkBench = GameplayStatics->GetObjectClass(this->mManualManufacturerComponent);
+L210:          bool mbool1 = KismetSystemLibrary->IsValidClass(mTSubclassOfFGWorkBench);
 L261:          if (!mbool1) goto L513;
 L275:          mGameStateBase = GameplayStatics->GetGameState(this);
-L318:          mTSubclassOf<FGWorkBench> = GameplayStatics->GetObjectClass(this->mManualManufacturerComponent);
+L318:          mTSubclassOfFGWorkBench = GameplayStatics->GetObjectClass(this->mManualManufacturerComponent);
 L369:          mFGRecipeManager = FGRecipeManager->Get(mGameStateBase);
-L420:          TArray<TSubclassOf<FGRecipe>> mTArray<TSubclassOf<FGRecipe>> = [];
-L431:          mFGRecipeManager->GetAvailableRecipesForProducer(mTSubclassOf<FGWorkBench>, [ref] mTArray<TSubclassOf<FGRecipe>>);
-L481:          TArray<TSubclassOf<FGRecipe>> AvailableRecipes = mTArray<TSubclassOf<FGRecipe>>;
-L508:          <End of Inlined Event Graph Function>;
+L420:          TArray<TSubclassOf<FGRecipe>> mTArrayTSubclassOfFGRecipe = [];
+L431:          mFGRecipeManager->GetAvailableRecipesForProducer(mTSubclassOfFGWorkBench, [ref] mTArrayTSubclassOfFGRecipe);
+L481:          TArray<TSubclassOf<FGRecipe>> AvailableRecipes = mTArrayTSubclassOfFGRecipe;
+L508:          // <End Inlined EventGraph Function>;
 L513:          KismetSystemLibrary->PrintString(this, "No available recipes", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
 L609:          AvailableRecipes = ClassProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_ManualManufacturing.Widget_ManualManufacturing_C:GetAvailableRecipes.AvailableRecipes.AvailableRecipes[] {[]};
 ============ END FUNCTION GetAvailableRecipes ==============
@@ -743,14 +743,14 @@ L609:          AvailableRecipes = ClassProperty /Game/FactoryGame/Buildable/-Sha
 
 
 ============ BEGIN FUNCTION SetSelectedRecipe ==============
-L0:            bool mbool = NotEqual_ClassClass(this->mCurrentRecipe, mRecipe);
+L0:            bool mbool = this->mCurrentRecipe != mRecipe;
 L38:           if (!mbool) goto L818;
 L52:           Widget_CraftBench_Category* mWidget_CraftBench_Category = this->GetCategoryWidgetFromRecipe(mRecipe);
 L85:           Widget_CraftBench_Category* LocalNewCategoryWidget = mWidget_CraftBench_Category;
 L104:          bool mbool1 = KismetSystemLibrary->IsValid(this->mCurrentCategoryWidget);
 L155:          FString mFString = KismetStringLibrary->Conv_BoolToString(mbool1);
 L214:          KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
-L297:          bool mbool2 = NotEqual_ObjectObject(this->mCurrentCategoryWidget, LocalNewCategoryWidget);
+L297:          bool mbool2 = this->mCurrentCategoryWidget != LocalNewCategoryWidget;
 L335:          if (!mbool2) goto L598;
 L349:          bool mbool3 = KismetSystemLibrary->IsValid(this->mCurrentCategoryWidget);
 L400:          if (!mbool3) goto L598;
@@ -764,7 +764,7 @@ L617:          this->mCurrentCategoryWidget = LocalNewCategoryWidget;
 L636:          this->mManualManufacturerComponent->SetRecipe(this->mCurrentRecipe);
 L677:          this->CreateInfoBox(this->mCurrentRecipe);
 L700:          this->GetCraftButtonFeedback();
-L714:          this->screen->SetVisibility(0);
+L714:          this->Screen->SetVisibility(0);
 L752:          this->Widget_Manufacturing_Warning->SetVisibility(2);
 L790:          this->HideAddedToInventoryEvent();
 L804:          this->UpdateRelevantClasses();
@@ -779,20 +779,20 @@ L0:            ExecutionFlow.Push(L1929);
 L5:            int32 StartIndex = -1;
 L28:           int32 Temp_int_Loop_Counter_Variable = 0;
 L51:           int32 Temp_int_Array_Index_Variable2 = 0;
-L74:           this->GetAvailableRecipes([ref] mTArray<TSubclassOf<FGRecipe>>);
-L97:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<TSubclassOf<FGRecipe>>);
-L156:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L74:           this->GetAvailableRecipes([ref] mTArrayTSubclassOfFGRecipe);
+L97:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayTSubclassOfFGRecipe);
+L156:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L194:          if (!mbool) goto L355;
 L208:          Temp_int_Array_Index_Variable2 = Temp_int_Loop_Counter_Variable;
 L235:          ExecutionFlow.Push(L1781);
-L240:          this->GetAvailableRecipes([ref] mTArray<TSubclassOf<FGRecipe>>);
-L263:          KismetArrayLibrary->Array_Get([ref] mTArray<TSubclassOf<FGRecipe>>, Temp_int_Array_Index_Variable2, [ref] mTSubclassOf<FGRecipe>);
-L322:          this->AddUniqueRecipe([ref] this->mCategorizedRecipes, mTSubclassOf<FGRecipe>);
+L240:          this->GetAvailableRecipes([ref] mTArrayTSubclassOfFGRecipe);
+L263:          KismetArrayLibrary->Array_Get([ref] mTArrayTSubclassOfFGRecipe, Temp_int_Array_Index_Variable2, [ref] mTSubclassOfFGRecipe);
+L322:          this->AddUniqueRecipe([ref] this->mCategorizedRecipes, mTSubclassOfFGRecipe);
 L354:          goto ExecutionFlow.Pop();
 L355:          int32 Temp_int_Loop_Counter_Variable1 = 0;
 L378:          int32 Temp_int_Array_Index_Variable = 0;
 L401:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] this->mCategorizedRecipes);
-L460:          bool mbool1 = Less_IntInt(Temp_int_Loop_Counter_Variable1, mint321);
+L460:          bool mbool1 = Temp_int_Loop_Counter_Variable1 < mint321;
 L498:          if (!mbool1) goto ExecutionFlow.Pop();
 L508:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
 L535:          ExecutionFlow.Push(L1707);
@@ -800,38 +800,38 @@ L540:          int32 Temp_int_Loop_Counter_Variable2 = 0;
 L563:          int32 Temp_int_Array_Index_Variable1 = 0;
 L586:          KismetArrayLibrary->Array_Get([ref] this->mCategorizedRecipes, Temp_int_Array_Index_Variable, [ref] mItemCategoryRecipeStruct);
 L645:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] mItemCategoryRecipeStruct.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736);
-L713:          bool mbool2 = Less_IntInt(Temp_int_Loop_Counter_Variable2, mint322);
+L713:          bool mbool2 = Temp_int_Loop_Counter_Variable2 < mint322;
 L751:          if (!mbool2) goto ExecutionFlow.Pop();
 L761:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable2;
 L788:          ExecutionFlow.Push(L1855);
-L793:          bool mbool3 = EqualEqual_IntInt(Temp_int_Array_Index_Variable1, 0);
+L793:          bool mbool3 = Temp_int_Array_Index_Variable1 == 0;
 L827:          if (!mbool3) goto L1331;
 L841:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L865:          FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(mPlayerController->PlayerState);
 L923:          bool mbool4 = mFGPlayerState;
-L952:          TArray<TSubclassOf<FGItemCategory>> mTArray<TSubclassOf<FGItemCategory>> = mFGPlayerState->GetCollapsedItemCategories();
+L952:          TArray<TSubclassOf<FGItemCategory>> mTArrayTSubclassOfFGItemCategory = mFGPlayerState->GetCollapsedItemCategories();
 L1002:         KismetArrayLibrary->Array_Get([ref] this->mCategorizedRecipes, Temp_int_Array_Index_Variable, [ref] mItemCategoryRecipeStruct);
-L1061:         bool mbool5 = KismetArrayLibrary->Array_Contains([ref] mTArray<TSubclassOf<FGItemCategory>>, [ref] mItemCategoryRecipeStruct.Category_5_48CE2A3C41089DC1E5DE39909CF17792);
+L1061:         bool mbool5 = KismetArrayLibrary->Array_Contains([ref] mTArrayTSubclassOfFGItemCategory, [ref] mItemCategoryRecipeStruct.Category_5_48CE2A3C41089DC1E5DE39909CF17792);
 L1130:         FText mFText = FGItemCategory->GetCategoryName(mItemCategoryRecipeStruct.Category_5_48CE2A3C41089DC1E5DE39909CF17792);
 L1198:         this->CreateCategoryHeader(this->mPhase0ScrollBox, mFText, mbool5, [ref] mWidget_CraftBench_Category);
 L1248:         Widget_CraftBench_Category* CurrentCategory = mWidget_CraftBench_Category;
 L1267:         mFScriptDelegate->BindUFunction(this, OnCategoryClicked);
 L1290:         CurrentCategory->OnClicked.AddUnique(mFScriptDelegate);
 L1331:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L1355:         Widget_RecipeButton* mWidget_RecipeButton = WidgetBlueprintLibrary->Create(this, Widget_RecipeButton, mPlayerController1);
+L1355:         Widget_RecipeButton* mWidget_RecipeButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_RecipeButton.Widget_RecipeButton_C), mPlayerController1);
 L1416:         KismetArrayLibrary->Array_Get([ref] this->mCategorizedRecipes, Temp_int_Array_Index_Variable, [ref] mItemCategoryRecipeStruct);
-L1475:         KismetArrayLibrary->Array_Get([ref] mItemCategoryRecipeStruct.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736, Temp_int_Array_Index_Variable1, [ref] mTSubclassOf<FGRecipe>1);
-L1543:         KismetSystemLibrary->SetClassPropertyByName(mWidget_RecipeButton, "mRecipeClass", mTSubclassOf<FGRecipe>1);
+L1475:         KismetArrayLibrary->Array_Get([ref] mItemCategoryRecipeStruct.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736, Temp_int_Array_Index_Variable1, [ref] mTSubclassOfFGRecipe1);
+L1543:         KismetSystemLibrary->SetClassPropertyByName(mWidget_RecipeButton, "mRecipeClass", mTSubclassOfFGRecipe1);
 L1606:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_RecipeButton, "Workbench", this);
 L1661:         CurrentCategory->AddChildToContentVertical(mWidget_RecipeButton);
 L1706:         goto ExecutionFlow.Pop();
-L1707:         int32 mint323 = Add_IntInt(Temp_int_Loop_Counter_Variable1, 1);
+L1707:         int32 mint323 = Temp_int_Loop_Counter_Variable1 + 1;
 L1749:         Temp_int_Loop_Counter_Variable1 = mint323;
 L1776:         goto L401;
-L1781:         int32 mint324 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1781:         int32 mint324 = Temp_int_Loop_Counter_Variable + 1;
 L1823:         Temp_int_Loop_Counter_Variable = mint324;
 L1850:         goto L74;
-L1855:         int32 mint325 = Add_IntInt(Temp_int_Loop_Counter_Variable2, 1);
+L1855:         int32 mint325 = Temp_int_Loop_Counter_Variable2 + 1;
 L1897:         Temp_int_Loop_Counter_Variable2 = mint325;
 L1924:         goto L586;
 ============ END FUNCTION InitRecipeList ==============
@@ -841,7 +841,9 @@ L1924:         goto L586;
 
 
 ============ BEGIN FUNCTION Destruct ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(4413);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Destruct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L4413;
 ============ END FUNCTION Destruct ==============
 
 
@@ -849,7 +851,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(4413);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(5439);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L5439;
 ============ END FUNCTION Construct ==============
 
 
@@ -857,7 +861,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(5439);
 
 
 ============ BEGIN FUNCTION SetupProductionMode ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(5479);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: SetupProductionMode;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L5479;
 ============ END FUNCTION SetupProductionMode ==============
 
 
@@ -865,8 +871,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(5479);
 
 
 ============ BEGIN FUNCTION OnNewRecipeSet ==============
-L0:            PERSISTENT_FRAME(ClassProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_ManualManufacturing.Widget_ManualManufacturing_C:ExecuteUbergraph_Widget_ManualManufacturing.K2Node_CustomEvent_mNewRecipe) = mNewRecipe;
-L18:           this->ExecuteUbergraph_Widget_ManualManufacturing(5946);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnNewRecipeSet;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L5946;
 ============ END FUNCTION OnNewRecipeSet ==============
 
 
@@ -874,7 +881,9 @@ L18:           this->ExecuteUbergraph_Widget_ManualManufacturing(5946);
 
 
 ============ BEGIN FUNCTION Init ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(6641);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Init;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L6641;
 ============ END FUNCTION Init ==============
 
 
@@ -882,8 +891,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(6641);
 
 
 ============ BEGIN FUNCTION StartProducing ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_ManualManufacturing.Widget_ManualManufacturing_C:ExecuteUbergraph_Widget_ManualManufacturing.K2Node_CustomEvent_dt) = dt;
-L18:           this->ExecuteUbergraph_Widget_ManualManufacturing(6658);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: StartProducing;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L6658;
 ============ END FUNCTION StartProducing ==============
 
 
@@ -891,7 +901,9 @@ L18:           this->ExecuteUbergraph_Widget_ManualManufacturing(6658);
 
 
 ============ BEGIN FUNCTION EndProducing ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(7192);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: EndProducing;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L7192;
 ============ END FUNCTION EndProducing ==============
 
 
@@ -899,9 +911,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(7192);
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_ManualManufacturing.Widget_ManualManufacturing_C:ExecuteUbergraph_Widget_ManualManufacturing.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_ManualManufacturing.Widget_ManualManufacturing_C:ExecuteUbergraph_Widget_ManualManufacturing.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_ManualManufacturing(7402);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L7402;
 ============ END FUNCTION Tick ==============
 
 
@@ -909,7 +921,9 @@ L36:           this->ExecuteUbergraph_Widget_ManualManufacturing(7402);
 
 
 ============ BEGIN FUNCTION OnCraftingProgressbarAnimationLoop ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(7658);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: OnCraftingProgressbarAnimationLoop;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L7658;
 ============ END FUNCTION OnCraftingProgressbarAnimationLoop ==============
 
 
@@ -917,7 +931,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(7658);
 
 
 ============ BEGIN FUNCTION StopSuperClick ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(7735);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StopSuperClick;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L7735;
 ============ END FUNCTION StopSuperClick ==============
 
 
@@ -925,7 +941,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(7735);
 
 
 ============ BEGIN FUNCTION StartSuperClick ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(7812);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: StartSuperClick;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L7812;
 ============ END FUNCTION StartSuperClick ==============
 
 
@@ -933,7 +951,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(7812);
 
 
 ============ BEGIN FUNCTION IncreaseGlow ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(8986);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: IncreaseGlow;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L8986;
 ============ END FUNCTION IncreaseGlow ==============
 
 
@@ -941,7 +961,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(8986);
 
 
 ============ BEGIN FUNCTION DecreseGlow ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(8991);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: DecreseGlow;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L8991;
 ============ END FUNCTION DecreseGlow ==============
 
 
@@ -949,7 +971,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(8991);
 
 
 ============ BEGIN FUNCTION Shake ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(9600);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Shake;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L9600;
 ============ END FUNCTION Shake ==============
 
 
@@ -957,7 +981,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(9600);
 
 
 ============ BEGIN FUNCTION EmptyBar ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(9616);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: EmptyBar;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L9616;
 ============ END FUNCTION EmptyBar ==============
 
 
@@ -965,7 +991,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(9616);
 
 
 ============ BEGIN FUNCTION FadeBar ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(9784);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: FadeBar;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L9784;
 ============ END FUNCTION FadeBar ==============
 
 
@@ -973,7 +1001,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(9784);
 
 
 ============ BEGIN FUNCTION WarningMessageCheck ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(10033);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WarningMessageCheck;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L10033;
 ============ END FUNCTION WarningMessageCheck ==============
 
 
@@ -981,8 +1011,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(10033);
 
 
 ============ BEGIN FUNCTION ProductionStartupDelay ==============
-L0:            PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_ManualManufacturing.Widget_ManualManufacturing_C:ExecuteUbergraph_Widget_ManualManufacturing.K2Node_CustomEvent_ProduceSpeed) = ProduceSpeed;
-L18:           this->ExecuteUbergraph_Widget_ManualManufacturing(10048);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ProductionStartupDelay;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L10048;
 ============ END FUNCTION ProductionStartupDelay ==============
 
 
@@ -990,7 +1021,9 @@ L18:           this->ExecuteUbergraph_Widget_ManualManufacturing(10048);
 
 
 ============ BEGIN FUNCTION PlayLEDSound ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(10395);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: PlayLEDSound;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L10395;
 ============ END FUNCTION PlayLEDSound ==============
 
 
@@ -998,7 +1031,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(10395);
 
 
 ============ BEGIN FUNCTION ShowAddedToInventory ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(10400);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ShowAddedToInventory;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L10400;
 ============ END FUNCTION ShowAddedToInventory ==============
 
 
@@ -1006,7 +1041,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(10400);
 
 
 ============ BEGIN FUNCTION HideAddedToInventoryEvent ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(11924);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: HideAddedToInventoryEvent;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L11924;
 ============ END FUNCTION HideAddedToInventoryEvent ==============
 
 
@@ -1014,7 +1051,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(11924);
 
 
 ============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(11985);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L11985;
 ============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -1022,8 +1061,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(11985);
 
 
 ============ BEGIN FUNCTION BndEvt__mOnlyShowAffordableCheckbox_K2Node_ComponentBoundEvent_3_OnCheckChanged__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_ManualManufacturing.Widget_ManualManufacturing_C:ExecuteUbergraph_Widget_ManualManufacturing.K2Node_ComponentBoundEvent_IsChecked) = IsChecked;
-L18:           this->ExecuteUbergraph_Widget_ManualManufacturing(12119);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__mOnlyShowAffordableCheckbox_K2Node_ComponentBoundEvent_3_OnCheckChanged__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L12119;
 ============ END FUNCTION BndEvt__mOnlyShowAffordableCheckbox_K2Node_ComponentBoundEvent_3_OnCheckChanged__DelegateSignature ==============
 
 
@@ -1031,8 +1071,9 @@ L18:           this->ExecuteUbergraph_Widget_ManualManufacturing(12119);
 
 
 ============ BEGIN FUNCTION BndEvt__mSearchbar_K2Node_ComponentBoundEvent_4_OnTextChanged__DelegateSignature ==============
-L0:            PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_ManualManufacturing.Widget_ManualManufacturing_C:ExecuteUbergraph_Widget_ManualManufacturing.K2Node_ComponentBoundEvent_Text) = text;
-L18:           this->ExecuteUbergraph_Widget_ManualManufacturing(12202);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__mSearchbar_K2Node_ComponentBoundEvent_4_OnTextChanged__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L12202;
 ============ END FUNCTION BndEvt__mSearchbar_K2Node_ComponentBoundEvent_4_OnTextChanged__DelegateSignature ==============
 
 
@@ -1040,7 +1081,9 @@ L18:           this->ExecuteUbergraph_Widget_ManualManufacturing(12202);
 
 
 ============ BEGIN FUNCTION InitOnlyShowAffordable ==============
-L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(12399);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: InitOnlyShowAffordable;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L12399;
 ============ END FUNCTION InitOnlyShowAffordable ==============
 
 
@@ -1048,8 +1091,9 @@ L0:            this->ExecuteUbergraph_Widget_ManualManufacturing(12399);
 
 
 ============ BEGIN FUNCTION OnCategoryClicked ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Buildable/-Shared/WorkBench/Widget_ManualManufacturing.Widget_ManualManufacturing_C:ExecuteUbergraph_Widget_ManualManufacturing.K2Node_CustomEvent_Instigator) = Instigator;
-L18:           this->ExecuteUbergraph_Widget_ManualManufacturing(12740);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnCategoryClicked;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ManualManufacturing, from label L12740;
 ============ END FUNCTION OnCategoryClicked ==============
 
 
@@ -1062,7 +1106,7 @@ L15:           bool mbool = KismetSystemLibrary->IsValid(this->Manufacturing Con
 L66:           if (!mbool) goto L170;
 L80:           UMGSequencePlayer* mUMGSequencePlayer = this->Manufacturing Container->PlayAnimation(this->Manufacturing Container->ShakeAnim, 0, 1, 0, 1);
 L170:          Pawn* mPawn = this->GetOwningPlayerPawn();
-L190:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_OverClock_Tick, mPawn, true);
+L190:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/Overclocking/Play_UI_OverClock_Tick.Play_UI_OverClock_Tick), mPawn, true);
 L251:          goto ExecutionFlow.Pop();
 L252:          this->StopAnimation(this->SuperClickAnim);
 L271:          this->SuperClickContainer->SetVisibility(2);
@@ -1077,17 +1121,17 @@ L584:          goto ExecutionFlow.Pop();
 L585:          bool mbool2 = KismetSystemLibrary->IsValidClass(this->mCurrentRecipe);
 L636:          if (!mbool2) goto ExecutionFlow.Pop();
 L646:          if (!this->ShakeActive) goto L1398;
-L660:          float mfloat = Add_FloatFloat(this->GlowingPanel->ColorAndOpacity.A, 0.009999999776482582);
+L660:          float mfloat = this->GlowingPanel->ColorAndOpacity.A + 0.009999999776482582;
 L733:          float mfloat1 = FClamp(mfloat, 0, 0.8500000238418579);
 L780:          mLinearColor.R = 1;
 L812:          mLinearColor.G = mfloat1;
 L848:          mLinearColor.B = mfloat1;
 L884:          mLinearColor.A = mfloat1;
 L920:          this->GlowingPanel->SetColorAndOpacity(mLinearColor);
-L961:          mfloat = Add_FloatFloat(this->GlowingPanel->ColorAndOpacity.A, 0.009999999776482582);
+L961:          mfloat = this->GlowingPanel->ColorAndOpacity.A + 0.009999999776482582;
 L1034:         mfloat1 = FClamp(mfloat, 0, 0.8500000238418579);
 L1081:         this->GlowingPanelGlow->SetRenderOpacity(mfloat1);
-L1122:         float mfloat2 = Add_FloatFloat(this->ShakeIntesity, 0.009999999776482582);
+L1122:         float mfloat2 = this->ShakeIntesity + 0.009999999776482582;
 L1164:         this->ShakeIntesity = mfloat2;
 L1191:         Pawn* mPawn1 = this->GetOwningPlayerPawn();
 L1211:         AkGameplayStatics->SetActorRTPCValue("RTPC_WorkBench_Glow", this->ShakeIntesity, 0, mPawn1);
@@ -1098,31 +1142,31 @@ L1398:         this->Shake();
 L1412:         goto L660;
 L1417:         mFScriptDelegate->BindUFunction(this, DecreseGlow);
 L1440:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.05000000074505806, true);
-L1505:         bool mbool3 = Greater_FloatFloat(this->GlowingPanel->ColorAndOpacity.A, 0.699999988079071);
+L1505:         bool mbool3 = this->GlowingPanel->ColorAndOpacity.A > 0.699999988079071;
 L1570:         if (!mbool3) goto ExecutionFlow.Pop();
 L1580:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L1604:         Widget_Smoke* mWidget_Smoke = WidgetBlueprintLibrary->Create(this, Widget_Smoke, mPlayerController1);
+L1604:         Widget_Smoke* mWidget_Smoke = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Smoke.Widget_Smoke_C), mPlayerController1);
 L1665:         OverlaySlot* mOverlaySlot = this->SmokeContainerLeft->AddChildToOverlay(mWidget_Smoke);
 L1716:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
-L1740:         Widget_Smoke* mWidget_Smoke1 = WidgetBlueprintLibrary->Create(this, Widget_Smoke, mPlayerController2);
+L1740:         Widget_Smoke* mWidget_Smoke1 = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Smoke.Widget_Smoke_C), mPlayerController2);
 L1801:         OverlaySlot* mOverlaySlot1 = this->SmokeContainerRight->AddChildToOverlay(mWidget_Smoke1);
 L1852:         goto ExecutionFlow.Pop();
 L1853:         ExecutionFlow.Push(L2080);
 L1858:         float mfloat3 = this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->GetRenderOpacity();
-L1952:         float mfloat4 = Subtract_FloatFloat(mfloat3, 0.5);
+L1952:         float mfloat4 = mfloat3 - 0.5;
 L1994:         this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->SetRenderOpacity(mfloat4);
 L2079:         goto ExecutionFlow.Pop();
 L2080:         float mfloat5 = this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->GetRenderOpacity();
-L2174:         bool mbool4 = Greater_FloatFloat(mfloat5, 0);
+L2174:         bool mbool4 = mfloat5 > 0;
 L2208:         if (!mbool4) goto L2299;
 L2222:         KismetSystemLibrary->Delay(this, 0.029999999329447746, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 1853, UUID = -51595640, ExecutionFunction = "ExecuteUbergraph_Widget_ManualManufacturing", CallbackTarget = this));
 L2298:         goto ExecutionFlow.Pop();
 L2299:         this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->SetVisibility(2);
 L2381:         goto ExecutionFlow.Pop();
 L2382:         ExecutionFlow.Push(L2698);
-L2387:         float mfloat6 = Subtract_FloatFloat(this->ShakeIntesity, 0.75);
+L2387:         float mfloat6 = this->ShakeIntesity - 0.75;
 L2429:         float mfloat7 = FClamp(mfloat6, 0, 1);
-L2476:         float mfloat8 = Multiply_FloatFloat(mfloat7, -1);
+L2476:         float mfloat8 = mfloat7 * -1;
 L2518:         float mfloat9 = RandomFloatInRange(mfloat8, mfloat7);
 L2564:         float mfloat10 = RandomFloatInRange(mfloat8, mfloat7);
 L2610:         Vector2D mVector2D = MakeVector2D(mfloat10, mfloat9);
@@ -1132,10 +1176,10 @@ L2698:         if (!this->ShakeActive) goto ExecutionFlow.Pop();
 L2708:         KismetSystemLibrary->Delay(this, 0.03999999910593033, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 2382, UUID = 598363269, ExecutionFunction = "ExecuteUbergraph_Widget_ManualManufacturing", CallbackTarget = this));
 L2784:         goto ExecutionFlow.Pop();
 L2785:         ExecutionFlow.Push(L2984);
-L2790:         float mfloat11 = Subtract_FloatFloat(this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->Percent, 0.10000000149011612);
+L2790:         float mfloat11 = this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->Percent - 0.10000000149011612;
 L2898:         this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->SetPercent(mfloat11);
 L2983:         goto ExecutionFlow.Pop();
-L2984:         bool mbool5 = Greater_FloatFloat(this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mProgressBar->Percent, 0);
+L2984:         bool mbool5 = this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mProgressBar->Percent > 0;
 L3084:         if (!mbool5) goto L3175;
 L3098:         KismetSystemLibrary->Delay(this, 0.029999999329447746, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 2785, UUID = -156032864, ExecutionFunction = "ExecuteUbergraph_Widget_ManualManufacturing", CallbackTarget = this));
 L3174:         goto ExecutionFlow.Pop();
@@ -1199,21 +1243,22 @@ L4392:         if (!true) goto L4031;
 L4398:         goto L4304;
 L4403:         ExecutionFlow.Push(L4097);
 L4408:         goto L4321;
+L4413:         // <Begin Inlined EventGraph Function Destruct>;
 L4413:         this->Destruct();
 L4423:         this->Cleanup();
 L4437:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
-L4461:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Stop_F_WorkBench, mPlayerController4, true);
+L4461:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Factory/WorkBench/Audio/Stop_F_WorkBench.Stop_F_WorkBench), mPlayerController4, true);
 L4522:         goto ExecutionFlow.Pop();
 L4523:         Pawn* mPawn2 = this->GetOwningPlayerPawn();
 L4543:         FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn2);
 L4579:         bool mbool10 = mFGCharacterPlayer;
 L4608:         if (!mbool10) goto ExecutionFlow.Pop();
-L4618:         TSubclassOf<FGRecipe> mTSubclassOf<FGRecipe> = this->mManualManufacturerComponent->GetCurrentRecipe();
-L4660:         this->mCurrentRecipe = mTSubclassOf<FGRecipe>;
+L4618:         TSubclassOf<FGRecipe> mTSubclassOfFGRecipe = this->mManualManufacturerComponent->GetCurrentRecipe();
+L4660:         this->mCurrentRecipe = mTSubclassOfFGRecipe;
 L4679:         this->CreateInfoBox(this->mCurrentRecipe);
 L4702:         this->SetupProductionMode();
 L4716:         int32 mint32 = this->mPhase0ScrollBox->GetChildrenCount();
-L4766:         bool mbool11 = Greater_IntInt(mint32, 0);
+L4766:         bool mbool11 = mint32 > 0;
 L4800:         if (!mbool11) goto ExecutionFlow.Pop();
 L4810:         PlayerController* mPlayerController5 = this->GetOwningPlayer();
 L4834:         Widget* mWidget = this->mPhase0ScrollBox->GetChildAt(0);
@@ -1225,7 +1270,7 @@ L5027:         mFScriptDelegate2->BindUFunction(this, EndProducing);
 L5050:         this->mCraftButton->mButton->OnReleased.AddUnique(mFScriptDelegate2);
 L5113:         bool mbool12 = KismetSystemLibrary->IsValidClass(this->mCurrentRecipe);
 L5164:         if (!mbool12) goto L5397;
-L5178:         this->screen->SetVisibility(0);
+L5178:         this->Screen->SetVisibility(0);
 L5216:         this->mCraftButton->SetEnabled(true);
 L5253:         this->UpdateWarningWidget();
 L5267:         mFScriptDelegate3->BindUFunction(this, WarningMessageCheck);
@@ -1235,12 +1280,14 @@ L5382:         this->UpdateRelevantClasses();
 L5396:         goto ExecutionFlow.Pop();
 L5397:         this->mCraftButton->SetEnabled(false);
 L5434:         goto L5253;
+L5439:         // <Begin Inlined EventGraph Function Construct>;
 L5439:         this->Construct();
 L5449:         this->isWorkingAtWorkbench = true;
 L5460:         goto L3258;
 L5465:         if (!false) goto ExecutionFlow.Pop();
 L5467:         bool Temp_bool_IsClosed_Variable = true;
 L5478:         goto ExecutionFlow.Pop();
+L5479:         // <Begin Inlined EventGraph Function SetupProductionMode>;
 L5479:         PlayerController* mPlayerController6 = this->GetOwningPlayer();
 L5503:         BP_PlayerController* mBP_PlayerController = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_PlayerController.BP_PlayerController_C>(mPlayerController6);
 L5539:         bool mbool13 = mBP_PlayerController;
@@ -1261,15 +1308,15 @@ L5877:         mFScriptDelegate4->BindUFunction(this, OnCraftCompleted);
 L5900:         mBP_ManualManufacturingComponent->OnCraftCompleted.AddUnique(mFScriptDelegate4);
 L5941:         goto L5718;
 L5946:         this->GetCraftButtonFeedback();
-L5960:         this->mCurrentRecipe = mTSubclassOf<FGRecipe>1;
+L5960:         this->mCurrentRecipe = mTSubclassOfFGRecipe1;
 L5979:         this->CreateInfoBox(this->mCurrentRecipe);
 L6002:         goto ExecutionFlow.Pop();
 L6003:         Actor* mActor = Cast<Class /Script/Engine.Actor>(this->mInteractObject);
 L6039:         bool mbool17 = mActor;
 L6068:         if (!mbool17) goto ExecutionFlow.Pop();
-L6078:         TArray<BP_ManualManufacturingComponent*> mTArray<BP_ManualManufacturingComponent> = mActor->GetComponentsByClass(BP_ManualManufacturingComponent);
-L6137:         int32 mint321 = KismetArrayLibrary->Array_Find([ref] mTArray<Widget_ManualManufacturing>, [ref] this);
-L6197:         KismetArrayLibrary->Array_Get([ref] mTArray<BP_ManualManufacturingComponent>, mint321, [ref] mBP_ManualManufacturingComponent1);
+L6078:         TArray<BP_ManualManufacturingComponent*> mTArrayBP_ManualManufacturingComponent = mActor->GetComponentsByClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/-Shared/WorkBench/BP_ManualManufacturingComponent.BP_ManualManufacturingComponent_C));
+L6137:         int32 mint321 = KismetArrayLibrary->Array_Find([ref] mTArrayWidget_ManualManufacturing, [ref] this);
+L6197:         KismetArrayLibrary->Array_Get([ref] mTArrayBP_ManualManufacturingComponent, mint321, [ref] mBP_ManualManufacturingComponent1);
 L6256:         this->mManualManufacturerComponent = mBP_ManualManufacturingComponent1;
 L6275:         goto L5802;
 L6280:         BP_ManualManufacturingComponent* mBP_ManualManufacturingComponent2 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/-Shared/WorkBench/BP_ManualManufacturingComponent.BP_ManualManufacturingComponent_C>(this->mInteractObject);
@@ -1277,9 +1324,9 @@ L6316:         bool mbool18 = mBP_ManualManufacturingComponent2;
 L6345:         if (!mbool18) goto L6383;
 L6359:         this->mManualManufacturerComponent = mBP_ManualManufacturingComponent2;
 L6378:         goto L5802;
-L6383:         TSubclassOf<Widget_ManualManufacturing> mTSubclassOf<Widget_ManualManufacturing> = GameplayStatics->GetObjectClass(this);
-L6426:         TArray<Widget_ManualManufacturing*> mTArray<Widget_ManualManufacturing> = [];
-L6437:         FGBlueprintFunctionLibrary->GetAllWidgetsOfClassInHierarchy(this, mTSubclassOf<Widget_ManualManufacturing>, [ref] mTArray<Widget_ManualManufacturing>);
+L6383:         TSubclassOf<Widget_ManualManufacturing> mTSubclassOfWidget_ManualManufacturing = GameplayStatics->GetObjectClass(this);
+L6426:         TArray<Widget_ManualManufacturing*> mTArrayWidget_ManualManufacturing = [];
+L6437:         FGBlueprintFunctionLibrary->GetAllWidgetsOfClassInHierarchy(this, mTSubclassOfWidget_ManualManufacturing, [ref] mTArrayWidget_ManualManufacturing);
 L6488:         goto L6003;
 L6493:         ExecutionFlow.Push(L6529);
 L6498:         if (!Temp_bool_Has_Been_Initd_Variable) goto L6513;
@@ -1290,8 +1337,9 @@ L6529:         if (!Temp_bool_IsClosed_Variable) goto L6544;
 L6543:         goto ExecutionFlow.Pop();
 L6544:         Temp_bool_IsClosed_Variable = true;
 L6555:         PlayerController* mPlayerController7 = this->GetOwningPlayer();
-L6579:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(Play_F_WorkBench, mPlayerController7, true);
+L6579:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Factory/WorkBench/Audio/Play_F_WorkBench.Play_F_WorkBench), mPlayerController7, true);
 L6640:         goto ExecutionFlow.Pop();
+L6641:         // <Begin Inlined EventGraph Function Init>;
 L6641:         goto L6280;
 L6646:         Temp_bool_Has_Been_Initd_Variable = true;
 L6657:         goto ExecutionFlow.Pop();
@@ -1299,14 +1347,14 @@ L6658:         bool mbool19 = KismetSystemLibrary->IsValid(this->mManualManufact
 L6709:         if (!mbool19) goto ExecutionFlow.Pop();
 L6719:         this->mManualManufacturerComponent->Produce(mfloat15);
 L6760:         FGInventoryComponent* mFGInventoryComponent = this->mManualManufacturerComponent->GetInventory();
-L6802:         TSubclassOf<FGRecipe> mTSubclassOf<FGRecipe>2 = this->mManualManufacturerComponent->GetCurrentRecipe();
-L6844:         bool mbool20 = this->mManualManufacturerComponent->CanProduce(mTSubclassOf<FGRecipe>2, mFGInventoryComponent);
-L6904:         bool mbool21 = Not_PreBool(mbool20);
+L6802:         TSubclassOf<FGRecipe> mTSubclassOfFGRecipe2 = this->mManualManufacturerComponent->GetCurrentRecipe();
+L6844:         bool mbool20 = this->mManualManufacturerComponent->CanProduce(mTSubclassOfFGRecipe2, mFGInventoryComponent);
+L6904:         bool mbool21 = !mbool20;
 L6933:         if (!mbool21) goto L7076;
 L6947:         this->GetCraftButtonFeedback();
 L6961:         this->UpdateLeds();
 L6975:         PlayerController* mPlayerController8 = this->GetOwningPlayer();
-L6999:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(Stop_F_WorkBench, mPlayerController8, true);
+L6999:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Factory/WorkBench/Audio/Stop_F_WorkBench.Stop_F_WorkBench), mPlayerController8, true);
 L7060:         Temp_bool_IsClosed_Variable = false;
 L7071:         goto L6646;
 L7076:         this->IncreaseGlow();
@@ -1314,6 +1362,7 @@ L7090:         this->StartSuperClick();
 L7104:         int32 mint322 = RandomIntegerInRange(1, 2);
 L7142:         this->Widget_SparkParticles->CreateSparks(mint322);
 L7187:         goto L6493;
+L7192:         // <Begin Inlined EventGraph Function EndProducing>;
 L7192:         this->StopAnimation(this->LEDAnim);
 L7211:         this->DelayActive = true;
 L7222:         this->mIsHolding = false;
@@ -1321,7 +1370,7 @@ L7233:         this->DelayCounter = 0;
 L7256:         KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mHoldTimer);
 L7298:         this->UpdateLeds();
 L7312:         PlayerController* mPlayerController9 = this->GetOwningPlayer();
-L7336:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(Stop_F_WorkBench, mPlayerController9, true);
+L7336:         AkComponent* mAkComponent4 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Factory/WorkBench/Audio/Stop_F_WorkBench.Stop_F_WorkBench), mPlayerController9, true);
 L7397:         goto L7060;
 L7402:         this->Tick(mGeometry, mfloat16);
 L7430:         bool mbool22 = KismetSystemLibrary->IsValidClass(this->mCurrentRecipe);
@@ -1329,27 +1378,30 @@ L7481:         if (!mbool22) goto ExecutionFlow.Pop();
 L7491:         this->UpdateProgressBar();
 L7505:         this->UpdateProductionStats();
 L7519:         float mfloat17 = GameplayStatics->GetWorldDeltaSeconds(this);
-L7570:         float mfloat18 = Add_FloatFloat(this->InGameTime, mfloat17);
+L7570:         float mfloat18 = this->InGameTime + mfloat17;
 L7616:         this->InGameTime = mfloat18;
 L7643:         this->UpdateAffordableCategories();
 L7657:         goto ExecutionFlow.Pop();
+L7658:         // <Begin Inlined EventGraph Function OnCraftingProgressbarAnimationLoop>;
 L7658:         KismetSystemLibrary->Delay(this, 0.5, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -835234522, ExecutionFunction = "ExecuteUbergraph_Widget_ManualManufacturing", CallbackTarget = this));
 L7734:         goto ExecutionFlow.Pop();
+L7735:         // <Begin Inlined EventGraph Function StopSuperClick>;
 L7735:         KismetSystemLibrary->RetriggerableDelay(this, 0.30000001192092896, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 252, UUID = -10937367, ExecutionFunction = "ExecuteUbergraph_Widget_ManualManufacturing", CallbackTarget = this));
 L7811:         goto ExecutionFlow.Pop();
+L7812:         // <Begin Inlined EventGraph Function StartSuperClick>;
 L7812:         bool mbool23 = KismetSystemLibrary->IsValidClass(this->mCurrentRecipe);
 L7863:         if (!mbool23) goto ExecutionFlow.Pop();
-L7873:         float mfloat19 = Subtract_FloatFloat(this->InGameTime, this->LastClickTime);
-L7919:         bool mbool24 = Less_FloatFloat(mfloat19, 0.07999999821186066);
+L7873:         float mfloat19 = this->InGameTime - this->LastClickTime;
+L7919:         bool mbool24 = mfloat19 < 0.07999999821186066;
 L7953:         if (!mbool24) goto L8864;
-L7967:         int32 mint323 = Add_IntInt(this->ClickCounter, 1);
+L7967:         int32 mint323 = this->ClickCounter + 1;
 L8009:         this->ClickCounter = mint323;
 L8036:         bool mbool25 = this->IsAnimationPlaying(this->SuperClickAnim);
-L8065:         bool mbool26 = Not_PreBool(mbool25);
-L8094:         bool mbool27 = Greater_IntInt(this->ClickCounter, 3);
-L8128:         bool mbool28 = BooleanAND(mbool26, mbool27);
-L8166:         bool mbool29 = Greater_FloatFloat(this->ShakeIntesity, 1.5);
-L8200:         bool mbool30 = BooleanAND(mbool28, mbool29);
+L8065:         bool mbool26 = !mbool25;
+L8094:         bool mbool27 = this->ClickCounter > 3;
+L8128:         bool mbool28 = mbool26 && mbool27;
+L8166:         bool mbool29 = this->ShakeIntesity > 1.5;
+L8200:         bool mbool30 = mbool28 && mbool29;
 L8238:         if (!mbool30) goto L8741;
 L8252:         this->SuperClickContainer->SetVisibility(3);
 L8290:         bool mbool31 = KismetSystemLibrary->IsValid(this->Manufacturing Container);
@@ -1359,63 +1411,71 @@ L8391:         UMGSequencePlayer* mUMGSequencePlayer2 = this->Manufacturing Cont
 L8481:         UMGSequencePlayer* mUMGSequencePlayer3 = this->PlayAnimation(this->SuperClickAnim, 0, 0, 0, 1);
 L8527:         UMGSequencePlayer* mUMGSequencePlayer4 = this->PlayAnimation(this->NANI?, 0, 1, 0, 1);
 L8573:         Pawn* mPawn4 = this->GetOwningPlayerPawn();
-L8593:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEvent(Play_WorkBench_Nani, mPawn4, true);
+L8593:         AkComponent* mAkComponent5 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Factory/WorkBench/Audio/Rework_Click/Play_WorkBench_Nani.Play_WorkBench_Nani), mPawn4, true);
 L8654:         mPawn4 = this->GetOwningPlayerPawn();
 L8674:         AkGameplayStatics->SetSwitch("WorkBench_ClinkSound", "Nani", mPawn4);
 L8741:         this->LastClickTime = this->InGameTime;
 L8768:         this->StopSuperClick();
 L8782:         Pawn* mPawn5 = this->GetOwningPlayerPawn();
-L8802:         AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEvent(Play_Switch_AnvilType, mPawn5, true);
+L8802:         AkComponent* mAkComponent6 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Factory/WorkBench/Audio/Rework_Click/Play_Switch_AnvilType.Play_Switch_AnvilType), mPawn5, true);
 L8863:         goto ExecutionFlow.Pop();
-L8864:         bool mbool32 = Greater_IntInt(this->ClickCounter, 3);
+L8864:         bool mbool32 = this->ClickCounter > 3;
 L8898:         if (!mbool32) goto L8741;
-L8912:         int32 mint324 = Add_IntInt(this->ClickCounter, 1);
+L8912:         int32 mint324 = this->ClickCounter + 1;
 L8954:         this->ClickCounter = mint324;
 L8981:         goto L8741;
+L8986:         // <Begin Inlined EventGraph Function IncreaseGlow>;
 L8986:         goto L585;
-L8991:         float mfloat20 = Subtract_FloatFloat(this->GlowingPanel->ColorAndOpacity.A, 0.019999999552965164);
+L8991:         // <Begin Inlined EventGraph Function DecreseGlow>;
+L8991:         float mfloat20 = this->GlowingPanel->ColorAndOpacity.A - 0.019999999552965164;
 L9064:         mLinearColor2.R = 1;
 L9096:         mLinearColor2.G = mfloat20;
 L9132:         mLinearColor2.B = mfloat20;
 L9168:         mLinearColor2.A = mfloat20;
 L9204:         this->GlowingPanel->SetColorAndOpacity(mLinearColor2);
-L9245:         mfloat20 = Subtract_FloatFloat(this->GlowingPanel->ColorAndOpacity.A, 0.019999999552965164);
+L9245:         mfloat20 = this->GlowingPanel->ColorAndOpacity.A - 0.019999999552965164;
 L9318:         this->GlowingPanelGlow->SetRenderOpacity(mfloat20);
-L9359:         float mfloat21 = Subtract_FloatFloat(this->ShakeIntesity, 0.019999999552965164);
+L9359:         float mfloat21 = this->ShakeIntesity - 0.019999999552965164;
 L9401:         this->ShakeIntesity = mfloat21;
 L9428:         Pawn* mPawn6 = this->GetOwningPlayerPawn();
 L9448:         AkGameplayStatics->SetActorRTPCValue("RTPC_WorkBench_Glow", this->ShakeIntesity, 0, mPawn6);
-L9516:         bool mbool33 = Greater_FloatFloat(this->GlowingPanel->ColorAndOpacity.A, this->GlowMin);
+L9516:         bool mbool33 = this->GlowingPanel->ColorAndOpacity.A > this->GlowMin;
 L9585:         if (!mbool33) goto L4043;
 L9599:         goto ExecutionFlow.Pop();
+L9600:         // <Begin Inlined EventGraph Function Shake>;
 L9600:         this->ShakeActive = true;
 L9611:         goto L2698;
+L9616:         // <Begin Inlined EventGraph Function EmptyBar>;
 L9616:         this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->SetPercent(1.5);
 L9697:         this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->SetVisibility(0);
 L9779:         goto L2984;
+L9784:         // <Begin Inlined EventGraph Function FadeBar>;
 L9784:         this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->SetPercent(1);
 L9865:         this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->SetVisibility(0);
 L9947:         this->Widget_SmallManufacturingScreen->Widget_ProgressBar->mFadeBar->SetRenderOpacity(1.2000000476837158);
 L10028:        goto L2080;
+L10033:        // <Begin Inlined EventGraph Function WarningMessageCheck>;
 L10033:        this->UpdateWarningWidget();
 L10047:        goto ExecutionFlow.Pop();
 L10048:        if (!this->DelayActive) goto L10285;
-L10062:        bool mbool34 = Not_PreBool(this->mIsHolding);
+L10062:        bool mbool34 = !this->mIsHolding;
 L10091:        if (!mbool34) goto ExecutionFlow.Pop();
 L10101:        this->mIsHolding = true;
-L10112:        float mfloat22 = Divide_FloatFloat(1, this->DelayTime);
+L10112:        float mfloat22 = 1 / this->DelayTime;
 L10154:        UMGSequencePlayer* mUMGSequencePlayer5 = this->PlayAnimation(this->LEDAnim, 0, 1, 0, mfloat22);
 L10204:        KismetSystemLibrary->Delay(this, this->DelayTime, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 3610, UUID = 1202827613, ExecutionFunction = "ExecuteUbergraph_Widget_ManualManufacturing", CallbackTarget = this));
 L10284:        goto ExecutionFlow.Pop();
 L10285:        this->StartProducing(mfloat23);
 L10308:        goto ExecutionFlow.Pop();
 L10309:        PlayerController* mPlayerController10 = this->GetOwningPlayer();
-L10333:        AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEvent(Play_UI_OverClock_Tick, mPlayerController10, true);
+L10333:        AkComponent* mAkComponent7 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/Overclocking/Play_UI_OverClock_Tick.Play_UI_OverClock_Tick), mPlayerController10, true);
 L10394:        goto ExecutionFlow.Pop();
+L10395:        // <Begin Inlined EventGraph Function PlayLEDSound>;
 L10395:        goto L10309;
+L10400:        // <Begin Inlined EventGraph Function ShowAddedToInventory>;
 L10400:        this->StopAnimation(this->HideAddedToInventory);
-L10419:        TArray<ItemAmount> mTArray<ItemAmount> = FGRecipe->GetProducts(this->mCurrentRecipe, false);
-L10479:        int32 mint325 = Add_IntInt(this->AddedToInventoryBuffer, mTArray<ItemAmount>[0].amount);
+L10419:        TArray<ItemAmount> mTArrayItemAmount = FGRecipe->GetProducts(this->mCurrentRecipe, false);
+L10479:        int32 mint325 = this->AddedToInventoryBuffer + mTArrayItemAmount[0].amount;
 L10540:        this->AddedToInventoryBuffer = mint325;
 L10567:        mFormatArgumentData.ArgumentName = "Amount";
 L10602:        mFormatArgumentData.ArgumentValueType = 0;
@@ -1423,36 +1483,38 @@ L10631:        mFormatArgumentData.ArgumentValue = ;
 L10660:        mFormatArgumentData.ArgumentValueInt = this->AddedToInventoryBuffer;
 L10696:        mFormatArgumentData.ArgumentValueFloat = 0;
 L10728:        mFormatArgumentData.ArgumentValueGender = 0;
-L10757:        mTArray<ItemAmount> = FGRecipe->GetProducts(this->mCurrentRecipe, false);
-L10817:        FText mFText = FGItemDescriptor->GetItemName(mTArray<ItemAmount>[0].ItemClass);
+L10757:        mTArrayItemAmount = FGRecipe->GetProducts(this->mCurrentRecipe, false);
+L10817:        FText mFText = FGItemDescriptor->GetItemName(mTArrayItemAmount[0].ItemClass);
 L10891:        mFormatArgumentData1.ArgumentName = "Name";
 L10924:        mFormatArgumentData1.ArgumentValueType = 4;
 L10953:        mFormatArgumentData1.ArgumentValue = mFText;
 L10989:        mFormatArgumentData1.ArgumentValueInt = 0;
 L11021:        mFormatArgumentData1.ArgumentValueFloat = 0;
 L11053:        mFormatArgumentData1.ArgumentValueGender = 0;
-L11082:        TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData, mFormatArgumentData1];
-L11111:        FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L11082:        TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData, mFormatArgumentData1];
+L11111:        FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L11226:        this->mAddedToInventoryText->SetText(mFText1);
 L11271:        Pawn* mPawn7 = this->GetOwningPlayerPawn();
-L11291:        TArray<ItemAmount> mTArray<ItemAmount>1 = FGRecipe->GetProducts(this->mCurrentRecipe, false);
-L11351:        HUDHelpers->GetNumItemsFromPlayerInventory(mPawn7, mTArray<ItemAmount>1[0].ItemClass, this, [ref] mint326);
+L11291:        TArray<ItemAmount> mTArrayItemAmount1 = FGRecipe->GetProducts(this->mCurrentRecipe, false);
+L11351:        HUDHelpers->GetNumItemsFromPlayerInventory(mPawn7, mTArrayItemAmount1[0].ItemClass, this, [ref] mint326);
 L11430:        mFormatArgumentData2.ArgumentName = "TotalAmount";
 L11470:        mFormatArgumentData2.ArgumentValueType = 0;
 L11499:        mFormatArgumentData2.ArgumentValue = ;
 L11528:        mFormatArgumentData2.ArgumentValueInt = mint326;
 L11564:        mFormatArgumentData2.ArgumentValueFloat = 0;
 L11596:        mFormatArgumentData2.ArgumentValueGender = 0;
-L11625:        TArray<FormatArgumentData> mTArray<FormatArgumentData>1 = [mFormatArgumentData2];
-L11645:        FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>1);
+L11625:        TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [mFormatArgumentData2];
+L11645:        FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
 L11765:        this->mTotalInInventoryText->SetText(mFText2);
 L11810:        this->mAddedToInventoryBox->SetRenderOpacity(1);
 L11847:        KismetSystemLibrary->RetriggerableDelay(this, 1, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 3632, UUID = 1587283515, ExecutionFunction = "ExecuteUbergraph_Widget_ManualManufacturing", CallbackTarget = this));
 L11923:        goto ExecutionFlow.Pop();
+L11924:        // <Begin Inlined EventGraph Function HideAddedToInventoryEvent>;
 L11924:        this->AddedToInventoryBuffer = 0;
 L11947:        this->mAddedToInventoryBox->SetRenderOpacity(0);
 L11984:        goto ExecutionFlow.Pop();
-L11985:        bool mbool35 = Not_PreBool(this->mOnlyShowAffordableCheckbox->mIsChecked);
+L11985:        // <Begin Inlined EventGraph Function BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature>;
+L11985:        bool mbool35 = !this->mOnlyShowAffordableCheckbox->mIsChecked;
 L12036:        this->mOnlyShowAffordableCheckbox->SetChecked(mbool35, false, [ref] mbool36);
 L12091:        this->ShowOnlyAffordableRecipes(mbool36);
 L12114:        goto L4119;
@@ -1466,6 +1528,7 @@ L12329:        goto ExecutionFlow.Pop();
 L12330:        this->OnSearchCreateResults(mFText4);
 L12353:        this->ShowOnlyAffordableRecipes(this->mOnlyShowAffordableCheckbox->mIsChecked);
 L12398:        goto ExecutionFlow.Pop();
+L12399:        // <Begin Inlined EventGraph Function InitOnlyShowAffordable>;
 L12399:        ExecutionFlow.Push(L12409);
 L12404:        goto L4403;
 L12409:        PlayerController* mPlayerController11 = this->GetOwningPlayer();
@@ -1473,7 +1536,7 @@ L12433:        FGPlayerState* mFGPlayerState1 = Cast<Class /Script/FactoryGame.F
 L12491:        bool mbool40 = mFGPlayerState1;
 L12520:        if (!mbool40) goto ExecutionFlow.Pop();
 L12530:        bool mbool41 = mFGPlayerState1->GetOnlyShowAffordableRecipes();
-L12572:        bool mbool42 = NotEqual_BoolBool(this->mOnlyShowAffordableCheckbox->mIsChecked, mbool41);
+L12572:        bool mbool42 = this->mOnlyShowAffordableCheckbox->mIsChecked != mbool41;
 L12632:        if (!mbool42) goto ExecutionFlow.Pop();
 L12642:        mbool41 = mFGPlayerState1->GetOnlyShowAffordableRecipes();
 L12684:        this->mOnlyShowAffordableCheckbox->SetChecked(mbool41, true, [ref] mbool43);

@@ -8,7 +8,7 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/B
 
 ============ BEGIN FUNCTION OnClicked ==============
 L0:            this->GetButtonState([ref] muint8);
-L23:           bool mbool = EqualEqual_ByteByte(muint8, 0);
+L23:           bool mbool = muint8 == 0;
 L54:           if (!mbool) goto L156;
 L68:           this->OnShopItemClicked->ProcessMulticastDelegate(this->FGSchematic);
 L96:           this->UpdateButtonState();
@@ -23,16 +23,16 @@ L110:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this-
 L0:            bool mbool = FGSchematic->IsRepeatPurchasesAllowed(this->FGSchematic);
 L51:           if (!mbool) goto L90;
 L65:           uint8 State = 0;
-L85:           <End of Inlined Event Graph Function>;
+L85:           // <End Inlined EventGraph Function>;
 L90:           if (!this->mIsAddedToCart) goto L129;
 L104:          State = 1;
-L124:          <End of Inlined Event Graph Function>;
+L124:          // <End Inlined EventGraph Function>;
 L129:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L153:          FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
 L204:          bool mbool1 = mFGSchematicManager->IsSchematicPurchased(this->FGSchematic);
 L255:          if (!mbool1) goto L294;
 L269:          State = 2;
-L289:          <End of Inlined Event Graph Function>;
+L289:          // <End Inlined EventGraph Function>;
 L294:          State = 0;
 ============ END FUNCTION GetButtonState ==============
 
@@ -42,7 +42,7 @@ L294:          State = 0;
 
 ============ BEGIN FUNCTION OpenTooltipMenu ==============
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
-L24:           BPW_ResourceSink_InfoBox* mBPW_ResourceSink_InfoBox = WidgetBlueprintLibrary->Create(this, BPW_ResourceSink_InfoBox, mPlayerController);
+L24:           BPW_ResourceSink_InfoBox* mBPW_ResourceSink_InfoBox = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/ResourceSinkShop/UI/BPW_ResourceSink_InfoBox.BPW_ResourceSink_InfoBox_C), mPlayerController);
 L85:           KismetSystemLibrary->SetClassPropertyByName(mBPW_ResourceSink_InfoBox, "mHoveredSchematic", this->FGSchematic);
 L148:          this->mTooltipWidget = mBPW_ResourceSink_InfoBox;
 L167:          this->mTooltipWidget->UpdateTooltipInfo(this->FGSchematic);
@@ -56,24 +56,24 @@ L212:          Widget* ReturnValue = this->mTooltipWidget;
 ============ BEGIN FUNCTION UpdateButtonState ==============
 L0:            uint8 NewLocalVar_0 = 0;
 L20:           this->GetButtonState([ref] muint8);
-L43:           bool mbool = NotEqual_ByteByte(muint8, 0);
+L43:           bool mbool = muint8 != 0;
 L74:           if (!mbool) goto L183;
-L88:           mbool = NotEqual_ByteByte(muint8, 1);
+L88:           mbool = muint8 != 1;
 L119:          if (!mbool) goto L406;
-L133:          mbool = NotEqual_ByteByte(muint8, 2);
+L133:          mbool = muint8 != 2;
 L164:          if (!mbool) goto L669;
-L178:          <End of Inlined Event Graph Function>;
+L178:          // <End Inlined EventGraph Function>;
 L183:          this->mAddToCart_Button->SetVisibility(0);
 L221:          this->mUnavailableText->SetVisibility(2);
 L259:          MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mRetainerBox->GetEffectMaterial();
 L301:          mMaterialInstanceDynamic->SetScalarParameterValue("amount", 0);
 L351:          this->GetButtonState([ref] muint81);
 L374:          this->mOldState = muint81;
-L401:          <End of Inlined Event Graph Function>;
+L401:          // <End Inlined EventGraph Function>;
 L406:          this->mUnavailableText->SetVisibility(0);
 L444:          this->mUnavailableText->SetText("[object Object]");
 L535:          this->mAddToCart_Button->SetVisibility(2);
-L573:          bool mbool1 = EqualEqual_ByteByte(this->mOldState, 0);
+L573:          bool mbool1 = this->mOldState == 0;
 L604:          if (!mbool1) goto L1026;
 L618:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->OnHoverAnim, 0, 1, 1, 1);
 L664:          goto L351;
@@ -82,7 +82,7 @@ L707:          this->mUnavailableText->SetVisibility(0);
 L745:          this->mUnavailableText->SetText("[object Object]");
 L838:          MaterialInstanceDynamic* mMaterialInstanceDynamic1 = this->mRetainerBox->GetEffectMaterial();
 L880:          mMaterialInstanceDynamic1->SetScalarParameterValue("amount", 1);
-L930:          bool mbool2 = EqualEqual_ByteByte(this->mOldState, 0);
+L930:          bool mbool2 = this->mOldState == 0;
 L961:          if (!mbool2) goto L1026;
 L975:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->OnHoverAnim, 0, 1, 1, 1);
 L1021:         goto L351;
@@ -101,8 +101,8 @@ L160:          mFormatArgumentData.ArgumentValue = this->mItemCostText;
 L196:          mFormatArgumentData.ArgumentValueInt = 0;
 L228:          mFormatArgumentData.ArgumentValueFloat = 0;
 L260:          mFormatArgumentData.ArgumentValueGender = 0;
-L289:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L309:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L289:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L309:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L416:          this->mSchematicCostText->SetText(mFText1);
 ============ END FUNCTION GetItemCost ==============
 
@@ -144,7 +144,9 @@ L210:          this->mShopItemName->SetText(mFText1);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(77);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_ResourceSinkShop_Item, from label L77;
 ============ END FUNCTION Construct ==============
 
 
@@ -152,7 +154,9 @@ L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(77);
 
 
 ============ BEGIN FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(215);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_ResourceSinkShop_Item, from label L215;
 ============ END FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -160,7 +164,9 @@ L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(215);
 
 
 ============ BEGIN FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(234);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_ResourceSinkShop_Item, from label L234;
 ============ END FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -168,7 +174,9 @@ L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(234);
 
 
 ============ BEGIN FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(351);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_ResourceSinkShop_Item, from label L351;
 ============ END FUNCTION BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -176,7 +184,9 @@ L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(351);
 
 
 ============ BEGIN FUNCTION SimulateOnHovered ==============
-L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(538);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: SimulateOnHovered;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_ResourceSinkShop_Item, from label L538;
 ============ END FUNCTION SimulateOnHovered ==============
 
 
@@ -184,7 +194,9 @@ L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(538);
 
 
 ============ BEGIN FUNCTION SimulateOnUnhovered ==============
-L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(554);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: SimulateOnUnhovered;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_ResourceSinkShop_Item, from label L554;
 ============ END FUNCTION SimulateOnUnhovered ==============
 
 
@@ -192,7 +204,9 @@ L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(554);
 
 
 ============ BEGIN FUNCTION BndEvt__mAddToCart_Button_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_BPW_ResourceSinkShop_Item(570);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mAddToCart_Button_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_ResourceSinkShop_Item, from label L570;
 ============ END FUNCTION BndEvt__mAddToCart_Button_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -204,31 +218,38 @@ L10:           this->GetItemIcon();
 L24:           this->GetItemCost(this->mSchematicCost);
 L47:           this->bIsFocusable = true;
 L58:           this->UpdateButtonState();
-L72:           <End of Inlined Event Graph Function>;
+L72:           // <End Inlined EventGraph Function>;
+L77:           // <Begin Inlined EventGraph Function Construct>;
 L77:           this->GetItemName();
 L91:           goto L10;
 L96:           this->GetButtonState([ref] muint8);
-L119:          bool mbool = EqualEqual_ByteByte(muint8, 0);
+L119:          bool mbool = muint8 == 0;
 L150:          if (!mbool) goto L584;
 L164:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->OnHoverAnim, 0, 1, 0, 1);
-L210:          <End of Inlined Event Graph Function>;
+L210:          // <End Inlined EventGraph Function>;
+L215:          // <Begin Inlined EventGraph Function BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature>;
 L215:          this->OnClicked();
-L229:          <End of Inlined Event Graph Function>;
+L229:          // <End Inlined EventGraph Function>;
+L234:          // <Begin Inlined EventGraph Function BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature>;
 L234:          this->OnShopItemHovered->ProcessMulticastDelegate(this->FGSchematic, this);
 L277:          this->Widget_AutoScrollingContainer->StartAutoScroll();
 L313:          this->mTooltipMenuAnchor->Open(false);
 L346:          goto L96;
+L351:          // <Begin Inlined EventGraph Function BndEvt__mShopItemButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature>;
 L351:          this->Widget_AutoScrollingContainer->StopAutoScroll();
 L387:          this->mTooltipMenuAnchor->Close();
 L419:          this->GetButtonState([ref] muint81);
-L442:          bool mbool1 = EqualEqual_ByteByte(muint81, 0);
+L442:          bool mbool1 = muint81 == 0;
 L473:          if (!mbool1) goto L584;
 L487:          UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->OnHoverAnim, 0, 1, 1, 1);
-L533:          <End of Inlined Event Graph Function>;
+L533:          // <End Inlined EventGraph Function>;
+L538:          // <Begin Inlined EventGraph Function SimulateOnHovered>;
 L538:          this->mForceHover = true;
 L549:          goto L234;
+L554:          // <Begin Inlined EventGraph Function SimulateOnUnhovered>;
 L554:          this->mForceHover = false;
 L565:          goto L351;
+L570:          // <Begin Inlined EventGraph Function BndEvt__mAddToCart_Button_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature>;
 L570:          this->OnClicked();
 ============ END FUNCTION ExecuteUbergraph_BPW_ResourceSinkShop_Item ==============
 

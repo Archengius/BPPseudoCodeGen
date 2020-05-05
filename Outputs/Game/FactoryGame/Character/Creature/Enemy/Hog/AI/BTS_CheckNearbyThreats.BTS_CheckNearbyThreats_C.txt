@@ -7,10 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/Hog/AI/BTS_Che
 
 
 ============ BEGIN FUNCTION ReceiveTickAI ==============
-L0:            PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/AI/BTS_CheckNearbyThreats.BTS_CheckNearbyThreats_C:ExecuteUbergraph_BTS_CheckNearbyThreats.K2Node_Event_OwnerController) = OwnerController;
-L18:           PERSISTENT_FRAME(ObjectProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/AI/BTS_CheckNearbyThreats.BTS_CheckNearbyThreats_C:ExecuteUbergraph_BTS_CheckNearbyThreats.K2Node_Event_ControlledPawn) = ControlledPawn;
-L36:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Character/Creature/Enemy/Hog/AI/BTS_CheckNearbyThreats.BTS_CheckNearbyThreats_C:ExecuteUbergraph_BTS_CheckNearbyThreats.K2Node_Event_DeltaSeconds) = DeltaSeconds;
-L54:           this->ExecuteUbergraph_BTS_CheckNearbyThreats(10);
+L54:           // EventGraph implemented function stub;
+L54:           // Function Name: ReceiveTickAI;
+L54:           // Implementation: Function ExecuteUbergraph_BTS_CheckNearbyThreats, from label L10;
 ============ END FUNCTION ReceiveTickAI ==============
 
 
@@ -25,18 +24,18 @@ L89:           this->localHogPawn = mChar_Hog;
 L108:          Controller_HogCharge* mController_HogCharge = Cast<BlueprintGeneratedClass /Game/FactoryGame/Character/Creature/Enemy/Hog/Controller_HogCharge.Controller_HogCharge_C>(mAIController);
 L144:          bool mbool1 = mController_HogCharge;
 L173:          if (!mbool1) goto L784;
-L187:          TScriptInterface<FGAggroTargetInterface> mTScriptInterface<FGAggroTargetInterface> = mController_HogCharge->GetMostDesirableAggroTarget();
-L237:          float mfloat = mController_HogCharge->GetTargetingDesire(mTScriptInterface<FGAggroTargetInterface>);
-L296:          bool mbool2 = Greater_FloatFloat(mfloat, 0.699999988079071);
+L187:          TScriptInterface<FGAggroTargetInterface> mTScriptInterfaceFGAggroTargetInterface = mController_HogCharge->GetMostDesirableAggroTarget();
+L237:          float mfloat = mController_HogCharge->GetTargetingDesire(mTScriptInterfaceFGAggroTargetInterface);
+L296:          bool mbool2 = mfloat > 0.699999988079071;
 L330:          BTFunctionLibrary->SetBlackboardValueAsBool(this, [ref] this->ThreatNearbyBBkey, mbool2);
-L381:          mTScriptInterface<FGAggroTargetInterface> = mController_HogCharge->GetMostDesirableAggroTarget();
-L431:          Object* mObject = KismetSystemLibrary->Conv_InterfaceToObject([ref] mTScriptInterface<FGAggroTargetInterface>);
+L381:          mTScriptInterfaceFGAggroTargetInterface = mController_HogCharge->GetMostDesirableAggroTarget();
+L431:          Object* mObject = KismetSystemLibrary->Conv_InterfaceToObject([ref] mTScriptInterfaceFGAggroTargetInterface);
 L482:          BTFunctionLibrary->SetBlackboardValueAsObject(this, [ref] this->NearbyActorBBKey, mObject);
-L533:          mbool2 = Greater_FloatFloat(mfloat, 0.699999988079071);
-L567:          bool mbool3 = NotEqual_BoolBool(mbool2, this->localHogPawn->mIsThreatened);
+L533:          mbool2 = mfloat > 0.699999988079071;
+L567:          bool mbool3 = mbool2 != this->localHogPawn->mIsThreatened;
 L627:          if (!mbool3) goto L784;
 L641:          this->localHogPawn->FlushNetDormancy();
-L673:          mbool2 = Greater_FloatFloat(mfloat, 0.699999988079071);
+L673:          mbool2 = mfloat > 0.699999988079071;
 L707:          this->localHogPawn->mIsThreatened = mbool2;
 L748:          this->localHogPawn->OnRep_mIsThreatened();
 ============ END FUNCTION ExecuteUbergraph_BTS_CheckNearbyThreats ==============

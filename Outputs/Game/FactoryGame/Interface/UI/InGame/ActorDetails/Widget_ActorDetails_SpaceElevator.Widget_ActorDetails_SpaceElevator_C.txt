@@ -11,31 +11,31 @@ L0:            ExecutionFlow.Push(L1249);
 L5:            GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
 L48:           FGGamePhaseManager* mFGGamePhaseManager = FGGamePhaseManager->Get(mGameStateBase);
 L99:           uint8 muint8 = mFGGamePhaseManager->GetGamePhase();
-L149:          uint8 muint81 = Add_ByteByte(muint8, 1);
-L188:          uint8 muint82 = KismetNodeHelperLibrary->GetValidValue(EGamePhase, muint81);
+L149:          uint8 muint81 = muint8 + 1;
+L188:          uint8 muint82 = KismetNodeHelperLibrary->GetValidValue(ObjectConst(Enum /Script/FactoryGame.EGamePhase), muint81);
 L256:          mFGGamePhaseManager->GetBaseCostForGamePhase(muint82, [ref] PhaseCost);
 L306:          GameStateBase* mGameStateBase1 = GameplayStatics->GetGameState(this);
 L349:          FGGamePhaseManager* mFGGamePhaseManager1 = FGGamePhaseManager->Get(mGameStateBase1);
 L400:          uint8 muint83 = mFGGamePhaseManager1->GetGamePhase();
-L450:          uint8 muint84 = Add_ByteByte(muint83, 1);
-L489:          uint8 muint85 = KismetNodeHelperLibrary->GetValidValue(EGamePhase, muint84);
+L450:          uint8 muint84 = muint83 + 1;
+L489:          uint8 muint85 = KismetNodeHelperLibrary->GetValidValue(ObjectConst(Enum /Script/FactoryGame.EGamePhase), muint84);
 L557:          mFGGamePhaseManager1->GetCostForGamePhase(muint85, [ref] PaidCost);
 L607:          int32 Temp_int_Loop_Counter_Variable = 0;
 L630:          int32 Temp_int_Array_Index_Variable = 0;
 L653:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] PhaseCost);
-L712:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L712:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L750:          if (!mbool) goto ExecutionFlow.Pop();
 L760:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L787:          ExecutionFlow.Push(L1175);
 L792:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L816:          Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, Widget_CostSlotWrapper, mPlayerController);
+L816:          Widget_CostSlotWrapper* mWidget_CostSlotWrapper = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_CostSlotWrapper.Widget_CostSlotWrapper_C), mPlayerController);
 L877:          KismetArrayLibrary->Array_Get([ref] PaidCost, Temp_int_Array_Index_Variable, [ref] mItemAmount);
 L936:          KismetArrayLibrary->Array_Get([ref] PhaseCost, Temp_int_Array_Index_Variable, [ref] mItemAmount1);
-L995:          int32 mint321 = Subtract_IntInt(mItemAmount1.amount, mItemAmount.amount);
+L995:          int32 mint321 = mItemAmount1.amount - mItemAmount.amount;
 L1059:         mWidget_CostSlotWrapper->Setup CostIcon(nullptr, mItemAmount1, nullptr, 0, mint321, true, false, false);
 L1123:         PanelSlot* mPanelSlot = this->mCostSlotContainer->AddChild(mWidget_CostSlotWrapper);
 L1174:         goto ExecutionFlow.Pop();
-L1175:         int32 mint322 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L1175:         int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
 L1217:         Temp_int_Loop_Counter_Variable = mint322;
 L1244:         goto L653;
 ============ END FUNCTION SetupInventory ==============
@@ -45,7 +45,9 @@ L1244:         goto L653;
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_ActorDetails_SpaceElevator(214);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ActorDetails_SpaceElevator, from label L214;
 ============ END FUNCTION Construct ==============
 
 
@@ -53,7 +55,9 @@ L0:            this->ExecuteUbergraph_Widget_ActorDetails_SpaceElevator(214);
 
 
 ============ BEGIN FUNCTION InitCostSlots ==============
-L0:            this->ExecuteUbergraph_Widget_ActorDetails_SpaceElevator(1461);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: InitCostSlots;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ActorDetails_SpaceElevator, from label L1461;
 ============ END FUNCTION InitCostSlots ==============
 
 
@@ -69,6 +73,7 @@ L122:          this->SetupInventory();
 L136:          goto ExecutionFlow.Pop();
 L137:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 1308914589, ExecutionFunction = "ExecuteUbergraph_Widget_ActorDetails_SpaceElevator", CallbackTarget = this));
 L213:          goto ExecutionFlow.Pop();
+L214:          // <Begin Inlined EventGraph Function Construct>;
 L214:          this->Construct();
 L224:          this->Widget_ActorDetails_Container->SetShowPointer(this->ShowPointer);
 L269:          FGBuildableSpaceElevator* mFGBuildableSpaceElevator = Cast<Class /Script/FactoryGame.FGBuildableSpaceElevator>(this->mActor);
@@ -81,13 +86,13 @@ L467:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(thi
 L510:          FGGamePhaseManager* mFGGamePhaseManager = FGGamePhaseManager->Get(mGameStateBase);
 L561:          this->mGamePhaseManager = mFGGamePhaseManager;
 L580:          uint8 muint8 = this->mGamePhaseManager->GetGamePhase();
-L630:          uint8 muint81 = Add_ByteByte(muint8, 1);
-L669:          uint8 muint82 = KismetNodeHelperLibrary->GetValidValue(EGamePhase, muint81);
+L630:          uint8 muint81 = muint8 + 1;
+L669:          uint8 muint82 = KismetNodeHelperLibrary->GetValidValue(ObjectConst(Enum /Script/FactoryGame.EGamePhase), muint81);
 L737:          FText mFText = this->mGamePhaseManager->GetGamePhaseName(muint82);
 L796:          this->mPhaseName->SetText(mFText);
 L841:          uint8 muint83 = this->mGamePhaseManager->GetGamePhase();
-L891:          uint8 muint84 = Add_ByteByte(muint83, 1);
-L930:          uint8 muint85 = KismetNodeHelperLibrary->GetValidValue(EGamePhase, muint84);
+L891:          uint8 muint84 = muint83 + 1;
+L930:          uint8 muint85 = KismetNodeHelperLibrary->GetValidValue(ObjectConst(Enum /Script/FactoryGame.EGamePhase), muint84);
 L998:          FText mFText1 = KismetTextLibrary->Conv_ByteToText(muint85);
 L1057:         mFormatArgumentData.ArgumentName = "PhaseInt";
 L1094:         mFormatArgumentData.ArgumentValueType = 4;
@@ -95,9 +100,10 @@ L1123:         mFormatArgumentData.ArgumentValue = mFText1;
 L1159:         mFormatArgumentData.ArgumentValueInt = 0;
 L1191:         mFormatArgumentData.ArgumentValueFloat = 0;
 L1223:         mFormatArgumentData.ArgumentValueGender = 0;
-L1252:         TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData];
-L1272:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L1252:         TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L1272:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L1415:         this->mSpaceElevatorPhaseInt->SetText(mFText2);
 L1460:         goto ExecutionFlow.Pop();
+L1461:         // <Begin Inlined EventGraph Function InitCostSlots>;
 L1461:         goto L15;
 ============ END FUNCTION ExecuteUbergraph_Widget_ActorDetails_SpaceElevator ==============

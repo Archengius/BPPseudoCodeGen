@@ -19,7 +19,9 @@ L127:          PlayerController* PlayerController = mPlayerController;
 
 
 ============ BEGIN FUNCTION WasEquipped ==============
-L0:            this->ExecuteUbergraph_BP_BuildGun(974);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_BP_BuildGun, from label L974;
 ============ END FUNCTION WasEquipped ==============
 
 
@@ -27,7 +29,9 @@ L0:            this->ExecuteUbergraph_BP_BuildGun(974);
 
 
 ============ BEGIN FUNCTION WasUnEquipped ==============
-L0:            this->ExecuteUbergraph_BP_BuildGun(989);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: WasUnEquipped;
+L0:            // Implementation: Function ExecuteUbergraph_BP_BuildGun, from label L989;
 ============ END FUNCTION WasUnEquipped ==============
 
 
@@ -43,7 +47,7 @@ L88:           FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharac
 L108:          bool mbool = FGBlueprintFunctionLibrary->IsLocallyHumanControlled(mFGCharacterPlayer);
 L159:          if (!mbool) goto ExecutionFlow.Pop();
 L169:          PlayerController* mPlayerController = GameplayStatics->GetPlayerController(this, 0);
-L217:          Widget_BuildGunDelay* mWidget_BuildGunDelay = WidgetBlueprintLibrary->Create(this, Widget_BuildGunDelay, mPlayerController);
+L217:          Widget_BuildGunDelay* mWidget_BuildGunDelay = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_BuildGunDelay.Widget_BuildGunDelay_C), mPlayerController);
 L278:          mWidget_BuildGunDelay->AddToViewport(0);
 L315:          this->ActionDelayWidget = mWidget_BuildGunDelay;
 L334:          bool mbool1 = KismetSystemLibrary->IsValid(this->ActionDelayWidget);
@@ -58,14 +62,16 @@ L588:          if (!mbool2) goto L15;
 L602:          mFGCharacterPlayer1 = this->GetInstigatorCharacter();
 L622:          mSkeletalMeshComponent = mFGCharacterPlayer1->GetMesh1P();
 L664:          mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
-L706:          float mfloat = mAnimInstance->Montage_Play(BuildgunEquip_01_Montage, 1, 1, 0, true);
+L706:          float mfloat = mAnimInstance->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/BuildgunEquip_01_Montage.BuildgunEquip_01_Montage), 1, 1, 0, true);
 L778:          KismetSystemLibrary->Delay(this, mfloat, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -2131797795, ExecutionFunction = "ExecuteUbergraph_BP_BuildGun", CallbackTarget = this));
 L858:          goto ExecutionFlow.Pop();
 L859:          AnimInstance* mAnimInstance1 = this->BuildGun_Skl_01->GetAnimInstance();
-L901:          float mfloat1 = mAnimInstance1->Montage_Play(BuildgunEquip_01_Montage, 1, 0, 0, true);
+L901:          float mfloat1 = mAnimInstance1->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Equipment/BuildGun/Animation/BuildgunEquip_01_Montage.BuildgunEquip_01_Montage), 1, 0, 0, true);
 L973:          goto ExecutionFlow.Pop();
+L974:          // <Begin Inlined EventGraph Function WasEquipped>;
 L974:          this->WasEquipped();
 L984:          goto L88;
+L989:          // <Begin Inlined EventGraph Function WasUnEquipped>;
 L989:          this->WasUnEquipped();
 L999:          FGCharacterPlayer* mFGCharacterPlayer2 = this->GetInstigatorCharacter();
 L1019:         SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
@@ -79,7 +85,7 @@ L1281:         if (!mbool4) goto L1445;
 L1295:         mFGCharacterPlayer2 = this->GetInstigatorCharacter();
 L1315:         mSkeletalMeshComponent1 = mFGCharacterPlayer2->GetMesh1P();
 L1357:         mAnimInstance2 = mSkeletalMeshComponent1->GetAnimInstance();
-L1399:         mAnimInstance2->Montage_Stop(0, BuildgunEquip_01_Montage);
+L1399:         mAnimInstance2->Montage_Stop(0, ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/BuildgunEquip_01_Montage.BuildgunEquip_01_Montage));
 L1445:         bool mbool5 = KismetSystemLibrary->IsValid(this->ActionDelayWidget);
 L1496:         if (!mbool5) goto ExecutionFlow.Pop();
 L1506:         this->ActionDelayWidget->RemoveFromParent();

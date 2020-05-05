@@ -26,7 +26,7 @@ L55:           SlateColor ReturnValue = mSlateColor;
 
 ============ BEGIN FUNCTION GetCostVisibility ==============
 L0:            int32 mint32 = this->Widget_TradingPostSchematicCostInfo->mCostGrid->GetChildrenCount();
-L72:           bool mbool = Greater_IntInt(mint32, 0);
+L72:           bool mbool = mint32 > 0;
 L106:          if (!mbool) goto L145;
 L120:          uint8 ReturnValue = 0;
 L140:          goto L165;
@@ -39,7 +39,7 @@ L145:          ReturnValue = 1;
 
 ============ BEGIN FUNCTION GetRewardsVisibility ==============
 L0:            int32 mint32 = this->mRecipesGrid->GetChildrenCount();
-L50:           bool mbool = Greater_IntInt(mint32, 0);
+L50:           bool mbool = mint32 > 0;
 L84:           if (!mbool) goto L123;
 L98:           uint8 ReturnValue = 0;
 L118:          goto L143;
@@ -78,7 +78,7 @@ L0:            ExecutionFlow.Push(L933);
 L5:            int32 Temp_int_Loop_Counter_Variable = 0;
 L28:           int32 Temp_int_Array_Index_Variable = 0;
 L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mAllRewardItems);
-L110:          bool mbool = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L110:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L148:          if (!mbool) goto L844;
 L162:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L189:          ExecutionFlow.Push(L859);
@@ -89,21 +89,21 @@ L318:          mWidget_SchematicRewardItem->IsValidRewardItem([ref] mbool2);
 L363:          if (!mbool2) goto ExecutionFlow.Pop();
 L373:          KismetArrayLibrary->Array_Get([ref] this->mAllRewardItems, Temp_int_Array_Index_Variable, [ref] mUserWidget);
 L432:          UniformGridSlot* mUniformGridSlot = this->mRecipesGrid->AddChildToUniformGrid(mUserWidget);
-L483:          int32 mint321 = Divide_IntInt(LocalIndex, 5);
+L483:          int32 mint321 = LocalIndex / 5;
 L525:          mUniformGridSlot->SetRow(mint321);
-L566:          int32 mint322 = Percent_IntInt(LocalIndex, 5);
+L566:          int32 mint322 = LocalIndex % 5;
 L608:          mUniformGridSlot->SetColumn(mint322);
-L649:          int32 mint323 = Add_IntInt(LocalIndex, 1);
+L649:          int32 mint323 = LocalIndex + 1;
 L691:          int32 Temp_int_Variable1 = mint323;
 L718:          int32 LocalIndex = Temp_int_Variable1;
 L745:          if (!true) goto ExecutionFlow.Pop();
-L747:          int32 mint324 = Add_IntInt(localRow, 1);
+L747:          int32 mint324 = localRow + 1;
 L789:          int32 Temp_int_Variable = mint324;
 L816:          int32 localRow = Temp_int_Variable;
 L843:          goto ExecutionFlow.Pop();
 L844:          this->AnimateRewards();
 L858:          goto ExecutionFlow.Pop();
-L859:          int32 mint325 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L859:          int32 mint325 = Temp_int_Loop_Counter_Variable + 1;
 L901:          Temp_int_Loop_Counter_Variable = mint325;
 L928:          goto L51;
 ============ END FUNCTION PositionRewards ==============
@@ -141,33 +141,33 @@ L5:            bool mbool = KismetSystemLibrary->IsValidClass(mSchematic);
 L56:           PlayerController* mPlayerController = this->GetOwningPlayer();
 L80:           FGSchematicManager* mFGSchematicManager = FGSchematicManager->Get(mPlayerController);
 L131:          bool mbool1 = KismetSystemLibrary->IsValid(mFGSchematicManager);
-L182:          bool mbool2 = BooleanAND(mbool, mbool1);
+L182:          bool mbool2 = mbool && mbool1;
 L220:          if (!mbool2) goto ExecutionFlow.Pop();
 L230:          KismetArrayLibrary->Array_Clear([ref] this->mAllRewardItems);
 L271:          this->mRecipesGrid->ClearChildren();
 L307:          int32 Temp_int_Loop_Counter_Variable = 0;
 L330:          int32 Temp_int_Array_Index_Variable = 0;
-L353:          TArray<FGUnlock*> mTArray<FGUnlock> = FGSchematic->GetUnlocks(mSchematic);
-L412:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArray<FGUnlock>);
-L471:          bool mbool3 = Less_IntInt(Temp_int_Loop_Counter_Variable, mint32);
+L353:          TArray<FGUnlock*> mTArrayFGUnlock = FGSchematic->GetUnlocks(mSchematic);
+L412:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayFGUnlock);
+L471:          bool mbool3 = Temp_int_Loop_Counter_Variable < mint32;
 L509:          if (!mbool3) goto L900;
 L523:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
 L550:          ExecutionFlow.Push(L915);
-L555:          mTArray<FGUnlock> = FGSchematic->GetUnlocks(mSchematic);
-L614:          KismetArrayLibrary->Array_Get([ref] mTArray<FGUnlock>, Temp_int_Array_Index_Variable, [ref] mFGUnlock);
-L673:          TScriptInterface<BPI_UnlockableInterface> mTScriptInterface<BPI_UnlockableInterface> = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Unlocks/BPI_UnlockableInterface.BPI_UnlockableInterface_C>(mFGUnlock);
-L709:          bool mbool4 = mTScriptInterface<BPI_UnlockableInterface>;
+L555:          mTArrayFGUnlock = FGSchematic->GetUnlocks(mSchematic);
+L614:          KismetArrayLibrary->Array_Get([ref] mTArrayFGUnlock, Temp_int_Array_Index_Variable, [ref] mFGUnlock);
+L673:          TScriptInterface<BPI_UnlockableInterface> mTScriptInterfaceBPI_UnlockableInterface = QueryInterface<BlueprintGeneratedClass /Game/FactoryGame/Unlocks/BPI_UnlockableInterface.BPI_UnlockableInterface_C>(mFGUnlock);
+L709:          bool mbool4 = mTScriptInterfaceBPI_UnlockableInterface;
 L738:          if (!mbool4) goto L989;
 L752:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L776:          GetInterfaceUObject(mTScriptInterface<BPI_UnlockableInterface>)->GetUnlockRewardWidgets(mPlayerController1, mSchematic, this->mTradingPostWidget, [ref] mTArray<UserWidget>);
-L849:          KismetArrayLibrary->Array_Append([ref] this->mAllRewardItems, [ref] mTArray<UserWidget>);
+L776:          GetInterfaceUObject(mTScriptInterfaceBPI_UnlockableInterface)->GetUnlockRewardWidgets(mPlayerController1, mSchematic, this->mTradingPostWidget, [ref] mTArrayUserWidget);
+L849:          KismetArrayLibrary->Array_Append([ref] this->mAllRewardItems, [ref] mTArrayUserWidget);
 L899:          goto ExecutionFlow.Pop();
 L900:          this->PositionRewards();
 L914:          goto ExecutionFlow.Pop();
-L915:          int32 mint321 = Add_IntInt(Temp_int_Loop_Counter_Variable, 1);
+L915:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
 L957:          Temp_int_Loop_Counter_Variable = mint321;
 L984:          goto L353;
-L989:          KismetArrayLibrary->Array_Clear([ref] mTArray<UserWidget>);
+L989:          KismetArrayLibrary->Array_Clear([ref] mTArrayUserWidget);
 L1030:         goto L849;
 ============ END FUNCTION SetupSchematicContents ==============
 
@@ -176,16 +176,20 @@ L1030:         goto L849;
 
 
 ============ BEGIN FUNCTION AnimateRewards ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost_RecipePreview(1033);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimateRewards;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost_RecipePreview, from label L1033;
 ============ END FUNCTION AnimateRewards ==============
 
 
 
 
 
-============ BEGIN FUNCTION AnimateCostSlots ==============
-L0:            this->ExecuteUbergraph_Widget_TradingPost_RecipePreview(1066);
-============ END FUNCTION AnimateCostSlots ==============
+============ BEGIN FUNCTION AnimateCostslots ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: AnimateCostslots;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_TradingPost_RecipePreview, from label L1066;
+============ END FUNCTION AnimateCostslots ==============
 
 
 
@@ -193,10 +197,10 @@ L0:            this->ExecuteUbergraph_Widget_TradingPost_RecipePreview(1066);
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_TradingPost_RecipePreview ==============
 L5:            goto ComputedJump(EntryPoint);
-L15:           this->AnimateCostSlots();
+L15:           this->AnimateCostslots();
 L29:           int32 Temp_int_Variable = 0;
 L52:           int32 mint32 = this->mRecipesGrid->GetChildrenCount();
-L102:          bool mbool = LessEqual_IntInt(Temp_int_Variable, mint32);
+L102:          bool mbool = Temp_int_Variable <= mint32;
 L140:          if (!mbool) goto ExecutionFlow.Pop();
 L150:          KismetSystemLibrary->Delay(this, 0.019999999552965164, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 227, UUID = 1773550656, ExecutionFunction = "ExecuteUbergraph_Widget_TradingPost_RecipePreview", CallbackTarget = this));
 L226:          goto ExecutionFlow.Pop();
@@ -207,7 +211,7 @@ L319:          bool mbool1 = mWidget_SchematicRewardItem;
 L348:          if (!mbool1) goto ExecutionFlow.Pop();
 L358:          UMGSequencePlayer* mUMGSequencePlayer = mWidget_SchematicRewardItem->PlayAnimation(mWidget_SchematicRewardItem->FadeAnim, 0, 1, 0, 1);
 L448:          goto ExecutionFlow.Pop();
-L449:          int32 mint321 = Add_IntInt(Temp_int_Variable, 1);
+L449:          int32 mint321 = Temp_int_Variable + 1;
 L491:          Temp_int_Variable = mint321;
 L518:          goto L52;
 L523:          ExecutionFlow.Push(L767);
@@ -217,15 +221,17 @@ L637:          bool mbool2 = mWidget_CostSlotWrapper;
 L666:          if (!mbool2) goto ExecutionFlow.Pop();
 L676:          UMGSequencePlayer* mUMGSequencePlayer1 = mWidget_CostSlotWrapper->PlayAnimation(mWidget_CostSlotWrapper->FadeAnim, 0, 1, 0, 1);
 L766:          goto ExecutionFlow.Pop();
-L767:          int32 mint322 = Add_IntInt(Temp_int_Variable1, 1);
+L767:          int32 mint322 = Temp_int_Variable1 + 1;
 L809:          int32 Temp_int_Variable1 = mint322;
 L836:          int32 mint323 = this->Widget_TradingPostSchematicCostInfo->mCostGrid->GetChildrenCount();
-L908:          bool mbool3 = LessEqual_IntInt(Temp_int_Variable1, mint323);
+L908:          bool mbool3 = Temp_int_Variable1 <= mint323;
 L946:          if (!mbool3) goto ExecutionFlow.Pop();
 L956:          KismetSystemLibrary->Delay(this, 0.019999999552965164, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 523, UUID = -1050853647, ExecutionFunction = "ExecuteUbergraph_Widget_TradingPost_RecipePreview", CallbackTarget = this));
 L1032:         goto ExecutionFlow.Pop();
+L1033:         // <Begin Inlined EventGraph Function AnimateRewards>;
 L1033:         goto L15;
 L1038:         Temp_int_Variable1 = 0;
 L1061:         goto L836;
+L1066:         // <Begin Inlined EventGraph Function AnimateCostslots>;
 L1066:         goto L1038;
 ============ END FUNCTION ExecuteUbergraph_Widget_TradingPost_RecipePreview ==============

@@ -29,10 +29,10 @@ L39:           ReturnValue = 0;
 L0:            PanelWidget* mPanelWidget = this->GetParent();
 L20:           int32 mint32 = mPanelWidget->GetChildIndex(this);
 L71:           bool mbool = this->mSaveRowButton->IsHovered();
-L117:          bool mbool1 = EqualEqual_IntInt(mint32, 0);
-L151:          bool mbool2 = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
-L203:          bool mbool3 = BooleanOR(mbool2, mbool);
-L241:          bool mbool4 = BooleanOR(mbool3, mbool1);
+L117:          bool mbool1 = mint32 == 0;
+L151:          bool mbool2 = this->mSaveList->mSelectedSave == this;
+L203:          bool mbool3 = mbool2 || mbool;
+L241:          bool mbool4 = mbool3 || mbool1;
 L279:          if (!mbool4) goto L318;
 L293:          uint8 ReturnValue = 0;
 L313:          goto L338;
@@ -56,7 +56,7 @@ L115:          EventReply ReturnValue = mEventReply;
 
 ============ BEGIN FUNCTION GetSaveNameTextColor ==============
 L0:            bool mbool = this->mSaveRowButton->IsHovered();
-L46:           bool mbool1 = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
+L46:           bool mbool1 = this->mSaveList->mSelectedSave == this;
 L98:           bool Temp_bool_Variable1 = mbool;
 L117:          bool Temp_bool_Variable = mbool1;
 L136:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
@@ -79,7 +79,7 @@ default -> mSlateColor3;
 
 ============ BEGIN FUNCTION GetTextColor ==============
 L0:            bool mbool = this->mSaveRowButton->IsHovered();
-L46:           bool mbool1 = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
+L46:           bool mbool1 = this->mSaveList->mSelectedSave == this;
 L98:           bool Temp_bool_Variable1 = mbool;
 L117:          bool Temp_bool_Variable = mbool1;
 L136:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mLinearColor);
@@ -105,7 +105,7 @@ L0:            HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mL
 L55:           bool mbool = this->mSaveRowButton->IsHovered();
 L101:          HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor1, [ref] mLinearColor1);
 L156:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor2, [ref] mSlateColor2);
-L211:          bool mbool1 = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
+L211:          bool mbool1 = this->mSaveList->mSelectedSave == this;
 L263:          LinearColor mLinearColor3 = SelectColor(mLinearColor, mLinearColor2, mbool1);
 L318:          LinearColor mLinearColor4 = SelectColor(mLinearColor1, mLinearColor3, mbool);
 L373:          LinearColor ReturnValue = mLinearColor4;
@@ -120,7 +120,7 @@ L0:            HUDHelpers->GetFactoryGameWhite(this, [ref] mSlateColor, [ref] mL
 L55:           HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor1, [ref] mLinearColor1);
 L110:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor2, [ref] mSlateColor2);
 L165:          bool mbool = this->mSaveRowButton->IsHovered();
-L211:          bool mbool1 = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
+L211:          bool mbool1 = this->mSaveList->mSelectedSave == this;
 L263:          LinearColor mLinearColor3 = SelectColor(mLinearColor2, mLinearColor, mbool1);
 L318:          LinearColor mLinearColor4 = SelectColor(mLinearColor1, mLinearColor3, mbool);
 L373:          LinearColor ReturnValue = mLinearColor4;
@@ -137,7 +137,7 @@ L64:           mLinearColor.B = 0;
 L96:           mLinearColor.A = 0;
 L128:          HUDHelpers->GetFactoryGameDarkGray(this, [ref] mSlateColor, [ref] mLinearColor1);
 L183:          HUDHelpers->GetFactoryGameOrange(this, [ref] mLinearColor2, [ref] mSlateColor1);
-L238:          bool mbool = EqualEqual_ObjectObject(this->mSaveList->mSelectedSave, this);
+L238:          bool mbool = this->mSaveList->mSelectedSave == this;
 L290:          bool mbool1 = this->mSaveRowButton->IsHovered();
 L336:          LinearColor mLinearColor3 = SelectColor(mLinearColor1, mLinearColor, mbool);
 L391:          LinearColor mLinearColor4 = SelectColor(mLinearColor2, mLinearColor3, mbool1);
@@ -176,14 +176,14 @@ L104:          goto L1146;
 L109:          int32 mint32 = FGSaveSession->GetPlayDurationSeconds([ref] this->mSaveHeader);
 L168:          Timespan mTimespan = MakeTimespan(0, 0, 0, mint32, 0);
 L225:          BreakTimespan(mTimespan, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324, [ref] mint325);
-L289:          int32 mint326 = Multiply_IntInt(mint321, 24);
+L289:          int32 mint326 = mint321 * 24;
 L331:          mFormatArgumentData.ArgumentName = "sec";
 L363:          mFormatArgumentData.ArgumentValueType = 0;
 L392:          mFormatArgumentData.ArgumentValue = ;
 L421:          mFormatArgumentData.ArgumentValueInt = mint324;
 L457:          mFormatArgumentData.ArgumentValueFloat = 0;
 L489:          mFormatArgumentData.ArgumentValueGender = 0;
-L518:          int32 mint327 = Add_IntInt(mint326, mint322);
+L518:          int32 mint327 = mint326 + mint322;
 L564:          mFormatArgumentData1.ArgumentName = "min";
 L596:          mFormatArgumentData1.ArgumentValueType = 0;
 L625:          mFormatArgumentData1.ArgumentValue = ;
@@ -196,8 +196,8 @@ L814:          mFormatArgumentData2.ArgumentValue = ;
 L843:          mFormatArgumentData2.ArgumentValueInt = mint327;
 L879:          mFormatArgumentData2.ArgumentValueFloat = 0;
 L911:          mFormatArgumentData2.ArgumentValueGender = 0;
-L940:          TArray<FormatArgumentData> mTArray<FormatArgumentData> = [mFormatArgumentData2, mFormatArgumentData1, mFormatArgumentData];
-L978:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArray<FormatArgumentData>);
+L940:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData2, mFormatArgumentData1, mFormatArgumentData];
+L978:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
 L1114:         localText = mFText;
 L1141:         goto L77;
 ============ END FUNCTION GetSaveDuration ==============
@@ -259,7 +259,9 @@ L203:          goto L14;
 
 
 ============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SaveListRow(10);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveListRow, from label L10;
 ============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -267,7 +269,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveListRow(10);
 
 
 ============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SaveListRow(100);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Button_0_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveListRow, from label L100;
 ============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -275,7 +279,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveListRow(100);
 
 
 ============ BEGIN FUNCTION BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SaveListRow(210);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveListRow, from label L210;
 ============ END FUNCTION BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -283,7 +289,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveListRow(210);
 
 
 ============ BEGIN FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SaveListRow(229);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__Button_0_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveListRow, from label L229;
 ============ END FUNCTION BndEvt__Button_0_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature ==============
 
 
@@ -291,9 +299,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveListRow(229);
 
 
 ============ BEGIN FUNCTION OnWorldSave ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveListRow.Widget_SaveListRow_C:ExecuteUbergraph_Widget_SaveListRow.K2Node_CustomEvent_WasSuccessful) = WasSuccessful;
-L18:           PERSISTENT_FRAME(TextProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveListRow.Widget_SaveListRow_C:ExecuteUbergraph_Widget_SaveListRow.K2Node_CustomEvent_errorMessage) = errorMessage;
-L36:           this->ExecuteUbergraph_Widget_SaveListRow(597);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: OnWorldSave;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_SaveListRow, from label L597;
 ============ END FUNCTION OnWorldSave ==============
 
 
@@ -301,7 +309,9 @@ L36:           this->ExecuteUbergraph_Widget_SaveListRow(597);
 
 
 ============ BEGIN FUNCTION ConfirmDeleteSessionPopUp ==============
-L0:            this->ExecuteUbergraph_Widget_SaveListRow(1082);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ConfirmDeleteSessionPopUp;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveListRow, from label L1082;
 ============ END FUNCTION ConfirmDeleteSessionPopUp ==============
 
 
@@ -309,8 +319,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveListRow(1082);
 
 
 ============ BEGIN FUNCTION DeleteSave ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveListRow.Widget_SaveListRow_C:ExecuteUbergraph_Widget_SaveListRow.K2Node_CustomEvent_confirmed) = confirmed;
-L18:           this->ExecuteUbergraph_Widget_SaveListRow(1241);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: DeleteSave;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_SaveListRow, from label L1241;
 ============ END FUNCTION DeleteSave ==============
 
 
@@ -318,7 +329,9 @@ L18:           this->ExecuteUbergraph_Widget_SaveListRow(1241);
 
 
 ============ BEGIN FUNCTION BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
-L0:            this->ExecuteUbergraph_Widget_SaveListRow(1623);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveListRow, from label L1623;
 ============ END FUNCTION BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature ==============
 
 
@@ -326,7 +339,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveListRow(1623);
 
 
 ============ BEGIN FUNCTION Construct ==============
-L0:            this->ExecuteUbergraph_Widget_SaveListRow(1628);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_SaveListRow, from label L1628;
 ============ END FUNCTION Construct ==============
 
 
@@ -334,8 +349,9 @@ L0:            this->ExecuteUbergraph_Widget_SaveListRow(1628);
 
 
 ============ BEGIN FUNCTION OnDeleteSaveDone ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/Menu/Widget_SaveListRow.Widget_SaveListRow_C:ExecuteUbergraph_Widget_SaveListRow.K2Node_CustomEvent_success) = success;
-L18:           this->ExecuteUbergraph_Widget_SaveListRow(1961);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnDeleteSaveDone;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_SaveListRow, from label L1961;
 ============ END FUNCTION OnDeleteSaveDone ==============
 
 
@@ -343,15 +359,19 @@ L18:           this->ExecuteUbergraph_Widget_SaveListRow(1961);
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_SaveListRow ==============
+L10:           // <Begin Inlined EventGraph Function BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature>;
 L10:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L34:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_MouseOver, mPlayerController, true);
-L95:           <End of Inlined Event Graph Function>;
+L34:           AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_MouseOver.Play_UI_MainMenu_MouseOver), mPlayerController, true);
+L95:           // <End Inlined EventGraph Function>;
+L100:          // <Begin Inlined EventGraph Function BndEvt__Button_0_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature>;
 L100:          this->OnClicked->ProcessMulticastDelegate(this);
 L120:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L144:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(Play_UI_MainMenu_Click, mPlayerController1, true);
-L205:          <End of Inlined Event Graph Function>;
+L144:          AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_Click.Play_UI_MainMenu_Click), mPlayerController1, true);
+L205:          // <End Inlined EventGraph Function>;
+L210:          // <Begin Inlined EventGraph Function BndEvt__Button_1_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature>;
 L210:          this->ConfirmDeleteSessionPopUp();
-L224:          <End of Inlined Event Graph Function>;
+L224:          // <End Inlined EventGraph Function>;
+L229:          // <Begin Inlined EventGraph Function BndEvt__Button_0_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature>;
 L229:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
 L253:          FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController2);
 L289:          bool mbool = mFGPlayerControllerBase;
@@ -363,7 +383,7 @@ L439:          mFScriptDelegate->BindUFunction(this, OnWorldSave);
 L462:          this->GetDesiredFileName([ref] mFString);
 L499:          mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
 L541:          mFGAdminInterface->SaveGame(false, mFString, mFScriptDelegate);
-L592:          <End of Inlined Event Graph Function>;
+L592:          // <End Inlined EventGraph Function>;
 L597:          this->mSaveList->RefreshSaveList();
 L633:          FText Temp_text_Variable = "[object Object]";
 L711:          FText Temp_text_Variable1 = "[object Object]";
@@ -380,11 +400,12 @@ case false -> mconst FText;
 case true -> Temp_text_Variable;
 default -> mFText1;
 }, [ref] Temp_delegate_Variable, 0, nullptr, nullptr);
-L1077:         <End of Inlined Event Graph Function>;
+L1077:         // <End Inlined EventGraph Function>;
+L1082:         // <Begin Inlined EventGraph Function ConfirmDeleteSessionPopUp>;
 L1082:         mFScriptDelegate1->BindUFunction(this, DeleteSave);
 L1105:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
 L1129:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController4, "[object Object]", , [ref] mFScriptDelegate1, 1, nullptr, nullptr);
-L1236:         <End of Inlined Event Graph Function>;
+L1236:         // <End Inlined EventGraph Function>;
 L1241:         if (!mbool3) goto L2011;
 L1255:         PlayerController* mPlayerController5 = this->GetOwningPlayer();
 L1279:         FGPlayerControllerBase* mFGPlayerControllerBase1 = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController5);
@@ -397,15 +418,17 @@ L1465:         mFScriptDelegate2->BindUFunction(this, OnDeleteSaveDone);
 L1488:         this->GetDesiredFileName([ref] mFString1);
 L1525:         mFGAdminInterface1 = mFGPlayerControllerBase1->GetAdminInterface();
 L1567:         mFGAdminInterface1->DeleteSaveFile(false, mFString1, mFScriptDelegate2);
-L1618:         <End of Inlined Event Graph Function>;
-L1623:         <End of Inlined Event Graph Function>;
+L1618:         // <End Inlined EventGraph Function>;
+L1623:         // <Begin Inlined EventGraph Function BndEvt__mSaveRowButton_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature>;
+L1623:         // <End Inlined EventGraph Function>;
+L1628:         // <Begin Inlined EventGraph Function Construct>;
 L1628:         FString mFString2 = FGSaveSession->GetName([ref] this->mSaveHeader);
 L1687:         FText mFText2 = KismetTextLibrary->Conv_StringToText(mFString2);
 L1746:         this->mTitle->SetText(mFText2);
 L1791:         DateTime mDateTime = FGSaveSession->GetSaveDateTime([ref] this->mSaveHeader);
 L1850:         FText mFText3 = KismetTextLibrary->AsTimeZoneDateTime_DateTime([ref] mDateTime, "");
 L1911:         this->Date->SetText(mFText3);
-L1956:         <End of Inlined Event Graph Function>;
+L1956:         // <End Inlined EventGraph Function>;
 L1961:         if (!mbool6) goto L2011;
 L1975:         this->mSaveList->RefreshSaveList();
 ============ END FUNCTION ExecuteUbergraph_Widget_SaveListRow ==============

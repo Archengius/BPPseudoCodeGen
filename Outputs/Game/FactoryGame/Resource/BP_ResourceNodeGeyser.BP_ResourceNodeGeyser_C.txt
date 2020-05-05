@@ -7,8 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Resource/BP_ResourceNodeGeyser.BP_Resou
 
 
 ============ BEGIN FUNCTION OnIsOccupiedChanged ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Resource/BP_ResourceNodeGeyser.BP_ResourceNodeGeyser_C:ExecuteUbergraph_BP_ResourceNodeGeyser.K2Node_Event_newIsOccupied) = newIsOccupied;
-L18:           this->ExecuteUbergraph_BP_ResourceNodeGeyser(582);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnIsOccupiedChanged;
+L18:           // Implementation: Function ExecuteUbergraph_BP_ResourceNodeGeyser, from label L582;
 ============ END FUNCTION OnIsOccupiedChanged ==============
 
 
@@ -16,7 +17,9 @@ L18:           this->ExecuteUbergraph_BP_ResourceNodeGeyser(582);
 
 
 ============ BEGIN FUNCTION GainedSignificance ==============
-L0:            this->ExecuteUbergraph_BP_ResourceNodeGeyser(659);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: GainedSignificance;
+L0:            // Implementation: Function ExecuteUbergraph_BP_ResourceNodeGeyser, from label L659;
 ============ END FUNCTION GainedSignificance ==============
 
 
@@ -24,7 +27,9 @@ L0:            this->ExecuteUbergraph_BP_ResourceNodeGeyser(659);
 
 
 ============ BEGIN FUNCTION LostSignificance ==============
-L0:            this->ExecuteUbergraph_BP_ResourceNodeGeyser(771);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: LostSignificance;
+L0:            // Implementation: Function ExecuteUbergraph_BP_ResourceNodeGeyser, from label L771;
 ============ END FUNCTION LostSignificance ==============
 
 
@@ -32,7 +37,9 @@ L0:            this->ExecuteUbergraph_BP_ResourceNodeGeyser(771);
 
 
 ============ BEGIN FUNCTION EruptLoop ==============
-L0:            this->ExecuteUbergraph_BP_ResourceNodeGeyser(956);
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: EruptLoop;
+L0:            // Implementation: Function ExecuteUbergraph_BP_ResourceNodeGeyser, from label L956;
 ============ END FUNCTION EruptLoop ==============
 
 
@@ -55,8 +62,8 @@ L249:          goto ExecutionFlow.Pop();
 L250:          KismetSystemLibrary->Delay(this, this->mAudioSyncTimer, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = 1033054131, ExecutionFunction = "ExecuteUbergraph_BP_ResourceNodeGeyser", CallbackTarget = this));
 L330:          goto ExecutionFlow.Pop();
 L331:          bool mbool1 = this->IsOccupied();
-L355:          bool mbool2 = Not_PreBool(this->mIsSignificant);
-L384:          bool mbool3 = BooleanOR(mbool1, mbool2);
+L355:          bool mbool2 = !this->mIsSignificant;
+L384:          bool mbool3 = mbool1 || mbool2;
 L422:          if (!mbool3) goto L66;
 L436:          this->mEruptLoopOngoing = false;
 L447:          goto ExecutionFlow.Pop();
@@ -68,9 +75,10 @@ L567:          this->EruptLoop();
 L581:          goto ExecutionFlow.Pop();
 L582:          this->OnIsOccupiedChanged(mbool4);
 L601:          if (!this->mIsSignificant) goto ExecutionFlow.Pop();
-L611:          bool mbool5 = Not_PreBool(mbool4);
+L611:          bool mbool5 = !mbool4;
 L640:          if (!mbool5) goto L448;
 L654:          goto L530;
+L659:          // <Begin Inlined EventGraph Function GainedSignificance>;
 L659:          this->GainedSignificance();
 L669:          this->mIsSignificant = true;
 L680:          bool mbool6 = this->IsOccupied();
@@ -79,6 +87,7 @@ L718:          goto ExecutionFlow.Pop();
 L719:          this->EruptLoop();
 L733:          this->Geyser_02->Activate(true);
 L770:          goto ExecutionFlow.Pop();
+L771:          // <Begin Inlined EventGraph Function LostSignificance>;
 L771:          this->LostSignificance();
 L781:          this->mIsSignificant = false;
 L792:          this->Geyser_02->Deactivate();
@@ -86,7 +95,8 @@ L828:          goto ExecutionFlow.Pop();
 L829:          float mfloat = RandomFloatInRange(this->m_RandomStartDelayMin, this->m_RandomStartDelayMax);
 L875:          KismetSystemLibrary->Delay(this, mfloat, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 331, UUID = -492186008, ExecutionFunction = "ExecuteUbergraph_BP_ResourceNodeGeyser", CallbackTarget = this));
 L955:          goto ExecutionFlow.Pop();
-L956:          bool mbool7 = Not_PreBool(this->mEruptLoopOngoing);
+L956:          // <Begin Inlined EventGraph Function EruptLoop>;
+L956:          bool mbool7 = !this->mEruptLoopOngoing;
 L985:          if (!mbool7) goto ExecutionFlow.Pop();
 L995:          goto L829;
 ============ END FUNCTION ExecuteUbergraph_BP_ResourceNodeGeyser ==============

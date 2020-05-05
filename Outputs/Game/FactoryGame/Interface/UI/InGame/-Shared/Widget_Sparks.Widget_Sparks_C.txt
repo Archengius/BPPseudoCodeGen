@@ -7,9 +7,9 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Spar
 
 
 ============ BEGIN FUNCTION Tick ==============
-L0:            PERSISTENT_FRAME(StructProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Sparks.Widget_Sparks_C:ExecuteUbergraph_Widget_Sparks.K2Node_Event_MyGeometry) = MyGeometry;
-L18:           PERSISTENT_FRAME(FloatProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Sparks.Widget_Sparks_C:ExecuteUbergraph_Widget_Sparks.K2Node_Event_InDeltaTime) = InDeltaTime;
-L36:           this->ExecuteUbergraph_Widget_Sparks(2507);
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: Tick;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Sparks, from label L2507;
 ============ END FUNCTION Tick ==============
 
 
@@ -17,8 +17,9 @@ L36:           this->ExecuteUbergraph_Widget_Sparks(2507);
 
 
 ============ BEGIN FUNCTION PreConstruct ==============
-L0:            PERSISTENT_FRAME(BoolProperty /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_Sparks.Widget_Sparks_C:ExecuteUbergraph_Widget_Sparks.K2Node_Event_IsDesignTime) = IsDesignTime;
-L18:           this->ExecuteUbergraph_Widget_Sparks(2994);
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Sparks, from label L2994;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -28,8 +29,8 @@ L18:           this->ExecuteUbergraph_Widget_Sparks(2994);
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_Sparks ==============
 L5:            goto ComputedJump(EntryPoint);
 L15:           this->mSpeed = 0.699999988079071;
-L38:           bool mbool = EqualEqual_Vector2DVector2D(this->mMaxDistance, ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0), 0.00009999999747378752);
-L96:           bool mbool1 = Not_PreBool(mbool);
+L38:           bool mbool = this->mMaxDistance == ScriptStruct /Script/CoreUObject.Vector2D(X = 0, Y = 0);
+L96:           bool mbool1 = !mbool;
 L125:          if (!mbool1) goto L853;
 L139:          int32 mint32 = RandomIntegerInRange(0, 1);
 L177:          float mfloat = Conv_IntToFloat(mint32);
@@ -38,8 +39,8 @@ L252:          float mfloat1 = Conv_IntToFloat(mint321);
 L289:          BreakVector2D(this->mMaxDistance, [ref] mfloat2, [ref] mfloat3);
 L326:          float mfloat4 = RandomFloatInRange(0, mfloat3);
 L368:          float mfloat5 = RandomFloatInRange(0, mfloat2);
-L410:          float mfloat6 = Multiply_FloatFloat(Subtract_FloatFloat(Multiply_FloatFloat(mfloat1, 2), 1), mfloat4);
-L486:          float mfloat7 = Multiply_FloatFloat(Subtract_FloatFloat(Multiply_FloatFloat(mfloat, 2), 1), mfloat5);
+L410:          float mfloat6 = mfloat1 * 2 - 1 * mfloat4;
+L486:          float mfloat7 = mfloat * 2 - 1 * mfloat5;
 L562:          Vector2D mVector2D = MakeVector2D(mfloat7, mfloat6);
 L608:          this->TargetPosition = mVector2D;
 L635:          float mfloat8 = RandomFloatInRange(0.10000000149011612, 0.30000001192092896);
@@ -53,14 +54,14 @@ L853:          this->mMaxDistance = ScriptStruct /Script/CoreUObject.Vector2D(X 
 L895:          goto L139;
 L900:          ExecutionFlow.Push(L1047);
 L905:          BreakVector2D(this->CurrentPosition, [ref] mfloat10, [ref] mfloat11);
-L942:          bool mbool2 = Less_FloatFloat(mfloat11, this->mTopBorderPos);
-L980:          bool mbool3 = BooleanAND(mbool2, this->mBounceOn);
+L942:          bool mbool2 = mfloat11 < this->mTopBorderPos;
+L980:          bool mbool3 = mbool2 && this->mBounceOn;
 L1018:         if (!mbool3) goto L2409;
 L1032:         if (!Temp_bool_Variable1) goto L2447;
 L1046:         goto ExecutionFlow.Pop();
 L1047:         BreakVector2D(this->CurrentPosition, [ref] mfloat12, [ref] mfloat13);
 L1084:         BreakVector2D(this->CurrentPosition, [ref] mfloat14, [ref] mfloat15);
-L1121:         float mfloat16 = Add_FloatFloat(Subtract_FloatFloat(this->mTopBorderPos, mfloat15), this->mTopBorderPos);
+L1121:         float mfloat16 = this->mTopBorderPos - mfloat15 + this->mTopBorderPos;
 L1186:         Vector2D mVector2D2 = MakeVector2D(mfloat12, mfloat16);
 L1232:         this->CurrentPosition = mVector2D2;
 L1259:         this->SparkContainer->SetRenderTranslation(this->CurrentPosition);
@@ -85,7 +86,7 @@ L2201:         mLinearColor3.G = this->TintValue;
 L2237:         mLinearColor3.B = this->TintValue;
 L2273:         mLinearColor3.A = mfloat18;
 L2309:         this->TintBorder->SetContentColorAndOpacity(mLinearColor3);
-L2350:         bool mbool4 = Greater_FloatFloat(this->T, 1);
+L2350:         bool mbool4 = this->T > 1;
 L2384:         if (!mbool4) goto ExecutionFlow.Pop();
 L2394:         this->RemoveFromParent();
 L2408:         goto ExecutionFlow.Pop();
@@ -98,8 +99,8 @@ L2447:         Temp_bool_Variable1 = true;
 L2458:         Temp_bool_Variable = false;
 L2469:         this->OnParticleBounce->ProcessMulticastDelegate(this->CurrentPosition, this->SparkScale);
 L2506:         goto ExecutionFlow.Pop();
-L2507:         float mfloat19 = Divide_FloatFloat(mfloat20, this->mSpeed);
-L2553:         float mfloat21 = Add_FloatFloat(mfloat19, this->T);
+L2507:         float mfloat19 = mfloat20 / this->mSpeed;
+L2553:         float mfloat21 = mfloat19 + this->T;
 L2599:         this->T = mfloat21;
 L2626:         BreakVector2D(this->TargetPosition, [ref] mfloat22, [ref] mfloat23);
 L2663:         float mfloat24 = Ease(0, mfloat22, this->T, 6, 5, 2);
@@ -107,12 +108,12 @@ L2726:         float mfloat25 = Ease(0, mfloat23, this->T, 6, 5, 2);
 L2789:         Vector2D mVector2D3 = MakeVector2D(mfloat24, mfloat25);
 L2835:         this->CurrentPosition = mVector2D3;
 L2862:         BreakVector2D(this->CurrentPosition, [ref] mfloat10, [ref] mfloat11);
-L2899:         mbool2 = Less_FloatFloat(mfloat11, this->mTopBorderPos);
-L2937:         mbool3 = BooleanAND(mbool2, this->mBounceOn);
+L2899:         mbool2 = mfloat11 < this->mTopBorderPos;
+L2937:         mbool3 = mbool2 && this->mBounceOn;
 L2975:         if (!mbool3) goto L1259;
 L2989:         goto L900;
-L2994:         bool mbool5 = LessEqual_FloatFloat(this->mSpeed, 0);
-L3028:         bool mbool6 = Not_PreBool(mbool5);
+L2994:         bool mbool5 = this->mSpeed <= 0;
+L3028:         bool mbool6 = !mbool5;
 L3057:         if (!mbool6) goto L15;
 L3071:         goto L38;
 ============ END FUNCTION ExecuteUbergraph_Widget_Sparks ==============

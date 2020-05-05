@@ -7,20 +7,20 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Character/Creature/Enemy/BP_Spline.BP_S
 
 
 ============ BEGIN FUNCTION GetNextSplineIndex ==============
-L0:            int32 mint32 = Add_IntInt(currentIndex, this->mIncrementSign);
+L0:            int32 mint32 = currentIndex + this->mIncrementSign;
 L46:           int32 LocalIndex = mint32;
-L73:           bool mbool = LessEqual_IntInt(LocalIndex, 0);
+L73:           bool mbool = LocalIndex <= 0;
 L107:          if (!mbool) goto L176;
 L121:          this->mIncrementSign = 1;
 L144:          int32 nextIndex = LocalIndex;
-L171:          <End of Inlined Event Graph Function>;
+L171:          // <End Inlined EventGraph Function>;
 L176:          int32 mint321 = this->mSpline->GetNumberOfSplinePoints();
-L226:          bool mbool1 = GreaterEqual_IntInt(LocalIndex, mint321);
+L226:          bool mbool1 = LocalIndex >= mint321;
 L264:          if (!mbool1) goto L144;
 L278:          if (!this->mIsYoyoing) goto L439;
 L292:          this->mIncrementSign = -1;
 L315:          int32 mint322 = this->mSpline->GetNumberOfSplinePoints();
-L365:          int32 mint323 = Subtract_IntInt(mint322, 1);
+L365:          int32 mint323 = mint322 - 1;
 L407:          LocalIndex = mint323;
 L434:          goto L144;
 L439:          LocalIndex = 0;
