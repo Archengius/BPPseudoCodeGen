@@ -31,7 +31,8 @@ L0:            float ReturnValue = 500;
 
 
 ============ BEGIN FUNCTION GetActorChainsawReturn ==============
-L0:            InventoryStack ReturnValue = ScriptStruct /Script/FactoryGame.InventoryStack(Item = ScriptStruct /Script/FactoryGame.InventoryItem(ItemClass = nullptr, ItemState = ScriptStruct /Script/FactoryGame.SharedInventoryStatePtr(ActorPtr = nullptr)), NumItems = 0);
+L0:            InventoryStack mInventoryStack = this->GetPickupItems();
+L28:           InventoryStack ReturnValue = mInventoryStack;
 ============ END FUNCTION GetActorChainsawReturn ==============
 
 
@@ -125,10 +126,8 @@ L10:           this->SetupMesh();
 L24:           bool mbool = this->IsPickedUp();
 L44:           this->StaticMesh->SetHiddenInGame(mbool, false);
 L86:           // <End Inlined EventGraph Function>;
-L91:           // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L91:           this->ReceiveBeginPlay();
 L101:          this->SetupNumBerries();
 L115:          // <End Inlined EventGraph Function>;
-L120:          // <Begin Inlined EventGraph Function UpdateVisiblityState>;
 L120:          goto L10;
 ============ END FUNCTION ExecuteUbergraph_BP_BerryBush ==============

@@ -6,6 +6,19 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/BuildMenu/Prototype
 
 
 
+============ BEGIN FUNCTION OnMouseButtonDown ==============
+L0:            Key mKey = KismetInputLibrary->PointerEvent_GetEffectingButton([ref] MouseEvent);
+L59:           bool mbool = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "RightMouseButton"));
+L137:          if (!mbool) goto L242;
+L151:          this->OnEscapePressed();
+L165:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
+L215:          EventReply ReturnValue = mEventReply;
+============ END FUNCTION OnMouseButtonDown ==============
+
+
+
+
+
 ============ BEGIN FUNCTION HideHotbarPresetInfo ==============
 L0:            this->mHotbarPresetInfoBox->SetVisibility(2);
 ============ END FUNCTION HideHotbarPresetInfo ==============
@@ -243,7 +256,7 @@ L23:           Key mKey = KismetInputLibrary->GetKey([ref] KeyEvent);
 L82:           bool mbool = KismetArrayLibrary->Array_Contains([ref] mTArrayKey, [ref] mKey);
 L142:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L166:          bool mbool1 = this->mSearchResultsContainer->IsHovered();
-L212:          bool mbool2 = this->mSearchbar->HasUserFocusedDescendants(mPlayerController);
+L212:          bool mbool2 = this->mSearchBar->HasUserFocusedDescendants(mPlayerController);
 L263:          bool mbool3 = mbool && mbool2;
 L301:          bool mbool4 = mbool3 && mbool1;
 L339:          bool mbool5 = mbool4 && this->mMouseMoved;
@@ -265,55 +278,14 @@ L61:           EventReply ReturnValue = mEventReply;
 
 
 ============ BEGIN FUNCTION OnPreviewKeyDown ==============
-L0:            ExecutionFlow.Push(L2065);
-L5:            TArray<Key> mTArrayKey = [ScriptStruct /Script/InputCore.Key(KeyName = "Zero"), ScriptStruct /Script/InputCore.Key(KeyName = "One"), ScriptStruct /Script/InputCore.Key(KeyName = "Two"), ScriptStruct /Script/InputCore.Key(KeyName = "Three"), ScriptStruct /Script/InputCore.Key(KeyName = "Four"), ScriptStruct /Script/InputCore.Key(KeyName = "Five"), ScriptStruct /Script/InputCore.Key(KeyName = "Six"), ScriptStruct /Script/InputCore.Key(KeyName = "Seven"), ScriptStruct /Script/InputCore.Key(KeyName = "Eight"), ScriptStruct /Script/InputCore.Key(KeyName = "Nine")];
-L286:          TArray<Key> NewLocalVar_0 = mTArrayKey;
-L313:          ExecutionFlow.Push(L405);
-L318:          bool mbool = this->GetShouldSearchResultBeBoundToHotbar([ref] InKeyEvent);
-L351:          if (!mbool) goto ExecutionFlow.Pop();
-L361:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L385:          this->SetUserFocus(mPlayerController);
-L404:          goto ExecutionFlow.Pop();
-L405:          Key mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
-L464:          bool mbool1 = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Down"));
-L542:          bool mbool2 = KismetInputLibrary->EqualEqual_KeyKey(mKey, ScriptStruct /Script/InputCore.Key(KeyName = "Up"));
-L620:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L644:          InputActionKeyMapping mInputActionKeyMapping = FGInputLibrary->GetKeyMappingForAction(mPlayerController1, "CycleToPreviousHotbar", false);
-L717:          InputActionKeyMapping mInputActionKeyMapping1 = FGInputLibrary->GetKeyMappingForAction(mPlayerController1, "CycleToNextHotbar", false);
-L790:          bool mbool3 = KismetInputLibrary->EqualEqual_KeyKey(mKey, mInputActionKeyMapping.Key);
-L859:          bool mbool4 = KismetInputLibrary->EqualEqual_KeyKey(mKey, mInputActionKeyMapping1.Key);
-L928:          bool mbool5 = mbool3 && mbool1;
-L966:          bool mbool6 = mbool4 && mbool2;
-L1004:         bool mbool7 = mInputActionKeyMapping1.bShift || mInputActionKeyMapping1.bCtrl;
-L1060:         bool mbool8 = mInputActionKeyMapping.bShift || mInputActionKeyMapping.bCtrl;
-L1116:         bool mbool9 = mbool7 || mInputActionKeyMapping1.bAlt;
-L1163:         bool mbool10 = mbool8 || mInputActionKeyMapping.bAlt;
-L1210:         bool mbool11 = mbool9 || mInputActionKeyMapping1.bCmd;
-L1257:         bool mbool12 = mbool10 || mInputActionKeyMapping.bCmd;
-L1304:         bool mbool13 = !mbool11;
-L1333:         bool mbool14 = !mbool12;
-L1362:         bool mbool15 = mbool6 && mbool13;
-L1400:         bool mbool16 = mbool5 && mbool14;
-L1438:         bool mbool17 = mbool15 || mbool16;
-L1476:         if (!mbool17) goto L1946;
-L1490:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
-L1514:         FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController2);
-L1550:         bool mbool18 = mFGPlayerController;
-L1579:         if (!mbool18) goto L1946;
-L1593:         mKey = KismetInputLibrary->GetKey([ref] InKeyEvent);
-L1652:         mPlayerController1 = this->GetOwningPlayer();
-L1676:         mInputActionKeyMapping1 = FGInputLibrary->GetKeyMappingForAction(mPlayerController1, "CycleToNextHotbar", false);
-L1749:         mbool4 = KismetInputLibrary->EqualEqual_KeyKey(mKey, mInputActionKeyMapping1.Key);
-L1818:         if (!mbool4) goto L2028;
-L1832:         mFGPlayerController->CycleToNextHotbar();
-L1864:         EventReply mEventReply = WidgetBlueprintLibrary->Handled();
-L1914:         EventReply ReturnValue = mEventReply;
-L1941:         goto L2065;
-L1946:         EventReply mEventReply1 = WidgetBlueprintLibrary->Unhandled();
-L1996:         ReturnValue = mEventReply1;
-L2023:         goto L2065;
-L2028:         mFGPlayerController->CycleToPreviousHotbar();
-L2060:         goto L1864;
+L0:            TArray<Key> mTArrayKey = [ScriptStruct /Script/InputCore.Key(KeyName = "Zero"), ScriptStruct /Script/InputCore.Key(KeyName = "One"), ScriptStruct /Script/InputCore.Key(KeyName = "Two"), ScriptStruct /Script/InputCore.Key(KeyName = "Three"), ScriptStruct /Script/InputCore.Key(KeyName = "Four"), ScriptStruct /Script/InputCore.Key(KeyName = "Five"), ScriptStruct /Script/InputCore.Key(KeyName = "Six"), ScriptStruct /Script/InputCore.Key(KeyName = "Seven"), ScriptStruct /Script/InputCore.Key(KeyName = "Eight"), ScriptStruct /Script/InputCore.Key(KeyName = "Nine")];
+L281:          TArray<Key> NewLocalVar_0 = mTArrayKey;
+L308:          bool mbool = this->GetShouldSearchResultBeBoundToHotbar([ref] InKeyEvent);
+L341:          if (!mbool) goto L475;
+L355:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L379:          this->SetUserFocus(mPlayerController);
+L398:          EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L448:          EventReply ReturnValue = mEventReply;
 ============ END FUNCTION OnPreviewKeyDown ==============
 
 
@@ -356,8 +328,8 @@ L54:           this->ClearAndHideSearchResults();
 ============ BEGIN FUNCTION SetSearchbarFocused ==============
 L0:            this->mIsSearchFocused = true;
 L11:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L35:           this->mSearchbar->mInputBox->SetUserFocus(mPlayerController);
-L98:           this->mSearchbar->mInputBox->SetText();
+L35:           this->mSearchBar->mInputBox->SetUserFocus(mPlayerController);
+L98:           this->mSearchBar->mInputBox->SetText();
 ============ END FUNCTION SetSearchbarFocused ==============
 
 
@@ -807,7 +779,7 @@ L4060:         Widget_BuildMenu_PowerProduction* mWidget_BuildMenu_PowerProducti
 L4121:         KismetSystemLibrary->SetClassPropertyByName(mWidget_BuildMenu_PowerProduction1, "mBuildingDesc", mTSubclassOfFGBuildingDescriptor1);
 L4184:         WrapBoxSlot* mWrapBoxSlot2 = this->BuildMenu_InfoBox->mStatContainer->AddChildToWrapBox(mWidget_BuildMenu_PowerProduction1);
 L4257:         goto ExecutionFlow.Pop();
-L4258:         this->BuildMenu_InfoBox->AnimateCostslots();
+L4258:         this->BuildMenu_InfoBox->AnimateCostSlots();
 L4294:         goto ExecutionFlow.Pop();
 ============ END FUNCTION CreateInfoBox ==============
 
@@ -1167,7 +1139,6 @@ L1690:         goto L1526;
 L1695:         this->Destruct();
 L1705:         this->SaveCategories();
 L1719:         goto L1184;
-L1724:         // <Begin Inlined EventGraph Function Destruct>;
 L1724:         goto L1695;
 L1729:         BP_BuildGunStateMenu* mBP_BuildGunStateMenu = Cast<BlueprintGeneratedClass /Game/FactoryGame/Equipment/BuildGun/BP_BuildGunStateMenu.BP_BuildGunStateMenu_C>(this->mInteractObject);
 L1765:         bool mbool7 = mBP_BuildGunStateMenu;
@@ -1178,9 +1149,7 @@ L1841:         this->PopulateBuildings();
 L1855:         goto L1443;
 L1860:         this->Construct();
 L1870:         goto L1729;
-L1875:         // <Begin Inlined EventGraph Function Construct>;
 L1875:         goto L1860;
-L1880:         // <Begin Inlined EventGraph Function OnEscapePressed>;
 L1880:         goto L1203;
 L1885:         FText mFText1 = KismetTextLibrary->Conv_StringToText(" ");
 L1938:         bool mbool8 = KismetTextLibrary->EqualEqual_TextText([ref] mFText2, [ref] mFText1);
@@ -1203,7 +1172,7 @@ L2332:         if (!mbool11) goto ExecutionFlow.Pop();
 L2342:         this->OnRecipeClicked(mWidget_BuildMenuRecipeButton->mRecipe);
 L2387:         goto ExecutionFlow.Pop();
 L2388:         PlayerController* mPlayerController6 = this->GetOwningPlayer();
-L2412:         this->mSearchbar->mInputBox->SetUserFocus(mPlayerController6);
+L2412:         this->mSearchBar->mInputBox->SetUserFocus(mPlayerController6);
 L2475:         goto ExecutionFlow.Pop();
 L2476:         // <Begin Inlined EventGraph Function CheckSearchResultHover>;
 L2476:         bool mbool12 = this->mSearchResultsContainer->HasAnyChildren();

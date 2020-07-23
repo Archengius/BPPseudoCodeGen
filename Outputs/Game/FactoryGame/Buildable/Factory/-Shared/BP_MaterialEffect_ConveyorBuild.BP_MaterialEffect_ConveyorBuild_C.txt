@@ -6,10 +6,20 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Factory/-Shared/BP_MaterialEf
 
 
 
+============ BEGIN FUNCTION ReceiveBeginPlay ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: ReceiveBeginPlay;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_ConveyorBuild, from label L113;
+============ END FUNCTION ReceiveBeginPlay ==============
+
+
+
+
+
 ============ BEGIN FUNCTION PreStarted ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: PreStarted;
-L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_ConveyorBuild, from label L10;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_ConveyorBuild, from label L118;
 ============ END FUNCTION PreStarted ==============
 
 
@@ -19,7 +29,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_Co
 ============ BEGIN FUNCTION OnStarted ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: OnStarted;
-L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_ConveyorBuild, from label L419;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_ConveyorBuild, from label L424;
 ============ END FUNCTION OnStarted ==============
 
 
@@ -29,31 +39,45 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_Co
 ============ BEGIN FUNCTION OnUpdate ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnUpdate;
-L18:           // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_ConveyorBuild, from label L457;
+L18:           // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_ConveyorBuild, from label L462;
 ============ END FUNCTION OnUpdate ==============
 
 
 
 
 
+============ BEGIN FUNCTION CustomEvent_0 ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: CustomEvent_0;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MaterialEffect_ConveyorBuild, from label L565;
+============ END FUNCTION CustomEvent_0 ==============
+
+
+
+
+
 ============ BEGIN FUNCTION ExecuteUbergraph_BP_MaterialEffect_ConveyorBuild ==============
-L10:           // <Begin Inlined EventGraph Function PreStarted>;
-L10:           this->PreStarted();
-L20:           Actor* mActor = this->GetOwner();
-L40:           Transform mTransform = mActor->GetTransform();
-L90:           Actor* mActor1 = GameplayStatics->BeginDeferredActorSpawnFromClass(this, ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/-Shared/BP_BuildEffect_ConveyorBelt.BP_BuildEffect_ConveyorBelt_C), [ref] mTransform, 0, mActor);
-L162:          mActor = this->GetOwner();
-L182:          mTransform = mActor->GetTransform();
-L232:          BP_BuildEffect_ConveyorBelt* mBP_BuildEffect_ConveyorBelt = GameplayStatics->FinishSpawningActor(mActor1, [ref] mTransform);
-L292:          this->mBuildEffectActor = mBP_BuildEffect_ConveyorBelt;
-L311:          // <End Inlined EventGraph Function>;
-L316:          bool mbool = KismetSystemLibrary->IsValid(this->mBuildEffectActor);
-L367:          if (!mbool) goto L386;
-L381:          // <End Inlined EventGraph Function>;
-L386:          this->Deactivate();
-L414:          // <End Inlined EventGraph Function>;
-L419:          // <Begin Inlined EventGraph Function OnStarted>;
-L419:          this->mBuildEffectActor->mWantToStartEffect = true;
-L452:          // <End Inlined EventGraph Function>;
-L457:          goto L316;
+L10:           this->ReceiveBeginPlay();
+L20:           mFScriptDelegate->BindUFunction(this, CustomEvent_0);
+L43:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
+L108:          // <End Inlined EventGraph Function>;
+L113:          goto L10;
+L118:          this->PreStarted();
+L128:          Actor* mActor = this->GetOwner();
+L148:          Transform mTransform = mActor->GetTransform();
+L198:          Actor* mActor1 = GameplayStatics->BeginDeferredActorSpawnFromClass(this, ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/-Shared/BP_BuildEffect_ConveyorBelt.BP_BuildEffect_ConveyorBelt_C), [ref] mTransform, 0, mActor);
+L270:          mActor = this->GetOwner();
+L290:          mTransform = mActor->GetTransform();
+L340:          BP_BuildEffect_ConveyorBelt* mBP_BuildEffect_ConveyorBelt = GameplayStatics->FinishSpawningActor(mActor1, [ref] mTransform);
+L400:          this->mBuildEffectActor = mBP_BuildEffect_ConveyorBelt;
+L419:          // <End Inlined EventGraph Function>;
+L424:          this->mBuildEffectActor->mWantToStartEffect = true;
+L457:          // <End Inlined EventGraph Function>;
+L462:          bool mbool = KismetSystemLibrary->IsValid(this->mBuildEffectActor);
+L513:          if (!mbool) goto L532;
+L527:          // <End Inlined EventGraph Function>;
+L532:          this->Deactivate();
+L560:          // <End Inlined EventGraph Function>;
+L565:          // <Begin Inlined EventGraph Function CustomEvent_0>;
+L565:          this->SetComponentTickEnabled(true);
 ============ END FUNCTION ExecuteUbergraph_BP_MaterialEffect_ConveyorBuild ==============

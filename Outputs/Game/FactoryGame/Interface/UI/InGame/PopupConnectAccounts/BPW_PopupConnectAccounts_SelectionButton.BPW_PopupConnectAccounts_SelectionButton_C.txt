@@ -1,0 +1,199 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/PopupConnectAccounts/BPW_PopupConnectAccounts_SelectionButton.BPW_PopupConnectAccounts_SelectionButton_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION SetupButton ==============
+L0:            this->SetIcon(mButtonData.Icon_2_17E414A04814F195555B27A947750DA9);
+L32:           this->SetHeader([ref] mButtonData.Title_5_CB9F55284DB9325A9891E387AD1FB8FF);
+L64:           this->SetBulletPoints([ref] mButtonData.BulletPoints_8_1BFAAC0A45B25862360321A4583387EA);
+L96:           this->SetSelection(mButtonData.Selection_12_75ADE0BA44F1F858AB9641988BEC86E8);
+============ END FUNCTION SetupButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetIcon ==============
+L0:            this->mIcon = mIcon;
+L19:           Texture2D* mTexture2D = Cast<Class /Script/Engine.Texture2D>(this->mIcon);
+L55:           bool mbool = mTexture2D;
+L84:           if (!mbool) goto L144;
+L98:           this->mIconObject->SetBrushFromTexture(mTexture2D, true);
+============ END FUNCTION SetIcon ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetSelection ==============
+L0:            this->mSelection = mSelection;
+============ END FUNCTION SetSelection ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetHeader ==============
+L0:            this->mButtonHeader = InText;
+L27:           this->mHeader->SetText([ref] this->mButtonHeader);
+============ END FUNCTION SetHeader ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetBulletPoints ==============
+L0:            ExecutionFlow.Push(L586);
+L5:            this->mBulletPoints = Array;
+L32:           this->mBulletPointsContainer->ClearChildren();
+L68:           int32 Temp_int_Loop_Counter_Variable = 0;
+L91:           int32 Temp_int_Array_Index_Variable = 0;
+L114:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mBulletPoints);
+L173:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
+L211:          if (!mbool) goto ExecutionFlow.Pop();
+L221:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L248:          ExecutionFlow.Push(L512);
+L253:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L277:          BPW_PopupConnectAccounts_SelectionButton_BulletPoint* mBPW_PopupConnectAccounts_SelectionButton_BulletPoint = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/PopupConnectAccounts/BPW_PopupConnectAccounts_SelectionButton_BulletPoint.BPW_PopupConnectAccounts_SelectionButton_BulletPoint_C), mPlayerController);
+L338:          KismetArrayLibrary->Array_Get([ref] this->mBulletPoints, Temp_int_Array_Index_Variable, [ref] mFText);
+L397:          KismetSystemLibrary->SetTextPropertyByName(mBPW_PopupConnectAccounts_SelectionButton_BulletPoint, "mText", [ref] mFText);
+L460:          VerticalBoxSlot* mVerticalBoxSlot = this->mBulletPointsContainer->AddChildToVerticalBox(mBPW_PopupConnectAccounts_SelectionButton_BulletPoint);
+L511:          goto ExecutionFlow.Pop();
+L512:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
+L554:          Temp_int_Loop_Counter_Variable = mint321;
+L581:          goto L114;
+============ END FUNCTION SetBulletPoints ==============
+
+
+
+
+
+============ BEGIN FUNCTION DeselectOther ==============
+L0:            ExecutionFlow.Push(L520);
+L5:            int32 Temp_int_Variable = 0;
+L28:           PanelWidget* mPanelWidget = this->GetParent();
+L48:           int32 mint32 = mPanelWidget->GetChildrenCount();
+L98:           bool mbool = Temp_int_Variable <= mint32;
+L136:          if (!mbool) goto ExecutionFlow.Pop();
+L146:          ExecutionFlow.Push(L446);
+L151:          mPanelWidget = this->GetParent();
+L171:          Widget* mWidget = mPanelWidget->GetChildAt(Temp_int_Variable);
+L222:          bool mbool1 = mWidget != this;
+L252:          if (!mbool1) goto ExecutionFlow.Pop();
+L262:          mPanelWidget = this->GetParent();
+L282:          mWidget = mPanelWidget->GetChildAt(Temp_int_Variable);
+L333:          BPW_PopupConnectAccounts_SelectionButton* mBPW_PopupConnectAccounts_SelectionButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/PopupConnectAccounts/BPW_PopupConnectAccounts_SelectionButton.BPW_PopupConnectAccounts_SelectionButton_C>(mWidget);
+L369:          bool mbool2 = mBPW_PopupConnectAccounts_SelectionButton;
+L398:          if (!mbool2) goto ExecutionFlow.Pop();
+L408:          mBPW_PopupConnectAccounts_SelectionButton->SetIsSelected(false);
+L445:          goto ExecutionFlow.Pop();
+L446:          int32 mint321 = Temp_int_Variable + 1;
+L488:          Temp_int_Variable = mint321;
+L515:          goto L28;
+============ END FUNCTION DeselectOther ==============
+
+
+
+
+
+============ BEGIN FUNCTION SetIsSelected ==============
+L0:            LinearColor Temp_struct_Variable = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.029999999329447746, G = 0.029999999329447746, B = 0.029999999329447746, A = 1);
+L52:           LinearColor Temp_struct_Variable1 = ScriptStruct /Script/CoreUObject.LinearColor(R = 0.05102099850773811, G = 0.05102099850773811, B = 0.05208300054073334, A = 0);
+L104:          bool Temp_bool_Variable1 = IsSelected;
+L123:          mSlateColor.SpecifiedColor = switch (Temp_bool_Variable1) {
+case false -> Temp_struct_Variable1;
+case true -> Temp_struct_Variable;
+default -> mLinearColor;
+};
+L203:          mSlateColor.ColorUseRule = 0;
+L232:          mSlateColor1.SpecifiedColor = this->mButton->WidgetStyle.Pressed.TintColor.SpecifiedColor;
+L317:          mSlateColor1.ColorUseRule = 0;
+L346:          mSlateBrush.ImageSize = this->mButton->WidgetStyle.Pressed.ImageSize;
+L422:          mSlateBrush.Margin = this->mButton->WidgetStyle.Pressed.Margin;
+L498:          mSlateBrush.TintColor = mSlateColor1;
+L534:          mSlateBrush.ResourceObject = this->mButton->WidgetStyle.Pressed.ResourceObject;
+L602:          mSlateBrush.DrawAs = this->mButton->WidgetStyle.Pressed.DrawAs;
+L678:          mSlateBrush.Tiling = this->mButton->WidgetStyle.Pressed.Tiling;
+L754:          mSlateBrush.Mirroring = this->mButton->WidgetStyle.Pressed.Mirroring;
+L830:          mSlateBrush1.ImageSize = this->mButton->WidgetStyle.Normal.ImageSize;
+L906:          mSlateBrush1.Margin = this->mButton->WidgetStyle.Normal.Margin;
+L982:          mSlateBrush1.TintColor = mSlateColor;
+L1018:         mSlateBrush1.ResourceObject = this->mButton->WidgetStyle.Normal.ResourceObject;
+L1086:         mSlateBrush1.DrawAs = this->mButton->WidgetStyle.Normal.DrawAs;
+L1162:         mSlateBrush1.Tiling = this->mButton->WidgetStyle.Normal.Tiling;
+L1238:         mSlateBrush1.Mirroring = this->mButton->WidgetStyle.Normal.Mirroring;
+L1314:         mSlateColor2.SpecifiedColor = this->mButton->WidgetStyle.Hovered.TintColor.SpecifiedColor;
+L1399:         mSlateColor2.ColorUseRule = 0;
+L1428:         mSlateBrush2.ImageSize = this->mButton->WidgetStyle.Hovered.ImageSize;
+L1504:         mSlateBrush2.Margin = this->mButton->WidgetStyle.Hovered.Margin;
+L1580:         mSlateBrush2.TintColor = mSlateColor2;
+L1616:         mSlateBrush2.ResourceObject = this->mButton->WidgetStyle.Hovered.ResourceObject;
+L1684:         mSlateBrush2.DrawAs = this->mButton->WidgetStyle.Hovered.DrawAs;
+L1760:         mSlateBrush2.Tiling = this->mButton->WidgetStyle.Hovered.Tiling;
+L1836:         mSlateBrush2.Mirroring = this->mButton->WidgetStyle.Hovered.Mirroring;
+L1912:         mButtonStyle.Normal = mSlateBrush1;
+L1948:         mButtonStyle.Hovered = mSlateBrush2;
+L1984:         mButtonStyle.Pressed = mSlateBrush;
+L2020:         mButtonStyle.Disabled = this->mButton->WidgetStyle.Disabled;
+L2087:         mButtonStyle.NormalPadding = this->mButton->WidgetStyle.NormalPadding;
+L2154:         mButtonStyle.PressedPadding = this->mButton->WidgetStyle.PressedPadding;
+L2221:         mButtonStyle.PressedSlateSound = this->mButton->WidgetStyle.PressedSlateSound;
+L2288:         mButtonStyle.HoveredSlateSound = this->mButton->WidgetStyle.HoveredSlateSound;
+L2355:         this->mButton->SetStyle([ref] mButtonStyle);
+L2396:         uint8 Temp_byte_Variable = 3;
+L2416:         uint8 Temp_byte_Variable1 = 1;
+L2436:         bool Temp_bool_Variable = IsSelected;
+L2455:         this->mSelectionBorder->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+============ END FUNCTION SetIsSelected ==============
+
+
+
+
+
+============ BEGIN FUNCTION PreConstruct ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: PreConstruct;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_PopupConnectAccounts_SelectionButton, from label L38;
+============ END FUNCTION PreConstruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_PopupConnectAccounts_SelectionButton, from label L89;
+============ END FUNCTION BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_PopupConnectAccounts_SelectionButton ==============
+L10:           this->SetIcon(this->mIcon);
+L33:           // <End Inlined EventGraph Function>;
+L38:           this->SetBulletPoints([ref] this->mBulletPoints);
+L61:           this->SetHeader([ref] this->mButtonHeader);
+L84:           goto L10;
+L89:           // <Begin Inlined EventGraph Function BndEvt__mButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature>;
+L89:           this->SetIsSelected(true);
+L104:          this->DeselectOther();
+L118:          this->Widget_ButtonShine->PlayShineAnim();
+L154:          this->OnClicked->ProcessMulticastDelegate(this->mSelection);
+============ END FUNCTION ExecuteUbergraph_BPW_PopupConnectAccounts_SelectionButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnClicked__DelegateSignature ==============
+============ END FUNCTION OnClicked__DelegateSignature ==============

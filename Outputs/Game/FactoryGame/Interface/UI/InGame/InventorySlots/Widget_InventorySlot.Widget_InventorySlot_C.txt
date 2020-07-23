@@ -555,9 +555,9 @@ L684:          if (!OtherInventorySlot->mShouldGrabAllOfType) goto L937;
 L720:          OtherInventorySlot->GetItemClass([ref] mTSubclassOfFGItemDescriptor);
 L765:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L816:          mBP_RemoteCallObject->Server_GrabAllItemsFromInventory(OtherInventorySlot->mCachedInventoryComponent, this->mCachedInventoryComponent, mTSubclassOfFGItemDescriptor);
-L901:          bool LocalResult = true;
+L901:          bool localResult = true;
 L912:          goto ExecutionFlow.Pop();
-L913:          bool Result = LocalResult;
+L913:          bool Result = localResult;
 L932:          // <End Inlined EventGraph Function>;
 L937:          mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
 L988:          mBP_RemoteCallObject->Server_MoveItem(OtherInventorySlot->mCachedInventoryComponent, this->mCachedInventoryComponent, OtherInventorySlot->mSlotIdx, this->mSlotIdx);
@@ -858,9 +858,9 @@ L125:          Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprin
 L183:          bool mbool1 = mWidget_InventorySlot;
 L212:          if (!mbool1) goto L277;
 L226:          this->DropOntoInventorySlot(mWidget_InventorySlot, [ref] mbool2);
-L258:          bool LocalResult = mbool2;
+L258:          bool localResult = mbool2;
 L277:          this->SetDragAndDropState(0);
-L293:          ReturnValue = LocalResult;
+L293:          ReturnValue = localResult;
 ============ END FUNCTION OnDrop ==============
 
 
@@ -868,27 +868,32 @@ L293:          ReturnValue = LocalResult;
 
 
 ============ BEGIN FUNCTION OnMouseButtonDown ==============
-L0:            PointerEvent localMouseEvent = MouseEvent;
-L27:           bool mbool = KismetInputLibrary->PointerEvent_IsMouseButtonDown([ref] localMouseEvent, ScriptStruct /Script/InputCore.Key(KeyName = "RightMouseButton"));
-L105:          if (!mbool) goto L385;
-L119:          bool mbool1 = this->mCachedInventoryComponent->CanSplitStackAtIdx(this->mSlotIdx);
-L170:          if (!mbool1) goto L651;
-L184:          mFScriptDelegate->BindUFunction(this, ShowSplitStackWidget);
-L207:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mSplitStackHoldTime, false);
-L276:          this->mSplitStackTimerHandle = mTimerHandle;
-L303:          EventReply mEventReply = WidgetBlueprintLibrary->Handled();
-L353:          EventReply ReturnValue = mEventReply;
-L380:          goto L728;
-L385:          bool mbool2 = this->mCachedInventoryComponent->IsSomethingOnIndex(this->mSlotIdx);
-L436:          if (!mbool2) goto L569;
-L450:          EventReply mEventReply1 = WidgetBlueprintLibrary->DetectDragIfPressed([ref] localMouseEvent, this, ScriptStruct /Script/InputCore.Key(KeyName = "LeftMouseButton"));
-L537:          ReturnValue = mEventReply1;
-L564:          goto L728;
-L569:          EventReply mEventReply2 = WidgetBlueprintLibrary->Unhandled();
-L619:          ReturnValue = mEventReply2;
-L646:          goto L728;
-L651:          EventReply mEventReply3 = WidgetBlueprintLibrary->Unhandled();
-L701:          ReturnValue = mEventReply3;
+L0:            bool mbool = this->mCachedInventoryComponent->IsLocked();
+L42:           if (!mbool) goto L138;
+L56:           EventReply mEventReply = WidgetBlueprintLibrary->Unhandled();
+L106:          EventReply ReturnValue = mEventReply;
+L133:          goto L866;
+L138:          PointerEvent localMouseEvent = MouseEvent;
+L165:          bool mbool1 = KismetInputLibrary->PointerEvent_IsMouseButtonDown([ref] localMouseEvent, ScriptStruct /Script/InputCore.Key(KeyName = "RightMouseButton"));
+L243:          if (!mbool1) goto L523;
+L257:          bool mbool2 = this->mCachedInventoryComponent->CanSplitStackAtIdx(this->mSlotIdx);
+L308:          if (!mbool2) goto L789;
+L322:          mFScriptDelegate->BindUFunction(this, ShowSplitStackWidget);
+L345:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, this->mSplitStackHoldTime, false);
+L414:          this->mSplitStackTimerHandle = mTimerHandle;
+L441:          EventReply mEventReply1 = WidgetBlueprintLibrary->Handled();
+L491:          ReturnValue = mEventReply1;
+L518:          goto L866;
+L523:          bool mbool3 = this->mCachedInventoryComponent->IsSomethingOnIndex(this->mSlotIdx);
+L574:          if (!mbool3) goto L707;
+L588:          EventReply mEventReply2 = WidgetBlueprintLibrary->DetectDragIfPressed([ref] localMouseEvent, this, ScriptStruct /Script/InputCore.Key(KeyName = "LeftMouseButton"));
+L675:          ReturnValue = mEventReply2;
+L702:          goto L866;
+L707:          EventReply mEventReply3 = WidgetBlueprintLibrary->Unhandled();
+L757:          ReturnValue = mEventReply3;
+L784:          goto L866;
+L789:          EventReply mEventReply4 = WidgetBlueprintLibrary->Unhandled();
+L839:          ReturnValue = mEventReply4;
 ============ END FUNCTION OnMouseButtonDown ==============
 
 
@@ -954,7 +959,7 @@ L483:          this->mItemClass = nullptr;
 ============ BEGIN FUNCTION OnMouseEnter ==============
 L36:           // EventGraph implemented function stub;
 L36:           // Function Name: OnMouseEnter;
-L36:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L29;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L61;
 ============ END FUNCTION OnMouseEnter ==============
 
 
@@ -964,7 +969,7 @@ L36:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION OnMouseLeave ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnMouseLeave;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L215;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L247;
 ============ END FUNCTION OnMouseLeave ==============
 
 
@@ -974,7 +979,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION OnFocusLost ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnFocusLost;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L236;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L268;
 ============ END FUNCTION OnFocusLost ==============
 
 
@@ -984,7 +989,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION PreConstruct ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: PreConstruct;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L305;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L337;
 ============ END FUNCTION PreConstruct ==============
 
 
@@ -994,7 +999,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION UpdateStyle ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: UpdateStyle;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L342;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L374;
 ============ END FUNCTION UpdateStyle ==============
 
 
@@ -1004,7 +1009,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION Destruct ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Destruct;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L755;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L801;
 ============ END FUNCTION Destruct ==============
 
 
@@ -1014,7 +1019,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION Construct ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Construct;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L802;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L848;
 ============ END FUNCTION Construct ==============
 
 
@@ -1024,7 +1029,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION Event CreateNuclearWastePopup ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: Event CreateNuclearWastePopup;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L868;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L914;
 ============ END FUNCTION Event CreateNuclearWastePopup ==============
 
 
@@ -1034,7 +1039,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION CloseNuclearWastePopup ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: CloseNuclearWastePopup;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L1160;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L1206;
 ============ END FUNCTION CloseNuclearWastePopup ==============
 
 
@@ -1044,7 +1049,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION CloseSplitStack ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: CloseSplitStack;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L1244;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L1290;
 ============ END FUNCTION CloseSplitStack ==============
 
 
@@ -1054,7 +1059,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION OnDragLeave ==============
 L36:           // EventGraph implemented function stub;
 L36:           // Function Name: OnDragLeave;
-L36:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L1281;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L1327;
 ============ END FUNCTION OnDragLeave ==============
 
 
@@ -1064,7 +1069,7 @@ L36:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION OnDragEnter ==============
 L54:           // EventGraph implemented function stub;
 L54:           // Function Name: OnDragEnter;
-L54:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L1381;
+L54:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L1427;
 ============ END FUNCTION OnDragEnter ==============
 
 
@@ -1074,93 +1079,104 @@ L54:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot
 ============ BEGIN FUNCTION Tick ==============
 L36:           // EventGraph implemented function stub;
 L36:           // Function Name: Tick;
-L36:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L1860;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L1906;
 ============ END FUNCTION Tick ==============
 
 
 
 
 
+============ BEGIN FUNCTION Event PlayOnNewSlotsAddedAnimation ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Event PlayOnNewSlotsAddedAnimation;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_InventorySlot, from label L1911;
+============ END FUNCTION Event PlayOnNewSlotsAddedAnimation ==============
+
+
+
+
+
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_InventorySlot ==============
-L10:           this->OnItemClassUpdated();
-L24:           // <End Inlined EventGraph Function>;
-L29:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L53:           this->SetUserFocus(mPlayerController);
-L72:           this->CheckSlotHasItems([ref] mbool);
-L95:           if (!mbool) goto L1865;
-L109:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L133:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/Play_UI_Inventory_MouseOver.Play_UI_Inventory_MouseOver), mPlayerController1, true);
-L194:          this->SetInteractState(2);
-L210:          // <End Inlined EventGraph Function>;
-L215:          this->SetInteractState(1);
-L231:          // <End Inlined EventGraph Function>;
-L236:          this->mShouldGrabAllOfType = false;
-L247:          this->CheckSlotHasItems([ref] mbool1);
-L270:          if (!mbool1) goto L1865;
-L284:          this->SetInteractState(1);
-L300:          // <End Inlined EventGraph Function>;
-L305:          this->SetSlotSize(this->mSmallSlot, this->mBigSlot);
-L337:          // <End Inlined EventGraph Function>;
-L342:          // <Begin Inlined EventGraph Function UpdateStyle>;
-L342:          this->OnItemClassUpdated();
-L356:          FText mFText = this->GetStackSizeText();
-L388:          this->mBackgroundText->SetText(mFText);
-L433:          this->mStackSizeLbl->SetText(mFText);
-L478:          // <End Inlined EventGraph Function>;
-L483:          this->UpdateStyle();
-L497:          mFScriptDelegate->BindUFunction(this, UpdateStyle);
-L520:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
-L585:          this->mUpdateTimer = mTimerHandle;
-L612:          this->CacheSlotData();
-L626:          FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
-L668:          bool mbool2 = mFGGameUserSettings->GetBoolOptionValue("FG.ItemAbbreviation");
-L731:          this->mAbbreviateName = mbool2;
-L750:          goto L10;
-L755:          // <Begin Inlined EventGraph Function Destruct>;
-L755:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateTimer);
-L797:          // <End Inlined EventGraph Function>;
-L802:          // <Begin Inlined EventGraph Function Construct>;
-L802:          MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mSlotBg->GetDynamicMaterial();
-L844:          this->mSlotBgMaterial = mMaterialInstanceDynamic;
-L863:          goto L483;
-L868:          if (!mbool3) goto L1865;
-L882:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
-L906:          mFScriptDelegate1->BindUFunction(this, CloseNuclearWastePopup);
-L929:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", "[object Object]", [ref] mFScriptDelegate1, 0, nullptr, nullptr);
-L1155:         // <End Inlined EventGraph Function>;
-L1160:         if (!mbool4) goto L1865;
-L1174:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
-L1198:         FGBlueprintFunctionLibrary->ClosePopup(mPlayerController3);
-L1239:         // <End Inlined EventGraph Function>;
-L1244:         // <Begin Inlined EventGraph Function CloseSplitStack>;
-L1244:         this->mSplitMenuAnchor->Close();
-L1276:         // <End Inlined EventGraph Function>;
-L1281:         BP_DragNDropInventory* mBP_DragNDropInventory = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/BP_DragNDropInventory.BP_DragNDropInventory_C>(mDragDropOperation);
-L1317:         bool mbool5 = mBP_DragNDropInventory;
-L1346:         if (!mbool5) goto L1865;
-L1360:         this->SetDragAndDropState(0);
-L1376:         // <End Inlined EventGraph Function>;
-L1381:         BP_DragNDropInventory* mBP_DragNDropInventory1 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/BP_DragNDropInventory.BP_DragNDropInventory_C>(mDragDropOperation1);
-L1417:         bool mbool6 = mBP_DragNDropInventory1;
-L1446:         if (!mbool6) goto L1865;
-L1460:         Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mBP_DragNDropInventory1->payload);
-L1518:         bool mbool7 = mWidget_InventorySlot;
-L1547:         if (!mbool7) goto L1865;
-L1561:         uint8 Temp_byte_Variable = 1;
-L1581:         uint8 Temp_byte_Variable1 = 2;
-L1601:         bool mbool8 = !this->mIsLocked;
-L1630:         bool mbool9 = this->mCachedInventoryComponent->IsItemAllowed(mWidget_InventorySlot->mItemClass, this->mSlotIdx);
-L1712:         bool mbool10 = mbool9 && mbool8;
-L1750:         bool Temp_bool_Variable = mbool10;
-L1769:         this->SetDragAndDropState(switch (Temp_bool_Variable) {
+L10:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->animOnNewSlotsAdded, 0, 1, 0, 1);
+L56:           // <End Inlined EventGraph Function>;
+L61:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L85:           this->SetUserFocus(mPlayerController);
+L104:          this->CheckSlotHasItems([ref] mbool);
+L127:          if (!mbool) goto L1916;
+L141:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L165:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/Play_UI_Inventory_MouseOver.Play_UI_Inventory_MouseOver), mPlayerController1, true);
+L226:          this->SetInteractState(2);
+L242:          // <End Inlined EventGraph Function>;
+L247:          this->SetInteractState(1);
+L263:          // <End Inlined EventGraph Function>;
+L268:          this->mShouldGrabAllOfType = false;
+L279:          this->CheckSlotHasItems([ref] mbool1);
+L302:          if (!mbool1) goto L1916;
+L316:          this->SetInteractState(1);
+L332:          // <End Inlined EventGraph Function>;
+L337:          this->SetSlotSize(this->mSmallSlot, this->mBigSlot);
+L369:          // <End Inlined EventGraph Function>;
+L374:          // <Begin Inlined EventGraph Function UpdateStyle>;
+L374:          this->OnItemClassUpdated();
+L388:          FText mFText = this->GetStackSizeText();
+L420:          this->mBackgroundText->SetText(mFText);
+L465:          this->mStackSizeLbl->SetText(mFText);
+L510:          // <End Inlined EventGraph Function>;
+L515:          this->UpdateStyle();
+L529:          mFScriptDelegate->BindUFunction(this, UpdateStyle);
+L552:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.10000000149011612, true);
+L617:          this->mUpdateTimer = mTimerHandle;
+L644:          this->CacheSlotData();
+L658:          FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L700:          bool mbool2 = mFGGameUserSettings->GetBoolOptionValue("FG.ItemAbbreviation");
+L763:          this->mAbbreviateName = mbool2;
+L782:          this->OnItemClassUpdated();
+L796:          // <End Inlined EventGraph Function>;
+L801:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->mUpdateTimer);
+L843:          // <End Inlined EventGraph Function>;
+L848:          MaterialInstanceDynamic* mMaterialInstanceDynamic = this->mSlotBg->GetDynamicMaterial();
+L890:          this->mSlotBgMaterial = mMaterialInstanceDynamic;
+L909:          goto L515;
+L914:          if (!mbool3) goto L1916;
+L928:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L952:          mFScriptDelegate1->BindUFunction(this, CloseNuclearWastePopup);
+L975:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", "[object Object]", [ref] mFScriptDelegate1, 0, nullptr, nullptr);
+L1201:         // <End Inlined EventGraph Function>;
+L1206:         if (!mbool4) goto L1916;
+L1220:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L1244:         FGBlueprintFunctionLibrary->ClosePopup(mPlayerController3);
+L1285:         // <End Inlined EventGraph Function>;
+L1290:         // <Begin Inlined EventGraph Function CloseSplitStack>;
+L1290:         this->mSplitMenuAnchor->Close();
+L1322:         // <End Inlined EventGraph Function>;
+L1327:         BP_DragNDropInventory* mBP_DragNDropInventory = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/BP_DragNDropInventory.BP_DragNDropInventory_C>(mDragDropOperation);
+L1363:         bool mbool5 = mBP_DragNDropInventory;
+L1392:         if (!mbool5) goto L1916;
+L1406:         this->SetDragAndDropState(0);
+L1422:         // <End Inlined EventGraph Function>;
+L1427:         BP_DragNDropInventory* mBP_DragNDropInventory1 = Cast<BlueprintGeneratedClass /Game/FactoryGame/Buildable/Factory/BP_DragNDropInventory.BP_DragNDropInventory_C>(mDragDropOperation1);
+L1463:         bool mbool6 = mBP_DragNDropInventory1;
+L1492:         if (!mbool6) goto L1916;
+L1506:         Widget_InventorySlot* mWidget_InventorySlot = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/InventorySlots/Widget_InventorySlot.Widget_InventorySlot_C>(mBP_DragNDropInventory1->payload);
+L1564:         bool mbool7 = mWidget_InventorySlot;
+L1593:         if (!mbool7) goto L1916;
+L1607:         uint8 Temp_byte_Variable = 1;
+L1627:         uint8 Temp_byte_Variable1 = 2;
+L1647:         bool mbool8 = !this->mIsLocked;
+L1676:         bool mbool9 = this->mCachedInventoryComponent->IsItemAllowed(mWidget_InventorySlot->mItemClass, this->mSlotIdx);
+L1758:         bool mbool10 = mbool9 && mbool8;
+L1796:         bool Temp_bool_Variable = mbool10;
+L1815:         this->SetDragAndDropState(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable1;
 case true -> Temp_byte_Variable;
 default -> muint8;
 });
-L1836:         // <End Inlined EventGraph Function>;
-L1841:         this->CacheSlotData();
-L1855:         // <End Inlined EventGraph Function>;
-L1860:         goto L1841;
+L1882:         // <End Inlined EventGraph Function>;
+L1887:         this->CacheSlotData();
+L1901:         // <End Inlined EventGraph Function>;
+L1906:         goto L1887;
+L1911:         // <Begin Inlined EventGraph Function Event PlayOnNewSlotsAddedAnimation>;
+L1911:         goto L10;
 ============ END FUNCTION ExecuteUbergraph_Widget_InventorySlot ==============
 
 

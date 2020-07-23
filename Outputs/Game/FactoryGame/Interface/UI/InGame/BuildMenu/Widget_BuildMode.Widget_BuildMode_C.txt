@@ -24,22 +24,20 @@ L232:          ReturnValue = false;
 ============ BEGIN FUNCTION UpdateHintVisibility ==============
 L0:            Struct_KeybindingHint LocalBuildModeHint = UserDefinedStruct /Game/FactoryGame/Interface/UI/InGame/-Shared/Struct_KeybindingHint.Struct_KeybindingHint(Action_3_8CED3F9B4A70C1822B95758560DE8695 = "[object Object]", KeyBinding_5_6C26EF9041BC54531A02F2B5B7DC3464 = "[object Object]");
 L137:          bool mbool = KismetSystemLibrary->IsValid(this->mOwningState);
-L188:          if (!mbool) goto L600;
+L188:          if (!mbool) goto L522;
 L202:          bool mbool1 = this->GetHasMultipleSplineModes();
 L226:          bool mbool2 = this->mShouldShowBuildModesHint != mbool1;
-L264:          if (!mbool2) goto L804;
+L264:          if (!mbool2) goto L647;
 L278:          mbool1 = this->GetHasMultipleSplineModes();
 L302:          this->mShouldShowBuildModesHint = mbool1;
-L321:          if (!this->mShouldShowBuildModesHint) goto L600;
+L321:          if (!this->mShouldShowBuildModesHint) goto L522;
 L335:          this->CurrentBuildModeOverlay->SetVisibility(4);
-L373:          KismetArrayLibrary->Array_Insert([ref] this->mBHints->mKeyBindingHints, [ref] LocalBuildModeHint, 4);
-L450:          KismetSystemLibrary->PrintString(this, "on", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
-L528:          this->mBHints->SetKeybindingHints([ref] this->mBHints->mKeyBindingHints);
-L595:          // <End Inlined EventGraph Function>;
-L600:          this->CurrentBuildModeOverlay->SetVisibility(1);
-L638:          bool mbool3 = KismetArrayLibrary->Array_RemoveItem([ref] this->mBHints->mKeyBindingHints, [ref] LocalBuildModeHint);
-L720:          KismetSystemLibrary->PrintString(this, "off", true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
-L799:          goto L528;
+L373:          KismetArrayLibrary->Array_Insert([ref] this->mBuildHints->mKeyBindingHints, [ref] LocalBuildModeHint, 4);
+L450:          this->mBuildHints->SetKeybindingHints([ref] this->mBuildHints->mKeyBindingHints);
+L517:          // <End Inlined EventGraph Function>;
+L522:          this->CurrentBuildModeOverlay->SetVisibility(1);
+L560:          bool mbool3 = KismetArrayLibrary->Array_RemoveItem([ref] this->mBuildHints->mKeyBindingHints, [ref] LocalBuildModeHint);
+L642:          goto L450;
 ============ END FUNCTION UpdateHintVisibility ==============
 
 
@@ -294,7 +292,7 @@ L55:           SlateColor ReturnValue = mSlateColor;
 ============ BEGIN FUNCTION OnEscapePressed ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: OnEscapePressed;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L10;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L357;
 ============ END FUNCTION OnEscapePressed ==============
 
 
@@ -304,7 +302,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, fr
 ============ BEGIN FUNCTION Construct ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Construct;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L146;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L493;
 ============ END FUNCTION Construct ==============
 
 
@@ -314,7 +312,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, fr
 ============ BEGIN FUNCTION PlayDismantleAnimation ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: PlayDismantleAnimation;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L1714;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L2167;
 ============ END FUNCTION PlayDismantleAnimation ==============
 
 
@@ -324,7 +322,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, fr
 ============ BEGIN FUNCTION StopDismantleAnimation ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: StopDismantleAnimation;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L1803;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L2256;
 ============ END FUNCTION StopDismantleAnimation ==============
 
 
@@ -334,7 +332,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_BuildMode, fr
 ============ BEGIN FUNCTION OnCustomTick ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnCustomTick;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L2316;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L2318;
 ============ END FUNCTION OnCustomTick ==============
 
 
@@ -344,64 +342,87 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_BuildMode, fr
 ============ BEGIN FUNCTION PlayOnSplineModeChangedAnimation ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: PlayOnSplineModeChangedAnimation;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L2321;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L2585;
 ============ END FUNCTION PlayOnSplineModeChangedAnimation ==============
 
 
 
 
 
+============ BEGIN FUNCTION OnRecipeSampled ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnRecipeSampled;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_BuildMode, from label L3407;
+============ END FUNCTION OnRecipeSampled ==============
+
+
+
+
+
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_BuildMode ==============
-L10:           // <Begin Inlined EventGraph Function OnEscapePressed>;
-L10:           Pawn* mPawn = this->GetOwningPlayerPawn();
-L30:           FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
-L66:           bool mbool = mFGCharacterPlayer;
-L95:           if (!mbool) goto L3138;
-L109:          mFGCharacterPlayer->ToggleBuildGun();
-L141:          // <End Inlined EventGraph Function>;
-L146:          // <Begin Inlined EventGraph Function Construct>;
-L146:          this->Construct();
-L156:          FGBuildGunStateBuild* mFGBuildGunStateBuild = Cast<Class /Script/FactoryGame.FGBuildGunStateBuild>(this->mInteractObject);
-L192:          bool mbool1 = mFGBuildGunStateBuild;
-L221:          this->mOwningState = mFGBuildGunStateBuild;
-L240:          this->CreateCostSlots();
-L254:          this->UpdateHintVisibility();
-L268:          uint8 Temp_byte_Variable2 = 3;
-L288:          uint8 Temp_byte_Variable4 = 1;
-L308:          bool Temp_bool_Variable = this->isDismantleMode;
-L327:          this->mBHints->SetVisibility(switch (Temp_bool_Variable) {
+L10:           this->mCostSlotTImer = 0;
+L33:           this->UpdateCost();
+L47:           bool mbool = KismetSystemLibrary->IsValid(this->mOwningState);
+L98:           FGHologram* mFGHologram = this->mOwningState->GetHologram();
+L140:          bool mbool1 = KismetSystemLibrary->IsValid(mFGHologram);
+L191:          bool mbool2 = mbool && mbool1;
+L229:          if (!mbool2) goto L325;
+L243:          TArray<ItemAmount> mTArrayItemAmount = this->mOwningState->GetHologramCost();
+L293:          this->mPrevHologramCost = mTArrayItemAmount;
+L320:          // <End Inlined EventGraph Function>;
+L325:          this->mPrevHologramCost = this->mCurrentHologramCost;
+L352:          // <End Inlined EventGraph Function>;
+L357:          Pawn* mPawn = this->GetOwningPlayerPawn();
+L377:          FGCharacterPlayer* mFGCharacterPlayer = Cast<Class /Script/FactoryGame.FGCharacterPlayer>(mPawn);
+L413:          bool mbool3 = mFGCharacterPlayer;
+L442:          if (!mbool3) goto L3654;
+L456:          mFGCharacterPlayer->ToggleBuildGun();
+L488:          // <End Inlined EventGraph Function>;
+L493:          this->Construct();
+L503:          FGBuildGunStateBuild* mFGBuildGunStateBuild = Cast<Class /Script/FactoryGame.FGBuildGunStateBuild>(this->mInteractObject);
+L539:          bool mbool4 = mFGBuildGunStateBuild;
+L568:          this->mOwningState = mFGBuildGunStateBuild;
+L587:          this->CreateCostSlots();
+L601:          this->UpdateHintVisibility();
+L615:          uint8 Temp_byte_Variable2 = 3;
+L635:          uint8 Temp_byte_Variable4 = 1;
+L655:          bool Temp_bool_Variable = this->isDismantleMode;
+L674:          this->mBuildHints->SetVisibility(switch (Temp_bool_Variable) {
 case false -> Temp_byte_Variable2;
 case true -> Temp_byte_Variable4;
 default -> muint8;
 });
-L416:          uint8 Temp_byte_Variable3 = 1;
-L436:          uint8 Temp_byte_Variable5 = 3;
-L456:          bool Temp_bool_Variable1 = this->isDismantleMode;
-L475:          this->mDHints->SetVisibility(switch (Temp_bool_Variable1) {
+L763:          uint8 Temp_byte_Variable3 = 1;
+L783:          uint8 Temp_byte_Variable5 = 3;
+L803:          bool Temp_bool_Variable1 = this->isDismantleMode;
+L822:          this->mDismantleHints->SetVisibility(switch (Temp_bool_Variable1) {
 case false -> Temp_byte_Variable3;
 case true -> Temp_byte_Variable5;
 default -> muint81;
 });
-L564:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->DisqualifierAnim, 0, 0, 0, 0.15000000596046448);
-L610:          bool mbool2 = KismetSystemLibrary->IsValid(this->mOwningState);
-L661:          if (!mbool2) goto L3138;
-L675:          mFScriptDelegate->BindUFunction(this, PlayOnSplineModeChangedAnimation);
-L698:          this->mOwningState->OnSplineModeChangedDelegate.AddUnique(mFScriptDelegate);
-L739:          FGHologram* mFGHologram = this->mOwningState->GetHologram();
-L781:          bool mbool3 = KismetSystemLibrary->IsValid(mFGHologram);
-L832:          if (!mbool3) goto L3138;
-L846:          mFGHologram = this->mOwningState->GetHologram();
-L888:          uint8 muint82 = mFGHologram->GetSplineMode();
-L938:          FText Temp_text_Variable8 = "[object Object]";
-L1002:         FText Temp_text_Variable9 = "[object Object]";
-L1071:         FText Temp_text_Variable10 = "[object Object]";
-L1138:         FText Temp_text_Variable11 = "[object Object]";
-L1218:         FText Temp_text_Variable12 = "[object Object]";
-L1284:         FText Temp_text_Variable13 = "[object Object]";
-L1359:         FText Temp_text_Variable14 = "[object Object]";
-L1436:         FText Temp_text_Variable15 = "[object Object]";
-L1501:         uint8 Temp_byte_Variable1 = muint82;
-L1528:         this->mCurrentModeText->SetText(switch (Temp_byte_Variable1) {
+L911:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->DisqualifierAnim, 0, 0, 0, 0.15000000596046448);
+L957:          bool mbool5 = KismetSystemLibrary->IsValid(this->mOwningState);
+L1008:         if (!mbool5) goto L3654;
+L1022:         mFScriptDelegate->BindUFunction(this, PlayOnSplineModeChangedAnimation);
+L1045:         this->mOwningState->OnSplineModeChangedDelegate.AddUnique(mFScriptDelegate);
+L1086:         FGBuildGun* mFGBuildGun = this->mOwningState->GetBuildGun();
+L1128:         mFScriptDelegate1->BindUFunction(this, OnRecipeSampled);
+L1151:         mFGBuildGun->mOnRecipeSampled.AddUnique(mFScriptDelegate1);
+L1192:         FGHologram* mFGHologram1 = this->mOwningState->GetHologram();
+L1234:         bool mbool6 = KismetSystemLibrary->IsValid(mFGHologram1);
+L1285:         if (!mbool6) goto L3654;
+L1299:         mFGHologram1 = this->mOwningState->GetHologram();
+L1341:         uint8 muint82 = mFGHologram1->GetSplineMode();
+L1391:         FText Temp_text_Variable8 = "[object Object]";
+L1455:         FText Temp_text_Variable9 = "[object Object]";
+L1524:         FText Temp_text_Variable10 = "[object Object]";
+L1591:         FText Temp_text_Variable11 = "[object Object]";
+L1671:         FText Temp_text_Variable12 = "[object Object]";
+L1737:         FText Temp_text_Variable13 = "[object Object]";
+L1812:         FText Temp_text_Variable14 = "[object Object]";
+L1889:         FText Temp_text_Variable15 = "[object Object]";
+L1954:         uint8 Temp_byte_Variable1 = muint82;
+L1981:         this->mCurrentModeText->SetText(switch (Temp_byte_Variable1) {
 case 0 -> Temp_text_Variable15;
 case 1 -> Temp_text_Variable14;
 case 2 -> Temp_text_Variable13;
@@ -412,45 +433,36 @@ case 6 -> Temp_text_Variable9;
 case 7 -> Temp_text_Variable8;
 default -> mFText;
 });
-L1709:         // <End Inlined EventGraph Function>;
-L1714:         // <Begin Inlined EventGraph Function PlayDismantleAnimation>;
-L1714:         this->mDismantleText->SetVisibility(3);
-L1752:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->DismantleAnim, 0, 0, 0, 1);
-L1798:         // <End Inlined EventGraph Function>;
-L1803:         // <Begin Inlined EventGraph Function StopDismantleAnimation>;
-L1803:         this->mDismantleText->SetVisibility(1);
-L1841:         this->StopAnimation(this->DismantleAnim);
-L1860:         // <End Inlined EventGraph Function>;
-L1865:         this->UpdateCost();
-L1879:         bool mbool4 = KismetSystemLibrary->IsValid(this->mOwningState);
-L1930:         FGHologram* mFGHologram1 = this->mOwningState->GetHologram();
-L1972:         bool mbool5 = KismetSystemLibrary->IsValid(mFGHologram1);
-L2023:         bool mbool6 = mbool4 && mbool5;
-L2061:         if (!mbool6) goto L2157;
-L2075:         TArray<ItemAmount> mTArrayItemAmount = this->mOwningState->GetHologramCost();
-L2125:         this->mPrevHologramCost = mTArrayItemAmount;
-L2152:         // <End Inlined EventGraph Function>;
-L2157:         this->mPrevHologramCost = this->mCurrentHologramCost;
-L2184:         // <End Inlined EventGraph Function>;
-L2189:         bool mbool7 = this->CheckHologramState();
-L2213:         if (!mbool7) goto L1879;
-L2227:         goto L1865;
-L2232:         bool mbool8 = KismetSystemLibrary->IsValid(this->mOwningState);
-L2283:         if (!mbool8) goto L3138;
-L2297:         this->UpdateHintVisibility();
-L2311:         goto L2189;
-L2316:         goto L2232;
-L2321:         UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->FadeInSplineAnim, 0, 1, 0, 1);
-L2367:         FText Temp_text_Variable = "[object Object]";
-L2431:         FText Temp_text_Variable1 = "[object Object]";
-L2500:         FText Temp_text_Variable2 = "[object Object]";
-L2567:         FText Temp_text_Variable3 = "[object Object]";
-L2647:         FText Temp_text_Variable4 = "[object Object]";
-L2713:         FText Temp_text_Variable5 = "[object Object]";
-L2788:         FText Temp_text_Variable6 = "[object Object]";
-L2865:         FText Temp_text_Variable7 = "[object Object]";
-L2930:         uint8 Temp_byte_Variable = muint83;
-L2957:         this->mCurrentModeText->SetText(switch (Temp_byte_Variable) {
+L2162:         // <End Inlined EventGraph Function>;
+L2167:         // <Begin Inlined EventGraph Function PlayDismantleAnimation>;
+L2167:         this->mDismantleText->SetVisibility(3);
+L2205:         UMGSequencePlayer* mUMGSequencePlayer1 = this->PlayAnimation(this->DismantleAnim, 0, 0, 0, 1);
+L2251:         // <End Inlined EventGraph Function>;
+L2256:         // <Begin Inlined EventGraph Function StopDismantleAnimation>;
+L2256:         this->mDismantleText->SetVisibility(2);
+L2294:         this->StopAnimation(this->DismantleAnim);
+L2313:         // <End Inlined EventGraph Function>;
+L2318:         bool mbool7 = KismetSystemLibrary->IsValid(this->mOwningState);
+L2369:         if (!mbool7) goto L3654;
+L2383:         float mfloat = this->mCostSlotTImer + mfloat1;
+L2429:         this->mCostSlotTImer = mfloat;
+L2456:         this->UpdateHintVisibility();
+L2470:         bool mbool8 = this->CheckHologramState();
+L2494:         bool mbool9 = this->mCostSlotTImer >= 1;
+L2528:         bool mbool10 = mbool8 || mbool9;
+L2566:         if (!mbool10) goto L47;
+L2580:         goto L10;
+L2585:         UMGSequencePlayer* mUMGSequencePlayer2 = this->PlayAnimation(this->FadeInSplineAnim, 0, 1, 0, 1);
+L2631:         FText Temp_text_Variable = "[object Object]";
+L2695:         FText Temp_text_Variable1 = "[object Object]";
+L2764:         FText Temp_text_Variable2 = "[object Object]";
+L2831:         FText Temp_text_Variable3 = "[object Object]";
+L2911:         FText Temp_text_Variable4 = "[object Object]";
+L2977:         FText Temp_text_Variable5 = "[object Object]";
+L3052:         FText Temp_text_Variable6 = "[object Object]";
+L3129:         FText Temp_text_Variable7 = "[object Object]";
+L3194:         uint8 Temp_byte_Variable = muint83;
+L3221:         this->mCurrentModeText->SetText(switch (Temp_byte_Variable) {
 case 0 -> Temp_text_Variable7;
 case 1 -> Temp_text_Variable6;
 case 2 -> Temp_text_Variable5;
@@ -461,4 +473,9 @@ case 6 -> Temp_text_Variable1;
 case 7 -> Temp_text_Variable;
 default -> mFText1;
 });
+L3402:         // <End Inlined EventGraph Function>;
+L3407:         FText mFText2 = FGRecipe->GetRecipeName(mTSubclassOfFGRecipe);
+L3466:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText2);
+L3525:         KismetSystemLibrary->PrintString(this, mFString, true, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L3608:         UMGSequencePlayer* mUMGSequencePlayer3 = this->PlayAnimation(this->SampleAnim, 0, 1, 0, 1);
 ============ END FUNCTION ExecuteUbergraph_Widget_BuildMode ==============

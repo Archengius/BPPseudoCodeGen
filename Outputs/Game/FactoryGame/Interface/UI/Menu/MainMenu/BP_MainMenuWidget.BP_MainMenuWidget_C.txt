@@ -6,6 +6,73 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/MainMenu/BP_MainMenuW
 
 
 
+============ BEGIN FUNCTION UpdateNATType ==============
+============ END FUNCTION UpdateNATType ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetLogedInUsernameText ==============
+L0:            FText Temp_text_Variable = ;
+L20:           FText Temp_text_Variable1 = "[object Object]";
+L83:           FText Temp_text_Variable2 = "[object Object]";
+L145:          FText Temp_text_Variable3 = ;
+L165:          uint8 Temp_byte_Variable = Platform;
+L192:          FText Temp_text_Variable4 = ;
+L212:          uint8 Temp_byte_Variable1 = Platform;
+L239:          bool Temp_bool_Variable1 = false;
+L250:          uint8 Temp_byte_Variable2 = Platform;
+L277:          LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L301:          FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L337:          bool mbool = mFGLocalPlayer;
+L366:          mFormatArgumentData.ArgumentName = "platform";
+L403:          mFormatArgumentData.ArgumentValueType = 4;
+L432:          mFormatArgumentData.ArgumentValue = switch (Temp_byte_Variable2) {
+case 0 -> Temp_text_Variable2;
+case 1 -> Temp_text_Variable1;
+case 2 -> Temp_text_Variable;
+default -> mFText;
+};
+L529:          mFormatArgumentData.ArgumentValueInt = 0;
+L561:          mFormatArgumentData.ArgumentValueFloat = 0;
+L593:          mFormatArgumentData.ArgumentValueGender = 0;
+L622:          FString mFString = mFGLocalPlayer->GetUsernameSteam();
+L672:          FString mFString1 = mFGLocalPlayer->GetUsernameEpic();
+L722:          bool mbool1 = KismetStringLibrary->NotEqual_StrStr(mFString, "");
+L775:          bool mbool2 = KismetStringLibrary->NotEqual_StrStr(mFString1, "");
+L828:          FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString1);
+L887:          FText mFText2 = KismetTextLibrary->Conv_StringToText(mFString);
+L946:          bool Temp_bool_Variable = switch (Temp_byte_Variable1) {
+case 0 -> mbool2;
+case 1 -> mbool1;
+case 2 -> Temp_bool_Variable1;
+default -> mbool3;
+};
+L1026:         mFormatArgumentData1.ArgumentName = "username";
+L1063:         mFormatArgumentData1.ArgumentValueType = 4;
+L1092:         mFormatArgumentData1.ArgumentValue = switch (Temp_byte_Variable) {
+case 0 -> mFText1;
+case 1 -> mFText2;
+case 2 -> Temp_text_Variable4;
+default -> mFText3;
+};
+L1189:         mFormatArgumentData1.ArgumentValueInt = 0;
+L1221:         mFormatArgumentData1.ArgumentValueFloat = 0;
+L1253:         mFormatArgumentData1.ArgumentValueGender = 0;
+L1282:         TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData, mFormatArgumentData1];
+L1311:         FText mFText4 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
+L1448:         FText LoginStatusText = switch (Temp_bool_Variable) {
+case false -> Temp_text_Variable3;
+case true -> mFText4;
+default -> mFText5;
+};
+============ END FUNCTION GetLogedInUsernameText ==============
+
+
+
+
+
 ============ BEGIN FUNCTION OnSavesEnumerated ==============
 L0:            ExecutionFlow.Push(L638);
 L5:            ExecutionFlow.Push(L567);
@@ -102,11 +169,11 @@ L89:           uint8 muint8 = mFGLocalPlayer->GetLoginState();
 L139:          bool mbool1 = muint8 != 0;
 L170:          if (!mbool1) goto L324;
 L184:          mbool1 = muint8 != 1;
-L215:          if (!mbool1) goto L556;
+L215:          if (!mbool1) goto L324;
 L229:          mbool1 = muint8 != 2;
-L260:          if (!mbool1) goto L740;
+L260:          if (!mbool1) goto L556;
 L274:          mbool1 = muint8 != 3;
-L305:          if (!mbool1) goto L324;
+L305:          if (!mbool1) goto L740;
 L319:          // <End Inlined EventGraph Function>;
 L324:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [ScriptStruct /Script/Engine.FormatArgumentData(ArgumentName = "", ArgumentValueType = 0, ArgumentValue = , ArgumentValueInt = 0, ArgumentValueFloat = 0, ArgumentValueGender = 0)];
 L367:          FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
@@ -117,23 +184,24 @@ L556:          TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [ScriptSt
 L599:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
 L708:          local_loginText = mFText1;
 L735:          goto L506;
-L740:          TArray<FormatArgumentData> mTArrayFormatArgumentData2 = [ScriptStruct /Script/Engine.FormatArgumentData(ArgumentName = "", ArgumentValueType = 0, ArgumentValue = , ArgumentValueInt = 0, ArgumentValueFloat = 0, ArgumentValueGender = 0)];
-L783:          mLocalPlayer = this->GetOwningLocalPlayer();
-L807:          mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
-L843:          mbool = mFGLocalPlayer;
-L872:          FString mFString = mFGLocalPlayer->GetUsername();
-L922:          FText mFText2 = KismetTextLibrary->Conv_StringToText(mFString);
-L981:          mFormatArgumentData.ArgumentName = "username";
-L1018:         mFormatArgumentData.ArgumentValueType = 4;
-L1047:         mFormatArgumentData.ArgumentValue = mFText2;
-L1083:         mFormatArgumentData.ArgumentValueInt = 0;
-L1115:         mFormatArgumentData.ArgumentValueFloat = 0;
-L1147:         mFormatArgumentData.ArgumentValueGender = 0;
-L1176:         TArray<FormatArgumentData> mTArrayFormatArgumentData3 = [mFormatArgumentData];
-L1196:         FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData3);
-L1319:         FText mFText4 = KismetTextLibrary->Format(mFText3, mTArrayFormatArgumentData2);
-L1387:         local_loginText = mFText4;
-L1414:         goto L506;
+L740:          this->GetLogedInUsernameText(1, [ref] mFText2);
+L765:          this->GetLogedInUsernameText(0, [ref] mFText3);
+L790:          mFormatArgumentData.ArgumentName = "steam";
+L824:          mFormatArgumentData.ArgumentValueType = 4;
+L853:          mFormatArgumentData.ArgumentValue = mFText2;
+L889:          mFormatArgumentData.ArgumentValueInt = 0;
+L921:          mFormatArgumentData.ArgumentValueFloat = 0;
+L953:          mFormatArgumentData.ArgumentValueGender = 0;
+L982:          mFormatArgumentData1.ArgumentName = "epic";
+L1015:         mFormatArgumentData1.ArgumentValueType = 4;
+L1044:         mFormatArgumentData1.ArgumentValue = mFText3;
+L1080:         mFormatArgumentData1.ArgumentValueInt = 0;
+L1112:         mFormatArgumentData1.ArgumentValueFloat = 0;
+L1144:         mFormatArgumentData1.ArgumentValueGender = 0;
+L1173:         TArray<FormatArgumentData> mTArrayFormatArgumentData2 = [mFormatArgumentData1, mFormatArgumentData];
+L1202:         FText mFText4 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData2);
+L1283:         local_loginText = mFText4;
+L1310:         goto L506;
 ============ END FUNCTION UpdateUsername ==============
 
 
@@ -144,7 +212,7 @@ L1414:         goto L506;
 L0:            GameInstance* mGameInstance = GameplayStatics->GetGameInstance(this);
 L43:           uint8 muint8 = FGNetworkLibrary->GetCachedNATType(mGameInstance);
 L102:          bool mbool = muint8 != 3;
-L133:          if (!mbool) goto L1034;
+L133:          if (!mbool) goto L1035;
 L147:          FString mFString = FGVersionFunctionLibrary->GetVersionString();
 L197:          mGameInstance = GameplayStatics->GetGameInstance(this);
 L240:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
@@ -164,21 +232,21 @@ L744:          mFormatArgumentData1.ArgumentValueFloat = 0;
 L776:          mFormatArgumentData1.ArgumentValueGender = 0;
 L805:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData1, mFormatArgumentData];
 L834:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
-L957:          FText local_versionString = mFText2;
-L984:          this->VersionString->SetText(local_versionString);
-L1029:         // <End Inlined EventGraph Function>;
-L1034:         FString mFString1 = FGVersionFunctionLibrary->GetVersionString();
-L1084:         FText mFText3 = KismetTextLibrary->Conv_StringToText(mFString1);
-L1143:         mFormatArgumentData2.ArgumentName = "Version";
-L1179:         mFormatArgumentData2.ArgumentValueType = 4;
-L1208:         mFormatArgumentData2.ArgumentValue = mFText3;
-L1244:         mFormatArgumentData2.ArgumentValueInt = 0;
-L1276:         mFormatArgumentData2.ArgumentValueFloat = 0;
-L1308:         mFormatArgumentData2.ArgumentValueGender = 0;
-L1337:         TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [mFormatArgumentData2];
-L1357:         FText mFText4 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
-L1465:         local_versionString = mFText4;
-L1492:         goto L984;
+L958:          FText local_versionString = mFText2;
+L985:          this->VersionString->SetText(local_versionString);
+L1030:         // <End Inlined EventGraph Function>;
+L1035:         FString mFString1 = FGVersionFunctionLibrary->GetVersionString();
+L1085:         FText mFText3 = KismetTextLibrary->Conv_StringToText(mFString1);
+L1144:         mFormatArgumentData2.ArgumentName = "Version";
+L1180:         mFormatArgumentData2.ArgumentValueType = 4;
+L1209:         mFormatArgumentData2.ArgumentValue = mFText3;
+L1245:         mFormatArgumentData2.ArgumentValueInt = 0;
+L1277:         mFormatArgumentData2.ArgumentValueFloat = 0;
+L1309:         mFormatArgumentData2.ArgumentValueGender = 0;
+L1338:         TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [mFormatArgumentData2];
+L1358:         FText mFText4 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
+L1466:         local_versionString = mFText4;
+L1493:         goto L985;
 ============ END FUNCTION UpdateVersionString ==============
 
 
@@ -215,7 +283,7 @@ L109:          FText ReturnValue = mFText;
 ============ BEGIN FUNCTION OnEscape ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: OnEscape;
-L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L537;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L542;
 ============ END FUNCTION OnEscape ==============
 
 
@@ -225,7 +293,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION BndEvt__mButtonQuit_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: BndEvt__mButtonQuit_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L829;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L834;
 ============ END FUNCTION BndEvt__mButtonQuit_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
 
 
@@ -235,7 +303,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION Construct ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Construct;
-L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L1062;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L1067;
 ============ END FUNCTION Construct ==============
 
 
@@ -245,7 +313,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L1745;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L1750;
 ============ END FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
 
 
@@ -255,7 +323,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION BndEvt__mButtonMP_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: BndEvt__mButtonMP_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L3268;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L3273;
 ============ END FUNCTION BndEvt__mButtonMP_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
 
 
@@ -265,7 +333,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION OnExit ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnExit;
-L18:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L3373;
+L18:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L4295;
 ============ END FUNCTION OnExit ==============
 
 
@@ -275,7 +343,7 @@ L18:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION NATTypeUpdated ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: NATTypeUpdated;
-L18:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L3482;
+L18:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L4404;
 ============ END FUNCTION NATTypeUpdated ==============
 
 
@@ -285,7 +353,7 @@ L18:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION Destruct ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Destruct;
-L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L3497;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L4419;
 ============ END FUNCTION Destruct ==============
 
 
@@ -295,7 +363,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION OnMenuEnter ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnMenuEnter;
-L18:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L3857;
+L18:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L4779;
 ============ END FUNCTION OnMenuEnter ==============
 
 
@@ -305,7 +373,7 @@ L18:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION LoginStateChanged ==============
 L36:           // EventGraph implemented function stub;
 L36:           // Function Name: LoginStateChanged;
-L36:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L3881;
+L36:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L4803;
 ============ END FUNCTION LoginStateChanged ==============
 
 
@@ -315,7 +383,7 @@ L36:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_1_OnHovered__DelegateSignature ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_1_OnHovered__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L3896;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L4818;
 ============ END FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_1_OnHovered__DelegateSignature ==============
 
 
@@ -325,7 +393,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_2_OnUnhovered__DelegateSignature ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_2_OnUnhovered__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L4063;
+L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L4985;
 ============ END FUNCTION BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_2_OnUnhovered__DelegateSignature ==============
 
 
@@ -335,7 +403,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, f
 ============ BEGIN FUNCTION ClosedLoadPopup ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: ClosedLoadPopup;
-L18:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L4212;
+L18:           // Implementation: Function ExecuteUbergraph_BP_MainMenuWidget, from label L5134;
 ============ END FUNCTION ClosedLoadPopup ==============
 
 
@@ -347,143 +415,165 @@ L5:            goto ComputedJump(EntryPoint);
 L15:           this->mButtonContinue->Widget_ButtonShine->PlayShineAnim();
 L73:           this->mButtonContinue->Widget_AutoScrollingContainer->StartAutoScroll();
 L131:          goto ExecutionFlow.Pop();
-L132:          int32 Temp_int_Array_Index_Variable = 0;
-L155:          TArray<BP_MenuBase*> mTArrayBP_MenuBase = [this->Widget_LoadSession, this->Widget_ManageInvites, this->Widget_Options];
-L193:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayBP_MenuBase);
-L252:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
-L290:          if (!mbool) goto ExecutionFlow.Pop();
-L300:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
-L327:          ExecutionFlow.Push(L463);
-L332:          mTArrayBP_MenuBase = [this->Widget_LoadSession, this->Widget_ManageInvites, this->Widget_Options];
-L370:          KismetArrayLibrary->Array_Get([ref] mTArrayBP_MenuBase, Temp_int_Array_Index_Variable, [ref] mBP_MenuBase);
-L429:          mBP_MenuBase->mOwningMenu = this;
-L462:          goto ExecutionFlow.Pop();
-L463:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
-L505:          int32 Temp_int_Loop_Counter_Variable = mint321;
-L532:          goto L155;
-L537:          // <Begin Inlined EventGraph Function OnEscape>;
-L537:          this->OnEscape();
-L547:          int32 mint322 = this->mSwitcher->GetActiveWidgetIndex();
-L597:          bool mbool1 = mint322 != 0;
-L631:          if (!mbool1) goto ExecutionFlow.Pop();
-L641:          this->mSwitcher->SetActiveWidget(nullptr);
-L678:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L702:          this->mFocusWidget->SetUserFocus(mPlayerController);
-L743:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L767:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_Back.Play_UI_MainMenu_Back), mPlayerController1, true);
-L828:          goto ExecutionFlow.Pop();
-L829:          // <Begin Inlined EventGraph Function BndEvt__mButtonQuit_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature>;
-L829:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
-L853:          mFScriptDelegate->BindUFunction(this, OnExit);
-L876:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", "[object Object]", [ref] mFScriptDelegate, 1, nullptr, nullptr);
-L1061:         goto ExecutionFlow.Pop();
-L1062:         // <Begin Inlined EventGraph Function Construct>;
-L1062:         this->Construct();
-L1072:         this->mFocusWidget = this->mButtonContinue;
-L1091:         this->CacheMostRecentSave();
-L1105:         this->UpdateVersionString();
-L1119:         this->UpdateUsername();
-L1133:         this->GetExperimentalVisibility();
-L1147:         GameInstance* mGameInstance = GameplayStatics->GetGameInstance(this);
-L1190:         FGGameInstance* mFGGameInstance = Cast<Class /Script/FactoryGame.FGGameInstance>(mGameInstance);
-L1226:         bool mbool2 = mFGGameInstance;
-L1255:         if (!mbool2) goto L1333;
-L1269:         mFScriptDelegate1->BindUFunction(this, NATTypeUpdated);
-L1292:         mFGGameInstance->mOnNatTypeUpdated.AddUnique(mFScriptDelegate1);
-L1333:         LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
-L1357:         FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
-L1393:         bool mbool3 = mFGLocalPlayer;
-L1422:         if (!mbool3) goto ExecutionFlow.Pop();
-L1432:         mFScriptDelegate2->BindUFunction(this, LoginStateChanged);
-L1455:         mFGLocalPlayer->mOnLoginStateChanged.AddUnique(mFScriptDelegate2);
-L1496:         Temp_int_Loop_Counter_Variable = 0;
-L1519:         goto L132;
-L1524:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
-L1548:         this->mFocusWidget->SetUserFocus(mPlayerController3);
-L1589:         goto ExecutionFlow.Pop();
-L1590:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
-L1614:         KismetSystemLibrary->QuitGame(this, mPlayerController4, 0, false);
-L1659:         PlayerController* mPlayerController5 = this->GetOwningPlayer();
-L1683:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_Back.Play_UI_MainMenu_Back), mPlayerController5, true);
-L1744:         goto ExecutionFlow.Pop();
-L1745:         // <Begin Inlined EventGraph Function BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature>;
-L1745:         FGMusicManager* mFGMusicManager = FGMusicManager->Get(this);
-L1788:         mFGMusicManager->Stop();
-L1824:         PlayerController* mPlayerController6 = this->GetOwningPlayer();
-L1848:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_LaunchGame.Play_UI_MainMenu_LaunchGame), mPlayerController6, true);
-L1909:         uint8 muint8 = FGSaveSystem->GetSaveState([ref] this->mRecentSave);
-L1968:         bool mbool4 = muint8 != 0;
-L1999:         if (!mbool4) goto L2149;
-L2013:         mbool4 = muint8 != 1;
-L2044:         if (!mbool4) goto L2414;
-L2058:         mbool4 = muint8 != 2;
-L2089:         if (!mbool4) goto L2699;
-L2103:         mbool4 = muint8 != 3;
-L2134:         if (!mbool4) goto L2986;
-L2148:         goto ExecutionFlow.Pop();
-L2149:         PlayerController* mPlayerController7 = this->GetOwningPlayer();
-L2173:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController7, STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), [ref] Temp_delegate_Variable, 0, nullptr, mPlayerController7);
-L2413:         goto ExecutionFlow.Pop();
-L2414:         mFScriptDelegate3->BindUFunction(this, ClosedLoadPopup);
-L2437:         mPlayerController7 = this->GetOwningPlayer();
-L2461:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController7, STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), [ref] mFScriptDelegate3, 1, nullptr, mPlayerController7);
-L2698:         goto ExecutionFlow.Pop();
-L2699:         mPlayerController7 = this->GetOwningPlayer();
-L2723:         FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController7);
-L2759:         bool mbool5 = mFGPlayerControllerBase;
-L2788:         if (!mbool5) goto ExecutionFlow.Pop();
-L2798:         FGAdminInterface* mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
-L2840:         bool mbool6 = KismetSystemLibrary->IsValid(mFGAdminInterface);
-L2891:         if (!mbool6) goto ExecutionFlow.Pop();
-L2901:         mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
-L2943:         mFGAdminInterface->LoadGame(false, [ref] this->mRecentSave);
-L2985:         goto ExecutionFlow.Pop();
-L2986:         mFScriptDelegate3->BindUFunction(this, ClosedLoadPopup);
-L3009:         mPlayerController7 = this->GetOwningPlayer();
-L3033:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController7, STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), [ref] mFScriptDelegate3, 1, nullptr, mPlayerController7);
-L3267:         goto ExecutionFlow.Pop();
-L3268:         // <Begin Inlined EventGraph Function BndEvt__mButtonMP_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature>;
-L3268:         this->mFocusWidget = this->mButtonCredits;
-L3287:         PlayerController* mPlayerController8 = this->GetOwningPlayer();
-L3311:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_Forward.Play_UI_MainMenu_Forward), mPlayerController8, true);
-L3372:         goto ExecutionFlow.Pop();
-L3373:         if (!mbool7) goto L3466;
-L3387:         FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
-L3429:         mFGGameUserSettings->ApplyRestartRequiredChanges();
-L3461:         goto L1590;
-L3466:         this->RestoreFocusOnPopupClosed(false);
-L3481:         goto ExecutionFlow.Pop();
-L3482:         this->UpdateVersionString();
-L3496:         goto ExecutionFlow.Pop();
-L3497:         // <Begin Inlined EventGraph Function Destruct>;
-L3497:         this->Destruct();
-L3507:         GameInstance* mGameInstance1 = GameplayStatics->GetGameInstance(this);
-L3550:         FGGameInstance* mFGGameInstance1 = Cast<Class /Script/FactoryGame.FGGameInstance>(mGameInstance1);
-L3586:         bool mbool8 = mFGGameInstance1;
-L3615:         if (!mbool8) goto L3693;
-L3629:         mFScriptDelegate4->BindUFunction(this, NATTypeUpdated);
-L3652:         mFGGameInstance1->mOnNatTypeUpdated.Remove(mFScriptDelegate4);
-L3693:         LocalPlayer* mLocalPlayer1 = this->GetOwningLocalPlayer();
-L3717:         FGLocalPlayer* mFGLocalPlayer1 = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer1);
-L3753:         bool mbool9 = mFGLocalPlayer1;
-L3782:         if (!mbool9) goto ExecutionFlow.Pop();
-L3792:         mFScriptDelegate5->BindUFunction(this, LoginStateChanged);
-L3815:         mFGLocalPlayer1->mOnLoginStateChanged.Remove(mFScriptDelegate5);
-L3856:         goto ExecutionFlow.Pop();
-L3857:         this->OnMenuEnter(mWidget);
-L3876:         goto L1524;
-L3881:         this->UpdateUsername();
-L3895:         goto ExecutionFlow.Pop();
-L3896:         // <Begin Inlined EventGraph Function BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_1_OnHovered__DelegateSignature>;
-L3896:         UMGSequencePlayer* mUMGSequencePlayer = this->mButtonContinue->PlayAnimation(this->mButtonContinue->ani_ShowSaveName, 0, 1, 0, 1);
-L3986:         KismetSystemLibrary->Delay(this, 0.30000001192092896, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -727381504, ExecutionFunction = "ExecuteUbergraph_BP_MainMenuWidget", CallbackTarget = this));
-L4062:         goto ExecutionFlow.Pop();
-L4063:         // <Begin Inlined EventGraph Function BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_2_OnUnhovered__DelegateSignature>;
-L4063:         UMGSequencePlayer* mUMGSequencePlayer1 = this->mButtonContinue->PlayAnimation(this->mButtonContinue->ani_HideSaveName, 0, 1, 0, 1);
-L4153:         this->mButtonContinue->Widget_AutoScrollingContainer->StopAutoScroll();
-L4211:         goto ExecutionFlow.Pop();
-L4212:         if (!mbool10) goto ExecutionFlow.Pop();
-L4222:         goto L2699;
+L132:          ExecutionFlow.Push(L268);
+L137:          TArray<BP_MenuBase*> mTArrayBP_MenuBase = [this->Widget_LoadSession, this->Widget_ManageInvites, this->Widget_Options];
+L175:          KismetArrayLibrary->Array_Get([ref] mTArrayBP_MenuBase, Temp_int_Array_Index_Variable, [ref] mBP_MenuBase);
+L234:          mBP_MenuBase->mOwningMenu = this;
+L267:          goto ExecutionFlow.Pop();
+L268:          int32 mint32 = Temp_int_Loop_Counter_Variable + 1;
+L310:          int32 Temp_int_Loop_Counter_Variable = mint32;
+L337:          mTArrayBP_MenuBase = [this->Widget_LoadSession, this->Widget_ManageInvites, this->Widget_Options];
+L375:          int32 mint321 = KismetArrayLibrary->Array_Length([ref] mTArrayBP_MenuBase);
+L434:          bool mbool = Temp_int_Loop_Counter_Variable < mint321;
+L472:          if (!mbool) goto ExecutionFlow.Pop();
+L482:          int32 Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L509:          goto L132;
+L514:          Temp_int_Array_Index_Variable = 0;
+L537:          goto L337;
+L542:          this->OnEscape();
+L552:          int32 mint322 = this->mSwitcher->GetActiveWidgetIndex();
+L602:          bool mbool1 = mint322 != 0;
+L636:          if (!mbool1) goto ExecutionFlow.Pop();
+L646:          this->mSwitcher->SetActiveWidget(nullptr);
+L683:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L707:          this->mFocusWidget->SetUserFocus(mPlayerController);
+L748:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L772:          AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_Back.Play_UI_MainMenu_Back), mPlayerController1, true);
+L833:          goto ExecutionFlow.Pop();
+L834:          // <Begin Inlined EventGraph Function BndEvt__mButtonQuit_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature>;
+L834:          PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L858:          mFScriptDelegate->BindUFunction(this, OnExit);
+L881:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", "[object Object]", [ref] mFScriptDelegate, 1, nullptr, nullptr);
+L1066:         goto ExecutionFlow.Pop();
+L1067:         this->Construct();
+L1077:         this->mFocusWidget = this->mButtonContinue;
+L1096:         this->CacheMostRecentSave();
+L1110:         this->UpdateVersionString();
+L1124:         this->UpdateUsername();
+L1138:         this->GetExperimentalVisibility();
+L1152:         GameInstance* mGameInstance = GameplayStatics->GetGameInstance(this);
+L1195:         FGGameInstance* mFGGameInstance = Cast<Class /Script/FactoryGame.FGGameInstance>(mGameInstance);
+L1231:         bool mbool2 = mFGGameInstance;
+L1260:         if (!mbool2) goto L1338;
+L1274:         mFScriptDelegate1->BindUFunction(this, NATTypeUpdated);
+L1297:         mFGGameInstance->mOnNatTypeUpdated.AddUnique(mFScriptDelegate1);
+L1338:         LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L1362:         FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L1398:         bool mbool3 = mFGLocalPlayer;
+L1427:         if (!mbool3) goto ExecutionFlow.Pop();
+L1437:         mFScriptDelegate2->BindUFunction(this, LoginStateChanged);
+L1460:         mFGLocalPlayer->mOnLoginStateChanged.AddUnique(mFScriptDelegate2);
+L1501:         Temp_int_Loop_Counter_Variable = 0;
+L1524:         goto L514;
+L1529:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L1553:         this->mFocusWidget->SetUserFocus(mPlayerController3);
+L1594:         goto ExecutionFlow.Pop();
+L1595:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
+L1619:         KismetSystemLibrary->QuitGame(this, mPlayerController4, 0, false);
+L1664:         PlayerController* mPlayerController5 = this->GetOwningPlayer();
+L1688:         AkComponent* mAkComponent1 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_Back.Play_UI_MainMenu_Back), mPlayerController5, true);
+L1749:         goto ExecutionFlow.Pop();
+L1750:         // <Begin Inlined EventGraph Function BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature>;
+L1750:         FGMusicManager* mFGMusicManager = FGMusicManager->Get(this);
+L1793:         mFGMusicManager->Stop();
+L1829:         PlayerController* mPlayerController6 = this->GetOwningPlayer();
+L1853:         AkComponent* mAkComponent2 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_LaunchGame.Play_UI_MainMenu_LaunchGame), mPlayerController6, true);
+L1914:         uint8 muint8 = FGSaveSystem->GetSaveState([ref] this->mRecentSave);
+L1973:         bool mbool4 = muint8 != 0;
+L2004:         if (!mbool4) goto L2154;
+L2018:         mbool4 = muint8 != 1;
+L2049:         if (!mbool4) goto L2419;
+L2063:         mbool4 = muint8 != 2;
+L2094:         if (!mbool4) goto L2704;
+L2108:         mbool4 = muint8 != 3;
+L2139:         if (!mbool4) goto L2991;
+L2153:         goto ExecutionFlow.Pop();
+L2154:         PlayerController* mPlayerController7 = this->GetOwningPlayer();
+L2178:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController7, STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), [ref] Temp_delegate_Variable1, 0, nullptr, mPlayerController7);
+L2418:         goto ExecutionFlow.Pop();
+L2419:         mPlayerController7 = this->GetOwningPlayer();
+L2443:         mFScriptDelegate3->BindUFunction(this, ClosedLoadPopup);
+L2466:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController7, STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), [ref] mFScriptDelegate3, 1, nullptr, mPlayerController7);
+L2703:         goto ExecutionFlow.Pop();
+L2704:         mPlayerController7 = this->GetOwningPlayer();
+L2728:         FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController7);
+L2764:         bool mbool5 = mFGPlayerControllerBase;
+L2793:         if (!mbool5) goto ExecutionFlow.Pop();
+L2803:         FGAdminInterface* mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L2845:         bool mbool6 = KismetSystemLibrary->IsValid(mFGAdminInterface);
+L2896:         if (!mbool6) goto ExecutionFlow.Pop();
+L2906:         mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L2948:         mFGAdminInterface->LoadGame(false, [ref] this->mRecentSave);
+L2990:         goto ExecutionFlow.Pop();
+L2991:         mPlayerController7 = this->GetOwningPlayer();
+L3015:         mFScriptDelegate3->BindUFunction(this, ClosedLoadPopup);
+L3038:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController7, STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), STRING_TABLE_ENTRY("StringTable /Game/FactoryGame/Interface/UI/Menu/SaveTable.SaveTable", "[object Object]"), [ref] mFScriptDelegate3, 1, nullptr, mPlayerController7);
+L3272:         goto ExecutionFlow.Pop();
+L3273:         // <Begin Inlined EventGraph Function BndEvt__mButtonMP_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature>;
+L3273:         bool mbool7 = GameplayStatics->HasLaunchOption("NoMultiplayer");
+L3330:         bool mbool8 = !mbool7;
+L3359:         if (!mbool8) goto L3643;
+L3373:         LocalPlayer* mLocalPlayer1 = this->GetOwningLocalPlayer();
+L3397:         FGLocalPlayer* mFGLocalPlayer1 = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer1);
+L3433:         bool mbool9 = mFGLocalPlayer1;
+L3462:         uint8 muint81 = mFGLocalPlayer1->GetLoginState();
+L3512:         bool mbool10 = muint81 == 3;
+L3543:         if (!mbool10) goto L3643;
+L3557:         PlayerController* mPlayerController8 = this->GetOwningPlayer();
+L3581:         AkComponent* mAkComponent3 = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Interface/UI/Audio/MainMenu/Play_UI_MainMenu_Forward.Play_UI_MainMenu_Forward), mPlayerController8, true);
+L3642:         goto ExecutionFlow.Pop();
+L3643:         FText mFText = KismetSystemLibrary->MakeLiteralText("[object Object]");
+L3754:         PlayerController* mPlayerController9 = this->GetOwningPlayer();
+L3778:         mLocalPlayer1 = this->GetOwningLocalPlayer();
+L3802:         mFGLocalPlayer1 = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer1);
+L3838:         mbool9 = mFGLocalPlayer1;
+L3867:         muint81 = mFGLocalPlayer1->GetLoginState();
+L3917:         bool mbool11 = muint81 == 0;
+L3948:         bool Temp_bool_Variable = mbool11;
+L3967:         FText mFText1 = KismetSystemLibrary->MakeLiteralText("[object Object]");
+L4087:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController9, "[object Object]", switch (Temp_bool_Variable) {
+case false -> mFText1;
+case true -> mFText;
+default -> mFText2;
+}, [ref] Temp_delegate_Variable, 0, nullptr, nullptr);
+L4253:         this->mSwitcher->SetActiveWidgetIndex(0);
+L4294:         goto ExecutionFlow.Pop();
+L4295:         if (!mbool12) goto L4388;
+L4309:         FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L4351:         mFGGameUserSettings->ApplyRestartRequiredChanges();
+L4383:         goto L1595;
+L4388:         this->RestoreFocusOnPopupClosed(false);
+L4403:         goto ExecutionFlow.Pop();
+L4404:         this->UpdateVersionString();
+L4418:         goto ExecutionFlow.Pop();
+L4419:         this->Destruct();
+L4429:         GameInstance* mGameInstance1 = GameplayStatics->GetGameInstance(this);
+L4472:         FGGameInstance* mFGGameInstance1 = Cast<Class /Script/FactoryGame.FGGameInstance>(mGameInstance1);
+L4508:         bool mbool13 = mFGGameInstance1;
+L4537:         if (!mbool13) goto L4615;
+L4551:         mFScriptDelegate4->BindUFunction(this, NATTypeUpdated);
+L4574:         mFGGameInstance1->mOnNatTypeUpdated.Remove(mFScriptDelegate4);
+L4615:         LocalPlayer* mLocalPlayer2 = this->GetOwningLocalPlayer();
+L4639:         FGLocalPlayer* mFGLocalPlayer2 = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer2);
+L4675:         bool mbool14 = mFGLocalPlayer2;
+L4704:         if (!mbool14) goto ExecutionFlow.Pop();
+L4714:         mFScriptDelegate5->BindUFunction(this, LoginStateChanged);
+L4737:         mFGLocalPlayer2->mOnLoginStateChanged.Remove(mFScriptDelegate5);
+L4778:         goto ExecutionFlow.Pop();
+L4779:         this->OnMenuEnter(mWidget);
+L4798:         goto L1529;
+L4803:         this->UpdateUsername();
+L4817:         goto ExecutionFlow.Pop();
+L4818:         // <Begin Inlined EventGraph Function BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_1_OnHovered__DelegateSignature>;
+L4818:         UMGSequencePlayer* mUMGSequencePlayer = this->mButtonContinue->PlayAnimation(this->mButtonContinue->ani_ShowSaveName, 0, 1, 0, 1);
+L4908:         KismetSystemLibrary->Delay(this, 0.30000001192092896, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -727381504, ExecutionFunction = "ExecuteUbergraph_BP_MainMenuWidget", CallbackTarget = this));
+L4984:         goto ExecutionFlow.Pop();
+L4985:         // <Begin Inlined EventGraph Function BndEvt__mButtonContinue_K2Node_ComponentBoundEvent_2_OnUnhovered__DelegateSignature>;
+L4985:         UMGSequencePlayer* mUMGSequencePlayer1 = this->mButtonContinue->PlayAnimation(this->mButtonContinue->ani_HideSaveName, 0, 1, 0, 1);
+L5075:         this->mButtonContinue->Widget_AutoScrollingContainer->StopAutoScroll();
+L5133:         goto ExecutionFlow.Pop();
+L5134:         if (!mbool15) goto ExecutionFlow.Pop();
+L5144:         goto L2704;
 ============ END FUNCTION ExecuteUbergraph_BP_MainMenuWidget ==============
 
 

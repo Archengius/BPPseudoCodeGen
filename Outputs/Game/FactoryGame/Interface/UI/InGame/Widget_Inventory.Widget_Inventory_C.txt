@@ -172,7 +172,7 @@ L97:           this->CreateAllSlots();
 ============ BEGIN FUNCTION OnInventoryResized ==============
 L36:           // EventGraph implemented function stub;
 L36:           // Function Name: OnInventoryResized;
-L36:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L34;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L891;
 ============ END FUNCTION OnInventoryResized ==============
 
 
@@ -182,7 +182,7 @@ L36:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, fr
 ============ BEGIN FUNCTION Destruct ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Destruct;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L67;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L920;
 ============ END FUNCTION Destruct ==============
 
 
@@ -192,7 +192,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_Inventory, fr
 ============ BEGIN FUNCTION Construct ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Construct;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L201;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L1046;
 ============ END FUNCTION Construct ==============
 
 
@@ -202,7 +202,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_Inventory, fr
 ============ BEGIN FUNCTION OnDragEnter ==============
 L54:           // EventGraph implemented function stub;
 L54:           // Function Name: OnDragEnter;
-L54:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L425;
+L54:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L1266;
 ============ END FUNCTION OnDragEnter ==============
 
 
@@ -212,7 +212,7 @@ L54:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, fr
 ============ BEGIN FUNCTION OnDragLeave ==============
 L36:           // EventGraph implemented function stub;
 L36:           // Function Name: OnDragLeave;
-L36:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L449;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L1286;
 ============ END FUNCTION OnDragLeave ==============
 
 
@@ -222,42 +222,81 @@ L36:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, fr
 ============ BEGIN FUNCTION OnMouseLeave ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnMouseLeave;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L473;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L1306;
 ============ END FUNCTION OnMouseLeave ==============
 
 
 
 
 
+============ BEGIN FUNCTION AnimateNewSlots ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: AnimateNewSlots;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Inventory, from label L1326;
+============ END FUNCTION AnimateNewSlots ==============
+
+
+
+
+
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_Inventory ==============
-L10:           this->OnInventoryMouseLeave->ProcessMulticastDelegate();
-L29:           // <End Inlined EventGraph Function>;
-L34:           this->ClearAllSlots();
-L48:           this->CreateAllSlots();
-L62:           // <End Inlined EventGraph Function>;
-L67:           // <Begin Inlined EventGraph Function Destruct>;
-L67:           bool mbool = KismetSystemLibrary->IsValid(this->mInventoryComponent);
-L118:          if (!mbool) goto L478;
-L132:          mFScriptDelegate->BindUFunction(this, OnInventoryResized);
-L155:          this->mInventoryComponent->ResizeInventoryDelegate.Remove(mFScriptDelegate);
-L196:          // <End Inlined EventGraph Function>;
-L201:          // <Begin Inlined EventGraph Function Construct>;
-L201:          FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
-L243:          bool Temp_bool_Variable1 = false;
-L254:          bool mbool1 = mFGGameUserSettings->GetBoolOptionValue("FG.BigSlots");
-L309:          bool Temp_bool_Variable = this->mAlwaysBigSlot;
-L328:          bool mbool2 = !mbool1;
-L357:          this->mUseSmallSlots = switch (Temp_bool_Variable) {
-case false -> mbool2;
+L5:            goto ComputedJump(EntryPoint);
+L15:           ExecutionFlow.Push(L213);
+L20:           KismetArrayLibrary->Array_Get([ref] this->mInventorySlots, Temp_int_Variable1, [ref] mWidget_InventorySlot);
+L79:           mWidget_InventorySlot->SetVisibility(0);
+L117:          KismetArrayLibrary->Array_Get([ref] this->mInventorySlots, Temp_int_Variable1, [ref] mWidget_InventorySlot);
+L176:          mWidget_InventorySlot->Event PlayOnNewSlotsAddedAnimation();
+L212:          goto ExecutionFlow.Pop();
+L213:          int32 mint32 = Temp_int_Variable1 + 1;
+L255:          int32 Temp_int_Variable1 = mint32;
+L282:          int32 mint321 = KismetArrayLibrary->Array_LastIndex([ref] this->mInventorySlots);
+L341:          bool mbool = Temp_int_Variable1 <= mint321;
+L379:          if (!mbool) goto ExecutionFlow.Pop();
+L389:          KismetSystemLibrary->Delay(this, 0.10000000149011612, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -828405145, ExecutionFunction = "ExecuteUbergraph_Widget_Inventory", CallbackTarget = this));
+L465:          goto ExecutionFlow.Pop();
+L466:          ExecutionFlow.Push(L569);
+L471:          KismetArrayLibrary->Array_Get([ref] this->mInventorySlots, Temp_int_Variable, [ref] mWidget_InventorySlot1);
+L530:          mWidget_InventorySlot1->SetVisibility(2);
+L568:          goto ExecutionFlow.Pop();
+L569:          int32 mint322 = Temp_int_Variable + 1;
+L611:          int32 Temp_int_Variable = mint322;
+L638:          mint321 = KismetArrayLibrary->Array_LastIndex([ref] this->mInventorySlots);
+L697:          bool mbool1 = Temp_int_Variable <= mint321;
+L735:          if (!mbool1) goto L754;
+L749:          goto L466;
+L754:          int32 mint323 = KismetArrayLibrary->Array_Length([ref] this->mInventorySlots);
+L813:          int32 mint324 = mint323 - mint325;
+L859:          Temp_int_Variable1 = mint324;
+L886:          goto L282;
+L891:          this->ClearAllSlots();
+L905:          this->CreateAllSlots();
+L919:          goto ExecutionFlow.Pop();
+L920:          bool mbool2 = KismetSystemLibrary->IsValid(this->mInventoryComponent);
+L971:          if (!mbool2) goto ExecutionFlow.Pop();
+L981:          mFScriptDelegate->BindUFunction(this, OnInventoryResized);
+L1004:         this->mInventoryComponent->ResizeInventoryDelegate.Remove(mFScriptDelegate);
+L1045:         goto ExecutionFlow.Pop();
+L1046:         FGGameUserSettings* mFGGameUserSettings = FGGameUserSettings->GetFGGameUserSettings();
+L1088:         bool Temp_bool_Variable1 = false;
+L1099:         bool mbool3 = mFGGameUserSettings->GetBoolOptionValue("FG.BigSlots");
+L1154:         bool Temp_bool_Variable = this->mAlwaysBigSlot;
+L1173:         bool mbool4 = !mbool3;
+L1202:         this->mUseSmallSlots = switch (Temp_bool_Variable) {
+case false -> mbool4;
 case true -> Temp_bool_Variable1;
-default -> mbool3;
+default -> mbool5;
 };
-L420:          // <End Inlined EventGraph Function>;
-L425:          this->OnInventoryDragEnter->ProcessMulticastDelegate();
-L444:          // <End Inlined EventGraph Function>;
-L449:          this->OnInventoryDragLeave->ProcessMulticastDelegate();
-L468:          // <End Inlined EventGraph Function>;
-L473:          goto L10;
+L1265:         goto ExecutionFlow.Pop();
+L1266:         this->OnInventoryDragEnter->ProcessMulticastDelegate();
+L1285:         goto ExecutionFlow.Pop();
+L1286:         this->OnInventoryDragLeave->ProcessMulticastDelegate();
+L1305:         goto ExecutionFlow.Pop();
+L1306:         this->OnInventoryMouseLeave->ProcessMulticastDelegate();
+L1325:         goto ExecutionFlow.Pop();
+L1326:         mint323 = KismetArrayLibrary->Array_Length([ref] this->mInventorySlots);
+L1385:         mint324 = mint323 - mint325;
+L1431:         Temp_int_Variable = mint324;
+L1458:         goto L638;
 ============ END FUNCTION ExecuteUbergraph_Widget_Inventory ==============
 
 

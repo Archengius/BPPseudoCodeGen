@@ -43,7 +43,7 @@ L154:          this->mCaptureInput = false;
 
 ============ BEGIN FUNCTION KeyBindingOverrideConfirmed ==============
 L0:            this->mKeyBindParent->mOwningWidget->mOwningMenu->RestoreFocusOnPopupClosed(false);
-L81:           if (!confirmed) goto L114;
+L81:           if (!Confirmed) goto L114;
 L95:           this->RebindKey();
 L109:          // <End Inlined EventGraph Function>;
 L114:          this->ShowKeyBindWidget();
@@ -67,7 +67,7 @@ L249:          LinearColor ReturnValue = mLinearColor2;
 
 
 ============ BEGIN FUNCTION HandleInput ==============
-L0:            ExecutionFlow.Push(L1830);
+L0:            ExecutionFlow.Push(L1809);
 L5:            FGKeyMapping mFGKeyMapping = FGInputLibrary->CreateFGKeyMappingStruct(this->mKeyBindData.ActionName_4_C7B4F53E48A16B3F01376F97B2DA4885, this->mKeyBindData.AxisMapping_7_F80A67E0493A9BB92D5041A364C12ACF, this->mKeyBindData.PositiveAxisScale_10_3C123C154A1C495D35EE54B5CEA682C6, InputEvent, keyPressed);
 L127:          this->mCachedFGKeyMapping = mFGKeyMapping;
 L154:          PlayerController* mPlayerController = this->GetOwningPlayer();
@@ -75,53 +75,54 @@ L178:          bool mbool = FGInputLibrary->IsFGKeyMappingAvailable(mPlayerContr
 L238:          if (!mbool) goto L267;
 L252:          this->RebindKey();
 L266:          goto ExecutionFlow.Pop();
-L267:          bool Temp_bool_True_if_break_was_hit_Variable = false;
-L278:          int32 Temp_int_Loop_Counter_Variable = 0;
-L301:          int32 Temp_int_Array_Index_Variable = 0;
-L324:          bool mbool1 = !Temp_bool_True_if_break_was_hit_Variable;
-L353:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mKeyBindParent->mKeyInputsData);
-L434:          bool mbool2 = Temp_int_Loop_Counter_Variable < mint32;
-L472:          bool mbool3 = mbool1 && mbool2;
-L510:          if (!mbool3) goto ExecutionFlow.Pop();
-L520:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
-L547:          ExecutionFlow.Push(L1116);
-L552:          KismetArrayLibrary->Array_Get([ref] this->mKeyBindParent->mKeyInputsData, Temp_int_Array_Index_Variable, [ref] mKeyBindData);
-L633:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L657:          FGKeyMapping mFGKeyMapping1 = FGInputLibrary->GetOverlappingKeyMapping(mPlayerController1, [ref] this->mCachedFGKeyMapping);
-L725:          bool Temp_bool_Variable1 = mFGKeyMapping1.IsAxisMapping;
-L753:          bool Temp_bool_Variable = mFGKeyMapping1.IsAxisMapping;
-L781:          bool mbool4 = mFGKeyMapping1.AxisKeyMapping.Scale > 0;
-L833:          bool mbool5 = mKeyBindData.PositiveAxisScale_10_3C123C154A1C495D35EE54B5CEA682C6 == mbool4;
-L880:          bool mbool6 = mKeyBindData.ActionName_4_C7B4F53E48A16B3F01376F97B2DA4885 == switch (Temp_bool_Variable) {
+L267:          this->mKeyBindParent->GetKeybindData([ref] mTArrayKeyBindData);
+L312:          bool Temp_bool_True_if_break_was_hit_Variable = false;
+L323:          int32 Temp_int_Loop_Counter_Variable = 0;
+L346:          int32 Temp_int_Array_Index_Variable = 0;
+L369:          bool mbool1 = !Temp_bool_True_if_break_was_hit_Variable;
+L398:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayKeyBindData);
+L457:          bool mbool2 = Temp_int_Loop_Counter_Variable < mint32;
+L495:          bool mbool3 = mbool1 && mbool2;
+L533:          if (!mbool3) goto ExecutionFlow.Pop();
+L543:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L570:          ExecutionFlow.Push(L1117);
+L575:          KismetArrayLibrary->Array_Get([ref] mTArrayKeyBindData, Temp_int_Array_Index_Variable, [ref] mKeyBindData);
+L634:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L658:          FGKeyMapping mFGKeyMapping1 = FGInputLibrary->GetOverlappingKeyMapping(mPlayerController1, [ref] this->mCachedFGKeyMapping);
+L726:          bool Temp_bool_Variable1 = mFGKeyMapping1.IsAxisMapping;
+L754:          bool Temp_bool_Variable = mFGKeyMapping1.IsAxisMapping;
+L782:          bool mbool4 = mFGKeyMapping1.AxisKeyMapping.Scale > 0;
+L834:          bool mbool5 = mKeyBindData.PositiveAxisScale_10_3C123C154A1C495D35EE54B5CEA682C6 == mbool4;
+L881:          bool mbool6 = mKeyBindData.ActionName_4_C7B4F53E48A16B3F01376F97B2DA4885 == switch (Temp_bool_Variable) {
 case false -> mFGKeyMapping1.ActionKeyMapping.ActionName;
 case true -> mFGKeyMapping1.AxisKeyMapping.AxisName;
 default -> mFName;
 };
-L1007:         bool mbool7 = mbool6 && mbool5;
-L1045:         if (!switch (Temp_bool_Variable1) {
+L1008:         bool mbool7 = mbool6 && mbool5;
+L1046:         if (!switch (Temp_bool_Variable1) {
 case false -> mbool6;
 case true -> mbool7;
 default -> mbool8;
 }) goto ExecutionFlow.Pop();
-L1099:         ExecutionFlow.Push(L1190);
-L1104:         Temp_bool_True_if_break_was_hit_Variable = true;
-L1115:         goto ExecutionFlow.Pop();
-L1116:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
-L1158:         Temp_int_Loop_Counter_Variable = mint321;
-L1185:         goto L324;
-L1190:         KismetArrayLibrary->Array_Get([ref] this->mKeyBindParent->mKeyInputsData, Temp_int_Array_Index_Variable, [ref] mKeyBindData);
-L1271:         mFormatArgumentData.ArgumentName = "DisplayName";
-L1311:         mFormatArgumentData.ArgumentValueType = 4;
-L1340:         mFormatArgumentData.ArgumentValue = mKeyBindData.DisplayName_5_0A86F675465E0C811D17A287BB986630;
-L1385:         mFormatArgumentData.ArgumentValueInt = 0;
-L1417:         mFormatArgumentData.ArgumentValueFloat = 0;
-L1449:         mFormatArgumentData.ArgumentValueGender = 0;
-L1478:         TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
-L1498:         FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
-L1661:         mFScriptDelegate->BindUFunction(this, KeyBindingOverrideConfirmed);
-L1684:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
-L1708:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", mFText, [ref] mFScriptDelegate, 1, nullptr, nullptr);
-L1829:         goto ExecutionFlow.Pop();
+L1100:         ExecutionFlow.Push(L1191);
+L1105:         Temp_bool_True_if_break_was_hit_Variable = true;
+L1116:         goto ExecutionFlow.Pop();
+L1117:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
+L1159:         Temp_int_Loop_Counter_Variable = mint321;
+L1186:         goto L369;
+L1191:         KismetArrayLibrary->Array_Get([ref] mTArrayKeyBindData, Temp_int_Array_Index_Variable, [ref] mKeyBindData);
+L1250:         mFormatArgumentData.ArgumentName = "DisplayName";
+L1290:         mFormatArgumentData.ArgumentValueType = 4;
+L1319:         mFormatArgumentData.ArgumentValue = mKeyBindData.DisplayName_5_0A86F675465E0C811D17A287BB986630;
+L1364:         mFormatArgumentData.ArgumentValueInt = 0;
+L1396:         mFormatArgumentData.ArgumentValueFloat = 0;
+L1428:         mFormatArgumentData.ArgumentValueGender = 0;
+L1457:         TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L1477:         FText mFText = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
+L1640:         mFScriptDelegate->BindUFunction(this, KeyBindingOverrideConfirmed);
+L1663:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1687:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController2, "[object Object]", mFText, [ref] mFScriptDelegate, 1, nullptr, nullptr);
+L1808:         goto ExecutionFlow.Pop();
 ============ END FUNCTION HandleInput ==============
 
 
@@ -182,7 +183,6 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_KeybindButton
 L10:           this->mCaptureInput = true;
 L21:           this->UpdateKeyMapping();
 L35:           // <End Inlined EventGraph Function>;
-L40:           // <Begin Inlined EventGraph Function Construct>;
 L40:           this->mLabel->SetText(this->mKeyBindData.DisplayName_5_0A86F675465E0C811D17A287BB986630);
 L94:           this->UpdateKeyMapping();
 L108:          // <End Inlined EventGraph Function>;

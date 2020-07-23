@@ -6,6 +6,29 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Widget_VehicleTrunk.W
 
 
 
+============ BEGIN FUNCTION TryDropOntoSlot ==============
+L0:            if (!SwapItemIfOccupied) goto L92;
+L14:           TargetSlot->DropOntoInventorySlot(OtherSlot, [ref] mbool);
+L68:           bool Result = mbool;
+L87:           // <End Inlined EventGraph Function>;
+L92:           OtherSlot->GetItemClass([ref] mTSubclassOfFGItemDescriptor);
+L137:          TargetSlot->GetItemClass([ref] mTSubclassOfFGItemDescriptor1);
+L182:          TargetSlot->GetNumItems([ref] mint32);
+L227:          int32 mint321 = FGItemDescriptor->GetStackSize(mTSubclassOfFGItemDescriptor1);
+L286:          TargetSlot->GetItemClass([ref] mTSubclassOfFGItemDescriptor2);
+L331:          bool mbool1 = mint32 == mint321;
+L369:          bool mbool2 = mTSubclassOfFGItemDescriptor2 != mTSubclassOfFGItemDescriptor;
+L407:          TargetSlot->CheckSlotHasItems([ref] mbool3);
+L452:          bool mbool4 = mbool3 && mbool2;
+L490:          bool mbool5 = mbool4 || mbool1;
+L528:          if (!mbool5) goto L14;
+L542:          Result = false;
+============ END FUNCTION TryDropOntoSlot ==============
+
+
+
+
+
 ============ BEGIN FUNCTION UpdateRelevantClasses ==============
 L0:            const TArray<TSubclassOf<FGItemDescriptor>> mconst TArrayTSubclassOfFGItemDescriptor = [ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Resource/Parts/Fuel/Desc_Fuel.Desc_Fuel_C)];
 L20:           int32 Temp_int_Variable = this->Widget_Window_DarkMode->Widget_TabsContainer->mSlidingTabsWidget->mActiveIndex;
@@ -73,7 +96,7 @@ L663:          goto L115;
 
 
 ============ BEGIN FUNCTION DropInventorySlotStack ==============
-L0:            ExecutionFlow.Push(L423);
+L0:            ExecutionFlow.Push(L411);
 L5:            bool mbool = this->Widget_Window_DarkMode->Widget_TabsContainer->mSlidingTabsWidget->mActiveIndex != 0;
 L105:          if (!mbool) goto L234;
 L119:          mbool = this->Widget_Window_DarkMode->Widget_TabsContainer->mSlidingTabsWidget->mActiveIndex != 1;
@@ -81,15 +104,15 @@ L219:          if (!mbool) goto L250;
 L233:          goto ExecutionFlow.Pop();
 L234:          bool WasStackMoved = false;
 L245:          // <End Inlined EventGraph Function>;
-L250:          ExecutionFlow.Push(L404);
-L255:          this->mFuelSlot->DropOntoInventorySlot(InventorySlot, [ref] mbool1);
-L309:          bool LocalResult = mbool1;
-L328:          if (!LocalResult) goto L343;
-L342:          goto ExecutionFlow.Pop();
-L343:          this->DropInventoryStackOnInventoryWidget(InventorySlot, this->mVehicleStorageWidget, [ref] mbool2);
-L384:          LocalResult = mbool2;
-L403:          goto ExecutionFlow.Pop();
-L404:          WasStackMoved = LocalResult;
+L250:          ExecutionFlow.Push(L392);
+L255:          this->TryDropOntoSlot(this->mFuelSlot, InventorySlot, false, [ref] mbool1);
+L297:          bool localResult = mbool1;
+L316:          if (!localResult) goto L331;
+L330:          goto ExecutionFlow.Pop();
+L331:          this->DropInventoryStackOnInventoryWidget(InventorySlot, this->mVehicleStorageWidget, [ref] mbool2);
+L372:          localResult = mbool2;
+L391:          goto ExecutionFlow.Pop();
+L392:          WasStackMoved = localResult;
 ============ END FUNCTION DropInventorySlotStack ==============
 
 
@@ -269,7 +292,6 @@ L773:          goto L302;
 L778:          this->mManualManufacturerWidget->mInteractObject = this->mInteractObject;
 L819:          this->mManualManufacturerWidget->Init();
 L855:          goto L675;
-L860:          // <Begin Inlined EventGraph Function Construct>;
 L860:          goto L29;
 L865:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L889:          FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
@@ -286,9 +308,7 @@ L1224:         mBP_RemoteCallObject->Server_GrabAllItemsFromInventory(mFGInvento
 L1279:         // <End Inlined EventGraph Function>;
 L1284:         this->Init();
 L1294:         goto L778;
-L1299:         // <Begin Inlined EventGraph Function Init>;
 L1299:         goto L1284;
-L1304:         // <Begin Inlined EventGraph Function Destruct>;
 L1304:         goto L287;
 L1309:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
 L1333:         FGPlayerController* mFGPlayerController1 = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController1);

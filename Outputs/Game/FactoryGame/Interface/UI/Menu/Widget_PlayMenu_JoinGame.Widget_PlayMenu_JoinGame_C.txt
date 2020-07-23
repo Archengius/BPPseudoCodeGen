@@ -6,10 +6,160 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_PlayMenu_JoinG
 
 
 
+============ BEGIN FUNCTION GetHostName ==============
+L0:            ExecutionFlow.Push(L1219);
+L5:            int32 Temp_int_Loop_Counter_Variable = 0;
+L28:           int32 Temp_int_Array_Index_Variable = 0;
+L51:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->FriendsList);
+L110:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
+L148:          if (!mbool) goto L1120;
+L162:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L189:          ExecutionFlow.Push(L1145);
+L194:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L218:          FGOnlineSessionSettings mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] this->mSelectedSession);
+L277:          KismetArrayLibrary->Array_Get([ref] this->FriendsList, Temp_int_Array_Index_Variable, [ref] mFGOnlineFriend);
+L336:          OnlinePresence mOnlinePresence = BP_OnlineHelpers->GetFriendPresence([ref] mFGOnlineFriend, mPlayerController, this);
+L409:          FString mFString = FGPresenceLibrary->GetSessionIDFromPresence([ref] mOnlinePresence);
+L468:          bool mbool1 = KismetStringLibrary->EqualEqual_StrStr(mFString, mFGOnlineSessionSettings.CSS_SessionId);
+L537:          if (!mbool1) goto ExecutionFlow.Pop();
+L547:          LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L571:          KismetArrayLibrary->Array_Get([ref] this->FriendsList, Temp_int_Array_Index_Variable, [ref] mFGOnlineFriend);
+L630:          bool mbool2 = FGFriendsLibrary->GetFriendName(mLocalPlayer, [ref] mFGOnlineFriend, [ref] mFString1);
+L699:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString1);
+L758:          mFormatArgumentData.ArgumentName = "Hostname";
+L795:          mFormatArgumentData.ArgumentValueType = 4;
+L824:          mFormatArgumentData.ArgumentValue = mFText;
+L860:          mFormatArgumentData.ArgumentValueInt = 0;
+L892:          mFormatArgumentData.ArgumentValueFloat = 0;
+L924:          mFormatArgumentData.ArgumentValueGender = 0;
+L953:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L973:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
+L1088:         FText Hostname = mFText1;
+L1115:         // <End Inlined EventGraph Function>;
+L1120:         Hostname = ;
+L1140:         // <End Inlined EventGraph Function>;
+L1145:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
+L1187:         Temp_int_Loop_Counter_Variable = mint321;
+L1214:         goto L51;
+============ END FUNCTION GetHostName ==============
+
+
+
+
+
+============ BEGIN FUNCTION DeselectSessionIDButton ==============
+L0:            bool mbool = this->mSessionByIDContainer->HasAnyChildren();
+L42:           if (!mbool) goto L252;
+L56:           Widget* mWidget = this->mSessionByIDContainer->GetChildAt(0);
+L103:          BPW_MultiplayerListButton_JoinSession* mBPW_MultiplayerListButton_JoinSession = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/BPW_MultiplayerListButton_JoinSession.BPW_MultiplayerListButton_JoinSession_C>(mWidget);
+L139:          bool mbool1 = mBPW_MultiplayerListButton_JoinSession;
+L168:          if (!mbool1) goto L252;
+L182:          mBPW_MultiplayerListButton_JoinSession->SetButtonColor(ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0, B = 0, A = 0));
+============ END FUNCTION DeselectSessionIDButton ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSessionIDButtonClicked ==============
+L0:            this->OnSessionQueried(session);
+L23:           this->ClearButtonSelection();
+============ END FUNCTION OnSessionIDButtonClicked ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSessionIDFound ==============
+L0:            bool mbool = FGSessionLibrary->IsSessionValid(session);
+L51:           if (!mbool) goto L620;
+L65:           this->mSessionByIDContainer->ClearChildren();
+L101:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L125:          BPW_MultiplayerListButton_JoinSession* mBPW_MultiplayerListButton_JoinSession = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/BPW_MultiplayerListButton_JoinSession.BPW_MultiplayerListButton_JoinSession_C), mPlayerController);
+L186:          FString mFString = FindSessionsCallbackProxy->GetServerName([ref] session);
+L245:          FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
+L304:          KismetSystemLibrary->SetTextPropertyByName(mBPW_MultiplayerListButton_JoinSession, "mSessionID", [ref] mFText);
+L367:          KismetSystemLibrary->SetStructurePropertyByName(mBPW_MultiplayerListButton_JoinSession, "mSession", [ref] session);
+L430:          mFScriptDelegate->BindUFunction(this, OnSessionIDButtonClicked);
+L453:          mBPW_MultiplayerListButton_JoinSession->OnClicked.AddUnique(mFScriptDelegate);
+L494:          OverlaySlot* mOverlaySlot = this->mSessionByIDContainer->AddChildToOverlay(mBPW_MultiplayerListButton_JoinSession);
+L545:          mOverlaySlot->SetHorizontalAlignment(0);
+L579:          mBPW_MultiplayerListButton_JoinSession->TriggerButtonAction();
+L615:          // <End Inlined EventGraph Function>;
+L620:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L644:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController1, "[object Object]", "[object Object]", [ref] Temp_delegate_Variable, 0, nullptr, nullptr);
+============ END FUNCTION OnSessionIDFound ==============
+
+
+
+
+
+============ BEGIN FUNCTION ClearButtonSelection ==============
+L0:            ExecutionFlow.Push(L461);
+L5:            int32 Temp_int_Variable = 0;
+L28:           int32 mint32 = this->MultiplayerList->GetChildrenCount();
+L78:           bool mbool = Temp_int_Variable <= mint32;
+L116:          if (!mbool) goto ExecutionFlow.Pop();
+L126:          ExecutionFlow.Push(L387);
+L131:          Widget* mWidget = this->MultiplayerList->GetChildAt(Temp_int_Variable);
+L182:          Widget_Multiplayer_ListButton* mWidget_Multiplayer_ListButton = Cast<WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_Multiplayer_ListButton.Widget_Multiplayer_ListButton_C>(mWidget);
+L218:          bool mbool1 = mWidget_Multiplayer_ListButton;
+L247:          if (!mbool1) goto ExecutionFlow.Pop();
+L257:          mWidget_Multiplayer_ListButton->mIsSelected = false;
+L290:          mWidget_Multiplayer_ListButton->UpdateButton();
+L326:          mWidget_Multiplayer_ListButton->ActionButtonContainer->SetVisibility(2);
+L386:          goto ExecutionFlow.Pop();
+L387:          int32 mint321 = Temp_int_Variable + 1;
+L429:          Temp_int_Variable = mint321;
+L456:          goto L28;
+============ END FUNCTION ClearButtonSelection ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSessionQueried ==============
+L0:            bool mbool = FGSessionLibrary->IsSessionValid(session);
+L51:           if (!mbool) goto L88;
+L65:           this->SetSessionInfo(session);
+============ END FUNCTION OnSessionQueried ==============
+
+
+
+
+
+============ BEGIN FUNCTION FindSessionId ==============
+L0:            LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L24:           FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L60:           bool mbool = mFGLocalPlayer;
+L89:           uint8 muint8 = mFGLocalPlayer->GetLoginState();
+L139:          bool mbool1 = muint8 == 3;
+L170:          if (!mbool1) goto L480;
+L184:          LocalPlayer* mLocalPlayer1 = this->GetOwningLocalPlayer();
+L208:          FGLocalPlayer* mFGLocalPlayer1 = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer1);
+L244:          bool mbool2 = mFGLocalPlayer1;
+L273:          if (!mbool2) goto L942;
+L287:          UniqueNetIdRepl mUniqueNetIdRepl = FGNetworkLibrary->GetUniqueID(mFGLocalPlayer1);
+L346:          mFScriptDelegate->BindUFunction(this, OnSessionIDFound);
+L369:          bool mbool3 = FGSessionLibrary->QuerySessionByID(mFGLocalPlayer1, [ref] mUniqueNetIdRepl, SessionId, mFScriptDelegate);
+L447:          if (!mbool3) goto L716;
+L461:          this->ClearButtonSelection();
+L475:          // <End Inlined EventGraph Function>;
+L480:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L504:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController, "[object Object]", "[object Object]", [ref] Temp_delegate_Variable, 0, nullptr, nullptr);
+L711:          // <End Inlined EventGraph Function>;
+L716:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L740:          FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController1, "[object Object]", "[object Object]", [ref] Temp_delegate_Variable1, 0, nullptr, nullptr);
+============ END FUNCTION FindSessionId ==============
+
+
+
+
+
 ============ BEGIN FUNCTION SetupButtonForJoinGame ==============
-L0:            Button->SetupForJoinGame([ref] friend);
-L45:           BlueprintMapLibrary->Map_Add([ref] this->mButtonToFriend, [ref] Button, [ref] friend);
-L104:          UniqueNetIdRepl mUniqueNetIdRepl = FGFriendsLibrary->GetFriendUniqueNetId([ref] friend);
+L0:            Button->SetupForJoinGame([ref] Friend);
+L45:           BlueprintMapLibrary->Map_Add([ref] this->mButtonToFriend, [ref] Button, [ref] Friend);
+L104:          UniqueNetIdRepl mUniqueNetIdRepl = FGFriendsLibrary->GetFriendUniqueNetId([ref] Friend);
 L163:          BlueprintMapLibrary->Map_Add([ref] this->mFriendToButton, [ref] mUniqueNetIdRepl, [ref] Button);
 L222:          mFScriptDelegate->BindUFunction(this, SetSessionInfo);
 L245:          Button->OnSessionSelected.AddUnique(mFScriptDelegate);
@@ -18,6 +168,8 @@ L309:          Button->OnSessionDeselected.AddUnique(mFScriptDelegate1);
 L350:          mFScriptDelegate2->BindUFunction(this, OnJoinSession);
 L373:          Button->OnActionButtonClicked.AddUnique(mFScriptDelegate2);
 L414:          VerticalBoxSlot* mVerticalBoxSlot = this->MultiplayerList->AddChildToVerticalBox(Button);
+L465:          mFScriptDelegate3->BindUFunction(this, DeselectSessionIDButton);
+L488:          Button->OnSessionSelected.AddUnique(mFScriptDelegate3);
 ============ END FUNCTION SetupButtonForJoinGame ==============
 
 
@@ -61,16 +213,34 @@ L884:          goto ExecutionFlow.Pop();
 
 ============ BEGIN FUNCTION UpdateFriendForJoinMenu ==============
 L0:            bool mbool = BlueprintMapLibrary->Map_Find([ref] this->mFriendToButton, [ref] netId, [ref] mWidget_Multiplayer_ListButton);
-L69:           if (!mbool) goto L540;
-L83:           LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
-L107:          FGOnlineFriend mFGOnlineFriend = FGFriendsLibrary->GetFriendFromNetId(mLocalPlayer, [ref] netId);
-L175:          mbool = BlueprintMapLibrary->Map_Find([ref] this->mFriendToButton, [ref] netId, [ref] mWidget_Multiplayer_ListButton);
-L244:          mWidget_Multiplayer_ListButton->SetupForJoinGame([ref] mFGOnlineFriend);
-L289:          this->MultiplayerList->Sort();
-L321:          mbool = BlueprintMapLibrary->Map_Find([ref] this->mFriendToButton, [ref] netId, [ref] mWidget_Multiplayer_ListButton);
-L390:          if (!mWidget_Multiplayer_ListButton->mIsSelected) goto L540;
-L426:          mbool = BlueprintMapLibrary->Map_Find([ref] this->mFriendToButton, [ref] netId, [ref] mWidget_Multiplayer_ListButton);
-L495:          this->SetSessionInfo(mWidget_Multiplayer_ListButton->mSession);
+L69:           if (!mbool) goto L1027;
+L83:           mbool = BlueprintMapLibrary->Map_Find([ref] this->mFriendToButton, [ref] netId, [ref] mWidget_Multiplayer_ListButton);
+L152:          Widget_Multiplayer_ListButton* localFriendButton = mWidget_Multiplayer_ListButton;
+L171:          LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L195:          FGOnlineFriend mFGOnlineFriend = FGFriendsLibrary->GetFriendFromNetId(mLocalPlayer, [ref] netId);
+L263:          FGOnlineFriend localFriend = mFGOnlineFriend;
+L290:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L314:          OnlinePresence mOnlinePresence = BP_OnlineHelpers->GetFriendPresence([ref] localFriend, mPlayerController, this);
+L387:          OnlinePresence localPresence = mOnlinePresence;
+L414:          localFriendButton->SetupForJoinGame([ref] localFriend);
+L459:          this->MultiplayerList->Sort();
+L491:          if (!localFriendButton->mIsSelected) goto L1027;
+L527:          BP_OnlineHelpers->IsInSession(localPresence, this, [ref] mbool1);
+L582:          if (!mbool1) goto L800;
+L596:          BP_OnlineHelpers->IsPresenceInPublicSession(localPresence, this, [ref] mbool2);
+L651:          if (!mbool2) goto L841;
+L665:          bool mbool3 = FGSessionLibrary->IsSessionValid(this->mSelectedSession);
+L716:          bool mbool4 = !mbool3;
+L745:          if (!mbool4) goto L1027;
+L759:          localFriendButton->QuerySession();
+L795:          // <End Inlined EventGraph Function>;
+L800:          localFriendButton->DeselectButton();
+L836:          // <End Inlined EventGraph Function>;
+L841:          mbool3 = FGSessionLibrary->IsSessionValid(this->mSelectedSession);
+L892:          if (!mbool3) goto L1027;
+L906:          localFriendButton->mSession = mBlueprintSessionResult;
+L955:          this->mSelectedSession = localFriendButton->mSession;
+L1004:         this->SetSessionInfo(this->mSelectedSession);
 ============ END FUNCTION UpdateFriendForJoinMenu ==============
 
 
@@ -88,51 +258,96 @@ L74:           UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this-
 
 
 ============ BEGIN FUNCTION SetSessionInfo ==============
-L0:            this->mSelectedSession = session;
-L27:           uint8 muint8 = FGSessionLibrary->GetSessionVisibility([ref] this->mSelectedSession);
-L86:           bool mbool = muint8 != 0;
-L117:          if (!mbool) goto L1779;
-L131:          FGOnlineSessionSettings mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] this->mSelectedSession);
-L190:          FText mFText = KismetTextLibrary->Conv_IntToText(mFGOnlineSessionSettings.NumConnectedPlayers, false, true, 1, 324);
-L270:          mFormatArgumentData.ArgumentName = "NumOfPlayers";
-L311:          mFormatArgumentData.ArgumentValueType = 4;
-L340:          mFormatArgumentData.ArgumentValue = mFText;
-L376:          mFormatArgumentData.ArgumentValueInt = 0;
-L408:          mFormatArgumentData.ArgumentValueFloat = 0;
-L440:          mFormatArgumentData.ArgumentValueGender = 0;
-L469:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
-L489:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
-L631:          this->mSessionNumOfPlayers->SetText(mFText1);
-L676:          mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] this->mSelectedSession);
-L735:          Timespan mTimespan = MakeTimespan(0, 0, 0, mFGOnlineSessionSettings.PlayDuration, 0);
-L801:          BreakTimespan(mTimespan, [ref] mint32, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324);
-L865:          mFormatArgumentData1.ArgumentName = "sec";
-L897:          mFormatArgumentData1.ArgumentValueType = 0;
-L926:          mFormatArgumentData1.ArgumentValue = ;
-L955:          mFormatArgumentData1.ArgumentValueInt = mint323;
-L991:          mFormatArgumentData1.ArgumentValueFloat = 0;
-L1023:         mFormatArgumentData1.ArgumentValueGender = 0;
-L1052:         mFormatArgumentData2.ArgumentName = "min";
-L1084:         mFormatArgumentData2.ArgumentValueType = 0;
-L1113:         mFormatArgumentData2.ArgumentValue = ;
-L1142:         mFormatArgumentData2.ArgumentValueInt = mint322;
-L1178:         mFormatArgumentData2.ArgumentValueFloat = 0;
-L1210:         mFormatArgumentData2.ArgumentValueGender = 0;
-L1239:         mFormatArgumentData3.ArgumentName = "hours";
-L1273:         mFormatArgumentData3.ArgumentValueType = 0;
-L1302:         mFormatArgumentData3.ArgumentValue = ;
-L1331:         mFormatArgumentData3.ArgumentValueInt = mint321;
-L1367:         mFormatArgumentData3.ArgumentValueFloat = 0;
-L1399:         mFormatArgumentData3.ArgumentValueGender = 0;
-L1428:         TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [mFormatArgumentData3, mFormatArgumentData2, mFormatArgumentData1];
-L1466:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
-L1602:         this->mSessionPlaytime->SetText(mFText2);
-L1647:         mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] this->mSelectedSession);
-L1706:         this->mSessionName->SetTitle(mFGOnlineSessionSettings.SessionName);
-L1760:         this->ShowSessionInfoAnim();
-L1774:         // <End Inlined EventGraph Function>;
-L1779:         this->mJoinButtonContainer->SetRenderOpacity(0);
-L1816:         this->mSessionInfoContainer->SetRenderOpacity(0);
+L0:            ExecutionFlow.Push(L3007);
+L5:            this->mSelectedSession = session;
+L32:           ExecutionFlow.Push(L539);
+L37:           uint8 Temp_byte_Variable1 = 4;
+L57:           uint8 Temp_byte_Variable2 = 1;
+L77:           bool mbool = FGSessionLibrary->IsSessionValid(this->mSelectedSession);
+L128:          bool Temp_bool_Variable = mbool;
+L147:          this->mPublicInfo->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable2;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L236:          this->mJoinButtonContainer->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable2;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L325:          uint8 Temp_byte_Variable = 4;
+L345:          uint8 Temp_byte_Variable5 = 1;
+L365:          bool mbool1 = FGSessionLibrary->IsSessionValid(this->mSelectedSession);
+L416:          bool Temp_bool_Variable2 = mbool1;
+L435:          this->mPrivateInfo->SetVisibility(switch (Temp_bool_Variable2) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable5;
+default -> muint81;
+});
+L524:          this->ShowSessionInfoAnim();
+L538:          goto ExecutionFlow.Pop();
+L539:          bool mbool2 = FGSessionLibrary->IsSessionValid(this->mSelectedSession);
+L590:          if (!mbool2) goto ExecutionFlow.Pop();
+L600:          FGOnlineSessionSettings mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] this->mSelectedSession);
+L659:          FText mFText = KismetTextLibrary->Conv_IntToText(mFGOnlineSessionSettings.NumConnectedPlayers, false, true, 1, 324);
+L739:          mFormatArgumentData.ArgumentName = "NumOfPlayers";
+L780:          mFormatArgumentData.ArgumentValueType = 4;
+L809:          mFormatArgumentData.ArgumentValue = mFText;
+L845:          mFormatArgumentData.ArgumentValueInt = 0;
+L877:          mFormatArgumentData.ArgumentValueFloat = 0;
+L909:          mFormatArgumentData.ArgumentValueGender = 0;
+L938:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L958:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
+L1080:         this->mSessionNumOfPlayers->SetText(mFText1);
+L1125:         mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] this->mSelectedSession);
+L1184:         Timespan mTimespan = MakeTimespan(0, 0, 0, mFGOnlineSessionSettings.PlayDuration, 0);
+L1250:         BreakTimespan(mTimespan, [ref] mint32, [ref] mint321, [ref] mint322, [ref] mint323, [ref] mint324);
+L1314:         mFormatArgumentData1.ArgumentName = "sec";
+L1346:         mFormatArgumentData1.ArgumentValueType = 0;
+L1375:         mFormatArgumentData1.ArgumentValue = ;
+L1404:         mFormatArgumentData1.ArgumentValueInt = mint323;
+L1440:         mFormatArgumentData1.ArgumentValueFloat = 0;
+L1472:         mFormatArgumentData1.ArgumentValueGender = 0;
+L1501:         mFormatArgumentData2.ArgumentName = "min";
+L1533:         mFormatArgumentData2.ArgumentValueType = 0;
+L1562:         mFormatArgumentData2.ArgumentValue = ;
+L1591:         mFormatArgumentData2.ArgumentValueInt = mint322;
+L1627:         mFormatArgumentData2.ArgumentValueFloat = 0;
+L1659:         mFormatArgumentData2.ArgumentValueGender = 0;
+L1688:         mFormatArgumentData3.ArgumentName = "hours";
+L1722:         mFormatArgumentData3.ArgumentValueType = 0;
+L1751:         mFormatArgumentData3.ArgumentValue = ;
+L1780:         mFormatArgumentData3.ArgumentValueInt = mint321;
+L1816:         mFormatArgumentData3.ArgumentValueFloat = 0;
+L1848:         mFormatArgumentData3.ArgumentValueGender = 0;
+L1877:         TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [mFormatArgumentData3, mFormatArgumentData2, mFormatArgumentData1];
+L1915:         FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
+L2051:         this->mSessionPlaytime->SetText(mFText2);
+L2096:         mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] this->mSelectedSession);
+L2155:         this->mSessionName->SetTitle(mFGOnlineSessionSettings.SaveSessionName);
+L2209:         this->GetHostName([ref] mFText3);
+L2232:         FText mFText4 = KismetTextLibrary->TextToUpper([ref] mFText3);
+L2291:         this->mHostName->SetText(mFText4);
+L2336:         LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L2360:         FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L2396:         bool mbool3 = mFGLocalPlayer;
+L2425:         if (!mbool3) goto ExecutionFlow.Pop();
+L2435:         uint8 Temp_byte_Variable3 = 0;
+L2455:         uint8 Temp_byte_Variable4 = 1;
+L2475:         FGOnlineSessionSettings mFGOnlineSessionSettings1 = FGSessionLibrary->GetSessionSettings([ref] this->mSelectedSession);
+L2534:         uint8 muint82 = FGNetworkLibrary->GetCachedNATType(mFGLocalPlayer);
+L2593:         BP_OnlineHelpers->IsNATIssue(mFGOnlineSessionSettings1.natType, muint82, this, [ref] mbool4);
+L2666:         bool Temp_bool_Variable1 = mbool4;
+L2685:         this->mNatWarningBox->SetVisibility(switch (Temp_bool_Variable1) {
+case false -> Temp_byte_Variable4;
+case true -> Temp_byte_Variable3;
+default -> muint83;
+});
+L2774:         mFGOnlineSessionSettings1 = FGSessionLibrary->GetSessionSettings([ref] this->mSelectedSession);
+L2833:         muint82 = FGNetworkLibrary->GetCachedNATType(mFGLocalPlayer);
+L2892:         BP_OnlineHelpers->GetConnectingNatIssue(mFGOnlineSessionSettings1.natType, muint82, this, [ref] mFText5);
+L2965:         this->mNatInformation->SetToolTipText([ref] mFText5);
+L3006:         goto ExecutionFlow.Pop();
 ============ END FUNCTION SetSessionInfo ==============
 
 
@@ -150,51 +365,35 @@ L77:           BlueprintMapLibrary->Map_Clear([ref] this->mFriendToButton);
 
 
 ============ BEGIN FUNCTION PopulateMultiplayerList ==============
-L0:            ExecutionFlow.Push(L679);
+L0:            ExecutionFlow.Push(L724);
 L5:            this->ClearMultiplayerList();
 L19:           LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
 L43:           FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
 L79:           bool mbool = mFGLocalPlayer;
 L108:          TArray<FGOnlineFriend> mTArrayFGOnlineFriend = [];
 L119:          bool mbool1 = mFGLocalPlayer->GetFriendList([ref] mTArrayFGOnlineFriend);
-L170:          this->FriendsList = mTArrayFGOnlineFriend;
-L197:          int32 Temp_int_Variable = 0;
-L220:          int32 mint32 = KismetArrayLibrary->Array_LastIndex([ref] this->FriendsList);
-L279:          bool mbool2 = Temp_int_Variable <= mint32;
-L317:          if (!mbool2) goto L527;
-L331:          ExecutionFlow.Push(L605);
-L336:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L360:          Widget_Multiplayer_ListButton* mWidget_Multiplayer_ListButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_Multiplayer_ListButton.Widget_Multiplayer_ListButton_C), mPlayerController);
-L421:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Multiplayer_ListButton, "mParentWidget", this->MultiplayerList);
-L484:          this->SetupButtonForJoinGame([ref] mWidget_Multiplayer_ListButton, [ref] this->FriendsList[Temp_int_Variable]);
-L526:          goto ExecutionFlow.Pop();
-L527:          this->MultiplayerList->Sort();
-L559:          this->mFriends->PlayListSpawnAnim(this->MultiplayerList);
-L604:          goto ExecutionFlow.Pop();
-L605:          int32 mint321 = Temp_int_Variable + 1;
-L647:          Temp_int_Variable = mint321;
-L674:          goto L220;
+L170:          if (!mbool1) goto L541;
+L184:          this->FriendsList = mTArrayFGOnlineFriend;
+L211:          int32 Temp_int_Variable = 0;
+L234:          int32 mint32 = KismetArrayLibrary->Array_LastIndex([ref] this->FriendsList);
+L293:          bool mbool2 = Temp_int_Variable <= mint32;
+L331:          if (!mbool2) goto L557;
+L345:          ExecutionFlow.Push(L650);
+L350:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L374:          Widget_Multiplayer_ListButton* mWidget_Multiplayer_ListButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_Multiplayer_ListButton.Widget_Multiplayer_ListButton_C), mPlayerController);
+L435:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Multiplayer_ListButton, "mParentWidget", this->MultiplayerList);
+L498:          this->SetupButtonForJoinGame([ref] mWidget_Multiplayer_ListButton, [ref] this->FriendsList[Temp_int_Variable]);
+L540:          goto ExecutionFlow.Pop();
+L541:          bool success = false;
+L552:          // <End Inlined EventGraph Function>;
+L557:          this->MultiplayerList->Sort();
+L589:          this->mFriends->PlayListSpawnAnim(this->MultiplayerList);
+L634:          success = true;
+L645:          // <End Inlined EventGraph Function>;
+L650:          int32 mint321 = Temp_int_Variable + 1;
+L692:          Temp_int_Variable = mint321;
+L719:          goto L234;
 ============ END FUNCTION PopulateMultiplayerList ==============
-
-
-
-
-
-============ BEGIN FUNCTION OnJoinSession ==============
-L18:           // EventGraph implemented function stub;
-L18:           // Function Name: OnJoinSession;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L29;
-============ END FUNCTION OnJoinSession ==============
-
-
-
-
-
-============ BEGIN FUNCTION OnNewSessionSelected ==============
-L18:           // EventGraph implemented function stub;
-L18:           // Function Name: OnNewSessionSelected;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L348;
-============ END FUNCTION OnNewSessionSelected ==============
 
 
 
@@ -203,7 +402,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Join
 ============ BEGIN FUNCTION OnJoinSessionNew ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: OnJoinSessionNew;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L387;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L438;
 ============ END FUNCTION OnJoinSessionNew ==============
 
 
@@ -213,7 +412,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Join
 ============ BEGIN FUNCTION BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L531;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L1571;
 ============ END FUNCTION BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
 
 
@@ -223,7 +422,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Join
 ============ BEGIN FUNCTION OnSessionDeselected ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: OnSessionDeselected;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L550;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L1586;
 ============ END FUNCTION OnSessionDeselected ==============
 
 
@@ -233,7 +432,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Join
 ============ BEGIN FUNCTION OnMenuEnter ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnMenuEnter;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L797;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L1602;
 ============ END FUNCTION OnMenuEnter ==============
 
 
@@ -243,7 +442,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Join
 ============ BEGIN FUNCTION UpdateMultiplayerList ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: UpdateMultiplayerList;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L1052;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L1917;
 ============ END FUNCTION UpdateMultiplayerList ==============
 
 
@@ -253,7 +452,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Join
 ============ BEGIN FUNCTION PresenceUpdated ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: PresenceUpdated;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L1089;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L1950;
 ============ END FUNCTION PresenceUpdated ==============
 
 
@@ -263,96 +462,129 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_Join
 ============ BEGIN FUNCTION OnMenuExit ==============
 L36:           // EventGraph implemented function stub;
 L36:           // Function Name: OnMenuExit;
-L36:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L1117;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L1974;
 ============ END FUNCTION OnMenuExit ==============
 
 
 
 
 
-============ BEGIN FUNCTION BndEvt__mCopySessionIDButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
-L0:            // EventGraph implemented function stub;
-L0:            // Function Name: BndEvt__mCopySessionIDButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L1381;
-============ END FUNCTION BndEvt__mCopySessionIDButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+============ BEGIN FUNCTION OnNewSessionSelected ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnNewSessionSelected;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L2308;
+============ END FUNCTION OnNewSessionSelected ==============
 
 
 
 
 
-============ BEGIN FUNCTION BndEvt__mJoinSessionButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
-L0:            // EventGraph implemented function stub;
-L0:            // Function Name: BndEvt__mJoinSessionButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L1477;
-============ END FUNCTION BndEvt__mJoinSessionButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
+============ BEGIN FUNCTION OnJoinSession ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnJoinSession;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L2313;
+============ END FUNCTION OnJoinSession ==============
+
+
+
+
+
+============ BEGIN FUNCTION HideSessionInfo ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: HideSessionInfo;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_PlayMenu_JoinGame, from label L2314;
+============ END FUNCTION HideSessionInfo ==============
 
 
 
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_PlayMenu_JoinGame ==============
-L10:           this->PopulateMultiplayerList();
-L24:           // <End Inlined EventGraph Function>;
-L29:           bool mbool = BlueprintMapLibrary->Map_Find([ref] this->mButtonToFriend, [ref] mWidget_Multiplayer_ListButton, [ref] mFGOnlineFriend);
-L98:           if (!mbool) goto L1660;
-L112:          mbool = BlueprintMapLibrary->Map_Find([ref] this->mButtonToFriend, [ref] mWidget_Multiplayer_ListButton, [ref] mFGOnlineFriend);
-L181:          LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
-L205:          BP_OnlineHelpers->GetFriendSession(mFGOnlineFriend, mLocalPlayer, this, [ref] mBlueprintSessionResult);
-L269:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L293:          FGSessionLibrary->JoinSession(mPlayerController, [ref] mBlueprintSessionResult);
-L343:          // <End Inlined EventGraph Function>;
-L348:          this->mShouldAnimateSessionInfo = true;
-L359:          this->SetSessionInfo(mBlueprintSessionResult1);
-L382:          // <End Inlined EventGraph Function>;
-L387:          // <Begin Inlined EventGraph Function OnJoinSessionNew>;
-L387:          bool mbool1 = FGSessionLibrary->IsSessionValid(this->mSelectedSession);
-L438:          if (!mbool1) goto L1660;
-L452:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L476:          FGSessionLibrary->JoinSession(mPlayerController1, [ref] this->mSelectedSession);
-L526:          // <End Inlined EventGraph Function>;
-L531:          // <Begin Inlined EventGraph Function BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature>;
-L531:          this->OnJoinSessionNew();
-L545:          // <End Inlined EventGraph Function>;
-L550:          // <Begin Inlined EventGraph Function OnSessionDeselected>;
-L550:          bool mbool2 = FGSessionLibrary->IsSessionValid(this->mSelectedSession);
-L601:          if (!mbool2) goto L1660;
-L615:          uint8 muint8 = FGSessionLibrary->GetSessionVisibility([ref] this->mSelectedSession);
-L674:          bool mbool3 = muint8 != 0;
-L705:          if (!mbool3) goto L1660;
-L719:          this->mSelectedSession = mBlueprintSessionResult2;
-L746:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ShowSessionInfo, 0, 1, 1, 1);
-L792:          // <End Inlined EventGraph Function>;
-L797:          this->OnMenuEnter(mWidget);
-L816:          LocalPlayer* mLocalPlayer1 = this->GetOwningLocalPlayer();
-L840:          FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer1);
-L876:          bool mbool4 = mFGLocalPlayer;
-L905:          if (!mbool4) goto L1660;
-L919:          mFScriptDelegate->BindUFunction(this, UpdateMultiplayerList);
-L942:          mFGLocalPlayer->mOnFriendsListUpdated.AddUnique(mFScriptDelegate);
-L983:          mFScriptDelegate1->BindUFunction(this, PresenceUpdated);
-L1006:         mFGLocalPlayer->mOnFriendsPresenceUpdated.AddUnique(mFScriptDelegate1);
-L1047:         goto L10;
-L1052:         this->UpdateFriendsForJoinMenu([ref] mUpdatedFriends.Friends);
-L1084:         // <End Inlined EventGraph Function>;
-L1089:         this->UpdateFriendForJoinMenu(mconst UniqueNetIdRepl);
-L1112:         // <End Inlined EventGraph Function>;
-L1117:         this->OnMenuExit(mWidget1, mbool5);
-L1145:         LocalPlayer* mLocalPlayer2 = this->GetOwningLocalPlayer();
-L1169:         FGLocalPlayer* mFGLocalPlayer1 = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer2);
-L1205:         bool mbool6 = mFGLocalPlayer1;
-L1234:         if (!mbool6) goto L1660;
-L1248:         mFScriptDelegate->BindUFunction(this, UpdateMultiplayerList);
-L1271:         mFGLocalPlayer1->mOnFriendsListUpdated.Remove(mFScriptDelegate);
-L1312:         mFScriptDelegate1->BindUFunction(this, PresenceUpdated);
-L1335:         mFGLocalPlayer1->mOnFriendsPresenceUpdated.Remove(mFScriptDelegate1);
-L1376:         // <End Inlined EventGraph Function>;
-L1381:         // <Begin Inlined EventGraph Function BndEvt__mCopySessionIDButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature>;
-L1381:         FText mFText = FGBlueprintFunctionLibrary->CopyTextFromClipboard();
-L1431:         this->mSessionIDTextBox->SetText(mFText);
-L1472:         // <End Inlined EventGraph Function>;
-L1477:         // <Begin Inlined EventGraph Function BndEvt__mJoinSessionButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature>;
-L1477:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
-L1501:         FText mFText1 = this->mSessionIDTextBox->GetText();
-L1551:         FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText1);
-L1610:         FGSessionLibrary->JoinSessionByID(mPlayerController2, mFString);
+L5:            goto ComputedJump(EntryPoint);
+L15:           this->PopulateMultiplayerList([ref] mbool);
+L38:           if (!mbool) goto L53;
+L52:           goto ExecutionFlow.Pop();
+L53:           KismetSystemLibrary->Delay(this, 0.20000000298023224, ScriptStruct /Script/Engine.LatentActionInfo(Linkage = 15, UUID = -1168760185, ExecutionFunction = "ExecuteUbergraph_Widget_PlayMenu_JoinGame", CallbackTarget = this));
+L129:          goto ExecutionFlow.Pop();
+L130:          float mfloat = this->mSessionInfoContainer->GetRenderOpacity();
+L180:          bool mbool1 = mfloat > 0;
+L214:          if (!mbool1) goto ExecutionFlow.Pop();
+L224:          this->mSelectedSession = mBlueprintSessionResult;
+L251:          float Temp_float_Variable = 0;
+L274:          float mfloat1 = this->ShowSessionInfo->GetEndTime();
+L324:          bool Temp_bool_Variable = mbool2;
+L343:          UMGSequencePlayer* mUMGSequencePlayer = this->PlayAnimation(this->ShowSessionInfo, switch (Temp_bool_Variable) {
+case false -> Temp_float_Variable;
+case true -> mfloat1;
+default -> mfloat2;
+}, 1, 1, 1);
+L437:          goto ExecutionFlow.Pop();
+L438:          // <Begin Inlined EventGraph Function OnJoinSessionNew>;
+L438:          uint8 muint8 = FGSessionLibrary->IsSessionJoinable([ref] this->mSelectedSession);
+L497:          bool mbool3 = muint8 == 6;
+L528:          if (!mbool3) goto L617;
+L542:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L566:          FGSessionLibrary->JoinSession(mPlayerController, [ref] this->mSelectedSession);
+L616:          goto ExecutionFlow.Pop();
+L617:          FText Temp_text_Variable = ;
+L637:          FText Temp_text_Variable1 = "[object Object]";
+L726:          FText Temp_text_Variable2 = "[object Object]";
+L836:          FText Temp_text_Variable3 = "[object Object]";
+L928:          FText Temp_text_Variable4 = "[object Object]";
+L1035:         FText Temp_text_Variable5 = "[object Object]";
+L1145:         FText Temp_text_Variable6 = "[object Object]";
+L1218:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L1242:         uint8 muint81 = FGSessionLibrary->IsSessionJoinable([ref] this->mSelectedSession);
+L1301:         uint8 Temp_byte_Variable = muint81;
+L1328:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController1, "[object Object]", switch (Temp_byte_Variable) {
+case 0 -> Temp_text_Variable6;
+case 1 -> Temp_text_Variable5;
+case 2 -> Temp_text_Variable4;
+case 3 -> Temp_text_Variable3;
+case 4 -> Temp_text_Variable2;
+case 5 -> Temp_text_Variable1;
+case 6 -> Temp_text_Variable;
+default -> mFText;
+}, [ref] Temp_delegate_Variable, 0, nullptr, nullptr);
+L1570:         goto ExecutionFlow.Pop();
+L1571:         // <Begin Inlined EventGraph Function BndEvt__Widget_FrontEnd_Button_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature>;
+L1571:         this->OnJoinSessionNew();
+L1585:         goto ExecutionFlow.Pop();
+L1586:         // <Begin Inlined EventGraph Function OnSessionDeselected>;
+L1586:         this->HideSessionInfo(false);
+L1601:         goto ExecutionFlow.Pop();
+L1602:         this->OnMenuEnter(mWidget);
+L1621:         LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L1645:         FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L1681:         bool mbool4 = mFGLocalPlayer;
+L1710:         if (!mbool4) goto ExecutionFlow.Pop();
+L1720:         mFScriptDelegate->BindUFunction(this, UpdateMultiplayerList);
+L1743:         mFGLocalPlayer->mOnFriendsListUpdated.AddUnique(mFScriptDelegate);
+L1784:         mFScriptDelegate1->BindUFunction(this, PresenceUpdated);
+L1807:         mFGLocalPlayer->mOnFriendsPresenceUpdated.AddUnique(mFScriptDelegate1);
+L1848:         mFScriptDelegate2->BindUFunction(this, FindSessionId);
+L1871:         this->BPW_JoinSessionID->OnSessionSearch.AddUnique(mFScriptDelegate2);
+L1912:         goto L15;
+L1917:         this->UpdateFriendsForJoinMenu([ref] mUpdatedFriends.Friends);
+L1949:         goto ExecutionFlow.Pop();
+L1950:         this->UpdateFriendForJoinMenu(mconst UniqueNetIdRepl);
+L1973:         goto ExecutionFlow.Pop();
+L1974:         this->OnMenuExit(mWidget1, mbool5);
+L2002:         LocalPlayer* mLocalPlayer1 = this->GetOwningLocalPlayer();
+L2026:         FGLocalPlayer* mFGLocalPlayer1 = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer1);
+L2062:         bool mbool6 = mFGLocalPlayer1;
+L2091:         if (!mbool6) goto ExecutionFlow.Pop();
+L2101:         mFScriptDelegate->BindUFunction(this, UpdateMultiplayerList);
+L2124:         mFGLocalPlayer1->mOnFriendsListUpdated.Remove(mFScriptDelegate);
+L2165:         mFScriptDelegate1->BindUFunction(this, PresenceUpdated);
+L2188:         mFGLocalPlayer1->mOnFriendsPresenceUpdated.Remove(mFScriptDelegate1);
+L2229:         this->DeselectSessionIDButton(ScriptStruct /Script/OnlineSubsystemUtils.BlueprintSessionResult());
+L2257:         this->HideSessionInfo(true);
+L2272:         goto ExecutionFlow.Pop();
+L2273:         this->mShouldAnimateSessionInfo = true;
+L2284:         this->SetSessionInfo(mBlueprintSessionResult1);
+L2307:         goto ExecutionFlow.Pop();
+L2308:         goto L2273;
+L2313:         goto ExecutionFlow.Pop();
+L2314:         goto L130;
 ============ END FUNCTION ExecuteUbergraph_Widget_PlayMenu_JoinGame ==============

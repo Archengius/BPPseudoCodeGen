@@ -1,0 +1,177 @@
+########################'
+FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/BPW_PopupChangeSessionID.BPW_PopupChangeSessionID_C
+########################
+
+
+
+
+
+============ BEGIN FUNCTION FormatSessionIDInput ==============
+L0:            FText mFText = KismetTextLibrary->TextTrimPrecedingAndTrailing([ref] InText);
+L59:           FText LocalTrimmedText = mFText;
+L86:           FString mFString = KismetTextLibrary->Conv_TextToString([ref] LocalTrimmedText);
+L145:          int32 mint32 = KismetStringLibrary->Len(mFString);
+L204:          bool mbool = mint32 > this->SessionIDMaxLen;
+L242:          if (!mbool) goto L470;
+L256:          FString mFString1 = KismetTextLibrary->Conv_TextToString([ref] LocalTrimmedText);
+L315:          FString mFString2 = KismetStringLibrary->GetSubstring(mFString1, 0, 50);
+L384:          FText mFText1 = KismetTextLibrary->Conv_StringToText(mFString2);
+L443:          LocalTrimmedText = mFText1;
+L470:          FText OutText = LocalTrimmedText;
+============ END FUNCTION FormatSessionIDInput ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateStatus ==============
+L0:            FText mFText = this->mSessionIDText->GetText();
+L50:           FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L109:          int32 mint32 = KismetStringLibrary->Len(mFString);
+L168:          bool mbool = mint32 >= this->SessionIDMinLen;
+L206:          this->mSetNewIDButton->SetIsEnabled(mbool);
+L251:          uint8 Temp_byte_Variable = 2;
+L271:          uint8 Temp_byte_Variable1 = 0;
+L291:          mFText = this->mSessionIDText->GetText();
+L341:          mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L400:          mint32 = KismetStringLibrary->Len(mFString);
+L459:          mbool = mint32 >= this->SessionIDMinLen;
+L497:          bool Temp_bool_Variable = mbool;
+L516:          this->mWarningText->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+============ END FUNCTION UpdateStatus ==============
+
+
+
+
+
+============ BEGIN FUNCTION DoClosePopup ==============
+L0:            this->mPopupWidget->CallPopupClosedClicked(confirm);
+L41:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L65:           FGBlueprintFunctionLibrary->ClosePopup(mPlayerController);
+============ END FUNCTION DoClosePopup ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnSessionIDChanged ==============
+L0:            FString mFString = KismetStringLibrary->Conv_BoolToString(Result);
+L59:           FString mFString1 = KismetStringLibrary->Concat_StrStr("Session ID Changed Result: ", mFString);
+L147:          FString mFString2 = KismetStringLibrary->Concat_StrStr(mFString1, "
+New name: ");
+L220:          FString mFString3 = KismetStringLibrary->Concat_StrStr(mFString2, newID);
+L288:          KismetSystemLibrary->PrintString(this, mFString3, false, true, ScriptStruct /Script/CoreUObject.LinearColor(R = 0, G = 0.6600000262260437, B = 1, A = 1), 2);
+L371:          this->DoClosePopup(Result);
+============ END FUNCTION OnSessionIDChanged ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__FGEditableText_68_K2Node_ComponentBoundEvent_2_OnEditableTextChangedEvent__DelegateSignature ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__FGEditableText_68_K2Node_ComponentBoundEvent_2_OnEditableTextChangedEvent__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_PopupChangeSessionID, from label L584;
+============ END FUNCTION BndEvt__FGEditableText_68_K2Node_ComponentBoundEvent_2_OnEditableTextChangedEvent__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION Construct ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_PopupChangeSessionID, from label L676;
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSetNewIDButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mSetNewIDButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_PopupChangeSessionID, from label L1089;
+============ END FUNCTION BndEvt__mSetNewIDButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mCancelButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mCancelButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_PopupChangeSessionID, from label L1094;
+============ END FUNCTION BndEvt__mCancelButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mShowIDButton_K2Node_ComponentBoundEvent_5_OnPressed__DelegateSignature ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mShowIDButton_K2Node_ComponentBoundEvent_5_OnPressed__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_PopupChangeSessionID, from label L1137;
+============ END FUNCTION BndEvt__mShowIDButton_K2Node_ComponentBoundEvent_5_OnPressed__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mShowIDButton_K2Node_ComponentBoundEvent_6_OnReleased__DelegateSignature ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mShowIDButton_K2Node_ComponentBoundEvent_6_OnReleased__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_PopupChangeSessionID, from label L10;
+============ END FUNCTION BndEvt__mShowIDButton_K2Node_ComponentBoundEvent_6_OnReleased__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION ExecuteUbergraph_BPW_PopupChangeSessionID ==============
+L10:           // <Begin Inlined EventGraph Function BndEvt__mShowIDButton_K2Node_ComponentBoundEvent_6_OnReleased__DelegateSignature>;
+L10:           this->mSessionIDText->SetIsPassword(true);
+L43:           // <End Inlined EventGraph Function>;
+L48:           this->DoClosePopup(false);
+L63:           // <End Inlined EventGraph Function>;
+L68:           this->mCancelButton->SetIsEnabled(false);
+L105:          this->mSetNewIDButton->SetIsEnabled(false);
+L142:          this->mSessionIDText->SetIsEnabled(false);
+L179:          this->CircularThrobber_779->SetVisibility(0);
+L217:          LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L241:          FGLocalPlayer* mFGLocalPlayer = Cast<Class /Script/FactoryGame.FGLocalPlayer>(mLocalPlayer);
+L277:          bool mbool = mFGLocalPlayer;
+L306:          if (!mbool) goto L1142;
+L320:          FText mFText = this->mSessionIDText->GetText();
+L370:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] mFText);
+L429:          mFScriptDelegate->BindUFunction(this, OnSessionIDChanged);
+L452:          UniqueNetIdRepl mUniqueNetIdRepl = FGNetworkLibrary->GetUniqueID(mFGLocalPlayer);
+L511:          FGSessionLibrary->SetSessionID(mFGLocalPlayer, [ref] mUniqueNetIdRepl, mFString, mFScriptDelegate);
+L579:          // <End Inlined EventGraph Function>;
+L584:          this->FormatSessionIDInput([ref] mconst FText, [ref] mFText1);
+L616:          this->mSessionIDText->SetText(mFText1);
+L657:          this->UpdateStatus();
+L671:          // <End Inlined EventGraph Function>;
+L676:          mFormatArgumentData.ArgumentName = "minLen";
+L711:          mFormatArgumentData.ArgumentValueType = 0;
+L740:          mFormatArgumentData.ArgumentValue = ;
+L769:          mFormatArgumentData.ArgumentValueInt = this->SessionIDMinLen;
+L805:          mFormatArgumentData.ArgumentValueFloat = 0;
+L837:          mFormatArgumentData.ArgumentValueGender = 0;
+L866:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L886:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
+L1039:         this->mWarningText->SetText(mFText2);
+L1084:         // <End Inlined EventGraph Function>;
+L1089:         // <Begin Inlined EventGraph Function BndEvt__mSetNewIDButton_K2Node_ComponentBoundEvent_1_OnClicked__DelegateSignature>;
+L1089:         goto L68;
+L1094:         // <Begin Inlined EventGraph Function BndEvt__mCancelButton_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature>;
+L1094:         goto L48;
+L1099:         this->mSessionIDText->SetIsPassword(false);
+L1132:         // <End Inlined EventGraph Function>;
+L1137:         // <Begin Inlined EventGraph Function BndEvt__mShowIDButton_K2Node_ComponentBoundEvent_5_OnPressed__DelegateSignature>;
+L1137:         goto L1099;
+============ END FUNCTION ExecuteUbergraph_BPW_PopupChangeSessionID ==============

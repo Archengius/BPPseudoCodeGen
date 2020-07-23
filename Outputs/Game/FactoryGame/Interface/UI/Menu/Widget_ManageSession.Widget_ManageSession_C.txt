@@ -6,11 +6,43 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/Menu/Widget_ManageSession.
 
 
 
+============ BEGIN FUNCTION UpdateSessionIDVisibility ==============
+L0:            bool Temp_bool_Variable1 = visible;
+L19:           FText Temp_text_Variable = "[object Object]";
+L88:           FText Temp_text_Variable1 = "[object Object]";
+L166:          this->mSessionText->SetText(switch (Temp_bool_Variable1) {
+case false -> Temp_text_Variable1;
+case true -> Temp_text_Variable;
+default -> mFText;
+});
+L255:          bool Temp_bool_Variable = visible;
+L274:          uint8 Temp_byte_Variable = 0;
+L294:          uint8 Temp_byte_Variable1 = 2;
+L314:          this->mSessionIDText->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable1;
+case true -> Temp_byte_Variable;
+default -> muint8;
+});
+============ END FUNCTION UpdateSessionIDVisibility ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnChangeIdPopupClosed ==============
+L0:            this->UpdateSessionID();
+============ END FUNCTION OnChangeIdPopupClosed ==============
+
+
+
+
+
 ============ BEGIN FUNCTION UpdateSessionID ==============
 L0:            LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
-L24:           FString mFString = FGSessionLibrary->GetSessionID(mLocalPlayer);
-L83:           FText mFText = KismetTextLibrary->Conv_StringToText(mFString);
-L142:          this->mSessionIDText->SetText(mFText);
+L24:           BlueprintSessionResult mBlueprintSessionResult = FGSessionLibrary->GetMySession(mLocalPlayer);
+L83:           FGOnlineSessionSettings mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] mBlueprintSessionResult);
+L142:          FText mFText = KismetTextLibrary->Conv_StringToText(mFGOnlineSessionSettings.CSS_SessionId);
+L210:          this->mSessionIDText->SetText(mFText);
 ============ END FUNCTION UpdateSessionID ==============
 
 
@@ -81,7 +113,7 @@ default -> mFString;
 
 
 ============ BEGIN FUNCTION PopulateManagePlayerList ==============
-L0:            ExecutionFlow.Push(L1002);
+L0:            ExecutionFlow.Push(L1115);
 L5:            this->ClearIngamePlayerList();
 L19:           int32 Temp_int_Loop_Counter_Variable = 0;
 L42:           int32 Temp_int_Array_Index_Variable = 0;
@@ -90,25 +122,28 @@ L108:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mGameStateB
 L189:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
 L227:          if (!mbool) goto ExecutionFlow.Pop();
 L237:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
-L264:          ExecutionFlow.Push(L928);
+L264:          ExecutionFlow.Push(L1041);
 L269:          mGameStateBase = GameplayStatics->GetGameState(this);
 L312:          KismetArrayLibrary->Array_Get([ref] mGameStateBase->PlayerArray, Temp_int_Array_Index_Variable, [ref] mPlayerState);
 L393:          FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(mPlayerState);
 L429:          bool mbool1 = mFGPlayerState;
 L458:          if (!mbool1) goto ExecutionFlow.Pop();
-L468:          Widget_Multiplayer_ListButton* mWidget_Multiplayer_ListButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_Multiplayer_ListButton.Widget_Multiplayer_ListButton_C), nullptr);
-L521:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Multiplayer_ListButton, "mParentWidget", this->ManagePlayers);
-L584:          mWidget_Multiplayer_ListButton->SetupForManagePlayers(mFGPlayerState);
-L629:          mFScriptDelegate->BindUFunction(this, OnKick);
-L652:          mWidget_Multiplayer_ListButton->OnActionButtonClicked.AddUnique(mFScriptDelegate);
-L693:          VerticalBoxSlot* mVerticalBoxSlot = this->ManagePlayers->AddChildToVerticalBox(mWidget_Multiplayer_ListButton);
-L744:          mGameStateBase = GameplayStatics->GetGameState(this);
-L787:          KismetArrayLibrary->Array_Get([ref] mGameStateBase->PlayerArray, Temp_int_Array_Index_Variable, [ref] mPlayerState);
-L868:          BlueprintMapLibrary->Map_Add([ref] this->mButtonToIngamePlayer, [ref] mWidget_Multiplayer_ListButton, [ref] mPlayerState);
-L927:          goto ExecutionFlow.Pop();
-L928:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
-L970:          Temp_int_Loop_Counter_Variable = mint321;
-L997:          goto L65;
+L468:          FString mFString = mFGPlayerState->GetPlayerName();
+L518:          bool mbool2 = KismetStringLibrary->NotEqual_StrStr(mFString, "");
+L571:          if (!mbool2) goto ExecutionFlow.Pop();
+L581:          Widget_Multiplayer_ListButton* mWidget_Multiplayer_ListButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Menu/Widget_Multiplayer_ListButton.Widget_Multiplayer_ListButton_C), nullptr);
+L634:          KismetSystemLibrary->SetObjectPropertyByName(mWidget_Multiplayer_ListButton, "mParentWidget", this->ManagePlayers);
+L697:          mWidget_Multiplayer_ListButton->SetupForManagePlayers(mFGPlayerState);
+L742:          mFScriptDelegate->BindUFunction(this, OnKick);
+L765:          mWidget_Multiplayer_ListButton->OnActionButtonClicked.AddUnique(mFScriptDelegate);
+L806:          VerticalBoxSlot* mVerticalBoxSlot = this->ManagePlayers->AddChildToVerticalBox(mWidget_Multiplayer_ListButton);
+L857:          mGameStateBase = GameplayStatics->GetGameState(this);
+L900:          KismetArrayLibrary->Array_Get([ref] mGameStateBase->PlayerArray, Temp_int_Array_Index_Variable, [ref] mPlayerState);
+L981:          BlueprintMapLibrary->Map_Add([ref] this->mButtonToIngamePlayer, [ref] mWidget_Multiplayer_ListButton, [ref] mPlayerState);
+L1040:         goto ExecutionFlow.Pop();
+L1041:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
+L1083:         Temp_int_Loop_Counter_Variable = mint321;
+L1110:         goto L65;
 ============ END FUNCTION PopulateManagePlayerList ==============
 
 
@@ -140,7 +175,7 @@ L360:          goto L28;
 ============ BEGIN FUNCTION OnEscape ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: OnEscape;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L1663;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L1648;
 ============ END FUNCTION OnEscape ==============
 
 
@@ -150,7 +185,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_ManageSession
 ============ BEGIN FUNCTION OnKick ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnKick;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L962;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L1194;
 ============ END FUNCTION OnKick ==============
 
 
@@ -160,7 +195,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession
 ============ BEGIN FUNCTION BndEvt__Widget_Options_DropdownBox_K2Node_ComponentBoundEvent_0_onSelectionChanged__DelegateSignature ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: BndEvt__Widget_Options_DropdownBox_K2Node_ComponentBoundEvent_0_onSelectionChanged__DelegateSignature;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L43;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L233;
 ============ END FUNCTION BndEvt__Widget_Options_DropdownBox_K2Node_ComponentBoundEvent_0_onSelectionChanged__DelegateSignature ==============
 
 
@@ -170,18 +205,8 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession
 ============ BEGIN FUNCTION OnJoinInvite ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnJoinInvite;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L726;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L716;
 ============ END FUNCTION OnJoinInvite ==============
-
-
-
-
-
-============ BEGIN FUNCTION SpawnAnim ==============
-L18:           // EventGraph implemented function stub;
-L18:           // Function Name: SpawnAnim;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L957;
-============ END FUNCTION SpawnAnim ==============
 
 
 
@@ -190,7 +215,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession
 ============ BEGIN FUNCTION OnMenuEnter ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnMenuEnter;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L1416;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L947;
 ============ END FUNCTION OnMenuEnter ==============
 
 
@@ -200,84 +225,128 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession
 ============ BEGIN FUNCTION BndEvt__mSwitcher_K2Node_ComponentBoundEvent_1_OnActiveWidgetSet__DelegateSignature ==============
 L36:           // EventGraph implemented function stub;
 L36:           // Function Name: BndEvt__mSwitcher_K2Node_ComponentBoundEvent_1_OnActiveWidgetSet__DelegateSignature;
-L36:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L1440;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L971;
 ============ END FUNCTION BndEvt__mSwitcher_K2Node_ComponentBoundEvent_1_OnActiveWidgetSet__DelegateSignature ==============
 
 
 
 
 
-============ BEGIN FUNCTION BndEvt__mCopyToClipboard_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
+============ BEGIN FUNCTION BndEvt__mCopyToClipboardButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
 L0:            // EventGraph implemented function stub;
-L0:            // Function Name: BndEvt__mCopyToClipboard_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L1704;
-============ END FUNCTION BndEvt__mCopyToClipboard_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
+L0:            // Function Name: BndEvt__mCopyToClipboardButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L1689;
+============ END FUNCTION BndEvt__mCopyToClipboardButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mChangeSessionIDButton_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mChangeSessionIDButton_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L2272;
+============ END FUNCTION BndEvt__mChangeSessionIDButton_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mShowHideSessionIDButton_K2Node_ComponentBoundEvent_5_OnPressed__DelegateSignature ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mShowHideSessionIDButton_K2Node_ComponentBoundEvent_5_OnPressed__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L2501;
+============ END FUNCTION BndEvt__mShowHideSessionIDButton_K2Node_ComponentBoundEvent_5_OnPressed__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mShowHideSessionIDButton_K2Node_ComponentBoundEvent_6_OnReleased__DelegateSignature ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: BndEvt__mShowHideSessionIDButton_K2Node_ComponentBoundEvent_6_OnReleased__DelegateSignature;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ManageSession, from label L2521;
+============ END FUNCTION BndEvt__mShowHideSessionIDButton_K2Node_ComponentBoundEvent_6_OnReleased__DelegateSignature ==============
 
 
 
 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_ManageSession ==============
-L10:           this->UpdateSessionID();
-L24:           this->DisableClientOptions();
-L38:           // <End Inlined EventGraph Function>;
-L43:           FString mFString = KismetStringLibrary->TrimTrailing(mFString1);
-L102:          bool mbool = KismetStringLibrary->NotEqual_StrStr(mFString, "");
-L155:          if (!mbool) goto L1795;
-L169:          PlayerController* mPlayerController = this->GetOwningPlayer();
-L193:          FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController);
-L229:          bool mbool1 = mFGPlayerControllerBase;
-L258:          if (!mbool1) goto L1795;
-L272:          FGAdminInterface* mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
-L314:          bool mbool2 = KismetSystemLibrary->IsValid(mFGAdminInterface);
-L365:          if (!mbool2) goto L1795;
-L379:          BP_OnlineHelpers->SessionVisibilityStringToEnum(mFString1, this, [ref] muint8);
-L434:          mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
-L476:          mFGAdminInterface->SetSessionVisibility(muint8);
-L521:          // <End Inlined EventGraph Function>;
-L526:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->UpdateManageListTimer);
-L568:          // <End Inlined EventGraph Function>;
-L573:          this->UpdateCurrentSessionType();
-L587:          goto L10;
-L592:          this->PopulateManagePlayerList();
-L606:          mFScriptDelegate->BindUFunction(this, PopulateManagePlayerList);
-L629:          TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 10, true);
-L694:          this->UpdateManageListTimer = mTimerHandle;
-L721:          goto L573;
-L726:          bool mbool3 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToInvite, [ref] mWidget_Multiplayer_ListButton, [ref] mPendingInvite);
-L795:          if (!mbool3) goto L1795;
-L809:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L833:          mbool3 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToInvite, [ref] mWidget_Multiplayer_ListButton, [ref] mPendingInvite);
-L902:          FGInviteLibrary->JoinInvite(mPlayerController1, [ref] mPendingInvite);
-L952:          // <End Inlined EventGraph Function>;
-L957:          // <End Inlined EventGraph Function>;
-L962:          bool mbool4 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToIngamePlayer, [ref] mWidget_Multiplayer_ListButton1, [ref] mPlayerState);
-L1031:         if (!mbool4) goto L1795;
-L1045:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
-L1069:         FGPlayerControllerBase* mFGPlayerControllerBase1 = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController2);
-L1105:         bool mbool5 = mFGPlayerControllerBase1;
-L1134:         if (!mbool5) goto L1795;
-L1148:         FGAdminInterface* mFGAdminInterface1 = mFGPlayerControllerBase1->GetAdminInterface();
-L1190:         bool mbool6 = KismetSystemLibrary->IsValid(mFGAdminInterface1);
-L1241:         if (!mbool6) goto L1795;
-L1255:         mbool4 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToIngamePlayer, [ref] mWidget_Multiplayer_ListButton1, [ref] mPlayerState);
-L1324:         mFGAdminInterface1 = mFGPlayerControllerBase1->GetAdminInterface();
-L1366:         mFGAdminInterface1->KickPlayer(mPlayerState);
-L1411:         // <End Inlined EventGraph Function>;
-L1416:         this->OnMenuEnter(mWidget);
-L1435:         goto L592;
-L1440:         bool mbool7 = mWidget1 != mWidget2;
-L1478:         if (!mbool7) goto L1795;
-L1492:         Widget* mWidget3 = this->mSwitcher->GetActiveWidget();
-L1534:         PanelWidget* mPanelWidget = Cast<Class /Script/UMG.PanelWidget>(mWidget3);
-L1570:         bool mbool8 = mPanelWidget;
-L1599:         if (!mbool8) goto L1795;
-L1613:         this->mSettings->PlayListSpawnAnim(mPanelWidget);
-L1658:         // <End Inlined EventGraph Function>;
-L1663:         // <Begin Inlined EventGraph Function OnEscape>;
-L1663:         this->mOwningMenu->OnEscape();
-L1699:         goto L526;
-L1704:         // <Begin Inlined EventGraph Function BndEvt__mCopyToClipboard_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature>;
-L1704:         FText mFText = this->mSessionIDText->GetText();
-L1754:         FGBlueprintFunctionLibrary->CopyTextToClipboard(mFText);
+L10:           this->PopulateManagePlayerList();
+L24:           mFScriptDelegate->BindUFunction(this, PopulateManagePlayerList);
+L47:           TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 10, true);
+L112:          this->UpdateManageListTimer = mTimerHandle;
+L139:          this->UpdateCurrentSessionType();
+L153:          this->DisableClientOptions();
+L167:          this->UpdateSessionID();
+L181:          // <End Inlined EventGraph Function>;
+L186:          KismetSystemLibrary->K2_ClearAndInvalidateTimerHandle(this, [ref] this->UpdateManageListTimer);
+L228:          // <End Inlined EventGraph Function>;
+L233:          FString mFString = KismetStringLibrary->TrimTrailing(mFString1);
+L292:          bool mbool = KismetStringLibrary->NotEqual_StrStr(mFString, "");
+L345:          if (!mbool) goto L2536;
+L359:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L383:          FGPlayerControllerBase* mFGPlayerControllerBase = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController);
+L419:          bool mbool1 = mFGPlayerControllerBase;
+L448:          if (!mbool1) goto L2536;
+L462:          FGAdminInterface* mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L504:          bool mbool2 = KismetSystemLibrary->IsValid(mFGAdminInterface);
+L555:          if (!mbool2) goto L2536;
+L569:          BP_OnlineHelpers->SessionVisibilityStringToEnum(mFString1, this, [ref] muint8);
+L624:          mFGAdminInterface = mFGPlayerControllerBase->GetAdminInterface();
+L666:          mFGAdminInterface->SetSessionVisibility(muint8);
+L711:          // <End Inlined EventGraph Function>;
+L716:          bool mbool3 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToInvite, [ref] mWidget_Multiplayer_ListButton, [ref] mPendingInvite);
+L785:          if (!mbool3) goto L2536;
+L799:          PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L823:          mbool3 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToInvite, [ref] mWidget_Multiplayer_ListButton, [ref] mPendingInvite);
+L892:          FGInviteLibrary->JoinInvite(mPlayerController1, [ref] mPendingInvite);
+L942:          // <End Inlined EventGraph Function>;
+L947:          this->OnMenuEnter(mWidget);
+L966:          goto L10;
+L971:          bool mbool4 = mWidget1 != mWidget2;
+L1009:         if (!mbool4) goto L2536;
+L1023:         Widget* mWidget3 = this->mSwitcher->GetActiveWidget();
+L1065:         PanelWidget* mPanelWidget = Cast<Class /Script/UMG.PanelWidget>(mWidget3);
+L1101:         bool mbool5 = mPanelWidget;
+L1130:         if (!mbool5) goto L2536;
+L1144:         this->mSettings->PlayListSpawnAnim(mPanelWidget);
+L1189:         // <End Inlined EventGraph Function>;
+L1194:         bool mbool6 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToIngamePlayer, [ref] mWidget_Multiplayer_ListButton1, [ref] mPlayerState);
+L1263:         if (!mbool6) goto L2536;
+L1277:         PlayerController* mPlayerController2 = this->GetOwningPlayer();
+L1301:         FGPlayerControllerBase* mFGPlayerControllerBase1 = Cast<Class /Script/FactoryGame.FGPlayerControllerBase>(mPlayerController2);
+L1337:         bool mbool7 = mFGPlayerControllerBase1;
+L1366:         if (!mbool7) goto L2536;
+L1380:         FGAdminInterface* mFGAdminInterface1 = mFGPlayerControllerBase1->GetAdminInterface();
+L1422:         bool mbool8 = KismetSystemLibrary->IsValid(mFGAdminInterface1);
+L1473:         if (!mbool8) goto L2536;
+L1487:         mbool6 = BlueprintMapLibrary->Map_Find([ref] this->mButtonToIngamePlayer, [ref] mWidget_Multiplayer_ListButton1, [ref] mPlayerState);
+L1556:         mFGAdminInterface1 = mFGPlayerControllerBase1->GetAdminInterface();
+L1598:         mFGAdminInterface1->KickPlayer(mPlayerState);
+L1643:         // <End Inlined EventGraph Function>;
+L1648:         this->mOwningMenu->OnEscape();
+L1684:         goto L186;
+L1689:         // <Begin Inlined EventGraph Function BndEvt__mCopyToClipboardButton_K2Node_ComponentBoundEvent_2_OnClicked__DelegateSignature>;
+L1689:         FText mFText = this->mSessionIDText->GetText();
+L1739:         FGBlueprintFunctionLibrary->CopyTextToClipboard(mFText);
+L1780:         LocalPlayer* mLocalPlayer = this->GetOwningLocalPlayer();
+L1804:         BlueprintSessionResult mBlueprintSessionResult = FGSessionLibrary->GetMySession(mLocalPlayer);
+L1863:         uint8 muint81 = FGSessionLibrary->GetSessionVisibility([ref] mBlueprintSessionResult);
+L1922:         bool mbool9 = muint81 == 0;
+L1953:         if (!mbool9) goto L2536;
+L1967:         PlayerController* mPlayerController3 = this->GetOwningPlayer();
+L1991:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController3, "[object Object]", "[object Object]", [ref] Temp_delegate_Variable, 0, nullptr, nullptr);
+L2267:         // <End Inlined EventGraph Function>;
+L2272:         // <Begin Inlined EventGraph Function BndEvt__mChangeSessionIDButton_K2Node_ComponentBoundEvent_3_OnClicked__DelegateSignature>;
+L2272:         PlayerController* mPlayerController4 = this->GetOwningPlayer();
+L2296:         mFScriptDelegate1->BindUFunction(this, OnChangeIdPopupClosed);
+L2319:         FGBlueprintFunctionLibrary->AddPopupWithCloseDelegate(mPlayerController4, "[object Object]", "[object Object]", [ref] mFScriptDelegate1, 2, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/BPW_PopupChangeSessionID.BPW_PopupChangeSessionID_C), this);
+L2496:         // <End Inlined EventGraph Function>;
+L2501:         // <Begin Inlined EventGraph Function BndEvt__mShowHideSessionIDButton_K2Node_ComponentBoundEvent_5_OnPressed__DelegateSignature>;
+L2501:         this->UpdateSessionIDVisibility(true);
+L2516:         // <End Inlined EventGraph Function>;
+L2521:         // <Begin Inlined EventGraph Function BndEvt__mShowHideSessionIDButton_K2Node_ComponentBoundEvent_6_OnReleased__DelegateSignature>;
+L2521:         this->UpdateSessionIDVisibility(false);
 ============ END FUNCTION ExecuteUbergraph_Widget_ManageSession ==============

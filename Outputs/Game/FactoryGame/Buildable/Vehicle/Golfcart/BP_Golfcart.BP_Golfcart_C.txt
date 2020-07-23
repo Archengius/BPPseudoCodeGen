@@ -7,17 +7,31 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Buildable/Vehicle/Golfcart/BP_Golfcart.
 
 
 ============ BEGIN FUNCTION GetLookAtDecription ==============
-L0:            Controller* mController = byCharacter->GetController();
-L42:           HUDHelpers->GetKeyNameForActionSimple(mController, "Use", this, [ref] mFText);
-L110:          mFormatArgumentData.ArgumentName = "BUTTON";
-L145:          mFormatArgumentData.ArgumentValueType = 4;
-L174:          mFormatArgumentData.ArgumentValue = mFText;
-L210:          mFormatArgumentData.ArgumentValueInt = 0;
-L242:          mFormatArgumentData.ArgumentValueFloat = 0;
-L274:          mFormatArgumentData.ArgumentValueGender = 0;
-L303:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
-L323:          FText mFText1 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
-L497:          FText ReturnValue = mFText1;
+L0:            bool mbool = State.State == ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Buildable/Vehicle/UseState_WorkBench.UseState_WorkBench_C);
+L47:           if (!mbool) goto L484;
+L61:           Controller* mController = byCharacter->GetController();
+L103:          HUDHelpers->GetKeyNameForActionSimple(mController, "Use", this, [ref] mFText);
+L171:          mFormatArgumentData.ArgumentName = "BUTTON";
+L206:          mFormatArgumentData.ArgumentValueType = 4;
+L235:          mFormatArgumentData.ArgumentValue = mFText;
+L271:          mFormatArgumentData.ArgumentValueInt = 0;
+L303:          mFormatArgumentData.ArgumentValueFloat = 0;
+L335:          mFormatArgumentData.ArgumentValueGender = 0;
+L364:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData];
+L384:          FText mFText1 = KismetTextLibrary->Format(this->mLookAtText, mTArrayFormatArgumentData);
+L452:          FText ReturnValue = mFText1;
+L479:          goto L1008;
+L484:          Controller* mController1 = byCharacter->GetController();
+L526:          HUDHelpers->GetKeyNameForActionSimple(mController1, "Use", this, [ref] mFText2);
+L594:          mFormatArgumentData1.ArgumentName = "BUTTON";
+L629:          mFormatArgumentData1.ArgumentValueType = 4;
+L658:          mFormatArgumentData1.ArgumentValue = mFText2;
+L694:          mFormatArgumentData1.ArgumentValueInt = 0;
+L726:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L758:          mFormatArgumentData1.ArgumentValueGender = 0;
+L787:          TArray<FormatArgumentData> mTArrayFormatArgumentData1 = [mFormatArgumentData1];
+L807:          FText mFText3 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData1);
+L981:          ReturnValue = mFText3;
 ============ END FUNCTION GetLookAtDecription ==============
 
 
@@ -69,21 +83,11 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_Golfcart, from la
 
 
 
-============ BEGIN FUNCTION DisablePhysics ==============
+============ BEGIN FUNCTION FoldAnimationDone ==============
 L0:            // EventGraph implemented function stub;
-L0:            // Function Name: DisablePhysics;
+L0:            // Function Name: FoldAnimationDone;
 L0:            // Implementation: Function ExecuteUbergraph_BP_Golfcart, from label L1786;
-============ END FUNCTION DisablePhysics ==============
-
-
-
-
-
-============ BEGIN FUNCTION EnablePhysics ==============
-L0:            // EventGraph implemented function stub;
-L0:            // Function Name: EnablePhysics;
-L0:            // Implementation: Function ExecuteUbergraph_BP_Golfcart, from label L1843;
-============ END FUNCTION EnablePhysics ==============
+============ END FUNCTION FoldAnimationDone ==============
 
 
 
@@ -92,7 +96,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BP_Golfcart, from la
 ============ BEGIN FUNCTION DoFoldAnimation ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: DoFoldAnimation;
-L0:            // Implementation: Function ExecuteUbergraph_BP_Golfcart, from label L2092;
+L0:            // Implementation: Function ExecuteUbergraph_BP_Golfcart, from label L1791;
 ============ END FUNCTION DoFoldAnimation ==============
 
 
@@ -107,7 +111,6 @@ L27:           this->mMesh->SetForcedLOD(0);
 L64:           goto ExecutionFlow.Pop();
 L65:           this->FlushNetDormancy();
 L75:           goto L15;
-L80:           // <Begin Inlined EventGraph Function ToggleFreeCamera>;
 L80:           this->ToggleFreeCamera();
 L90:           bool mbool = !this->mIsFreeCamera;
 L119:          this->SpringArm->bEnableCameraLag = mbool;
@@ -128,7 +131,6 @@ L503:          BreakRotator(this->SpringArm->RelativeRotation, [ref] mfloat1, [r
 L571:          Rotator mRotator = MakeRotator(0, mfloat2, 0);
 L618:          this->mDefaultCameraRotation = mRotator;
 L645:          goto L271;
-L650:          // <Begin Inlined EventGraph Function Multicast_Honk>;
 L650:          this->Multicast_Honk();
 L660:          AnimInstance* mAnimInstance1 = this->mMesh->GetAnimInstance();
 L702:          bool mbool1 = mAnimInstance1->IsAnyMontagePlaying();
@@ -157,24 +159,13 @@ L1535:         Rotator mRotator1 = this->mMesh->GetSocketRotation(mFName);
 L1598:         ParticleSystemComponent* mParticleSystemComponent = GameplayStatics->SpawnEmitterAttached(ObjectConst(ParticleSystem /Game/FactoryGame/VFX/Vehicles/Golfcart/P_Golfcart_Light.P_Golfcart_Light), this->mMesh, mFName, mVector, mRotator1, Vector(1, 1, 1), 1, true, 0);
 L1703:         this->Particle_Honk = mParticleSystemComponent;
 L1722:         goto ExecutionFlow.Pop();
-L1723:         // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L1723:         goto L231;
 L1728:         AkComponent* mAkComponent = AkGameplayStatics->PostAkEvent(ObjectConst(AkAudioEvent /Game/FactoryGame/Buildable/Vehicle/Golfcart/Audio/Play_GolfCartUnfold.Play_GolfCartUnfold), this, true);
 L1781:         goto L503;
-L1786:         // <Begin Inlined EventGraph Function DisablePhysics>;
-L1786:         this->mForceSimulationMode = true;
-L1797:         this->mMesh->UnHideBoneByName("window_r");
-L1842:         goto ExecutionFlow.Pop();
-L1843:         // <Begin Inlined EventGraph Function EnablePhysics>;
-L1843:         this->mForceSimulationMode = false;
-L1854:         goto L65;
-L1859:         mFScriptDelegate->BindUFunction(this, DisablePhysics);
-L1882:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 0.019999999552965164, false);
-L1947:         mFScriptDelegate1->BindUFunction(this, EnablePhysics);
-L1970:         TimerHandle mTimerHandle1 = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate1, 5, false);
-L2035:         goto L1728;
-L2040:         this->mMesh->HideBoneByName("window_r", 0);
-L2087:         goto L1859;
-L2092:         // <Begin Inlined EventGraph Function DoFoldAnimation>;
-L2092:         goto L2040;
+L1786:         // <Begin Inlined EventGraph Function FoldAnimationDone>;
+L1786:         goto L65;
+L1791:         // <Begin Inlined EventGraph Function DoFoldAnimation>;
+L1791:         mFScriptDelegate->BindUFunction(this, FoldAnimationDone);
+L1814:         TimerHandle mTimerHandle = KismetSystemLibrary->K2_SetTimerDelegate(mFScriptDelegate, 5, false);
+L1879:         goto L1728;
 ============ END FUNCTION ExecuteUbergraph_BP_Golfcart ==============

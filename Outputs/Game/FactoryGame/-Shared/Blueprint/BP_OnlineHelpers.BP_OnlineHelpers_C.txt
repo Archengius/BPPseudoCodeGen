@@ -6,18 +6,103 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/-Shared/Blueprint/BP_OnlineHelpers.BP_O
 
 
 
+============ BEGIN FUNCTION IsFriendInSession ==============
+L0:            OnlinePresence mOnlinePresence = this->GetFriendPresence([ref] Friend, WorldContext, WorldContext);
+L59:           this->IsInSession(mOnlinePresence, WorldContext, [ref] mbool);
+L100:          bool Result = mbool;
+============ END FUNCTION IsFriendInSession ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsFriendInPublicSession ==============
+L0:            OnlinePresence mOnlinePresence = this->GetFriendPresence([ref] Friend, WorldContext, WorldContext);
+L59:           this->IsPresenceInPublicSession(mOnlinePresence, WorldContext, [ref] mbool);
+L100:          bool Result = mbool;
+============ END FUNCTION IsFriendInPublicSession ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsPresenceInPublicSession ==============
+L0:            FString mFString = FGPresenceLibrary->GetSessionIDFromPresence([ref] presence);
+L59:           FString mFString1 = FGPresenceLibrary->GetSessionIDFromPresence([ref] presence);
+L118:          bool mbool = KismetStringLibrary->NotEqual_StrStr(mFString, "");
+L171:          bool mbool1 = KismetStringLibrary->NotEqual_StrStr(mFString1, "PRIVATE");
+L231:          bool mbool2 = mbool && mbool1;
+L269:          bool Result = mbool2;
+============ END FUNCTION IsPresenceInPublicSession ==============
+
+
+
+
+
+============ BEGIN FUNCTION GetConnectingNatIssue ==============
+L0:            FText mFText = FGNetworkLibrary->NATTypeToText(HostNAT);
+L59:           FText mFText1 = FGNetworkLibrary->NATTypeToText(ClientNat);
+L118:          mFormatArgumentData.ArgumentName = "hostNat";
+L154:          mFormatArgumentData.ArgumentValueType = 4;
+L183:          mFormatArgumentData.ArgumentValue = mFText;
+L219:          mFormatArgumentData.ArgumentValueInt = 0;
+L251:          mFormatArgumentData.ArgumentValueFloat = 0;
+L283:          mFormatArgumentData.ArgumentValueGender = 0;
+L312:          mFormatArgumentData1.ArgumentName = "clientNat";
+L350:          mFormatArgumentData1.ArgumentValueType = 4;
+L379:          mFormatArgumentData1.ArgumentValue = mFText1;
+L415:          mFormatArgumentData1.ArgumentValueInt = 0;
+L447:          mFormatArgumentData1.ArgumentValueFloat = 0;
+L479:          mFormatArgumentData1.ArgumentValueGender = 0;
+L508:          TArray<FormatArgumentData> mTArrayFormatArgumentData = [mFormatArgumentData, mFormatArgumentData1];
+L537:          FText mFText2 = KismetTextLibrary->Format("[object Object]", mTArrayFormatArgumentData);
+L786:          FText Tooltip = mFText2;
+============ END FUNCTION GetConnectingNatIssue ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsNATIssue ==============
+L0:            bool mbool = HostNAT != 0;
+L31:           if (!mbool) goto L185;
+L45:           mbool = HostNAT != 1;
+L76:           if (!mbool) goto L201;
+L90:           mbool = HostNAT != 2;
+L121:          if (!mbool) goto L386;
+L135:          mbool = HostNAT != 3;
+L166:          if (!mbool) goto L386;
+L180:          // <End Inlined EventGraph Function>;
+L185:          bool isIssue = false;
+L196:          // <End Inlined EventGraph Function>;
+L201:          bool mbool1 = ClientNat != 0;
+L232:          if (!mbool1) goto L185;
+L246:          mbool1 = ClientNat != 1;
+L277:          if (!mbool1) goto L185;
+L291:          mbool1 = ClientNat != 2;
+L322:          if (!mbool1) goto L386;
+L336:          mbool1 = ClientNat != 3;
+L367:          if (!mbool1) goto L386;
+L381:          // <End Inlined EventGraph Function>;
+L386:          isIssue = true;
+============ END FUNCTION IsNATIssue ==============
+
+
+
+
+
+============ BEGIN FUNCTION IsInSession ==============
+L0:            FString mFString = FGPresenceLibrary->GetSessionIDFromPresence([ref] presence);
+L59:           bool mbool = KismetStringLibrary->NotEqual_StrStr(mFString, "");
+L112:          bool Result = mbool;
+============ END FUNCTION IsInSession ==============
+
+
+
+
+
 ============ BEGIN FUNCTION InsertionAddButton ==============
 ============ END FUNCTION InsertionAddButton ==============
-
-
-
-
-
-============ BEGIN FUNCTION GetSessionFromFriendNetId ==============
-L0:            OnlinePresence mOnlinePresence = FGPresenceLibrary->GetPresenceFromNetId(WorldContext, [ref] friendNetId);
-L68:           BlueprintSessionResult mBlueprintSessionResult = FGPresenceLibrary->GetSessionFromPresence([ref] mOnlinePresence);
-L127:          BlueprintSessionResult session = mBlueprintSessionResult;
-============ END FUNCTION GetSessionFromFriendNetId ==============
 
 
 
@@ -32,69 +117,46 @@ L60:           bool isOurself = mbool;
 
 
 
-============ BEGIN FUNCTION CanJoinInvite ==============
-L0:            this->GetInvitePresence(WorldContext, invite, WorldContext, [ref] mOnlinePresence);
-L50:           bool mbool = FGPresenceLibrary->IsOnline([ref] mOnlinePresence);
-L101:          bool mbool1 = !mbool;
-L130:          if (!mbool1) goto L169;
-L144:          uint8 Result = 2;
-L164:          // <End Inlined EventGraph Function>;
-L169:          this->GetInvitePresence(WorldContext, invite, WorldContext, [ref] mOnlinePresence);
-L219:          BlueprintSessionResult mBlueprintSessionResult = FGPresenceLibrary->GetSessionFromPresence([ref] mOnlinePresence);
-L278:          bool mbool2 = FGSessionLibrary->IsSessionValid(mBlueprintSessionResult);
-L329:          bool mbool3 = !mbool2;
-L358:          if (!mbool3) goto L397;
-L372:          Result = 1;
-L392:          // <End Inlined EventGraph Function>;
-L397:          this->GetInvitePresence(WorldContext, invite, WorldContext, [ref] mOnlinePresence);
-L447:          mBlueprintSessionResult = FGPresenceLibrary->GetSessionFromPresence([ref] mOnlinePresence);
-L506:          int32 mint32 = FGSessionLibrary->GetMaxNumberOfPlayers([ref] mBlueprintSessionResult);
-L565:          FGOnlineSessionSettings mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] mBlueprintSessionResult);
-L624:          bool mbool4 = mFGOnlineSessionSettings.NumConnectedPlayers >= mint32;
-L671:          if (!mbool4) goto L710;
-L685:          Result = 0;
-L705:          // <End Inlined EventGraph Function>;
-L710:          this->GetInvitePresence(WorldContext, invite, WorldContext, [ref] mOnlinePresence);
-L760:          mBlueprintSessionResult = FGPresenceLibrary->GetSessionFromPresence([ref] mOnlinePresence);
-L819:          FGOnlineSessionSettings mFGOnlineSessionSettings1 = FGSessionLibrary->GetSessionSettings([ref] mBlueprintSessionResult);
-L878:          bool mbool5 = FGSessionLibrary->CheckIsCompatibleVersion([ref] mFGOnlineSessionSettings1);
-L929:          bool mbool6 = !mbool5;
-L958:          if (!mbool6) goto L997;
-L972:          Result = 3;
-L992:          // <End Inlined EventGraph Function>;
-L997:          Result = 4;
-============ END FUNCTION CanJoinInvite ==============
+============ BEGIN FUNCTION CanJoinInviteToSession ==============
+L0:            OnlinePresence mOnlinePresence = this->GetFriendPresence([ref] Friend, WorldContext, WorldContext);
+L59:           bool mbool = FGPresenceLibrary->IsOnline([ref] mOnlinePresence);
+L110:          bool mbool1 = !mbool;
+L139:          if (!mbool1) goto L178;
+L153:          uint8 Result = 2;
+L173:          // <End Inlined EventGraph Function>;
+L178:          bool mbool2 = FGSessionLibrary->IsSessionValid(session);
+L229:          bool mbool3 = !mbool2;
+L258:          if (!mbool3) goto L297;
+L272:          Result = 1;
+L292:          // <End Inlined EventGraph Function>;
+L297:          int32 mint32 = FGSessionLibrary->GetMaxNumberOfPlayers([ref] session);
+L356:          FGOnlineSessionSettings mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] session);
+L415:          bool mbool4 = mFGOnlineSessionSettings.NumConnectedPlayers >= mint32;
+L462:          if (!mbool4) goto L501;
+L476:          Result = 0;
+L496:          // <End Inlined EventGraph Function>;
+L501:          FGOnlineSessionSettings mFGOnlineSessionSettings1 = FGSessionLibrary->GetSessionSettings([ref] session);
+L560:          bool mbool5 = FGSessionLibrary->CheckIsCompatibleVersion([ref] mFGOnlineSessionSettings1);
+L611:          bool mbool6 = !mbool5;
+L640:          if (!mbool6) goto L679;
+L654:          Result = 3;
+L674:          // <End Inlined EventGraph Function>;
+L679:          Result = 4;
+============ END FUNCTION CanJoinInviteToSession ==============
 
 
 
 
 
 ============ BEGIN FUNCTION IsInThisGame ==============
-L0:            ExecutionFlow.Push(L759);
-L5:            int32 Temp_int_Loop_Counter_Variable = 0;
-L28:           int32 Temp_int_Array_Index_Variable = 0;
-L51:           GameStateBase* mGameStateBase = GameplayStatics->GetGameState(WorldContext);
-L102:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mGameStateBase->PlayerArray);
-L183:          bool mbool = Temp_int_Loop_Counter_Variable < mint32;
-L221:          if (!mbool) goto L669;
-L235:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
-L262:          ExecutionFlow.Push(L685);
-L267:          mGameStateBase = GameplayStatics->GetGameState(WorldContext);
-L318:          KismetArrayLibrary->Array_Get([ref] mGameStateBase->PlayerArray, Temp_int_Array_Index_Variable, [ref] mPlayerState);
-L399:          FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(mPlayerState);
-L435:          bool mbool1 = mFGPlayerState;
-L464:          if (!mbool1) goto ExecutionFlow.Pop();
-L474:          UniqueNetIdRepl mUniqueNetIdRepl = FGFriendsLibrary->GetFriendUniqueNetId([ref] onlineFriend);
-L533:          UniqueNetIdRepl mUniqueNetIdRepl1 = mFGPlayerState->GetUniqeNetId();
-L583:          bool mbool2 = FGNetworkLibrary->EqualEqual_NetIdNetId([ref] mUniqueNetIdRepl1, [ref] mUniqueNetIdRepl);
-L643:          if (!mbool2) goto ExecutionFlow.Pop();
-L653:          bool inThisGame = true;
-L664:          // <End Inlined EventGraph Function>;
-L669:          inThisGame = false;
-L680:          // <End Inlined EventGraph Function>;
-L685:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
-L727:          Temp_int_Loop_Counter_Variable = mint321;
-L754:          goto L51;
+L0:            BlueprintSessionResult mBlueprintSessionResult = FGSessionLibrary->GetMySession(LocalPlayer);
+L59:           OnlinePresence mOnlinePresence = this->GetFriendPresence([ref] onlineFriend, LocalPlayer, LocalPlayer);
+L118:          FGOnlineSessionSettings mFGOnlineSessionSettings = FGSessionLibrary->GetSessionSettings([ref] mBlueprintSessionResult);
+L177:          FString mFString = FGPresenceLibrary->GetSessionIDFromPresence([ref] mOnlinePresence);
+L236:          bool mbool = KismetStringLibrary->NotEqual_StrStr(mFString, "");
+L289:          bool mbool1 = KismetStringLibrary->EqualEqual_StrStr(mFString, mFGOnlineSessionSettings.CSS_SessionId);
+L358:          bool mbool2 = mbool1 && mbool;
+L396:          bool inThisGame = mbool2;
 ============ END FUNCTION IsInThisGame ==============
 
 
@@ -102,10 +164,10 @@ L754:          goto L51;
 
 
 ============ BEGIN FUNCTION CanSendInvite ==============
-L0:            OnlinePresence mOnlinePresence = this->GetFriendPresence([ref] friend, WorldContext, WorldContext);
+L0:            OnlinePresence mOnlinePresence = this->GetFriendPresence([ref] Friend, LocalPlayer, LocalPlayer);
 L59:           bool mbool = FGPresenceLibrary->IsPlayingThisGame([ref] mOnlinePresence);
 L110:          if (!mbool) goto L213;
-L124:          this->IsInThisGame([ref] friend, WorldContext, WorldContext, [ref] mbool1);
+L124:          this->IsInThisGame([ref] Friend, LocalPlayer, LocalPlayer, [ref] mbool1);
 L174:          if (!mbool1) goto L238;
 L188:          uint8 canSend = 1;
 L208:          // <End Inlined EventGraph Function>;
@@ -113,20 +175,6 @@ L213:          canSend = 0;
 L233:          // <End Inlined EventGraph Function>;
 L238:          canSend = 3;
 ============ END FUNCTION CanSendInvite ==============
-
-
-
-
-
-============ BEGIN FUNCTION IsFriendInOnlineSession ==============
-L0:            bool mbool = FGFriendsLibrary->IsValid_Friend([ref] frriend);
-L51:           if (!mbool) goto L190;
-L65:           this->GetFriendSession(frriend, WorldContext, WorldContext, [ref] mBlueprintSessionResult);
-L115:          bool mbool1 = FGSessionLibrary->IsSessionValid(mBlueprintSessionResult);
-L166:          bool inSession = mbool1;
-L185:          // <End Inlined EventGraph Function>;
-L190:          inSession = false;
-============ END FUNCTION IsFriendInOnlineSession ==============
 
 
 
@@ -147,21 +195,6 @@ L397:          FCompactPresence compactPresence = mFCompactPresence;
 L424:          // <End Inlined EventGraph Function>;
 L429:          compactPresence = UserDefinedStruct /Game/FactoryGame/-Shared/Blueprint/FCompactPresence.FCompactPresence(PresenceString_8_73B095B54A983F2391EE189D60CC1495 = "", IsOnline_3_0B4A819747012DC786FA4097038402CD = false, IsPlayingThisGame_6_D07FB68E4051EB599EEFC5B695C2B0FA = false, IsPlayingOtherGame_7_ED9DBFB84A164DABCD8A488B070BE8C3 = false);
 ============ END FUNCTION GetCompactPresence ==============
-
-
-
-
-
-============ BEGIN FUNCTION GetFriendSession ==============
-L0:            OnlinePresence mOnlinePresence = this->GetFriendPresence([ref] friend, WorldContext, WorldContext);
-L59:           bool mbool = FGPresenceLibrary->IsValid_OnlinePresence([ref] mOnlinePresence);
-L110:          if (!mbool) goto L274;
-L124:          mOnlinePresence = this->GetFriendPresence([ref] friend, WorldContext, WorldContext);
-L183:          BlueprintSessionResult mBlueprintSessionResult = FGPresenceLibrary->GetSessionFromPresence([ref] mOnlinePresence);
-L242:          BlueprintSessionResult session = mBlueprintSessionResult;
-L269:          // <End Inlined EventGraph Function>;
-L274:          session = ScriptStruct /Script/OnlineSubsystemUtils.BlueprintSessionResult();
-============ END FUNCTION GetFriendSession ==============
 
 
 

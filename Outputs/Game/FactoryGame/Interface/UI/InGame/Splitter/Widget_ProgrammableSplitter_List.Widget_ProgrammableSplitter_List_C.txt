@@ -6,8 +6,59 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Interface/UI/InGame/Splitter/Widget_Pro
 
 
 
+============ BEGIN FUNCTION OnSearchShowResults ==============
+L0:            ExecutionFlow.Push(L1006);
+L5:            FText localSearchResult = text;
+L32:           FText mFText = KismetTextLibrary->Conv_StringToText("");
+L84:           bool mbool = KismetTextLibrary->NotEqual_TextText([ref] localSearchResult, [ref] mFText);
+L144:          if (!mbool) goto ExecutionFlow.Pop();
+L154:          int32 Temp_int_Loop_Counter_Variable = 0;
+L177:          int32 Temp_int_Array_Index_Variable = 0;
+L200:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mItemDescriptor);
+L259:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
+L297:          if (!mbool1) goto ExecutionFlow.Pop();
+L307:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
+L334:          ExecutionFlow.Push(L932);
+L339:          uint8 Temp_byte_Variable = 1;
+L359:          uint8 Temp_byte_Variable1 = 0;
+L379:          Widget* mWidget = this->mList->GetChildAt(Temp_int_Array_Index_Variable);
+L430:          FString mFString = KismetTextLibrary->Conv_TextToString([ref] localSearchResult);
+L489:          KismetArrayLibrary->Array_Get([ref] this->mItemDescriptor, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGItemDescriptor);
+L548:          bool mbool2 = KismetStringLibrary->EqualEqual_StriStri(mFString, "");
+L601:          FText mFText1 = FGItemDescriptor->GetItemName(mTSubclassOfFGItemDescriptor);
+L660:          FString mFString1 = KismetTextLibrary->Conv_TextToString([ref] mFText1);
+L719:          bool mbool3 = BPHUDHelpers->DoesTextContainSearchWords(mFString1, mFString, true, this);
+L785:          bool mbool4 = mbool3 || mbool2;
+L823:          bool Temp_bool_Variable = mbool4;
+L842:          mWidget->SetVisibility(switch (Temp_bool_Variable) {
+case false -> Temp_byte_Variable;
+case true -> Temp_byte_Variable1;
+default -> muint8;
+});
+L931:          goto ExecutionFlow.Pop();
+L932:          int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
+L974:          Temp_int_Loop_Counter_Variable = mint321;
+L1001:         goto L200;
+============ END FUNCTION OnSearchShowResults ==============
+
+
+
+
+
+============ BEGIN FUNCTION UpdateTootltipFromButton ==============
+L0:            KismetArrayLibrary->Array_Get([ref] this->mItemDescriptor, index, [ref] mTSubclassOfFGItemDescriptor);
+L59:           mItemAmount.ItemClass = mTSubclassOfFGItemDescriptor;
+L87:           mItemAmount.amount = 0;
+L119:          this->mTooltipWidget->mItemDescriptor = mItemAmount;
+L168:          this->mTooltipWidget->ShowTootltip();
+============ END FUNCTION UpdateTootltipFromButton ==============
+
+
+
+
+
 ============ BEGIN FUNCTION GenerateDescriptorList ==============
-L0:            ExecutionFlow.Push(L1327);
+L0:            ExecutionFlow.Push(L1432);
 L5:            bool mbool = KismetSystemLibrary->IsValid(SmartSplitter);
 L56:           if (!mbool) goto ExecutionFlow.Pop();
 L66:           this->mSmartSplitter = SmartSplitter;
@@ -26,7 +77,7 @@ L477:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] this->mItem
 L536:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint32;
 L574:          if (!mbool1) goto ExecutionFlow.Pop();
 L584:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable;
-L611:          ExecutionFlow.Push(L1253);
+L611:          ExecutionFlow.Push(L1358);
 L616:          PlayerController* mPlayerController = this->GetOwningPlayer();
 L640:          Widget_ListButton* mWidget_ListButton = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/-Shared/Widget_ListButton.Widget_ListButton_C), mPlayerController);
 L701:          KismetArrayLibrary->Array_Get([ref] this->mItemDescriptor, Temp_int_Array_Index_Variable, [ref] mTSubclassOfFGItemDescriptor);
@@ -37,13 +88,16 @@ L933:          FText mFText = FGItemDescriptor->GetItemName(mTSubclassOfFGItemDe
 L992:          KismetSystemLibrary->SetTextPropertyByName(mWidget_ListButton, "mTitle", [ref] mFText);
 L1055:         KismetSystemLibrary->SetObjectPropertyByName(mWidget_ListButton, "mListWidget", this->mList);
 L1118:         Widget_ListButton* localButton = mWidget_ListButton;
-L1137:         PanelSlot* mPanelSlot = this->mList->AddChild(localButton);
-L1188:         mFScriptDelegate->BindUFunction(this, GetSelectedDescriptor);
-L1211:         localButton->OnClicked.AddUnique(mFScriptDelegate);
-L1252:         goto ExecutionFlow.Pop();
-L1253:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
-L1295:         Temp_int_Loop_Counter_Variable = mint321;
-L1322:         goto L477;
+L1137:         mWidget_ListButton->SetToolTip(this->mTooltipWidget);
+L1178:         PanelSlot* mPanelSlot = this->mList->AddChild(localButton);
+L1229:         mFScriptDelegate->BindUFunction(this, GetSelectedDescriptor);
+L1252:         localButton->OnClicked.AddUnique(mFScriptDelegate);
+L1293:         mFScriptDelegate1->BindUFunction(this, UpdateTootltipFromButton);
+L1316:         localButton->OnHovered.AddUnique(mFScriptDelegate1);
+L1357:         goto ExecutionFlow.Pop();
+L1358:         int32 mint321 = Temp_int_Loop_Counter_Variable + 1;
+L1400:         Temp_int_Loop_Counter_Variable = mint321;
+L1427:         goto L477;
 ============ END FUNCTION GenerateDescriptorList ==============
 
 
@@ -53,20 +107,59 @@ L1322:         goto L477;
 ============ BEGIN FUNCTION GetSelectedDescriptor ==============
 L36:           // EventGraph implemented function stub;
 L36:           // Function Name: GetSelectedDescriptor;
-L36:           // Implementation: Function ExecuteUbergraph_Widget_ProgrammableSplitter_List, from label L43;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_ProgrammableSplitter_List, from label L15;
 ============ END FUNCTION GetSelectedDescriptor ==============
 
 
 
 
 
+============ BEGIN FUNCTION Construct ==============
+L0:            // EventGraph implemented function stub;
+L0:            // Function Name: Construct;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_ProgrammableSplitter_List, from label L153;
+============ END FUNCTION Construct ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_0_OnTextChanged__DelegateSignature ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: BndEvt__mSearchBar_K2Node_ComponentBoundEvent_0_OnTextChanged__DelegateSignature;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_ProgrammableSplitter_List, from label L262;
+============ END FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_0_OnTextChanged__DelegateSignature ==============
+
+
+
+
+
+============ BEGIN FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_2_OnTextComitted__DelegateSignature ==============
+L36:           // EventGraph implemented function stub;
+L36:           // Function Name: BndEvt__mSearchBar_K2Node_ComponentBoundEvent_2_OnTextComitted__DelegateSignature;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_ProgrammableSplitter_List, from label L10;
+============ END FUNCTION BndEvt__mSearchBar_K2Node_ComponentBoundEvent_2_OnTextComitted__DelegateSignature ==============
+
+
+
+
+
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_ProgrammableSplitter_List ==============
-L10:           this->OnSelectionChanged->ProcessMulticastDelegate(this->mSelectedDescriptor);
-L38:           // <End Inlined EventGraph Function>;
-L43:           this->mSelectedInt = mint32;
-L70:           KismetArrayLibrary->Array_Get([ref] this->mItemDescriptor, this->mSelectedInt, [ref] mTSubclassOfFGItemDescriptor);
-L129:          this->mSelectedDescriptor = mTSubclassOfFGItemDescriptor;
-L148:          goto L10;
+L10:           // <End Inlined EventGraph Function>;
+L15:           this->mSelectedInt = mint32;
+L42:           KismetArrayLibrary->Array_Get([ref] this->mItemDescriptor, this->mSelectedInt, [ref] mTSubclassOfFGItemDescriptor);
+L101:          this->mSelectedDescriptor = mTSubclassOfFGItemDescriptor;
+L120:          this->OnSelectionChanged->ProcessMulticastDelegate(this->mSelectedDescriptor);
+L148:          // <End Inlined EventGraph Function>;
+L153:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L177:          Widget_Tooltip* mWidget_Tooltip = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/InGame/Widget_Tooltip.Widget_Tooltip_C), mPlayerController);
+L238:          this->mTooltipWidget = mWidget_Tooltip;
+L257:          // <End Inlined EventGraph Function>;
+L262:          FText mFText = KismetTextLibrary->Conv_StringToText(" ");
+L315:          bool mbool = KismetTextLibrary->EqualEqual_TextText([ref] mFText1, [ref] mFText);
+L375:          if (!mbool) goto L394;
+L389:          // <End Inlined EventGraph Function>;
+L394:          this->OnSearchShowResults(mFText1);
 ============ END FUNCTION ExecuteUbergraph_Widget_ProgrammableSplitter_List ==============
 
 

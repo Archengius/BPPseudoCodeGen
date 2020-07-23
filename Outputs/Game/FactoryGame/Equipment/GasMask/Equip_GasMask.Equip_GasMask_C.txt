@@ -6,6 +6,16 @@ FUNCTION CODE DUMP OF: /Game/FactoryGame/Equipment/GasMask/Equip_GasMask.Equip_G
 
 
 
+============ BEGIN FUNCTION OnRep_mPostProcessEnabled ==============
+L0:            bool mbool = this->IsLocalInstigator();
+L20:           if (!mbool) goto L57;
+L34:           this->EnablePostProcessing(this->mPostProcessEnabled);
+============ END FUNCTION OnRep_mPostProcessEnabled ==============
+
+
+
+
+
 ============ BEGIN FUNCTION EnablePostProcessing ==============
 L0:            bool mbool = this->IsLocalInstigator();
 L20:           if (!mbool) goto L408;
@@ -50,18 +60,8 @@ L409:          float ReturnValue = local_damage;
 ============ BEGIN FUNCTION WasUnEquipped ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: WasUnEquipped;
-L0:            // Implementation: Function ExecuteUbergraph_Equip_GasMask, from label L1826;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_GasMask, from label L15;
 ============ END FUNCTION WasUnEquipped ==============
-
-
-
-
-
-============ BEGIN FUNCTION ReceiveTick ==============
-L18:           // EventGraph implemented function stub;
-L18:           // Function Name: ReceiveTick;
-L18:           // Implementation: Function ExecuteUbergraph_Equip_GasMask, from label L1514;
-============ END FUNCTION ReceiveTick ==============
 
 
 
@@ -70,8 +70,18 @@ L18:           // Implementation: Function ExecuteUbergraph_Equip_GasMask, from 
 ============ BEGIN FUNCTION WasEquipped ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: WasEquipped;
-L0:            // Implementation: Function ExecuteUbergraph_Equip_GasMask, from label L628;
+L0:            // Implementation: Function ExecuteUbergraph_Equip_GasMask, from label L1957;
 ============ END FUNCTION WasEquipped ==============
+
+
+
+
+
+============ BEGIN FUNCTION ReceiveTick ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: ReceiveTick;
+L18:           // Implementation: Function ExecuteUbergraph_Equip_GasMask, from label L927;
+============ END FUNCTION ReceiveTick ==============
 
 
 
@@ -79,87 +89,98 @@ L0:            // Implementation: Function ExecuteUbergraph_Equip_GasMask, from 
 
 ============ BEGIN FUNCTION ExecuteUbergraph_Equip_GasMask ==============
 L5:            goto ComputedJump(EntryPoint);
-L15:           this->ChargeForUse();
-L25:           this->mHasNegatedDamage = false;
-L36:           this->mCountdown = this->mFilterDuration;
-L63:           this->mIsWorking = true;
-L74:           goto ExecutionFlow.Pop();
-L75:           bool mbool = this->mCountdown <= 0;
-L109:          if (!mbool) goto ExecutionFlow.Pop();
-L119:          bool mbool1 = this->CanAffordUse();
-L139:          if (!mbool1) goto L370;
-L153:          bool mbool2 = this->HasAuthority();
-L173:          if (!mbool2) goto L36;
-L187:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
-L230:          FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
-L266:          bool mbool3 = mFGGameState;
-L295:          if (!mbool3) goto L15;
-L309:          bool mbool4 = mFGGameState->GetCheatNoCost();
-L351:          if (!mbool4) goto L15;
-L365:          goto L25;
-L370:          this->mIsWorking = false;
-L381:          this->EnablePostProcessing(false);
-L396:          this->mDisableEffectTimer = -1;
-L419:          goto ExecutionFlow.Pop();
-L420:          this->EnablePostProcessing(false);
-L435:          FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
-L455:          SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
-L497:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
-L539:          AnimMontage* mAnimMontage = mAnimInstance->GetCurrentActiveMontage();
-L581:          mAnimInstance->Montage_Stop(0, mAnimMontage);
-L627:          goto ExecutionFlow.Pop();
-L628:          // <Begin Inlined EventGraph Function WasEquipped>;
-L628:          this->WasEquipped();
-L638:          ExecutionFlow.Push(L667);
-L643:          this->mDisableEffectTimer = -1;
-L666:          goto ExecutionFlow.Pop();
-L667:          bool mbool5 = this->IsLocalInstigator();
-L687:          if (!mbool5) goto ExecutionFlow.Pop();
-L697:          FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
-L717:          SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
-L759:          AnimInstance* mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
-L801:          bool mbool6 = mAnimInstance1->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/GasMaskEquip_01_Montage.GasMaskEquip_01_Montage));
-L852:          if (!mbool6) goto L867;
-L866:          goto ExecutionFlow.Pop();
-L867:          mFGCharacterPlayer1 = this->GetInstigatorCharacter();
-L887:          mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
-L929:          mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
-L971:          float mfloat = mAnimInstance1->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/GasMaskEquip_01_Montage.GasMaskEquip_01_Montage), 1, 0, 0, true);
-L1043:         Pawn* mPawn = this->GetInstigator();
-L1063:         Controller* mController = mPawn->GetController();
-L1105:         PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
-L1141:         bool mbool7 = mPlayerController;
-L1170:         if (!mbool7) goto ExecutionFlow.Pop();
-L1180:         mPlayerController->ClientPlayCameraAnim(ObjectConst(CameraAnim /Game/FactoryGame/Character/Player/CameraShake/GasMaskEquip_01_CameraAnim.GasMaskEquip_01_CameraAnim), 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
-L1262:         goto ExecutionFlow.Pop();
-L1263:         bool mbool8 = this->IsEquipped();
-L1283:         if (!mbool8) goto ExecutionFlow.Pop();
-L1293:         bool mbool9 = this->CanAffordUse();
-L1313:         this->mIsWorking = mbool9;
-L1332:         bool mbool10 = this->mDisableEffectTimer <= 0;
-L1366:         if (!mbool10) goto L1381;
-L1380:         goto ExecutionFlow.Pop();
-L1381:         float mfloat1 = this->mDisableEffectTimer - mfloat2;
-L1427:         this->mDisableEffectTimer = mfloat1;
-L1454:         bool mbool11 = this->mDisableEffectTimer <= 0;
-L1488:         if (!mbool11) goto ExecutionFlow.Pop();
-L1498:         this->EnablePostProcessing(false);
-L1513:         goto ExecutionFlow.Pop();
-L1514:         mbool8 = this->IsEquipped();
-L1534:         bool mbool12 = mbool8 && this->mHasNegatedDamage;
-L1572:         if (!mbool12) goto L1263;
-L1586:         bool mbool13 = this->mDisableEffectTimer <= 0;
-L1620:         if (!mbool13) goto L1649;
-L1634:         this->EnablePostProcessing(true);
-L1649:         this->mDisableEffectTimer = 6;
-L1672:         float mfloat3 = this->mCountdown - this->mDamageNegated;
-L1718:         float mfloat4 = FMax(mfloat3, 0);
-L1760:         this->mCountdown = mfloat4;
-L1787:         this->mDamageNegated = 0;
-L1810:         this->mHasNegatedDamage = false;
-L1821:         goto L75;
-L1826:         // <Begin Inlined EventGraph Function WasUnEquipped>;
-L1826:         bool mbool14 = this->IsLocalInstigator();
-L1846:         if (!mbool14) goto ExecutionFlow.Pop();
-L1856:         goto L420;
+L15:           bool mbool = this->IsLocalInstigator();
+L35:           if (!mbool) goto ExecutionFlow.Pop();
+L45:           this->EnablePostProcessing(false);
+L60:           FGCharacterPlayer* mFGCharacterPlayer = this->GetInstigatorCharacter();
+L80:           SkeletalMeshComponent* mSkeletalMeshComponent = mFGCharacterPlayer->GetMesh1P();
+L122:          AnimInstance* mAnimInstance = mSkeletalMeshComponent->GetAnimInstance();
+L164:          AnimMontage* mAnimMontage = mAnimInstance->GetCurrentActiveMontage();
+L206:          mAnimInstance->Montage_Stop(0, mAnimMontage);
+L252:          goto ExecutionFlow.Pop();
+L253:          this->FlushNetDormancy();
+L263:          this->mCountdown = this->mFilterDuration;
+L290:          this->mIsWorking = true;
+L301:          goto ExecutionFlow.Pop();
+L302:          this->FlushNetDormancy();
+L312:          float mfloat = this->mCountdown - this->mDamageNegated;
+L358:          float mfloat1 = FMax(mfloat, 0);
+L400:          this->mCountdown = mfloat1;
+L427:          this->mDamageNegated = 0;
+L450:          this->mHasNegatedDamage = false;
+L461:          bool mbool1 = this->mCountdown <= 0;
+L495:          if (!mbool1) goto ExecutionFlow.Pop();
+L505:          bool mbool2 = this->CanAffordUse();
+L525:          if (!mbool2) goto L733;
+L539:          GameStateBase* mGameStateBase = GameplayStatics->GetGameState(this);
+L582:          FGGameState* mFGGameState = Cast<Class /Script/FactoryGame.FGGameState>(mGameStateBase);
+L618:          bool mbool3 = mFGGameState;
+L647:          if (!mbool3) goto L803;
+L661:          bool mbool4 = mFGGameState->GetCheatNoCost();
+L703:          if (!mbool4) goto L803;
+L717:          this->mHasNegatedDamage = false;
+L728:          goto L253;
+L733:          this->mIsWorking = false;
+L744:          this->FlushNetDormancy();
+L754:          this->mPostProcessEnabled = false;
+L765:          this->OnRep_mPostProcessEnabled();
+L779:          this->mDisableEffectTimer = -1;
+L802:          goto ExecutionFlow.Pop();
+L803:          this->ChargeForUse();
+L813:          goto L717;
+L818:          this->OnRep_mPostProcessEnabled();
+L832:          this->mDisableEffectTimer = 6;
+L855:          goto L302;
+L860:          this->FlushNetDormancy();
+L870:          this->mPostProcessEnabled = true;
+L881:          goto L818;
+L886:          this->OnRep_mPostProcessEnabled();
+L900:          goto ExecutionFlow.Pop();
+L901:          this->FlushNetDormancy();
+L911:          this->mPostProcessEnabled = false;
+L922:          goto L886;
+L927:          bool mbool5 = this->HasAuthority();
+L947:          if (!mbool5) goto ExecutionFlow.Pop();
+L957:          bool mbool6 = this->IsEquipped();
+L977:          bool mbool7 = mbool6 && this->mHasNegatedDamage;
+L1015:         if (!mbool7) goto L1082;
+L1029:         bool mbool8 = this->mDisableEffectTimer <= 0;
+L1063:         if (!mbool8) goto L832;
+L1077:         goto L860;
+L1082:         mbool6 = this->IsEquipped();
+L1102:         if (!mbool6) goto ExecutionFlow.Pop();
+L1112:         bool mbool9 = this->CanAffordUse();
+L1132:         this->mIsWorking = mbool9;
+L1151:         bool mbool10 = this->mDisableEffectTimer <= 0;
+L1185:         if (!mbool10) goto L1200;
+L1199:         goto ExecutionFlow.Pop();
+L1200:         float mfloat2 = this->mDisableEffectTimer - mfloat3;
+L1246:         this->mDisableEffectTimer = mfloat2;
+L1273:         bool mbool11 = this->mDisableEffectTimer <= 0;
+L1307:         if (!mbool11) goto ExecutionFlow.Pop();
+L1317:         goto L901;
+L1322:         this->WasEquipped();
+L1332:         ExecutionFlow.Push(L1361);
+L1337:         this->mDisableEffectTimer = -1;
+L1360:         goto ExecutionFlow.Pop();
+L1361:         bool mbool12 = this->IsLocalInstigator();
+L1381:         if (!mbool12) goto ExecutionFlow.Pop();
+L1391:         FGCharacterPlayer* mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L1411:         SkeletalMeshComponent* mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L1453:         AnimInstance* mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L1495:         bool mbool13 = mAnimInstance1->Montage_IsPlaying(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/GasMaskEquip_01_Montage.GasMaskEquip_01_Montage));
+L1546:         if (!mbool13) goto L1561;
+L1560:         goto ExecutionFlow.Pop();
+L1561:         mFGCharacterPlayer1 = this->GetInstigatorCharacter();
+L1581:         mSkeletalMeshComponent1 = mFGCharacterPlayer1->GetMesh1P();
+L1623:         mAnimInstance1 = mSkeletalMeshComponent1->GetAnimInstance();
+L1665:         float mfloat4 = mAnimInstance1->Montage_Play(ObjectConst(AnimMontage /Game/FactoryGame/Character/Player/Animation/FirstPerson/GasMaskEquip_01_Montage.GasMaskEquip_01_Montage), 1, 0, 0, true);
+L1737:         Pawn* mPawn = this->GetInstigator();
+L1757:         Controller* mController = mPawn->GetController();
+L1799:         PlayerController* mPlayerController = Cast<Class /Script/Engine.PlayerController>(mController);
+L1835:         bool mbool14 = mPlayerController;
+L1864:         if (!mbool14) goto ExecutionFlow.Pop();
+L1874:         mPlayerController->ClientPlayCameraAnim(ObjectConst(CameraAnim /Game/FactoryGame/Character/Player/CameraShake/GasMaskEquip_01_CameraAnim.GasMaskEquip_01_CameraAnim), 1, 1, 0, 0, false, false, 0, Rotator::FromPitchYawRoll(0, 0, 0));
+L1956:         goto ExecutionFlow.Pop();
+L1957:         goto L1322;
 ============ END FUNCTION ExecuteUbergraph_Equip_GasMask ==============

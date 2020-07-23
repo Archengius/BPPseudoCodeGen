@@ -31,7 +31,8 @@ L0:            float ReturnValue = 500;
 
 
 ============ BEGIN FUNCTION GetActorChainsawReturn ==============
-L0:            InventoryStack ReturnValue = ScriptStruct /Script/FactoryGame.InventoryStack(Item = ScriptStruct /Script/FactoryGame.InventoryItem(ItemClass = nullptr, ItemState = ScriptStruct /Script/FactoryGame.SharedInventoryStatePtr(ActorPtr = nullptr)), NumItems = 0);
+L0:            InventoryStack mInventoryStack = this->GetPickupItems();
+L28:           InventoryStack ReturnValue = mInventoryStack;
 ============ END FUNCTION GetActorChainsawReturn ==============
 
 
@@ -95,11 +96,9 @@ L192:          // <End Inlined EventGraph Function>;
 L197:          bool mbool1 = this->HasAuthority();
 L217:          if (!mbool1) goto L664;
 L231:          goto L10;
-L236:          // <Begin Inlined EventGraph Function ReceiveBeginPlay>;
 L236:          this->ReceiveBeginPlay();
 L246:          this->SetupItem();
 L260:          // <End Inlined EventGraph Function>;
-L265:          // <Begin Inlined EventGraph Function UpdateVisiblityState>;
 L265:          this->StaticMesh->SetMobility(2);
 L303:          this->BushMesh->SetMobility(2);
 L341:          StaticMesh* Temp_object_Variable = ObjectConst(StaticMesh /Game/FactoryGame/World/Benefit/NutBush/Mesh/NutBush_02.NutBush_02);

@@ -57,17 +57,21 @@ L298:          ReturnValue = mEventReply1;
 
 
 ============ BEGIN FUNCTION DoClosePopup ==============
-L0:            if (!this->mIsContentContainerType) goto L50;
-L14:           this->Widget_PopupContent->NotifyPopupConfirmed();
-L50:           this->mPopupWasConfirmed = ConfirmClicked;
-L69:           this->CallPopupClosedClicked(ConfirmClicked);
-L88:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L112:          HUD* mHUD = mPlayerController->GetHUD();
-L154:          FGHUDBase* mFGHUDBase = Cast<Class /Script/FactoryGame.FGHUDBase>(mHUD);
-L190:          bool mbool = mFGHUDBase;
-L219:          if (!mbool) goto L311;
-L233:          FGBaseUI* mFGBaseUI = mFGHUDBase->GetBaseUI();
-L275:          mFGBaseUI->ClosePopup();
+L0:            if (!this->mIsContentContainerType) goto L64;
+L14:           if (!ConfirmClicked) goto L330;
+L28:           this->Widget_PopupContent->NotifyPopupConfirmed();
+L64:           this->mPopupWasConfirmed = ConfirmClicked;
+L83:           this->CallPopupClosedClicked(ConfirmClicked);
+L102:          PlayerController* mPlayerController = this->GetOwningPlayer();
+L126:          HUD* mHUD = mPlayerController->GetHUD();
+L168:          FGHUDBase* mFGHUDBase = Cast<Class /Script/FactoryGame.FGHUDBase>(mHUD);
+L204:          bool mbool = mFGHUDBase;
+L233:          if (!mbool) goto L371;
+L247:          FGBaseUI* mFGBaseUI = mFGHUDBase->GetBaseUI();
+L289:          mFGBaseUI->ClosePopup();
+L325:          // <End Inlined EventGraph Function>;
+L330:          this->Widget_PopupContent->NotifyPopupCanceled();
+L366:          goto L64;
 ============ END FUNCTION DoClosePopup ==============
 
 
@@ -195,10 +199,8 @@ L2374:         this->mConfrimButton->mButton->SetUserFocus(mPlayerController4);
 L2437:         goto L2304;
 L2442:         this->Construct();
 L2452:         goto L1394;
-L2457:         // <Begin Inlined EventGraph Function Construct>;
 L2457:         goto L2442;
 L2462:         this->Init();
 L2472:         goto L2350;
-L2477:         // <Begin Inlined EventGraph Function Init>;
 L2477:         goto L2462;
 ============ END FUNCTION ExecuteUbergraph_Widget_Popup ==============

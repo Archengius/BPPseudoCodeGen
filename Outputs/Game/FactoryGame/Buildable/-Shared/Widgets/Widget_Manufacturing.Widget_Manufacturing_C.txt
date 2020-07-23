@@ -114,7 +114,7 @@ default -> mFText10;
 L0:            PlayerController* mPlayerController = this->GetOwningPlayer();
 L24:           Widget_CraftBench_Category* mWidget_CraftBench_Category = WidgetBlueprintLibrary->Create(this, ObjectConst(WidgetBlueprintGeneratedClass /Game/FactoryGame/Interface/UI/Assets/Shared/Widget_CraftBench_Category.Widget_CraftBench_Category_C), mPlayerController);
 L85:           KismetSystemLibrary->SetTextPropertyByName(mWidget_CraftBench_Category, "mText", [ref] CategoryName);
-L148:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_CraftBench_Category, "mIsCollapsed", IsCollapsed);
+L148:          KismetSystemLibrary->SetBoolPropertyByName(mWidget_CraftBench_Category, "mIsCollapsed", isCollapsed);
 L211:          VerticalBoxSlot* mVerticalBoxSlot = this->mVertBox->AddChildToVerticalBox(mWidget_CraftBench_Category);
 L262:          mVerticalBoxSlot->SetHorizontalAlignment(0);
 L296:          Widget_CraftBench_Category* Category Widget = mWidget_CraftBench_Category;
@@ -147,10 +147,10 @@ L608:          KismetArrayLibrary->Array_Get([ref] CategorizedRecipes, Temp_int_
 L667:          bool mbool4 = localItemCategory == mItemCategoryRecipeStruct.Category_5_48CE2A3C41089DC1E5DE39909CF17792;
 L714:          if (!mbool4) goto ExecutionFlow.Pop();
 L724:          KismetArrayLibrary->Array_Get([ref] CategorizedRecipes, Temp_int_Array_Index_Variable, [ref] mItemCategoryRecipeStruct);
-L783:          TArray<TSubclassOf<FGRecipe>> LocalRecipeArray = mItemCategoryRecipeStruct.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736;
-L819:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] LocalRecipeArray, [ref] Recipe);
+L783:          TArray<TSubclassOf<FGRecipe>> localRecipeArray = mItemCategoryRecipeStruct.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736;
+L819:          int32 mint321 = KismetArrayLibrary->Array_Add([ref] localRecipeArray, [ref] Recipe);
 L887:          mItemCategoryRecipeStruct1.Category_5_48CE2A3C41089DC1E5DE39909CF17792 = localItemCategory;
-L915:          mItemCategoryRecipeStruct1.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736 = LocalRecipeArray;
+L915:          mItemCategoryRecipeStruct1.Recipes_6_5C2C7BF54D78A483A81B2785C2CF7736 = localRecipeArray;
 L951:          KismetArrayLibrary->Array_Set([ref] CategorizedRecipes, Temp_int_Array_Index_Variable, [ref] mItemCategoryRecipeStruct1, false);
 L1011:         bool localRecipeExists = true;
 L1022:         Temp_bool_True_if_break_was_hit_Variable = true;
@@ -304,13 +304,13 @@ L245:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
 L272:          ExecutionFlow.Push(L1275);
 L277:          KismetArrayLibrary->Array_Get([ref] this->mIOSlots, Temp_int_Array_Index_Variable1, [ref] mWidget_ManufacturingIOSlot);
 L336:          mWidget_ManufacturingIOSlot->Widget_CostSlotWrapper->Widget_InventorySlot->DropOntoInventorySlot(InventorySlot, [ref] mbool3);
-L434:          bool LocalResult = mbool3;
-L453:          if (!LocalResult) goto ExecutionFlow.Pop();
+L434:          bool localResult = mbool3;
+L453:          if (!localResult) goto ExecutionFlow.Pop();
 L463:          Temp_bool_True_if_break_was_hit_Variable1 = true;
 L474:          goto ExecutionFlow.Pop();
-L475:          bool WasStackMoved = LocalResult;
+L475:          bool WasStackMoved = localResult;
 L494:          // <End Inlined EventGraph Function>;
-L499:          if (!LocalResult) goto L514;
+L499:          if (!localResult) goto L514;
 L513:          goto ExecutionFlow.Pop();
 L514:          this->Widget_Overclock->GetUnlockedOverclockSlots([ref] mTArrayWidget_InventorySlot);
 L559:          bool Temp_bool_True_if_break_was_hit_Variable = false;
@@ -342,7 +342,7 @@ L1180:         goto ExecutionFlow.Pop();
 L1181:         int32 mint322 = Temp_int_Loop_Counter_Variable1 + 1;
 L1223:         Temp_int_Loop_Counter_Variable1 = mint322;
 L1250:         goto L616;
-L1255:         LocalResult = Temp_bool_Variable;
+L1255:         localResult = Temp_bool_Variable;
 L1274:         goto ExecutionFlow.Pop();
 L1275:         int32 mint323 = Temp_int_Loop_Counter_Variable + 1;
 L1317:         Temp_int_Loop_Counter_Variable = mint323;
@@ -615,7 +615,7 @@ L52:           this->mHoveredRecipe = nullptr;
 L0:            this->mHoveredRecipe = Recipe;
 L19:           this->CreateInfoBox(this->mHoveredRecipe);
 L42:           UMGSequencePlayer* mUMGSequencePlayer = this->Widget_BuildMenu_InfoBox->PlayAnimation(this->Widget_BuildMenu_InfoBox->IconAnim, 0, 1, 0, 1);
-L132:          this->Widget_BuildMenu_InfoBox->AnimateCostslots();
+L132:          this->Widget_BuildMenu_InfoBox->AnimateCostSlots();
 ============ END FUNCTION OnManufacturingRecipeHovered ==============
 
 
@@ -812,7 +812,7 @@ L2151:         goto L621;
 ============ BEGIN FUNCTION BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_12_OnStandbyClicked__DelegateSignature ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_12_OnStandbyClicked__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L437;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L10;
 ============ END FUNCTION BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_12_OnStandbyClicked__DelegateSignature ==============
 
 
@@ -822,18 +822,8 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing
 ============ BEGIN FUNCTION Tick ==============
 L36:           // EventGraph implemented function stub;
 L36:           // Function Name: Tick;
-L36:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L461;
+L36:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L1567;
 ============ END FUNCTION Tick ==============
-
-
-
-
-
-============ BEGIN FUNCTION OnNewRecipeSet ==============
-L18:           // EventGraph implemented function stub;
-L18:           // Function Name: OnNewRecipeSet;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L1621;
-============ END FUNCTION OnNewRecipeSet ==============
 
 
 
@@ -842,7 +832,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing
 ============ BEGIN FUNCTION Construct ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Construct;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L1886;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L1832;
 ============ END FUNCTION Construct ==============
 
 
@@ -852,7 +842,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing
 ============ BEGIN FUNCTION Destruct ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Destruct;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2005;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L1951;
 ============ END FUNCTION Destruct ==============
 
 
@@ -862,7 +852,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing
 ============ BEGIN FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2034;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L1980;
 ============ END FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
 
 
@@ -872,7 +862,7 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing
 ============ BEGIN FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_1_OnTabButtonClicked__DelegateSignature ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_1_OnTabButtonClicked__DelegateSignature;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2039;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2013;
 ============ END FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_1_OnTabButtonClicked__DelegateSignature ==============
 
 
@@ -882,7 +872,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing
 ============ BEGIN FUNCTION OnReplicationDetailActorReplicated ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnReplicationDetailActorReplicated;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2191;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2165;
 ============ END FUNCTION OnReplicationDetailActorReplicated ==============
 
 
@@ -892,7 +882,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing
 ============ BEGIN FUNCTION OnCategoryClicked ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnCategoryClicked;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2247;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2221;
 ============ END FUNCTION OnCategoryClicked ==============
 
 
@@ -902,8 +892,18 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing
 ============ BEGIN FUNCTION OnModifierPressed ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnModifierPressed;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2576;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2550;
 ============ END FUNCTION OnModifierPressed ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnNewRecipeSet ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnNewRecipeSet;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2555;
+============ END FUNCTION OnNewRecipeSet ==============
 
 
 
@@ -912,7 +912,7 @@ L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing
 ============ BEGIN FUNCTION Init ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Init;
-L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2694;
+L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2748;
 ============ END FUNCTION Init ==============
 
 
@@ -922,120 +922,130 @@ L0:            // Implementation: Function ExecuteUbergraph_Widget_Manufacturing
 ============ BEGIN FUNCTION OnModifierReleased ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: OnModifierReleased;
-L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2699;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2753;
 ============ END FUNCTION OnModifierReleased ==============
 
 
 
 
 
+============ BEGIN FUNCTION OnStandbyHasChanged ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnStandbyHasChanged;
+L18:           // Implementation: Function ExecuteUbergraph_Widget_Manufacturing, from label L2758;
+============ END FUNCTION OnStandbyHasChanged ==============
+
+
+
+
+
 ============ BEGIN FUNCTION ExecuteUbergraph_Widget_Manufacturing ==============
-L10:           this->OnEscapePressed();
-L38:           // <End Inlined EventGraph Function>;
-L43:           PlayerController* mPlayerController = this->GetOwningPlayer();
-L67:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
-L103:          bool mbool = mFGPlayerController;
-L132:          if (!mbool) goto L2699;
-L146:          bool mbool1 = this->mBuildableManufacturer->IsProductionPaused();
-L188:          bool mbool2 = !mbool1;
-L217:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
-L268:          mBP_RemoteCallObject->Server_SetIsProductionPausedOnFactory(this->mBuildableManufacturer, mbool2);
-L322:          mbool1 = this->mBuildableManufacturer->IsProductionPaused();
-L364:          this->Widget_StandbyButton->SetStandbyButtonBrush(mbool1);
-L409:          this->GetManufacturingWarningVisibility(this->mBuildableManufacturer);
-L432:          // <End Inlined EventGraph Function>;
-L437:          // <Begin Inlined EventGraph Function BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_12_OnStandbyClicked__DelegateSignature>;
-L437:          goto L43;
-L442:          this->UpdateIOSlots();
-L456:          // <End Inlined EventGraph Function>;
-L461:          this->Tick(mGeometry, mfloat);
-L489:          this->UpdateProductivityPercentage();
-L503:          this->UpdateProductionStats();
-L517:          // <End Inlined EventGraph Function>;
-L522:          this->mFactory = this->mBuildableManufacturer;
-L541:          this->InitRecipeList();
-L555:          mFScriptDelegate->BindUFunction(this, OnNewRecipeSet);
-L578:          this->mBuildableManufacturer->mCurrentRecipeChanged.AddUnique(mFScriptDelegate);
-L619:          bool mbool3 = this->mBuildableManufacturer->HasAuthority();
-L661:          if (!mbool3) goto L1467;
-L675:          TSubclassOf<FGRecipe> mTSubclassOfFGRecipe = this->mBuildableManufacturer->GetCurrentRecipe();
-L717:          bool mbool4 = KismetSystemLibrary->IsValidClass(mTSubclassOfFGRecipe);
-L768:          if (!mbool4) goto L1536;
-L782:          mTSubclassOfFGRecipe = this->mBuildableManufacturer->GetCurrentRecipe();
-L824:          this->SetActivatedRecipe(mTSubclassOfFGRecipe);
-L847:          this->Widget_SlidingTabs->SetActiveIndex(1, false);
-L889:          this->Widget_Window_DarkMode->SetInventoryVisibility(true, false);
-L927:          this->UpdateIOSlots();
-L941:          this->UpdateOutputSlotInfo(this->mActivatedRecipe);
-L964:          bool mbool5 = this->mBuildableManufacturer->IsProductionPaused();
-L1006:         this->Widget_StandbyButton->SetStandbyButtonBrush(mbool5);
-L1051:         this->GetManufacturingWarningVisibility(this->mBuildableManufacturer);
-L1074:         mFScriptDelegate1->BindUFunction(this, OnInventorySlotStackMove);
-L1097:         this->mOutput->OnMoveStack.AddUnique(mFScriptDelegate1);
-L1138:         mFScriptDelegate1->BindUFunction(this, OnInventorySlotStackMove);
-L1161:         this->Widget_Overclock->CostSlot_0->Widget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate1);
-L1246:         mFScriptDelegate1->BindUFunction(this, OnInventorySlotStackMove);
-L1269:         this->Widget_Overclock->CostSlot_1->Widget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate1);
-L1354:         mFScriptDelegate1->BindUFunction(this, OnInventorySlotStackMove);
-L1377:         this->Widget_Overclock->CostSlot_2->Widget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate1);
-L1462:         // <End Inlined EventGraph Function>;
-L1467:         mFScriptDelegate2->BindUFunction(this, OnReplicationDetailActorReplicated);
-L1490:         this->mBuildableManufacturer->OnReplicationDetailActorCreatedEvent.AddUnique(mFScriptDelegate2);
-L1531:         goto L675;
-L1536:         this->Widget_SlidingTabs->SetActiveIndex(0, false);
-L1578:         this->Widget_Window_DarkMode->SetInventoryVisibility(false, false);
-L1616:         // <End Inlined EventGraph Function>;
-L1621:         bool mbool6 = mTSubclassOfFGRecipe1 != this->mActivatedRecipe;
-L1659:         if (!mbool6) goto L2699;
-L1673:         this->SetActivatedRecipe(mTSubclassOfFGRecipe1);
-L1696:         goto L442;
-L1701:         this->Widget_Manufacturing_Warning->mManufacturer = this->mBuildableManufacturer;
-L1742:         this->Widget_Overclock->mBuildableFactory = this->mBuildableManufacturer;
-L1783:         mFScriptDelegate3->BindUFunction(this, OnModifierPressed);
-L1806:         this->ModifierPressed.AddUnique(mFScriptDelegate3);
-L1825:         mFScriptDelegate4->BindUFunction(this, OnModifierReleased);
-L1848:         this->ModifierReleased.AddUnique(mFScriptDelegate4);
-L1867:         this->GenerateOutputSlots();
-L1881:         goto L522;
-L1886:         // <Begin Inlined EventGraph Function Construct>;
-L1886:         this->Construct();
-L1896:         this->UpdateWindowText();
-L1910:         int32 mint32 = KismetArrayLibrary->Array_Add([ref] this->Output_DropArea->mInventorySlots, [ref] this->mOutput);
-L2000:         // <End Inlined EventGraph Function>;
-L2005:         // <Begin Inlined EventGraph Function Destruct>;
-L2005:         this->Destruct();
-L2015:         this->RemoveInputSlot();
-L2029:         // <End Inlined EventGraph Function>;
-L2034:         // <Begin Inlined EventGraph Function BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature>;
-L2034:         goto L10;
-L2039:         bool Temp_bool_Variable = false;
-L2050:         bool Temp_bool_Variable1 = true;
-L2061:         int32 Temp_int_Variable = mint321;
-L2088:         this->Widget_Window_DarkMode->SetInventoryVisibility(switch (Temp_int_Variable) {
+L10:           // <Begin Inlined EventGraph Function BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_12_OnStandbyClicked__DelegateSignature>;
+L10:           PlayerController* mPlayerController = this->GetOwningPlayer();
+L34:           FGPlayerController* mFGPlayerController = Cast<Class /Script/FactoryGame.FGPlayerController>(mPlayerController);
+L70:           bool mbool = mFGPlayerController;
+L99:           if (!mbool) goto L2826;
+L113:          bool mbool1 = this->mBuildableManufacturer->IsProductionPaused();
+L155:          BP_RemoteCallObject* mBP_RemoteCallObject = mFGPlayerController->GetRemoteCallObjectOfClass(ObjectConst(BlueprintGeneratedClass /Game/FactoryGame/Character/Player/BP_RemoteCallObject.BP_RemoteCallObject_C));
+L206:          bool mbool2 = !mbool1;
+L235:          mBP_RemoteCallObject->Server_SetIsProductionPausedOnFactory(this->mBuildableManufacturer, mbool2);
+L289:          mbool1 = this->mBuildableManufacturer->IsProductionPaused();
+L331:          this->Widget_StandbyButton->SetStandbyButtonBrush(mbool1);
+L376:          this->GetManufacturingWarningVisibility(this->mBuildableManufacturer);
+L399:          // <End Inlined EventGraph Function>;
+L404:          this->mFactory = this->mBuildableManufacturer;
+L423:          this->InitRecipeList();
+L437:          mFScriptDelegate->BindUFunction(this, OnStandbyHasChanged);
+L460:          this->mBuildableManufacturer->mOnHasStandbyChanged.AddUnique(mFScriptDelegate);
+L501:          mFScriptDelegate1->BindUFunction(this, OnNewRecipeSet);
+L524:          this->mBuildableManufacturer->mCurrentRecipeChanged.AddUnique(mFScriptDelegate1);
+L565:          bool mbool3 = this->mBuildableManufacturer->HasAuthority();
+L607:          if (!mbool3) goto L1413;
+L621:          TSubclassOf<FGRecipe> mTSubclassOfFGRecipe = this->mBuildableManufacturer->GetCurrentRecipe();
+L663:          bool mbool4 = KismetSystemLibrary->IsValidClass(mTSubclassOfFGRecipe);
+L714:          if (!mbool4) goto L1482;
+L728:          mTSubclassOfFGRecipe = this->mBuildableManufacturer->GetCurrentRecipe();
+L770:          this->SetActivatedRecipe(mTSubclassOfFGRecipe);
+L793:          this->Widget_SlidingTabs->SetActiveIndex(1, false);
+L835:          this->Widget_Window_DarkMode->SetInventoryVisibility(true, false);
+L873:          this->UpdateIOSlots();
+L887:          this->UpdateOutputSlotInfo(this->mActivatedRecipe);
+L910:          bool mbool5 = this->mBuildableManufacturer->IsProductionPaused();
+L952:          this->Widget_StandbyButton->SetStandbyButtonBrush(mbool5);
+L997:          this->GetManufacturingWarningVisibility(this->mBuildableManufacturer);
+L1020:         mFScriptDelegate2->BindUFunction(this, OnInventorySlotStackMove);
+L1043:         this->mOutput->OnMoveStack.AddUnique(mFScriptDelegate2);
+L1084:         mFScriptDelegate2->BindUFunction(this, OnInventorySlotStackMove);
+L1107:         this->Widget_Overclock->CostSlot_0->Widget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate2);
+L1192:         mFScriptDelegate2->BindUFunction(this, OnInventorySlotStackMove);
+L1215:         this->Widget_Overclock->CostSlot_1->Widget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate2);
+L1300:         mFScriptDelegate2->BindUFunction(this, OnInventorySlotStackMove);
+L1323:         this->Widget_Overclock->CostSlot_2->Widget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate2);
+L1408:         // <End Inlined EventGraph Function>;
+L1413:         mFScriptDelegate3->BindUFunction(this, OnReplicationDetailActorReplicated);
+L1436:         this->mBuildableManufacturer->OnReplicationDetailActorCreatedEvent.AddUnique(mFScriptDelegate3);
+L1477:         goto L621;
+L1482:         this->Widget_SlidingTabs->SetActiveIndex(0, false);
+L1524:         this->Widget_Window_DarkMode->SetInventoryVisibility(false, false);
+L1562:         // <End Inlined EventGraph Function>;
+L1567:         this->Tick(mGeometry, mfloat);
+L1595:         this->UpdateProductivityPercentage();
+L1609:         this->UpdateProductionStats();
+L1623:         // <End Inlined EventGraph Function>;
+L1628:         this->UpdateIOSlots();
+L1642:         // <End Inlined EventGraph Function>;
+L1647:         this->Widget_Manufacturing_Warning->mManufacturer = this->mBuildableManufacturer;
+L1688:         this->Widget_Overclock->mBuildableFactory = this->mBuildableManufacturer;
+L1729:         mFScriptDelegate4->BindUFunction(this, OnModifierPressed);
+L1752:         this->ModifierPressed.AddUnique(mFScriptDelegate4);
+L1771:         mFScriptDelegate5->BindUFunction(this, OnModifierReleased);
+L1794:         this->ModifierReleased.AddUnique(mFScriptDelegate5);
+L1813:         this->GenerateOutputSlots();
+L1827:         goto L404;
+L1832:         this->Construct();
+L1842:         this->UpdateWindowText();
+L1856:         int32 mint32 = KismetArrayLibrary->Array_Add([ref] this->Output_DropArea->mInventorySlots, [ref] this->mOutput);
+L1946:         // <End Inlined EventGraph Function>;
+L1951:         this->Destruct();
+L1961:         this->RemoveInputSlot();
+L1975:         // <End Inlined EventGraph Function>;
+L1980:         // <Begin Inlined EventGraph Function BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature>;
+L1980:         this->OnEscapePressed();
+L2008:         // <End Inlined EventGraph Function>;
+L2013:         bool Temp_bool_Variable = false;
+L2024:         int32 Temp_int_Variable = mint321;
+L2051:         bool Temp_bool_Variable1 = true;
+L2062:         this->Widget_Window_DarkMode->SetInventoryVisibility(switch (Temp_int_Variable) {
 case 0 -> Temp_bool_Variable;
 case 1 -> Temp_bool_Variable1;
-default -> mbool7;
+default -> mbool6;
 }, true);
-L2186:         // <End Inlined EventGraph Function>;
-L2191:         this->ReconstructIOSlots();
-L2205:         this->UpdateIOSlots();
-L2219:         this->UpdateOutputSlotInfo(this->mActivatedRecipe);
-L2242:         // <End Inlined EventGraph Function>;
-L2247:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
-L2271:         FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(mPlayerController1->PlayerState);
-L2329:         bool mbool8 = mFGPlayerState;
-L2358:         if (!mbool8) goto L2699;
-L2372:         int32 mint322 = this->mVertBox->GetChildIndex(mWidget_CraftBench_Category);
-L2431:         KismetArrayLibrary->Array_Get([ref] this->mCategorizedRecipes, mint322, [ref] mItemCategoryRecipeStruct);
-L2490:         mFGPlayerState->SetItemCategoryCollapsed(mItemCategoryRecipeStruct.Category_5_48CE2A3C41089DC1E5DE39909CF17792, mWidget_CraftBench_Category->mIsCollapsed);
-L2571:         // <End Inlined EventGraph Function>;
-L2576:         // <End Inlined EventGraph Function>;
-L2581:         this->Init();
-L2591:         FGBuildableManufacturer* mFGBuildableManufacturer = Cast<Class /Script/FactoryGame.FGBuildableManufacturer>(this->mInteractObject);
-L2627:         bool mbool9 = mFGBuildableManufacturer;
-L2656:         if (!mbool9) goto L2699;
-L2670:         this->mBuildableManufacturer = mFGBuildableManufacturer;
-L2689:         goto L1701;
-L2694:         // <Begin Inlined EventGraph Function Init>;
-L2694:         goto L2581;
+L2160:         // <End Inlined EventGraph Function>;
+L2165:         this->ReconstructIOSlots();
+L2179:         this->UpdateIOSlots();
+L2193:         this->UpdateOutputSlotInfo(this->mActivatedRecipe);
+L2216:         // <End Inlined EventGraph Function>;
+L2221:         PlayerController* mPlayerController1 = this->GetOwningPlayer();
+L2245:         FGPlayerState* mFGPlayerState = Cast<Class /Script/FactoryGame.FGPlayerState>(mPlayerController1->PlayerState);
+L2303:         bool mbool7 = mFGPlayerState;
+L2332:         if (!mbool7) goto L2826;
+L2346:         int32 mint322 = this->mVertBox->GetChildIndex(mWidget_CraftBench_Category);
+L2405:         KismetArrayLibrary->Array_Get([ref] this->mCategorizedRecipes, mint322, [ref] mItemCategoryRecipeStruct);
+L2464:         mFGPlayerState->SetItemCategoryCollapsed(mItemCategoryRecipeStruct.Category_5_48CE2A3C41089DC1E5DE39909CF17792, mWidget_CraftBench_Category->mIsCollapsed);
+L2545:         // <End Inlined EventGraph Function>;
+L2550:         // <End Inlined EventGraph Function>;
+L2555:         bool mbool8 = mTSubclassOfFGRecipe1 != this->mActivatedRecipe;
+L2593:         if (!mbool8) goto L2826;
+L2607:         this->SetActivatedRecipe(mTSubclassOfFGRecipe1);
+L2630:         goto L1628;
+L2635:         this->Init();
+L2645:         FGBuildableManufacturer* mFGBuildableManufacturer = Cast<Class /Script/FactoryGame.FGBuildableManufacturer>(this->mInteractObject);
+L2681:         bool mbool9 = mFGBuildableManufacturer;
+L2710:         if (!mbool9) goto L2826;
+L2724:         this->mBuildableManufacturer = mFGBuildableManufacturer;
+L2743:         goto L1647;
+L2748:         goto L2635;
+L2753:         // <End Inlined EventGraph Function>;
+L2758:         this->Widget_StandbyButton->SetStandbyButtonBrush(mbool10);
+L2803:         this->GetManufacturingWarningVisibility(this->mBuildableManufacturer);
 ============ END FUNCTION ExecuteUbergraph_Widget_Manufacturing ==============

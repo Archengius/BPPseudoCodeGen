@@ -119,20 +119,21 @@ L1928:         this->mOutputSlot->mItemDescriptor = this->mExtractableResource;
 
 ============ BEGIN FUNCTION UpdateFluidTank ==============
 L0:            int32 FluidAmount = 0;
-L23:           bool mbool = KismetSystemLibrary->IsValid(this->mBuildableExtractor);
-L74:           if (!mbool) goto L638;
-L88:           FGInventoryComponent* mFGInventoryComponent = this->mBuildableExtractor->GetOutputInventory();
-L130:          int32 mint32 = mFGInventoryComponent->GetNumItems(this->mExtractableResource);
-L189:          FluidAmount = mint32;
-L216:          int32 mint321 = this->mBuildableExtractor->GetScaledFluidStackSize();
-L266:          float mfloat = Conv_IntToFloat(mint321);
-L303:          float mfloat1 = Conv_IntToFloat(FluidAmount);
-L340:          float mfloat2 = mfloat1 / mfloat;
-L386:          this->mFluidTank->UpdateTankValue(mfloat2);
-L431:          float mfloat3 = Conv_IntToFloat(FluidAmount);
-L468:          float mfloat4 = mfloat3 / 1000;
-L510:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat4, 0, false, true, 1, 324, 0, 1);
-L593:          this->mCurrentAmountInPipeText->SetText(mFText);
+L23:           FGInventoryComponent* mFGInventoryComponent = this->mBuildableExtractor->GetOutputInventory();
+L65:           bool mbool = KismetSystemLibrary->IsValid(mFGInventoryComponent);
+L116:          if (!mbool) goto L680;
+L130:          mFGInventoryComponent = this->mBuildableExtractor->GetOutputInventory();
+L172:          int32 mint32 = mFGInventoryComponent->GetNumItems(this->mExtractableResource);
+L231:          FluidAmount = mint32;
+L258:          int32 mint321 = this->mBuildableExtractor->GetScaledFluidStackSize();
+L308:          float mfloat = Conv_IntToFloat(mint321);
+L345:          float mfloat1 = Conv_IntToFloat(FluidAmount);
+L382:          float mfloat2 = mfloat1 / mfloat;
+L428:          this->mFluidTank->UpdateTankValue(mfloat2);
+L473:          float mfloat3 = Conv_IntToFloat(FluidAmount);
+L510:          float mfloat4 = mfloat3 / 1000;
+L552:          FText mFText = KismetTextLibrary->Conv_FloatToText(mfloat4, 0, false, true, 1, 324, 0, 1);
+L635:          this->mCurrentAmountInPipeText->SetText(mFText);
 ============ END FUNCTION UpdateFluidTank ==============
 
 
@@ -167,7 +168,7 @@ L790:          this->mFlowRateGauge->SetDividerPosition(mfloat9);
 ============ BEGIN FUNCTION Construct ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Construct;
-L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1234;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L805;
 ============ END FUNCTION Construct ==============
 
 
@@ -177,7 +178,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, f
 ============ BEGIN FUNCTION Tick ==============
 L36:           // EventGraph implemented function stub;
 L36:           // Function Name: Tick;
-L36:           // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1239;
+L36:           // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1313;
 ============ END FUNCTION Tick ==============
 
 
@@ -187,7 +188,7 @@ L36:           // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, f
 ============ BEGIN FUNCTION BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_1_OnStandbyClicked__DelegateSignature ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_1_OnStandbyClicked__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1648;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1722;
 ============ END FUNCTION BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_1_OnStandbyClicked__DelegateSignature ==============
 
 
@@ -197,7 +198,7 @@ L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, f
 ============ BEGIN FUNCTION BndEvt__mBuildableExtractor_K2Node_ComponentBoundEvent_2_BuildingStateChanged__DelegateSignature ==============
 L18:           // EventGraph implemented function stub;
 L18:           // Function Name: BndEvt__mBuildableExtractor_K2Node_ComponentBoundEvent_2_BuildingStateChanged__DelegateSignature;
-L18:           // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1663;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1737;
 ============ END FUNCTION BndEvt__mBuildableExtractor_K2Node_ComponentBoundEvent_2_BuildingStateChanged__DelegateSignature ==============
 
 
@@ -207,7 +208,7 @@ L18:           // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, f
 ============ BEGIN FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature;
-L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1678;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1752;
 ============ END FUNCTION BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature ==============
 
 
@@ -217,8 +218,18 @@ L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, f
 ============ BEGIN FUNCTION Destruct ==============
 L0:            // EventGraph implemented function stub;
 L0:            // Function Name: Destruct;
-L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1693;
+L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1767;
 ============ END FUNCTION Destruct ==============
+
+
+
+
+
+============ BEGIN FUNCTION OnStandbyHasChanged ==============
+L18:           // EventGraph implemented function stub;
+L18:           // Function Name: OnStandbyHasChanged;
+L18:           // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, from label L1827;
+============ END FUNCTION OnStandbyHasChanged ==============
 
 
 
@@ -226,71 +237,74 @@ L0:            // Implementation: Function ExecuteUbergraph_BPW_ExtractorPump, f
 
 ============ BEGIN FUNCTION ExecuteUbergraph_BPW_ExtractorPump ==============
 L5:            goto ComputedJump(EntryPoint);
-L15:           this->Construct();
-L25:           FGBuildableResourceExtractor* mFGBuildableResourceExtractor = Cast<Class /Script/FactoryGame.FGBuildableResourceExtractor>(this->mInteractObject);
-L61:           bool mbool = mFGBuildableResourceExtractor;
-L90:           if (!mbool) goto ExecutionFlow.Pop();
-L100:          this->mBuildableExtractor = mFGBuildableResourceExtractor;
-L119:          TScriptInterface<FGExtractableResourceInterface> mTScriptInterfaceFGExtractableResourceInterface = this->mBuildableExtractor->GetExtractableResource();
-L169:          TSubclassOf<FGResourceDescriptor> mTSubclassOfFGResourceDescriptor = GetInterfaceUObject(mTScriptInterfaceFGExtractableResourceInterface)->GetResourceClass();
-L216:          this->mExtractableResource = mTSubclassOfFGResourceDescriptor;
-L235:          this->Widget_StandbyButton->mBuildableFactory = this->mBuildableExtractor;
-L276:          this->SetupStaticInfo();
-L290:          this->Widget_Overclock->mBuildableFactory = this->mBuildableExtractor;
-L331:          this->UpdateWarning();
-L345:          this->Widget_Window_DarkMode->SetTitle(this->mBuildableExtractor->mDisplayName);
-L412:          this->Widget_Window_DarkMode->SetInventoryVisibility(true, false);
-L450:          this->Widget_Overclock->GetUnlockedOverclockSlots([ref] mTArrayWidget_InventorySlot);
-L495:          int32 Temp_int_Loop_Counter_Variable1 = 0;
-L518:          int32 Temp_int_Array_Index_Variable = 0;
-L541:          int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayWidget_InventorySlot);
-L600:          bool mbool1 = Temp_int_Loop_Counter_Variable1 < mint32;
-L638:          if (!mbool1) goto ExecutionFlow.Pop();
-L648:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
-L675:          ExecutionFlow.Push(L804);
-L680:          mFScriptDelegate->BindUFunction(this, OnInventorySlotStackMove);
-L703:          KismetArrayLibrary->Array_Get([ref] mTArrayWidget_InventorySlot, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
-L762:          mWidget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate);
-L803:          goto ExecutionFlow.Pop();
-L804:          int32 mint321 = Temp_int_Loop_Counter_Variable1 + 1;
-L846:          Temp_int_Loop_Counter_Variable1 = mint321;
-L873:          goto L541;
-L878:          ExecutionFlow.Push(L975);
-L883:          KismetArrayLibrary->Array_Get([ref] mTArrayWidget_InventorySlot1, Temp_int_Array_Index_Variable1, [ref] mWidget_InventorySlot1);
-L942:          mWidget_InventorySlot1->OnMoveStack->Clear();
-L974:          goto ExecutionFlow.Pop();
-L975:          int32 mint322 = Temp_int_Loop_Counter_Variable + 1;
-L1017:         int32 Temp_int_Loop_Counter_Variable = mint322;
-L1044:         int32 mint323 = KismetArrayLibrary->Array_Length([ref] mTArrayWidget_InventorySlot1);
-L1103:         bool mbool2 = Temp_int_Loop_Counter_Variable < mint323;
-L1141:         if (!mbool2) goto ExecutionFlow.Pop();
-L1151:         int32 Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
-L1178:         goto L878;
-L1183:         Temp_int_Loop_Counter_Variable = 0;
-L1206:         Temp_int_Array_Index_Variable1 = 0;
-L1229:         goto L1044;
-L1234:         // <Begin Inlined EventGraph Function Construct>;
-L1234:         goto L15;
-L1239:         this->UpdateFlowRate();
-L1253:         this->UpdateFluidTank();
-L1267:         float mfloat = this->mBuildableExtractor->GetProductivity();
-L1317:         float mfloat1 = this->mBuildableExtractor->GetProducingPowerConsumption();
-L1367:         float mfloat2 = this->mBuildableExtractor->GetProductionCycleTime();
-L1421:         int32 mint324 = this->mBuildableExtractor->GetNumExtractedItemsPerCycle();
-L1471:         this->mOutputSlot->UpdateProductionStats(mint324, mfloat2, mfloat1, mfloat, 0);
-L1548:         float mfloat3 = this->mBuildableExtractor->GetProductionProgress();
-L1602:         this->mOutputSlot->UpdateCycleProgress(mfloat3);
-L1647:         goto ExecutionFlow.Pop();
-L1648:         // <Begin Inlined EventGraph Function BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_1_OnStandbyClicked__DelegateSignature>;
-L1648:         this->UpdateWarning();
-L1662:         goto ExecutionFlow.Pop();
-L1663:         this->UpdateWarning();
-L1677:         goto ExecutionFlow.Pop();
-L1678:         // <Begin Inlined EventGraph Function BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature>;
-L1678:         this->OnEscapePressed();
-L1692:         goto ExecutionFlow.Pop();
-L1693:         // <Begin Inlined EventGraph Function Destruct>;
-L1693:         this->Destruct();
-L1703:         this->Widget_Overclock->GetUnlockedOverclockSlots([ref] mTArrayWidget_InventorySlot1);
-L1748:         goto L1183;
+L15:           this->UpdateWarning();
+L29:           goto ExecutionFlow.Pop();
+L30:           int32 Temp_int_Array_Index_Variable = 0;
+L53:           int32 mint32 = KismetArrayLibrary->Array_Length([ref] mTArrayWidget_InventorySlot);
+L112:          bool mbool = Temp_int_Loop_Counter_Variable1 < mint32;
+L150:          if (!mbool) goto ExecutionFlow.Pop();
+L160:          Temp_int_Array_Index_Variable = Temp_int_Loop_Counter_Variable1;
+L187:          ExecutionFlow.Push(L380);
+L192:          KismetArrayLibrary->Array_Get([ref] mTArrayWidget_InventorySlot, Temp_int_Array_Index_Variable, [ref] mWidget_InventorySlot);
+L251:          mFScriptDelegate->BindUFunction(this, OnInventorySlotStackMove);
+L274:          mWidget_InventorySlot->OnMoveStack.AddUnique(mFScriptDelegate);
+L315:          mFScriptDelegate1->BindUFunction(this, OnStandbyHasChanged);
+L338:          this->mBuildableExtractor->mOnHasStandbyChanged.AddUnique(mFScriptDelegate1);
+L379:          goto ExecutionFlow.Pop();
+L380:          int32 mint321 = Temp_int_Loop_Counter_Variable1 + 1;
+L422:          int32 Temp_int_Loop_Counter_Variable1 = mint321;
+L449:          goto L53;
+L454:          int32 Temp_int_Loop_Counter_Variable = 0;
+L477:          int32 Temp_int_Array_Index_Variable1 = 0;
+L500:          int32 mint322 = KismetArrayLibrary->Array_Length([ref] mTArrayWidget_InventorySlot1);
+L559:          bool mbool1 = Temp_int_Loop_Counter_Variable < mint322;
+L597:          if (!mbool1) goto ExecutionFlow.Pop();
+L607:          Temp_int_Array_Index_Variable1 = Temp_int_Loop_Counter_Variable;
+L634:          ExecutionFlow.Push(L731);
+L639:          KismetArrayLibrary->Array_Get([ref] mTArrayWidget_InventorySlot1, Temp_int_Array_Index_Variable1, [ref] mWidget_InventorySlot1);
+L698:          mWidget_InventorySlot1->OnMoveStack->Clear();
+L730:          goto ExecutionFlow.Pop();
+L731:          int32 mint323 = Temp_int_Loop_Counter_Variable + 1;
+L773:          Temp_int_Loop_Counter_Variable = mint323;
+L800:          goto L500;
+L805:          this->Construct();
+L815:          FGBuildableResourceExtractor* mFGBuildableResourceExtractor = Cast<Class /Script/FactoryGame.FGBuildableResourceExtractor>(this->mInteractObject);
+L851:          bool mbool2 = mFGBuildableResourceExtractor;
+L880:          if (!mbool2) goto ExecutionFlow.Pop();
+L890:          this->mBuildableExtractor = mFGBuildableResourceExtractor;
+L909:          TScriptInterface<FGExtractableResourceInterface> mTScriptInterfaceFGExtractableResourceInterface = this->mBuildableExtractor->GetExtractableResource();
+L959:          TSubclassOf<FGResourceDescriptor> mTSubclassOfFGResourceDescriptor = GetInterfaceUObject(mTScriptInterfaceFGExtractableResourceInterface)->GetResourceClass();
+L1006:         this->mExtractableResource = mTSubclassOfFGResourceDescriptor;
+L1025:         this->Widget_StandbyButton->mBuildableFactory = this->mBuildableExtractor;
+L1066:         this->SetupStaticInfo();
+L1080:         this->Widget_Overclock->mBuildableFactory = this->mBuildableExtractor;
+L1121:         this->UpdateWarning();
+L1135:         this->Widget_Window_DarkMode->SetTitle(this->mBuildableExtractor->mDisplayName);
+L1202:         this->Widget_Window_DarkMode->SetInventoryVisibility(true, false);
+L1240:         this->Widget_Overclock->GetUnlockedOverclockSlots([ref] mTArrayWidget_InventorySlot);
+L1285:         Temp_int_Loop_Counter_Variable1 = 0;
+L1308:         goto L30;
+L1313:         this->UpdateFlowRate();
+L1327:         this->UpdateFluidTank();
+L1341:         float mfloat = this->mBuildableExtractor->GetProductivity();
+L1391:         float mfloat1 = this->mBuildableExtractor->GetProducingPowerConsumption();
+L1441:         float mfloat2 = this->mBuildableExtractor->GetProductionCycleTime();
+L1495:         int32 mint324 = this->mBuildableExtractor->GetNumExtractedItemsPerCycle();
+L1545:         this->mOutputSlot->UpdateProductionStats(mint324, mfloat2, mfloat1, mfloat, 0);
+L1622:         float mfloat3 = this->mBuildableExtractor->GetProductionProgress();
+L1676:         this->mOutputSlot->UpdateCycleProgress(mfloat3);
+L1721:         goto ExecutionFlow.Pop();
+L1722:         // <Begin Inlined EventGraph Function BndEvt__Widget_StandbyButton_K2Node_ComponentBoundEvent_1_OnStandbyClicked__DelegateSignature>;
+L1722:         this->UpdateWarning();
+L1736:         goto ExecutionFlow.Pop();
+L1737:         this->UpdateWarning();
+L1751:         goto ExecutionFlow.Pop();
+L1752:         // <Begin Inlined EventGraph Function BndEvt__Widget_Window_DarkMode_K2Node_ComponentBoundEvent_0_OnClose__DelegateSignature>;
+L1752:         this->OnEscapePressed();
+L1766:         goto ExecutionFlow.Pop();
+L1767:         this->Destruct();
+L1777:         this->Widget_Overclock->GetUnlockedOverclockSlots([ref] mTArrayWidget_InventorySlot1);
+L1822:         goto L454;
+L1827:         this->Widget_StandbyButton->SetStandbyButtonBrush(mbool3);
+L1872:         goto L15;
 ============ END FUNCTION ExecuteUbergraph_BPW_ExtractorPump ==============
